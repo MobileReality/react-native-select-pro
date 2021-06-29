@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Jakis Test elo 1`] = `
+<View>
+  <Text>
+    This is a test component 
+    Witam
+  </Text>
+</View>
+`;
