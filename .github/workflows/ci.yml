@@ -3,7 +3,7 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  lint-and-test:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -15,10 +15,10 @@ jobs:
           node-version: 14
 
       - name: Install project dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
 
       - name: Run linting process
-        run: npm run lint
+        run: yarn run lint
 
       - name: Run testing process
-        run: npm run test
+        run: yarn run test
