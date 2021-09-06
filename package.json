@@ -2,6 +2,9 @@
   "name": "react-native-select-pro",
   "version": "0.1.0",
   "description": "React Native dropdown library",
+  "engines": {
+    "node": ">=12"
+  },
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
