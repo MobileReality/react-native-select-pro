@@ -11,9 +11,10 @@ exports[`Test should generate snapshot component 1`] = `
   </Text>
   <View
     accessibilityRole="button"
-    accessibilityState={Object {}}
     accessible={true}
+    collapsable={false}
     focusable={true}
+    nativeID="animatedComponent"
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -52,9 +53,10 @@ exports[`Test should generate snapshot component 1`] = `
   </View>
   <View
     accessibilityRole="button"
-    accessibilityState={Object {}}
     accessible={true}
+    collapsable={false}
     focusable={true}
+    nativeID="animatedComponent"
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
