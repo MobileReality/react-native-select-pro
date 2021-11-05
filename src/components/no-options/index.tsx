@@ -1,7 +1,7 @@
 import React, { ComponentProps } from 'react';
 import { StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native';
 
-import { FONT_SIZE, PADDING } from '../../constants/styles';
+import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { OptionsList } from '../options-list';
 
@@ -28,5 +28,6 @@ export const styles = StyleSheet.create<Styles>({
     },
     text: {
         fontSize: FONT_SIZE,
+        color: COLORS.BLACK,
     },
 });

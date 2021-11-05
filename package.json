@@ -31,6 +31,7 @@
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "build": "bob build",
     "release": "release-it",
+    "bootstrap": "yarn example && yarn && yarn pods",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "expo-android": "cd example && yarn android",
