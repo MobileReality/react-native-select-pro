@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select should generate Select snapshot 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    collapsable={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#ffffff",
+          "borderRadius": 4,
+          "borderWidth": 1,
+          "height": 40,
+        },
+        Object {},
+        undefined,
+        Object {},
+      ]
+    }
+  >
+    <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "height": "100%",
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingHorizontal": 12,
+          "paddingRight": 55,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          Array [
+            Object {
+              "fontSize": 12,
+            },
+            Object {
+              "color": "#808080",
+            },
+            undefined,
+          ]
+        }
+      >
+        Select...
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "height": "100%",
+          "justifyContent": "center",
+          "opacity": 1,
+          "position": "absolute",
+          "right": 8,
+          "top": 0,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/assets/icons/chevron-down.png",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "height": 25,
+              "width": 25,
+              "zIndex": -1,
+            },
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "0deg",
+                },
+              ],
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

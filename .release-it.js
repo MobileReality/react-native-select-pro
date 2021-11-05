@@ -8,6 +8,7 @@ module.exports = {
     },
     github: {
         release: true,
+        web: true,
     },
     plugins: {
         '@release-it/conventional-changelog': {

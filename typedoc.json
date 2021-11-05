@@ -1,0 +1,6 @@
+{
+    "entryPoints": ["src/types/index.ts"],
+    "categoryOrder": ["Required", "Common", "Styles", "Accessibility", "*"],
+    "out": "docs",
+    "includeVersion": true
+}

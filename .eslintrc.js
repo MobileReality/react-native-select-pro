@@ -8,25 +8,22 @@ module.exports = {
             'error',
             {
                 groups: [
-                    // Side effect imports.
                     ['^\\u0000'],
-                    // Packages. `react` related packages come first.
                     ['^react', '^@?\\w'],
-                    // Parent imports. Put `..` last.
                     ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
-                    // Other relative imports. Put same-folder imports and `.` last.
                     ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
                 ],
             },
         ],
         'simple-import-sort/exports': 'error',
+        'react/jsx-sort-props': 'error',
+        'react/destructuring-assignment': 'error',
     },
     overrides: [
         {
-            // enable the rule specifically for TypeScript files
             files: ['*.ts', '*.tsx'],
             rules: {
-                'no-console': 2,
+                'no-console': ['error', { allow: ['warn', 'error'] }],
                 'no-debugger': 2,
                 'object-shorthand': 2,
                 'no-else-return': 2,
