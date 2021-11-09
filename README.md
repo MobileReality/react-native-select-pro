@@ -13,7 +13,7 @@ yarn add @mobile-reality/react-native-select-pro
 
 Firstly wrap your app code in `SelectProvider`
 
-```tsx
+```jsx
 import React from 'react';
 import { SelectProvider } from '@mobile-reality/react-native-select-pro';
 
@@ -28,7 +28,7 @@ const RootComponent = () => {
 
 Then you can use `Select` component
 
-```tsx
+```jsx
 import React from 'react';
 import { View } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
@@ -36,7 +36,7 @@ import { Select } from '@mobile-reality/react-native-select-pro';
 const SomeComponent = () => {
     return (
         <View>
-            <Select
+            <Select {/* One required prop: `options` */}
                 options={[{ value: 'somevalue', label: 'somelabel'}]} 
             />
         </View>
@@ -46,7 +46,7 @@ const SomeComponent = () => {
 
 If you want use `Select` component inside `Modal` from `react-native` you need to wrap code inside `Modal` in `SelectModalProvider`
 
-```tsx
+```jsx
 import React from 'react';
 import { View, Modal, Text } from 'react-native';
 import { Select, SelectModalProvider } from '@mobile-reality/react-native-select-pro';
@@ -54,8 +54,8 @@ import { Select, SelectModalProvider } from '@mobile-reality/react-native-select
 const SomeComponent = () => {
     return (
         <View>
-            <Modal>
-                <SelectModalProvider>
+            <Modal> {/* `Modal` from `react-native` */}
+                <SelectModalProvider> {/* `SelectModalProvider` wrapping code inside `Modal` */}
                     <Text>Modal</Text>
                     <Select
                         options={[{ value: 'somevalue', label: 'somelabel'}]}
@@ -77,8 +77,8 @@ Clone this repo and next:
 ```sh
 cd example
 yarn install
-yarn android #for Android
-yarn ios #for iOS
+yarn android #run example app for Android
+yarn ios #run example app for iOS
 ```
 
 ## Contributing
