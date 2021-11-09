@@ -1,8 +1,8 @@
 {
-  "name": "react-native-select-pro-example",
+  "name": "@mobile-reality/react-native-select-pro-example",
   "displayName": "SelectPro Example",
   "expo": {
-    "name": "react-native-select-pro-example",
+    "name": "@mobile-reality/react-native-select-pro-example",
     "slug": "react-native-select-pro-example",
     "description": "Example app for react-native-select-pro",
     "privacy": "public",

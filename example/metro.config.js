@@ -1,7 +1,7 @@
 const path = require('path');
 const blacklist = require('metro-config/src/defaults/exclusionList');
 const escape = require('escape-string-regexp');
-const pak = require('../../react-native-select-pro/package.json');
+const pak = require('../package.json');
 
 const root = path.resolve(__dirname, '..');
 
