@@ -13,7 +13,19 @@ exports[`Select should generate Select snapshot 1`] = `
   }
 >
   <View
+    accessibilityLabel="Open a dropdown"
+    accessible={true}
     collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Array [
         Object {
@@ -29,21 +41,10 @@ exports[`Select should generate Select snapshot 1`] = `
     }
   >
     <View
-      accessibilityLabel="Open a dropdown"
-      accessible={true}
-      focusable={true}
-      onClick={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
           "height": "100%",
           "justifyContent": "center",
-          "opacity": 1,
           "paddingHorizontal": 12,
           "paddingRight": 55,
           "width": "100%",
@@ -68,26 +69,19 @@ exports[`Select should generate Select snapshot 1`] = `
       </Text>
     </View>
     <View
-      accessible={true}
-      focusable={true}
-      onClick={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "height": "100%",
-          "justifyContent": "center",
-          "opacity": 1,
-          "position": "absolute",
-          "right": 8,
-          "top": 0,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "position": "absolute",
+            "right": 8,
+            "top": 0,
+          },
+          undefined,
+        ]
       }
     >
       <Image

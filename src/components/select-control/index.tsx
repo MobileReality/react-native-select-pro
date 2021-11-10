@@ -2,6 +2,7 @@ import React, { ComponentPropsWithRef, forwardRef } from 'react';
 import {
     Image,
     ImageStyle,
+    Pressable,
     StyleSheet,
     Text,
     TextStyle,
@@ -84,65 +85,56 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         };
 
         return (
-            <>
-                <View
-                    collapsable={false}
-                    ref={ref}
-                    style={[
-                        styles.container,
-                        isOpened ? (aboveSelectControl ? styles.openedAbove : styles.opened) : {},
-                        selectControlStyle,
-                        disabled ? [styles.disabled, selectControlDisabledStyle] : {},
-                    ]}>
-                    <TouchableOpacity
-                        accessibilityLabel={
-                            isOpened
-                                ? selectControlCloseDropdownA11yLabel || 'Close a dropdown'
-                                : selectControlOpenDropdownA11yLabel || 'Open a dropdown'
-                        }
-                        activeOpacity={disabled ? 1 : 0.8}
-                        onPress={disabled ? undefined : onPressSelectControl}
-                        style={[styles.press]}>
-                        <Text
-                            numberOfLines={1}
-                            style={[
-                                styles.text,
-                                { color: selectedOption?.label ? COLORS.BLACK : COLORS.GRAY },
-                                selectControlTextStyle,
-                            ]}>
-                            {selectedOption?.label || placeholderText}
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={disabled ? undefined : onPressSelectControl}
-                        style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
-                        {clearable && selectedOption && (
-                            <TouchableOpacity
-                                accessibilityLabel={
-                                    selectControlClearOptionA11yLabel || 'Clear a chosen option'
-                                }
-                                disabled={disabled}
-                                onPress={onPressRemove}>
-                                <Image
-                                    source={require('./../../assets/icons/x.png')}
-                                    style={styles.xIcon}
-                                />
-                            </TouchableOpacity>
-                        )}
-
-                        {!hideSelectControlArrow && (
-                            <Image
-                                source={require('./../../assets/icons/chevron-down.png')}
-                                style={[
-                                    styles.arrowIcon,
-                                    isOpened ? styles.arrowIconOpened : styles.arrowIconClosed,
-                                ]}
-                            />
-                        )}
-                    </TouchableOpacity>
+            <Pressable
+                accessibilityLabel={
+                    isOpened
+                        ? selectControlCloseDropdownA11yLabel || 'Close a dropdown'
+                        : selectControlOpenDropdownA11yLabel || 'Open a dropdown'
+                }
+                onPress={disabled ? undefined : onPressSelectControl}
+                ref={ref}
+                style={[
+                    styles.container,
+                    isOpened ? (aboveSelectControl ? styles.openedAbove : styles.opened) : {},
+                    selectControlStyle,
+                    disabled ? [styles.disabled, selectControlDisabledStyle] : {},
+                ]}>
+                <View style={styles.press}>
+                    <Text
+                        numberOfLines={1}
+                        style={[
+                            styles.text,
+                            { color: selectedOption?.label ? COLORS.BLACK : COLORS.GRAY },
+                            selectControlTextStyle,
+                        ]}>
+                        {selectedOption?.label || placeholderText}
+                    </Text>
                 </View>
-            </>
+                <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
+                    {clearable && selectedOption && (
+                        <TouchableOpacity
+                            accessibilityLabel={
+                                selectControlClearOptionA11yLabel || 'Clear a chosen option'
+                            }
+                            disabled={disabled}
+                            onPress={onPressRemove}>
+                            <Image
+                                source={require('./../../assets/icons/x.png')}
+                                style={styles.xIcon}
+                            />
+                        </TouchableOpacity>
+                    )}
+                    {!hideSelectControlArrow && (
+                        <Image
+                            source={require('./../../assets/icons/chevron-down.png')}
+                            style={[
+                                styles.arrowIcon,
+                                isOpened ? styles.arrowIconOpened : styles.arrowIconClosed,
+                            ]}
+                        />
+                    )}
+                </View>
+            </Pressable>
         );
     },
 );
