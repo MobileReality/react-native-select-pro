@@ -58,7 +58,7 @@ const SomeComponent = () => {
                 <SelectModalProvider> {/* `SelectModalProvider` wrapping code inside `Modal` */}
                     <Text>Modal</Text>
                     <Select
-                        options={[{ value: 'somevalue', label: 'somelabel'}]}
+                        options={[{ value: 'somevalue', label: 'somelabel' }]}
                     />
                 </SelectModalProvider>
             </Modal>
