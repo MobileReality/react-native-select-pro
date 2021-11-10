@@ -68,9 +68,7 @@ const SomeComponent = () => {
 ```
 
 ## Documentation
-TODO...
-
-[Docs](docs/index.html)
+https://mobilereality.github.io/react-native-select-pro/
 
 ## Example
 Clone this repo and next:
