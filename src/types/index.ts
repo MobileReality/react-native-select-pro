@@ -111,6 +111,13 @@ export interface SelectProps {
      */
     disabled?: boolean;
     /**
+     *  If `true` let user search in a select options by typing in select
+     *
+     *  @default false
+     *  @category Common
+     */
+    searchable?: boolean;
+    /**
      *  `FlatListProps` imported from `react-native`
      *
      *  @category Common

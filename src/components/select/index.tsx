@@ -39,6 +39,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         optionStyle,
         optionTextStyle,
         placeholderText = 'Select...',
+        searchable = false,
         selectContainerStyle,
         selectControlButtonsContainerStyle,
         selectControlClearOptionA11yLabel,
@@ -168,6 +169,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 options={options}
                 placeholderText={placeholderText}
                 ref={containerRef}
+                searchable={searchable}
                 selectControlButtonsContainerStyle={selectControlButtonsContainerStyle}
                 selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
                 selectControlCloseDropdownA11yLabel={selectControlCloseDropdownA11yLabel}

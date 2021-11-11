@@ -16,6 +16,7 @@ import type { OptionalToRequired } from '../../helpers';
 import type { Select } from '../../index';
 import { Action, DispatchType, Position, State } from '../../state/types';
 import type { OnPressSelectControlType } from '../../types';
+import { SelectInput } from '../select-input';
 
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
@@ -23,6 +24,7 @@ type FromSelectComponentProps = Pick<
     | 'clearable'
     | 'options'
     | 'disabled'
+    | 'searchable'
     | 'placeholderText'
     | 'selectControlDisabledStyle'
     | 'selectControlButtonsContainerStyle'
@@ -56,6 +58,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             options,
             disabled,
             placeholderText,
+            searchable,
             selectControlDisabledStyle,
             selectControlClearOptionA11yLabel,
             selectControlOpenDropdownA11yLabel,
@@ -84,6 +87,30 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             }
         };
 
+        const renderSelection = () => {
+            if (searchable) {
+                return (
+                    <SelectInput
+                        dispatch={dispatch}
+                        isOpened={isOpened}
+                        placeholderText={placeholderText}
+                        selectedOption={selectedOption}
+                    />
+                );
+            }
+            return (
+                <Text
+                    numberOfLines={1}
+                    style={[
+                        styles.text,
+                        { color: selectedOption?.label ? COLORS.BLACK : COLORS.GRAY },
+                        selectControlTextStyle,
+                    ]}>
+                    {selectedOption?.label || placeholderText}
+                </Text>
+            );
+        };
+
         return (
             <Pressable
                 accessibilityLabel={
@@ -99,17 +126,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     selectControlStyle,
                     disabled ? [styles.disabled, selectControlDisabledStyle] : {},
                 ]}>
-                <View style={styles.press}>
-                    <Text
-                        numberOfLines={1}
-                        style={[
-                            styles.text,
-                            { color: selectedOption?.label ? COLORS.BLACK : COLORS.GRAY },
-                            selectControlTextStyle,
-                        ]}>
-                        {selectedOption?.label || placeholderText}
-                    </Text>
-                </View>
+                <View style={styles.press}>{renderSelection()}</View>
                 <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
                     {clearable && selectedOption && (
                         <TouchableOpacity
