@@ -1,6 +1,6 @@
 {
   "name": "@mobile-reality/react-native-select-pro",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Native select dropdown library",
   "engines": {
     "node": ">=12"
