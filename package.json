@@ -5,13 +5,13 @@
   "engines": {
     "node": ">=12"
   },
-  "main": "lib/commonjs/index.js",
-  "module": "lib/module/index.js",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
-    "../react-native-select-pro/src",
+    "src",
     "lib",
     "android",
     "ios",
