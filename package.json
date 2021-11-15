@@ -70,7 +70,8 @@
   },
   "homepage": "https://github.com/MobileReality/react-native-select-pro/#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "dependencies": {
     "@gorhom/portal": "^1.0.11"
