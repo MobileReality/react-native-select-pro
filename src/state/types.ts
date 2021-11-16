@@ -33,6 +33,7 @@ export type ActionType =
     | {
           type: Action.SearchOptions;
           payload: string;
+          searchPattern: (payload: string) => string;
       }
     | {
           type: Action.SetSearchValue;

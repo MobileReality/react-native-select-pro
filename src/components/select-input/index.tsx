@@ -5,32 +5,41 @@ import type {
     SelectProps,
 } from '@mobile-reality/react-native-select-pro';
 
-import { FONT_SIZE, PADDING } from '../../constants/styles';
+import { FONT_SIZE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { DispatchType, State } from '../../state/types';
 import { Action } from '../../state/types';
 
 type SelectInputProps = OptionalToRequired<
-    Pick<State, 'isOpened' | 'selectedOption' | 'searchValue'> & { dispatch: DispatchType } & Pick<
+    Pick<State, 'isOpened' | 'searchValue'> & { dispatch: DispatchType } & Pick<
             SelectProps,
-            'placeholderText'
-        > & {
-            onPressSelectControl: OnPressSelectControlType;
-        }
+            'placeholderText' | 'searchPattern'
+        > & { onPressSelectControl: OnPressSelectControlType }
 >;
 
 export const SelectInput = ({
-    selectedOption,
+    isOpened,
     searchValue,
+    searchPattern,
     placeholderText,
     onPressSelectControl,
     dispatch,
 }: SelectInputProps) => {
     const onChangeText = (payload: string) => {
+        if (!isOpened) {
+            dispatch({ type: Action.Open });
+        }
         dispatch({
             type: Action.SetSearchValue,
             payload,
         });
+        if (searchPattern) {
+            dispatch({
+                type: Action.SearchOptions,
+                searchPattern,
+                payload,
+            });
+        }
     };
 
     return (
@@ -39,7 +48,7 @@ export const SelectInput = ({
             onPressIn={onPressSelectControl}
             placeholder={placeholderText}
             style={styles.text}
-            value={searchValue || selectedOption?.label}
+            value={searchValue}
         />
     );
 };
@@ -50,7 +59,6 @@ type Styles = {
 
 const styles = StyleSheet.create<Styles>({
     text: {
-        padding: PADDING,
         fontSize: FONT_SIZE,
     },
 });

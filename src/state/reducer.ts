@@ -43,10 +43,17 @@ export const reducer = (state: State, action: ActionType): State => {
                 searchValue: action.payload,
             };
         case Action.SearchOptions:
+            if (action.payload === '') {
+                return {
+                    ...state,
+                    searchedOptions: [],
+                };
+            }
+            const regex = new RegExp(action.searchPattern(action.payload.toLowerCase()));
             return {
                 ...state,
                 searchedOptions: state.optionsData.filter((option) =>
-                    option.includes(action.payload),
+                    regex.test(option.label.toLowerCase()),
                 ),
             };
         case Action.SetPosition:

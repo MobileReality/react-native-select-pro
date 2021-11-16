@@ -25,6 +25,7 @@ type FromSelectComponentProps = Pick<
     | 'options'
     | 'disabled'
     | 'searchable'
+    | 'searchPattern'
     | 'placeholderText'
     | 'selectControlDisabledStyle'
     | 'selectControlButtonsContainerStyle'
@@ -58,6 +59,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             disabled,
             placeholderText,
             searchable,
+            searchPattern,
             searchValue,
             selectControlDisabledStyle,
             selectControlClearOptionA11yLabel,
@@ -77,6 +79,12 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     type: Action.SelectOption,
                     payload: null,
                 });
+                if (searchable) {
+                    dispatch({
+                        type: Action.SetSearchValue,
+                        payload: '',
+                    });
+                }
                 dispatch({
                     type: Action.SetOptionsData,
                     payload: options,
@@ -95,8 +103,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         isOpened={isOpened}
                         onPressSelectControl={onPressSelectControl}
                         placeholderText={placeholderText}
+                        searchPattern={searchPattern}
                         searchValue={searchValue}
-                        selectedOption={selectedOption}
                     />
                 );
             }

@@ -26,7 +26,12 @@ type OptionsListProps = OptionalToRequired<
     FromSelectComponentProps &
         Pick<
             State,
-            'isOpened' | 'openedPosition' | 'optionsData' | 'selectedOption' | 'searchedOptions'
+            | 'isOpened'
+            | 'openedPosition'
+            | 'optionsData'
+            | 'selectedOption'
+            | 'searchedOptions'
+            | 'searchValue'
         > & {
             onOutsidePress: OnOutsidePress;
             onPressOption: OnPressOptionType;
@@ -38,6 +43,7 @@ export const OptionsList = ({
     onPressOption,
     selectedOption,
     searchedOptions,
+    searchValue,
     isOpened,
     onOutsidePress,
     openedPosition: { width, top, left },
@@ -64,7 +70,7 @@ export const OptionsList = ({
                         <FlatList
                             accessibilityLabel={'Options list'}
                             bounces={false}
-                            data={searchedOptions?.length > 0 ? searchedOptions : optionsData}
+                            data={searchValue?.length > 0 ? searchedOptions : optionsData}
                             keyExtractor={({ value }) => value}
                             keyboardShouldPersistTaps="handled"
                             persistentScrollbar={true}

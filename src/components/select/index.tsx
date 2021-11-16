@@ -40,6 +40,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         optionTextStyle,
         placeholderText = 'Select...',
         searchable = false,
+        searchPattern = (payload: string) => `(${payload})`,
         selectContainerStyle,
         selectControlButtonsContainerStyle,
         selectControlClearOptionA11yLabel,
@@ -98,6 +99,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
             dispatch({ type: Action.Close });
         }
         dispatch({ type: Action.SelectOption, payload: option });
+        if (searchable) {
+            dispatch({ type: Action.SetSearchValue, payload: option.label });
+        }
         dispatch({ type: Action.SetOptionsData, payload: options });
     };
 
@@ -169,6 +173,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 options={options}
                 placeholderText={placeholderText}
                 ref={containerRef}
+                searchPattern={searchPattern}
                 searchValue={searchValue}
                 searchable={searchable}
                 selectControlButtonsContainerStyle={selectControlButtonsContainerStyle}
@@ -193,6 +198,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 optionTextStyle={optionTextStyle}
                 optionsData={optionsData}
                 optionsListStyle={optionsListStyle}
+                searchValue={searchValue}
                 searchedOptions={searchedOptions}
                 selectedOption={selectedOption}
             />

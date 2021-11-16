@@ -11,6 +11,7 @@ import { Overflow } from './examples/Overflow';
 import { Ref } from './examples/Ref';
 import { RHF } from './examples/RHF';
 import { Selects } from './examples/Selects';
+import { Searchable } from './examples/Searchable';
 
 export const DATA = [
     {
@@ -48,6 +49,7 @@ const examples = [
     'Custom Styles',
     'Ref',
     'Callbacks',
+    'Searchable',
 ];
 
 export default function App() {
@@ -80,6 +82,8 @@ export default function App() {
                 return <Ref />;
             case 'Callbacks':
                 return <Callbacks />;
+            case 'Searchable':
+                return <Searchable />;
             default:
                 return null;
         }

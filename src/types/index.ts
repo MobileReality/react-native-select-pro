@@ -118,6 +118,13 @@ export interface SelectProps {
      */
     searchable?: boolean;
     /**
+     *  Regex definition for searching options
+     *
+     *  @default (payload: string) => `(${payload})`
+     *  @category Common
+     */
+    searchPattern?: (payload: string) => string;
+    /**
      *  `FlatListProps` imported from `react-native`
      *
      *  @category Common
