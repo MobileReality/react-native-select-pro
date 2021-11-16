@@ -39,7 +39,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         optionStyle,
         optionTextStyle,
         placeholderText = 'Select...',
-        searchable = true,
+        searchable = false,
         selectContainerStyle,
         selectControlButtonsContainerStyle,
         selectControlClearOptionA11yLabel,
