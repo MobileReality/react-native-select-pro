@@ -4,6 +4,8 @@ import { Action } from './types';
 export const initialData: State = {
     isOpened: false,
     selectedOption: null,
+    searchValue: '',
+    searchedOptions: [],
     openedPosition: {
         width: 0,
         top: 0,
@@ -34,6 +36,18 @@ export const reducer = (state: State, action: ActionType): State => {
             return {
                 ...state,
                 optionsData: action.payload,
+            };
+        case Action.SetSearchValue:
+            return {
+                ...state,
+                searchValue: action.payload,
+            };
+        case Action.SearchOptions:
+            return {
+                ...state,
+                searchedOptions: state.optionsData.filter((option) =>
+                    option.includes(action.payload),
+                ),
             };
         case Action.SetPosition:
             return {

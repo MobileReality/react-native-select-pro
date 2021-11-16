@@ -39,7 +39,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         optionStyle,
         optionTextStyle,
         placeholderText = 'Select...',
-        searchable = false,
+        searchable = true,
         selectContainerStyle,
         selectControlButtonsContainerStyle,
         selectControlClearOptionA11yLabel,
@@ -50,10 +50,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         selectControlTextStyle,
         optionsListStyle,
     } = props;
-    const [{ isOpened, selectedOption, optionsData, openedPosition }, dispatch] = useReducer(
-        reducer,
-        initialData,
-    );
+    const [
+        { isOpened, selectedOption, optionsData, openedPosition, searchValue, searchedOptions },
+        dispatch,
+    ] = useReducer(reducer, initialData);
     const { aboveSelectControl } = openedPosition;
 
     const containerRef = useRef<View>(null);
@@ -169,6 +169,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 options={options}
                 placeholderText={placeholderText}
                 ref={containerRef}
+                searchValue={searchValue}
                 searchable={searchable}
                 selectControlButtonsContainerStyle={selectControlButtonsContainerStyle}
                 selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
@@ -192,6 +193,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 optionTextStyle={optionTextStyle}
                 optionsData={optionsData}
                 optionsListStyle={optionsListStyle}
+                searchedOptions={searchedOptions}
                 selectedOption={selectedOption}
             />
         </View>

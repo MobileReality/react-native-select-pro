@@ -1,29 +1,45 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, TextInput, TextStyle } from 'react-native';
-import type { SelectProps } from '@mobile-reality/react-native-select-pro';
+import type {
+    OnPressSelectControlType,
+    SelectProps,
+} from '@mobile-reality/react-native-select-pro';
 
 import { FONT_SIZE, PADDING } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { DispatchType, State } from '../../state/types';
+import { Action } from '../../state/types';
 
 type SelectInputProps = OptionalToRequired<
-    Pick<State, 'isOpened' | 'selectedOption'> & { dispatch: DispatchType } & Pick<
+    Pick<State, 'isOpened' | 'selectedOption' | 'searchValue'> & { dispatch: DispatchType } & Pick<
             SelectProps,
             'placeholderText'
-        >
+        > & {
+            onPressSelectControl: OnPressSelectControlType;
+        }
 >;
 
-export const SelectInput = ({ selectedOption, placeholderText }: SelectInputProps) => {
-    const [inputValue, setInputValue] = useState('');
-
-    const value = selectedOption?.label || inputValue;
+export const SelectInput = ({
+    selectedOption,
+    searchValue,
+    placeholderText,
+    onPressSelectControl,
+    dispatch,
+}: SelectInputProps) => {
+    const onChangeText = (payload: string) => {
+        dispatch({
+            type: Action.SetSearchValue,
+            payload,
+        });
+    };
 
     return (
         <TextInput
-            onChangeText={setInputValue}
+            onChangeText={onChangeText}
+            onPressIn={onPressSelectControl}
             placeholder={placeholderText}
             style={styles.text}
-            value={value}
+            value={searchValue || selectedOption?.label}
         />
     );
 };

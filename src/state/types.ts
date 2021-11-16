@@ -8,6 +8,8 @@ export enum Action {
     SelectOption = 'selectOption',
     SetOptionsData = 'setOptionsData',
     SetPosition = 'SetPosition',
+    SetSearchValue = 'setSearchValue',
+    SearchOptions = 'searchOptions',
 }
 export type ActionType =
     | {
@@ -27,6 +29,14 @@ export type ActionType =
     | {
           type: Action.SetPosition;
           payload: Position;
+      }
+    | {
+          type: Action.SearchOptions;
+          payload: string;
+      }
+    | {
+          type: Action.SetSearchValue;
+          payload: string;
       };
 
 export type Position = {
@@ -41,6 +51,8 @@ export type State = {
     selectedOption: OptionType | null;
     optionsData: OptionsType;
     openedPosition: Position;
+    searchValue: string;
+    searchedOptions: OptionType[];
 };
 
 export type DispatchType = Dispatch<ActionType>;

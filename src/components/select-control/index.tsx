@@ -40,10 +40,9 @@ type SelectControlProps = OptionalToRequired<
     {
         onPressSelectControl: OnPressSelectControlType;
     } & FromSelectComponentProps &
-        Pick<State, 'isOpened' | 'selectedOption'> & { dispatch: DispatchType } & Pick<
-            Position,
-            'aboveSelectControl'
-        >
+        Pick<State, 'isOpened' | 'selectedOption' | 'searchValue'> & {
+            dispatch: DispatchType;
+        } & Pick<Position, 'aboveSelectControl'>
 >;
 
 export const SelectControl = forwardRef<View, SelectControlProps>(
@@ -59,6 +58,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             disabled,
             placeholderText,
             searchable,
+            searchValue,
             selectControlDisabledStyle,
             selectControlClearOptionA11yLabel,
             selectControlOpenDropdownA11yLabel,
@@ -93,7 +93,9 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     <SelectInput
                         dispatch={dispatch}
                         isOpened={isOpened}
+                        onPressSelectControl={onPressSelectControl}
                         placeholderText={placeholderText}
+                        searchValue={searchValue}
                         selectedOption={selectedOption}
                     />
                 );
