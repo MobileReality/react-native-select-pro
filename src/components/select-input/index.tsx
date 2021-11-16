@@ -52,6 +52,5 @@ const styles = StyleSheet.create<Styles>({
     text: {
         padding: PADDING,
         fontSize: FONT_SIZE,
-        color: 'red',
     },
 });
