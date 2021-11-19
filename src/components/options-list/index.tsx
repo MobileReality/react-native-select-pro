@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 
 import { Portal } from '@gorhom/portal';
 
 import { Portals } from '../../constants/portals';
-import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST } from '../../constants/styles';
+import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { State } from '../../state/types';
 import type { OnOutsidePress, OnPressOptionType } from '../../types';
@@ -106,6 +106,9 @@ const styles = StyleSheet.create<Styles>({
         zIndex: 1,
         backgroundColor: COLORS.WHITE,
         borderWidth: BORDER_WIDTH,
+        borderTopWidth: 0,
+        borderBottomRightRadius: SHAPE,
+        borderBottomLeftRadius: SHAPE,
         maxHeight: MAX_HEIGHT_LIST,
         elevation: 5,
     },
