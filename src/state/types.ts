@@ -7,8 +7,9 @@ export enum Action {
     Close = 'close',
     SelectOption = 'selectOption',
     SetOptionsData = 'setOptionsData',
-    SetPosition = 'SetPosition',
+    SetPosition = 'setPosition',
 }
+
 export type ActionType =
     | {
           type: Action.Open;
