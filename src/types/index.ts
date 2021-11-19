@@ -1,4 +1,11 @@
-import type { FlatListProps, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type {
+    FlatListProps,
+    ImageStyle,
+    Insets,
+    StyleProp,
+    TextStyle,
+    ViewStyle,
+} from 'react-native';
 
 export type OptionType = {
     label: string;
@@ -73,6 +80,27 @@ export interface SelectProps {
      *  @category Styles
      */
     selectControlButtonsContainerStyle?: StyleProp<ViewStyle>;
+
+    /**
+     *  Style of clear option button
+     *
+     *  @category Styles
+     */
+    selectControlClearOptionButtonStyle?: StyleProp<ViewStyle>;
+
+    /**
+     *  Hit Slop for clear option button
+     *
+     *  @category Styles
+     */
+    selectControlClearOptionButtonHitSlop?: Insets;
+
+    /**
+     *  Style of clear option image
+     *
+     *  @category Styles
+     */
+    selectControlClearOptionImageStyle?: ImageStyle;
 
     /**
      * Style of container select control

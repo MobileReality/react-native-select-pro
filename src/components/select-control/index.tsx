@@ -32,6 +32,9 @@ type FromSelectComponentProps = Pick<
     | 'selectControlOpenDropdownA11yLabel'
     | 'selectControlCloseDropdownA11yLabel'
     | 'selectControlTextStyle'
+    | 'selectControlClearOptionButtonStyle'
+    | 'selectControlClearOptionButtonHitSlop'
+    | 'selectControlClearOptionImageStyle'
 >;
 
 type SelectControlProps = OptionalToRequired<
@@ -57,6 +60,9 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             disabled,
             placeholderText,
             selectControlDisabledStyle,
+            selectControlClearOptionButtonHitSlop,
+            selectControlClearOptionButtonStyle,
+            selectControlClearOptionImageStyle,
             selectControlClearOptionA11yLabel,
             selectControlOpenDropdownA11yLabel,
             selectControlCloseDropdownA11yLabel,
@@ -117,10 +123,16 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                                 selectControlClearOptionA11yLabel || 'Clear a chosen option'
                             }
                             disabled={disabled}
-                            onPress={onPressRemove}>
+                            hitSlop={
+                                selectControlClearOptionButtonHitSlop
+                                    ? selectControlClearOptionButtonHitSlop
+                                    : { right: 3, left: 3 }
+                            }
+                            onPress={onPressRemove}
+                            style={[styles.xIconWrapper, selectControlClearOptionButtonStyle]}>
                             <Image
                                 source={require('./../../assets/icons/x.png')}
-                                style={styles.xIcon}
+                                style={[styles.xIcon, selectControlClearOptionImageStyle]}
                             />
                         </TouchableOpacity>
                     )}
@@ -151,6 +163,7 @@ type Styles = {
     arrowIconOpened: ImageStyle;
     arrowIconClosed: ImageStyle;
     xIcon: ImageStyle;
+    xIconWrapper: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -194,6 +207,10 @@ const styles = StyleSheet.create<Styles>({
         width: 25,
         height: 25,
         zIndex: -1,
+    },
+    xIconWrapper: {
+        height: '100%',
+        justifyContent: 'center',
     },
     xIcon: {
         width: 20,
