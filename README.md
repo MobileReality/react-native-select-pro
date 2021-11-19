@@ -1,6 +1,35 @@
 # @mobile-reality/react-native-select-pro
 
-## Installation
+React Native select / dropdown component
+
+## Features
+* Customizable
+* Android / iOS / Expo supported
+* TypeScript supported
+
+## Example
+
+### Expo Snack
+[Example on Expo](https://snack.expo.dev/@irekrog/smelly-beef-jerky)
+
+### Video preview
+
+https://user-images.githubusercontent.com/11172548/142592143-fc4ffcc5-2d8f-49ff-aa58-0ae5f9dd46bf.mp4
+
+### Repo
+Clone this repo and next:
+```sh
+cd example
+yarn install
+yarn android #run example app for Android
+yarn ios #run example app for iOS
+```
+
+## Documentation
+https://mobilereality.github.io/react-native-select-pro/
+
+## Getting Started
+### Installation
 ```
 npm install @mobile-reality/react-native-select-pro
 ```
@@ -9,20 +38,20 @@ or
 yarn add @mobile-reality/react-native-select-pro
 ```
 
-## Usage
+### Usage
 
-Firstly wrap your app code in `SelectProvider`
+Firstly, wrap your app code in `SelectProvider`
 
 ```jsx
 import React from 'react';
 import { SelectProvider } from '@mobile-reality/react-native-select-pro';
 
 const RootComponent = () => {
-    return (
-        <SelectProvider>
-            {/* rest of your app code */}
-        </SelectProvider>
-    )
+  return (
+    <SelectProvider>
+      {/* rest of your app code */}
+    </SelectProvider>
+  )
 };
 ```
 
@@ -34,17 +63,17 @@ import { View } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 const SomeComponent = () => {
-    return (
-        <View>
-            <Select {/* One required prop: `options` */}
-                options={[{ value: 'somevalue', label: 'somelabel'}]} 
-            />
-        </View>
-    )
+  return (
+    <View>
+      <Select {/* One required prop: `options` */}
+        options={[{ value: 'somevalue', label: 'somelabel'}]} 
+      />
+    </View>
+  )
 };
 ```
 
-If you want use `Select` component inside `Modal` from `react-native` you need to wrap code inside `Modal` in `SelectModalProvider`
+If you want to use `Select` component inside `Modal` from `react-native` (or `react-native-modal`) you need to wrap code inside `Modal` in `SelectModalProvider`
 
 ```jsx
 import React from 'react';
@@ -52,32 +81,25 @@ import { View, Modal, Text } from 'react-native';
 import { Select, SelectModalProvider } from '@mobile-reality/react-native-select-pro';
 
 const SomeComponent = () => {
-    return (
-        <View>
-            <Modal> {/* `Modal` from `react-native` */}
-                <SelectModalProvider> {/* `SelectModalProvider` wrapping code inside `Modal` */}
-                    <Text>Modal</Text>
-                    <Select
-                        options={[{ value: 'somevalue', label: 'somelabel' }]}
-                    />
-                </SelectModalProvider>
-            </Modal>
-        </View>
-    )
+  return (
+    <View>
+      <Modal> {/* `Modal` from `react-native` or `react-native-modal` */}
+        <SelectModalProvider> {/* `SelectModalProvider` wrapping code inside `Modal` */}
+          <Text>Modal</Text>
+          <Select
+            options={[{ value: 'somevalue', label: 'somelabel' }]}
+          />
+        </SelectModalProvider>
+      </Modal>
+    </View>
+  )
 };
 ```
 
-## Documentation
-https://mobilereality.github.io/react-native-select-pro/
-
-## Example
-Clone this repo and next:
-```sh
-cd example
-yarn install
-yarn android #run example app for Android
-yarn ios #run example app for iOS
-```
+## Thanks
+* Used [react-native-portal](https://github.com/gorhom/react-native-portal), thanks to [@gorhom](https://github.com/gorhom) for great library 🎉
+* Built with [@react-native-community/bob](https://github.com/react-native-community/bob) 🚀
+* Docs built with [TypeDoc](https://typedoc.org/) 🙌
 
 ## Contributing
 
