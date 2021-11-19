@@ -5,7 +5,7 @@ import { Portal } from '@gorhom/portal';
 import { Portals } from '../../constants/portals';
 import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
-import type { State } from '../../state/types';
+import type { Position, State } from '../../state/types';
 import type { OnOutsidePress, OnPressOptionType } from '../../types';
 import { NoOptions } from '../no-options';
 import { Option } from '../option';
@@ -27,10 +27,11 @@ type OptionsListProps = OptionalToRequired<
         Pick<State, 'isOpened' | 'openedPosition' | 'optionsData' | 'selectedOption'> & {
             onOutsidePress: OnOutsidePress;
             onPressOption: OnPressOptionType;
-        }
+        } & Pick<Position, 'aboveSelectControl'>
 >;
 
 export const OptionsList = ({
+    aboveSelectControl,
     flatListProps,
     onPressOption,
     selectedOption,
@@ -79,7 +80,12 @@ export const OptionsList = ({
                                     />
                                 );
                             }}
-                            style={[styles.options, optionsListStyle, { top, left, width }]}
+                            style={[
+                                styles.options,
+                                optionsListStyle,
+                                { top, left, width },
+                                aboveSelectControl ? styles.overflown : styles.notOverflown,
+                            ]}
                             {...flatListProps}
                             ListEmptyComponent={<NoOptions noOptionsText={noOptionsText} />}
                         />
@@ -93,6 +99,8 @@ export const OptionsList = ({
 type Styles = {
     modalOverlay: ViewStyle;
     options: ViewStyle;
+    notOverflown: ViewStyle;
+    overflown: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -106,10 +114,17 @@ const styles = StyleSheet.create<Styles>({
         zIndex: 1,
         backgroundColor: COLORS.WHITE,
         borderWidth: BORDER_WIDTH,
+        maxHeight: MAX_HEIGHT_LIST,
+        elevation: 5,
+    },
+    notOverflown: {
         borderTopWidth: 0,
         borderBottomRightRadius: SHAPE,
         borderBottomLeftRadius: SHAPE,
-        maxHeight: MAX_HEIGHT_LIST,
-        elevation: 5,
+    },
+    overflown: {
+        borderBottomWidth: 0,
+        borderTopRightRadius: SHAPE,
+        borderTopLeftRadius: SHAPE,
     },
 });
