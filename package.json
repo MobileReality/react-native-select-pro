@@ -1,7 +1,7 @@
 {
   "name": "@mobile-reality/react-native-select-pro",
   "version": "1.0.1",
-  "description": "React Native select dropdown library",
+  "description": "React Native select / dropdown customizable component",
   "engines": {
     "node": ">=12"
   },
@@ -46,7 +46,8 @@
     "select",
     "picker",
     "dropdown",
-    "menu"
+    "menu",
+    "react-native-component"
   ],
   "repository": "https://github.com/MobileReality/react-native-select-pro",
   "author": "MobileReality <biuro@mobilereality.pl> (https://mobilereality.pl)",
@@ -74,7 +75,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@gorhom/portal": "^1.0.11"
+    "@gorhom/portal": "1.0.11"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^14.1.0",
