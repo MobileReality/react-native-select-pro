@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import type {
     FlatListProps,
     ImageStyle,
@@ -7,6 +8,8 @@ import type {
     ViewStyle,
 } from 'react-native';
 
+import type { OnChooseOption, OptionProps } from '../components/option';
+
 export type OptionType = {
     label: string;
     value: string;
@@ -14,6 +17,10 @@ export type OptionType = {
 };
 
 export type OptionsType = OptionType[];
+
+export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option'> & {
+    onPressOption: OnChooseOption;
+};
 
 /**
  * `<Select />` component props
@@ -204,6 +211,21 @@ export interface SelectProps {
      * @default "Close a dropdown"
      */
     selectControlCloseDropdownA11yLabel?: string;
+
+    /**
+     * NoOptionsComponent
+     *
+     * @category Custom Component
+     */
+    NoOptionsComponent?: JSX.Element;
+
+    /**
+     * OptionComponent
+     *
+     * @param props OptionComponentProps
+     * @category Custom Component
+     */
+    OptionComponent?: (props: OptionComponentProps) => JSX.Element;
 }
 
 /**
