@@ -58,37 +58,39 @@ export const OptionsList = ({
                         </TouchableWithoutFeedback>
                     </Portal>
                     <Portal hostName={Portals.Select}>
-                        <FlatList
-                            accessibilityLabel={'Options list'}
-                            bounces={false}
-                            data={optionsData}
-                            keyExtractor={({ value }) => value}
-                            keyboardShouldPersistTaps="handled"
-                            persistentScrollbar={true}
-                            renderItem={({ item }) => {
-                                const { value } = item;
-                                return (
-                                    <Option
-                                        isSelected={value === selectedOption?.value}
-                                        key={value}
-                                        onPressOption={onPressOption}
-                                        onSelect={onSelect}
-                                        option={item}
-                                        optionSelectedStyle={optionSelectedStyle}
-                                        optionStyle={optionStyle}
-                                        optionTextStyle={optionTextStyle}
-                                    />
-                                );
-                            }}
+                        <View
                             style={[
                                 styles.options,
                                 optionsListStyle,
                                 { top, left, width },
                                 aboveSelectControl ? styles.overflown : styles.notOverflown,
-                            ]}
-                            {...flatListProps}
-                            ListEmptyComponent={<NoOptions noOptionsText={noOptionsText} />}
-                        />
+                            ]}>
+                            <FlatList
+                                accessibilityLabel={'Options list'}
+                                bounces={false}
+                                data={optionsData}
+                                keyExtractor={({ value }) => value}
+                                keyboardShouldPersistTaps="handled"
+                                persistentScrollbar={true}
+                                renderItem={({ item }) => {
+                                    const { value } = item;
+                                    return (
+                                        <Option
+                                            isSelected={value === selectedOption?.value}
+                                            key={value}
+                                            onPressOption={onPressOption}
+                                            onSelect={onSelect}
+                                            option={item}
+                                            optionSelectedStyle={optionSelectedStyle}
+                                            optionStyle={optionStyle}
+                                            optionTextStyle={optionTextStyle}
+                                        />
+                                    );
+                                }}
+                                {...flatListProps}
+                                ListEmptyComponent={<NoOptions noOptionsText={noOptionsText} />}
+                            />
+                        </View>
                     </Portal>
                 </>
             )}
