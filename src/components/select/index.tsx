@@ -186,9 +186,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectedOption={selectedOption}
             />
             <OptionsList
-                aboveSelectControl={aboveSelectControl}
                 NoOptionsComponent={NoOptionsComponent}
                 OptionComponent={OptionComponent}
+                aboveSelectControl={aboveSelectControl}
                 flatListProps={flatListProps}
                 isOpened={isOpened}
                 noOptionsText={noOptionsText}

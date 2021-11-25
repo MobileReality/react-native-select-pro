@@ -81,7 +81,6 @@ export const OptionsList = ({
                                     return (
                                         <Option
                                             OptionComponent={OptionComponent}
-
                                             isSelected={value === selectedOption?.value}
                                             key={value}
                                             onPressOption={onPressOption}
@@ -95,7 +94,10 @@ export const OptionsList = ({
                                 }}
                                 {...flatListProps}
                                 ListEmptyComponent={
-                                    NoOptionsComponent || <NoOptions noOptionsText={noOptionsText} />}
+                                    NoOptionsComponent || (
+                                        <NoOptions noOptionsText={noOptionsText} />
+                                    )
+                                }
                             />
                         </View>
                     </Portal>
