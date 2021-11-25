@@ -3,9 +3,9 @@ import { FlatList, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 
 import { Portal } from '@gorhom/portal';
 
 import { Portals } from '../../constants/portals';
-import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST } from '../../constants/styles';
+import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
-import type { State } from '../../state/types';
+import type { Position, State } from '../../state/types';
 import type { OnOutsidePress, OnPressOptionType } from '../../types';
 import { NoOptions } from '../no-options';
 import { Option } from '../option';
@@ -29,10 +29,11 @@ type OptionsListProps = OptionalToRequired<
         Pick<State, 'isOpened' | 'openedPosition' | 'optionsData' | 'selectedOption'> & {
             onOutsidePress: OnOutsidePress;
             onPressOption: OnPressOptionType;
-        }
+        } & Pick<Position, 'aboveSelectControl'>
 >;
 
 export const OptionsList = ({
+    aboveSelectControl,
     flatListProps,
     onPressOption,
     selectedOption,
@@ -61,35 +62,42 @@ export const OptionsList = ({
                         </TouchableWithoutFeedback>
                     </Portal>
                     <Portal hostName={Portals.Select}>
-                        <FlatList
-                            accessibilityLabel={'Options list'}
-                            bounces={false}
-                            data={optionsData}
-                            keyExtractor={({ value }) => value}
-                            keyboardShouldPersistTaps="handled"
-                            persistentScrollbar={true}
-                            renderItem={({ item }) => {
-                                const { value } = item;
-                                return (
-                                    <Option
-                                        OptionComponent={OptionComponent}
-                                        isSelected={value === selectedOption?.value}
-                                        key={value}
-                                        onPressOption={onPressOption}
-                                        onSelect={onSelect}
-                                        option={item}
-                                        optionSelectedStyle={optionSelectedStyle}
-                                        optionStyle={optionStyle}
-                                        optionTextStyle={optionTextStyle}
-                                    />
-                                );
-                            }}
-                            style={[styles.options, optionsListStyle, { top, left, width }]}
-                            {...flatListProps}
-                            ListEmptyComponent={
-                                NoOptionsComponent || <NoOptions noOptionsText={noOptionsText} />
-                            }
-                        />
+                        <View
+                            style={[
+                                styles.options,
+                                optionsListStyle,
+                                { top, left, width },
+                                aboveSelectControl ? styles.overflown : styles.notOverflown,
+                            ]}>
+                            <FlatList
+                                accessibilityLabel={'Options list'}
+                                bounces={false}
+                                data={optionsData}
+                                keyExtractor={({ value }) => value}
+                                keyboardShouldPersistTaps="handled"
+                                persistentScrollbar={true}
+                                renderItem={({ item }) => {
+                                    const { value } = item;
+                                    return (
+                                        <Option
+                                            OptionComponent={OptionComponent}
+
+                                            isSelected={value === selectedOption?.value}
+                                            key={value}
+                                            onPressOption={onPressOption}
+                                            onSelect={onSelect}
+                                            option={item}
+                                            optionSelectedStyle={optionSelectedStyle}
+                                            optionStyle={optionStyle}
+                                            optionTextStyle={optionTextStyle}
+                                        />
+                                    );
+                                }}
+                                {...flatListProps}
+                                ListEmptyComponent={
+                                    NoOptionsComponent || <NoOptions noOptionsText={noOptionsText} />}
+                            />
+                        </View>
                     </Portal>
                 </>
             )}
@@ -100,6 +108,8 @@ export const OptionsList = ({
 type Styles = {
     modalOverlay: ViewStyle;
     options: ViewStyle;
+    notOverflown: ViewStyle;
+    overflown: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -115,5 +125,15 @@ const styles = StyleSheet.create<Styles>({
         borderWidth: BORDER_WIDTH,
         maxHeight: MAX_HEIGHT_LIST,
         elevation: 5,
+    },
+    notOverflown: {
+        borderTopWidth: 0,
+        borderBottomRightRadius: SHAPE,
+        borderBottomLeftRadius: SHAPE,
+    },
+    overflown: {
+        borderBottomWidth: 0,
+        borderTopRightRadius: SHAPE,
+        borderTopLeftRadius: SHAPE,
     },
 });
