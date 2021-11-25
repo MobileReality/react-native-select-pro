@@ -1,5 +1,13 @@
-import React, { ComponentProps } from 'react';
-import { FlatList, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
+import React, { ComponentProps, useCallback } from 'react';
+import {
+    AccessibilityInfo,
+    findNodeHandle,
+    FlatList,
+    StyleSheet,
+    TouchableWithoutFeedback,
+    View,
+    ViewStyle,
+} from 'react-native';
 import { Portal } from '@gorhom/portal';
 
 import { Portals } from '../../constants/portals';
@@ -45,6 +53,18 @@ export const OptionsList = ({
     onSelect,
     optionsListStyle,
 }: OptionsListProps) => {
+    const measuredRef = useCallback(
+        (node) => {
+            if (node !== null) {
+                const reactTag = findNodeHandle(node);
+                if (reactTag) {
+                    AccessibilityInfo.setAccessibilityFocus(reactTag);
+                }
+            }
+        },
+        [isOpened],
+    );
+
     return (
         <>
             {isOpened && (
@@ -52,37 +72,44 @@ export const OptionsList = ({
                     <Portal hostName={Portals.SelectOutsideWrapper}>
                         <TouchableWithoutFeedback
                             accessibilityLabel={'Close a dropdown from outside'}
+                            accessibilityRole="button"
                             onPress={onOutsidePress}>
                             <View style={styles.modalOverlay} />
                         </TouchableWithoutFeedback>
                     </Portal>
                     <Portal hostName={Portals.Select}>
-                        <FlatList
-                            accessibilityLabel={'Options list'}
-                            bounces={false}
-                            data={optionsData}
-                            keyExtractor={({ value }) => value}
-                            keyboardShouldPersistTaps="handled"
-                            persistentScrollbar={true}
-                            renderItem={({ item }) => {
-                                const { value } = item;
-                                return (
-                                    <Option
-                                        isSelected={value === selectedOption?.value}
-                                        key={value}
-                                        onPressOption={onPressOption}
-                                        onSelect={onSelect}
-                                        option={item}
-                                        optionSelectedStyle={optionSelectedStyle}
-                                        optionStyle={optionStyle}
-                                        optionTextStyle={optionTextStyle}
-                                    />
-                                );
-                            }}
-                            style={[styles.options, optionsListStyle, { top, left, width }]}
-                            {...flatListProps}
-                            ListEmptyComponent={<NoOptions noOptionsText={noOptionsText} />}
-                        />
+                        <View style={[styles.options, optionsListStyle, { top, left, width }]}>
+                            <FlatList
+                                accessibilityLabel={'Options list'}
+                                accessibilityState={{
+                                    expanded: isOpened,
+                                }}
+                                bounces={false}
+                                data={optionsData}
+                                keyExtractor={({ value }) => value}
+                                keyboardShouldPersistTaps="handled"
+                                persistentScrollbar={true}
+                                removeClippedSubviews={false}
+                                renderItem={({ item, index }) => {
+                                    const { value } = item;
+                                    return (
+                                        <Option
+                                            isSelected={value === selectedOption?.value}
+                                            key={value}
+                                            onPressOption={onPressOption}
+                                            onSelect={onSelect}
+                                            option={item}
+                                            optionSelectedStyle={optionSelectedStyle}
+                                            optionStyle={optionStyle}
+                                            optionTextStyle={optionTextStyle}
+                                            ref={index === 0 ? measuredRef : undefined}
+                                        />
+                                    );
+                                }}
+                                {...flatListProps}
+                                ListEmptyComponent={<NoOptions noOptionsText={noOptionsText} />}
+                            />
+                        </View>
                     </Portal>
                 </>
             )}

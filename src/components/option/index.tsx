@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import React, { ComponentProps, forwardRef } from 'react';
 import { StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
 
 import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
@@ -15,37 +15,45 @@ type OptionProps = OptionalToRequired<FromSelectComponentProps> & {
     option: OptionType;
 };
 
-export const Option = ({
-    optionSelectedStyle,
-    optionStyle,
-    optionTextStyle,
-    isSelected,
-    onPressOption,
-    option,
-    onSelect,
-}: OptionProps) => {
-    return (
-        <TouchableOpacity
-            accessibilityLabel={`Choose ${option.label} option`}
-            onPress={() => {
-                if (onPressOption) {
-                    onPressOption(option);
-                }
-                if (onSelect) {
-                    onSelect(option);
-                }
-            }}
-            style={[
-                styles.option,
-                optionStyle,
-                isSelected && [styles.selected, optionSelectedStyle],
-            ]}>
-            <Text numberOfLines={1} style={[styles.text, optionTextStyle]}>
-                {option.label}
-            </Text>
-        </TouchableOpacity>
-    );
-};
+export const Option = forwardRef(
+    (
+        {
+            optionSelectedStyle,
+            optionStyle,
+            optionTextStyle,
+            isSelected,
+            onPressOption,
+            option,
+            onSelect,
+        }: OptionProps,
+        ref,
+    ) => {
+        return (
+            <TouchableOpacity
+                accessibilityLabel={`Choose ${option.label} option`}
+                accessibilityRole={'button'}
+                accessible={true}
+                onPress={() => {
+                    if (onPressOption) {
+                        onPressOption(option);
+                    }
+                    if (onSelect) {
+                        onSelect(option);
+                    }
+                }}
+                ref={ref}
+                style={[
+                    styles.option,
+                    optionStyle,
+                    isSelected && [styles.selected, optionSelectedStyle],
+                ]}>
+                <Text numberOfLines={1} style={[styles.text, optionTextStyle]}>
+                    {option.label}
+                </Text>
+            </TouchableOpacity>
+        );
+    },
+);
 
 type Styles = {
     option: ViewStyle;
