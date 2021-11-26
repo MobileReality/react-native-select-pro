@@ -5,7 +5,7 @@ import type {
     SelectProps,
 } from '@mobile-reality/react-native-select-pro';
 
-import { FONT_SIZE } from '../../constants/styles';
+import { COLORS, FONT_SIZE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { DispatchType, State } from '../../state/types';
 import { Action } from '../../state/types';
@@ -13,11 +13,12 @@ import { Action } from '../../state/types';
 type SelectInputProps = OptionalToRequired<
     Pick<State, 'isOpened' | 'searchValue'> & { dispatch: DispatchType } & Pick<
             SelectProps,
-            'placeholderText' | 'searchPattern'
+            'placeholderText' | 'searchPattern' | 'disabled'
         > & { onPressSelectControl: OnPressSelectControlType }
 >;
 
 export const SelectInput = ({
+    disabled,
     isOpened,
     searchValue,
     searchPattern,
@@ -26,28 +27,32 @@ export const SelectInput = ({
     dispatch,
 }: SelectInputProps) => {
     const onChangeText = (payload: string) => {
-        if (!isOpened) {
-            dispatch({ type: Action.Open });
-        }
-        dispatch({
-            type: Action.SetSearchValue,
-            payload,
-        });
-        if (searchPattern) {
+        if (!disabled) {
+            if (!isOpened) {
+                dispatch({ type: Action.Open });
+            }
             dispatch({
-                type: Action.SearchOptions,
-                searchPattern,
+                type: Action.SetSearchValue,
                 payload,
             });
+            if (searchPattern) {
+                dispatch({
+                    type: Action.SearchOptions,
+                    searchPattern,
+                    payload,
+                });
+            }
         }
     };
 
     return (
         <TextInput
+            accessibilityLabel={'Place text'}
+            editable={!disabled}
             onChangeText={onChangeText}
             onPressIn={onPressSelectControl}
             placeholder={placeholderText}
-            style={styles.text}
+            style={disabled ? [styles.disabled, styles.text] : styles.text}
             value={searchValue}
         />
     );
@@ -55,10 +60,14 @@ export const SelectInput = ({
 
 type Styles = {
     text: TextStyle;
+    disabled: TextStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
     text: {
         fontSize: FONT_SIZE,
+    },
+    disabled: {
+        backgroundColor: COLORS.DISABLED,
     },
 });

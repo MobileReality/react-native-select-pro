@@ -28,7 +28,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         clearable = true,
         closeDropdownOnSelect = true,
         defaultOption,
-        disabled = false,
+        disabled = true,
         flatListProps,
         hideSelectControlArrow,
         noOptionsText = 'No options',

@@ -20,6 +20,22 @@ const DATA = [
     },
 ];
 
+/*
+const SEARCHABLE_DATA = [
+    {
+        value: 'test1',
+        label: 'Fist test option',
+    },
+    {
+        value: 'test2',
+        label: 'Second test option',
+    },
+    {
+        value: 'test3',
+        label: 'Third test option',
+    },
+];
+*/
 describe('Select', () => {
     it('should generate Select snapshot', () => {
         const wrapper = render(

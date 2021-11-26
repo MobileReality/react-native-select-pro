@@ -99,6 +99,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             if (searchable) {
                 return (
                     <SelectInput
+                        disabled={disabled}
                         dispatch={dispatch}
                         isOpened={isOpened}
                         onPressSelectControl={onPressSelectControl}
