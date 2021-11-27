@@ -1,5 +1,6 @@
 import React from 'react';
-import { MeasureOnSuccessCallback, View } from 'react-native';
+import { MeasureOnSuccessCallback, Pressable, Text, View } from 'react-native';
+import type { OptionComponentProps } from '@mobile-reality/react-native-select-pro';
 import { fireEvent, render } from '@testing-library/react-native';
 
 import { Select } from '../components/select';
@@ -88,5 +89,32 @@ describe('Select', () => {
 
         const listWrapper2 = queryByA11yLabel('Options list');
         expect(listWrapper2).toBeFalsy();
+    });
+
+    it('should select option with custom option component', () => {
+        const MyCustomOption = ({ onPressOption, option }: OptionComponentProps) => {
+            return (
+                <Pressable accessibilityLabel={'Option'} onPress={onPressOption}>
+                    <Text>{option.label}</Text>
+                </Pressable>
+            );
+        };
+        const { getByA11yLabel } = render(
+            <SelectProvider>
+                <Select
+                    OptionComponent={(props) => <MyCustomOption {...props} />}
+                    options={[DATA[0]]}
+                />
+            </SelectProvider>,
+        );
+
+        const open = getByA11yLabel('Open a dropdown');
+        fireEvent.press(open);
+
+        const list = getByA11yLabel('Options list');
+        expect(list).toBeTruthy();
+
+        const option = getByA11yLabel('Option');
+        fireEvent.press(option);
     });
 });

@@ -20,6 +20,8 @@ type FromSelectComponentProps = Pick<
     | 'noOptionsText'
     | 'onSelect'
     | 'optionsListStyle'
+    | 'NoOptionsComponent'
+    | 'OptionComponent'
 >;
 
 type OptionsListProps = OptionalToRequired<
@@ -45,6 +47,8 @@ export const OptionsList = ({
     noOptionsText,
     onSelect,
     optionsListStyle,
+    NoOptionsComponent,
+    OptionComponent,
 }: OptionsListProps) => {
     return (
         <>
@@ -76,6 +80,7 @@ export const OptionsList = ({
                                     const { value } = item;
                                     return (
                                         <Option
+                                            OptionComponent={OptionComponent}
                                             isSelected={value === selectedOption?.value}
                                             key={value}
                                             onPressOption={onPressOption}
@@ -88,7 +93,11 @@ export const OptionsList = ({
                                     );
                                 }}
                                 {...flatListProps}
-                                ListEmptyComponent={<NoOptions noOptionsText={noOptionsText} />}
+                                ListEmptyComponent={
+                                    NoOptionsComponent || (
+                                        <NoOptions noOptionsText={noOptionsText} />
+                                    )
+                                }
                             />
                         </View>
                     </Portal>

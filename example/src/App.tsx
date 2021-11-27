@@ -5,6 +5,7 @@ import { SelectProvider } from '@mobile-reality/react-native-select-pro';
 
 import { Basic } from './examples/Basic';
 import { Callbacks } from './examples/Callbacks';
+import { CustomComponent } from './examples/CustomComponent';
 import { CustomStyles } from './examples/CustomStyles';
 import { ModalExample } from './examples/ModalExample';
 import { Overflow } from './examples/Overflow';
@@ -48,6 +49,7 @@ const examples = [
     'Custom Styles',
     'Ref',
     'Callbacks',
+    'Custom Component',
 ];
 
 export default function App() {
@@ -80,6 +82,8 @@ export default function App() {
                 return <Ref />;
             case 'Callbacks':
                 return <Callbacks />;
+            case 'Custom Component':
+                return <CustomComponent />;
             default:
                 return null;
         }

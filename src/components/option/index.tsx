@@ -8,12 +8,20 @@ import type { OptionsList } from '../options-list';
 
 type FromSelectComponentProps = Pick<
     ComponentProps<typeof OptionsList>,
-    'optionSelectedStyle' | 'optionStyle' | 'optionTextStyle' | 'onSelect' | 'onPressOption'
+    | 'optionSelectedStyle'
+    | 'optionStyle'
+    | 'optionTextStyle'
+    | 'onSelect'
+    | 'onPressOption'
+    | 'OptionComponent'
 >;
-type OptionProps = OptionalToRequired<FromSelectComponentProps> & {
+
+export type OptionProps = OptionalToRequired<FromSelectComponentProps> & {
     isSelected: boolean;
     option: OptionType;
 };
+
+export type OnChooseOption = () => void;
 
 export const Option = ({
     optionSelectedStyle,
@@ -23,25 +31,38 @@ export const Option = ({
     onPressOption,
     option,
     onSelect,
+    OptionComponent,
 }: OptionProps) => {
+    const { label } = option;
+
+    const onChooseOption: OnChooseOption = () => {
+        onPressOption(option);
+        if (onSelect) {
+            onSelect(option);
+        }
+    };
+
+    if (OptionComponent) {
+        return (
+            <OptionComponent
+                isSelected={isSelected}
+                onPressOption={onChooseOption}
+                option={option}
+            />
+        );
+    }
+
     return (
         <TouchableOpacity
-            accessibilityLabel={`Choose ${option.label} option`}
-            onPress={() => {
-                if (onPressOption) {
-                    onPressOption(option);
-                }
-                if (onSelect) {
-                    onSelect(option);
-                }
-            }}
+            accessibilityLabel={`Choose ${label} option`}
+            onPress={onChooseOption}
             style={[
                 styles.option,
                 optionStyle,
                 isSelected && [styles.selected, optionSelectedStyle],
             ]}>
             <Text numberOfLines={1} style={[styles.text, optionTextStyle]}>
-                {option.label}
+                {label}
             </Text>
         </TouchableOpacity>
     );
