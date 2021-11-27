@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet, TextInput, TextStyle } from 'react-native';
+import { Keyboard, StyleSheet, TextInput, TextStyle } from 'react-native';
 import type {
     OnPressSelectControlType,
+    OnSetPosition,
     SelectProps,
 } from '@mobile-reality/react-native-select-pro';
 
@@ -14,7 +15,7 @@ type SelectInputProps = OptionalToRequired<
     Pick<State, 'isOpened' | 'searchValue'> & { dispatch: DispatchType } & Pick<
             SelectProps,
             'placeholderText' | 'searchPattern' | 'disabled'
-        > & { onPressSelectControl: OnPressSelectControlType }
+        > & { onPressSelectControl: OnPressSelectControlType } & { setPosition: OnSetPosition }
 >;
 
 export const SelectInput = ({
@@ -25,15 +26,24 @@ export const SelectInput = ({
     placeholderText,
     onPressSelectControl,
     dispatch,
+    setPosition,
 }: SelectInputProps) => {
     const searchInputRef = useRef<TextInput>(null);
 
     useEffect(() => {
+        const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
+            setPosition();
+        });
+        const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+            setPosition();
+        });
         dispatch({
             type: Action.SetSearchInputRef,
             payload: searchInputRef,
         });
         return () => {
+            showSubscription.remove();
+            hideSubscription.remove();
             dispatch({
                 type: Action.SetSearchInputRef,
                 payload: null,

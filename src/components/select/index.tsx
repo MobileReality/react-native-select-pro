@@ -203,6 +203,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectControlStyle={selectControlStyle}
                 selectControlTextStyle={selectControlTextStyle}
                 selectedOption={selectedOption}
+                setPosition={setPosition}
             />
             <OptionsList
                 flatListProps={flatListProps}

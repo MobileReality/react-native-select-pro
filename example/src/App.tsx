@@ -12,6 +12,7 @@ import { Ref } from './examples/Ref';
 import { RHF } from './examples/RHF';
 import { Selects } from './examples/Selects';
 import { Searchable } from './examples/Searchable';
+import { SearchableInModal } from './examples/SearchableInModal';
 
 export const DATA = [
     {
@@ -50,6 +51,7 @@ const examples = [
     'Ref',
     'Callbacks',
     'Searchable',
+    'Searchable In Modal'
 ];
 
 export default function App() {
@@ -84,6 +86,8 @@ export default function App() {
                 return <Callbacks />;
             case 'Searchable':
                 return <Searchable />;
+            case 'Searchable In Modal':
+                return <SearchableInModal />;
             default:
                 return null;
         }

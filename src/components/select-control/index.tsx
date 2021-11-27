@@ -15,7 +15,7 @@ import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants
 import type { OptionalToRequired } from '../../helpers';
 import type { Select } from '../../index';
 import { Action, DispatchType, Position, State } from '../../state/types';
-import type { OnPressSelectControlType } from '../../types';
+import type { OnPressSelectControlType, OnSetPosition } from '../../types';
 import { SelectInput } from '../select-input';
 
 type FromSelectComponentProps = Pick<
@@ -43,7 +43,7 @@ type SelectControlProps = OptionalToRequired<
     } & FromSelectComponentProps &
         Pick<State, 'isOpened' | 'selectedOption' | 'searchValue'> & {
             dispatch: DispatchType;
-        } & Pick<Position, 'aboveSelectControl'>
+        } & Pick<Position, 'aboveSelectControl'> & { setPosition: OnSetPosition }
 >;
 
 export const SelectControl = forwardRef<View, SelectControlProps>(
@@ -61,6 +61,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             searchable,
             searchPattern,
             searchValue,
+            setPosition,
             selectControlDisabledStyle,
             selectControlClearOptionA11yLabel,
             selectControlOpenDropdownA11yLabel,
@@ -106,6 +107,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         placeholderText={placeholderText}
                         searchPattern={searchPattern}
                         searchValue={searchValue}
+                        setPosition={setPosition}
                     />
                 );
             }
