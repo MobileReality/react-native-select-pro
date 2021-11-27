@@ -1,7 +1,7 @@
 import React, { ComponentProps } from 'react';
 import { StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
 
-import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
+import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { OptionType } from '../../index';
 import type { OptionsList } from '../options-list';
@@ -76,7 +76,9 @@ type Styles = {
 
 const styles = StyleSheet.create<Styles>({
     option: {
-        padding: PADDING,
+        height: ITEM_HEIGHT,
+        justifyContent: 'center',
+        paddingHorizontal: PADDING,
     },
     text: {
         fontSize: FONT_SIZE,

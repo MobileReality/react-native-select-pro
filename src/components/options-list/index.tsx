@@ -1,9 +1,9 @@
-import React, { ComponentProps } from 'react';
+import React, { ComponentProps, useRef } from 'react';
 import { FlatList, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
 import { Portal } from '@gorhom/portal';
 
 import { Portals } from '../../constants/portals';
-import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
+import { BORDER_WIDTH, COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { Position, State } from '../../state/types';
 import type { OnOutsidePress, OnPressOptionType } from '../../types';
@@ -50,6 +50,7 @@ export const OptionsList = ({
     NoOptionsComponent,
     OptionComponent,
 }: OptionsListProps) => {
+    const ref = useRef<FlatList>(null);
     return (
         <>
             {isOpened && (
@@ -73,15 +74,30 @@ export const OptionsList = ({
                                 accessibilityLabel={'Options list'}
                                 bounces={false}
                                 data={optionsData}
+                                getItemLayout={(_data, index) => ({
+                                    length: ITEM_HEIGHT,
+                                    offset: ITEM_HEIGHT * index,
+                                    index,
+                                })}
                                 keyExtractor={({ value }) => value}
                                 keyboardShouldPersistTaps="handled"
                                 persistentScrollbar={true}
-                                renderItem={({ item }) => {
+                                ref={ref}
+                                renderItem={({ item, index }) => {
                                     const { value } = item;
+                                    const isSelected = value === selectedOption?.value;
+
+                                    if (isSelected && ref.current) {
+                                        ref.current.scrollToIndex({
+                                            index,
+                                            animated: false,
+                                        });
+                                    }
+
                                     return (
                                         <Option
                                             OptionComponent={OptionComponent}
-                                            isSelected={value === selectedOption?.value}
+                                            isSelected={isSelected}
                                             key={value}
                                             onPressOption={onPressOption}
                                             onSelect={onSelect}
