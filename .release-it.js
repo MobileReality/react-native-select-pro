@@ -15,4 +15,7 @@ module.exports = {
             preset: 'conventionalcommits',
         },
     },
+    hooks: {
+        "after:bump": "yarn typedoc",
+    }
 };
