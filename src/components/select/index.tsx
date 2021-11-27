@@ -52,7 +52,15 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         optionsListStyle,
     } = props;
     const [
-        { isOpened, selectedOption, optionsData, openedPosition, searchValue, searchedOptions },
+        {
+            isOpened,
+            selectedOption,
+            optionsData,
+            openedPosition,
+            searchValue,
+            searchedOptions,
+            searchInputRef,
+        },
         dispatch,
     ] = useReducer(reducer, initialData);
     const { aboveSelectControl } = openedPosition;
@@ -94,6 +102,13 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         },
     }));
 
+    const hideKeyboardIfNeeded = () => {
+        // TODO: Better condition handling, however, typo error appears in every combination
+        if (searchInputRef && (searchInputRef as any).current) {
+            (searchInputRef as any).current.blur();
+        }
+    };
+
     const onPressOption: OnPressOptionType = (option: OptionType) => {
         if (closeDropdownOnSelect) {
             dispatch({ type: Action.Close });
@@ -103,6 +118,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
             dispatch({ type: Action.SetSearchValue, payload: option.label });
         }
         dispatch({ type: Action.SetOptionsData, payload: options });
+        if (option) {
+            hideKeyboardIfNeeded();
+        }
     };
 
     const windowDimensions = useWindowDimensions();
@@ -149,6 +167,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     const onOutsidePress: OnOutsidePress = () => {
         dispatch({ type: Action.Close });
         dispatch({ type: Action.SetOptionsData, payload: options });
+        hideKeyboardIfNeeded();
     };
 
     useEffect(() => {

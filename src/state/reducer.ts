@@ -6,6 +6,7 @@ export const initialData: State = {
     selectedOption: null,
     searchValue: '',
     searchedOptions: [],
+    searchInputRef: null,
     openedPosition: {
         width: 0,
         top: 0,
@@ -55,6 +56,11 @@ export const reducer = (state: State, action: ActionType): State => {
                 searchedOptions: state.optionsData.filter((option) =>
                     regex.test(option.label.toLowerCase()),
                 ),
+            };
+        case Action.SetSearchInputRef:
+            return {
+                ...state,
+                searchInputRef: action.payload,
             };
         case Action.SetPosition:
             return {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { StyleSheet, TextInput, TextStyle } from 'react-native';
 import type {
     OnPressSelectControlType,
@@ -26,6 +26,21 @@ export const SelectInput = ({
     onPressSelectControl,
     dispatch,
 }: SelectInputProps) => {
+    const searchInputRef = useRef<TextInput>(null);
+
+    useEffect(() => {
+        dispatch({
+            type: Action.SetSearchInputRef,
+            payload: searchInputRef,
+        });
+        return () => {
+            dispatch({
+                type: Action.SetSearchInputRef,
+                payload: null,
+            });
+        };
+    }, []);
+
     const onChangeText = (payload: string) => {
         if (!disabled) {
             if (!isOpened) {
@@ -52,6 +67,7 @@ export const SelectInput = ({
             onChangeText={onChangeText}
             onPressIn={onPressSelectControl}
             placeholder={placeholderText}
+            ref={searchInputRef}
             style={disabled ? [styles.disabled, styles.text] : styles.text}
             value={searchValue}
         />
