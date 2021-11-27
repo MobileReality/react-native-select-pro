@@ -76,11 +76,15 @@ export const OptionsList = ({
                                 accessibilityLabel={'Options list'}
                                 bounces={false}
                                 data={optionsData}
-                                getItemLayout={(_data, index) => ({
-                                    length: ITEM_HEIGHT,
-                                    offset: ITEM_HEIGHT * index,
-                                    index,
-                                })}
+                                getItemLayout={(_data, index) => {
+                                    const height = StyleSheet.flatten(optionStyle)?.height;
+                                    const isNumber = typeof height === 'number';
+                                    return {
+                                        length: isNumber ? height : ITEM_HEIGHT,
+                                        offset: isNumber ? height * index : ITEM_HEIGHT * index,
+                                        index,
+                                    };
+                                }}
                                 keyExtractor={({ value }) => value}
                                 keyboardShouldPersistTaps="handled"
                                 persistentScrollbar={true}

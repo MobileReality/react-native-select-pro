@@ -17,6 +17,14 @@ export const ScrollToSelectedOption = () => {
                 scrollToSelectedOption={false}
                 selectControlStyle={{ width: 150 }}
             />
+            <Text>Scroll to selected option with changed height of the option</Text>
+            <Select
+                optionStyle={{
+                    height: 60,
+                }}
+                options={DATA}
+                selectControlStyle={{ width: 150 }}
+            />
         </SafeAreaView>
     );
 };
