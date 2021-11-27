@@ -11,6 +11,7 @@ import { ModalExample } from './examples/ModalExample';
 import { Overflow } from './examples/Overflow';
 import { Ref } from './examples/Ref';
 import { RHF } from './examples/RHF';
+import { ScrollToSelectedOption } from './examples/ScrollToSelectedOption';
 import { Selects } from './examples/Selects';
 
 export const DATA = [
@@ -50,6 +51,7 @@ const examples = [
     'Ref',
     'Callbacks',
     'Custom Component',
+    'Scroll To Selected Option',
 ];
 
 export default function App() {
@@ -84,6 +86,8 @@ export default function App() {
                 return <Callbacks />;
             case 'Custom Component':
                 return <CustomComponent />;
+            case 'Scroll To Selected Option':
+                return <ScrollToSelectedOption />;
             default:
                 return null;
         }

@@ -17,6 +17,7 @@ type FromSelectComponentProps = Pick<
     | 'optionSelectedStyle'
     | 'optionStyle'
     | 'optionTextStyle'
+    | 'scrollToSelectedOption'
     | 'noOptionsText'
     | 'onSelect'
     | 'optionsListStyle'
@@ -45,6 +46,7 @@ export const OptionsList = ({
     optionStyle,
     optionTextStyle,
     noOptionsText,
+    scrollToSelectedOption,
     onSelect,
     optionsListStyle,
     NoOptionsComponent,
@@ -86,8 +88,10 @@ export const OptionsList = ({
                                 renderItem={({ item, index }) => {
                                     const { value } = item;
                                     const isSelected = value === selectedOption?.value;
+                                    const isScrollToSelectedOption =
+                                        isSelected && ref.current && scrollToSelectedOption;
 
-                                    if (isSelected && ref.current) {
+                                    if (isScrollToSelectedOption) {
                                         ref.current.scrollToIndex({
                                             index,
                                             animated: false,
