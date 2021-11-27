@@ -166,7 +166,7 @@ export interface SelectProps {
      */
     placeholderText?: string;
     /**
-     * If `true` options list is scrolled to selected option
+     * If `true` options list is scrolled to the selected option
      *
      * @category Common
      * @default true
