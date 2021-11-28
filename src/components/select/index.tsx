@@ -219,6 +219,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 optionsData={optionsData}
                 optionsListStyle={optionsListStyle}
                 searchValue={searchValue}
+                searchable={searchable}
                 searchedOptions={searchedOptions}
                 selectedOption={selectedOption}
             />

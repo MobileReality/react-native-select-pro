@@ -20,6 +20,7 @@ type FromSelectComponentProps = Pick<
     | 'noOptionsText'
     | 'onSelect'
     | 'optionsListStyle'
+    | 'searchable'
 >;
 
 type OptionsListProps = OptionalToRequired<
@@ -44,6 +45,7 @@ export const OptionsList = ({
     selectedOption,
     searchedOptions,
     searchValue,
+    searchable,
     isOpened,
     onOutsidePress,
     openedPosition: { width, top, left },
@@ -55,6 +57,18 @@ export const OptionsList = ({
     onSelect,
     optionsListStyle,
 }: OptionsListProps) => {
+    const resolveData = () => {
+        if (!searchable) {
+            return optionsData;
+        }
+        if (searchable && searchValue.length === 0) {
+            return optionsData;
+        }
+        if (selectedOption && searchValue?.length > 0 && searchValue === selectedOption.label) {
+            return optionsData;
+        }
+        return searchedOptions;
+    };
     return (
         <>
             {isOpened && (
@@ -70,7 +84,7 @@ export const OptionsList = ({
                         <FlatList
                             accessibilityLabel={'Options list'}
                             bounces={false}
-                            data={searchValue?.length > 0 ? searchedOptions : optionsData}
+                            data={resolveData()}
                             keyExtractor={({ value }) => value}
                             keyboardShouldPersistTaps="handled"
                             persistentScrollbar={true}
