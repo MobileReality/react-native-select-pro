@@ -39,6 +39,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         optionStyle,
         optionTextStyle,
         placeholderText = 'Select...',
+        scrollToSelectedOption = true,
         selectContainerStyle,
         selectControlButtonsContainerStyle,
         selectControlClearOptionButtonStyle,
@@ -201,6 +202,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 optionTextStyle={optionTextStyle}
                 optionsData={optionsData}
                 optionsListStyle={optionsListStyle}
+                scrollToSelectedOption={scrollToSelectedOption}
                 selectedOption={selectedOption}
             />
         </View>
