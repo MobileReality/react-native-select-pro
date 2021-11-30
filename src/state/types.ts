@@ -9,10 +9,11 @@ export enum Action {
     SelectOption = 'selectOption',
     SetOptionsData = 'setOptionsData',
     SetSearchInputRef = 'setSearchInputRef',
-    SetPosition = 'SetPosition',
     SetSearchValue = 'setSearchValue',
     SearchOptions = 'searchOptions',
+    SetPosition = 'setPosition',
 }
+
 export type ActionType =
     | {
           type: Action.Open;

@@ -1,17 +1,17 @@
 {
   "name": "@mobile-reality/react-native-select-pro",
-  "version": "0.1.0",
-  "description": "React Native select dropdown library",
+  "version": "1.0.2",
+  "description": "React Native select / dropdown customizable component",
   "engines": {
     "node": ">=12"
   },
-  "main": "lib/commonjs/index.js",
-  "module": "lib/module/index.js",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
-    "../react-native-select-pro/src",
+    "src",
     "lib",
     "android",
     "ios",
@@ -46,7 +46,8 @@
     "select",
     "picker",
     "dropdown",
-    "menu"
+    "menu",
+    "react-native-component"
   ],
   "repository": "https://github.com/MobileReality/react-native-select-pro",
   "author": "MobileReality <biuro@mobilereality.pl> (https://mobilereality.pl)",
@@ -70,33 +71,36 @@
   },
   "homepage": "https://github.com/MobileReality/react-native-select-pro/#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "dependencies": {
+    "@gorhom/portal": "1.0.11"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^14.1.0",
-    "@gorhom/portal": "^1.0.11",
+    "@commitlint/config-conventional": "^15.0.0",
     "@react-native-community/eslint-config": "^3.0.1",
     "@release-it/conventional-changelog": "^3.3.0",
     "@testing-library/jest-native": "^4.0.2",
     "@testing-library/react-native": "^8.0.0",
     "@types/jest": "^27.0.2",
     "@types/react": "^17.0.33",
-    "@types/react-native": "0.66.2",
+    "@types/react-native": "0.66.5",
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",
-    "commitlint": "^14.1.0",
-    "eslint": "^7.32.0",
+    "commitlint": "^15.0.0",
+    "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "4.3.8",
     "jest": "^27.3.1",
-    "lint-staged": "^11.2.6",
+    "lint-staged": "^12.0.3",
     "pod-install": "^0.1.28",
     "prettier": "^2.4.1",
     "react": "17.0.2",
-    "react-native": "0.66.2",
+    "react-native": "0.66.3",
     "react-native-builder-bob": "^0.18.2",
     "react-test-renderer": "^17.0.2",
     "release-it": "^14.11.6",
@@ -104,9 +108,8 @@
     "typescript": "^4.4.4"
   },
   "peerDependencies": {
-    "@gorhom/portal": "*",
-    "react": "*",
-    "react-native": "*"
+    "react": "^16.13 || ^17",
+    "react-native": ">=0.63"
   },
   "husky": {
     "hooks": {

@@ -41,8 +41,12 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         placeholderText = 'Select...',
         searchable = false,
         searchPattern = (payload: string) => `(${payload})`,
+        scrollToSelectedOption = true,
         selectContainerStyle,
         selectControlButtonsContainerStyle,
+        selectControlClearOptionButtonStyle,
+        selectControlClearOptionImageStyle,
+        selectControlClearOptionButtonHitSlop,
         selectControlClearOptionA11yLabel,
         selectControlOpenDropdownA11yLabel,
         selectControlCloseDropdownA11yLabel,
@@ -50,6 +54,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         selectControlStyle,
         selectControlTextStyle,
         optionsListStyle,
+        NoOptionsComponent,
+        OptionComponent,
     } = props;
     const [
         {
@@ -197,6 +203,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 searchable={searchable}
                 selectControlButtonsContainerStyle={selectControlButtonsContainerStyle}
                 selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
+                selectControlClearOptionButtonHitSlop={selectControlClearOptionButtonHitSlop}
+                selectControlClearOptionButtonStyle={selectControlClearOptionButtonStyle}
+                selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
                 selectControlCloseDropdownA11yLabel={selectControlCloseDropdownA11yLabel}
                 selectControlDisabledStyle={selectControlDisabledStyle}
                 selectControlOpenDropdownA11yLabel={selectControlOpenDropdownA11yLabel}
@@ -206,6 +215,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 setPosition={setPosition}
             />
             <OptionsList
+                NoOptionsComponent={NoOptionsComponent}
+                OptionComponent={OptionComponent}
+                aboveSelectControl={aboveSelectControl}
                 flatListProps={flatListProps}
                 isOpened={isOpened}
                 noOptionsText={noOptionsText}
@@ -218,6 +230,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 optionTextStyle={optionTextStyle}
                 optionsData={optionsData}
                 optionsListStyle={optionsListStyle}
+                scrollToSelectedOption={scrollToSelectedOption}
                 searchValue={searchValue}
                 searchable={searchable}
                 searchedOptions={searchedOptions}

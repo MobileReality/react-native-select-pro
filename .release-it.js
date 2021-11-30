@@ -1,6 +1,6 @@
 module.exports = {
     git: {
-        commitMessage: 'chore: release ${version}',
+        commitMessage: 'chore: release v${version}',
         tagName: 'v${version}',
     },
     npm: {
@@ -15,4 +15,7 @@ module.exports = {
             preset: 'conventionalcommits',
         },
     },
+    hooks: {
+        "after:bump": "yarn typedoc",
+    }
 };
