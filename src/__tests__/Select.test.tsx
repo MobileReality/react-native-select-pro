@@ -20,22 +20,21 @@ const DATA = [
     },
 ];
 
-/*
 const SEARCHABLE_DATA = [
     {
         value: 'test1',
-        label: 'Fist test option',
+        label: 'Fist test options',
     },
     {
         value: 'test2',
-        label: 'Second test option',
+        label: 'Second test options',
     },
     {
         value: 'test3',
         label: 'Third test option',
     },
 ];
-*/
+
 describe('Select', () => {
     it('should generate Select snapshot', () => {
         const wrapper = render(
@@ -104,5 +103,117 @@ describe('Select', () => {
 
         const listWrapper2 = queryByA11yLabel('Options list');
         expect(listWrapper2).toBeFalsy();
+    });
+
+    it('should open options menu after pressing Pressable in select control with searchable enabled', () => {
+        const { getByA11yLabel } = render(
+            <SelectProvider>
+                <Select options={SEARCHABLE_DATA} searchable={true} />
+            </SelectProvider>,
+        );
+
+        const open = getByA11yLabel('Open a dropdown');
+        fireEvent.press(open);
+
+        const list = getByA11yLabel('Options list');
+        expect(list).toBeTruthy();
+    });
+
+    it('should open options menu after pressing Input in select control with searchable enabled', () => {
+        const { getByA11yLabel } = render(
+            <SelectProvider>
+                <Select options={SEARCHABLE_DATA} searchable={true} />
+            </SelectProvider>,
+        );
+
+        const open = getByA11yLabel('Place text');
+        fireEvent.press(open);
+
+        const list = getByA11yLabel('Options list');
+        expect(list).toBeTruthy();
+    });
+
+    it('should type text in Input in select control with searchable enabled', () => {
+        const { getByA11yLabel } = render(
+            <SelectProvider>
+                <Select options={SEARCHABLE_DATA} searchable={true} />
+            </SelectProvider>,
+        );
+
+        const inputData = 'Testing messing';
+
+        const input = getByA11yLabel('Place text');
+        fireEvent.changeText(input, inputData);
+
+        expect(input.props.value).toBe(inputData);
+    });
+
+    it('should not able to type text in Input in select control with searchable enabled but disabled', () => {
+        const { getByA11yLabel } = render(
+            <SelectProvider>
+                <Select disabled={true} options={SEARCHABLE_DATA} searchable={true} />
+            </SelectProvider>,
+        );
+
+        const inputData = 'Testing messing';
+
+        const input = getByA11yLabel('Place text');
+        fireEvent.changeText(input, inputData);
+
+        expect(input.props.value).toBe('');
+    });
+
+    it('should, while searchable enabled, search by label and default pattern', () => {
+        const { getByA11yLabel } = render(
+            <SelectProvider>
+                <Select options={SEARCHABLE_DATA} searchable={true} />
+            </SelectProvider>,
+        );
+
+        const firstInputData = 'Second test options';
+        const secondInputData = 'Third test option';
+        const thirdInputData = 'options';
+
+        const input = getByA11yLabel('Place text');
+
+        fireEvent.changeText(input, firstInputData);
+
+        const list = getByA11yLabel('Options list');
+
+        expect(list.props.data.length).toBe(1);
+
+        fireEvent.changeText(input, secondInputData);
+        expect(list.props.data.length).toBe(1);
+
+        fireEvent.changeText(input, thirdInputData);
+        expect(list.props.data.length).toBe(2);
+
+        const valueData = 'test1';
+
+        fireEvent.changeText(input, valueData);
+        expect(list.props.data.length).toBe(0);
+    });
+
+    it('should, while searchable enabled, search by label and other patterns', () => {
+        const searchPattern = (value: string) => `^${value}`;
+
+        const { getByA11yLabel } = render(
+            <SelectProvider>
+                <Select options={SEARCHABLE_DATA} searchPattern={searchPattern} searchable={true} />
+            </SelectProvider>,
+        );
+
+        const firstInputData = 'Second';
+        const secondInputData = 'option';
+        const input = getByA11yLabel('Place text');
+
+        fireEvent.changeText(input, firstInputData);
+
+        const list = getByA11yLabel('Options list');
+
+        expect(list.props.data.length).toBe(1);
+
+        fireEvent.changeText(input, secondInputData);
+        expect(list.props.data.length).toBe(0);
     });
 });
