@@ -1,5 +1,14 @@
 # @mobile-reality/react-native-select-pro
 
+[![Version](https://img.shields.io/npm/v/@mobile-reality/react-native-select-pro?style=for-the-badge)](https://www.npmjs.com/package/@mobile-reality/react-native-select-pro)
+[![GitHub stars](https://img.shields.io/github/stars/MobileReality/react-native-select-pro?style=for-the-badge)](https://github.com/MobileReality/react-native-select-pro/stargazers)
+[![npm total downloads](https://img.shields.io/npm/dt/@mobile-reality/react-native-select-pro?style=for-the-badge)](https://www.npmjs.com/package/@mobile-reality/react-native-select-pro)
+[![npm week downloads](https://img.shields.io/npm/dw/@mobile-reality/react-native-select-pro?style=for-the-badge)](https://www.npmjs.com/package/@mobile-reality/react-native-select-pro)
+[![Last master branch commit](https://img.shields.io/github/last-commit/MobileReality/react-native-select-pro/master?style=for-the-badge)](https://github.com/MobileReality/react-native-select-pro/commits/master)
+[![License](https://img.shields.io/github/license/MobileReality/react-native-select-pro?style=for-the-badge)](https://github.com/MobileReality/react-native-select-pro/blob/master/LICENSE.md)
+
+
+
 React Native select / dropdown component
 
 ## Features
