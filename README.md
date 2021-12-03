@@ -1,15 +1,20 @@
-# @mobile-reality/react-native-select-pro
+<div align="center">
+    <img alt="React Native Select Pro" src="https://user-images.githubusercontent.com/11172548/144605214-d7f88315-df04-434d-a45f-ae0bbc087c8b.png" width="800">
+</div>
 
+---
+<p align="center">
+  React Native select / dropdown customizable component
+</p>
+
+---
+  
 [![Version](https://img.shields.io/npm/v/@mobile-reality/react-native-select-pro?style=for-the-badge)](https://www.npmjs.com/package/@mobile-reality/react-native-select-pro)
 [![GitHub stars](https://img.shields.io/github/stars/MobileReality/react-native-select-pro?style=for-the-badge)](https://github.com/MobileReality/react-native-select-pro/stargazers)
 [![npm total downloads](https://img.shields.io/npm/dt/@mobile-reality/react-native-select-pro?style=for-the-badge)](https://www.npmjs.com/package/@mobile-reality/react-native-select-pro)
 [![npm week downloads](https://img.shields.io/npm/dw/@mobile-reality/react-native-select-pro?style=for-the-badge)](https://www.npmjs.com/package/@mobile-reality/react-native-select-pro)
 [![Last master branch commit](https://img.shields.io/github/last-commit/MobileReality/react-native-select-pro/master?style=for-the-badge)](https://github.com/MobileReality/react-native-select-pro/commits/master)
 [![License](https://img.shields.io/github/license/MobileReality/react-native-select-pro?style=for-the-badge)](https://github.com/MobileReality/react-native-select-pro/blob/master/LICENSE.md)
-
-
-
-React Native select / dropdown component
 
 ## Features
 * Customizable
