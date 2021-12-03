@@ -9,7 +9,7 @@ export const CustomStyles = () => {
         <SafeAreaView style={{ margin: 20, marginTop: 500 }}>
             <Select
                 optionSelectedStyle={{ backgroundColor: 'lightgreen' }}
-                optionStyle={{ backgroundColor: 'lightcoral', borderBottomWidth: 1 }}
+                optionStyle={{ backgroundColor: 'lightcoral', borderBottomWidth: 1, height: 40 }}
                 optionTextStyle={{ fontSize: 20 }}
                 options={DATA}
                 optionsListStyle={{ maxHeight: 150 }}

@@ -1,21 +1,29 @@
-import React, { ComponentProps, forwardRef } from 'react';
+import React, { ComponentPropsWithRef, forwardRef } from 'react';
 import { StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
 
-import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
+import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { OptionType } from '../../index';
 import type { OptionsList } from '../options-list';
 
 type FromSelectComponentProps = Pick<
-    ComponentProps<typeof OptionsList>,
-    'optionSelectedStyle' | 'optionStyle' | 'optionTextStyle' | 'onSelect' | 'onPressOption'
+    ComponentPropsWithRef<typeof OptionsList>,
+    | 'optionSelectedStyle'
+    | 'optionStyle'
+    | 'optionTextStyle'
+    | 'onSelect'
+    | 'onPressOption'
+    | 'OptionComponent'
 >;
-type OptionProps = OptionalToRequired<FromSelectComponentProps> & {
+
+export type OptionProps = OptionalToRequired<FromSelectComponentProps> & {
     isSelected: boolean;
     option: OptionType;
 };
 
-export const Option = forwardRef(
+export type OnChooseOption = () => void;
+
+export const Option = forwardRef<TouchableOpacity, OptionProps>(
     (
         {
             optionSelectedStyle,
@@ -25,22 +33,35 @@ export const Option = forwardRef(
             onPressOption,
             option,
             onSelect,
-        }: OptionProps,
+            OptionComponent,
+        },
         ref,
     ) => {
+        const { label } = option;
+
+        const onChooseOption: OnChooseOption = () => {
+            onPressOption(option);
+            if (onSelect) {
+                onSelect(option);
+            }
+        };
+
+        if (OptionComponent) {
+            return (
+                <OptionComponent
+                    isSelected={isSelected}
+                    onPressOption={onChooseOption}
+                    option={option}
+                />
+            );
+        }
+
         return (
             <TouchableOpacity
-                accessibilityLabel={`Choose ${option.label} option`}
+                accessibilityLabel={`Choose ${label} option`}
                 accessibilityRole={'button'}
                 accessible={true}
-                onPress={() => {
-                    if (onPressOption) {
-                        onPressOption(option);
-                    }
-                    if (onSelect) {
-                        onSelect(option);
-                    }
-                }}
+                onPress={onChooseOption}
                 ref={ref}
                 style={[
                     styles.option,
@@ -48,7 +69,7 @@ export const Option = forwardRef(
                     isSelected && [styles.selected, optionSelectedStyle],
                 ]}>
                 <Text numberOfLines={1} style={[styles.text, optionTextStyle]}>
-                    {option.label}
+                    {label}
                 </Text>
             </TouchableOpacity>
         );
@@ -63,7 +84,9 @@ type Styles = {
 
 const styles = StyleSheet.create<Styles>({
     option: {
-        padding: PADDING,
+        height: ITEM_HEIGHT,
+        justifyContent: 'center',
+        paddingHorizontal: PADDING,
     },
     text: {
         fontSize: FONT_SIZE,

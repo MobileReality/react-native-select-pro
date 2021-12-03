@@ -39,6 +39,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         optionStyle,
         optionTextStyle,
         placeholderText = 'Select...',
+        scrollToSelectedOption = true,
         selectContainerStyle,
         selectControlButtonsContainerStyle,
         selectControlClearOptionButtonStyle,
@@ -51,6 +52,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         selectControlStyle,
         selectControlTextStyle,
         optionsListStyle,
+        NoOptionsComponent,
+        OptionComponent,
     } = props;
     const [{ isOpened, selectedOption, optionsData, openedPosition }, dispatch] = useReducer(
         reducer,
@@ -184,6 +187,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectedOption={selectedOption}
             />
             <OptionsList
+                NoOptionsComponent={NoOptionsComponent}
+                OptionComponent={OptionComponent}
+                aboveSelectControl={aboveSelectControl}
                 flatListProps={flatListProps}
                 isOpened={isOpened}
                 noOptionsText={noOptionsText}
@@ -196,6 +202,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 optionTextStyle={optionTextStyle}
                 optionsData={optionsData}
                 optionsListStyle={optionsListStyle}
+                scrollToSelectedOption={scrollToSelectedOption}
                 selectedOption={selectedOption}
             />
         </View>
