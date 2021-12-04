@@ -1,5 +1,6 @@
-import React, { ComponentPropsWithRef, forwardRef } from 'react';
+import React, { ComponentPropsWithRef, forwardRef, useRef } from 'react';
 import {
+    Animated,
     Image,
     ImageStyle,
     Pressable,
@@ -11,7 +12,14 @@ import {
     ViewStyle,
 } from 'react-native';
 
-import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
+import {
+    ANIMATION_DURATION,
+    BORDER_WIDTH,
+    COLORS,
+    FONT_SIZE,
+    PADDING,
+    SHAPE,
+} from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { Select } from '../../index';
 import { Action, DispatchType, Position, State } from '../../state/types';
@@ -74,6 +82,21 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         },
         ref,
     ) => {
+        const rotateAnimation = useRef(new Animated.Value(0)).current;
+
+        React.useEffect(() => {
+            Animated.timing(rotateAnimation, {
+                toValue: isOpened ? 1 : 0,
+                duration: ANIMATION_DURATION,
+                useNativeDriver: true,
+            }).start();
+        }, [rotateAnimation, isOpened]);
+
+        const rotate = rotateAnimation.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['0deg', '180deg'],
+        });
+
         const onPressRemove = () => {
             if (!disabled) {
                 dispatch({
@@ -137,12 +160,9 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         </TouchableOpacity>
                     )}
                     {!hideSelectControlArrow && (
-                        <Image
+                        <Animated.Image
                             source={require('./../../assets/icons/chevron-down.png')}
-                            style={[
-                                styles.arrowIcon,
-                                isOpened ? styles.arrowIconOpened : styles.arrowIconClosed,
-                            ]}
+                            style={[styles.arrowIcon, { transform: [{ rotate }] }]}
                         />
                     )}
                 </View>
@@ -160,8 +180,6 @@ type Styles = {
     disabled: ViewStyle;
     iconsContainer: ViewStyle;
     arrowIcon: ImageStyle;
-    arrowIconOpened: ImageStyle;
-    arrowIconClosed: ImageStyle;
     xIcon: ImageStyle;
     xIconWrapper: ViewStyle;
 };
@@ -216,11 +234,5 @@ const styles = StyleSheet.create<Styles>({
         width: 20,
         height: 20,
         zIndex: 1,
-    },
-    arrowIconOpened: {
-        transform: [{ rotate: '180deg' }],
-    },
-    arrowIconClosed: {
-        transform: [{ rotate: '0deg' }],
     },
 });

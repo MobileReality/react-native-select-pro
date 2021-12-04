@@ -1,9 +1,23 @@
 import React, { ComponentProps, useRef } from 'react';
-import { FlatList, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
+import {
+    Animated,
+    FlatList,
+    StyleSheet,
+    TouchableWithoutFeedback,
+    View,
+    ViewStyle,
+} from 'react-native';
 import { Portal } from '@gorhom/portal';
 
 import { Portals } from '../../constants/portals';
-import { BORDER_WIDTH, COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
+import {
+    ANIMATION_DURATION,
+    BORDER_WIDTH,
+    COLORS,
+    ITEM_HEIGHT,
+    MAX_HEIGHT_LIST,
+    SHAPE,
+} from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { Position, State } from '../../state/types';
 import type { OnOutsidePress, OnPressOptionType } from '../../types';
@@ -53,10 +67,21 @@ export const OptionsList = ({
     OptionComponent,
 }: OptionsListProps) => {
     const ref = useRef<FlatList>(null);
+
+    const fadeAnimation = useRef(new Animated.Value(0)).current;
+
+    React.useEffect(() => {
+        Animated.timing(fadeAnimation, {
+            toValue: isOpened ? 1 : 0,
+            duration: ANIMATION_DURATION,
+            useNativeDriver: true,
+        }).start();
+    }, [fadeAnimation, isOpened]);
+
     return (
         <>
-            {isOpened && (
-                <>
+            <>
+                {isOpened && (
                     <Portal hostName={Portals.SelectOutsideWrapper}>
                         <TouchableWithoutFeedback
                             accessibilityLabel={'Close a dropdown from outside'}
@@ -64,69 +89,69 @@ export const OptionsList = ({
                             <View style={styles.modalOverlay} />
                         </TouchableWithoutFeedback>
                     </Portal>
-                    <Portal hostName={Portals.Select}>
-                        <View
-                            style={[
-                                styles.options,
-                                optionsListStyle,
-                                { top, left, width },
-                                aboveSelectControl ? styles.overflown : styles.notOverflown,
-                            ]}>
-                            <FlatList
-                                accessibilityLabel={'Options list'}
-                                bounces={false}
-                                data={optionsData}
-                                getItemLayout={(_data, index) => {
-                                    const height = StyleSheet.flatten(optionStyle)?.height;
-                                    const isNumber = typeof height === 'number';
-                                    return {
-                                        length: isNumber ? height : ITEM_HEIGHT,
-                                        offset: isNumber ? height * index : ITEM_HEIGHT * index,
+                )}
+                <Portal hostName={Portals.Select}>
+                    <Animated.View
+                        pointerEvents={isOpened ? 'auto' : 'none'}
+                        style={[
+                            styles.options,
+                            optionsListStyle,
+                            { top, left, width },
+                            aboveSelectControl ? styles.overflown : styles.notOverflown,
+                            { opacity: fadeAnimation },
+                        ]}>
+                        <FlatList
+                            accessibilityLabel={'Options list'}
+                            bounces={false}
+                            data={optionsData}
+                            getItemLayout={(_data, index) => {
+                                const height = StyleSheet.flatten(optionStyle)?.height;
+                                const isNumber = typeof height === 'number';
+                                return {
+                                    length: isNumber ? height : ITEM_HEIGHT,
+                                    offset: isNumber ? height * index : ITEM_HEIGHT * index,
+                                    index,
+                                };
+                            }}
+                            keyExtractor={({ value }) => value}
+                            keyboardShouldPersistTaps="handled"
+                            persistentScrollbar={true}
+                            ref={ref}
+                            renderItem={({ item, index }) => {
+                                const { value } = item;
+                                const isSelected = value === selectedOption?.value;
+                                const isScrollToSelectedOption =
+                                    isSelected && ref.current && scrollToSelectedOption;
+
+                                if (isScrollToSelectedOption) {
+                                    ref.current.scrollToIndex({
                                         index,
-                                    };
-                                }}
-                                keyExtractor={({ value }) => value}
-                                keyboardShouldPersistTaps="handled"
-                                persistentScrollbar={true}
-                                ref={ref}
-                                renderItem={({ item, index }) => {
-                                    const { value } = item;
-                                    const isSelected = value === selectedOption?.value;
-                                    const isScrollToSelectedOption =
-                                        isSelected && ref.current && scrollToSelectedOption;
-
-                                    if (isScrollToSelectedOption) {
-                                        ref.current.scrollToIndex({
-                                            index,
-                                            animated: false,
-                                        });
-                                    }
-
-                                    return (
-                                        <Option
-                                            OptionComponent={OptionComponent}
-                                            isSelected={isSelected}
-                                            key={value}
-                                            onPressOption={onPressOption}
-                                            onSelect={onSelect}
-                                            option={item}
-                                            optionSelectedStyle={optionSelectedStyle}
-                                            optionStyle={optionStyle}
-                                            optionTextStyle={optionTextStyle}
-                                        />
-                                    );
-                                }}
-                                {...flatListProps}
-                                ListEmptyComponent={
-                                    NoOptionsComponent || (
-                                        <NoOptions noOptionsText={noOptionsText} />
-                                    )
+                                        animated: false,
+                                    });
                                 }
-                            />
-                        </View>
-                    </Portal>
-                </>
-            )}
+
+                                return (
+                                    <Option
+                                        OptionComponent={OptionComponent}
+                                        isSelected={isSelected}
+                                        key={value}
+                                        onPressOption={onPressOption}
+                                        onSelect={onSelect}
+                                        option={item}
+                                        optionSelectedStyle={optionSelectedStyle}
+                                        optionStyle={optionStyle}
+                                        optionTextStyle={optionTextStyle}
+                                    />
+                                );
+                            }}
+                            {...flatListProps}
+                            ListEmptyComponent={
+                                NoOptionsComponent || <NoOptions noOptionsText={noOptionsText} />
+                            }
+                        />
+                    </Animated.View>
+                </Portal>
+            </>
         </>
     );
 };
