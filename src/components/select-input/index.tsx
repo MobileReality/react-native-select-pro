@@ -75,7 +75,7 @@ export const SelectInput = ({
             accessibilityLabel={'Place text'}
             editable={!disabled}
             onChangeText={onChangeText}
-            onPressIn={onPressSelectControl}
+            onPressIn={!disabled ? onPressSelectControl : () => null}
             placeholder={placeholderText}
             ref={searchInputRef}
             style={disabled ? [styles.disabled, styles.text] : styles.text}

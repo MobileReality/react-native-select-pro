@@ -173,6 +173,12 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     const onOutsidePress: OnOutsidePress = () => {
         dispatch({ type: Action.Close });
         dispatch({ type: Action.SetOptionsData, payload: options });
+        if (searchable && selectedOption?.label) {
+            dispatch({
+                type: Action.SetSearchValue,
+                payload: selectedOption.label,
+            });
+        }
         hideKeyboardIfNeeded();
     };
 

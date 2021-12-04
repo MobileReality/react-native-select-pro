@@ -111,3 +111,112 @@ exports[`Select should generate Select snapshot 1`] = `
   </View>
 </View>
 `;
+
+exports[`Select with searchable enabled should generate Select with searchable enabled snapshot 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityLabel="Open a dropdown"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#ffffff",
+          "borderRadius": 4,
+          "borderWidth": 1,
+          "height": 40,
+        },
+        Object {},
+        undefined,
+        Object {},
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": "100%",
+          "justifyContent": "center",
+          "paddingHorizontal": 12,
+          "paddingRight": 55,
+          "width": "100%",
+        }
+      }
+    >
+      <TextInput
+        accessibilityLabel="Place text"
+        editable={true}
+        onChangeText={[Function]}
+        onPressIn={[Function]}
+        placeholder="Select..."
+        style={
+          Object {
+            "fontSize": 12,
+          }
+        }
+        value=""
+      />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "position": "absolute",
+            "right": 8,
+            "top": 0,
+          },
+          undefined,
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/assets/icons/chevron-down.png",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "height": 25,
+              "width": 25,
+              "zIndex": -1,
+            },
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "0deg",
+                },
+              ],
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

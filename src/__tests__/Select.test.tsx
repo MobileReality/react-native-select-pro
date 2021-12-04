@@ -132,6 +132,17 @@ describe('Select', () => {
         const option = getByA11yLabel('Option');
         fireEvent.press(option);
     });
+});
+
+describe('Select with searchable enabled', () => {
+    it('should generate Select with searchable enabled snapshot', () => {
+        const wrapper = render(
+            <SelectProvider>
+                <Select options={SEARCHABLE_DATA} searchable={true} />
+            </SelectProvider>,
+        );
+        expect(wrapper).toMatchSnapshot();
+    });
 
     it('should open options menu after pressing Pressable in select control with searchable enabled', () => {
         const { getByA11yLabel } = render(
@@ -145,6 +156,29 @@ describe('Select', () => {
 
         const list = getByA11yLabel('Options list');
         expect(list).toBeTruthy();
+    });
+
+    it('should NOT open options menu after pressing Pressable or Input in select control with searchable enabled and whole select disabled', () => {
+        const onOpen = jest.fn();
+
+        const { getByA11yLabel } = render(
+            <SelectProvider>
+                <Select
+                    disabled={true}
+                    onDropdownOpened={onOpen}
+                    options={SEARCHABLE_DATA}
+                    searchable={true}
+                />
+            </SelectProvider>,
+        );
+
+        const open = getByA11yLabel('Open a dropdown');
+        fireEvent.press(open);
+        expect(onOpen).not.toHaveBeenCalled();
+
+        const testInput = getByA11yLabel('Place text');
+        fireEvent.press(testInput);
+        expect(onOpen).not.toHaveBeenCalled();
     });
 
     it('should open options menu after pressing Input in select control with searchable enabled', () => {
@@ -243,5 +277,43 @@ describe('Select', () => {
 
         fireEvent.changeText(input, secondInputData);
         expect(list.props.data.length).toBe(0);
+    });
+
+    it('should, while searchable enabled, get back to previous value in select if clicked outside ', () => {
+        const { getByA11yLabel } = render(
+            <SelectProvider>
+                <Select options={SEARCHABLE_DATA} searchable={true} />
+            </SelectProvider>,
+        );
+
+        const inputData = 'Second';
+        const nextInputData = 'option';
+
+        const selectOptionInputData = 'Second test options';
+
+        const input = getByA11yLabel('Place text');
+
+        fireEvent.changeText(input, inputData);
+
+        const list = getByA11yLabel('Options list');
+
+        expect(list.props.data.length).toBe(1);
+
+        const option = getByA11yLabel(`Choose ${inputData} test options option`);
+
+        fireEvent.press(option);
+
+        expect(input.props.value).toBe(selectOptionInputData);
+
+        fireEvent.changeText(input, nextInputData);
+
+        const listAgain = getByA11yLabel('Options list');
+        expect(listAgain.props.data.length).toBeGreaterThan(1);
+        expect(input.props.value).toBe(nextInputData);
+
+        const outside = getByA11yLabel('Close a dropdown from outside');
+        fireEvent.press(outside);
+
+        expect(input.props.value).toBe(selectOptionInputData);
     });
 });
