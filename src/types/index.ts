@@ -146,6 +146,20 @@ export interface SelectProps {
      */
     disabled?: boolean;
     /**
+     *  If `true` let user search in a select options by typing in select
+     *
+     *  @default false
+     *  @category Common
+     */
+    searchable?: boolean;
+    /**
+     *  Regex definition for searching options
+     *
+     *  @default (payload: string) => `(${payload})`
+     *  @category Common
+     */
+    searchPattern?: (payload: string) => string;
+    /**
      *  `FlatListProps` imported from `react-native`
      *
      *  @category Common
@@ -265,3 +279,4 @@ export type OnPressSelectControlType = () => void;
  * @ignore
  */
 export type OnOutsidePress = () => void;
+export type OnSetPosition = () => void;

@@ -39,6 +39,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         optionStyle,
         optionTextStyle,
         placeholderText = 'Select...',
+        searchable = false,
+        searchPattern = (payload: string) => `(${payload})`,
         scrollToSelectedOption = true,
         selectContainerStyle,
         selectControlButtonsContainerStyle,
@@ -55,10 +57,18 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         NoOptionsComponent,
         OptionComponent,
     } = props;
-    const [{ isOpened, selectedOption, optionsData, openedPosition }, dispatch] = useReducer(
-        reducer,
-        initialData,
-    );
+    const [
+        {
+            isOpened,
+            selectedOption,
+            optionsData,
+            openedPosition,
+            searchValue,
+            searchedOptions,
+            searchInputRef,
+        },
+        dispatch,
+    ] = useReducer(reducer, initialData);
     const { aboveSelectControl } = openedPosition;
 
     const containerRef = useRef<View>(null);
@@ -98,12 +108,25 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         },
     }));
 
+    const hideKeyboardIfNeeded = () => {
+        // TODO: Better condition handling, however, typo error appears in every combination
+        if (searchInputRef && (searchInputRef as any).current) {
+            (searchInputRef as any).current.blur();
+        }
+    };
+
     const onPressOption: OnPressOptionType = (option: OptionType) => {
         if (closeDropdownOnSelect) {
             dispatch({ type: Action.Close });
         }
         dispatch({ type: Action.SelectOption, payload: option });
+        if (searchable) {
+            dispatch({ type: Action.SetSearchValue, payload: option.label });
+        }
         dispatch({ type: Action.SetOptionsData, payload: options });
+        if (option) {
+            hideKeyboardIfNeeded();
+        }
     };
 
     const windowDimensions = useWindowDimensions();
@@ -150,6 +173,13 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     const onOutsidePress: OnOutsidePress = () => {
         dispatch({ type: Action.Close });
         dispatch({ type: Action.SetOptionsData, payload: options });
+        if (searchable && selectedOption?.label) {
+            dispatch({
+                type: Action.SetSearchValue,
+                payload: selectedOption.label,
+            });
+        }
+        hideKeyboardIfNeeded();
     };
 
     useEffect(() => {
@@ -174,6 +204,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 options={options}
                 placeholderText={placeholderText}
                 ref={containerRef}
+                searchPattern={searchPattern}
+                searchValue={searchValue}
+                searchable={searchable}
                 selectControlButtonsContainerStyle={selectControlButtonsContainerStyle}
                 selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
                 selectControlClearOptionButtonHitSlop={selectControlClearOptionButtonHitSlop}
@@ -185,6 +218,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectControlStyle={selectControlStyle}
                 selectControlTextStyle={selectControlTextStyle}
                 selectedOption={selectedOption}
+                setPosition={setPosition}
             />
             <OptionsList
                 NoOptionsComponent={NoOptionsComponent}
@@ -203,6 +237,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 optionsData={optionsData}
                 optionsListStyle={optionsListStyle}
                 scrollToSelectedOption={scrollToSelectedOption}
+                searchValue={searchValue}
+                searchable={searchable}
+                searchedOptions={searchedOptions}
                 selectedOption={selectedOption}
             />
         </View>

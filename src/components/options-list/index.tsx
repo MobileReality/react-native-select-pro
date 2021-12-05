@@ -23,11 +23,20 @@ type FromSelectComponentProps = Pick<
     | 'optionsListStyle'
     | 'NoOptionsComponent'
     | 'OptionComponent'
+    | 'searchable'
 >;
 
 type OptionsListProps = OptionalToRequired<
     FromSelectComponentProps &
-        Pick<State, 'isOpened' | 'openedPosition' | 'optionsData' | 'selectedOption'> & {
+        Pick<
+            State,
+            | 'isOpened'
+            | 'openedPosition'
+            | 'optionsData'
+            | 'selectedOption'
+            | 'searchedOptions'
+            | 'searchValue'
+        > & {
             onOutsidePress: OnOutsidePress;
             onPressOption: OnPressOptionType;
         } & Pick<Position, 'aboveSelectControl'>
@@ -38,6 +47,9 @@ export const OptionsList = ({
     flatListProps,
     onPressOption,
     selectedOption,
+    searchedOptions,
+    searchValue,
+    searchable,
     isOpened,
     onOutsidePress,
     openedPosition: { width, top, left },
@@ -53,6 +65,20 @@ export const OptionsList = ({
     OptionComponent,
 }: OptionsListProps) => {
     const ref = useRef<FlatList>(null);
+
+    const resolveData = () => {
+        if (!searchable) {
+            return optionsData;
+        }
+        if (searchable && searchValue.length === 0) {
+            return optionsData;
+        }
+        if (selectedOption && searchValue?.length > 0 && searchValue === selectedOption.label) {
+            return optionsData;
+        }
+        return searchedOptions;
+    };
+
     return (
         <>
             {isOpened && (
@@ -75,7 +101,7 @@ export const OptionsList = ({
                             <FlatList
                                 accessibilityLabel={'Options list'}
                                 bounces={false}
-                                data={optionsData}
+                                data={resolveData()}
                                 getItemLayout={(_data, index) => {
                                     const height = StyleSheet.flatten(optionStyle)?.height;
                                     const isNumber = typeof height === 'number';
