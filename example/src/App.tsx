@@ -13,6 +13,7 @@ import { Ref } from './examples/Ref';
 import { RHF } from './examples/RHF';
 import { ScrollToSelectedOption } from './examples/ScrollToSelectedOption';
 import { Selects } from './examples/Selects';
+import { MultiSelect } from './examples/MultiSelect';
 
 export const DATA = [
     {
@@ -52,6 +53,7 @@ const examples = [
     'Callbacks',
     'Custom Component',
     'Scroll To Selected Option',
+    'Multi Select'
 ];
 
 export default function App() {
@@ -88,6 +90,8 @@ export default function App() {
                 return <CustomComponent />;
             case 'Scroll To Selected Option':
                 return <ScrollToSelectedOption />;
+            case 'Multi Select':
+                return <MultiSelect />;
             default:
                 return null;
         }

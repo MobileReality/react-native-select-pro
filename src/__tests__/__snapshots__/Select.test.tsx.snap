@@ -42,13 +42,17 @@ exports[`Select should generate Select snapshot 1`] = `
   >
     <View
       style={
-        Object {
-          "height": "100%",
-          "justifyContent": "center",
-          "paddingHorizontal": 12,
-          "paddingRight": 55,
-          "width": "100%",
-        }
+        Array [
+          Object {
+            "height": "100%",
+            "width": "100%",
+          },
+          Object {
+            "justifyContent": "center",
+            "paddingHorizontal": 12,
+            "paddingRight": 55,
+          },
+        ]
       }
     >
       <Text

@@ -6,7 +6,6 @@ import {
     StyleSheet,
     Text,
     TextStyle,
-    TouchableOpacity,
     View,
     ViewStyle,
 } from 'react-native';
@@ -14,8 +13,9 @@ import {
 import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { Select } from '../../index';
-import { Action, DispatchType, Position, State } from '../../state/types';
+import type { DispatchType, Position, State } from '../../state/types';
 import type { OnPressSelectControlType } from '../../types';
+import { RemoveOptionButton } from '../remove-option-button';
 
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
@@ -27,6 +27,7 @@ type FromSelectComponentProps = Pick<
     | 'selectControlDisabledStyle'
     | 'selectControlButtonsContainerStyle'
     | 'hideSelectControlArrow'
+    | 'multiSelection'
     | 'onSelect'
     | 'selectControlClearOptionA11yLabel'
     | 'selectControlOpenDropdownA11yLabel'
@@ -58,6 +59,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             clearable,
             options,
             disabled,
+            multiSelection,
             placeholderText,
             selectControlDisabledStyle,
             selectControlClearOptionButtonHitSlop,
@@ -74,20 +76,48 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         },
         ref,
     ) => {
-        const onPressRemove = () => {
-            if (!disabled) {
-                dispatch({
-                    type: Action.SelectOption,
-                    payload: null,
-                });
-                dispatch({
-                    type: Action.SetOptionsData,
-                    payload: options,
-                });
-                if (onSelect) {
-                    onSelect(null);
-                }
+        const resolveOptions = () => {
+            if (multiSelection) {
+                return (
+                    <View style={styles.multiSelectionWrapper}>
+                        <Text
+                            numberOfLines={1}
+                            style={[
+                                styles.text,
+                                { color: selectedOption?.label ? COLORS.BLACK : COLORS.GRAY },
+                                selectControlTextStyle,
+                                styles.multiSelectionOption,
+                            ]}>
+                            {selectedOption?.label || placeholderText}
+                        </Text>
+                        <RemoveOptionButton
+                            disabled={disabled}
+                            dispatch={dispatch}
+                            onSelect={onSelect}
+                            options={options}
+                            selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
+                            selectControlClearOptionButtonHitSlop={
+                                selectControlClearOptionButtonHitSlop
+                            }
+                            selectControlClearOptionButtonStyle={
+                                selectControlClearOptionButtonStyle
+                            }
+                            selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
+                        />
+                    </View>
+                );
             }
+            return (
+                <Text
+                    numberOfLines={1}
+                    style={[
+                        styles.text,
+                        { color: selectedOption?.label ? COLORS.BLACK : COLORS.GRAY },
+                        selectControlTextStyle,
+                    ]}>
+                    {selectedOption?.label || placeholderText}
+                </Text>
+            );
         };
 
         return (
@@ -105,36 +135,29 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     selectControlStyle,
                     disabled ? [styles.disabled, selectControlDisabledStyle] : {},
                 ]}>
-                <View style={styles.press}>
-                    <Text
-                        numberOfLines={1}
-                        style={[
-                            styles.text,
-                            { color: selectedOption?.label ? COLORS.BLACK : COLORS.GRAY },
-                            selectControlTextStyle,
-                        ]}>
-                        {selectedOption?.label || placeholderText}
-                    </Text>
+                <View
+                    style={[
+                        styles.press,
+                        multiSelection ? styles.pressMultiSelect : styles.pressSingleSelect,
+                    ]}>
+                    {resolveOptions()}
                 </View>
                 <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
-                    {clearable && selectedOption && (
-                        <TouchableOpacity
-                            accessibilityLabel={
-                                selectControlClearOptionA11yLabel || 'Clear a chosen option'
-                            }
+                    {clearable && selectedOption && !multiSelection && (
+                        <RemoveOptionButton
                             disabled={disabled}
-                            hitSlop={
+                            dispatch={dispatch}
+                            onSelect={onSelect}
+                            options={options}
+                            selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
+                            selectControlClearOptionButtonHitSlop={
                                 selectControlClearOptionButtonHitSlop
-                                    ? selectControlClearOptionButtonHitSlop
-                                    : { right: 3, left: 3 }
                             }
-                            onPress={onPressRemove}
-                            style={[styles.xIconWrapper, selectControlClearOptionButtonStyle]}>
-                            <Image
-                                source={require('./../../assets/icons/x.png')}
-                                style={[styles.xIcon, selectControlClearOptionImageStyle]}
-                            />
-                        </TouchableOpacity>
+                            selectControlClearOptionButtonStyle={
+                                selectControlClearOptionButtonStyle
+                            }
+                            selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
+                        />
                     )}
                     {!hideSelectControlArrow && (
                         <Image
@@ -154,7 +177,11 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
 type Styles = {
     container: ViewStyle;
     press: ViewStyle;
+    pressMultiSelect: ViewStyle;
+    pressSingleSelect: ViewStyle;
     text: TextStyle;
+    multiSelectionOption: TextStyle;
+    multiSelectionWrapper: ViewStyle;
     opened: ViewStyle;
     openedAbove: ViewStyle;
     disabled: ViewStyle;
@@ -162,8 +189,6 @@ type Styles = {
     arrowIcon: ImageStyle;
     arrowIconOpened: ImageStyle;
     arrowIconClosed: ImageStyle;
-    xIcon: ImageStyle;
-    xIconWrapper: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -173,15 +198,41 @@ const styles = StyleSheet.create<Styles>({
         borderWidth: BORDER_WIDTH,
         backgroundColor: COLORS.WHITE,
     },
+
     press: {
         width: '100%',
         height: '100%',
-        paddingHorizontal: PADDING,
+    },
+    pressSingleSelect: {
         justifyContent: 'center',
+        paddingHorizontal: PADDING,
         paddingRight: 55,
+    },
+    pressMultiSelect: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
     },
     disabled: {
         backgroundColor: COLORS.DISABLED,
+    },
+    multiSelectionOption: {
+        backgroundColor: 'transparent',
+        padding: 5,
+        width: '100%',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    multiSelectionWrapper: {
+        borderRadius: SHAPE,
+        marginTop: 2,
+        marginBottom: 2,
+        marginLeft: 2,
+        flex: 0.5,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: COLORS.GRAY,
     },
     text: {
         fontSize: FONT_SIZE,
@@ -207,15 +258,6 @@ const styles = StyleSheet.create<Styles>({
         width: 25,
         height: 25,
         zIndex: -1,
-    },
-    xIconWrapper: {
-        height: '100%',
-        justifyContent: 'center',
-    },
-    xIcon: {
-        width: 20,
-        height: 20,
-        zIndex: 1,
     },
     arrowIconOpened: {
         transform: [{ rotate: '180deg' }],

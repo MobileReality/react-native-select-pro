@@ -30,6 +30,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         defaultOption,
         disabled = false,
         flatListProps,
+        multiSelection = false,
         hideSelectControlArrow,
         noOptionsText = 'No options',
         onSelect,
@@ -169,6 +170,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 dispatch={dispatch}
                 hideSelectControlArrow={hideSelectControlArrow}
                 isOpened={isOpened}
+                multiSelection={multiSelection}
                 onPressSelectControl={onPressSelectControl}
                 onSelect={onSelect}
                 options={options}
