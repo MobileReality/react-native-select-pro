@@ -136,7 +136,7 @@ Array [
           noOptionsText="No options"
         />
       }
-      accessibilityLabel="Options list"
+      accessibilityLabel=""
       bounces={false}
       data={
         Array [
