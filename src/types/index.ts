@@ -233,6 +233,13 @@ export interface SelectProps {
      * @category Custom Component
      */
     OptionComponent?: (props: OptionComponentProps) => JSX.Element;
+    /**
+     *  If `true` toggling the select is animated
+     *
+     *  @category Styles
+     *  @default true
+     */
+    isAnimated?: boolean;
 }
 
 /**

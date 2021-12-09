@@ -31,6 +31,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         disabled = false,
         flatListProps,
         hideSelectControlArrow,
+        isAnimated = true,
         noOptionsText = 'No options',
         onSelect,
         onDropdownOpened,
@@ -168,6 +169,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 disabled={disabled}
                 dispatch={dispatch}
                 hideSelectControlArrow={hideSelectControlArrow}
+                isAnimated={isAnimated}
                 isOpened={isOpened}
                 onPressSelectControl={onPressSelectControl}
                 onSelect={onSelect}
@@ -191,6 +193,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 OptionComponent={OptionComponent}
                 aboveSelectControl={aboveSelectControl}
                 flatListProps={flatListProps}
+                isAnimated={isAnimated}
                 isOpened={isOpened}
                 noOptionsText={noOptionsText}
                 onOutsidePress={onOutsidePress}

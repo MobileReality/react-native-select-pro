@@ -1,28 +1,15 @@
 import React, { ComponentProps, useRef } from 'react';
-import {
-    Animated,
-    FlatList,
-    StyleSheet,
-    TouchableWithoutFeedback,
-    View,
-    ViewStyle,
-} from 'react-native';
+import { FlatList, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
 import { Portal } from '@gorhom/portal';
 
 import { Portals } from '../../constants/portals';
-import {
-    ANIMATION_DURATION,
-    BORDER_WIDTH,
-    COLORS,
-    ITEM_HEIGHT,
-    MAX_HEIGHT_LIST,
-    SHAPE,
-} from '../../constants/styles';
+import { BORDER_WIDTH, COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { Position, State } from '../../state/types';
 import type { OnOutsidePress, OnPressOptionType } from '../../types';
 import { NoOptions } from '../no-options';
 import { Option } from '../option';
+import { OptionsListWrapper } from '../options-list-wrapper';
 import type { Select } from '../select';
 
 type FromSelectComponentProps = Pick<
@@ -34,6 +21,7 @@ type FromSelectComponentProps = Pick<
     | 'scrollToSelectedOption'
     | 'noOptionsText'
     | 'onSelect'
+    | 'isAnimated'
     | 'optionsListStyle'
     | 'NoOptionsComponent'
     | 'OptionComponent'
@@ -52,6 +40,7 @@ export const OptionsList = ({
     flatListProps,
     onPressOption,
     selectedOption,
+    isAnimated,
     isOpened,
     onOutsidePress,
     openedPosition: { width, top, left },
@@ -68,16 +57,6 @@ export const OptionsList = ({
 }: OptionsListProps) => {
     const ref = useRef<FlatList>(null);
 
-    const fadeAnimation = useRef(new Animated.Value(0)).current;
-
-    React.useEffect(() => {
-        Animated.timing(fadeAnimation, {
-            toValue: isOpened ? 1 : 0,
-            duration: ANIMATION_DURATION,
-            useNativeDriver: true,
-        }).start();
-    }, [fadeAnimation, isOpened]);
-
     return (
         <>
             <>
@@ -91,17 +70,17 @@ export const OptionsList = ({
                     </Portal>
                 )}
                 <Portal hostName={Portals.Select}>
-                    <Animated.View
-                        pointerEvents={isOpened ? 'auto' : 'none'}
-                        style={[
+                    <OptionsListWrapper
+                        isAnimated={isAnimated}
+                        isOpened={isOpened}
+                        wrapperStyles={[
                             styles.options,
                             optionsListStyle,
                             { top, left, width },
                             aboveSelectControl ? styles.overflown : styles.notOverflown,
-                            { opacity: fadeAnimation },
                         ]}>
                         <FlatList
-                            accessibilityLabel={'Options list'}
+                            accessibilityLabel={isOpened ? 'Options list' : ''}
                             bounces={false}
                             data={optionsData}
                             getItemLayout={(_data, index) => {
@@ -149,7 +128,7 @@ export const OptionsList = ({
                                 NoOptionsComponent || <NoOptions noOptionsText={noOptionsText} />
                             }
                         />
-                    </Animated.View>
+                    </OptionsListWrapper>
                 </Portal>
             </>
         </>

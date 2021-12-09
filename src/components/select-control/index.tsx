@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, forwardRef, useRef } from 'react';
+import React, { ComponentPropsWithRef, forwardRef, ReactElement, useRef } from 'react';
 import {
     Animated,
     Image,
@@ -29,6 +29,7 @@ type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
     | 'selectControlStyle'
     | 'clearable'
+    | 'isAnimated'
     | 'options'
     | 'disabled'
     | 'placeholderText'
@@ -55,10 +56,13 @@ type SelectControlProps = OptionalToRequired<
         >
 >;
 
+const arrowImage = require('./../../assets/icons/chevron-down.png');
+
 export const SelectControl = forwardRef<View, SelectControlProps>(
     (
         {
             isOpened,
+            isAnimated,
             selectControlStyle,
             selectedOption,
             onPressSelectControl,
@@ -85,12 +89,14 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         const rotateAnimation = useRef(new Animated.Value(0)).current;
 
         React.useEffect(() => {
-            Animated.timing(rotateAnimation, {
-                toValue: isOpened ? 1 : 0,
-                duration: ANIMATION_DURATION,
-                useNativeDriver: true,
-            }).start();
-        }, [rotateAnimation, isOpened]);
+            if (isAnimated) {
+                Animated.timing(rotateAnimation, {
+                    toValue: isOpened ? 1 : 0,
+                    duration: ANIMATION_DURATION,
+                    useNativeDriver: true,
+                }).start();
+            }
+        }, [rotateAnimation, isOpened, isAnimated]);
 
         const rotate = rotateAnimation.interpolate({
             inputRange: [0, 1],
@@ -112,6 +118,22 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                 }
             }
         };
+
+        const renderArrowImage = (): ReactElement =>
+            isAnimated ? (
+                <Animated.Image
+                    source={arrowImage}
+                    style={[styles.arrowIcon, { transform: [{ rotate }] }]}
+                />
+            ) : (
+                <Image
+                    source={arrowImage}
+                    style={[
+                        styles.arrowIcon,
+                        isOpened ? styles.arrowIconOpened : styles.arrowIconClosed,
+                    ]}
+                />
+            );
 
         return (
             <Pressable
@@ -159,12 +181,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                             />
                         </TouchableOpacity>
                     )}
-                    {!hideSelectControlArrow && (
-                        <Animated.Image
-                            source={require('./../../assets/icons/chevron-down.png')}
-                            style={[styles.arrowIcon, { transform: [{ rotate }] }]}
-                        />
-                    )}
+                    {!hideSelectControlArrow && renderArrowImage()}
                 </View>
             </Pressable>
         );
@@ -180,6 +197,8 @@ type Styles = {
     disabled: ViewStyle;
     iconsContainer: ViewStyle;
     arrowIcon: ImageStyle;
+    arrowIconOpened: ImageStyle;
+    arrowIconClosed: ImageStyle;
     xIcon: ImageStyle;
     xIconWrapper: ViewStyle;
 };
@@ -234,5 +253,11 @@ const styles = StyleSheet.create<Styles>({
         width: 20,
         height: 20,
         zIndex: 1,
+    },
+    arrowIconOpened: {
+        transform: [{ rotate: '180deg' }],
+    },
+    arrowIconClosed: {
+        transform: [{ rotate: '0deg' }],
     },
 });
