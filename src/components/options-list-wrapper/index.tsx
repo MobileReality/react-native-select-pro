@@ -1,4 +1,4 @@
-import React, { ComponentProps, ReactElement, useEffect, useRef } from 'react';
+import React, { ComponentProps, ReactNode, useEffect, useRef } from 'react';
 import { Animated, StyleProp, View, ViewStyle } from 'react-native';
 
 import type { OptionalToRequired } from '../../helpers';
@@ -14,7 +14,7 @@ type WrapperStyles = {
 };
 
 type OptionsListWrapperProps = OptionalToRequired<FromOptionListProps> & {
-    children: ReactElement;
+    children: ReactNode;
 } & WrapperStyles;
 
 export const OptionsListWrapper = ({
