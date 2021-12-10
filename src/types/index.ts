@@ -253,7 +253,14 @@ export interface SelectProps {
      *  @category Styles
      *  @default true
      */
-    isAnimated?: boolean;
+    animated?: boolean;
+    /**
+     *  Animation duration in ms
+     *
+     *  @category Styles
+     *  @default 200
+     */
+    animationDuration?: number;
 }
 
 /**

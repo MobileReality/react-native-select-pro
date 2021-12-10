@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, forwardRef, ReactElement, useRef } from 'react';
+import React, { ComponentPropsWithRef, forwardRef, ReactElement, useEffect, useRef } from 'react';
 import {
     Animated,
     Image,
@@ -12,14 +12,7 @@ import {
     ViewStyle,
 } from 'react-native';
 
-import {
-    ANIMATION_DURATION,
-    BORDER_WIDTH,
-    COLORS,
-    FONT_SIZE,
-    PADDING,
-    SHAPE,
-} from '../../constants/styles';
+import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { Select } from '../../index';
 import { Action, DispatchType, Position, State } from '../../state/types';
@@ -30,7 +23,8 @@ type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
     | 'selectControlStyle'
     | 'clearable'
-    | 'isAnimated'
+    | 'animated'
+    | 'animationDuration'
     | 'options'
     | 'disabled'
     | 'searchable'
@@ -64,7 +58,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
     (
         {
             isOpened,
-            isAnimated,
+            animated,
+            animationDuration,
             selectControlStyle,
             selectedOption,
             onPressSelectControl,
@@ -94,15 +89,15 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
     ) => {
         const rotateAnimation = useRef(new Animated.Value(0)).current;
 
-        React.useEffect(() => {
-            if (isAnimated) {
+        useEffect(() => {
+            if (animated) {
                 Animated.timing(rotateAnimation, {
                     toValue: isOpened ? 1 : 0,
-                    duration: ANIMATION_DURATION,
+                    duration: animationDuration,
                     useNativeDriver: true,
                 }).start();
             }
-        }, [rotateAnimation, isOpened, isAnimated]);
+        }, [rotateAnimation, isOpened, animated]);
 
         const rotate = rotateAnimation.interpolate({
             inputRange: [0, 1],
@@ -132,7 +127,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         };
 
         const renderArrowImage = (): ReactElement =>
-            isAnimated ? (
+            animated ? (
                 <Animated.Image
                     source={arrowImage}
                     style={[styles.arrowIcon, { transform: [{ rotate }] }]}

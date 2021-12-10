@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native';
 
-import { MAX_HEIGHT_LIST } from '../../constants/styles';
+import { ANIMATION_DURATION, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
 import type {
@@ -31,7 +31,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         disabled = false,
         flatListProps,
         hideSelectControlArrow,
-        isAnimated = true,
+        animated = false,
+        animationDuration = ANIMATION_DURATION,
         noOptionsText = 'No options',
         onSelect,
         onDropdownOpened,
@@ -195,11 +196,12 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         <View onLayout={setPosition} style={[styles.relative, selectContainerStyle]}>
             <SelectControl
                 aboveSelectControl={aboveSelectControl}
+                animated={animated}
+                animationDuration={animationDuration}
                 clearable={clearable}
                 disabled={disabled}
                 dispatch={dispatch}
                 hideSelectControlArrow={hideSelectControlArrow}
-                isAnimated={isAnimated}
                 isOpened={isOpened}
                 onPressSelectControl={onPressSelectControl}
                 onSelect={onSelect}
@@ -226,8 +228,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 NoOptionsComponent={NoOptionsComponent}
                 OptionComponent={OptionComponent}
                 aboveSelectControl={aboveSelectControl}
+                animated={animated}
+                animationDuration={animationDuration}
                 flatListProps={flatListProps}
-                isAnimated={isAnimated}
                 isOpened={isOpened}
                 noOptionsText={noOptionsText}
                 onOutsidePress={onOutsidePress}
