@@ -57,6 +57,7 @@ exports[`Select should generate Select snapshot 1`] = `
           Array [
             Object {
               "fontSize": 12,
+              "textAlign": "left",
             },
             Object {
               "color": "#808080",
@@ -174,6 +175,7 @@ exports[`Select with searchable enabled should generate Select with searchable e
             "fontSize": 12,
           }
         }
+        textAlign="left"
         value=""
       />
     </View>

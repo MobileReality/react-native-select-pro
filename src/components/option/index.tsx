@@ -83,6 +83,7 @@ const styles = StyleSheet.create<Styles>({
     text: {
         fontSize: FONT_SIZE,
         color: COLORS.BLACK,
+        textAlign: 'left',
     },
     selected: {
         backgroundColor: COLORS.SELECTED,

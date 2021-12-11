@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Keyboard, StyleSheet, TextInput, TextStyle } from 'react-native';
+import { I18nManager, Keyboard, StyleSheet, TextInput, TextStyle } from 'react-native';
 import type {
     OnPressSelectControlType,
     OnSetPosition,
@@ -79,6 +79,7 @@ export const SelectInput = ({
             placeholder={placeholderText}
             ref={searchInputRef}
             style={disabled ? [styles.disabled, styles.text] : styles.text}
+            textAlign={I18nManager.isRTL ? 'right' : 'left'}
             value={searchValue}
         />
     );

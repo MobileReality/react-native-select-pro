@@ -55,7 +55,7 @@ const examples = [
     'Custom Component',
     'Scroll To Selected Option',
     'Searchable',
-    'Searchable In Modal'
+    'Searchable In Modal',
 ];
 
 export default function App() {
