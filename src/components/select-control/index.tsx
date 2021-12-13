@@ -1,6 +1,5 @@
-import React, { ComponentPropsWithRef, forwardRef, useEffect } from 'react';
+import React, { ComponentPropsWithRef, forwardRef } from 'react';
 import {
-    I18nManager,
     Image,
     ImageStyle,
     Pressable,
@@ -81,12 +80,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         },
         ref,
     ) => {
-        useEffect(() => {
-            if (I18nManager.isRTL) {
-                I18nManager.swapLeftAndRightInRTL(true);
-            }
-        }, []);
-
         const onPressRemove = () => {
             if (!disabled) {
                 dispatch({
