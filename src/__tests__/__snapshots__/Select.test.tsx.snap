@@ -158,13 +158,17 @@ exports[`Select with searchable enabled should generate Select with searchable e
   >
     <View
       style={
-        Object {
-          "height": "100%",
-          "justifyContent": "center",
-          "paddingHorizontal": 12,
-          "paddingRight": 55,
-          "width": "100%",
-        }
+        Array [
+          Object {
+            "height": "100%",
+            "width": "100%",
+          },
+          Object {
+            "justifyContent": "center",
+            "paddingHorizontal": 12,
+            "paddingRight": 55,
+          },
+        ]
       }
     >
       <TextInput
