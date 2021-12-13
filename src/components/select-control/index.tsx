@@ -13,9 +13,10 @@ import {
 import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { Select } from '../../index';
-import type { DispatchType, Position, State } from '../../state/types';
-import type { OnPressSelectControlType } from '../../types';
+import { Action, DispatchType, Position, State } from '../../state/types';
+import type { OnPressSelectControlType, OnSetPosition } from '../../types';
 import { RemoveOptionButton } from '../remove-option-button';
+import { SelectInput } from '../select-input';
 
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
@@ -23,6 +24,8 @@ type FromSelectComponentProps = Pick<
     | 'clearable'
     | 'options'
     | 'disabled'
+    | 'searchable'
+    | 'searchPattern'
     | 'placeholderText'
     | 'selectControlDisabledStyle'
     | 'selectControlButtonsContainerStyle'
@@ -42,10 +45,9 @@ type SelectControlProps = OptionalToRequired<
     {
         onPressSelectControl: OnPressSelectControlType;
     } & FromSelectComponentProps &
-        Pick<State, 'isOpened' | 'selectedOption'> & { dispatch: DispatchType } & Pick<
-            Position,
-            'aboveSelectControl'
-        >
+        Pick<State, 'isOpened' | 'selectedOption' | 'searchValue'> & {
+            dispatch: DispatchType;
+        } & Pick<Position, 'aboveSelectControl'> & { setPosition: OnSetPosition }
 >;
 
 export const SelectControl = forwardRef<View, SelectControlProps>(
@@ -61,6 +63,10 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             disabled,
             multiSelection,
             placeholderText,
+            searchable,
+            searchPattern,
+            searchValue,
+            setPosition,
             selectControlDisabledStyle,
             selectControlClearOptionButtonHitSlop,
             selectControlClearOptionButtonStyle,
@@ -76,6 +82,28 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         },
         ref,
     ) => {
+        const onPressRemove = () => {
+            if (!disabled) {
+                dispatch({
+                    type: Action.SelectOption,
+                    payload: null,
+                });
+                if (searchable) {
+                    dispatch({
+                        type: Action.SetSearchValue,
+                        payload: '',
+                    });
+                }
+                dispatch({
+                    type: Action.SetOptionsData,
+                    payload: options,
+                });
+                if (onSelect) {
+                    onSelect(null);
+                }
+            }
+        };
+
         const resolveOptions = () => {
             if (multiSelection) {
                 return (
@@ -120,6 +148,34 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             );
         };
 
+        const renderSelection = () => {
+            if (searchable) {
+                return (
+                    <SelectInput
+                        disabled={disabled}
+                        dispatch={dispatch}
+                        isOpened={isOpened}
+                        onPressSelectControl={onPressSelectControl}
+                        placeholderText={placeholderText}
+                        searchPattern={searchPattern}
+                        searchValue={searchValue}
+                        setPosition={setPosition}
+                    />
+                );
+            }
+            return (
+                <Text
+                    numberOfLines={1}
+                    style={[
+                        styles.text,
+                        { color: selectedOption?.label ? COLORS.BLACK : COLORS.GRAY },
+                        selectControlTextStyle,
+                    ]}>
+                    {selectedOption?.label || placeholderText}
+                </Text>
+            );
+        };
+
         return (
             <Pressable
                 accessibilityLabel={
@@ -140,14 +196,14 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         styles.press,
                         multiSelection ? styles.pressMultiSelect : styles.pressSingleSelect,
                     ]}>
-                    {resolveOptions()}
+                    {multiSelection ? resolveOptions() : renderSelection()}
                 </View>
                 <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
                     {clearable && selectedOption && !multiSelection && (
                         <RemoveOptionButton
                             disabled={disabled}
                             dispatch={dispatch}
-                            onSelect={onSelect}
+                            onSelect={onPressRemove}
                             options={options}
                             selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
                             selectControlClearOptionButtonHitSlop={

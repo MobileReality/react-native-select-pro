@@ -4,6 +4,9 @@ import { Action } from './types';
 export const initialData: State = {
     isOpened: false,
     selectedOption: null,
+    searchValue: '',
+    searchedOptions: [],
+    searchInputRef: null,
     openedPosition: {
         width: 0,
         top: 0,
@@ -34,6 +37,30 @@ export const reducer = (state: State, action: ActionType): State => {
             return {
                 ...state,
                 optionsData: action.payload,
+            };
+        case Action.SetSearchValue:
+            return {
+                ...state,
+                searchValue: action.payload,
+            };
+        case Action.SearchOptions:
+            if (action.payload === '') {
+                return {
+                    ...state,
+                    searchedOptions: [],
+                };
+            }
+            const regex = new RegExp(action.searchPattern(action.payload.toLowerCase()));
+            return {
+                ...state,
+                searchedOptions: state.optionsData.filter((option) =>
+                    regex.test(option.label.toLowerCase()),
+                ),
+            };
+        case Action.SetSearchInputRef:
+            return {
+                ...state,
+                searchInputRef: action.payload,
             };
         case Action.SetPosition:
             return {
