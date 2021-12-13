@@ -12,9 +12,9 @@ import { Overflow } from './examples/Overflow';
 import { Ref } from './examples/Ref';
 import { RHF } from './examples/RHF';
 import { ScrollToSelectedOption } from './examples/ScrollToSelectedOption';
-import { Selects } from './examples/Selects';
 import { Searchable } from './examples/Searchable';
 import { SearchableInModal } from './examples/SearchableInModal';
+import { Selects } from './examples/Selects';
 
 export const DATA = [
     {
