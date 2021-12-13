@@ -15,6 +15,7 @@ import { ScrollToSelectedOption } from './examples/ScrollToSelectedOption';
 import { Selects } from './examples/Selects';
 import { Searchable } from './examples/Searchable';
 import { SearchableInModal } from './examples/SearchableInModal';
+import { Animated } from './examples/Animated';
 
 export const DATA = [
     {
@@ -55,7 +56,8 @@ const examples = [
     'Custom Component',
     'Scroll To Selected Option',
     'Searchable',
-    'Searchable In Modal'
+    'Searchable In Modal',
+    'Animated',
 ];
 
 export default function App() {
@@ -96,6 +98,8 @@ export default function App() {
                 return <Searchable />;
             case 'Searchable In Modal':
                 return <SearchableInModal />;
+            case 'Animated':
+                return <Animated />;
             default:
                 return null;
         }
