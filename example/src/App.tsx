@@ -16,6 +16,7 @@ import { Selects } from './examples/Selects';
 import { Searchable } from './examples/Searchable';
 import { SearchableInModal } from './examples/SearchableInModal';
 import { Animated } from './examples/Animated';
+import {CustomLeftIcon} from "./examples/CustomLeftIcon";
 
 export const DATA = [
     {
@@ -58,6 +59,7 @@ const examples = [
     'Searchable',
     'Searchable In Modal',
     'Animated',
+    'Custom Left Icon'
 ];
 
 export default function App() {
@@ -100,6 +102,8 @@ export default function App() {
                 return <SearchableInModal />;
             case 'Animated':
                 return <Animated />;
+            case 'Custom Left Icon':
+                return <CustomLeftIcon />;
             default:
                 return null;
         }
