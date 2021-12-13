@@ -3,20 +3,20 @@ import { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { SelectProvider } from '@mobile-reality/react-native-select-pro';
 
+import { Animated } from './examples/Animated';
 import { Basic } from './examples/Basic';
 import { Callbacks } from './examples/Callbacks';
 import { CustomComponent } from './examples/CustomComponent';
+import { CustomLeftIcon } from './examples/CustomLeftIcon';
 import { CustomStyles } from './examples/CustomStyles';
 import { ModalExample } from './examples/ModalExample';
 import { Overflow } from './examples/Overflow';
 import { Ref } from './examples/Ref';
 import { RHF } from './examples/RHF';
 import { ScrollToSelectedOption } from './examples/ScrollToSelectedOption';
-import { Selects } from './examples/Selects';
 import { Searchable } from './examples/Searchable';
 import { SearchableInModal } from './examples/SearchableInModal';
-import { Animated } from './examples/Animated';
-import {CustomLeftIcon} from "./examples/CustomLeftIcon";
+import { Selects } from './examples/Selects';
 
 export const DATA = [
     {
@@ -59,7 +59,7 @@ const examples = [
     'Searchable',
     'Searchable In Modal',
     'Animated',
-    'Custom Left Icon'
+    'Custom Left Icon',
 ];
 
 export default function App() {
