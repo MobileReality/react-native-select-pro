@@ -251,7 +251,7 @@ export interface SelectProps {
      *  If `true` toggling the select is animated
      *
      *  @category Styles
-     *  @default true
+     *  @default false
      */
     animated?: boolean;
     /**
