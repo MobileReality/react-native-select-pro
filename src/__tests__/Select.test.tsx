@@ -317,3 +317,18 @@ describe('Select with searchable enabled', () => {
         expect(input.props.value).toBe(selectOptionInputData);
     });
 });
+
+describe('Select with custom left icon', () => {
+    it('should generate Select with custom left icon snapshot', () => {
+        const wrapper = render(
+            <SelectProvider>
+                <Select
+                    customLeftIconSource={require('./assets/search.png')}
+                    customLeftIconStyles={{ height: 15, width: 15 }}
+                    options={DATA}
+                />
+            </SelectProvider>,
+        );
+        expect(wrapper).toMatchSnapshot();
+    });
+});

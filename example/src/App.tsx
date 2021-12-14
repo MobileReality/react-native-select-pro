@@ -7,6 +7,7 @@ import { Animated } from './examples/Animated';
 import { Basic } from './examples/Basic';
 import { Callbacks } from './examples/Callbacks';
 import { CustomComponent } from './examples/CustomComponent';
+import { CustomLeftIcon } from './examples/CustomLeftIcon';
 import { CustomStyles } from './examples/CustomStyles';
 import { ModalExample } from './examples/ModalExample';
 import { Overflow } from './examples/Overflow';
@@ -58,6 +59,7 @@ const examples = [
     'Searchable',
     'Searchable In Modal',
     'Animated',
+    'Custom Left Icon',
 ];
 
 export default function App() {
@@ -100,6 +102,8 @@ export default function App() {
                 return <SearchableInModal />;
             case 'Animated':
                 return <Animated />;
+            case 'Custom Left Icon':
+                return <CustomLeftIcon />;
             default:
                 return null;
         }

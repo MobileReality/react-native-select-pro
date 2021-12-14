@@ -77,6 +77,7 @@ export const SelectInput = ({
             onChangeText={onChangeText}
             onPressIn={!disabled ? onPressSelectControl : () => null}
             placeholder={placeholderText}
+            placeholderTextColor={COLORS.GRAY}
             ref={searchInputRef}
             style={disabled ? [styles.disabled, styles.text] : styles.text}
             textAlign={I18nManager.isRTL ? 'right' : 'left'}

@@ -41,6 +41,8 @@ type FromSelectComponentProps = Pick<
     | 'selectControlClearOptionButtonStyle'
     | 'selectControlClearOptionButtonHitSlop'
     | 'selectControlClearOptionImageStyle'
+    | 'customLeftIconSource'
+    | 'customLeftIconStyles'
 >;
 
 type SelectControlProps = OptionalToRequired<
@@ -84,6 +86,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             onSelect,
             selectControlTextStyle,
             aboveSelectControl,
+            customLeftIconSource,
+            customLeftIconStyles,
         },
         ref,
     ) => {
@@ -185,6 +189,11 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     selectControlStyle,
                     disabled ? [styles.disabled, selectControlDisabledStyle] : {},
                 ]}>
+                {!!customLeftIconSource && (
+                    <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
+                        <Image source={customLeftIconSource} style={customLeftIconStyles} />
+                    </View>
+                )}
                 <View style={styles.press}>{renderSelection()}</View>
                 <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
                     {clearable && selectedOption && (
@@ -226,17 +235,19 @@ type Styles = {
     arrowIconClosed: ImageStyle;
     xIcon: ImageStyle;
     xIconWrapper: ViewStyle;
+    leftIconWrapper: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
     container: {
         height: 40,
+        flexDirection: 'row',
         borderRadius: SHAPE,
         borderWidth: BORDER_WIDTH,
         backgroundColor: COLORS.WHITE,
     },
     press: {
-        width: '100%',
+        flex: 1,
         height: '100%',
         paddingHorizontal: PADDING,
         justifyContent: 'center',
@@ -270,6 +281,9 @@ const styles = StyleSheet.create<Styles>({
         width: 25,
         height: 25,
         zIndex: -1,
+    },
+    leftIconWrapper: {
+        paddingLeft: 8,
     },
     xIconWrapper: {
         height: '100%',

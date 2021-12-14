@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import type {
     FlatListProps,
+    ImageSourcePropType,
     ImageStyle,
     Insets,
     StyleProp,
@@ -261,6 +262,18 @@ export interface SelectProps {
      *  @default 200
      */
     animationDuration?: number;
+    /**
+     *  Custom left icon source
+     *
+     *  @category Styles
+     */
+    customLeftIconSource?: ImageSourcePropType;
+    /**
+     *  Custom left icon styles
+     *
+     *  @category Styles
+     */
+    customLeftIconStyles?: StyleProp<ImageStyle>;
 }
 
 /**

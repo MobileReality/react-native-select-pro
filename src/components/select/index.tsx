@@ -56,6 +56,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         selectControlStyle,
         selectControlTextStyle,
         optionsListStyle,
+        customLeftIconSource,
+        customLeftIconStyles,
         NoOptionsComponent,
         OptionComponent,
     } = props;
@@ -199,6 +201,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 animated={animated}
                 animationDuration={animationDuration}
                 clearable={clearable}
+                customLeftIconSource={customLeftIconSource}
+                customLeftIconStyles={customLeftIconStyles}
                 disabled={disabled}
                 dispatch={dispatch}
                 hideSelectControlArrow={hideSelectControlArrow}
