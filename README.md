@@ -1,5 +1,5 @@
 <div align="center">
-    <img alt="React Native Select Pro" src="https://user-images.githubusercontent.com/11172548/144605214-d7f88315-df04-434d-a45f-ae0bbc087c8b.png" width="800">
+    <img alt="React Native Select Pro" src="https://user-images.githubusercontent.com/11172548/144605214-d7f88315-df04-434d-a45f-ae0bbc087c8b.png" width="800" />
 </div>
 
 ---
@@ -18,6 +18,8 @@
 
 ## Features
 * Customizable
+* Searchable
+* Animations
 * Android / iOS / Expo supported
 * TypeScript supported
 
