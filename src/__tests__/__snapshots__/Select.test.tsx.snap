@@ -170,7 +170,7 @@ exports[`Select with custom left icon should generate Select with custom left ic
       <Image
         source={
           Object {
-            "testUri": "../../../src/assets/icons/search.png",
+            "testUri": "../../../src/__tests__/assets/search.png",
           }
         }
         style={

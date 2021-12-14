@@ -323,7 +323,7 @@ describe('Select with custom left icon', () => {
         const wrapper = render(
             <SelectProvider>
                 <Select
-                    customLeftIconSource={require('../assets/icons/search.png')}
+                    customLeftIconSource={require('./assets/search.png')}
                     customLeftIconStyles={{ height: 15, width: 15 }}
                     options={DATA}
                 />
