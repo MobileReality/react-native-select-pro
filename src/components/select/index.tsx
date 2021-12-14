@@ -6,7 +6,7 @@ import React, {
     useReducer,
     useRef,
 } from 'react';
-import { StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native';
+import { I18nManager, StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native';
 
 import { ANIMATION_DURATION, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { initialData, reducer } from '../../state/reducer';
@@ -149,7 +149,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                     payload: {
                         width,
                         top: isOverflow ? pageY - listHeight : pageY + height,
-                        left: pageX,
+                        left: I18nManager.isRTL ? windowDimensions.width - width - pageX : pageX,
                         aboveSelectControl: isOverflow,
                     },
                 });
