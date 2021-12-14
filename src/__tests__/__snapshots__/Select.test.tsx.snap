@@ -198,6 +198,7 @@ exports[`Select with custom left icon should generate Select with custom left ic
           Array [
             Object {
               "fontSize": 12,
+              "textAlign": "left",
             },
             Object {
               "color": "#808080",
@@ -317,6 +318,7 @@ exports[`Select with searchable enabled should generate Select with searchable e
             "fontSize": 12,
           }
         }
+        textAlign="left"
         value=""
       />
     </View>

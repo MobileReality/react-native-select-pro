@@ -258,6 +258,7 @@ const styles = StyleSheet.create<Styles>({
     },
     text: {
         fontSize: FONT_SIZE,
+        textAlign: 'left',
     },
     openedAbove: {
         borderTopLeftRadius: 0,
