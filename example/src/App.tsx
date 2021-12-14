@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { SelectProvider } from '@mobile-reality/react-native-select-pro';
 
+import { Animated } from './examples/Animated';
 import { Basic } from './examples/Basic';
 import { Callbacks } from './examples/Callbacks';
 import { CustomComponent } from './examples/CustomComponent';
@@ -56,6 +57,7 @@ const examples = [
     'Scroll To Selected Option',
     'Searchable',
     'Searchable In Modal',
+    'Animated',
 ];
 
 export default function App() {
@@ -96,6 +98,8 @@ export default function App() {
                 return <Searchable />;
             case 'Searchable In Modal':
                 return <SearchableInModal />;
+            case 'Animated':
+                return <Animated />;
             default:
                 return null;
         }
