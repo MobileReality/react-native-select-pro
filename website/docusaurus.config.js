@@ -7,8 +7,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'React Native Select Pro',
-    url: 'https://mobilereality.github.io/react-native-select-pro',
-    baseUrl: '/',
+    url: process && process.env && process.env.URL ? process.env.URL : 'https://mobilereality.github.io/react-native-select-pro/',
+    baseUrl: process && process.env && process.env.BASE_URL
+        ? process.env.BASE_URL : '/react-native-select-pro/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
