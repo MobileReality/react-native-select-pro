@@ -13,7 +13,7 @@ const config = {
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
-    organizationName: 'Mobile Reality',
+    organizationName: 'MobileReality',
     projectName: 'react-native-select-pro',
     presets: [
         [
