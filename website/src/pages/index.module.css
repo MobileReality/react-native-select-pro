@@ -1,0 +1,32 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+    padding: 4rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.backgroundLogo {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    background-size: contain;
+    height: 380px;
+    background: #040d23 url('../../static/img/react-native-select-pro.png') no-repeat center;
+    background-position-y: -120px;
+}
+
+.buttons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
+}
+
+.link {
+    margin-bottom: 20px;
+}
