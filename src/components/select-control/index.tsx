@@ -148,7 +148,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         }, []);
 
         const isShowClearOptionButton = clearable && selectedOption && !isScreenReaderEnabled;
-        const isShowClearOptionButtonA11y = isShowClearOptionButton && isScreenReaderEnabled;
+        const isShowClearOptionButtonA11y = clearable && selectedOption && isScreenReaderEnabled;
 
         const renderArrowImage = (): ReactElement =>
             animated ? (
