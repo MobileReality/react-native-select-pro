@@ -3,15 +3,19 @@ import { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { SelectProvider } from '@mobile-reality/react-native-select-pro';
 
+import { Animated } from './examples/Animated';
 import { Basic } from './examples/Basic';
 import { Callbacks } from './examples/Callbacks';
 import { CustomComponent } from './examples/CustomComponent';
+import { CustomLeftIcon } from './examples/CustomLeftIcon';
 import { CustomStyles } from './examples/CustomStyles';
 import { ModalExample } from './examples/ModalExample';
 import { Overflow } from './examples/Overflow';
 import { Ref } from './examples/Ref';
 import { RHF } from './examples/RHF';
 import { ScrollToSelectedOption } from './examples/ScrollToSelectedOption';
+import { Searchable } from './examples/Searchable';
+import { SearchableInModal } from './examples/SearchableInModal';
 import { Selects } from './examples/Selects';
 
 export const DATA = [
@@ -52,6 +56,10 @@ const examples = [
     'Callbacks',
     'Custom Component',
     'Scroll To Selected Option',
+    'Searchable',
+    'Searchable In Modal',
+    'Animated',
+    'Custom Left Icon',
 ];
 
 export default function App() {
@@ -88,6 +96,14 @@ export default function App() {
                 return <CustomComponent />;
             case 'Scroll To Selected Option':
                 return <ScrollToSelectedOption />;
+            case 'Searchable':
+                return <Searchable />;
+            case 'Searchable In Modal':
+                return <SearchableInModal />;
+            case 'Animated':
+                return <Animated />;
+            case 'Custom Left Icon':
+                return <CustomLeftIcon />;
             default:
                 return null;
         }

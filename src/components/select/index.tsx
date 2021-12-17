@@ -6,9 +6,9 @@ import React, {
     useReducer,
     useRef,
 } from 'react';
-import { StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native';
+import { I18nManager, StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native';
 
-import { MAX_HEIGHT_LIST } from '../../constants/styles';
+import { ANIMATION_DURATION, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
 import type {
@@ -31,6 +31,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         disabled = false,
         flatListProps,
         hideSelectControlArrow,
+        animated = false,
+        animationDuration = ANIMATION_DURATION,
         noOptionsText = 'No options',
         onSelect,
         onDropdownOpened,
@@ -39,6 +41,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         optionStyle,
         optionTextStyle,
         placeholderText = 'Select...',
+        searchable = false,
+        searchPattern = (payload: string) => `(${payload})`,
         scrollToSelectedOption = true,
         selectContainerStyle,
         selectControlButtonsContainerStyle,
@@ -52,13 +56,23 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         selectControlStyle,
         selectControlTextStyle,
         optionsListStyle,
+        customLeftIconSource,
+        customLeftIconStyles,
         NoOptionsComponent,
         OptionComponent,
     } = props;
-    const [{ isOpened, selectedOption, optionsData, openedPosition }, dispatch] = useReducer(
-        reducer,
-        initialData,
-    );
+    const [
+        {
+            isOpened,
+            selectedOption,
+            optionsData,
+            openedPosition,
+            searchValue,
+            searchedOptions,
+            searchInputRef,
+        },
+        dispatch,
+    ] = useReducer(reducer, initialData);
     const { aboveSelectControl } = openedPosition;
 
     const containerRef = useRef<View>(null);
@@ -98,12 +112,25 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         },
     }));
 
+    const hideKeyboardIfNeeded = () => {
+        // TODO: Better condition handling, however, typo error appears in every combination
+        if (searchInputRef && (searchInputRef as any).current) {
+            (searchInputRef as any).current.blur();
+        }
+    };
+
     const onPressOption: OnPressOptionType = (option: OptionType) => {
         if (closeDropdownOnSelect) {
             dispatch({ type: Action.Close });
         }
         dispatch({ type: Action.SelectOption, payload: option });
+        if (searchable) {
+            dispatch({ type: Action.SetSearchValue, payload: option.label });
+        }
         dispatch({ type: Action.SetOptionsData, payload: options });
+        if (option) {
+            hideKeyboardIfNeeded();
+        }
     };
 
     const windowDimensions = useWindowDimensions();
@@ -124,7 +151,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                     payload: {
                         width,
                         top: isOverflow ? pageY - listHeight : pageY + height,
-                        left: pageX,
+                        left: I18nManager.isRTL ? windowDimensions.width - width - pageX : pageX,
                         aboveSelectControl: isOverflow,
                     },
                 });
@@ -150,6 +177,13 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     const onOutsidePress: OnOutsidePress = () => {
         dispatch({ type: Action.Close });
         dispatch({ type: Action.SetOptionsData, payload: options });
+        if (searchable && selectedOption?.label) {
+            dispatch({
+                type: Action.SetSearchValue,
+                payload: selectedOption.label,
+            });
+        }
+        hideKeyboardIfNeeded();
     };
 
     useEffect(() => {
@@ -164,7 +198,11 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         <View onLayout={setPosition} style={[styles.relative, selectContainerStyle]}>
             <SelectControl
                 aboveSelectControl={aboveSelectControl}
+                animated={animated}
+                animationDuration={animationDuration}
                 clearable={clearable}
+                customLeftIconSource={customLeftIconSource}
+                customLeftIconStyles={customLeftIconStyles}
                 disabled={disabled}
                 dispatch={dispatch}
                 hideSelectControlArrow={hideSelectControlArrow}
@@ -174,6 +212,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 options={options}
                 placeholderText={placeholderText}
                 ref={containerRef}
+                searchPattern={searchPattern}
+                searchValue={searchValue}
+                searchable={searchable}
                 selectControlButtonsContainerStyle={selectControlButtonsContainerStyle}
                 selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
                 selectControlClearOptionButtonHitSlop={selectControlClearOptionButtonHitSlop}
@@ -185,11 +226,14 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectControlStyle={selectControlStyle}
                 selectControlTextStyle={selectControlTextStyle}
                 selectedOption={selectedOption}
+                setPosition={setPosition}
             />
             <OptionsList
                 NoOptionsComponent={NoOptionsComponent}
                 OptionComponent={OptionComponent}
                 aboveSelectControl={aboveSelectControl}
+                animated={animated}
+                animationDuration={animationDuration}
                 flatListProps={flatListProps}
                 isOpened={isOpened}
                 noOptionsText={noOptionsText}
@@ -203,6 +247,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 optionsData={optionsData}
                 optionsListStyle={optionsListStyle}
                 scrollToSelectedOption={scrollToSelectedOption}
+                searchValue={searchValue}
+                searchable={searchable}
+                searchedOptions={searchedOptions}
                 selectedOption={selectedOption}
             />
         </View>

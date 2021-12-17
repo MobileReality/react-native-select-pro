@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import type {
     FlatListProps,
+    ImageSourcePropType,
     ImageStyle,
     Insets,
     StyleProp,
@@ -146,6 +147,20 @@ export interface SelectProps {
      */
     disabled?: boolean;
     /**
+     *  If `true` let user search in a select options by typing in select
+     *
+     *  @default false
+     *  @category Common
+     */
+    searchable?: boolean;
+    /**
+     *  Regex definition for searching options
+     *
+     *  @default (payload: string) => `(${payload})`
+     *  @category Common
+     */
+    searchPattern?: (payload: string) => string;
+    /**
      *  `FlatListProps` imported from `react-native`
      *
      *  @category Common
@@ -233,6 +248,32 @@ export interface SelectProps {
      * @category Custom Component
      */
     OptionComponent?: (props: OptionComponentProps) => JSX.Element;
+    /**
+     *  If `true` toggling the select is animated
+     *
+     *  @category Styles
+     *  @default false
+     */
+    animated?: boolean;
+    /**
+     *  Animation duration in ms
+     *
+     *  @category Styles
+     *  @default 200
+     */
+    animationDuration?: number;
+    /**
+     *  Custom left icon source
+     *
+     *  @category Styles
+     */
+    customLeftIconSource?: ImageSourcePropType;
+    /**
+     *  Custom left icon styles
+     *
+     *  @category Styles
+     */
+    customLeftIconStyles?: StyleProp<ImageStyle>;
 }
 
 /**
@@ -265,3 +306,4 @@ export type OnPressSelectControlType = () => void;
  * @ignore
  */
 export type OnOutsidePress = () => void;
+export type OnSetPosition = () => void;

@@ -4,6 +4,7 @@ export const BORDER_WIDTH = 1;
 export const PADDING = 12;
 export const MAX_HEIGHT_LIST = 120;
 export const ITEM_HEIGHT = 40;
+export const ANIMATION_DURATION = 200;
 
 export const COLORS = {
     WHITE: '#ffffff',
