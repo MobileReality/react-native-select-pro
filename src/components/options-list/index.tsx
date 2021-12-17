@@ -1,6 +1,13 @@
 import React, { ComponentProps, useCallback, useRef } from 'react';
-import { AccessibilityInfo,
-    findNodeHandle,FlatList, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
+import {
+    AccessibilityInfo,
+    findNodeHandle,
+    FlatList,
+    StyleSheet,
+    TouchableWithoutFeedback,
+    View,
+    ViewStyle,
+} from 'react-native';
 import { Portal } from '@gorhom/portal';
 
 import { Portals } from '../../constants/portals';

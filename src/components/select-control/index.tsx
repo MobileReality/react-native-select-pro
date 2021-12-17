@@ -1,4 +1,11 @@
-import React, { ComponentPropsWithRef, forwardRef, ReactElement, useEffect, useRef, useState } from 'react';
+import React, {
+    ComponentPropsWithRef,
+    forwardRef,
+    ReactElement,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import {
     AccessibilityInfo,
     Animated,
@@ -8,7 +15,6 @@ import {
     StyleSheet,
     Text,
     TextStyle,
-    TouchableOpacity,
     View,
     ViewStyle,
 } from 'react-native';
@@ -18,9 +24,8 @@ import type { OptionalToRequired } from '../../helpers';
 import type { Select } from '../../index';
 import { Action, DispatchType, Position, State } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition } from '../../types';
-import { SelectInput } from '../select-input';
 import { ClearOption } from '../clear-option';
-
+import { SelectInput } from '../select-input';
 
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
@@ -190,53 +195,52 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         };
 
         return (
-            <View style={{ position: 'relative' }}>
-
-            <Pressable
-                accessibilityHint={
-                    selectedOption?.label
-                        ? `Current selected item is ${selectedOption?.label}`
-                        : undefined
-                }
-                accessibilityLabel={
-                    isOpened ? '' : selectControlOpenDropdownA11yLabel || 'Open a dropdown'
-                }
-                onPress={disabled ? undefined : onPressSelectControl}
-                ref={ref}
-                style={[
-                    styles.container,
-                    isOpened ? (aboveSelectControl ? styles.openedAbove : styles.opened) : {},
-                    selectControlStyle,
-                    disabled ? [styles.disabled, selectControlDisabledStyle] : {},
-                ]}>
-                {!!customLeftIconSource && (
-                    <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
-                        <Image source={customLeftIconSource} style={customLeftIconStyles} />
-                    </View>
-                )}
-                <View style={styles.press}>{renderSelection()}</View>
-                <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
-                    {isShowClearOptionButton && (
-                        <ClearOption
-                            disabled={disabled}
-                            onPressRemove={onPressRemove}
-                            selectControlClearOptionA11yLabel={
-                                selectControlClearOptionA11yLabel
-                            }
-                            selectControlClearOptionButtonHitSlop={
-                                selectControlClearOptionButtonHitSlop
-                            }
-                            selectControlClearOptionButtonStyle={
-                                selectControlClearOptionButtonStyle
-                            }
-                            selectControlClearOptionImageStyle={
-                                selectControlClearOptionImageStyle
-                            }
-                        />
+            <View style={styles.rootView}>
+                <Pressable
+                    accessibilityHint={
+                        selectedOption?.label
+                            ? `Current selected item is ${selectedOption?.label}`
+                            : undefined
+                    }
+                    accessibilityLabel={
+                        isOpened ? '' : selectControlOpenDropdownA11yLabel || 'Open a dropdown'
+                    }
+                    onPress={disabled ? undefined : onPressSelectControl}
+                    ref={ref}
+                    style={[
+                        styles.container,
+                        isOpened ? (aboveSelectControl ? styles.openedAbove : styles.opened) : {},
+                        selectControlStyle,
+                        disabled ? [styles.disabled, selectControlDisabledStyle] : {},
+                    ]}>
+                    {!!customLeftIconSource && (
+                        <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
+                            <Image source={customLeftIconSource} style={customLeftIconStyles} />
+                        </View>
                     )}
-                    {!hideSelectControlArrow && renderArrowImage()}
-                </View>
-            </Pressable>
+                    <View style={styles.press}>{renderSelection()}</View>
+                    <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
+                        {isShowClearOptionButton && (
+                            <ClearOption
+                                disabled={disabled}
+                                onPressRemove={onPressRemove}
+                                selectControlClearOptionA11yLabel={
+                                    selectControlClearOptionA11yLabel
+                                }
+                                selectControlClearOptionButtonHitSlop={
+                                    selectControlClearOptionButtonHitSlop
+                                }
+                                selectControlClearOptionButtonStyle={
+                                    selectControlClearOptionButtonStyle
+                                }
+                                selectControlClearOptionImageStyle={
+                                    selectControlClearOptionImageStyle
+                                }
+                            />
+                        )}
+                        {!hideSelectControlArrow && renderArrowImage()}
+                    </View>
+                </Pressable>
                 {isShowClearOptionButtonA11y && (
                     <ClearOption
                         disabled={disabled}
@@ -255,6 +259,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
 );
 
 type Styles = {
+    rootView: ViewStyle;
     container: ViewStyle;
     press: ViewStyle;
     text: TextStyle;
@@ -265,12 +270,14 @@ type Styles = {
     arrowIcon: ImageStyle;
     arrowIconOpened: ImageStyle;
     arrowIconClosed: ImageStyle;
-    xIcon: ImageStyle;
     xIconWrapper: ViewStyle;
     leftIconWrapper: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
+    rootView: {
+        position: 'relative',
+    },
     container: {
         height: 40,
         flexDirection: 'row',
@@ -320,11 +327,6 @@ const styles = StyleSheet.create<Styles>({
     xIconWrapper: {
         height: '100%',
         justifyContent: 'center',
-    },
-    xIcon: {
-        width: 20,
-        height: 20,
-        zIndex: 1,
     },
     arrowIconOpened: {
         transform: [{ rotate: '180deg' }],
