@@ -42,7 +42,7 @@ const config = {
                 title: 'React Native Select Pro',
                 logo: {
                     alt: 'React Native Select Pro Logo',
-                    src: 'img/logo.svg',
+                    src: 'img/logo.png',
                 },
                 items: [
                     {to: '/docs/getting-started', label: 'Docs', position: 'left'},

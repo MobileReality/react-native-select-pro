@@ -36,6 +36,7 @@
     "pods": "cd example && pod-install --quiet",
     "expo-android": "cd example && yarn android",
     "expo-ios": "cd example && yarn ios",
+    "docs": "cd website && yarn start",
     "typedoc": "typedoc"
   },
   "keywords": [
