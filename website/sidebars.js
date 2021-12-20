@@ -15,7 +15,14 @@
 const sidebars = {
     docs: {
         'Start': ['getting-started', 'basic-usage'],
-        'API': ['api/select']
+        'API': [
+            'api/required',
+            'api/common',
+            'api/callbacks',
+            'api/styles',
+            'api/components',
+            'api/accessibility',
+        ]
     },
 };
 
