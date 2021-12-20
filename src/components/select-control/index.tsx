@@ -21,6 +21,7 @@ import {
 
 import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
+import { isAndroid } from '../../helpers/isAndroid';
 import type { Select } from '../../index';
 import { Action, DispatchType, Position, State } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition } from '../../types';
@@ -139,16 +140,19 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         const [isScreenReaderEnabled, setIsScreenReaderEnabled] = useState(false);
 
         useEffect(() => {
-            AccessibilityInfo.isScreenReaderEnabled().then((e) => {
-                setIsScreenReaderEnabled(e);
-            });
-            AccessibilityInfo.addEventListener('change', (e) => {
-                setIsScreenReaderEnabled(e);
-            });
+            if (!isAndroid) {
+                AccessibilityInfo.isScreenReaderEnabled().then((e) => {
+                    setIsScreenReaderEnabled(e);
+                });
+                AccessibilityInfo.addEventListener('change', (e) => {
+                    setIsScreenReaderEnabled(e);
+                });
+            }
         }, []);
 
         const isShowClearOptionButton = clearable && selectedOption && !isScreenReaderEnabled;
-        const isShowClearOptionButtonA11y = clearable && selectedOption && isScreenReaderEnabled;
+        const isShowClearOptionButtonA11y =
+            clearable && selectedOption && isScreenReaderEnabled && !isAndroid;
 
         const renderArrowImage = (): ReactElement =>
             animated ? (
@@ -242,16 +246,20 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     </View>
                 </Pressable>
                 {isShowClearOptionButtonA11y && (
-                    <ClearOption
-                        disabled={disabled}
-                        onPressRemove={onPressRemove}
-                        selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
-                        selectControlClearOptionButtonHitSlop={
-                            selectControlClearOptionButtonHitSlop
-                        }
-                        selectControlClearOptionButtonStyle={selectControlClearOptionButtonStyle}
-                        selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
-                    />
+                    <View style={styles.a11IconWrapper}>
+                        <ClearOption
+                            disabled={disabled}
+                            onPressRemove={onPressRemove}
+                            selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
+                            selectControlClearOptionButtonHitSlop={
+                                selectControlClearOptionButtonHitSlop
+                            }
+                            selectControlClearOptionButtonStyle={
+                                selectControlClearOptionButtonStyle
+                            }
+                            selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
+                        />
+                    </View>
                 )}
             </View>
         );
@@ -272,6 +280,7 @@ type Styles = {
     arrowIconClosed: ImageStyle;
     xIconWrapper: ViewStyle;
     leftIconWrapper: ViewStyle;
+    a11IconWrapper: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -333,5 +342,11 @@ const styles = StyleSheet.create<Styles>({
     },
     arrowIconClosed: {
         transform: [{ rotate: '0deg' }],
+    },
+    a11IconWrapper: {
+        position: 'absolute',
+        right: -20,
+        borderWidth: 1,
+        height: '100%',
     },
 });
