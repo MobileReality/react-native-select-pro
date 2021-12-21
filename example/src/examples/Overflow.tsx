@@ -1,13 +1,13 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { DATA } from '../App';
+import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 
 export const Overflow = () => {
     return (
-        <SafeAreaView style={{ flex: 1, justifyContent: 'flex-end' }}>
+        <SafeAreaViewWrapper style={{ justifyContent: 'flex-end' }}>
             <Select options={DATA} selectControlStyle={{ width: 300 }} />
-        </SafeAreaView>
+        </SafeAreaViewWrapper>
     );
 };
