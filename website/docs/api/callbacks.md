@@ -4,12 +4,11 @@ title: Callbacks props
 sidebar_label: Callbacks
 ---
 
-## Props
-### onSelect()
+### onDropdownClosed()
 ```typescript jsx
-function onSelect(option: OptionType | null) => void;
+function onDropdownClosed() => void;
 ```
-Callback that is called when option is selected
+Callback that is called when dropdown is closed
 
 ### onDropdownOpened()
 ```typescript jsx
@@ -17,8 +16,8 @@ function onDropdownOpened() => void;
 ```
 Callback that is called when dropdown is opened
 
-### onDropdownClosed()
+### onSelect()
 ```typescript jsx
-function onDropdownClosed() => void;
+function onSelect(option: OptionType | null) => void;
 ```
-Callback that is called when dropdown is closed
+Callback that is called when option is selected

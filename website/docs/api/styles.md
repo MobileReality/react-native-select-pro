@@ -4,30 +4,29 @@ title: Styles props
 sidebar_label: Styles
 ---
 
-## Props
-### selectControlTextStyle
+### customLeftIconStyles
 ```typescript jsx
-selectControlTextStyle?: StyleProp<TextStyle>;
+customLeftIconStyles?: StyleProp<ImageStyle>;
 ```
-Style of text select control
+Custom left icon styles
 
-### selectControlStyle
+### selectContainerStyle
 ```typescript jsx
-selectControlStyle?: StyleProp<ViewStyle>;
+selectContainerStyle?: StyleProp<ViewStyle>;
 ```
-Style of select control
-
-### selectControlDisabledStyle
-```typescript jsx
-selectControlDisabledStyle?: StyleProp<TextStyle>;
-```
-Style of disabled select control
+Style of container select control
 
 ### selectControlButtonsContainerStyle
 ```typescript jsx
 selectControlButtonsContainerStyle?: StyleProp<ViewStyle>;
 ```
 Style of container buttons in select control
+
+### selectControlClearOptionButtonHitSlop
+```typescript jsx
+selectControlClearOptionButtonHitSlop?: Insets;
+```
+Hit Slop for clear option button
 
 ### selectControlClearOptionButtonStyle
 ```typescript jsx
@@ -39,25 +38,25 @@ Style of clear option button
 ```typescript jsx
 selectControlClearOptionButtonHitSlop?: Insets;
 ```
-Hit Slop for clear option button
+Style of clear option image
 
-### selectControlClearOptionImageStyle
+### selectControlDisabledStyle
 ```typescript jsx
-selectControlClearOptionButtonHitSlop?: Insets;
+selectControlDisabledStyle?: StyleProp<TextStyle>;
 ```
-Hit Slop for clear option button
+Style of disabled select control
 
-### selectContainerStyle
+### selectControlStyle
 ```typescript jsx
-selectContainerStyle?: StyleProp<ViewStyle>;
+selectControlStyle?: StyleProp<ViewStyle>;
 ```
-Style of container select control
+Style of select control
 
-### optionsListStyle
+### selectControlTextStyle
 ```typescript jsx
-optionsListStyle?: StyleProp<ViewStyle>;
+selectControlTextStyle?: StyleProp<TextStyle>;
 ```
-Style of options list
+Style of text select control
 
 ### optionStyle
 ```typescript jsx
@@ -77,8 +76,8 @@ optionSelectedStyle?: StyleProp<ViewStyle>;
 ```
 Style of selected single option
 
-### customLeftIconStyles
+### optionsListStyle
 ```typescript jsx
-customLeftIconStyles?: StyleProp<ImageStyle>;
+optionsListStyle?: StyleProp<ViewStyle>;
 ```
-Custom left icon styles
+Style of options list
