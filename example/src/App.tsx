@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { ShowcaseApp } from '@gorhom/showcase-template';
 import { SelectProvider } from '@mobile-reality/react-native-select-pro';
 
 import { Animated } from './examples/Animated';
@@ -45,85 +44,97 @@ export const DATA = [
     },
 ];
 
-const examples = [
-    'Basic',
-    'Overflow',
-    'React Hook Form',
-    'Modal',
-    'Selects',
-    'Custom Styles',
-    'Ref',
-    'Callbacks',
-    'Custom Component',
-    'Scroll To Selected Option',
-    'Searchable',
-    'Searchable In Modal',
-    'Animated',
-    'Custom Left Icon',
+const data = [
+    {
+        title: 'Examples',
+        data: [
+            {
+                name: 'Basic',
+                slug: 'basic',
+                getScreen: () => Basic,
+            },
+            {
+                name: 'Overflow',
+                slug: 'overflow',
+                getScreen: () => Overflow,
+            },
+            {
+                name: 'React Hook Form',
+                slug: 'rhf',
+                getScreen: () => RHF,
+            },
+            {
+                name: 'Modal',
+                slug: 'modal',
+                getScreen: () => ModalExample,
+            },
+            {
+                name: 'Selects',
+                slug: 'selects',
+                getScreen: () => Selects,
+            },
+            {
+                name: 'Custom Styles',
+                slug: 'customStyles',
+                getScreen: () => CustomStyles,
+            },
+            {
+                name: 'Ref',
+                slug: 'ref',
+                getScreen: () => Ref,
+            },
+            {
+                name: 'Callbacks',
+                slug: 'callbacks',
+                getScreen: () => Callbacks,
+            },
+            {
+                name: 'Custom Component',
+                slug: 'customComponent',
+                getScreen: () => CustomComponent,
+            },
+            {
+                name: 'Scroll To The Selected Option',
+                slug: 'scrollToTheSelectedOption',
+                getScreen: () => ScrollToSelectedOption,
+            },
+            {
+                name: 'Searchable',
+                slug: 'searchable',
+                getScreen: () => Searchable,
+            },
+            {
+                name: 'Searchable In Modal',
+                slug: 'searchableInModal',
+                getScreen: () => SearchableInModal,
+            },
+            {
+                name: 'Animated',
+                slug: 'animated',
+                getScreen: () => Animated,
+            },
+            {
+                name: 'Custom Left Icon',
+                slug: 'customLeftIcon',
+                getScreen: () => CustomLeftIcon,
+            },
+        ],
+    },
 ];
 
 export default function App() {
-    const [example, setExample] = useState(examples[0]);
-
-    const renderExamplesButtons = examples.map((item) => (
-        <TouchableOpacity
-            key={item}
-            onPress={() => setExample(item)}
-            style={{ padding: 10, borderWidth: 1 }}>
-            <Text style={{ textTransform: 'capitalize' }}>{item}</Text>
-        </TouchableOpacity>
-    ));
-
-    const renderExample = () => {
-        switch (example) {
-            case 'Basic':
-                return <Basic />;
-            case 'Overflow':
-                return <Overflow />;
-            case 'Modal':
-                return <ModalExample />;
-            case 'React Hook Form':
-                return <RHF />;
-            case 'Selects':
-                return <Selects />;
-            case 'Custom Styles':
-                return <CustomStyles />;
-            case 'Ref':
-                return <Ref />;
-            case 'Callbacks':
-                return <Callbacks />;
-            case 'Custom Component':
-                return <CustomComponent />;
-            case 'Scroll To Selected Option':
-                return <ScrollToSelectedOption />;
-            case 'Searchable':
-                return <Searchable />;
-            case 'Searchable In Modal':
-                return <SearchableInModal />;
-            case 'Animated':
-                return <Animated />;
-            case 'Custom Left Icon':
-                return <CustomLeftIcon />;
-            default:
-                return null;
-        }
-    };
-
     return (
         <SelectProvider>
-            <View
-                style={{
-                    flexDirection: 'row',
-                    marginTop: 80,
-                    flexWrap: 'wrap',
-                    marginBottom: 20,
-                    padding: 10,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}>
-                {renderExamplesButtons}
-            </View>
-            <View style={{ flex: 1, alignItems: 'center' }}>{renderExample()}</View>
+            <ShowcaseApp
+                author={{
+                    username: 'Mobile Reality',
+                    url: 'https://mobilereality.pl/en',
+                }}
+                data={data}
+                description="Choose an example"
+                name="React Native Select Pro"
+                version="1.2.0"
+            />
         </SelectProvider>
     );
 }

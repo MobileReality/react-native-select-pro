@@ -1,12 +1,12 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { DATA } from '../App';
+import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 
 export const CustomStyles = () => {
     return (
-        <SafeAreaView style={{ margin: 20, marginTop: 500 }}>
+        <SafeAreaViewWrapper style={{ margin: 20, marginTop: 500 }}>
             <Select
                 optionSelectedStyle={{ backgroundColor: 'lightgreen' }}
                 optionStyle={{ backgroundColor: 'lightcoral', borderBottomWidth: 1, height: 40 }}
@@ -16,6 +16,6 @@ export const CustomStyles = () => {
                 selectControlStyle={{ width: 250, backgroundColor: 'lightblue', height: 80 }}
                 selectControlTextStyle={{ fontSize: 20 }}
             />
-        </SafeAreaView>
+        </SafeAreaViewWrapper>
     );
 };
