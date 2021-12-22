@@ -1,5 +1,13 @@
-import React, { ComponentProps, useRef } from 'react';
-import { FlatList, StyleSheet, TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
+import React, { ComponentProps, useCallback, useRef } from 'react';
+import {
+    AccessibilityInfo,
+    findNodeHandle,
+    FlatList,
+    StyleSheet,
+    TouchableWithoutFeedback,
+    View,
+    ViewStyle,
+} from 'react-native';
 import { Portal } from '@gorhom/portal';
 
 import { Portals } from '../../constants/portals';
@@ -71,6 +79,18 @@ export const OptionsList = ({
 }: OptionsListProps) => {
     const ref = useRef<FlatList>(null);
 
+    const measuredRef = useCallback(
+        (node) => {
+            if (node !== null) {
+                const reactTag = findNodeHandle(node);
+                if (reactTag) {
+                    AccessibilityInfo.setAccessibilityFocus(reactTag);
+                }
+            }
+        },
+        [isOpened],
+    );
+
     const resolveData = () => {
         if (!searchable) {
             return optionsData;
@@ -90,6 +110,7 @@ export const OptionsList = ({
                 <Portal hostName={Portals.SelectOutsideWrapper}>
                     <TouchableWithoutFeedback
                         accessibilityLabel={'Close a dropdown from outside'}
+                        accessibilityRole="button"
                         onPress={onOutsidePress}>
                         <View style={styles.modalOverlay} />
                     </TouchableWithoutFeedback>
@@ -107,7 +128,10 @@ export const OptionsList = ({
                         aboveSelectControl ? styles.overflown : styles.notOverflown,
                     ]}>
                     <FlatList
-                        accessibilityLabel={isOpened ? 'Options list' : ''}
+                        accessibilityLabel={'Options list'}
+                        accessibilityState={{
+                            expanded: isOpened,
+                        }}
                         bounces={false}
                         data={resolveData()}
                         getItemLayout={(_data, index) => {
@@ -147,6 +171,7 @@ export const OptionsList = ({
                                     optionSelectedStyle={optionSelectedStyle}
                                     optionStyle={optionStyle}
                                     optionTextStyle={optionTextStyle}
+                                    ref={index === 0 ? measuredRef : undefined}
                                 />
                             );
                         }}

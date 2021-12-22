@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import React, { ComponentPropsWithRef, forwardRef } from 'react';
 import { StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
 
 import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING } from '../../constants/styles';
@@ -7,7 +7,7 @@ import type { OptionType } from '../../index';
 import type { OptionsList } from '../options-list';
 
 type FromSelectComponentProps = Pick<
-    ComponentProps<typeof OptionsList>,
+    ComponentPropsWithRef<typeof OptionsList>,
     | 'optionSelectedStyle'
     | 'optionStyle'
     | 'optionTextStyle'
@@ -23,50 +23,58 @@ export type OptionProps = OptionalToRequired<FromSelectComponentProps> & {
 
 export type OnChooseOption = () => void;
 
-export const Option = ({
-    optionSelectedStyle,
-    optionStyle,
-    optionTextStyle,
-    isSelected,
-    onPressOption,
-    option,
-    onSelect,
-    OptionComponent,
-}: OptionProps) => {
-    const { label } = option;
+export const Option = forwardRef<TouchableOpacity, OptionProps>(
+    (
+        {
+            optionSelectedStyle,
+            optionStyle,
+            optionTextStyle,
+            isSelected,
+            onPressOption,
+            option,
+            onSelect,
+            OptionComponent,
+        },
+        ref,
+    ) => {
+        const { label } = option;
 
-    const onChooseOption: OnChooseOption = () => {
-        onPressOption(option);
-        if (onSelect) {
-            onSelect(option);
+        const onChooseOption: OnChooseOption = () => {
+            onPressOption(option);
+            if (onSelect) {
+                onSelect(option);
+            }
+        };
+
+        if (OptionComponent) {
+            return (
+                <OptionComponent
+                    isSelected={isSelected}
+                    onPressOption={onChooseOption}
+                    option={option}
+                />
+            );
         }
-    };
 
-    if (OptionComponent) {
         return (
-            <OptionComponent
-                isSelected={isSelected}
-                onPressOption={onChooseOption}
-                option={option}
-            />
+            <TouchableOpacity
+                accessibilityLabel={`Choose ${label} option`}
+                accessibilityRole={'button'}
+                accessible={true}
+                onPress={onChooseOption}
+                ref={ref}
+                style={[
+                    styles.option,
+                    optionStyle,
+                    isSelected && [styles.selected, optionSelectedStyle],
+                ]}>
+                <Text numberOfLines={1} style={[styles.text, optionTextStyle]}>
+                    {label}
+                </Text>
+            </TouchableOpacity>
         );
-    }
-
-    return (
-        <TouchableOpacity
-            accessibilityLabel={`Choose ${label} option`}
-            onPress={onChooseOption}
-            style={[
-                styles.option,
-                optionStyle,
-                isSelected && [styles.selected, optionSelectedStyle],
-            ]}>
-            <Text numberOfLines={1} style={[styles.text, optionTextStyle]}>
-                {label}
-            </Text>
-        </TouchableOpacity>
-    );
-};
+    },
+);
 
 type Styles = {
     option: ViewStyle;

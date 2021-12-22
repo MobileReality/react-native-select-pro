@@ -1,5 +1,13 @@
-import React, { ComponentPropsWithRef, forwardRef, ReactElement, useEffect, useRef } from 'react';
+import React, {
+    ComponentPropsWithRef,
+    forwardRef,
+    ReactElement,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import {
+    AccessibilityInfo,
     Animated,
     Image,
     ImageStyle,
@@ -7,16 +15,17 @@ import {
     StyleSheet,
     Text,
     TextStyle,
-    TouchableOpacity,
     View,
     ViewStyle,
 } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
+import { isAndroid } from '../../helpers/isAndroid';
 import type { Select } from '../../index';
 import { Action, DispatchType, Position, State } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition } from '../../types';
+import { ClearOption } from '../clear-option';
 import { SelectInput } from '../select-input';
 
 type FromSelectComponentProps = Pick<
@@ -36,7 +45,6 @@ type FromSelectComponentProps = Pick<
     | 'onSelect'
     | 'selectControlClearOptionA11yLabel'
     | 'selectControlOpenDropdownA11yLabel'
-    | 'selectControlCloseDropdownA11yLabel'
     | 'selectControlTextStyle'
     | 'selectControlClearOptionButtonStyle'
     | 'selectControlClearOptionButtonHitSlop'
@@ -80,7 +88,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             selectControlClearOptionImageStyle,
             selectControlClearOptionA11yLabel,
             selectControlOpenDropdownA11yLabel,
-            selectControlCloseDropdownA11yLabel,
             selectControlButtonsContainerStyle,
             hideSelectControlArrow,
             onSelect,
@@ -130,6 +137,23 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             }
         };
 
+        const [isScreenReaderEnabled, setIsScreenReaderEnabled] = useState(false);
+
+        useEffect(() => {
+            if (!isAndroid) {
+                AccessibilityInfo.isScreenReaderEnabled().then((e) => {
+                    setIsScreenReaderEnabled(e);
+                });
+                AccessibilityInfo.addEventListener('change', (e) => {
+                    setIsScreenReaderEnabled(e);
+                });
+            }
+        }, []);
+
+        const isShowClearOptionButton = clearable && selectedOption && !isScreenReaderEnabled;
+        const isShowClearOptionButtonA11y =
+            clearable && selectedOption && isScreenReaderEnabled && !isAndroid;
+
         const renderArrowImage = (): ReactElement =>
             animated ? (
                 <Animated.Image
@@ -175,54 +199,75 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         };
 
         return (
-            <Pressable
-                accessibilityLabel={
-                    isOpened
-                        ? selectControlCloseDropdownA11yLabel || 'Close a dropdown'
-                        : selectControlOpenDropdownA11yLabel || 'Open a dropdown'
-                }
-                onPress={disabled ? undefined : onPressSelectControl}
-                ref={ref}
-                style={[
-                    styles.container,
-                    isOpened ? (aboveSelectControl ? styles.openedAbove : styles.opened) : {},
-                    selectControlStyle,
-                    disabled ? [styles.disabled, selectControlDisabledStyle] : {},
-                ]}>
-                {!!customLeftIconSource && (
-                    <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
-                        <Image source={customLeftIconSource} style={customLeftIconStyles} />
+            <View style={styles.rootView}>
+                <Pressable
+                    accessibilityHint={
+                        selectedOption?.label
+                            ? `Current selected item is ${selectedOption?.label}`
+                            : undefined
+                    }
+                    accessibilityLabel={
+                        isOpened ? '' : selectControlOpenDropdownA11yLabel || 'Open a dropdown'
+                    }
+                    onPress={disabled ? undefined : onPressSelectControl}
+                    ref={ref}
+                    style={[
+                        styles.container,
+                        isOpened ? (aboveSelectControl ? styles.openedAbove : styles.opened) : {},
+                        selectControlStyle,
+                        disabled ? [styles.disabled, selectControlDisabledStyle] : {},
+                    ]}>
+                    {!!customLeftIconSource && (
+                        <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
+                            <Image source={customLeftIconSource} style={customLeftIconStyles} />
+                        </View>
+                    )}
+                    <View style={styles.press}>{renderSelection()}</View>
+                    <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
+                        {isShowClearOptionButton && (
+                            <ClearOption
+                                disabled={disabled}
+                                onPressRemove={onPressRemove}
+                                selectControlClearOptionA11yLabel={
+                                    selectControlClearOptionA11yLabel
+                                }
+                                selectControlClearOptionButtonHitSlop={
+                                    selectControlClearOptionButtonHitSlop
+                                }
+                                selectControlClearOptionButtonStyle={
+                                    selectControlClearOptionButtonStyle
+                                }
+                                selectControlClearOptionImageStyle={
+                                    selectControlClearOptionImageStyle
+                                }
+                            />
+                        )}
+                        {!hideSelectControlArrow && renderArrowImage()}
+                    </View>
+                </Pressable>
+                {isShowClearOptionButtonA11y && (
+                    <View style={styles.a11IconWrapper}>
+                        <ClearOption
+                            disabled={disabled}
+                            onPressRemove={onPressRemove}
+                            selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
+                            selectControlClearOptionButtonHitSlop={
+                                selectControlClearOptionButtonHitSlop
+                            }
+                            selectControlClearOptionButtonStyle={
+                                selectControlClearOptionButtonStyle
+                            }
+                            selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
+                        />
                     </View>
                 )}
-                <View style={styles.press}>{renderSelection()}</View>
-                <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
-                    {clearable && selectedOption && (
-                        <TouchableOpacity
-                            accessibilityLabel={
-                                selectControlClearOptionA11yLabel || 'Clear a chosen option'
-                            }
-                            disabled={disabled}
-                            hitSlop={
-                                selectControlClearOptionButtonHitSlop
-                                    ? selectControlClearOptionButtonHitSlop
-                                    : { right: 3, left: 3 }
-                            }
-                            onPress={onPressRemove}
-                            style={[styles.xIconWrapper, selectControlClearOptionButtonStyle]}>
-                            <Image
-                                source={require('./../../assets/icons/x.png')}
-                                style={[styles.xIcon, selectControlClearOptionImageStyle]}
-                            />
-                        </TouchableOpacity>
-                    )}
-                    {!hideSelectControlArrow && renderArrowImage()}
-                </View>
-            </Pressable>
+            </View>
         );
     },
 );
 
 type Styles = {
+    rootView: ViewStyle;
     container: ViewStyle;
     press: ViewStyle;
     text: TextStyle;
@@ -233,12 +278,15 @@ type Styles = {
     arrowIcon: ImageStyle;
     arrowIconOpened: ImageStyle;
     arrowIconClosed: ImageStyle;
-    xIcon: ImageStyle;
     xIconWrapper: ViewStyle;
     leftIconWrapper: ViewStyle;
+    a11IconWrapper: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
+    rootView: {
+        position: 'relative',
+    },
     container: {
         height: 40,
         flexDirection: 'row',
@@ -289,15 +337,16 @@ const styles = StyleSheet.create<Styles>({
         height: '100%',
         justifyContent: 'center',
     },
-    xIcon: {
-        width: 20,
-        height: 20,
-        zIndex: 1,
-    },
     arrowIconOpened: {
         transform: [{ rotate: '180deg' }],
     },
     arrowIconClosed: {
         transform: [{ rotate: '0deg' }],
+    },
+    a11IconWrapper: {
+        position: 'absolute',
+        right: -20,
+        borderWidth: 1,
+        height: '100%',
     },
 });

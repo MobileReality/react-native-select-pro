@@ -51,7 +51,6 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         selectControlClearOptionButtonHitSlop,
         selectControlClearOptionA11yLabel,
         selectControlOpenDropdownA11yLabel,
-        selectControlCloseDropdownA11yLabel,
         selectControlDisabledStyle,
         selectControlStyle,
         selectControlTextStyle,
@@ -220,7 +219,6 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectControlClearOptionButtonHitSlop={selectControlClearOptionButtonHitSlop}
                 selectControlClearOptionButtonStyle={selectControlClearOptionButtonStyle}
                 selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
-                selectControlCloseDropdownA11yLabel={selectControlCloseDropdownA11yLabel}
                 selectControlDisabledStyle={selectControlDisabledStyle}
                 selectControlOpenDropdownA11yLabel={selectControlOpenDropdownA11yLabel}
                 selectControlStyle={selectControlStyle}
