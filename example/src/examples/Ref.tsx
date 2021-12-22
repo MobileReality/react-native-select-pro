@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
-import { Button, SafeAreaView } from 'react-native';
+import { Button } from 'react-native';
 import { Select, SelectRef } from '@mobile-reality/react-native-select-pro';
 
 import { DATA } from '../App';
+import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 
 export const Ref = () => {
     const ref = useRef<SelectRef>(null);
@@ -20,10 +21,10 @@ export const Ref = () => {
     };
 
     return (
-        <SafeAreaView>
+        <SafeAreaViewWrapper>
             <Select options={DATA} ref={ref} selectControlStyle={{ width: 300 }} />
             <Button onPress={onPress} title={'Open'} />
             <Button onPress={onClear} title={'Reset'} />
-        </SafeAreaView>
+        </SafeAreaViewWrapper>
     );
 };
