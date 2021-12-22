@@ -13,10 +13,46 @@
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-    docs: {
-        'Start': ['getting-started', 'basic-usage'],
-        'API': ['api/select']
-    },
+    docs: [
+        {
+            type: 'category',
+            label: 'Start',
+            items: ['getting-started', 'basic-usage'],
+        },
+        {
+            type: 'category',
+            label: 'API',
+            items: [
+                'api/select-provider',
+                {
+                    type: 'category',
+                    label: 'Select',
+                    items: [
+                        'api/required',
+                        'api/common',
+                        'api/callbacks',
+                        'api/styles',
+                        'api/components',
+                        'api/accessibility',
+                    ],
+                },
+                'api/select-modal',
+            ],
+        },
+        {
+            type: 'category',
+            label: 'Examples',
+            items: [
+                'examples/video',
+                {
+                    type: 'link',
+                    label: 'Expo Snack',
+                    href: 'https://snack.expo.dev/@irekrog/smelly-beef-jerky',
+                },
+                'examples/repo-clone'
+            ],
+        },
+    ],
 };
 
 module.exports = sidebars;
