@@ -3,12 +3,13 @@ import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Select, SelectModalProvider } from '@mobile-reality/react-native-select-pro';
 
 import { DATA } from '../App';
+import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 
 export const ModalExample = () => {
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
-        <View
+        <SafeAreaViewWrapper
             style={{
                 flex: 1,
                 justifyContent: 'center',
@@ -41,7 +42,7 @@ export const ModalExample = () => {
                 style={[styles.button, styles.buttonOpen]}>
                 <Text style={styles.textStyle}>Show Modal</Text>
             </Pressable>
-        </View>
+        </SafeAreaViewWrapper>
     );
 };
 
@@ -65,7 +66,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
-        // elevation: 5,
         zIndex: 0,
         height: 200,
     },
@@ -83,10 +83,6 @@ const styles = StyleSheet.create({
     textStyle: {
         color: 'white',
         fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    modalText: {
-        marginBottom: 15,
         textAlign: 'center',
     },
 });

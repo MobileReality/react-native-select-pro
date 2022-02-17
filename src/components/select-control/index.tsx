@@ -1,5 +1,14 @@
-import React, { ComponentPropsWithRef, forwardRef } from 'react';
+import React, {
+    ComponentPropsWithRef,
+    forwardRef,
+    ReactElement,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import {
+    AccessibilityInfo,
+    Animated,
     Image,
     ImageStyle,
     Pressable,
@@ -12,16 +21,20 @@ import {
 
 import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
+import { isAndroid } from '../../helpers/isAndroid';
 import type { Select } from '../../index';
 import { Action, DispatchType, Position, State } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition } from '../../types';
-import { RemoveOptionButton } from '../remove-option-button';
+import { ClearOption } from '../clear-option';
+// import { RemoveOptionButton } from '../remove-option-button';
 import { SelectInput } from '../select-input';
 
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
     | 'selectControlStyle'
     | 'clearable'
+    | 'animated'
+    | 'animationDuration'
     | 'options'
     | 'disabled'
     | 'searchable'
@@ -34,11 +47,12 @@ type FromSelectComponentProps = Pick<
     | 'onSelect'
     | 'selectControlClearOptionA11yLabel'
     | 'selectControlOpenDropdownA11yLabel'
-    | 'selectControlCloseDropdownA11yLabel'
     | 'selectControlTextStyle'
     | 'selectControlClearOptionButtonStyle'
     | 'selectControlClearOptionButtonHitSlop'
     | 'selectControlClearOptionImageStyle'
+    | 'customLeftIconSource'
+    | 'customLeftIconStyles'
 >;
 
 type SelectControlProps = OptionalToRequired<
@@ -50,10 +64,14 @@ type SelectControlProps = OptionalToRequired<
         } & Pick<Position, 'aboveSelectControl'> & { setPosition: OnSetPosition }
 >;
 
+const arrowImage = require('./../../assets/icons/chevron-down.png');
+
 export const SelectControl = forwardRef<View, SelectControlProps>(
     (
         {
             isOpened,
+            animated,
+            animationDuration,
             selectControlStyle,
             selectedOption,
             onPressSelectControl,
@@ -61,7 +79,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             clearable,
             options,
             disabled,
-            multiSelection,
+            // multiSelection,
             placeholderText,
             searchable,
             searchPattern,
@@ -73,15 +91,33 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             selectControlClearOptionImageStyle,
             selectControlClearOptionA11yLabel,
             selectControlOpenDropdownA11yLabel,
-            selectControlCloseDropdownA11yLabel,
             selectControlButtonsContainerStyle,
             hideSelectControlArrow,
             onSelect,
             selectControlTextStyle,
             aboveSelectControl,
+            customLeftIconSource,
+            customLeftIconStyles,
         },
         ref,
     ) => {
+        const rotateAnimation = useRef(new Animated.Value(0)).current;
+
+        useEffect(() => {
+            if (animated) {
+                Animated.timing(rotateAnimation, {
+                    toValue: isOpened ? 1 : 0,
+                    duration: animationDuration,
+                    useNativeDriver: true,
+                }).start();
+            }
+        }, [rotateAnimation, isOpened, animated]);
+
+        const rotate = rotateAnimation.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['0deg', '180deg'],
+        });
+
         const onPressRemove = () => {
             if (!disabled) {
                 dispatch({
@@ -104,6 +140,40 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             }
         };
 
+        const [isScreenReaderEnabled, setIsScreenReaderEnabled] = useState(false);
+
+        useEffect(() => {
+            if (!isAndroid) {
+                AccessibilityInfo.isScreenReaderEnabled().then((e) => {
+                    setIsScreenReaderEnabled(e);
+                });
+                AccessibilityInfo.addEventListener('change', (e) => {
+                    setIsScreenReaderEnabled(e);
+                });
+            }
+        }, []);
+
+        const isShowClearOptionButton = clearable && selectedOption && !isScreenReaderEnabled;
+        const isShowClearOptionButtonA11y =
+            clearable && selectedOption && isScreenReaderEnabled && !isAndroid;
+
+        const renderArrowImage = (): ReactElement =>
+            animated ? (
+                <Animated.Image
+                    source={arrowImage}
+                    style={[styles.arrowIcon, { transform: [{ rotate }] }]}
+                />
+            ) : (
+                <Image
+                    source={arrowImage}
+                    style={[
+                        styles.arrowIcon,
+                        isOpened ? styles.arrowIconOpened : styles.arrowIconClosed,
+                    ]}
+                />
+            );
+
+        /*
         const resolveOptions = () => {
             if (multiSelection) {
                 return (
@@ -147,6 +217,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                 </Text>
             );
         };
+        */
 
         const renderSelection = () => {
             if (searchable) {
@@ -177,34 +248,57 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         };
 
         return (
-            <Pressable
-                accessibilityLabel={
-                    isOpened
-                        ? selectControlCloseDropdownA11yLabel || 'Close a dropdown'
-                        : selectControlOpenDropdownA11yLabel || 'Open a dropdown'
-                }
-                onPress={disabled ? undefined : onPressSelectControl}
-                ref={ref}
-                style={[
-                    styles.container,
-                    isOpened ? (aboveSelectControl ? styles.openedAbove : styles.opened) : {},
-                    selectControlStyle,
-                    disabled ? [styles.disabled, selectControlDisabledStyle] : {},
-                ]}>
-                <View
+            <View style={styles.rootView}>
+                <Pressable
+                    accessibilityHint={
+                        selectedOption?.label
+                            ? `Current selected item is ${selectedOption?.label}`
+                            : undefined
+                    }
+                    accessibilityLabel={
+                        isOpened ? '' : selectControlOpenDropdownA11yLabel || 'Open a dropdown'
+                    }
+                    onPress={disabled ? undefined : onPressSelectControl}
+                    ref={ref}
                     style={[
-                        styles.press,
-                        multiSelection ? styles.pressMultiSelect : styles.pressSingleSelect,
+                        styles.container,
+                        isOpened ? (aboveSelectControl ? styles.openedAbove : styles.opened) : {},
+                        selectControlStyle,
+                        disabled ? [styles.disabled, selectControlDisabledStyle] : {},
                     ]}>
-                    {multiSelection ? resolveOptions() : renderSelection()}
-                </View>
-                <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
-                    {clearable && selectedOption && !multiSelection && (
-                        <RemoveOptionButton
+                    {!!customLeftIconSource && (
+                        <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
+                            <Image source={customLeftIconSource} style={customLeftIconStyles} />
+                        </View>
+                    )}
+                    <View style={styles.press}>{renderSelection()}</View>
+                    <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
+                        {isShowClearOptionButton && (
+                            <ClearOption
+                                disabled={disabled}
+                                onPressRemove={onPressRemove}
+                                selectControlClearOptionA11yLabel={
+                                    selectControlClearOptionA11yLabel
+                                }
+                                selectControlClearOptionButtonHitSlop={
+                                    selectControlClearOptionButtonHitSlop
+                                }
+                                selectControlClearOptionButtonStyle={
+                                    selectControlClearOptionButtonStyle
+                                }
+                                selectControlClearOptionImageStyle={
+                                    selectControlClearOptionImageStyle
+                                }
+                            />
+                        )}
+                        {!hideSelectControlArrow && renderArrowImage()}
+                    </View>
+                </Pressable>
+                {isShowClearOptionButtonA11y && (
+                    <View style={styles.a11IconWrapper}>
+                        <ClearOption
                             disabled={disabled}
-                            dispatch={dispatch}
-                            onSelect={onPressRemove}
-                            options={options}
+                            onPressRemove={onPressRemove}
                             selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
                             selectControlClearOptionButtonHitSlop={
                                 selectControlClearOptionButtonHitSlop
@@ -214,30 +308,18 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                             }
                             selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
                         />
-                    )}
-                    {!hideSelectControlArrow && (
-                        <Image
-                            source={require('./../../assets/icons/chevron-down.png')}
-                            style={[
-                                styles.arrowIcon,
-                                isOpened ? styles.arrowIconOpened : styles.arrowIconClosed,
-                            ]}
-                        />
-                    )}
-                </View>
-            </Pressable>
+                    </View>
+                )}
+            </View>
         );
     },
 );
 
 type Styles = {
+    rootView: ViewStyle;
     container: ViewStyle;
     press: ViewStyle;
-    pressMultiSelect: ViewStyle;
-    pressSingleSelect: ViewStyle;
     text: TextStyle;
-    multiSelectionOption: TextStyle;
-    multiSelectionWrapper: ViewStyle;
     opened: ViewStyle;
     openedAbove: ViewStyle;
     disabled: ViewStyle;
@@ -245,53 +327,35 @@ type Styles = {
     arrowIcon: ImageStyle;
     arrowIconOpened: ImageStyle;
     arrowIconClosed: ImageStyle;
+    xIconWrapper: ViewStyle;
+    leftIconWrapper: ViewStyle;
+    a11IconWrapper: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
+    rootView: {
+        position: 'relative',
+    },
     container: {
         height: 40,
+        flexDirection: 'row',
         borderRadius: SHAPE,
         borderWidth: BORDER_WIDTH,
         backgroundColor: COLORS.WHITE,
     },
-
     press: {
-        width: '100%',
+        flex: 1,
         height: '100%',
-    },
-    pressSingleSelect: {
-        justifyContent: 'center',
         paddingHorizontal: PADDING,
+        justifyContent: 'center',
         paddingRight: 55,
-    },
-    pressMultiSelect: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
     },
     disabled: {
         backgroundColor: COLORS.DISABLED,
     },
-    multiSelectionOption: {
-        backgroundColor: 'transparent',
-        padding: 5,
-        width: '100%',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    multiSelectionWrapper: {
-        borderRadius: SHAPE,
-        marginTop: 2,
-        marginBottom: 2,
-        marginLeft: 2,
-        flex: 0.5,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.GRAY,
-    },
     text: {
         fontSize: FONT_SIZE,
+        textAlign: 'left',
     },
     openedAbove: {
         borderTopLeftRadius: 0,
@@ -315,10 +379,23 @@ const styles = StyleSheet.create<Styles>({
         height: 25,
         zIndex: -1,
     },
+    leftIconWrapper: {
+        paddingLeft: 8,
+    },
+    xIconWrapper: {
+        height: '100%',
+        justifyContent: 'center',
+    },
     arrowIconOpened: {
         transform: [{ rotate: '180deg' }],
     },
     arrowIconClosed: {
         transform: [{ rotate: '0deg' }],
+    },
+    a11IconWrapper: {
+        position: 'absolute',
+        right: -20,
+        borderWidth: 1,
+        height: '100%',
     },
 });

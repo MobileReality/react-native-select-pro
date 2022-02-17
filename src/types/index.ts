@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import type {
     FlatListProps,
+    ImageSourcePropType,
     ImageStyle,
     Insets,
     StyleProp,
@@ -254,6 +255,32 @@ export interface SelectProps {
      * @category Custom Component
      */
     OptionComponent?: (props: OptionComponentProps) => JSX.Element;
+    /**
+     *  If `true` toggling the select is animated
+     *
+     *  @category Styles
+     *  @default false
+     */
+    animated?: boolean;
+    /**
+     *  Animation duration in ms
+     *
+     *  @category Styles
+     *  @default 200
+     */
+    animationDuration?: number;
+    /**
+     *  Custom left icon source
+     *
+     *  @category Styles
+     */
+    customLeftIconSource?: ImageSourcePropType;
+    /**
+     *  Custom left icon styles
+     *
+     *  @category Styles
+     */
+    customLeftIconStyles?: StyleProp<ImageStyle>;
 }
 
 /**

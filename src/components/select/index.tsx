@@ -6,9 +6,9 @@ import React, {
     useReducer,
     useRef,
 } from 'react';
-import { StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native';
+import { I18nManager, StyleSheet, useWindowDimensions, View, ViewStyle } from 'react-native';
 
-import { MAX_HEIGHT_LIST } from '../../constants/styles';
+import { ANIMATION_DURATION, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
 import type {
@@ -32,6 +32,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         flatListProps,
         multiSelection = false,
         hideSelectControlArrow,
+        animated = false,
+        animationDuration = ANIMATION_DURATION,
         noOptionsText = 'No options',
         onSelect,
         onDropdownOpened,
@@ -50,11 +52,12 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         selectControlClearOptionButtonHitSlop,
         selectControlClearOptionA11yLabel,
         selectControlOpenDropdownA11yLabel,
-        selectControlCloseDropdownA11yLabel,
         selectControlDisabledStyle,
         selectControlStyle,
         selectControlTextStyle,
         optionsListStyle,
+        customLeftIconSource,
+        customLeftIconStyles,
         NoOptionsComponent,
         OptionComponent,
     } = props;
@@ -148,7 +151,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                     payload: {
                         width,
                         top: isOverflow ? pageY - listHeight : pageY + height,
-                        left: pageX,
+                        left: I18nManager.isRTL ? windowDimensions.width - width - pageX : pageX,
                         aboveSelectControl: isOverflow,
                     },
                 });
@@ -195,7 +198,11 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         <View onLayout={setPosition} style={[styles.relative, selectContainerStyle]}>
             <SelectControl
                 aboveSelectControl={aboveSelectControl}
+                animated={animated}
+                animationDuration={animationDuration}
                 clearable={clearable}
+                customLeftIconSource={customLeftIconSource}
+                customLeftIconStyles={customLeftIconStyles}
                 disabled={disabled}
                 dispatch={dispatch}
                 hideSelectControlArrow={hideSelectControlArrow}
@@ -214,7 +221,6 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectControlClearOptionButtonHitSlop={selectControlClearOptionButtonHitSlop}
                 selectControlClearOptionButtonStyle={selectControlClearOptionButtonStyle}
                 selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
-                selectControlCloseDropdownA11yLabel={selectControlCloseDropdownA11yLabel}
                 selectControlDisabledStyle={selectControlDisabledStyle}
                 selectControlOpenDropdownA11yLabel={selectControlOpenDropdownA11yLabel}
                 selectControlStyle={selectControlStyle}
@@ -226,6 +232,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 NoOptionsComponent={NoOptionsComponent}
                 OptionComponent={OptionComponent}
                 aboveSelectControl={aboveSelectControl}
+                animated={animated}
+                animationDuration={animationDuration}
                 flatListProps={flatListProps}
                 isOpened={isOpened}
                 noOptionsText={noOptionsText}

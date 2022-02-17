@@ -1,8 +1,9 @@
 import React from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { OptionComponentProps, Select } from '@mobile-reality/react-native-select-pro';
 
 import { DATA } from '../App';
+import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 
 const MyOption = ({ option, onPressOption }: OptionComponentProps) => {
     return (
@@ -22,7 +23,7 @@ const NoOptions = () => {
 
 export const CustomComponent = () => {
     return (
-        <SafeAreaView>
+        <SafeAreaViewWrapper>
             <Select
                 OptionComponent={(props) => <MyOption {...props} />}
                 options={DATA}
@@ -33,6 +34,6 @@ export const CustomComponent = () => {
                 options={[]}
                 selectControlStyle={{ width: 200 }}
             />
-        </SafeAreaView>
+        </SafeAreaViewWrapper>
     );
 };

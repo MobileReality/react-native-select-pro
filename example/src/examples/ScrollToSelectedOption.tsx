@@ -1,12 +1,13 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { Text } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { DATA } from '../App';
+import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 
 export const ScrollToSelectedOption = () => {
     return (
-        <SafeAreaView>
+        <SafeAreaViewWrapper>
             <Text>Scroll to selected option</Text>
             <Select options={DATA} selectControlStyle={{ width: 150 }} />
             <Text>Scroll to selected option with default option</Text>
@@ -25,6 +26,6 @@ export const ScrollToSelectedOption = () => {
                 options={DATA}
                 selectControlStyle={{ width: 150 }}
             />
-        </SafeAreaView>
+        </SafeAreaViewWrapper>
     );
 };
