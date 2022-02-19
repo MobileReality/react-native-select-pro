@@ -292,7 +292,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                             <Image source={customLeftIconSource} style={customLeftIconStyles} />
                         </View>
                     )}
-                    <View style={styles.press}>
+                    <View style={[styles.press, { paddingRight: multiSelection ? 40 : 55 }]}>
                         {multiSelection ? renderMultiselect() : renderSelection()}
                     </View>
                     <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
@@ -371,7 +371,6 @@ const styles = StyleSheet.create<Styles>({
         height: '100%',
         paddingHorizontal: PADDING,
         justifyContent: 'center',
-        paddingRight: 55,
     },
     disabled: {
         backgroundColor: COLORS.DISABLED,

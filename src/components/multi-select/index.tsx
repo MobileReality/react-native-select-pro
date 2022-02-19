@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithRef } from 'react';
-import { Dimensions, ScrollView, StyleSheet, Text, ViewStyle } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, ViewStyle } from 'react-native';
 import type { OptionType, Select } from '@mobile-reality/react-native-select-pro';
 import type {
     OnPressSelectControlType,
@@ -58,7 +58,7 @@ export const MultiSelect = ({
     const resolveSelectedOptions = () => {
         if (!selectedOptionTyped) {
             if (searchable) {
-                return <Text />;
+                return null;
             }
             return (
                 <MultiSelectedOption
