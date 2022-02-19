@@ -50,13 +50,17 @@ exports[`Select should generate Select snapshot 1`] = `
     >
       <View
         style={
-          Object {
-            "flex": 1,
-            "height": "100%",
-            "justifyContent": "center",
-            "paddingHorizontal": 12,
-            "paddingRight": 55,
-          }
+          Array [
+            Object {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            Object {
+              "paddingRight": 55,
+            },
+          ]
         }
       >
         <Text
@@ -199,13 +203,17 @@ exports[`Select with custom left icon should generate Select with custom left ic
       </View>
       <View
         style={
-          Object {
-            "flex": 1,
-            "height": "100%",
-            "justifyContent": "center",
-            "paddingHorizontal": 12,
-            "paddingRight": 55,
-          }
+          Array [
+            Object {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            Object {
+              "paddingRight": 55,
+            },
+          ]
         }
       >
         <Text
@@ -321,13 +329,17 @@ exports[`Select with searchable enabled should generate Select with searchable e
     >
       <View
         style={
-          Object {
-            "flex": 1,
-            "height": "100%",
-            "justifyContent": "center",
-            "paddingHorizontal": 12,
-            "paddingRight": 55,
-          }
+          Array [
+            Object {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            Object {
+              "paddingRight": 55,
+            },
+          ]
         }
       >
         <TextInput
