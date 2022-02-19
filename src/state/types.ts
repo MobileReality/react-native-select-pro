@@ -23,7 +23,7 @@ export type ActionType =
       }
     | {
           type: Action.SelectOption;
-          payload: OptionType | null;
+          payload: OptionType | OptionType[] | null;
       }
     | {
           type: Action.SetOptionsData;

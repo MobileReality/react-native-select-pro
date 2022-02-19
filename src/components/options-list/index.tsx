@@ -35,6 +35,7 @@ type FromSelectComponentProps = Pick<
     | 'NoOptionsComponent'
     | 'OptionComponent'
     | 'searchable'
+    | 'multiSelection'
 >;
 
 type OptionsListProps = OptionalToRequired<
@@ -65,6 +66,7 @@ export const OptionsList = ({
     searchable,
     isOpened,
     onOutsidePress,
+    multiSelection,
     openedPosition: { width, top, left },
     optionsData,
     optionSelectedStyle,
@@ -107,6 +109,16 @@ export const OptionsList = ({
             return optionsData;
         }
         return searchedOptions;
+    };
+
+    const resolveIsSelected = (item: OptionType) => {
+        if (!multiSelection) {
+            return item.value === selectedOptionTyped?.value;
+        }
+        return (
+            selectedOption &&
+            (selectedOption as OptionType[]).find((option) => item.value === option.value)
+        );
     };
 
     return (
@@ -154,7 +166,7 @@ export const OptionsList = ({
                         ref={ref}
                         renderItem={({ item, index }) => {
                             const { value } = item;
-                            const isSelected = value === selectedOptionTyped?.value;
+                            const isSelected = !!resolveIsSelected(item);
                             const isScrollToSelectedOption =
                                 isSelected && ref.current && scrollToSelectedOption;
 

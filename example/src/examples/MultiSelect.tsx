@@ -1,13 +1,13 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { DATA } from '../App';
+import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 
 export const MultiSelect = () => {
     return (
-        <SafeAreaView>
-            <Select options={DATA} selectControlStyle={{ width: 150 }} multiSelection={true} />
-        </SafeAreaView>
+        <SafeAreaViewWrapper>
+            <Select multiSelection={true} options={DATA} selectControlStyle={{ width: 200 }} />
+        </SafeAreaViewWrapper>
     );
 };

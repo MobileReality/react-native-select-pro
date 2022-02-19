@@ -101,7 +101,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         },
         ref,
     ) => {
-        const selectedOptionTyped = selectedOption as OptionType; // for proper typing
         const rotateAnimation = useRef(new Animated.Value(0)).current;
 
         useEffect(() => {
@@ -119,24 +118,39 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             outputRange: ['0deg', '180deg'],
         });
 
-        const onPressRemove = () => {
+        const onPressRemove = (option: OptionType | null = null) => {
             if (!disabled) {
-                dispatch({
-                    type: Action.SelectOption,
-                    payload: null,
-                });
-                if (searchable) {
+                if (multiSelection) {
+                    let removedSelectedOptions: null | OptionType[] = [];
+                    removedSelectedOptions = (selectedOption as OptionType[]).filter(
+                        (selected) => selected.value !== (option as OptionType).value,
+                    );
+                    if (removedSelectedOptions.length === 0) {
+                        removedSelectedOptions = null;
+                    }
+
                     dispatch({
-                        type: Action.SetSearchValue,
-                        payload: '',
+                        type: Action.SelectOption,
+                        payload: removedSelectedOptions,
                     });
-                }
-                dispatch({
-                    type: Action.SetOptionsData,
-                    payload: options,
-                });
-                if (onSelect) {
-                    onSelect(null);
+                } else {
+                    dispatch({
+                        type: Action.SelectOption,
+                        payload: null,
+                    });
+                    if (searchable) {
+                        dispatch({
+                            type: Action.SetSearchValue,
+                            payload: '',
+                        });
+                    }
+                    dispatch({
+                        type: Action.SetOptionsData,
+                        payload: options,
+                    });
+                    if (onSelect) {
+                        onSelect(null);
+                    }
                 }
             }
         };
@@ -158,8 +172,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         const isShowClearOptionButtonA11y =
             clearable && selectedOption && isScreenReaderEnabled && !isAndroid;
 
-        const renderArrowImage = (): ReactElement =>
-            animated ? (
+        const renderArrowImage = (): ReactElement => {
+            const arrow: ReactElement = animated ? (
                 <Animated.Image
                     source={arrowImage}
                     style={[styles.arrowIcon, { transform: [{ rotate }] }]}
@@ -173,18 +187,30 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     ]}
                 />
             );
+            if (multiSelection) {
+                return (
+                    <Pressable onPress={disabled ? undefined : onPressSelectControl}>
+                        {arrow}
+                    </Pressable>
+                );
+            }
+            return arrow;
+        };
 
         const renderMultiselect = () => {
             return (
                 <MultiSelect
+                    onPressRemove={onPressRemove}
                     placeholderText={placeholderText}
+                    selectControlStyle={selectControlStyle}
                     selectControlTextStyle={selectControlTextStyle}
-                    selectedOption={selectedOption}
+                    selectedOption={selectedOption as OptionType[]}
                 />
             );
         };
 
         const renderSelection = () => {
+            const selectedOptionTyped = selectedOption as OptionType; // for proper typing
             if (searchable) {
                 return (
                     <SelectInput
@@ -212,14 +238,33 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             );
         };
 
+        const resolveAccessibilityHint = () => {
+            if (!selectedOption) {
+                return undefined;
+            }
+            if (!multiSelection) {
+                const selectedOptionTyped = selectedOption as OptionType; // for proper typing
+                return `Current selected item is ${selectedOptionTyped?.label}`;
+            }
+            return 'You have selected multiple items';
+        };
+
+        const resolveContainer = () => {
+            if (multiSelection && selectedOption) {
+                return { Component: View };
+            }
+            return { Component: Pressable };
+        };
+
+        const { Component } = resolveContainer();
+
+        const shouldRenderClearButton = isShowClearOptionButton && !multiSelection;
+        const shouldRenderClearButtonA11y = isShowClearOptionButtonA11y && !multiSelection;
+
         return (
             <View style={styles.rootView}>
-                <Pressable
-                    accessibilityHint={
-                        selectedOptionTyped?.label
-                            ? `Current selected item is ${selectedOptionTyped?.label}`
-                            : undefined
-                    }
+                <Component
+                    accessibilityHint={resolveAccessibilityHint()}
                     accessibilityLabel={
                         isOpened ? '' : selectControlOpenDropdownA11yLabel || 'Open a dropdown'
                     }
@@ -240,7 +285,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         {multiSelection ? renderMultiselect() : renderSelection()}
                     </View>
                     <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
-                        {isShowClearOptionButton && (
+                        {shouldRenderClearButton && (
                             <ClearOption
                                 disabled={disabled}
                                 onPressRemove={onPressRemove}
@@ -260,8 +305,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         )}
                         {!hideSelectControlArrow && renderArrowImage()}
                     </View>
-                </Pressable>
-                {isShowClearOptionButtonA11y && (
+                </Component>
+                {shouldRenderClearButtonA11y && (
                     <View style={styles.a11IconWrapper}>
                         <ClearOption
                             disabled={disabled}

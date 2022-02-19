@@ -124,7 +124,22 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         if (closeDropdownOnSelect) {
             dispatch({ type: Action.Close });
         }
-        dispatch({ type: Action.SelectOption, payload: option });
+        const resolveOption = () => {
+            if (!multiSelection) {
+                return option;
+            }
+            const selectedOptionAsArray = selectedOption as OptionType[] | null;
+            const foundSelectedOption =
+                selectedOptionAsArray &&
+                selectedOptionAsArray.find(
+                    (selectedOption: OptionType) => selectedOption.value === option.value,
+                );
+            if (foundSelectedOption) {
+                return selectedOptionAsArray;
+            }
+            return !selectedOptionAsArray ? [option] : selectedOptionAsArray.concat(option);
+        };
+        dispatch({ type: Action.SelectOption, payload: resolveOption() });
         if (searchable) {
             dispatch({ type: Action.SetSearchValue, payload: option.label });
         }
@@ -237,6 +252,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 animationDuration={animationDuration}
                 flatListProps={flatListProps}
                 isOpened={isOpened}
+                multiSelection={multiSelection}
                 noOptionsText={noOptionsText}
                 onOutsidePress={onOutsidePress}
                 onPressOption={onPressOption}
