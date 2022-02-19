@@ -75,7 +75,7 @@ export const MultiSelect = ({
             const WIDTH_TRESSHOLD = 100;
             const WIDTH_OFFSET = 72;
             const length = selectedOptionTyped.length;
-            const initialWidth = (selectControlStyle as ViewStyle).width;
+            const initialWidth = selectControlStyle ? (selectControlStyle as ViewStyle).width : 100;
             let calculatedWidth = 100;
             if (typeof initialWidth === 'number') {
                 calculatedWidth = (initialWidth - WIDTH_OFFSET) / length;

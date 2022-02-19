@@ -26,6 +26,9 @@ export const MultiSelectedOption = ({
 }: Props & FromSelectComponentProps) => {
     return (
         <Pressable
+            accessibilityLabel={
+                option ? `${(option as OptionType).label} selected` : 'Placeholder in multi-select'
+            }
             onPress={() => (onPressRemove ? onPressRemove(option as OptionType) : undefined)}
             style={[
                 isPlaceholder ? styles.placeholderText : styles.multiSelectionOption,

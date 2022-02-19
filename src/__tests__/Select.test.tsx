@@ -332,3 +332,88 @@ describe('Select with custom left icon', () => {
         expect(wrapper).toMatchSnapshot();
     });
 });
+
+describe('Select with multi selection', () => {
+    it('should generate Select with multi selection enabled snapshot', () => {
+        const wrapper = render(
+            <SelectProvider>
+                <Select multiSelection={true} options={DATA} />
+            </SelectProvider>,
+        );
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should, while multiSelection enabled, click and open options', () => {
+        const { getByA11yLabel, queryByA11yLabel } = render(
+            <SelectProvider>
+                <Select multiSelection={true} options={DATA} />
+            </SelectProvider>,
+        );
+
+        const open = getByA11yLabel('Open a dropdown');
+        fireEvent.press(open);
+
+        const listWrapper = queryByA11yLabel('Options list');
+        expect(listWrapper).toBeTruthy();
+
+        const outside = getByA11yLabel('Close a dropdown from outside');
+        fireEvent.press(outside);
+
+        const listWrapper2 = queryByA11yLabel('Options list');
+        expect(listWrapper2).toBeFalsy();
+    });
+
+    it('should, while multiSelection enabled, show, select and remove selected option', () => {
+        const { getByA11yLabel, queryByA11yLabel } = render(
+            <SelectProvider>
+                <Select multiSelection={true} options={DATA} />
+            </SelectProvider>,
+        );
+
+        const open = getByA11yLabel('Open a dropdown');
+        fireEvent.press(open);
+
+        const optionPress = getByA11yLabel(`Choose ${DATA[0].label} option`);
+        fireEvent.press(optionPress);
+
+        const optionSelected = getByA11yLabel(`${DATA[0].label} selected`);
+        expect(optionSelected).toBeTruthy();
+
+        const openAgain = getByA11yLabel('Open a dropdown');
+        fireEvent.press(openAgain);
+
+        const secondOptionPress = getByA11yLabel(`Choose ${DATA[1].label} option`);
+        fireEvent.press(secondOptionPress);
+
+        const selectedSecondOption = getByA11yLabel(`${DATA[1].label} selected`);
+        expect(selectedSecondOption).toBeTruthy();
+
+        fireEvent.press(optionSelected);
+
+        const optionShouldNotExist = queryByA11yLabel(`${DATA[0].label} selected`);
+        expect(optionShouldNotExist).toBeFalsy();
+    });
+    it('should NOT open options menu after pressing Pressable in select with multi select enabled and whole select disabled', () => {
+        const onOpen = jest.fn();
+
+        const { getByA11yLabel } = render(
+            <SelectProvider>
+                <Select disabled={true} multiSelection={true} options={DATA} />
+            </SelectProvider>,
+        );
+
+        const open = getByA11yLabel('Open a dropdown');
+        fireEvent.press(open);
+        expect(onOpen).not.toHaveBeenCalled();
+    });
+});
+describe('Select with multi selection and searchable', () => {
+    it('should generate Select with multi selection and searchable enabled snapshot', () => {
+        const wrapper = render(
+            <SelectProvider>
+                <Select multiSelection={true} options={SEARCHABLE_DATA} searchable={true} />
+            </SelectProvider>,
+        );
+        expect(wrapper).toMatchSnapshot();
+    });
+});
