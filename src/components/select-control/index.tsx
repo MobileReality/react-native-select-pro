@@ -173,6 +173,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             clearable && selectedOption && isScreenReaderEnabled && !isAndroid;
 
         const renderArrowImage = (): ReactElement => {
+            const accessibilityLabel = 'Arrow for opening dropdown';
             const arrow: ReactElement = animated ? (
                 <Animated.Image
                     source={arrowImage}
@@ -189,7 +190,9 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             );
             if (multiSelection) {
                 return (
-                    <Pressable onPress={disabled ? undefined : onPressSelectControl}>
+                    <Pressable
+                        accessibilityLabel={accessibilityLabel}
+                        onPress={disabled ? undefined : onPressSelectControl}>
                         {arrow}
                     </Pressable>
                 );
@@ -279,7 +282,11 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     accessibilityLabel={
                         isOpened ? '' : selectControlOpenDropdownA11yLabel || 'Open a dropdown'
                     }
-                    onPress={disabled ? undefined : onPressSelectControl}
+                    onPress={
+                        disabled || (multiSelection && selectedOption)
+                            ? undefined
+                            : onPressSelectControl
+                    }
                     ref={ref}
                     style={[
                         styles.container,

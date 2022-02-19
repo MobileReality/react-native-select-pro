@@ -386,6 +386,7 @@ exports[`Select with multi selection and searchable should generate Select with 
         }
       >
         <View
+          accessibilityLabel="Arrow for opening dropdown"
           accessible={true}
           collapsable={false}
           focusable={true}
@@ -566,6 +567,7 @@ exports[`Select with multi selection should generate Select with multi selection
         }
       >
         <View
+          accessibilityLabel="Arrow for opening dropdown"
           accessible={true}
           collapsable={false}
           focusable={true}
