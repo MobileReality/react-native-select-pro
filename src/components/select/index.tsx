@@ -74,6 +74,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         dispatch,
     ] = useReducer(reducer, initialData);
     const { aboveSelectControl } = openedPosition;
+    const selectedOptionTyped = selectedOption as OptionType;
 
     const containerRef = useRef<View>(null);
 
@@ -177,10 +178,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     const onOutsidePress: OnOutsidePress = () => {
         dispatch({ type: Action.Close });
         dispatch({ type: Action.SetOptionsData, payload: options });
-        if (searchable && selectedOption?.label) {
+        if (searchable && selectedOptionTyped?.label) {
             dispatch({
                 type: Action.SetSearchValue,
-                payload: selectedOption.label,
+                payload: selectedOptionTyped.label,
             });
         }
         hideKeyboardIfNeeded();

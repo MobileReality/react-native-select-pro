@@ -56,7 +56,7 @@ export type Position = {
 
 export type State = {
     isOpened: boolean;
-    selectedOption: OptionType | null;
+    selectedOption: OptionType | null | OptionType[];
     optionsData: OptionsType;
     openedPosition: Position;
     searchValue: string;

@@ -22,11 +22,11 @@ import {
 import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import { isAndroid } from '../../helpers/isAndroid';
-import type { Select } from '../../index';
+import type { OptionType, Select } from '../../index';
 import { Action, DispatchType, Position, State } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition } from '../../types';
 import { ClearOption } from '../clear-option';
-// import { RemoveOptionButton } from '../remove-option-button';
+import { MultiSelect } from '../multi-select';
 import { SelectInput } from '../select-input';
 
 type FromSelectComponentProps = Pick<
@@ -79,7 +79,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             clearable,
             options,
             disabled,
-            // multiSelection,
+            multiSelection,
             placeholderText,
             searchable,
             searchPattern,
@@ -101,6 +101,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         },
         ref,
     ) => {
+        const selectedOptionTyped = selectedOption as OptionType; // for proper typing
         const rotateAnimation = useRef(new Animated.Value(0)).current;
 
         useEffect(() => {
@@ -173,51 +174,15 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                 />
             );
 
-        /*
-        const resolveOptions = () => {
-            if (multiSelection) {
-                return (
-                    <View style={styles.multiSelectionWrapper}>
-                        <Text
-                            numberOfLines={1}
-                            style={[
-                                styles.text,
-                                { color: selectedOption?.label ? COLORS.BLACK : COLORS.GRAY },
-                                selectControlTextStyle,
-                                styles.multiSelectionOption,
-                            ]}>
-                            {selectedOption?.label || placeholderText}
-                        </Text>
-                        <RemoveOptionButton
-                            disabled={disabled}
-                            dispatch={dispatch}
-                            onSelect={onSelect}
-                            options={options}
-                            selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
-                            selectControlClearOptionButtonHitSlop={
-                                selectControlClearOptionButtonHitSlop
-                            }
-                            selectControlClearOptionButtonStyle={
-                                selectControlClearOptionButtonStyle
-                            }
-                            selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
-                        />
-                    </View>
-                );
-            }
+        const renderMultiselect = () => {
             return (
-                <Text
-                    numberOfLines={1}
-                    style={[
-                        styles.text,
-                        { color: selectedOption?.label ? COLORS.BLACK : COLORS.GRAY },
-                        selectControlTextStyle,
-                    ]}>
-                    {selectedOption?.label || placeholderText}
-                </Text>
+                <MultiSelect
+                    placeholderText={placeholderText}
+                    selectControlTextStyle={selectControlTextStyle}
+                    selectedOption={selectedOption}
+                />
             );
         };
-        */
 
         const renderSelection = () => {
             if (searchable) {
@@ -239,10 +204,10 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     numberOfLines={1}
                     style={[
                         styles.text,
-                        { color: selectedOption?.label ? COLORS.BLACK : COLORS.GRAY },
+                        { color: selectedOptionTyped?.label ? COLORS.BLACK : COLORS.GRAY },
                         selectControlTextStyle,
                     ]}>
-                    {selectedOption?.label || placeholderText}
+                    {selectedOptionTyped?.label || placeholderText}
                 </Text>
             );
         };
@@ -251,8 +216,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             <View style={styles.rootView}>
                 <Pressable
                     accessibilityHint={
-                        selectedOption?.label
-                            ? `Current selected item is ${selectedOption?.label}`
+                        selectedOptionTyped?.label
+                            ? `Current selected item is ${selectedOptionTyped?.label}`
                             : undefined
                     }
                     accessibilityLabel={
@@ -271,7 +236,9 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                             <Image source={customLeftIconSource} style={customLeftIconStyles} />
                         </View>
                     )}
-                    <View style={styles.press}>{renderSelection()}</View>
+                    <View style={styles.press}>
+                        {multiSelection ? renderMultiselect() : renderSelection()}
+                    </View>
                     <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
                         {isShowClearOptionButton && (
                             <ClearOption
