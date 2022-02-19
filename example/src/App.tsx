@@ -9,14 +9,15 @@ import { CustomComponent } from './examples/CustomComponent';
 import { CustomLeftIcon } from './examples/CustomLeftIcon';
 import { CustomStyles } from './examples/CustomStyles';
 import { ModalExample } from './examples/ModalExample';
+import { MultiSelect } from './examples/MultiSelect';
+import { MultiSelectWithSearchable } from './examples/MultiSelectWithSearchable';
 import { Overflow } from './examples/Overflow';
 import { Ref } from './examples/Ref';
 import { RHF } from './examples/RHF';
 import { ScrollToSelectedOption } from './examples/ScrollToSelectedOption';
-import { Selects } from './examples/Selects';
-import { MultiSelect } from './examples/MultiSelect';
 import { Searchable } from './examples/Searchable';
 import { SearchableInModal } from './examples/SearchableInModal';
+import { Selects } from './examples/Selects';
 
 export const DATA = [
     {
@@ -123,6 +124,11 @@ const data = [
                 name: 'Multi Select',
                 slug: 'multiSelection',
                 getScreen: () => MultiSelect,
+            },
+            {
+                name: 'Multi Select with searchable',
+                slug: 'multiSelectionWithSearchable',
+                getScreen: () => MultiSelectWithSearchable,
             },
         ],
     },

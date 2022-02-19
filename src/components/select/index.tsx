@@ -124,6 +124,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         if (closeDropdownOnSelect) {
             dispatch({ type: Action.Close });
         }
+
         const resolveOption = () => {
             if (!multiSelection) {
                 return option;
@@ -139,9 +140,14 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
             }
             return !selectedOptionAsArray ? [option] : selectedOptionAsArray.concat(option);
         };
+
         dispatch({ type: Action.SelectOption, payload: resolveOption() });
         if (searchable) {
-            dispatch({ type: Action.SetSearchValue, payload: option.label });
+            if (multiSelection) {
+                dispatch({ type: Action.SetSearchValue, payload: '' });
+            } else {
+                dispatch({ type: Action.SetSearchValue, payload: option.label });
+            }
         }
         dispatch({ type: Action.SetOptionsData, payload: options });
         if (option) {
@@ -157,6 +163,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 const fromProp = StyleSheet.flatten(optionsListStyle)?.maxHeight;
                 let listHeight = MAX_HEIGHT_LIST;
                 // TODO string values like percents
+                // make use of utility function in helpers
                 if (typeof fromProp === 'number') {
                     listHeight = StyleSheet.flatten(optionsListStyle).maxHeight as number;
                 }

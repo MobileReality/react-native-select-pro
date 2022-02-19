@@ -200,11 +200,20 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         const renderMultiselect = () => {
             return (
                 <MultiSelect
+                    disabled={disabled}
+                    dispatch={dispatch}
+                    isOpened={isOpened}
+                    multiSelection={multiSelection}
                     onPressRemove={onPressRemove}
+                    onPressSelectControl={onPressSelectControl}
                     placeholderText={placeholderText}
+                    searchPattern={searchPattern}
+                    searchValue={searchValue}
+                    searchable={searchable}
                     selectControlStyle={selectControlStyle}
                     selectControlTextStyle={selectControlTextStyle}
                     selectedOption={selectedOption as OptionType[]}
+                    setPosition={setPosition}
                 />
             );
         };
@@ -217,10 +226,12 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         disabled={disabled}
                         dispatch={dispatch}
                         isOpened={isOpened}
+                        multiSelection={multiSelection}
                         onPressSelectControl={onPressSelectControl}
                         placeholderText={placeholderText}
                         searchPattern={searchPattern}
                         searchValue={searchValue}
+                        selectedOption={selectedOption}
                         setPosition={setPosition}
                     />
                 );
