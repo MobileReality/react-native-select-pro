@@ -1253,11 +1253,6 @@
   dependencies:
     nanoid "^3.1.23"
 
-"@gorhom/showcase-template@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@gorhom/showcase-template/-/showcase-template-2.1.0.tgz#f19321c29e0b3d49cad49054eb3e9de1dded4afd"
-  integrity sha512-BcoS+stdG+VUo+vnqzrrvkiIbXBnE0DWMWvwmq6yjdb/Pmy47F2akCMwLop2X4xLjnB8WGN6qrrX2k6AwtcVRw==
-
 "@hapi/hoek@^9.0.0":
   version "9.2.1"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.2.1.tgz#9551142a1980503752536b5050fd99f4a7f13b17"
