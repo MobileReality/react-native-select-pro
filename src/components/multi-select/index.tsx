@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithRef } from 'react';
-import { Dimensions, ScrollView, StyleSheet, ViewStyle } from 'react-native';
+import { ScrollView, StyleSheet, useWindowDimensions, ViewStyle } from 'react-native';
 import type { OptionType, Select } from '@mobile-reality/react-native-select-pro';
 import type {
     OnPressSelectControlType,
@@ -53,6 +53,7 @@ export const MultiSelect = ({
     setPosition,
     multiSelection,
 }: Props) => {
+    const { width } = useWindowDimensions();
     const selectedOptionTyped = selectedOption as OptionType[];
 
     const resolveSelectedOptions = () => {
@@ -72,26 +73,25 @@ export const MultiSelect = ({
         }
 
         const optionWidth = () => {
-            const WIDTH_TRESSHOLD = 100;
+            const WIDTH_THRESHOLD = 100;
             const WIDTH_OFFSET = 72;
             const length = selectedOptionTyped.length;
             const initialWidth = selectControlStyle ? (selectControlStyle as ViewStyle).width : 100;
             let calculatedWidth = 100;
             if (typeof initialWidth === 'number') {
                 calculatedWidth = (initialWidth - WIDTH_OFFSET) / length;
-                if (calculatedWidth < WIDTH_TRESSHOLD) {
-                    return WIDTH_TRESSHOLD;
+                if (calculatedWidth < WIDTH_THRESHOLD) {
+                    return WIDTH_THRESHOLD;
                 }
                 return Math.floor(calculatedWidth);
             }
             if (typeof initialWidth === 'string') {
-                const screenWidth = Dimensions.get('window').width;
                 const ratioToScreen = Math.floor(
-                    screenWidth * (parsePercentageToNumber(initialWidth) / 100),
+                    width * (parsePercentageToNumber(initialWidth) / 100),
                 );
                 calculatedWidth = ratioToScreen / length;
-                if (calculatedWidth - WIDTH_OFFSET < WIDTH_TRESSHOLD) {
-                    return WIDTH_TRESSHOLD;
+                if (calculatedWidth - WIDTH_OFFSET < WIDTH_THRESHOLD) {
+                    return WIDTH_THRESHOLD;
                 }
                 return calculatedWidth - WIDTH_OFFSET;
             }

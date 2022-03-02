@@ -62,7 +62,7 @@
       "url": "https://github.com/gitsad"
     },
     {
-      "name": "Marcin Sadowski",
+      "name": "Agata Kosior",
       "url": "https://github.com/koko57"
     },
     {
@@ -81,7 +81,6 @@
   },
   "dependencies": {
     "@gorhom/portal": "1.0.11",
-    "@gorhom/showcase-template": "^2.1.0",
     "react-native-gesture-handler": "^2.1.0"
   },
   "devDependencies": {
