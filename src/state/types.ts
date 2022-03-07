@@ -23,7 +23,7 @@ export type ActionType =
       }
     | {
           type: Action.SelectOption;
-          payload: OptionType | null;
+          payload: OptionType | OptionType[] | null;
       }
     | {
           type: Action.SetOptionsData;
@@ -56,7 +56,7 @@ export type Position = {
 
 export type State = {
     isOpened: boolean;
-    selectedOption: OptionType | null;
+    selectedOption: OptionType | null | OptionType[];
     optionsData: OptionsType;
     openedPosition: Position;
     searchValue: string;

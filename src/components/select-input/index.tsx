@@ -12,9 +12,9 @@ import type { DispatchType, State } from '../../state/types';
 import { Action } from '../../state/types';
 
 type SelectInputProps = OptionalToRequired<
-    Pick<State, 'isOpened' | 'searchValue'> & { dispatch: DispatchType } & Pick<
+    Pick<State, 'isOpened' | 'searchValue' | 'selectedOption'> & { dispatch: DispatchType } & Pick<
             SelectProps,
-            'placeholderText' | 'searchPattern' | 'disabled'
+            'placeholderText' | 'searchPattern' | 'disabled' | 'multiSelection'
         > & { onPressSelectControl: OnPressSelectControlType } & { setPosition: OnSetPosition }
 >;
 
@@ -27,6 +27,8 @@ export const SelectInput = ({
     onPressSelectControl,
     dispatch,
     setPosition,
+    multiSelection,
+    selectedOption,
 }: SelectInputProps) => {
     const searchInputRef = useRef<TextInput>(null);
 
@@ -70,16 +72,27 @@ export const SelectInput = ({
         }
     };
 
+    const resolvePlaceholder = () => {
+        if (multiSelection && selectedOption && selectedOption.length > 0) {
+            return '  ';
+        }
+        return placeholderText;
+    };
+
     return (
         <TextInput
             accessibilityLabel={'Place text'}
             editable={!disabled}
             onChangeText={onChangeText}
             onPressIn={!disabled ? onPressSelectControl : () => null}
-            placeholder={placeholderText}
+            placeholder={resolvePlaceholder()}
             placeholderTextColor={COLORS.GRAY}
             ref={searchInputRef}
-            style={disabled ? [styles.disabled, styles.text] : styles.text}
+            style={
+                disabled
+                    ? [styles.disabled, styles.text, multiSelection && { marginRight: 5 }]
+                    : styles.text
+            }
             textAlign={I18nManager.isRTL ? 'right' : 'left'}
             value={searchValue}
         />

@@ -167,6 +167,13 @@ export interface SelectProps {
      */
     flatListProps?: Omit<FlatListProps<OptionType>, 'data' | 'renderItem' | 'ListEmptyComponent'>;
     /**
+     *  if `true` then multi option can be picked
+     *
+     *  @category Common
+     *  @default false
+     */
+    multiSelection?: boolean;
+    /**
      * If `true` close a dropdown after selected option
      *
      * @category Common

@@ -14,7 +14,7 @@ import { Portals } from '../../constants/portals';
 import { BORDER_WIDTH, COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { Position, State } from '../../state/types';
-import type { OnOutsidePress, OnPressOptionType } from '../../types';
+import type { OnOutsidePress, OnPressOptionType, OptionType } from '../../types';
 import { NoOptions } from '../no-options';
 import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';
@@ -35,6 +35,7 @@ type FromSelectComponentProps = Pick<
     | 'NoOptionsComponent'
     | 'OptionComponent'
     | 'searchable'
+    | 'multiSelection'
 >;
 
 type OptionsListProps = OptionalToRequired<
@@ -65,6 +66,7 @@ export const OptionsList = ({
     searchable,
     isOpened,
     onOutsidePress,
+    multiSelection,
     openedPosition: { width, top, left },
     optionsData,
     optionSelectedStyle,
@@ -77,6 +79,7 @@ export const OptionsList = ({
     NoOptionsComponent,
     OptionComponent,
 }: OptionsListProps) => {
+    const selectedOptionTyped = selectedOption as OptionType;
     const ref = useRef<FlatList>(null);
 
     const measuredRef = useCallback(
@@ -98,10 +101,24 @@ export const OptionsList = ({
         if (searchable && searchValue.length === 0) {
             return optionsData;
         }
-        if (selectedOption && searchValue?.length > 0 && searchValue === selectedOption.label) {
+        if (
+            selectedOptionTyped &&
+            searchValue?.length > 0 &&
+            searchValue === selectedOptionTyped.label
+        ) {
             return optionsData;
         }
         return searchedOptions;
+    };
+
+    const resolveIsSelected = (item: OptionType) => {
+        if (!multiSelection) {
+            return item.value === selectedOptionTyped?.value;
+        }
+        return (
+            selectedOption &&
+            (selectedOption as OptionType[]).find((option) => item.value === option.value)
+        );
     };
 
     return (
@@ -149,7 +166,7 @@ export const OptionsList = ({
                         ref={ref}
                         renderItem={({ item, index }) => {
                             const { value } = item;
-                            const isSelected = value === selectedOption?.value;
+                            const isSelected = !!resolveIsSelected(item);
                             const isScrollToSelectedOption =
                                 isSelected && ref.current && scrollToSelectedOption;
 

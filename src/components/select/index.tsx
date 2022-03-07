@@ -30,6 +30,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         defaultOption,
         disabled = false,
         flatListProps,
+        multiSelection = false,
         hideSelectControlArrow,
         animated = false,
         animationDuration = ANIMATION_DURATION,
@@ -73,6 +74,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         dispatch,
     ] = useReducer(reducer, initialData);
     const { aboveSelectControl } = openedPosition;
+    const selectedOptionTyped = selectedOption as OptionType;
 
     const containerRef = useRef<View>(null);
 
@@ -122,9 +124,30 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         if (closeDropdownOnSelect) {
             dispatch({ type: Action.Close });
         }
-        dispatch({ type: Action.SelectOption, payload: option });
+
+        const resolveOption = () => {
+            if (!multiSelection) {
+                return option;
+            }
+            const selectedOptionAsArray = selectedOption as OptionType[] | null;
+            const foundSelectedOption =
+                selectedOptionAsArray &&
+                selectedOptionAsArray.find(
+                    (selectedOption: OptionType) => selectedOption.value === option.value,
+                );
+            if (foundSelectedOption) {
+                return selectedOptionAsArray;
+            }
+            return !selectedOptionAsArray ? [option] : selectedOptionAsArray.concat(option);
+        };
+
+        dispatch({ type: Action.SelectOption, payload: resolveOption() });
         if (searchable) {
-            dispatch({ type: Action.SetSearchValue, payload: option.label });
+            if (multiSelection) {
+                dispatch({ type: Action.SetSearchValue, payload: '' });
+            } else {
+                dispatch({ type: Action.SetSearchValue, payload: option.label });
+            }
         }
         dispatch({ type: Action.SetOptionsData, payload: options });
         if (option) {
@@ -140,6 +163,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 const fromProp = StyleSheet.flatten(optionsListStyle)?.maxHeight;
                 let listHeight = MAX_HEIGHT_LIST;
                 // TODO string values like percents
+                // make use of utility function in helpers
                 if (typeof fromProp === 'number') {
                     listHeight = StyleSheet.flatten(optionsListStyle).maxHeight as number;
                 }
@@ -176,10 +200,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     const onOutsidePress: OnOutsidePress = () => {
         dispatch({ type: Action.Close });
         dispatch({ type: Action.SetOptionsData, payload: options });
-        if (searchable && selectedOption?.label) {
+        if (searchable && selectedOptionTyped?.label) {
             dispatch({
                 type: Action.SetSearchValue,
-                payload: selectedOption.label,
+                payload: selectedOptionTyped.label,
             });
         }
         hideKeyboardIfNeeded();
@@ -206,6 +230,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 dispatch={dispatch}
                 hideSelectControlArrow={hideSelectControlArrow}
                 isOpened={isOpened}
+                multiSelection={multiSelection}
                 onPressSelectControl={onPressSelectControl}
                 onSelect={onSelect}
                 options={options}
@@ -234,6 +259,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 animationDuration={animationDuration}
                 flatListProps={flatListProps}
                 isOpened={isOpened}
+                multiSelection={multiSelection}
                 noOptionsText={noOptionsText}
                 onOutsidePress={onOutsidePress}
                 onPressOption={onPressOption}

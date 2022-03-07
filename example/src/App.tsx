@@ -9,6 +9,8 @@ import { CustomComponent } from './examples/CustomComponent';
 import { CustomLeftIcon } from './examples/CustomLeftIcon';
 import { CustomStyles } from './examples/CustomStyles';
 import { ModalExample } from './examples/ModalExample';
+import { MultiSelect } from './examples/MultiSelect';
+import { MultiSelectWithSearchable } from './examples/MultiSelectWithSearchable';
 import { Overflow } from './examples/Overflow';
 import { Ref } from './examples/Ref';
 import { RHF } from './examples/RHF';
@@ -117,6 +119,16 @@ const data = [
                 name: 'Custom Left Icon',
                 slug: 'customLeftIcon',
                 getScreen: () => CustomLeftIcon,
+            },
+            {
+                name: 'Multi Select',
+                slug: 'multiSelection',
+                getScreen: () => MultiSelect,
+            },
+            {
+                name: 'Multi Select with searchable',
+                slug: 'multiSelectionWithSearchable',
+                getScreen: () => MultiSelectWithSearchable,
             },
         ],
     },
