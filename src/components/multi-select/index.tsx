@@ -23,6 +23,7 @@ type FromSelectComponentProps = Pick<
     | 'searchPattern'
     | 'searchable'
     | 'multiSelection'
+    | 'placeholderTextColor'
 >;
 
 type SelectControlProps = OptionalToRequired<
@@ -43,6 +44,7 @@ export const MultiSelect = ({
     selectControlStyle,
     selectedOption,
     placeholderText,
+    placeholderTextColor,
     onPressRemove,
     disabled,
     dispatch,
@@ -67,6 +69,7 @@ export const MultiSelect = ({
                     option={null}
                     optionWidth={'100%'}
                     placeholderText={placeholderText}
+                    placeholderTextColor={placeholderTextColor}
                     selectControlTextStyle={selectControlTextStyle}
                 />
             );
@@ -122,8 +125,10 @@ export const MultiSelect = ({
                     multiSelection={multiSelection}
                     onPressSelectControl={onPressSelectControl}
                     placeholderText={placeholderText}
+                    placeholderTextColor={placeholderTextColor}
                     searchPattern={searchPattern}
                     searchValue={searchValue}
+                    selectControlTextStyle={selectControlTextStyle}
                     selectedOption={selectedOption}
                     setPosition={setPosition}
                 />

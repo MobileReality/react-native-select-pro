@@ -52,6 +52,12 @@ hideSelectControlArrow?: boolean;
 ```
 If `true` hide select control arrow
 
+### multiSelection
+```typescript jsx
+multiSelection?: boolean;
+```
+If `true` let user select multiple options in a select, working also with searchable
+
 ### noOptionsText
 ```typescript jsx
 noOptionsText?: string;
@@ -81,9 +87,3 @@ If `true` let user search in a select options by typing in select
 searchPattern?: (payload: string) => string;
 ```
 Regex definition for searching options
-
-### multiSelection
-```typescript jsx
-multiSelection?: boolean;
-```
-If `true` let user select multiple options in a select, working also with searchable

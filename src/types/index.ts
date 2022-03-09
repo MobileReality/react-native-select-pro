@@ -188,6 +188,13 @@ export interface SelectProps {
      */
     placeholderText?: string;
     /**
+     * Placeholder text
+     *
+     * @category Common
+     * @default "Select..."
+     */
+    placeholderTextColor?: string;
+    /**
      * If `true` options list is scrolled to the selected option
      *
      * @category Common

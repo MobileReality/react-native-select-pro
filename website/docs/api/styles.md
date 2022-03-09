@@ -10,6 +10,12 @@ customLeftIconStyles?: StyleProp<ImageStyle>;
 ```
 Custom left icon styles
 
+### placeholderTextColor
+```typescript jsx
+placeholderTextColor?: string;
+```
+Set a placeholder color
+
 ### selectContainerStyle
 ```typescript jsx
 selectContainerStyle?: StyleProp<ViewStyle>;

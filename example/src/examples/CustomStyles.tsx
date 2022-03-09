@@ -13,8 +13,13 @@ export const CustomStyles = () => {
                 optionTextStyle={{ fontSize: 20 }}
                 options={DATA}
                 optionsListStyle={{ maxHeight: 150 }}
-                selectControlStyle={{ width: 250, backgroundColor: 'lightblue', height: 80 }}
-                selectControlTextStyle={{ fontSize: 20 }}
+                placeholderTextColor={'blue'}
+                selectControlStyle={{
+                    width: 250,
+                    backgroundColor: 'lightblue',
+                    height: 80,
+                }}
+                selectControlTextStyle={{ fontSize: 20, color: 'white' }}
             />
         </SafeAreaViewWrapper>
     );
