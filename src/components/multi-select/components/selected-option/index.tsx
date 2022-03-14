@@ -13,7 +13,7 @@ type Props = {
 
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
-    'selectControlTextStyle' | 'placeholderText'
+    'selectControlTextStyle' | 'placeholderText' | 'placeholderTextColor'
 >;
 
 export const MultiSelectedOption = ({
@@ -21,6 +21,7 @@ export const MultiSelectedOption = ({
     option,
     selectControlTextStyle,
     placeholderText,
+    placeholderTextColor,
     optionWidth,
     onPressRemove,
 }: Props & FromSelectComponentProps) => {
@@ -38,8 +39,12 @@ export const MultiSelectedOption = ({
                 numberOfLines={1}
                 style={[
                     styles.text,
-                    { color: option?.label ? COLORS.BLACK : COLORS.GRAY },
                     selectControlTextStyle,
+                    {
+                        color: option?.label
+                            ? StyleSheet.flatten(selectControlTextStyle)?.color || COLORS.BLACK
+                            : placeholderTextColor || COLORS.GRAY,
+                    },
                 ]}>
                 {option?.label || placeholderText}
             </Text>

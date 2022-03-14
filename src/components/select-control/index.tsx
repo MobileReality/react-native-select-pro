@@ -40,6 +40,7 @@ type FromSelectComponentProps = Pick<
     | 'searchable'
     | 'searchPattern'
     | 'placeholderText'
+    | 'placeholderTextColor'
     | 'selectControlDisabledStyle'
     | 'selectControlButtonsContainerStyle'
     | 'hideSelectControlArrow'
@@ -81,6 +82,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             disabled,
             multiSelection,
             placeholderText,
+            placeholderTextColor,
             searchable,
             searchPattern,
             searchValue,
@@ -210,6 +212,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     onPressRemove={onPressRemove}
                     onPressSelectControl={onPressSelectControl}
                     placeholderText={placeholderText}
+                    placeholderTextColor={placeholderTextColor}
                     searchPattern={searchPattern}
                     searchValue={searchValue}
                     searchable={searchable}
@@ -232,8 +235,10 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         multiSelection={multiSelection}
                         onPressSelectControl={onPressSelectControl}
                         placeholderText={placeholderText}
+                        placeholderTextColor={placeholderTextColor}
                         searchPattern={searchPattern}
                         searchValue={searchValue}
+                        selectControlTextStyle={selectControlTextStyle}
                         selectedOption={selectedOption}
                         setPosition={setPosition}
                     />
@@ -244,8 +249,12 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     numberOfLines={1}
                     style={[
                         styles.text,
-                        { color: selectedOptionTyped?.label ? COLORS.BLACK : COLORS.GRAY },
                         selectControlTextStyle,
+                        {
+                            color: selectedOptionTyped?.label
+                                ? StyleSheet.flatten(selectControlTextStyle)?.color || COLORS.BLACK
+                                : placeholderTextColor || COLORS.GRAY,
+                        },
                     ]}>
                     {selectedOptionTyped?.label || placeholderText}
                 </Text>

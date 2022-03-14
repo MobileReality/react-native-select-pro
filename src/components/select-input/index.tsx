@@ -14,7 +14,12 @@ import { Action } from '../../state/types';
 type SelectInputProps = OptionalToRequired<
     Pick<State, 'isOpened' | 'searchValue' | 'selectedOption'> & { dispatch: DispatchType } & Pick<
             SelectProps,
-            'placeholderText' | 'searchPattern' | 'disabled' | 'multiSelection'
+            | 'placeholderText'
+            | 'searchPattern'
+            | 'disabled'
+            | 'multiSelection'
+            | 'selectControlTextStyle'
+            | 'placeholderTextColor'
         > & { onPressSelectControl: OnPressSelectControlType } & { setPosition: OnSetPosition }
 >;
 
@@ -29,6 +34,8 @@ export const SelectInput = ({
     setPosition,
     multiSelection,
     selectedOption,
+    placeholderTextColor,
+    selectControlTextStyle,
 }: SelectInputProps) => {
     const searchInputRef = useRef<TextInput>(null);
 
@@ -86,12 +93,12 @@ export const SelectInput = ({
             onChangeText={onChangeText}
             onPressIn={!disabled ? onPressSelectControl : () => null}
             placeholder={resolvePlaceholder()}
-            placeholderTextColor={COLORS.GRAY}
+            placeholderTextColor={placeholderTextColor || COLORS.GRAY}
             ref={searchInputRef}
             style={
                 disabled
                     ? [styles.disabled, styles.text, multiSelection && { marginRight: 5 }]
-                    : styles.text
+                    : [styles.text, selectControlTextStyle]
             }
             textAlign={I18nManager.isRTL ? 'right' : 'left'}
             value={searchValue}

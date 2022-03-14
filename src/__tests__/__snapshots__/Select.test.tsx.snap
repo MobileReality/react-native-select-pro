@@ -71,10 +71,10 @@ exports[`Select should generate Select snapshot 1`] = `
                 "fontSize": 12,
                 "textAlign": "left",
               },
+              undefined,
               Object {
                 "color": "#808080",
               },
-              undefined,
             ]
           }
         >
@@ -224,10 +224,10 @@ exports[`Select with custom left icon should generate Select with custom left ic
                 "fontSize": 12,
                 "textAlign": "left",
               },
+              undefined,
               Object {
                 "color": "#808080",
               },
-              undefined,
             ]
           }
         >
@@ -359,9 +359,12 @@ exports[`Select with multi selection and searchable should generate Select with 
               placeholder="Select..."
               placeholderTextColor="#808080"
               style={
-                Object {
-                  "fontSize": 12,
-                }
+                Array [
+                  Object {
+                    "fontSize": 12,
+                  },
+                  undefined,
+                ]
               }
               textAlign="left"
               value=""
@@ -537,10 +540,10 @@ exports[`Select with multi selection should generate Select with multi selection
                       "fontSize": 12,
                       "textAlign": "left",
                     },
+                    undefined,
                     Object {
                       "color": "#808080",
                     },
-                    undefined,
                   ]
                 }
               >
@@ -682,9 +685,12 @@ exports[`Select with searchable enabled should generate Select with searchable e
           placeholder="Select..."
           placeholderTextColor="#808080"
           style={
-            Object {
-              "fontSize": 12,
-            }
+            Array [
+              Object {
+                "fontSize": 12,
+              },
+              undefined,
+            ]
           }
           textAlign="left"
           value=""

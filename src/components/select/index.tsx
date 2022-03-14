@@ -42,6 +42,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         optionStyle,
         optionTextStyle,
         placeholderText = 'Select...',
+        placeholderTextColor,
         searchable = false,
         searchPattern = (payload: string) => `(${payload})`,
         scrollToSelectedOption = true,
@@ -235,6 +236,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 onSelect={onSelect}
                 options={options}
                 placeholderText={placeholderText}
+                placeholderTextColor={placeholderTextColor}
                 ref={containerRef}
                 searchPattern={searchPattern}
                 searchValue={searchValue}
