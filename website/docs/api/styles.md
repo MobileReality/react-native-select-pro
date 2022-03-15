@@ -22,6 +22,12 @@ selectContainerStyle?: StyleProp<ViewStyle>;
 ```
 Style of container select control
 
+### selectControlArrowImageStyle
+```typescript jsx
+selectControlArrowImageStyle?: StyleProp<ImageStyle>;
+```
+Style of arrow image
+
 ### selectControlButtonsContainerStyle
 ```typescript jsx
 selectControlButtonsContainerStyle?: StyleProp<ViewStyle>;

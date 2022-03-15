@@ -62,6 +62,13 @@ export interface SelectProps {
     defaultOption?: OptionType;
 
     /**
+     *  Style of arrow image
+     *
+     *  @category Styles
+     */
+    selectControlArrowImageStyle?: StyleProp<ImageStyle>;
+
+    /**
      *  Style of text select control
      *
      *  @category Styles
