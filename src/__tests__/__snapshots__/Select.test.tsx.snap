@@ -117,6 +117,7 @@ exports[`Select should generate Select snapshot 1`] = `
                   },
                 ],
               },
+              undefined,
             ]
           }
         />
@@ -270,6 +271,7 @@ exports[`Select with custom left icon should generate Select with custom left ic
                   },
                 ],
               },
+              undefined,
             ]
           }
         />
@@ -423,6 +425,7 @@ exports[`Select with multi selection and searchable should generate Select with 
                     },
                   ],
                 },
+                undefined,
               ]
             }
           />
@@ -604,6 +607,7 @@ exports[`Select with multi selection should generate Select with multi selection
                     },
                   ],
                 },
+                undefined,
               ]
             }
           />
@@ -732,6 +736,7 @@ exports[`Select with searchable enabled should generate Select with searchable e
                   },
                 ],
               },
+              undefined,
             ]
           }
         />
