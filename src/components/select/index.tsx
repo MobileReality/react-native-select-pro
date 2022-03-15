@@ -47,6 +47,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         searchPattern = (payload: string) => `(${payload})`,
         scrollToSelectedOption = true,
         selectContainerStyle,
+        selectControlArrowImageStyle,
         selectControlButtonsContainerStyle,
         selectControlClearOptionButtonStyle,
         selectControlClearOptionImageStyle,
@@ -241,6 +242,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 searchPattern={searchPattern}
                 searchValue={searchValue}
                 searchable={searchable}
+                selectControlArrowImageStyle={selectControlArrowImageStyle}
                 selectControlButtonsContainerStyle={selectControlButtonsContainerStyle}
                 selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
                 selectControlClearOptionButtonHitSlop={selectControlClearOptionButtonHitSlop}

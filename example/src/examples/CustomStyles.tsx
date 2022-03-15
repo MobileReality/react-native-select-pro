@@ -14,6 +14,7 @@ export const CustomStyles = () => {
                 options={DATA}
                 optionsListStyle={{ maxHeight: 150 }}
                 placeholderTextColor={'blue'}
+                selectControlArrowImageStyle={{ tintColor: 'pink' }}
                 selectControlStyle={{
                     width: 250,
                     backgroundColor: 'lightblue',
