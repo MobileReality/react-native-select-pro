@@ -19,7 +19,13 @@ import {
     ViewStyle,
 } from 'react-native';
 
-import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
+import {
+    BORDER_WIDTH,
+    COLORS,
+    FONT_SIZE,
+    PADDING,
+    SHAPE,
+} from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import { isAndroid } from '../../helpers/isAndroid';
 import type { OptionType, Select } from '../../index';
@@ -63,9 +69,12 @@ type SelectControlProps = OptionalToRequired<
     } & FromSelectComponentProps &
         Pick<State, 'isOpened' | 'selectedOption' | 'searchValue'> & {
             dispatch: DispatchType;
-        } & Pick<Position, 'aboveSelectControl'> & { setPosition: OnSetPosition }
+        } & Pick<Position, 'aboveSelectControl'> & {
+            setPosition: OnSetPosition;
+        }
 >;
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const arrowImage = require('./../../assets/icons/chevron-down.png');
 
 export const SelectControl = forwardRef<View, SelectControlProps>(
@@ -126,8 +135,11 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             if (!disabled) {
                 if (multiSelection) {
                     let removedSelectedOptions: null | OptionType[] = [];
-                    removedSelectedOptions = (selectedOption as OptionType[]).filter(
-                        (selected) => selected.value !== (option as OptionType).value,
+                    removedSelectedOptions = (
+                        selectedOption as OptionType[]
+                    ).filter(
+                        (selected) =>
+                            selected.value !== (option as OptionType).value,
                     );
                     if (removedSelectedOptions.length === 0) {
                         removedSelectedOptions = null;
@@ -159,7 +171,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             }
         };
 
-        const [isScreenReaderEnabled, setIsScreenReaderEnabled] = useState(false);
+        const [isScreenReaderEnabled, setIsScreenReaderEnabled] =
+            useState(false);
 
         useEffect(() => {
             if (!isAndroid) {
@@ -172,7 +185,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             }
         }, []);
 
-        const isShowClearOptionButton = clearable && selectedOption && !isScreenReaderEnabled;
+        const isShowClearOptionButton =
+            clearable && selectedOption && !isScreenReaderEnabled;
         const isShowClearOptionButtonA11y =
             clearable && selectedOption && isScreenReaderEnabled && !isAndroid;
 
@@ -192,7 +206,9 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     source={arrowImage}
                     style={[
                         styles.arrowIcon,
-                        isOpened ? styles.arrowIconOpened : styles.arrowIconClosed,
+                        isOpened
+                            ? styles.arrowIconOpened
+                            : styles.arrowIconClosed,
                         selectControlArrowImageStyle,
                     ]}
                 />
@@ -201,7 +217,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                 return (
                     <Pressable
                         accessibilityLabel={accessibilityLabel}
-                        onPress={disabled ? undefined : onPressSelectControl}>
+                        onPress={disabled ? undefined : onPressSelectControl}
+                    >
                         {arrow}
                     </Pressable>
                 );
@@ -216,8 +233,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     dispatch={dispatch}
                     isOpened={isOpened}
                     multiSelection={multiSelection}
-                    onPressRemove={onPressRemove}
-                    onPressSelectControl={onPressSelectControl}
                     placeholderText={placeholderText}
                     placeholderTextColor={placeholderTextColor}
                     searchPattern={searchPattern}
@@ -227,6 +242,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     selectControlTextStyle={selectControlTextStyle}
                     selectedOption={selectedOption as OptionType[]}
                     setPosition={setPosition}
+                    onPressRemove={onPressRemove}
+                    onPressSelectControl={onPressSelectControl}
                 />
             );
         };
@@ -240,7 +257,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         dispatch={dispatch}
                         isOpened={isOpened}
                         multiSelection={multiSelection}
-                        onPressSelectControl={onPressSelectControl}
                         placeholderText={placeholderText}
                         placeholderTextColor={placeholderTextColor}
                         searchPattern={searchPattern}
@@ -248,6 +264,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         selectControlTextStyle={selectControlTextStyle}
                         selectedOption={selectedOption}
                         setPosition={setPosition}
+                        onPressSelectControl={onPressSelectControl}
                     />
                 );
             }
@@ -259,10 +276,12 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         selectControlTextStyle,
                         {
                             color: selectedOptionTyped?.label
-                                ? StyleSheet.flatten(selectControlTextStyle)?.color || COLORS.BLACK
+                                ? StyleSheet.flatten(selectControlTextStyle)
+                                      ?.color || COLORS.BLACK
                                 : placeholderTextColor || COLORS.GRAY,
                         },
-                    ]}>
+                    ]}
+                >
                     {selectedOptionTyped?.label || placeholderText}
                 </Text>
             );
@@ -288,45 +307,74 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
 
         const { Component } = resolveContainer();
 
-        const shouldRenderClearButton = isShowClearOptionButton && !multiSelection;
-        const shouldRenderClearButtonA11y = isShowClearOptionButtonA11y && !multiSelection;
+        const shouldRenderClearButton =
+            isShowClearOptionButton && !multiSelection;
+        const shouldRenderClearButtonA11y =
+            isShowClearOptionButtonA11y && !multiSelection;
 
         return (
             <View style={styles.rootView}>
                 <Component
+                    ref={ref}
                     accessibilityHint={resolveAccessibilityHint()}
                     accessibilityLabel={
-                        isOpened ? '' : selectControlOpenDropdownA11yLabel || 'Open a dropdown'
+                        isOpened
+                            ? ''
+                            : selectControlOpenDropdownA11yLabel ||
+                              'Open a dropdown'
                     }
+                    style={[
+                        styles.container,
+                        isOpened
+                            ? aboveSelectControl
+                                ? styles.openedAbove
+                                : styles.opened
+                            : {},
+                        selectControlStyle,
+                        disabled
+                            ? [styles.disabled, selectControlDisabledStyle]
+                            : {},
+                    ]}
                     onPress={
                         disabled || (multiSelection && selectedOption)
                             ? undefined
                             : onPressSelectControl
                     }
-                    ref={ref}
-                    style={[
-                        styles.container,
-                        isOpened ? (aboveSelectControl ? styles.openedAbove : styles.opened) : {},
-                        selectControlStyle,
-                        disabled ? [styles.disabled, selectControlDisabledStyle] : {},
-                    ]}>
+                >
                     {!!customLeftIconSource && (
-                        <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
-                            <Image source={customLeftIconSource} style={customLeftIconStyles} />
+                        <View
+                            style={[
+                                styles.leftIconWrapper,
+                                styles.xIconWrapper,
+                            ]}
+                        >
+                            <Image
+                                source={customLeftIconSource}
+                                style={customLeftIconStyles}
+                            />
                         </View>
                     )}
                     <View
                         style={[
                             styles.press,
-                            multiSelection ? styles.pressMultiSelection : styles.pressNormal,
-                        ]}>
-                        {multiSelection ? renderMultiselect() : renderSelection()}
+                            multiSelection
+                                ? styles.pressMultiSelection
+                                : styles.pressNormal,
+                        ]}
+                    >
+                        {multiSelection
+                            ? renderMultiselect()
+                            : renderSelection()}
                     </View>
-                    <View style={[styles.iconsContainer, selectControlButtonsContainerStyle]}>
+                    <View
+                        style={[
+                            styles.iconsContainer,
+                            selectControlButtonsContainerStyle,
+                        ]}
+                    >
                         {shouldRenderClearButton && (
                             <ClearOption
                                 disabled={disabled}
-                                onPressRemove={onPressRemove}
                                 selectControlClearOptionA11yLabel={
                                     selectControlClearOptionA11yLabel
                                 }
@@ -339,6 +387,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                                 selectControlClearOptionImageStyle={
                                     selectControlClearOptionImageStyle
                                 }
+                                onPressRemove={onPressRemove}
                             />
                         )}
                         {!hideSelectControlArrow && renderArrowImage()}
@@ -348,15 +397,19 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     <View style={styles.a11IconWrapper}>
                         <ClearOption
                             disabled={disabled}
-                            onPressRemove={onPressRemove}
-                            selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
+                            selectControlClearOptionA11yLabel={
+                                selectControlClearOptionA11yLabel
+                            }
                             selectControlClearOptionButtonHitSlop={
                                 selectControlClearOptionButtonHitSlop
                             }
                             selectControlClearOptionButtonStyle={
                                 selectControlClearOptionButtonStyle
                             }
-                            selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
+                            selectControlClearOptionImageStyle={
+                                selectControlClearOptionImageStyle
+                            }
+                            onPressRemove={onPressRemove}
                         />
                     </View>
                 )}
@@ -456,3 +509,5 @@ const styles = StyleSheet.create<Styles>({
         height: '100%',
     },
 });
+
+SelectControl.displayName = 'SelectControl';

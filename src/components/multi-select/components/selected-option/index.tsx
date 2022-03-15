@@ -1,6 +1,15 @@
 import React, { ComponentPropsWithRef } from 'react';
-import { Pressable, StyleSheet, Text, TextStyle, ViewStyle } from 'react-native';
-import type { OptionType, Select } from '@mobile-reality/react-native-select-pro';
+import {
+    Pressable,
+    StyleSheet,
+    Text,
+    TextStyle,
+    ViewStyle,
+} from 'react-native';
+import type {
+    OptionType,
+    Select,
+} from '@mobile-reality/react-native-select-pro';
 
 import { COLORS, FONT_SIZE } from '../../../../constants/styles';
 
@@ -28,13 +37,20 @@ export const MultiSelectedOption = ({
     return (
         <Pressable
             accessibilityLabel={
-                option ? `${(option as OptionType).label} selected` : 'Placeholder in multi-select'
+                option
+                    ? `${(option as OptionType).label} selected`
+                    : 'Placeholder in multi-select'
             }
-            onPress={() => (onPressRemove ? onPressRemove(option as OptionType) : undefined)}
             style={[
-                isPlaceholder ? styles.placeholderText : styles.multiSelectionOption,
+                isPlaceholder
+                    ? styles.placeholderText
+                    : styles.multiSelectionOption,
                 { width: optionWidth },
-            ]}>
+            ]}
+            onPress={() =>
+                onPressRemove ? onPressRemove(option as OptionType) : undefined
+            }
+        >
             <Text
                 numberOfLines={1}
                 style={[
@@ -42,10 +58,12 @@ export const MultiSelectedOption = ({
                     selectControlTextStyle,
                     {
                         color: option?.label
-                            ? StyleSheet.flatten(selectControlTextStyle)?.color || COLORS.BLACK
+                            ? StyleSheet.flatten(selectControlTextStyle)
+                                  ?.color || COLORS.BLACK
                             : placeholderTextColor || COLORS.GRAY,
                     },
-                ]}>
+                ]}
+            >
                 {option?.label || placeholderText}
             </Text>
         </Pressable>

@@ -28,7 +28,6 @@
     "test": "jest",
     "tsc": "tsc --noEmit",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
-    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "build": "bob build",
     "release": "release-it",
     "bootstrap": "yarn example && yarn && yarn pods",
@@ -84,7 +83,7 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^16.2.1",
-    "@react-native-community/eslint-config": "^3.0.1",
+    "@mobile-reality/eslint-config": "^0.1.4",
     "@release-it/conventional-changelog": "^4.2.2",
     "@testing-library/jest-native": "^4.0.2",
     "@testing-library/react-native": "^9.0.0",
@@ -92,18 +91,13 @@
     "@types/react": "^17.0.40",
     "@types/react-native": "0.67.3",
     "@types/react-test-renderer": "^17.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.15.0",
-    "@typescript-eslint/parser": "^5.15.0",
     "commitlint": "^16.2.1",
     "eslint": "^8.11.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "4.3.8",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.5",
     "pod-install": "^0.1.32",
-    "prettier": "^2.4.1",
+    "prettier": "^2.5.1",
     "react": "17.0.2",
     "react-native": "0.67.3",
     "react-native-builder-bob": "^0.18.2",
@@ -125,8 +119,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint \"**/*.{js,ts,jsx,tsx}\" --fix",
-      "prettier --write"
+      "eslint \"**/*.{js,ts,jsx,tsx}\" --fix"
     ]
   }
 }

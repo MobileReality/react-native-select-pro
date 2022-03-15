@@ -1,7 +1,18 @@
 import React, { ComponentPropsWithRef, forwardRef } from 'react';
-import { StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    TextStyle,
+    TouchableOpacity,
+    ViewStyle,
+} from 'react-native';
 
-import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING } from '../../constants/styles';
+import {
+    COLORS,
+    FONT_SIZE,
+    ITEM_HEIGHT,
+    PADDING,
+} from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { OptionType } from '../../index';
 import type { OptionsList } from '../options-list';
@@ -50,24 +61,25 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
             return (
                 <OptionComponent
                     isSelected={isSelected}
-                    onPressOption={onChooseOption}
                     option={option}
+                    onPressOption={onChooseOption}
                 />
             );
         }
 
         return (
             <TouchableOpacity
-                accessibilityLabel={`Choose ${label} option`}
-                accessibilityRole={'button'}
-                accessible={true}
-                onPress={onChooseOption}
                 ref={ref}
+                accessibilityLabel={`Choose ${label} option`}
+                accessibilityRole="button"
+                accessible={true}
                 style={[
                     styles.option,
                     optionStyle,
                     isSelected && [styles.selected, optionSelectedStyle],
-                ]}>
+                ]}
+                onPress={onChooseOption}
+            >
                 <Text numberOfLines={1} style={[styles.text, optionTextStyle]}>
                     {label}
                 </Text>
@@ -97,3 +109,5 @@ const styles = StyleSheet.create<Styles>({
         backgroundColor: COLORS.SELECTED,
     },
 });
+
+Option.displayName = 'Option';

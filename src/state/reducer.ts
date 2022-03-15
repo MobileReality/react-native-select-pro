@@ -1,5 +1,4 @@
-import type { ActionType, State } from './types';
-import { Action } from './types';
+import { Action, ActionType, State } from './types';
 
 export const initialData: State = {
     isOpened: false,
@@ -43,20 +42,23 @@ export const reducer = (state: State, action: ActionType): State => {
                 ...state,
                 searchValue: action.payload,
             };
-        case Action.SearchOptions:
+        case Action.SearchOptions: {
             if (action.payload === '') {
                 return {
                     ...state,
                     searchedOptions: [],
                 };
             }
-            const regex = new RegExp(action.searchPattern(action.payload.toLowerCase()));
+            const regex = new RegExp(
+                action.searchPattern(action.payload.toLowerCase()),
+            );
             return {
                 ...state,
                 searchedOptions: state.optionsData.filter((option) =>
                     regex.test(option.label.toLowerCase()),
                 ),
             };
+        }
         case Action.SetSearchInputRef:
             return {
                 ...state,
