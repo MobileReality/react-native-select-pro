@@ -30,7 +30,7 @@
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "build": "bob build",
     "release": "release-it",
-    "release:beta": "release-it --preRelease=beta",
+    "release:beta": "release-it --preRelease=beta --no-git.requireUpstream",
     "bootstrap": "yarn example && yarn && yarn pods",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
