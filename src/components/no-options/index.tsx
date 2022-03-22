@@ -5,7 +5,10 @@ import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
 import type { OptionsList } from '../options-list';
 
-type FromParentProps = Pick<ComponentProps<typeof OptionsList>, 'noOptionsText'>;
+type FromParentProps = Pick<
+    ComponentProps<typeof OptionsList>,
+    'noOptionsText'
+>;
 
 type NoOptionsProps = OptionalToRequired<FromParentProps>;
 

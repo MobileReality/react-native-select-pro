@@ -1,5 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { I18nManager, Keyboard, StyleSheet, TextInput, TextStyle } from 'react-native';
+import {
+    I18nManager,
+    Keyboard,
+    StyleSheet,
+    TextInput,
+    TextStyle,
+} from 'react-native';
 import type {
     OnPressSelectControlType,
     OnSetPosition,
@@ -8,11 +14,12 @@ import type {
 
 import { COLORS, FONT_SIZE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers';
-import type { DispatchType, State } from '../../state/types';
-import { Action } from '../../state/types';
+import { Action, DispatchType, State } from '../../state/types';
 
 type SelectInputProps = OptionalToRequired<
-    Pick<State, 'isOpened' | 'searchValue' | 'selectedOption'> & { dispatch: DispatchType } & Pick<
+    Pick<State, 'isOpened' | 'searchValue' | 'selectedOption'> & {
+        dispatch: DispatchType;
+    } & Pick<
             SelectProps,
             | 'placeholderText'
             | 'searchPattern'
@@ -20,7 +27,9 @@ type SelectInputProps = OptionalToRequired<
             | 'multiSelection'
             | 'selectControlTextStyle'
             | 'placeholderTextColor'
-        > & { onPressSelectControl: OnPressSelectControlType } & { setPosition: OnSetPosition }
+        > & { onPressSelectControl: OnPressSelectControlType } & {
+            setPosition: OnSetPosition;
+        }
 >;
 
 export const SelectInput = ({
@@ -88,20 +97,24 @@ export const SelectInput = ({
 
     return (
         <TextInput
-            accessibilityLabel={'Place text'}
+            ref={searchInputRef}
+            accessibilityLabel="Place text"
             editable={!disabled}
-            onChangeText={onChangeText}
-            onPressIn={!disabled ? onPressSelectControl : () => null}
             placeholder={resolvePlaceholder()}
             placeholderTextColor={placeholderTextColor || COLORS.GRAY}
-            ref={searchInputRef}
             style={
                 disabled
-                    ? [styles.disabled, styles.text, multiSelection && { marginRight: 5 }]
+                    ? [
+                          styles.disabled,
+                          styles.text,
+                          multiSelection && { marginRight: 5 },
+                      ]
                     : [styles.text, selectControlTextStyle]
             }
             textAlign={I18nManager.isRTL ? 'right' : 'left'}
             value={searchValue}
+            onChangeText={onChangeText}
+            onPressIn={disabled ? () => null : onPressSelectControl}
         />
     );
 };

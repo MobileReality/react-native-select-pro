@@ -36,6 +36,8 @@ const SEARCHABLE_DATA = [
     },
 ];
 
+const searchPattern = (value: string) => `^${value}`;
+
 describe('Select', () => {
     it('should generate Select snapshot', () => {
         const wrapper = render(
@@ -107,9 +109,12 @@ describe('Select', () => {
     });
 
     it('should select option with custom option component', () => {
-        const MyCustomOption = ({ onPressOption, option }: OptionComponentProps) => {
+        const MyCustomOption = ({
+            onPressOption,
+            option,
+        }: OptionComponentProps) => {
             return (
-                <Pressable accessibilityLabel={'Option'} onPress={onPressOption}>
+                <Pressable accessibilityLabel="Option" onPress={onPressOption}>
                     <Text>{option.label}</Text>
                 </Pressable>
             );
@@ -165,9 +170,9 @@ describe('Select with searchable enabled', () => {
             <SelectProvider>
                 <Select
                     disabled={true}
-                    onDropdownOpened={onOpen}
                     options={SEARCHABLE_DATA}
                     searchable={true}
+                    onDropdownOpened={onOpen}
                 />
             </SelectProvider>,
         );
@@ -213,7 +218,11 @@ describe('Select with searchable enabled', () => {
     it('should not able to type text in Input in select control with searchable enabled but disabled', () => {
         const { getByA11yLabel } = render(
             <SelectProvider>
-                <Select disabled={true} options={SEARCHABLE_DATA} searchable={true} />
+                <Select
+                    disabled={true}
+                    options={SEARCHABLE_DATA}
+                    searchable={true}
+                />
             </SelectProvider>,
         );
 
@@ -257,11 +266,13 @@ describe('Select with searchable enabled', () => {
     });
 
     it('should, while searchable enabled, search by label and other patterns', () => {
-        const searchPattern = (value: string) => `^${value}`;
-
         const { getByA11yLabel } = render(
             <SelectProvider>
-                <Select options={SEARCHABLE_DATA} searchPattern={searchPattern} searchable={true} />
+                <Select
+                    options={SEARCHABLE_DATA}
+                    searchPattern={searchPattern}
+                    searchable={true}
+                />
             </SelectProvider>,
         );
 
@@ -279,7 +290,7 @@ describe('Select with searchable enabled', () => {
         expect(list.props.data.length).toBe(0);
     });
 
-    it('should, while searchable enabled, get back to previous value in select if clicked outside ', () => {
+    it('should, while searchable enabled, get back to previous value in select if clicked outside', () => {
         const { getByA11yLabel } = render(
             <SelectProvider>
                 <Select options={SEARCHABLE_DATA} searchable={true} />
@@ -299,7 +310,9 @@ describe('Select with searchable enabled', () => {
 
         expect(list.props.data.length).toBe(1);
 
-        const option = getByA11yLabel(`Choose ${inputData} test options option`);
+        const option = getByA11yLabel(
+            `Choose ${inputData} test options option`,
+        );
 
         fireEvent.press(option);
 
@@ -324,6 +337,7 @@ describe('Select with custom left icon', () => {
             <SelectProvider>
                 <Select
                     customLeftIconSource={require('./assets/search.png')}
+                    // eslint-disable-next-line react-native/no-inline-styles
                     customLeftIconStyles={{ height: 15, width: 15 }}
                     options={DATA}
                 />
@@ -408,15 +422,21 @@ describe('Select with multi selection', () => {
         const openAgain = getByA11yLabel('Arrow for opening dropdown');
         fireEvent.press(openAgain);
 
-        const secondOptionPress = getByA11yLabel(`Choose ${DATA[1].label} option`);
+        const secondOptionPress = getByA11yLabel(
+            `Choose ${DATA[1].label} option`,
+        );
         fireEvent.press(secondOptionPress);
 
-        const selectedSecondOption = getByA11yLabel(`${DATA[1].label} selected`);
+        const selectedSecondOption = getByA11yLabel(
+            `${DATA[1].label} selected`,
+        );
         expect(selectedSecondOption).toBeTruthy();
 
         fireEvent.press(optionSelected);
 
-        const optionShouldNotExist = queryByA11yLabel(`${DATA[0].label} selected`);
+        const optionShouldNotExist = queryByA11yLabel(
+            `${DATA[0].label} selected`,
+        );
         expect(optionShouldNotExist).toBeFalsy();
     });
     it('should NOT open options menu after pressing Pressable in select with multi select enabled and whole select disabled', () => {
@@ -437,7 +457,11 @@ describe('Select with multi selection and searchable', () => {
     it('should generate Select with multi selection and searchable enabled snapshot', () => {
         const wrapper = render(
             <SelectProvider>
-                <Select multiSelection={true} options={SEARCHABLE_DATA} searchable={true} />
+                <Select
+                    multiSelection={true}
+                    options={SEARCHABLE_DATA}
+                    searchable={true}
+                />
             </SelectProvider>,
         );
         expect(wrapper).toMatchSnapshot();
@@ -446,7 +470,11 @@ describe('Select with multi selection and searchable', () => {
     it('should, while multiSelection and searchable enabled, click and open options', () => {
         const { getByA11yLabel } = render(
             <SelectProvider>
-                <Select multiSelection={true} options={SEARCHABLE_DATA} searchable={true} />
+                <Select
+                    multiSelection={true}
+                    options={SEARCHABLE_DATA}
+                    searchable={true}
+                />
             </SelectProvider>,
         );
 
@@ -461,7 +489,9 @@ describe('Select with multi selection and searchable', () => {
 
         expect(list.props.data.length).toBe(1);
 
-        const firstOption = getByA11yLabel(`Choose ${inputData} test options option`);
+        const firstOption = getByA11yLabel(
+            `Choose ${inputData} test options option`,
+        );
 
         fireEvent.press(firstOption);
 
@@ -476,13 +506,19 @@ describe('Select with multi selection and searchable', () => {
 
         expect(listAgain.props.data.length).toBe(1);
 
-        const secondOption = getByA11yLabel(`Choose ${nextInputData} test options option`);
+        const secondOption = getByA11yLabel(
+            `Choose ${nextInputData} test options option`,
+        );
 
         fireEvent.press(secondOption);
 
-        const selectedFirstOption = getByA11yLabel(`${SEARCHABLE_DATA[1].label} selected`);
+        const selectedFirstOption = getByA11yLabel(
+            `${SEARCHABLE_DATA[1].label} selected`,
+        );
         expect(selectedFirstOption).toBeTruthy();
-        const selectedSecondOption = getByA11yLabel(`${SEARCHABLE_DATA[0].label} selected`);
+        const selectedSecondOption = getByA11yLabel(
+            `${SEARCHABLE_DATA[0].label} selected`,
+        );
         expect(selectedSecondOption).toBeTruthy();
     });
 });

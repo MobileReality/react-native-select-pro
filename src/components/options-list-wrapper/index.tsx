@@ -39,7 +39,8 @@ export const OptionsListWrapper = ({
     return animated ? (
         <Animated.View
             pointerEvents={isOpened ? 'auto' : 'none'}
-            style={[wrapperStyles, { opacity: fadeAnimation }]}>
+            style={[wrapperStyles, { opacity: fadeAnimation }]}
+        >
             {children}
         </Animated.View>
     ) : isOpened ? (

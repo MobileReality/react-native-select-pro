@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
 import type {
     FlatListProps,
     ImageSourcePropType,
@@ -19,7 +19,10 @@ export type OptionType = {
 
 export type OptionsType = OptionType[];
 
-export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option'> & {
+export type OptionComponentProps = Pick<
+    OptionProps,
+    'isSelected' | 'option'
+> & {
     onPressOption: OnChooseOption;
 };
 
@@ -172,7 +175,10 @@ export interface SelectProps {
      *
      *  @category Common
      */
-    flatListProps?: Omit<FlatListProps<OptionType>, 'data' | 'renderItem' | 'ListEmptyComponent'>;
+    flatListProps?: Omit<
+        FlatListProps<OptionType>,
+        'data' | 'renderItem' | 'ListEmptyComponent'
+    >;
     /**
      *  if `true` then multi option can be picked
      *

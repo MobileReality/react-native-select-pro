@@ -1,15 +1,20 @@
 import React, { ComponentPropsWithRef } from 'react';
-import { ScrollView, StyleSheet, useWindowDimensions, ViewStyle } from 'react-native';
-import type { OptionType, Select } from '@mobile-reality/react-native-select-pro';
+import {
+    ScrollView,
+    StyleSheet,
+    useWindowDimensions,
+    ViewStyle,
+} from 'react-native';
 import type {
     OnPressSelectControlType,
     OnSetPosition,
+    OptionType,
+    Select,
 } from '@mobile-reality/react-native-select-pro';
 
 import type { OptionalToRequired } from '../../helpers';
 import { parsePercentageToNumber } from '../../helpers/parsePercentageToNumber';
-import type { State } from '../../state/types';
-import type { DispatchType } from '../../state/types';
+import type { DispatchType, State } from '../../state/types';
 import { SelectInput } from '../select-input';
 
 import { MultiSelectedOption } from './components/selected-option';
@@ -67,7 +72,7 @@ export const MultiSelect = ({
                 <MultiSelectedOption
                     isPlaceholder={true}
                     option={null}
-                    optionWidth={'100%'}
+                    optionWidth="100%"
                     placeholderText={placeholderText}
                     placeholderTextColor={placeholderTextColor}
                     selectControlTextStyle={selectControlTextStyle}
@@ -78,8 +83,10 @@ export const MultiSelect = ({
         const optionWidth = () => {
             const WIDTH_THRESHOLD = 100;
             const WIDTH_OFFSET = 72;
-            const length = selectedOptionTyped.length;
-            const initialWidth = selectControlStyle ? (selectControlStyle as ViewStyle).width : 100;
+            const { length } = selectedOptionTyped;
+            const initialWidth = selectControlStyle
+                ? (selectControlStyle as ViewStyle).width
+                : 100;
             let calculatedWidth = 100;
             if (typeof initialWidth === 'number') {
                 calculatedWidth = (initialWidth - WIDTH_OFFSET) / length;
@@ -105,11 +112,11 @@ export const MultiSelect = ({
             return (
                 <MultiSelectedOption
                     key={index}
-                    onPressRemove={onPressRemove}
                     option={option}
                     optionWidth={optionWidth()}
                     placeholderText={placeholderText}
                     selectControlTextStyle={selectControlTextStyle}
+                    onPressRemove={onPressRemove}
                 />
             );
         });
@@ -123,7 +130,6 @@ export const MultiSelect = ({
                     dispatch={dispatch}
                     isOpened={isOpened}
                     multiSelection={multiSelection}
-                    onPressSelectControl={onPressSelectControl}
                     placeholderText={placeholderText}
                     placeholderTextColor={placeholderTextColor}
                     searchPattern={searchPattern}
@@ -131,6 +137,7 @@ export const MultiSelect = ({
                     selectControlTextStyle={selectControlTextStyle}
                     selectedOption={selectedOption}
                     setPosition={setPosition}
+                    onPressSelectControl={onPressSelectControl}
                 />
             )}
             {resolveSelectedOptions()}

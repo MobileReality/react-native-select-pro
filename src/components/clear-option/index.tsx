@@ -1,5 +1,11 @@
 import React, { ComponentProps } from 'react';
-import { Image, ImageStyle, Pressable, StyleSheet, ViewStyle } from 'react-native';
+import {
+    Image,
+    ImageStyle,
+    Pressable,
+    StyleSheet,
+    ViewStyle,
+} from 'react-native';
 
 import type { OptionalToRequired } from '../../helpers';
 import type { SelectControl } from '../select-control';
@@ -27,8 +33,10 @@ export const ClearOption = ({
 }: ClearOptionProps) => {
     return (
         <Pressable
-            accessibilityLabel={selectControlClearOptionA11yLabel || 'Clear a chosen option'}
-            accessibilityRole={'button'}
+            accessibilityLabel={
+                selectControlClearOptionA11yLabel || 'Clear a chosen option'
+            }
+            accessibilityRole="button"
             accessible={true}
             disabled={disabled}
             hitSlop={
@@ -36,8 +44,9 @@ export const ClearOption = ({
                     ? selectControlClearOptionButtonHitSlop
                     : { right: 3, left: 3 }
             }
+            style={[styles.xIconWrapper, selectControlClearOptionButtonStyle]}
             onPress={onPressRemove}
-            style={[styles.xIconWrapper, selectControlClearOptionButtonStyle]}>
+        >
             <Image
                 source={require('./../../assets/icons/x.png')}
                 style={[styles.xIcon, selectControlClearOptionImageStyle]}
