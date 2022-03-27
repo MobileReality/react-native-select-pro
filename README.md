@@ -82,14 +82,18 @@ const SomeComponent = () => {
   return (
     <View>
       <Select {/* One required prop: `options` */}
-        options={[{ value: 'somevalue', label: 'somelabel'}]} 
+        options={[{ value: 'somevalue', label: 'somelabel' }]} 
       />
     </View>
   )
 };
 ```
 
-If you want to use `Select` component inside `Modal` from `react-native` (or `react-native-modal`) you need to wrap code inside `Modal` in `SelectModalProvider`
+If you want to use `Select` component inside:
+* `Modal` from `react-native` / `react-native-modal`
+* `BottomSheet` from `react-native-bottom-sheet` 
+
+you need to wrap code inside `Modal` in `SelectModalProvider`
 
 ```jsx
 import React from 'react';
@@ -115,7 +119,7 @@ const SomeComponent = () => {
 ## Thanks
 * Used [react-native-portal](https://github.com/gorhom/react-native-portal), thanks to [@gorhom](https://github.com/gorhom) for great library 🎉
 * Built with [@react-native-community/bob](https://github.com/react-native-community/bob) 🚀
-* Docs built with [TypeDoc](https://typedoc.org/) 🙌
+* Docs built with [Docusaurus](https://docusaurus.io/) 🙌
 
 ## Contributing
 
