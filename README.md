@@ -93,7 +93,7 @@ If you want to use `Select` component inside:
 * `Modal` from `react-native` / `react-native-modal`
 * `BottomSheet` from `react-native-bottom-sheet` 
 
-you need to wrap code inside `Modal` in `SelectModalProvider`
+you need to wrap code inside `Modal` / `BottomSheet` in `SelectModalProvider`
 
 ```jsx
 import React from 'react';
