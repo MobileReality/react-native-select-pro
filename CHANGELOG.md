@@ -1,6 +1,4 @@
-## 0.0.1 (May 28, 2021)
+# Changelog
 
-### Documentation
-
-* Added LICENSE.md, CONTRIBUTING.md, CHANGELOG.md and README.md
+Check it out here: https://github.com/MobileReality/react-native-select-pro/releases
 

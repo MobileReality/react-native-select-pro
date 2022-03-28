@@ -8,7 +8,7 @@ export default function Home() {
     const { siteConfig } = useDocusaurusContext();
     return (
         <Layout
-            description="React Native select / dropdown customizable component"
+            description="React Native dropdown (select) component developed by Mobile Reality"
             title={`${siteConfig.title}`}>
             <HomepageHeader />
             <main>

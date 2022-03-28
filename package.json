@@ -36,8 +36,7 @@
     "pods": "cd example && pod-install --quiet",
     "expo-android": "cd example && yarn android",
     "expo-ios": "cd example && yarn ios",
-    "docs": "cd website && yarn start",
-    "typedoc": "typedoc"
+    "docs": "cd website && yarn start"
   },
   "keywords": [
     "react-native",
@@ -104,7 +103,6 @@
     "react-native-builder-bob": "^0.18.2",
     "react-test-renderer": "^17.0.2",
     "release-it": "^14.12.5",
-    "typedoc": "^0.22.13",
     "typescript": "^4.6.2"
   },
   "peerDependencies": {

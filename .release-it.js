@@ -16,7 +16,4 @@ module.exports = {
             ignoreRecommendedBump: true,
         },
     },
-    hooks: {
-        "after:bump": "yarn typedoc",
-    }
 };
