@@ -4,7 +4,11 @@ title: SelectModalProvider
 sidebar_label: SelectModalProvider
 ---
 
-If you want to use `Select` component inside `Modal` from `react-native` (or `react-native-modal`) you need to wrap code inside `Modal` in `SelectModalProvider`
+If you want to use `Select` component inside:
+* `Modal` from `react-native` / `react-native-modal`
+* `BottomSheet` from `react-native-bottom-sheet`
+
+you need to wrap code inside `Modal` / `BottomSheet` in `SelectModalProvider`
 
 ### children
 ```typescript jsx
@@ -20,7 +24,7 @@ import { Select, SelectModalProvider } from '@mobile-reality/react-native-select
 const SomeComponent = () => {
   return (
     <View>
-      <Modal> {/* `Modal` from `react-native` or `react-native-modal` */}
+      <Modal> {/* e.g. `Modal` from `react-native` */}
         <SelectModalProvider> {/* `SelectModalProvider` wrapping code inside `Modal` */}
           <Text>Modal</Text>
           <Select

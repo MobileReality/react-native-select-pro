@@ -4,7 +4,7 @@
 
 ---
 <p align="center">
-  React Native select / dropdown customizable component
+  React Native dropdown (select) component developed by Mobile Reality
 </p>
 
 ---
@@ -20,8 +20,10 @@
 * Customizable
 * Searchable
 * Animations
-* Android / iOS / Expo supported
-* TypeScript supported
+* Multi select
+* Android / iOS / Expo support
+* TypeScript support
+* Based on `react-native-portal`
 
 ## Example
 
@@ -103,7 +105,7 @@ import { Select, SelectModalProvider } from '@mobile-reality/react-native-select
 const SomeComponent = () => {
   return (
     <View>
-      <Modal> {/* `Modal` from `react-native` or `react-native-modal` */}
+      <Modal> {/* e.g. `Modal` from `react-native` */}
         <SelectModalProvider> {/* `SelectModalProvider` wrapping code inside `Modal` */}
           <Text>Modal</Text>
           <Select
