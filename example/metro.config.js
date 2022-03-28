@@ -17,9 +17,15 @@ module.exports = {
     // So we blacklist them at the root, and alias them to the versions in example's node_modules
     resolver: {
         blacklistRE: blacklist(
-            modules.map((m) => new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`)),
+            modules.map(
+                (m) =>
+                    new RegExp(
+                        `^${escape(path.join(root, 'node_modules', m))}\\/.*$`,
+                    ),
+            ),
         ),
 
+        // eslint-disable-next-line unicorn/no-array-reduce,unicorn/prefer-object-from-entries
         extraNodeModules: modules.reduce((acc, name) => {
             acc[name] = path.join(__dirname, 'node_modules', name);
             return acc;

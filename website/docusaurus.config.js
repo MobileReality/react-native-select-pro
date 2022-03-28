@@ -7,9 +7,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'React Native Select Pro',
-    url: process && process.env && process.env.URL ? process.env.URL : 'https://mobilereality.github.io/react-native-select-pro/',
-    baseUrl: process && process.env && process.env.BASE_URL
-        ? process.env.BASE_URL : '/react-native-select-pro/',
+    url:
+        process && process.env && process.env.URL
+            ? process.env.URL
+            : 'https://mobilereality.github.io/react-native-select-pro/',
+    baseUrl:
+        process && process.env && process.env.BASE_URL
+            ? process.env.BASE_URL
+            : '/react-native-select-pro/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
@@ -22,9 +27,13 @@ const config = {
             ({
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    editUrl: 'https://github.com/MobileReality/react-native-select-pro/website/',
+                    editUrl:
+                        'https://github.com/MobileReality/react-native-select-pro/website/',
                     remarkPlugins: [
-                        [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+                        [
+                            require('@docusaurus/remark-plugin-npm2yarn'),
+                            { sync: true },
+                        ],
                     ],
                 },
                 theme: {
@@ -34,9 +43,8 @@ const config = {
         ],
     ],
 
-
     themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+        /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             navbar: {
                 title: 'React Native Select Pro',
@@ -45,7 +53,11 @@ const config = {
                     src: 'img/logo.png',
                 },
                 items: [
-                    {to: '/docs/getting-started', label: 'Docs', position: 'left'},
+                    {
+                        to: '/docs/getting-started',
+                        label: 'Docs',
+                        position: 'left',
+                    },
                     {
                         href: 'https://github.com/MobileReality/react-native-select-pro',
                         label: 'GitHub',

@@ -49,7 +49,7 @@ const sidebars = {
                     label: 'Expo Snack',
                     href: 'https://snack.expo.dev/@irekrog/smelly-beef-jerky',
                 },
-                'examples/repo-clone'
+                'examples/repo-clone',
             ],
         },
     ],

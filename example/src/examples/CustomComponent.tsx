@@ -1,6 +1,9 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { OptionComponentProps, Select } from '@mobile-reality/react-native-select-pro';
+import {
+    OptionComponentProps,
+    Select,
+} from '@mobile-reality/react-native-select-pro';
 
 import { DATA } from '../App';
 import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';

@@ -74,7 +74,6 @@ type SelectControlProps = OptionalToRequired<
         }
 >;
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const arrowImage = require('./../../assets/icons/chevron-down.png');
 
 export const SelectControl = forwardRef<View, SelectControlProps>(

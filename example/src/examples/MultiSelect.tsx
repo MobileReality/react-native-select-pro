@@ -7,7 +7,11 @@ import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 export const MultiSelect = () => {
     return (
         <SafeAreaViewWrapper>
-            <Select multiSelection={true} options={DATA} selectControlStyle={{ width: 200 }} />
+            <Select
+                multiSelection={true}
+                options={DATA}
+                selectControlStyle={{ width: 200 }}
+            />
         </SafeAreaViewWrapper>
     );
 };

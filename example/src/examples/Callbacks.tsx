@@ -14,6 +14,8 @@ export const Callbacks = () => {
             <Text>isOpened: {isOpened.toString()}</Text>
             {selected && <Text>Selected item: {JSON.stringify(selected)}</Text>}
             <Select
+                options={DATA}
+                selectControlStyle={{ width: 250 }}
                 onDropdownClosed={() => {
                     setIsOpened(false);
                 }}
@@ -23,8 +25,6 @@ export const Callbacks = () => {
                 onSelect={(option) => {
                     setSelected(option);
                 }}
-                options={DATA}
-                selectControlStyle={{ width: 250 }}
             />
         </SafeAreaViewWrapper>
     );

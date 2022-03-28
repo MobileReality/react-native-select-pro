@@ -9,11 +9,15 @@ export const CustomStyles = () => {
         <SafeAreaViewWrapper style={{ margin: 20, marginTop: 500 }}>
             <Select
                 optionSelectedStyle={{ backgroundColor: 'lightgreen' }}
-                optionStyle={{ backgroundColor: 'lightcoral', borderBottomWidth: 1, height: 40 }}
+                optionStyle={{
+                    backgroundColor: 'lightcoral',
+                    borderBottomWidth: 1,
+                    height: 40,
+                }}
                 optionTextStyle={{ fontSize: 20 }}
                 options={DATA}
                 optionsListStyle={{ maxHeight: 150 }}
-                placeholderTextColor={'blue'}
+                placeholderTextColor="blue"
                 selectControlArrowImageStyle={{ tintColor: 'pink' }}
                 selectControlStyle={{
                     width: 250,

@@ -27,7 +27,7 @@
   "scripts": {
     "test": "jest",
     "tsc": "tsc --noEmit",
-    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint ./src ./example ./website --ext .js,.jsx,.ts,.tsx",
     "build": "bob build",
     "release": "release-it",
     "release:beta": "release-it --preRelease=beta --no-git.requireUpstream",

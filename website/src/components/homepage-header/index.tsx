@@ -8,8 +8,11 @@ export const HomepageHeader = () => {
         <header className={clsx(styles.backgroundLogo)}>
             <div className={styles.buttons}>
                 <Link
-                    className={clsx(`button button--secondary button--lg ${styles.link}`)}
-                    to="/docs/getting-started">
+                    className={clsx(
+                        `button button--secondary button--lg ${styles.link}`,
+                    )}
+                    to="/docs/getting-started"
+                >
                     DOCS
                 </Link>
             </div>
