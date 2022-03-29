@@ -10,6 +10,7 @@ import type {
 } from 'react-native';
 
 import type { OnChooseOption, OptionProps } from '../components/option';
+import type { State } from '../state/types';
 
 export type OptionTypeRequired = {
     label: string;
@@ -321,6 +322,10 @@ export interface SelectRef {
      * Close a dropdown
      */
     close: () => void;
+    /**
+     * Get current state of select
+     */
+    getState: () => State;
 }
 
 /**
