@@ -6,7 +6,7 @@ sidebar_label: Refs
 
 ## Example
 
-Open a drodpown with ref
+Open a dropdown with ref
 
 ```typescript jsx
 import React from 'react';
