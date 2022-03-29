@@ -98,12 +98,22 @@ export const Select = forwardRef(
             if (options.length > 0) {
                 dispatch({ type: Action.SetOptionsData, payload: options });
 
-                if (typeof defaultOption === 'object') {
+                const isValidPassDefaultOption =
+                    defaultOption &&
+                    // eslint-disable-next-line no-prototype-builtins
+                    defaultOption.hasOwnProperty('value') &&
+                    // eslint-disable-next-line no-prototype-builtins
+                    defaultOption.hasOwnProperty('label');
+
+                if (isValidPassDefaultOption) {
+                    const index = options.findIndex(
+                        (item) => item.value === defaultOption.value,
+                    );
                     dispatch({
                         type: Action.SelectOption,
                         payload: {
                             selectedOption: defaultOption,
-                            selectedOptionIndex: 10,
+                            selectedOptionIndex: index,
                         },
                     });
                 }
