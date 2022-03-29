@@ -164,7 +164,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         payload: options,
                     });
                     if (onSelect) {
-                        onSelect(null);
+                        onSelect(null, -1);
                     }
                 }
             }

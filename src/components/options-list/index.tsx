@@ -208,6 +208,7 @@ export const OptionsList = ({
                                     optionSelectedStyle={optionSelectedStyle}
                                     optionStyle={optionStyle}
                                     optionTextStyle={optionTextStyle}
+                                    optionIndex={index}
                                     onPressOption={onPressOption}
                                     onSelect={onSelect}
                                 />

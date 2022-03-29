@@ -41,9 +41,10 @@ export interface SelectProps {
      * Callback that is called when option is selected
      *
      * @param option Selected option
+     * @param optionIndex Selected option index
      * @category Common
      */
-    onSelect?: (option: OptionType | null) => void;
+    onSelect?: (option: OptionType | null, optionIndex: number) => void;
 
     /**
      * Callback that is called when dropdown is opened
