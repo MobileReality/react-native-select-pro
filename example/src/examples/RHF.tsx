@@ -10,16 +10,18 @@ export const RHF = () => {
     const { watch, control } = useForm();
     return (
         <SafeAreaViewWrapper>
-            <Text style={{ margin: 20 }}>Chosen: {watch()['select-name']?.label}</Text>
+            <Text style={{ margin: 20 }}>
+                Chosen: {watch()['select-name']?.label}
+            </Text>
             <Controller
                 control={control}
-                name={'select-name'}
+                name="select-name"
                 render={({ field }) => {
                     return (
                         <Select
-                            onSelect={field.onChange}
                             options={DATA}
                             selectControlStyle={{ width: 300 }}
+                            onSelect={field.onChange}
                         />
                     );
                 }}

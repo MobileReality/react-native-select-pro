@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Select, SelectModalProvider } from '@mobile-reality/react-native-select-pro';
+import {
+    Select,
+    SelectModalProvider,
+} from '@mobile-reality/react-native-select-pro';
 
 import { DATA } from '../App';
 import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
@@ -10,13 +13,18 @@ export const SearchableInModal = () => {
 
     return (
         <SafeAreaViewWrapper>
-            <Modal animationType="slide" transparent={true} visible={modalVisible}>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+            >
                 <SelectModalProvider>
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
                             <Pressable
+                                style={[styles.button, styles.buttonClose]}
                                 onPress={() => setModalVisible(!modalVisible)}
-                                style={[styles.button, styles.buttonClose]}>
+                            >
                                 <Text style={styles.textStyle}>Hide Modal</Text>
                             </Pressable>
                             <Select
@@ -30,8 +38,9 @@ export const SearchableInModal = () => {
             </Modal>
             <Text>Search sth...</Text>
             <Pressable
+                style={[styles.button, styles.buttonOpen]}
                 onPress={() => setModalVisible(true)}
-                style={[styles.button, styles.buttonOpen]}>
+            >
                 <Text style={styles.textStyle}>Show Modal</Text>
             </Pressable>
         </SafeAreaViewWrapper>

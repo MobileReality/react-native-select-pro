@@ -9,7 +9,8 @@ export default function Home() {
     return (
         <Layout
             description="React Native dropdown (select) component developed by Mobile Reality"
-            title={`${siteConfig.title}`}>
+            title={`${siteConfig.title}`}
+        >
             <HomepageHeader />
             <main>
                 <HomepageFeatures />

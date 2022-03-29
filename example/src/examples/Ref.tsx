@@ -22,9 +22,13 @@ export const Ref = () => {
 
     return (
         <SafeAreaViewWrapper>
-            <Select options={DATA} ref={ref} selectControlStyle={{ width: 300 }} />
-            <Button onPress={onPress} title={'Open'} />
-            <Button onPress={onClear} title={'Reset'} />
+            <Select
+                ref={ref}
+                options={DATA}
+                selectControlStyle={{ width: 300 }}
+            />
+            <Button title="Open" onPress={onPress} />
+            <Button title="Reset" onPress={onClear} />
         </SafeAreaViewWrapper>
     );
 };

@@ -20,7 +20,7 @@ export const CustomLeftIcon = () => {
                 customLeftIconSource={searchImage}
                 customLeftIconStyles={{ height: 25, width: 25 }}
                 options={DATA}
-                placeholderText={'Search...'}
+                placeholderText="Search..."
                 searchable={true}
                 selectControlStyle={{ width: 250, marginBottom: 20 }}
             />

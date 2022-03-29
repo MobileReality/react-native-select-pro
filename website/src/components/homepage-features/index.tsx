@@ -1,5 +1,8 @@
 import React from 'react';
-import { FeatureItem, SingleFeature } from '@site/src/components/single-feature';
+import {
+    FeatureItem,
+    SingleFeature,
+} from '@site/src/components/single-feature';
 
 import styles from './index.module.css';
 
