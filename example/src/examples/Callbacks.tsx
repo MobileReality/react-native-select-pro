@@ -8,11 +8,23 @@ import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 export const Callbacks = () => {
     const [isOpened, setIsOpened] = useState(false);
     const [selected, setSelected] = useState<OptionType | null>(null);
+    const [selectedItemIndex, setSelectedItemIndex] = useState<number>(-1);
 
     return (
         <SafeAreaViewWrapper>
-            <Text>isOpened: {isOpened.toString()}</Text>
-            {selected && <Text>Selected item: {JSON.stringify(selected)}</Text>}
+            <Text style={{ marginBottom: 20 }}>
+                isOpened: {isOpened.toString()}
+            </Text>
+            {selected && (
+                <>
+                    <Text style={{ marginBottom: 20 }}>
+                        Selected item: {JSON.stringify(selected, null, 4)}
+                    </Text>
+                    <Text style={{ marginBottom: 20 }}>
+                        Selected index: {selectedItemIndex}
+                    </Text>
+                </>
+            )}
             <Select
                 options={DATA}
                 selectControlStyle={{ width: 250 }}
@@ -22,8 +34,9 @@ export const Callbacks = () => {
                 onDropdownOpened={() => {
                     setIsOpened(true);
                 }}
-                onSelect={(option) => {
+                onSelect={(option, optionIndex) => {
                     setSelected(option);
+                    setSelectedItemIndex(optionIndex);
                 }}
             />
         </SafeAreaViewWrapper>

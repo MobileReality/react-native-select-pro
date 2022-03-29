@@ -18,6 +18,6 @@ Callback that is called when dropdown is opened
 
 ### onSelect()
 ```typescript jsx
-function onSelect(option: OptionType | null) => void;
+function onSelect(option: OptionType | null, optionIndex: number) => void;
 ```
 Callback that is called when option is selected

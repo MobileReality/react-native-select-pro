@@ -30,6 +30,7 @@ type FromSelectComponentProps = Pick<
 export type OptionProps = OptionalToRequired<FromSelectComponentProps> & {
     isSelected: boolean;
     option: OptionType;
+    optionIndex: number;
 };
 
 export type OnChooseOption = () => void;
@@ -45,6 +46,7 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
             option,
             onSelect,
             OptionComponent,
+            optionIndex,
         },
         ref,
     ) => {
@@ -53,7 +55,7 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
         const onChooseOption: OnChooseOption = () => {
             onPressOption(option);
             if (onSelect) {
-                onSelect(option);
+                onSelect(option, optionIndex);
             }
         };
 
