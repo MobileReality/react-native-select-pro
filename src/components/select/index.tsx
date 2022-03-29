@@ -106,14 +106,14 @@ export const Select = forwardRef(
                     defaultOption.hasOwnProperty('label');
 
                 if (isValidPassDefaultOption) {
-                    const index = options.findIndex(
-                        (item) => item.value === defaultOption.value,
+                    const foundIndex = options.findIndex(
+                        ({ value }) => value === defaultOption.value,
                     );
                     dispatch({
                         type: Action.SelectOption,
                         payload: {
                             selectedOption: defaultOption,
-                            selectedOptionIndex: index,
+                            selectedOptionIndex: foundIndex,
                         },
                     });
                 }
@@ -196,9 +196,7 @@ export const Select = forwardRef(
 
                 const sOptionIndex = optionsData
                     .map((item, index) => {
-                        if (
-                            sOption.some((item2) => item2.value === item.value)
-                        ) {
+                        if (sOption.some(({ value }) => value === item.value)) {
                             return index;
                         }
                         return undefined;
