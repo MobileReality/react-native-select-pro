@@ -89,7 +89,11 @@ export const SelectInput = ({
     };
 
     const resolvePlaceholder = () => {
-        if (multiSelection && selectedOption && selectedOption.length > 0) {
+        if (
+            multiSelection &&
+            Array.isArray(selectedOption) &&
+            selectedOption.length > 0
+        ) {
             return '  ';
         }
         return placeholderText;

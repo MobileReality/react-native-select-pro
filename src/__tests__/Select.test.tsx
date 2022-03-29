@@ -468,7 +468,7 @@ describe('Select with multi selection and searchable', () => {
     });
 
     it('should, while multiSelection and searchable enabled, click and open options', () => {
-        const { getByA11yLabel } = render(
+        const { getByA11yLabel, getByPlaceholderText } = render(
             <SelectProvider>
                 <Select
                     multiSelection={true}
@@ -520,5 +520,8 @@ describe('Select with multi selection and searchable', () => {
             `${SEARCHABLE_DATA[0].label} selected`,
         );
         expect(selectedSecondOption).toBeTruthy();
+
+        const currentPlaceholderText = getByPlaceholderText('');
+        expect(currentPlaceholderText).toBeTruthy();
     });
 });
