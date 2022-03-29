@@ -151,13 +151,13 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         removedSelectedOptions = null;
                     }
 
-                    const found2 = options.findIndex(
-                        (item) => item.value === option?.value,
+                    const foundIndex = options.findIndex(
+                        ({ value }) => value === option?.value,
                     );
 
                     const resolveSelectedOptionIndex = (
                         selectedOptionIndex as number[]
-                    ).filter((item) => item !== found2);
+                    ).filter((item) => item !== foundIndex);
 
                     dispatch({
                         type: Action.SelectOption,
