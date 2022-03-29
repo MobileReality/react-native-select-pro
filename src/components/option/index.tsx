@@ -53,7 +53,7 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
         const { label } = option;
 
         const onChooseOption: OnChooseOption = () => {
-            onPressOption(option);
+            onPressOption(option, optionIndex);
             if (onSelect) {
                 onSelect(option, optionIndex);
             }

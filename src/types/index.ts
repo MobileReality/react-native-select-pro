@@ -326,7 +326,10 @@ export interface SelectRef {
 /**
  * @ignore
  */
-export type OnPressOptionType = (option: OptionType) => void;
+export type OnPressOptionType = (
+    option: OptionType,
+    optionIndex: number,
+) => void;
 /**
  * @ignore
  */

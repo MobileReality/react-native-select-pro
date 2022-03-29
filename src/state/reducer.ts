@@ -3,6 +3,7 @@ import { Action, ActionType, State } from './types';
 export const initialData: State = {
     isOpened: false,
     selectedOption: null,
+    selectedOptionIndex: -1,
     searchValue: '',
     searchedOptions: [],
     searchInputRef: null,
@@ -30,7 +31,8 @@ export const reducer = (state: State, action: ActionType): State => {
         case Action.SelectOption:
             return {
                 ...state,
-                selectedOption: action.payload,
+                selectedOption: action.payload.selectedOption,
+                selectedOptionIndex: action.payload.selectedOptionIndex,
             };
         case Action.SetOptionsData:
             return {

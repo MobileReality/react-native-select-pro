@@ -72,18 +72,17 @@ export const Select = forwardRef(
             NoOptionsComponent,
             OptionComponent,
         } = props;
-        const [
-            {
-                isOpened,
-                selectedOption,
-                optionsData,
-                openedPosition,
-                searchValue,
-                searchedOptions,
-                searchInputRef,
-            },
-            dispatch,
-        ] = useReducer(reducer, initialData);
+        const [state, dispatch] = useReducer(reducer, initialData);
+        const {
+            isOpened,
+            selectedOption,
+            optionsData,
+            openedPosition,
+            searchValue,
+            searchedOptions,
+            searchInputRef,
+            selectedOptionIndex,
+        } = state;
         const { aboveSelectControl } = openedPosition;
         const selectedOptionTyped = selectedOption as OptionType;
 
@@ -102,7 +101,10 @@ export const Select = forwardRef(
                 if (typeof defaultOption === 'object') {
                     dispatch({
                         type: Action.SelectOption,
-                        payload: defaultOption,
+                        payload: {
+                            selectedOption: defaultOption,
+                            selectedOptionIndex: 10,
+                        },
                     });
                 }
             }
@@ -110,7 +112,10 @@ export const Select = forwardRef(
 
         useImperativeHandle(ref, () => ({
             clear: () => {
-                dispatch({ type: Action.SelectOption, payload: null });
+                dispatch({
+                    type: Action.SelectOption,
+                    payload: { selectedOption: null, selectedOptionIndex: -1 },
+                });
                 dispatch({ type: Action.SetOptionsData, payload: options });
             },
             open: () => {
@@ -126,6 +131,9 @@ export const Select = forwardRef(
                     type: Action.Close,
                 });
             },
+            currentState: () => {
+                return state;
+            },
         }));
 
         const hideKeyboardIfNeeded = () => {
@@ -138,15 +146,22 @@ export const Select = forwardRef(
             }
         };
 
-        const onPressOption: OnPressOptionType = (option: OptionType) => {
+        const onPressOption: OnPressOptionType = (
+            option: OptionType,
+            optionIndex: number,
+        ) => {
             if (closeDropdownOnSelect) {
                 dispatch({ type: Action.Close });
             }
 
             const resolveOption = () => {
                 if (!multiSelection) {
-                    return option;
+                    return {
+                        selectedOption: option,
+                        selectedOptionIndex: optionIndex,
+                    };
                 }
+
                 const selectedOptionAsArray = selectedOption as
                     | OptionType[]
                     | null;
@@ -156,15 +171,47 @@ export const Select = forwardRef(
                         (selectedOption: OptionType) =>
                             selectedOption.value === option.value,
                     );
+
                 if (foundSelectedOption) {
-                    return selectedOptionAsArray;
+                    return {
+                        selectedOption: selectedOptionAsArray,
+                        selectedOptionIndex:
+                            typeof selectedOptionIndex === 'number'
+                                ? selectedOptionIndex
+                                : [...selectedOptionIndex],
+                    };
                 }
-                return selectedOptionAsArray
+
+                const sOption = selectedOptionAsArray
                     ? selectedOptionAsArray.concat(option)
                     : [option];
+
+                const sOptionIndex = optionsData
+                    .map((item, index) => {
+                        if (
+                            sOption.some((item2) => item2.value === item.value)
+                        ) {
+                            return index;
+                        }
+                        return undefined;
+                    })
+                    .filter((item) => item !== undefined) as number[];
+
+                return {
+                    selectedOption: sOption,
+                    selectedOptionIndex:
+                        sOptionIndex.length > 0 ? [...sOptionIndex] : -1,
+                };
             };
 
-            dispatch({ type: Action.SelectOption, payload: resolveOption() });
+            dispatch({
+                type: Action.SelectOption,
+                payload: {
+                    selectedOption: resolveOption().selectedOption,
+                    selectedOptionIndex: resolveOption().selectedOptionIndex,
+                },
+            });
+
             if (searchable) {
                 if (multiSelection) {
                     dispatch({ type: Action.SetSearchValue, payload: '' });
@@ -300,6 +347,7 @@ export const Select = forwardRef(
                     selectControlStyle={selectControlStyle}
                     selectControlTextStyle={selectControlTextStyle}
                     selectedOption={selectedOption}
+                    selectedOptionIndex={selectedOptionIndex}
                     setPosition={setPosition}
                     onPressSelectControl={onPressSelectControl}
                     onSelect={onSelect}
