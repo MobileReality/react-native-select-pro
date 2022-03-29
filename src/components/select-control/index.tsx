@@ -67,7 +67,13 @@ type SelectControlProps = OptionalToRequired<
     {
         onPressSelectControl: OnPressSelectControlType;
     } & FromSelectComponentProps &
-        Pick<State, 'isOpened' | 'selectedOption' | 'searchValue'> & {
+        Pick<
+            State,
+            | 'isOpened'
+            | 'selectedOption'
+            | 'searchValue'
+            | 'selectedOptionIndex'
+        > & {
             dispatch: DispatchType;
         } & Pick<Position, 'aboveSelectControl'> & {
             setPosition: OnSetPosition;
@@ -110,6 +116,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             aboveSelectControl,
             customLeftIconSource,
             customLeftIconStyles,
+            selectedOptionIndex,
         },
         ref,
     ) => {
@@ -144,14 +151,31 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         removedSelectedOptions = null;
                     }
 
+                    const foundIndex = options.findIndex(
+                        ({ value }) => value === option?.value,
+                    );
+
+                    const resolveSelectedOptionIndex = (
+                        selectedOptionIndex as number[]
+                    ).filter((item) => item !== foundIndex);
+
                     dispatch({
                         type: Action.SelectOption,
-                        payload: removedSelectedOptions,
+                        payload: {
+                            selectedOption: removedSelectedOptions,
+                            selectedOptionIndex:
+                                resolveSelectedOptionIndex?.length > 0
+                                    ? resolveSelectedOptionIndex
+                                    : -1,
+                        },
                     });
                 } else {
                     dispatch({
                         type: Action.SelectOption,
-                        payload: null,
+                        payload: {
+                            selectedOption: null,
+                            selectedOptionIndex: -1,
+                        },
                     });
                     if (searchable) {
                         dispatch({
