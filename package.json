@@ -1,7 +1,7 @@
 {
   "name": "@mobile-reality/react-native-select-pro",
   "version": "1.7.0",
-  "description": "React Native select / dropdown customizable component",
+  "description": "React Native dropdown (select) component developed by Mobile Reality",
   "engines": {
     "node": ">=12"
   },
@@ -12,31 +12,20 @@
   "source": "src/index",
   "files": [
     "src",
-    "lib",
-    "android",
-    "ios",
-    "cpp",
-    "react-native-select-pro.podspec",
-    "!lib/typescript/example",
-    "!android/build",
-    "!ios/build",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__"
+    "lib"
   ],
   "scripts": {
-    "test": "jest",
-    "tsc": "tsc --noEmit",
-    "lint": "eslint ./src ./example ./website --ext .js,.jsx,.ts,.tsx",
     "build": "bob build",
     "release": "release-it",
     "release:beta": "release-it --preRelease=beta --no-git.requireUpstream",
-    "bootstrap": "yarn example && yarn && yarn pods",
-    "example": "yarn --cwd example",
-    "pods": "cd example && pod-install --quiet",
-    "expo-android": "cd example && yarn android",
-    "expo-ios": "cd example && yarn ios",
-    "docs": "cd website && yarn start"
+    "tsc": "tsc --noEmit",
+    "lint": "eslint ./src ./example ./website --ext .js,.jsx,.ts,.tsx",
+    "test": "jest",
+    "expo-start": "yarn --cwd example start",
+    "expo-android": "yarn --cwd example android",
+    "expo-ios": "yarn --cwd example ios",
+    "docs": "yarn --cwd website start",
+    "bootstrap": "yarn --cwd example"
   },
   "keywords": [
     "react-native",
@@ -49,11 +38,15 @@
     "menu",
     "react-native-component"
   ],
-  "repository": "https://github.com/MobileReality/react-native-select-pro",
-  "author": "MobileReality <biuro@mobilereality.pl> (https://mobilereality.pl)",
+  "repository": {
+    "type": "git",
+    "directory": "https://github.com/MobileReality/react-native-select-pro.git"
+  },
+  "author": "Mobile Reality <biuro@mobilereality.pl> (https://mobilereality.pl)",
   "contributors": [
     {
       "name": "@irekrog",
+      "email": "irekfrontend@gmail.com",
       "url": "https://github.com/irekrog"
     },
     {
