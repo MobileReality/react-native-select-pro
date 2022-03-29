@@ -7,6 +7,7 @@ import { Basic } from './examples/Basic';
 import { Callbacks } from './examples/Callbacks';
 import { CustomComponent } from './examples/CustomComponent';
 import { CustomLeftIcon } from './examples/CustomLeftIcon';
+import { CustomOptionsData } from './examples/CustomOptionsData';
 import { CustomStyles } from './examples/CustomStyles';
 import { ModalExample } from './examples/ModalExample';
 import { MultiSelect } from './examples/MultiSelect';
@@ -129,6 +130,11 @@ const data = [
                 name: 'Multi Select with searchable',
                 slug: 'multiSelectionWithSearchable',
                 getScreen: () => MultiSelectWithSearchable,
+            },
+            {
+                name: 'Custom Options Data',
+                slug: 'customOptionsData',
+                getScreen: () => CustomOptionsData,
             },
         ],
     },

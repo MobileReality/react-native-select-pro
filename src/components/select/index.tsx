@@ -1,6 +1,7 @@
 import React, {
     ForwardedRef,
     forwardRef,
+    RefObject,
     useEffect,
     useImperativeHandle,
     useReducer,
@@ -9,6 +10,7 @@ import React, {
 import {
     I18nManager,
     StyleSheet,
+    TextInput,
     useWindowDimensions,
     View,
     ViewStyle,
@@ -128,8 +130,11 @@ export const Select = forwardRef(
 
         const hideKeyboardIfNeeded = () => {
             // TODO: Better condition handling, however, typo error appears in every combination
-            if (searchInputRef && (searchInputRef as any).current) {
-                (searchInputRef as any).current.blur();
+            if (
+                searchInputRef &&
+                (searchInputRef as RefObject<TextInput>).current
+            ) {
+                (searchInputRef as RefObject<TextInput>)?.current?.blur();
             }
         };
 

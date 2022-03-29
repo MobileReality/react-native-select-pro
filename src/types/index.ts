@@ -11,11 +11,12 @@ import type {
 
 import type { OnChooseOption, OptionProps } from '../components/option';
 
-export type OptionType = {
+export type OptionTypeRequired = {
     label: string;
     value: string;
-    [key: string]: any;
 };
+
+export type OptionType<T = unknown> = OptionTypeRequired & T;
 
 export type OptionsType = OptionType[];
 
