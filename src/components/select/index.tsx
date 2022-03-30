@@ -141,7 +141,7 @@ export const Select = forwardRef(
                     type: Action.Close,
                 });
             },
-            currentState: () => state,
+            getState: () => state,
         }));
 
         const hideKeyboardIfNeeded = () => {

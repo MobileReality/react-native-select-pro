@@ -31,6 +31,7 @@ const sidebars = {
                         'api/required',
                         'api/common',
                         'api/callbacks',
+                        'api/refs',
                         'api/styles',
                         'api/components',
                         'api/accessibility',
