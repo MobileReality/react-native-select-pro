@@ -13,7 +13,7 @@ import type {
 } from '@mobile-reality/react-native-select-pro';
 
 import { COLORS, FONT_SIZE } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers';
+import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import { Action, DispatchType, State } from '../../state/types';
 
 type SelectInputProps = OptionalToRequired<

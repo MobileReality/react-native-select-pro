@@ -7,7 +7,7 @@ import {
     ViewStyle,
 } from 'react-native';
 
-import type { OptionalToRequired } from '../../helpers';
+import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import type { SelectControl } from '../select-control';
 
 type FromSelectControlProps = Pick<

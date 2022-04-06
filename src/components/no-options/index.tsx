@@ -2,7 +2,7 @@ import React, { ComponentProps } from 'react';
 import { StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native';
 
 import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers';
+import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import type { OptionsList } from '../options-list';
 
 type FromParentProps = Pick<
