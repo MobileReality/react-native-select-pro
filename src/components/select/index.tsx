@@ -251,7 +251,7 @@ export const Select = forwardRef(
                         const optionHeightFromProp =
                             StyleSheet.flatten(optionStyle)?.height;
 
-                        const s = getSize({
+                        const optionHeight = getSize({
                             size: optionHeightFromProp,
                             sizeType: 'height',
                             sizeFallback: ITEM_HEIGHT,
@@ -266,8 +266,8 @@ export const Select = forwardRef(
                         });
 
                         const finalHeight =
-                            listHeight >= optionsData.length * s
-                                ? optionsData.length * s
+                            listHeight >= optionsData.length * optionHeight
+                                ? optionsData.length * optionHeight
                                 : listHeight;
 
                         const isOverflow =
