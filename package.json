@@ -1,6 +1,6 @@
 {
   "name": "@mobile-reality/react-native-select-pro",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "React Native dropdown (select) component developed by Mobile Reality",
   "engines": {
     "node": ">=12"
