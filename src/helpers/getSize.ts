@@ -14,7 +14,7 @@ export const getSize = ({ size, sizeType, screenSize, sizeFallback }: Size) => {
     }
 
     if (typeof size === 'number') {
-        return size || sizeFallback;
+        return size ?? sizeFallback;
     }
 
     if (typeof size === 'string') {
