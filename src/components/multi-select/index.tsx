@@ -12,8 +12,8 @@ import type {
     Select,
 } from '@mobile-reality/react-native-select-pro';
 
-import type { OptionalToRequired } from '../../helpers';
-import { parsePercentageToNumber } from '../../helpers/parsePercentageToNumber';
+import { parsePercentageToNumber } from '../../helpers';
+import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import type { DispatchType, State } from '../../state/types';
 import { SelectInput } from '../select-input';
 

@@ -26,8 +26,8 @@ import {
     PADDING,
     SHAPE,
 } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers';
-import { isAndroid } from '../../helpers/isAndroid';
+import { isAndroid } from '../../helpers';
+import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import type { OptionType, Select } from '../../index';
 import { Action, DispatchType, Position, State } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition } from '../../types';

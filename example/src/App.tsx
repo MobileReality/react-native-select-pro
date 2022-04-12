@@ -151,7 +151,7 @@ export default function App() {
                 data={data}
                 description="Choose an example"
                 name="React Native Select Pro"
-                version="1.6.0"
+                version="1.8.1"
             />
         </SelectProvider>
     );

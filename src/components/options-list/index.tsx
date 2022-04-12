@@ -18,7 +18,7 @@ import {
     MAX_HEIGHT_LIST,
     SHAPE,
 } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers';
+import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import type { Position, State } from '../../state/types';
 import type {
     OnOutsidePress,

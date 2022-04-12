@@ -1,7 +1,7 @@
 import React, { ComponentProps, ReactNode, useEffect, useRef } from 'react';
 import { Animated, StyleProp, View, ViewStyle } from 'react-native';
 
-import type { OptionalToRequired } from '../../helpers';
+import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import type { OptionsList } from '../options-list';
 
 type FromOptionListProps = Pick<
