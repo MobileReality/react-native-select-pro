@@ -21,6 +21,7 @@
     "tsc": "tsc --noEmit",
     "lint": "eslint ./src ./example ./website --ext .js,.jsx,.ts,.tsx",
     "test": "jest",
+    "test:update": "jest __tests__ -u",
     "expo-start": "yarn --cwd example start",
     "expo-android": "yarn --cwd example android",
     "expo-ios": "yarn --cwd example ios",

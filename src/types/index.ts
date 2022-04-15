@@ -230,14 +230,6 @@ export interface SelectProps {
      */
     selectControlOpenDropdownA11yLabel?: string;
 
-    /**
-     * selectControlCloseDropdownA11yLabel
-     *
-     * @category Accessibility
-     * @default "Close a dropdown"
-     */
-    selectControlCloseDropdownA11yLabel?: string;
-
     //---STYLES---//
     /**
      *  Style of arrow image
