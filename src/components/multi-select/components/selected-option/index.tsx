@@ -22,13 +22,17 @@ type Props = {
 
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
-    'selectControlTextStyle' | 'placeholderText' | 'placeholderTextColor'
+    | 'selectControlTextStyle'
+    | 'placeholderText'
+    | 'placeholderTextColor'
+    | 'multiSelectionOptionStyle'
 >;
 
 export const MultiSelectedOption = ({
     isPlaceholder = false,
     option,
     selectControlTextStyle,
+    multiSelectionOptionStyle,
     placeholderText,
     placeholderTextColor,
     optionWidth,
@@ -45,6 +49,7 @@ export const MultiSelectedOption = ({
                 isPlaceholder
                     ? styles.placeholderText
                     : styles.multiSelectionOption,
+                multiSelectionOptionStyle,
                 { width: optionWidth },
             ]}
             onPress={() =>
@@ -60,7 +65,7 @@ export const MultiSelectedOption = ({
                         color: option?.label
                             ? StyleSheet.flatten(selectControlTextStyle)
                                   ?.color || COLORS.BLACK
-                            : placeholderTextColor || COLORS.GRAY,
+                            : placeholderTextColor,
                     },
                 ]}
             >
