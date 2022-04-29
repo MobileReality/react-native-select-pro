@@ -16,7 +16,12 @@ import {
     ViewStyle,
 } from 'react-native';
 
-import { ANIMATION_DURATION, MAX_HEIGHT_LIST } from '../../constants/styles';
+import {
+    ANIMATION_DURATION,
+    ITEM_HEIGHT,
+    MAX_HEIGHT_LIST,
+} from '../../constants/styles';
+import { getSize } from '../../helpers';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
 import type {
@@ -240,25 +245,41 @@ export const Select = forwardRef(
             if (containerRef.current) {
                 containerRef.current.measure(
                     (_x, _y, width, height, pageX, pageY) => {
-                        const fromProp =
+                        const listHeightFromProp =
                             StyleSheet.flatten(optionsListStyle)?.maxHeight;
-                        let listHeight = MAX_HEIGHT_LIST;
-                        // TODO string values like percents
-                        // make use of utility function in helpers
-                        if (typeof fromProp === 'number') {
-                            listHeight = StyleSheet.flatten(optionsListStyle)
-                                .maxHeight as number;
-                        }
+
+                        const optionHeightFromProp =
+                            StyleSheet.flatten(optionStyle)?.height;
+
+                        const optionHeight = getSize({
+                            size: optionHeightFromProp,
+                            sizeType: 'height',
+                            sizeFallback: ITEM_HEIGHT,
+                            screenSize: windowDimensions.height,
+                        });
+
+                        const listHeight = getSize({
+                            size: listHeightFromProp,
+                            sizeType: 'height',
+                            sizeFallback: MAX_HEIGHT_LIST,
+                            screenSize: windowDimensions.height,
+                        });
+
+                        const finalHeight =
+                            listHeight >= optionsData.length * optionHeight
+                                ? optionsData.length * optionHeight
+                                : listHeight;
 
                         const isOverflow =
-                            pageY + height + listHeight >
+                            pageY + height + finalHeight >
                             windowDimensions.height;
+
                         dispatch({
                             type: Action.SetPosition,
                             payload: {
                                 width,
                                 top: isOverflow
-                                    ? pageY - listHeight
+                                    ? pageY - finalHeight
                                     : pageY + height,
                                 left: I18nManager.isRTL
                                     ? windowDimensions.width - width - pageX

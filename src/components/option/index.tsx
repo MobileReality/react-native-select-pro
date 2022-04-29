@@ -13,7 +13,7 @@ import {
     ITEM_HEIGHT,
     PADDING,
 } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers';
+import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import type { OptionType } from '../../index';
 import type { OptionsList } from '../options-list';
 
