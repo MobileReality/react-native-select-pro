@@ -93,3 +93,9 @@ Style of selected single option
 optionsListStyle?: StyleProp<ViewStyle>;
 ```
 Style of options list
+
+### multiSelectionOptionStyle
+```typescript jsx
+multiSelectionOptionStyle?: StyleProp<ViewStyle>;
+```
+Custom multiselection option styles
