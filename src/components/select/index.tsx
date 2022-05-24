@@ -18,6 +18,7 @@ import {
 
 import {
     ANIMATION_DURATION,
+    COLORS,
     ITEM_HEIGHT,
     MAX_HEIGHT_LIST,
 } from '../../constants/styles';
@@ -38,44 +39,58 @@ import { SelectControl } from '../select-control';
 export const Select = forwardRef(
     (props: SelectProps, ref: ForwardedRef<SelectRef>) => {
         const {
+            // Required
             options,
-            clearable = true,
-            closeDropdownOnSelect = true,
-            defaultOption,
-            disabled = false,
-            flatListProps,
-            multiSelection = false,
-            hideSelectControlArrow,
-            animated = false,
-            animationDuration = ANIMATION_DURATION,
-            noOptionsText = 'No options',
+            // Callbacks
             onSelect,
             onDropdownOpened,
             onDropdownClosed,
-            optionSelectedStyle,
-            optionStyle,
-            optionTextStyle,
+            // Texts
+            noOptionsText = 'No options',
             placeholderText = 'Select...',
-            placeholderTextColor,
+            // Animations
+            animated = false,
+            animationDuration = ANIMATION_DURATION,
+            // Behaviour
+            clearable = true,
+            closeDropdownOnSelect = true,
+            disabled = false,
+            scrollToSelectedOption = true,
+            hideSelectControlArrow = false,
+            // Additional features
+            defaultOption,
+            flatListProps,
+            // Search
             searchable = false,
             searchPattern = (payload: string) => `(${payload})`,
-            scrollToSelectedOption = true,
+            // Multiselect
+            multiSelection = false,
+            // Custom components
+            NoOptionsComponent,
+            OptionComponent,
+            // Custom sources
+            customLeftIconSource,
+            // Colors
+            placeholderTextColor = COLORS.GRAY,
+            // Accessibility
+            selectControlClearOptionA11yLabel,
+            selectControlOpenDropdownA11yLabel,
+            // Styles
+            optionStyle,
+            optionsListStyle,
+            optionTextStyle,
+            optionSelectedStyle,
             selectContainerStyle,
             selectControlArrowImageStyle,
             selectControlButtonsContainerStyle,
             selectControlClearOptionButtonStyle,
             selectControlClearOptionImageStyle,
             selectControlClearOptionButtonHitSlop,
-            selectControlClearOptionA11yLabel,
-            selectControlOpenDropdownA11yLabel,
             selectControlDisabledStyle,
             selectControlStyle,
             selectControlTextStyle,
-            optionsListStyle,
-            customLeftIconSource,
             customLeftIconStyles,
-            NoOptionsComponent,
-            OptionComponent,
+            multiSelectionOptionStyle,
         } = props;
         const [state, dispatch] = useReducer(reducer, initialData);
         const {
@@ -345,6 +360,7 @@ export const Select = forwardRef(
                     hideSelectControlArrow={hideSelectControlArrow}
                     isOpened={isOpened}
                     multiSelection={multiSelection}
+                    multiSelectionOptionStyle={multiSelectionOptionStyle}
                     options={options}
                     placeholderText={placeholderText}
                     placeholderTextColor={placeholderTextColor}

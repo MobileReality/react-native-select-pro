@@ -28,6 +28,7 @@ type FromSelectComponentProps = Pick<
     | 'searchPattern'
     | 'searchable'
     | 'multiSelection'
+    | 'multiSelectionOptionStyle'
     | 'placeholderTextColor'
 >;
 
@@ -59,6 +60,7 @@ export const MultiSelect = ({
     searchValue,
     setPosition,
     multiSelection,
+    multiSelectionOptionStyle,
 }: Props) => {
     const { width } = useWindowDimensions();
     const selectedOptionTyped = selectedOption as OptionType[];
@@ -116,6 +118,7 @@ export const MultiSelect = ({
                     optionWidth={optionWidth()}
                     placeholderText={placeholderText}
                     selectControlTextStyle={selectControlTextStyle}
+                    multiSelectionOptionStyle={multiSelectionOptionStyle}
                     onPressRemove={onPressRemove}
                 />
             );

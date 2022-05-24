@@ -32,41 +32,205 @@ export type OptionComponentProps = Pick<
  * `<Select />` component props
  */
 export interface SelectProps {
+    //---REQUIRED---//
     /**
      *  Options to show on the list
      *
      *  @category Required
      */
     options: OptionsType;
+
+    //---CALLBACKS---//
     /**
      * Callback that is called when option is selected
      *
      * @param option Selected option
      * @param optionIndex Selected option index
-     * @category Common
+     * @category Callback
      */
     onSelect?: (option: OptionType | null, optionIndex: number) => void;
 
     /**
      * Callback that is called when dropdown is opened
      *
-     * @category Common
+     * @category Callback
      */
     onDropdownOpened?: () => void;
 
     /**
      * Callback that is called when dropdown is closed
      *
-     * @category Common
+     * @category Callback
      */
     onDropdownClosed?: () => void;
 
+    //---TEXTS---//
+    /**
+     * No options text
+     *
+     * @category Text
+     * @default "No options"
+     */
+    noOptionsText?: string;
+
+    /**
+     * Placeholder text
+     *
+     * @category Text
+     * @default "Select..."
+     */
+    placeholderText?: string;
+
+    //---ANIMATIONS---//
+    /**
+     *  If `true` toggling the select is animated
+     *
+     *  @category Animations
+     *  @default false
+     */
+    animated?: boolean;
+
+    /**
+     *  Animation duration in ms
+     *
+     *  @category Animations
+     *  @default 200
+     */
+    animationDuration?: number;
+
+    //---BEHAVIOURS---//
+    /**
+     *  If `true` enables a clear button to remove selected option
+     *
+     *  @category Behaviour
+     *  @default true
+     */
+    clearable?: boolean;
+
+    /**
+     * If `true` close a dropdown after selected option
+     *
+     * @category Behaviour
+     * @default true
+     */
+    closeDropdownOnSelect?: boolean;
+
+    /**
+     *  If `true` disable a select control
+     *
+     *  @category Behaviour
+     *  @default true
+     */
+    disabled?: boolean;
+
+    /**
+     * If `true` options list is scrolled to the selected option
+     *
+     * @category Behaviour
+     * @default true
+     */
+    scrollToSelectedOption?: boolean;
+
+    /**
+     *  If `true` hide select control arrow
+     *
+     *  @category Behaviour
+     *  @default false
+     */
+    hideSelectControlArrow?: boolean;
+
+    //---ADDITIONAL-FEATURES---//
     /**
      *  Set a default option
-     *  @category Common
+     *  @category Additional Features
      */
     defaultOption?: OptionType;
 
+    /**
+     *  `FlatListProps` imported from `react-native`
+     *
+     *  @category Additional Features
+     */
+    flatListProps?: Omit<
+        FlatListProps<OptionType>,
+        'data' | 'renderItem' | 'ListEmptyComponent'
+    >;
+
+    //---SEARCH---//
+    /**
+     *  If `true` let user search in a select options by typing in select
+     *
+     *  @default false
+     *  @category Search
+     */
+    searchable?: boolean;
+    /**
+     *  Regex definition for searching options
+     *
+     *  @default (payload: string) => `(${payload})`
+     *  @category Search
+     */
+    searchPattern?: (payload: string) => string;
+
+    //---MULTISELECT---//
+    /**
+     *  if `true` then multi option can be picked
+     *
+     *  @category Multiselect
+     *  @default false
+     */
+    multiSelection?: boolean;
+
+    //---CUSTOM-COMPONENT---//
+    /**
+     * NoOptionsComponent
+     *
+     * @category Custom Component
+     */
+    NoOptionsComponent?: JSX.Element;
+    /**
+     * OptionComponent
+     *
+     * @param props OptionComponentProps
+     * @category Custom Component
+     */
+    OptionComponent?: (props: OptionComponentProps) => JSX.Element;
+
+    //---CUSTOM-SOURCES---//
+    /**
+     *  Custom left icon source
+     *
+     *  @category Custom Sources
+     */
+    customLeftIconSource?: ImageSourcePropType;
+
+    //---COLORS---//
+    /**
+     * Placeholder text color
+     *
+     * @category Colors
+     * @default "Select..."
+     */
+    placeholderTextColor?: string;
+
+    //---ACCESSIBILITY---//
+    /**
+     * selectControlClearOptionA11yLabel
+     *
+     * @category Accessibility
+     * @default "Clear a chosen option"
+     */
+    selectControlClearOptionA11yLabel?: string;
+
+    /**
+     * selectControlOpenDropdownA11yLabel
+     *
+     * @category Accessibility
+     * @default "Open a dropdown"
+     */
+    selectControlOpenDropdownA11yLabel?: string;
+
+    //---STYLES---//
     /**
      *  Style of arrow image
      *
@@ -138,172 +302,39 @@ export interface SelectProps {
     optionsListStyle?: StyleProp<ViewStyle>;
 
     /**
-     *  If `true` hide select control arrow
-     *
-     *  @default false
-     *  @category Common
-     */
-    hideSelectControlArrow?: boolean;
-
-    /**
-     *  If `true` enables a clear button to remove selected option
-     *
-     *  @default true
-     *  @category Common
-     */
-    clearable?: boolean;
-    /**
-     *  If `true` disable a select control
-     *
-     *  @default true
-     *  @category Common
-     */
-    disabled?: boolean;
-    /**
-     *  If `true` let user search in a select options by typing in select
-     *
-     *  @default false
-     *  @category Common
-     */
-    searchable?: boolean;
-    /**
-     *  Regex definition for searching options
-     *
-     *  @default (payload: string) => `(${payload})`
-     *  @category Common
-     */
-    searchPattern?: (payload: string) => string;
-    /**
-     *  `FlatListProps` imported from `react-native`
-     *
-     *  @category Common
-     */
-    flatListProps?: Omit<
-        FlatListProps<OptionType>,
-        'data' | 'renderItem' | 'ListEmptyComponent'
-    >;
-    /**
-     *  if `true` then multi option can be picked
-     *
-     *  @category Common
-     *  @default false
-     */
-    multiSelection?: boolean;
-    /**
-     * If `true` close a dropdown after selected option
-     *
-     * @category Common
-     * @default true
-     */
-    closeDropdownOnSelect?: boolean;
-    /**
-     * Placeholder text
-     *
-     * @category Common
-     * @default "Select..."
-     */
-    placeholderText?: string;
-    /**
-     * Placeholder text
-     *
-     * @category Common
-     * @default "Select..."
-     */
-    placeholderTextColor?: string;
-    /**
-     * If `true` options list is scrolled to the selected option
-     *
-     * @category Common
-     * @default true
-     */
-    scrollToSelectedOption?: boolean;
-    /**
-     * No options text
-     *
-     * @category Common
-     * @default "No options"
-     */
-    noOptionsText?: string;
-    /**
      * Style of single option
      *
      * @category Styles
      */
     optionStyle?: StyleProp<ViewStyle>;
+
     /**
      * Style of single option text
      *
      * @category Styles
      */
     optionTextStyle?: StyleProp<TextStyle>;
+
     /**
      * Style of selected single option
      *
      * @category Styles
      */
     optionSelectedStyle?: StyleProp<ViewStyle>;
-    /**
-     * selectControlClearOptionA11yLabel
-     *
-     * @category Accessibility
-     * @default "Clear a chosen option"
-     */
-    selectControlClearOptionA11yLabel?: string;
-    /**
-     * selectControlOpenDropdownA11yLabel
-     *
-     * @category Accessibility
-     * @default "Open a dropdown"
-     */
-    selectControlOpenDropdownA11yLabel?: string;
-    /**
-     * selectControlCloseDropdownA11yLabel
-     *
-     * @category Accessibility
-     * @default "Close a dropdown"
-     */
-    selectControlCloseDropdownA11yLabel?: string;
 
-    /**
-     * NoOptionsComponent
-     *
-     * @category Custom Component
-     */
-    NoOptionsComponent?: JSX.Element;
-
-    /**
-     * OptionComponent
-     *
-     * @param props OptionComponentProps
-     * @category Custom Component
-     */
-    OptionComponent?: (props: OptionComponentProps) => JSX.Element;
-    /**
-     *  If `true` toggling the select is animated
-     *
-     *  @category Styles
-     *  @default false
-     */
-    animated?: boolean;
-    /**
-     *  Animation duration in ms
-     *
-     *  @category Styles
-     *  @default 200
-     */
-    animationDuration?: number;
-    /**
-     *  Custom left icon source
-     *
-     *  @category Styles
-     */
-    customLeftIconSource?: ImageSourcePropType;
     /**
      *  Custom left icon styles
      *
      *  @category Styles
      */
     customLeftIconStyles?: StyleProp<ImageStyle>;
+
+    /**
+     *  Custom multiselection option style
+     *
+     *  @category Styles
+     */
+    multiSelectionOptionStyle?: StyleProp<ViewStyle>;
 }
 
 /**
