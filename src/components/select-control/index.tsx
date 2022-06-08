@@ -61,6 +61,7 @@ type FromSelectComponentProps = Pick<
     | 'selectControlClearOptionImageStyle'
     | 'customLeftIconSource'
     | 'customLeftIconStyles'
+    | 'multiSelectionOptionStyle'
 >;
 
 type SelectControlProps = OptionalToRequired<
@@ -110,6 +111,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             selectControlClearOptionA11yLabel,
             selectControlOpenDropdownA11yLabel,
             selectControlButtonsContainerStyle,
+            multiSelectionOptionStyle,
             hideSelectControlArrow,
             onSelect,
             selectControlTextStyle,
@@ -263,6 +265,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     searchable={searchable}
                     selectControlStyle={selectControlStyle}
                     selectControlTextStyle={selectControlTextStyle}
+                    multiSelectionOptionStyle={multiSelectionOptionStyle}
                     selectedOption={selectedOption as OptionType[]}
                     setPosition={setPosition}
                     onPressRemove={onPressRemove}
@@ -301,7 +304,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                             color: selectedOptionTyped?.label
                                 ? StyleSheet.flatten(selectControlTextStyle)
                                       ?.color || COLORS.BLACK
-                                : placeholderTextColor || COLORS.GRAY,
+                                : placeholderTextColor,
                         },
                     ]}
                 >

@@ -529,6 +529,7 @@ exports[`Select with multi selection should generate Select with multi selection
                     "display": "flex",
                     "justifyContent": "center",
                   },
+                  undefined,
                   Object {
                     "width": "100%",
                   },

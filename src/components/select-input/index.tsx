@@ -105,7 +105,7 @@ export const SelectInput = ({
             accessibilityLabel="Place text"
             editable={!disabled}
             placeholder={resolvePlaceholder()}
-            placeholderTextColor={placeholderTextColor || COLORS.GRAY}
+            placeholderTextColor={placeholderTextColor}
             style={
                 disabled
                     ? [
