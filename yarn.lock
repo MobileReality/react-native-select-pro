@@ -19497,15 +19497,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pod-install@npm:^0.1.33":
-  version: 0.1.37
-  resolution: "pod-install@npm:0.1.37"
-  bin:
-    pod-install: build/index.js
-  checksum: 104462863162500abd436f23bccb21bc7ca7a194b6abf06df80415d79f9184c66b7e54e09ab3a80a61ff4f7740f60dc16eced0f36100b9362ac3d064ea3cf765
-  languageName: node
-  linkType: hard
-
 "portfinder@npm:^1.0.26":
   version: 1.0.28
   resolution: "portfinder@npm:1.0.28"
@@ -21239,7 +21230,6 @@ __metadata:
     husky: ^8.0.1
     jest: ^28.1.2
     lint-staged: ^13.0.3
-    pod-install: ^0.1.33
     prettier: ^2.6.2
     react: 17.0.2
     react-native: 0.68.2

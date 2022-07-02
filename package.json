@@ -38,7 +38,6 @@
     "husky": "^8.0.1",
     "jest": "^28.1.2",
     "lint-staged": "^13.0.3",
-    "pod-install": "^0.1.33",
     "prettier": "^2.6.2",
     "react": "17.0.2",
     "react-native": "0.68.2",
@@ -49,7 +48,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "bash -c tsc",
+      "bash -c tsc --noEmit",
       "eslint --fix"
     ]
   },

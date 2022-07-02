@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, ScrollView, Text } from 'react-native';
+import { Button, ScrollView, Text, View } from 'react-native';
 import { Select, SelectRef } from '@mobile-reality/react-native-select-pro';
 
 import { DATA } from '../App';
@@ -29,15 +29,24 @@ export const Ref = () => {
 
     return (
         <SafeAreaViewWrapper>
-            <Select
-                ref={ref}
-                options={DATA}
-                selectControlStyle={{ width: 300 }}
-            />
-            <Button title="Open" onPress={onPress} />
-            <Button title="Reset" onPress={onClear} />
-            <Button title="Get current Select state" onPress={onGetState} />
-            <ScrollView>
+            <View
+                style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
+                <Button title="Open" onPress={onPress} />
+                <Button title="Reset" onPress={onClear} />
+                <Button title="Get current Select state" onPress={onGetState} />
+                <Select
+                    ref={ref}
+                    options={DATA}
+                    selectControlStyle={{ width: 300 }}
+                />
+            </View>
+
+            <ScrollView style={{ flex: 1 }}>
                 <Text style={{ marginTop: 20 }}>
                     State: {JSON.stringify(currentState, null, 4)}
                 </Text>
