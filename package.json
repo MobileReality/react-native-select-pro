@@ -48,7 +48,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "bash -c tsc --noEmit",
+      "bash -c 'yarn tsc'",
       "eslint --fix"
     ]
   },
