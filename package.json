@@ -27,7 +27,7 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.0",
     "@mobile-reality/eslint-config": "^0.3.0",
-    "@release-it/conventional-changelog": "^5.0.0",
+    "@release-it/conventional-changelog": "^4.3.0",
     "@testing-library/jest-native": "^4.0.5",
     "@testing-library/react-native": "^10.1.1",
     "@types/jest": "^28.1.4",
