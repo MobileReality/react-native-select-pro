@@ -1,0 +1,748 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select should generate Select snapshot 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "position": "relative",
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "height": 40,
+          },
+          Object {},
+          undefined,
+          Object {},
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            Object {
+              "paddingRight": 55,
+            },
+          ]
+        }
+      >
+        <Text
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontSize": 12,
+                "textAlign": "left",
+              },
+              undefined,
+              Object {
+                "color": "#808080",
+              },
+            ]
+          }
+        >
+          Select...
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 8,
+              "top": 0,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "height": 25,
+                "width": 25,
+                "zIndex": -1,
+              },
+              Object {
+                "transform": Array [
+                  Object {
+                    "rotate": "0deg",
+                  },
+                ],
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Select with custom left icon should generate Select with custom left icon snapshot 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "position": "relative",
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "height": 40,
+          },
+          Object {},
+          undefined,
+          Object {},
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "paddingLeft": 8,
+            },
+            Object {
+              "height": "100%",
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
+            }
+          }
+          style={
+            Object {
+              "height": 15,
+              "width": 15,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            Object {
+              "paddingRight": 55,
+            },
+          ]
+        }
+      >
+        <Text
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontSize": 12,
+                "textAlign": "left",
+              },
+              undefined,
+              Object {
+                "color": "#808080",
+              },
+            ]
+          }
+        >
+          Select...
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 8,
+              "top": 0,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "height": 25,
+                "width": 25,
+                "zIndex": -1,
+              },
+              Object {
+                "transform": Array [
+                  Object {
+                    "rotate": "0deg",
+                  },
+                ],
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Select with multi selection and searchable should generate Select with multi selection and searchable enabled snapshot 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "position": "relative",
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "height": 40,
+          },
+          Object {},
+          undefined,
+          Object {},
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            Object {
+              "paddingRight": 40,
+            },
+          ]
+        }
+      >
+        <RCTScrollView
+          horizontal={true}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <View>
+            <TextInput
+              accessibilityLabel="Place text"
+              editable={true}
+              onChangeText={[Function]}
+              onPressIn={[Function]}
+              placeholder="Select..."
+              placeholderTextColor="#808080"
+              style={
+                Array [
+                  Object {
+                    "fontSize": 12,
+                  },
+                  undefined,
+                ]
+              }
+              textAlign="left"
+              value=""
+            />
+          </View>
+        </RCTScrollView>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 8,
+              "top": 0,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          accessibilityLabel="Arrow for opening dropdown"
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "height": 25,
+                  "width": 25,
+                  "zIndex": -1,
+                },
+                Object {
+                  "transform": Array [
+                    Object {
+                      "rotate": "0deg",
+                    },
+                  ],
+                },
+                undefined,
+              ]
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Select with multi selection should generate Select with multi selection enabled snapshot 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "position": "relative",
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "height": 40,
+          },
+          Object {},
+          undefined,
+          Object {},
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            Object {
+              "paddingRight": 40,
+            },
+          ]
+        }
+      >
+        <RCTScrollView
+          horizontal={true}
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <View>
+            <View
+              accessibilityLabel="Placeholder in multi-select"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "flex-start",
+                    "display": "flex",
+                    "justifyContent": "center",
+                  },
+                  undefined,
+                  Object {
+                    "width": "100%",
+                  },
+                ]
+              }
+            >
+              <Text
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 12,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                    Object {
+                      "color": "#808080",
+                    },
+                  ]
+                }
+              >
+                Select...
+              </Text>
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 8,
+              "top": 0,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          accessibilityLabel="Arrow for opening dropdown"
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "height": 25,
+                  "width": 25,
+                  "zIndex": -1,
+                },
+                Object {
+                  "transform": Array [
+                    Object {
+                      "rotate": "0deg",
+                    },
+                  ],
+                },
+                undefined,
+              ]
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Select with searchable enabled should generate Select with searchable enabled snapshot 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "position": "relative",
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "height": 40,
+          },
+          Object {},
+          undefined,
+          Object {},
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            Object {
+              "paddingRight": 55,
+            },
+          ]
+        }
+      >
+        <TextInput
+          accessibilityLabel="Place text"
+          editable={true}
+          onChangeText={[Function]}
+          onPressIn={[Function]}
+          placeholder="Select..."
+          placeholderTextColor="#808080"
+          style={
+            Array [
+              Object {
+                "fontSize": 12,
+              },
+              undefined,
+            ]
+          }
+          textAlign="left"
+          value=""
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 8,
+              "top": 0,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "height": 25,
+                "width": 25,
+                "zIndex": -1,
+              },
+              Object {
+                "transform": Array [
+                  Object {
+                    "rotate": "0deg",
+                  },
+                ],
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;

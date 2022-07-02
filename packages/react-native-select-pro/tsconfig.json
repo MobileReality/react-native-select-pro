@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@mobile-reality/react-native-select-pro": [
-        "./packages/react-native-select-pro/src/index.ts"
-      ]
-    },
+    "baseUrl": "./",
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "esModuleInterop": true,
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["esnext"],
+    "lib": [
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": false,
@@ -27,5 +24,7 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["packages/website"]
+  "exclude": [
+    "website"
+  ],
 }

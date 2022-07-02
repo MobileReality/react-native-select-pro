@@ -1,6 +1,6 @@
 module.exports = {
-    source: 'src',
-    output: 'lib',
+    source: 'packages/react-native-select-pro/src',
+    output: 'packages/react-native-select-pro/lib',
     targets: [
         'commonjs',
         'module',
