@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "release": "release-it",
-    "release-beta": "release-it --preRelease=beta --no-git.requireUpstream"
+    "release-beta": "release-it --verbose --preRelease=beta --no-git.requireUpstream"
   },
   "keywords": [
     "react-native",
