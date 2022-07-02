@@ -20,9 +20,8 @@
     "test": "jest --forceExit",
     "test-update": "jest -u",
     "build": "bob build",
-    "publish": "yarn workspace @mobile-reality/react-native-select-pro release",
-    "publish-beta": "yarn workspace @mobile-reality/react-native-select-pro release-beta",
-    "publish-beta-test": "release-it -VV --preRelease=beta --no-git.requireUpstream",
+    "publish": "release-it",
+    "publish-beta": "release-it -VV --preRelease=beta --no-git.requireUpstream",
     "postinstall": "husky install"
   },
   "devDependencies": {
