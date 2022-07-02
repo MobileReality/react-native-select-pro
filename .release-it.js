@@ -11,7 +11,7 @@ module.exports = {
     plugins: {
         "release-it-yarn-workspaces": {
             workspaces: [
-                "packages/react-native-select-pro/*",
+                "packages/react-native-select-pro",
             ]
         },
         '@release-it/conventional-changelog': {
