@@ -20,7 +20,7 @@
     "test": "jest --forceExit",
     "test-update": "jest -u",
     "build": "bob build",
-    "publish": "release-it",
+    "publish": "release-it -VV",
     "publish-beta": "release-it -VV --preRelease=beta --no-git.requireUpstream",
     "postinstall": "husky install"
   },
