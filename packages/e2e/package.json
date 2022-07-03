@@ -17,16 +17,22 @@
   "dependencies": {
     "@gorhom/portal": "^1.0.14",
     "@mobile-reality/react-native-select-pro": "workspace:*",
-    "@monorepo/expo": "workspace:*",
-    "react": "17.0.2",
-    "react-native": "0.68.2"
+    "@monorepo/expo": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "~7.18.6",
     "@babel/runtime": "^7.18.6",
     "babel-plugin-module-resolver": "^4.1.0",
     "detox": "^19.5.7",
-    "metro-react-native-babel-preset": "^0.68.0"
+    "jest": "^27.5.1",
+    "metro-react-native-babel-preset": "^0.68.0",
+    "react": "17.0.2",
+    "react-native": "0.68.2",
+    "react-native-monorepo-tools": "^1.2.0"
+  },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-native": "0.68.2"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"

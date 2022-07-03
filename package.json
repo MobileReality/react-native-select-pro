@@ -12,8 +12,8 @@
     "dev-start": "yarn workspace @monorepo/expo start",
     "dev-ios": "yarn workspace @monorepo/expo ios",
     "dev-android": "yarn workspace @monorepo/expo android",
-    "e2e-ios-build": "yarn workspace @monorepo/e2e detox-ios-run",
-    "e2e-android-build": "yarn workspace @monorepo/e2e detox-android-run",
+    "e2e-ios-run": "yarn workspace @monorepo/e2e detox-ios-run",
+    "e2e-android-run": "yarn workspace @monorepo/e2e detox-android-run",
     "docs": "yarn --cwd website start",
     "tsc": "tsc --noEmit",
     "lint": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
@@ -45,6 +45,7 @@
     "react-test-renderer": "^17.0.2",
     "release-it": "^14.14.3",
     "release-it-yarn-workspaces": "^2.0.1",
+    "ts-jest": "^28.0.5",
     "typescript": "^4.7.4"
   },
   "lint-staged": {

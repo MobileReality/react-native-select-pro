@@ -3,7 +3,7 @@
     "exclude": [
         "packages/expo",
         "packages/e2e",
-        "packages/website",
+        "website",
         "packages/react-native-select-pro/src/__tests__"
     ]
 }
