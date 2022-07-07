@@ -2,8 +2,8 @@ module.exports = {
     preset: 'react-native',
     setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
     modulePathIgnorePatterns: [
-        '<rootDir>/packages/expo/node_modules',
-        '<rootDir>/packages/e2e/node_modules',
+        '<rootDir>/apps/expo/node_modules',
+        '<rootDir>/apps/e2e/node_modules',
     ],
     moduleFileExtensions: ['ts', 'tsx', 'js'],
     transform: {

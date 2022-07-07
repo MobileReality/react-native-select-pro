@@ -3,26 +3,30 @@
   "version": "1.10.0-beta.0",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "engines": {
     "node": ">=16.15.1"
   },
   "scripts": {
-    "dev-start": "yarn workspace @monorepo/expo start",
-    "dev-ios": "yarn workspace @monorepo/expo ios",
-    "dev-android": "yarn workspace @monorepo/expo android",
+    "dev-ios": "turbo run dev-ios",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test-e2e-ios-build": "turbo run detox-ios-build",
+    "test-e2e-ios-test": "turbo run detox-ios-test",
+    "dev-android": "turbo run dev-android",
     "e2e-ios-run": "yarn workspace @monorepo/e2e detox-ios-run",
     "e2e-android-run": "yarn workspace @monorepo/e2e detox-android-run",
     "docs": "yarn --cwd website start",
     "tsc": "tsc --noEmit",
-    "lint": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
-    "test": "jest --forceExit",
     "test-update": "jest -u",
-    "build": "bob build",
     "publish": "release-it -VV",
     "publish-beta": "release-it -VV --preRelease=beta --no-git.requireUpstream",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "dev": "turbo run dev --parallel --continue"
+
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.0",
@@ -37,15 +41,15 @@
     "eslint": "^8.19.0",
     "husky": "^8.0.1",
     "jest": "^28.1.2",
+    "ts-jest": "^28.0.5",
     "lint-staged": "^13.0.3",
     "prettier": "^2.6.2",
     "react": "17.0.2",
     "react-native": "0.68.2",
-    "react-native-builder-bob": "^0.18.2",
     "react-test-renderer": "^17.0.2",
     "release-it": "^14.14.3",
     "release-it-yarn-workspaces": "^2.0.1",
-    "ts-jest": "^28.0.5",
+    "turbo": "^1.3.1",
     "typescript": "^4.7.4"
   },
   "lint-staged": {
@@ -53,6 +57,5 @@
       "bash -c 'yarn tsc'",
       "eslint --fix"
     ]
-  },
-  "packageManager": "yarn@3.2.1"
+  }
 }

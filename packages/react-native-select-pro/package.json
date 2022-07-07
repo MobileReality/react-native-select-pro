@@ -2,9 +2,9 @@
   "name": "@mobile-reality/react-native-select-pro",
   "version": "1.10.0-beta.0",
   "description": "React Native dropdown (select) component developed by Mobile Reality",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
+  "main": "dist/commonjs/index",
+  "module": "dist/module/index",
+  "types": "dist/typescript/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
@@ -12,8 +12,11 @@
     "lib"
   ],
   "scripts": {
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx",
+    "test": "jest --runInBand --detectOpenHandles --forceExit --config ../../jest.config.js",
     "release": "release-it",
-    "release-beta": "release-it -VV --preRelease=beta --no-git.requireUpstream"
+    "release-beta": "release-it -VV --preRelease=beta --no-git.requireUpstream",
+    "build": "bob build"
   },
   "keywords": [
     "react-native",
@@ -58,6 +61,10 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
+  },
+  "devDependencies": {
+    "react-native-builder-bob": "^0.18.2",
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "@gorhom/portal": "1.0.14"

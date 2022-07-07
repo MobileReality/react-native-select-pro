@@ -5,14 +5,14 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['packages/expo/src/**/*.tsx'],
+            files: ['apps/expo/src/**/*.tsx'],
             rules: {
                 'react-native/no-inline-styles': 'off',
                 'react-native/no-color-literals': 'off',
             },
         },
         {
-            files: ['packages/e2e/e2e/*.**'],
+            files: ['apps/e2e/e2e/*.**'],
             globals: {
                 by: true,
                 element: true,
