@@ -16,12 +16,11 @@
     "build": "turbo run build",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "test-e2e-ios-build": "turbo run detox-ios-build",
-    "test-e2e-ios-run": "turbo run detox-ios-test",
+    "e2e": "turbo run test-e2e-ios",
     "tsc": "turbo run tsc",
     "docs": "yarn --cwd website start",
     "postinstall": "husky install",
-    "rm-node-modules": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\;"
+    "clean": "turbo run clean && rm -Rf node_modules"
   },
   "devDependencies": {
     "@changesets/cli": "^2.23.1",

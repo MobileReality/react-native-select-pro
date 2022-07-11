@@ -8,7 +8,8 @@
     "dev-start": "expo start --clear",
     "dev-ios": "expo start --clear --ios",
     "dev-android": "expo start --clear --android",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "clean": "rm -Rf .turbo && rm -Rf node_modules"
   },
   "dependencies": {
     "@gorhom/portal": "1.0.14",
