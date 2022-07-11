@@ -70,7 +70,7 @@ export const Select = forwardRef(
             OptionComponent,
             // Custom sources
             customLeftIconSource,
-            // Colors
+            // Theme
             placeholderTextColor = COLORS.GRAY,
             // Accessibility
             selectControlClearOptionA11yLabel,

@@ -47,7 +47,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "bash -c 'yarn tsc'",
+      "bash -c 'pnpm tsc'",
       "eslint --fix"
     ]
   }
