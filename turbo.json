@@ -1,21 +1,30 @@
 {
   "pipeline": {
     "build": {
-      "outputs": ["dist/**"],
-      "dependsOn": ["^build"]
+      "outputs": [
+        "dist/**"
+      ],
+      "dependsOn": [
+        "^build"
+      ]
     },
     "dev-ios": {
       "cache": false
     },
+    "dev-android": {
+      "cache": false
+    },
     "test": {
-      "outputs": [],
-      "inputs": ["src/**/*.tsx", "src/**/*.ts"]
+      "inputs": [
+        "src/**/*.tsx",
+        "src/**/*.ts"
+      ]
     },
     "detox-ios-build": {
-      "outputs": []
     },
     "detox-ios-test": {
-      "outputs": []
+    },
+    "tsc": {
     },
     "lint": {
       "outputs": []

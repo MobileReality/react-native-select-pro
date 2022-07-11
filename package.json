@@ -7,7 +7,8 @@
     "apps/*"
   ],
   "engines": {
-    "node": ">=16.15.1"
+    "node": ">=16.15.1",
+    "pnpm": ">=7"
   },
   "scripts": {
     "dev-ios": "turbo run dev-ios",
@@ -16,11 +17,11 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test-e2e-ios-build": "turbo run detox-ios-build",
-    "test-e2e-ios-test": "turbo run detox-ios-test",
+    "test-e2e-ios-run": "turbo run detox-ios-test",
+    "tsc": "turbo run tsc",
     "docs": "yarn --cwd website start",
-    "tsc": "tsc --noEmit",
-    "postinstall": "husky install"
-
+    "postinstall": "husky install",
+    "rm-node-modules": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\;"
   },
   "devDependencies": {
     "@changesets/cli": "^2.23.1",

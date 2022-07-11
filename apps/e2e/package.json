@@ -12,7 +12,8 @@
     "detox-ios-run": "yarn detox-ios-build && yarn detox-ios-test",
     "detox-android-build": "detox build -c android.emu.release",
     "detox-android-test": "detox test -c android.emu.release",
-    "detox-android-run": "yarn detox-android-build && yarn detox-android-test"
+    "detox-android-run": "yarn detox-android-build && yarn detox-android-test",
+    "tsc": "tsc --noEmit"
   },
   "dependencies": {
     "@gorhom/portal": "^1.0.14",

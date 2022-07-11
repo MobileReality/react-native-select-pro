@@ -4,6 +4,6 @@
     "packages/expo",
     "packages/e2e",
     "website",
-    "packages/react-native-select-pro/src/__tests__"
+    "src/__tests__"
   ]
 }

@@ -7,7 +7,8 @@
   "scripts": {
     "dev-start": "expo start --clear",
     "dev-ios": "expo start --clear --ios",
-    "dev-android": "expo start --clear --android"
+    "dev-android": "expo start --clear --android",
+    "tsc": "tsc --noEmit"
   },
   "dependencies": {
     "@gorhom/portal": "1.0.14",
