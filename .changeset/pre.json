@@ -7,6 +7,7 @@
     "@mobile-reality/react-native-select-pro": "1.9.0"
   },
   "changesets": [
-    "clever-cows-march"
+    "clever-cows-march",
+    "tidy-moons-dance"
   ]
 }
