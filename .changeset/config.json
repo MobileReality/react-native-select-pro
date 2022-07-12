@@ -3,5 +3,10 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "access": "public",
-  "baseBranch": "master"
+  "baseBranch": "master",
+  "ignore": [
+    "@monorepo/expo",
+    "@monorepo/e2e",
+    "react-native-select-pro-project"
+  ]
 }

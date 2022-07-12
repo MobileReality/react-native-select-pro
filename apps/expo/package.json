@@ -1,7 +1,7 @@
 {
   "name": "@monorepo/expo",
   "description": "Example app for @mobile-reality/react-native-select-pro",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "private": true,
   "main": "index",
   "scripts": {

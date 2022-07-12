@@ -13,4 +13,3 @@
     * expo - expo app to development
 * `pnpm` instead `yarn`
 * `changesets` instead `release-it`
-s
