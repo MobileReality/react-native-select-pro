@@ -1,0 +1,10 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@monorepo/e2e": "0.0.0",
+    "@monorepo/expo": "0.0.0",
+    "@mobile-reality/react-native-select-pro": "1.9.0"
+  },
+  "changesets": []
+}
