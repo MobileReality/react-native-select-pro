@@ -35,12 +35,12 @@
 https://user-images.githubusercontent.com/11172548/142592143-fc4ffcc5-2d8f-49ff-aa58-0ae5f9dd46bf.mp4
 
 ### Repo
-Clone this repo and next:
+Clone this repo https://github.com/MobileReality/react-native-select-pro and next:
 ```sh
-cd example
-yarn install
-yarn android #run example app for Android
-yarn ios #run example app for iOS
+cd apps/expo
+yarn dev-start
+yarn dev-ios #run example app for iOS
+yarn dev-android #run example app for Android
 ```
 
 ## Documentation
