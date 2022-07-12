@@ -1,5 +1,30 @@
 # @mobile-reality/react-native-select-pro
 
+## 1.10.0
+
+### Minor Changes
+
+-   55eaa05: \* update dependencies by @irekrog
+
+    ### Breaking Changes during development
+
+    -   This repository is now a monorepo using `pnpm workspaces` and `turborepo`, divided on:
+        -   src/packages/
+            -   react-native-select-pro - main package published on npm
+        -   src/apps/
+            -   e2e - e2e testing
+            -   expo - expo app to development
+    -   `pnpm` instead `yarn`
+    -   `changesets` instead `release-it`
+
+-   7398480: chore: new version
+
+### Patch Changes
+
+-   1045d1b: fix: build dist files by @irekrog
+-   196bb3c: fix readme
+-   64e0e64: chore: update readme
+
 ## 1.10.0-next.2
 
 ### Patch Changes
