@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 1.10.0-next.2
+
+### Patch Changes
+
+-   1045d1b: fix: build dist files by @irekrog
+
 ## 1.10.0-next.1
 
 ### Patch Changes
