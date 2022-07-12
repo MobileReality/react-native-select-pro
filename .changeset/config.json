@@ -6,7 +6,6 @@
   "baseBranch": "master",
   "ignore": [
     "@monorepo/expo",
-    "@monorepo/e2e",
-    "react-native-select-pro-project"
+    "@monorepo/e2e"
   ]
 }
