@@ -9,7 +9,7 @@
   "source": "src/index",
   "files": [
     "src",
-    "lib"
+    "dist"
   ],
   "scripts": {
     "build": "bob build",
