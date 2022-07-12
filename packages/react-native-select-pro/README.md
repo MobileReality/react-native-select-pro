@@ -34,7 +34,7 @@
 
 ### Video preview
 
-https://user-images.githubusercontent.com/11172548/142592143-fc4ffcc5-2d8f-49ff-aa58-0ae5f9dd46bf.mp4
+https://user-images.githubusercontent.com/11172548/178573663-1059862d-20c4-4d44-86e3-8438de630475.mp4
 
 ### Repo
 
