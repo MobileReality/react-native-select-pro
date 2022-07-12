@@ -50,3 +50,6 @@ jobs:
 
       - name: Run test process
         run: pnpm test
+
+      - name: Run build process
+        run: pnpm build
