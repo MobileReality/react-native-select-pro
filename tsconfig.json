@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@mobile-reality/react-native-select-pro": ["./src/index"]
+      "@mobile-reality/react-native-select-pro": [
+        "./packages/react-native-select-pro/src/index.ts"
+      ]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
@@ -23,7 +25,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext",
+    "target": "esnext"
   },
   "exclude": ["website"]
 }

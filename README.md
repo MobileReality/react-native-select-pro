@@ -8,7 +8,7 @@
 </p>
 
 ---
-  
+
 [![Version](https://img.shields.io/npm/v/@mobile-reality/react-native-select-pro?style=for-the-badge)](https://www.npmjs.com/package/@mobile-reality/react-native-select-pro)
 [![GitHub stars](https://img.shields.io/github/stars/MobileReality/react-native-select-pro?style=for-the-badge)](https://github.com/MobileReality/react-native-select-pro/stargazers)
 [![npm total downloads](https://img.shields.io/npm/dt/@mobile-reality/react-native-select-pro?style=for-the-badge)](https://www.npmjs.com/package/@mobile-reality/react-native-select-pro)
@@ -93,7 +93,7 @@ const SomeComponent = () => {
 
 If you want to use `Select` component inside:
 * `Modal` from `react-native` / `react-native-modal`
-* `BottomSheet` from `react-native-bottom-sheet` 
+* `BottomSheet` from `react-native-bottom-sheet`
 
 you need to wrap code inside `Modal` / `BottomSheet` in `SelectModalProvider`
 
@@ -130,3 +130,7 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 ## License
 
 [MIT](LICENSE.md)
+
+## Want more from Mobile Reality?
+
+Contact with us https://mobilereality.pl/en

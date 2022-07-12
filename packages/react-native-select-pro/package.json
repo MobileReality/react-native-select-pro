@@ -1,0 +1,75 @@
+{
+  "name": "@mobile-reality/react-native-select-pro",
+  "version": "1.9.0",
+  "description": "React Native dropdown (select) component developed by Mobile Reality",
+  "main": "dist/commonjs/index",
+  "module": "dist/module/index",
+  "types": "dist/typescript/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "scripts": {
+    "build": "bob build",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx",
+    "tsc": "tsc --noEmit",
+    "test": "jest --runInBand --detectOpenHandles --forceExit --config ../../jest.config.js",
+    "clean": "rm -Rf .turbo && rm -Rf node_modules && rm -Rf dist"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "ios",
+    "android",
+    "select",
+    "picker",
+    "dropdown",
+    "menu",
+    "react-native-component"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "https://github.com/MobileReality/react-native-select-pro.git"
+  },
+  "author": "Mobile Reality <biuro@mobilereality.pl> (https://mobilereality.pl)",
+  "contributors": [
+    {
+      "name": "@irekrog",
+      "email": "irekfrontend@gmail.com",
+      "url": "https://github.com/irekrog"
+    },
+    {
+      "name": "Marcin Sadowski",
+      "url": "https://github.com/gitsad"
+    },
+    {
+      "name": "Agata Kosior",
+      "url": "https://github.com/koko57"
+    },
+    {
+      "name": "Mateusz Tkacz",
+      "url": "https://github.com/CatchMe2"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MobileReality/react-native-select-pro/issues"
+  },
+  "homepage": "https://github.com/MobileReality/react-native-select-pro/#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "devDependencies": {
+    "react-native-builder-bob": "^0.18.2"
+  },
+  "dependencies": {
+    "@gorhom/portal": "1.0.14"
+  },
+  "peerDependencies": {
+    "react": "^16.13 || ^17 || ^18",
+    "react-native": ">=0.63"
+  }
+}

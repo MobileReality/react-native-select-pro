@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.0.1/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "access": "public",
+  "baseBranch": "master",
+  "ignore": [
+    "@monorepo/expo",
+    "@monorepo/e2e"
+  ]
+}

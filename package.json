@@ -1,125 +1,54 @@
 {
-  "name": "@mobile-reality/react-native-select-pro",
-  "version": "1.9.0",
-  "description": "React Native dropdown (select) component developed by Mobile Reality",
+  "name": "react-native-select-pro-project",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "engines": {
-    "node": ">=12"
+    "node": ">=16.15.1",
+    "pnpm": ">=7"
   },
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
-  "files": [
-    "src",
-    "lib"
-  ],
   "scripts": {
-    "build": "bob build",
-    "release": "release-it",
-    "release:beta": "release-it --preRelease=beta --no-git.requireUpstream",
-    "tsc": "tsc --noEmit",
-    "lint": "eslint ./src ./example ./website --ext .js,.jsx,.ts,.tsx",
-    "test": "jest",
-    "test:e2e:ios:build": "yarn --cwd e2eApp detox build -c ios && yarn --cwd e2eApp detox test -c ios",
-    "test:e2e:ios": "yarn --cwd e2eApp detox test -c ios",
-    "test:e2e:android:build": "yarn --cwd e2eApp detox build -c android.emu.release && yarn --cwd e2eApp detox test -c android.emu.release",
-    "test:e2e:android": "yarn --cwd e2eApp detox test -c android.emu.release",
-    "test:update": "jest __tests__ -u",
-    "expo-start": "yarn --cwd example start",
-    "expo-android": "yarn --cwd example android",
-    "expo-ios": "yarn --cwd example ios",
+    "dev-ios": "turbo run dev-ios",
+    "dev-android": "turbo run dev-android",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "e2e": "turbo run test-e2e-ios",
+    "tsc": "turbo run tsc",
     "docs": "yarn --cwd website start",
-    "bootstrap": "yarn --cwd example"
-  },
-  "keywords": [
-    "react-native",
-    "react",
-    "ios",
-    "android",
-    "select",
-    "picker",
-    "dropdown",
-    "menu",
-    "react-native-component"
-  ],
-  "repository": {
-    "type": "git",
-    "directory": "https://github.com/MobileReality/react-native-select-pro.git"
-  },
-  "author": "Mobile Reality <biuro@mobilereality.pl> (https://mobilereality.pl)",
-  "contributors": [
-    {
-      "name": "@irekrog",
-      "email": "irekfrontend@gmail.com",
-      "url": "https://github.com/irekrog"
-    },
-    {
-      "name": "Marcin Sadowski",
-      "url": "https://github.com/gitsad"
-    },
-    {
-      "name": "Agata Kosior",
-      "url": "https://github.com/koko57"
-    },
-    {
-      "name": "Mateusz Tkacz",
-      "url": "https://github.com/CatchMe2"
-    }
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/MobileReality/react-native-select-pro/issues"
-  },
-  "homepage": "https://github.com/MobileReality/react-native-select-pro/#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
-  },
-  "dependencies": {
-    "@gorhom/portal": "1.0.13"
+    "postinstall": "husky install",
+    "clean": "turbo run clean && rm -Rf node_modules"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.23.1",
     "@commitlint/config-conventional": "^17.0.0",
-    "@mobile-reality/eslint-config": "^0.2.1",
-    "@release-it/conventional-changelog": "^5.0.0",
-    "@testing-library/jest-native": "^4.0.2",
-    "@testing-library/react-native": "^9.0.0",
-    "@types/jest": "^27.4.1",
-    "@types/react": "17.0.45",
-    "@types/react-native": "0.67.7",
-    "@types/react-test-renderer": "18.0.0",
+    "@mobile-reality/eslint-config": "^0.3.0",
+    "@testing-library/jest-native": "^4.0.5",
+    "@testing-library/react-native": "^10.1.1",
+    "@types/jest": "^28.1.4",
+    "@types/react-native": "^0.68.1",
+    "@types/react-test-renderer": "^17.0.2",
     "commitlint": "^17.0.1",
-    "eslint": "^8.13.0",
-    "husky": "4.3.8",
-    "jest": "^27.5.1",
-    "lint-staged": "^12.3.5",
-    "pod-install": "^0.1.33",
+    "eslint": "^8.19.0",
+    "husky": "^8.0.1",
+    "jest": "^28.1.2",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.6.2",
     "react": "17.0.2",
     "react-native": "0.68.2",
-    "react-native-builder-bob": "^0.18.2",
     "react-test-renderer": "^17.0.2",
-    "release-it": "^15.0.0",
-    "typescript": "^4.6.2"
-  },
-  "peerDependencies": {
-    "react": "^16.13 || ^17 || ^18",
-    "react-native": ">=0.63"
-  },
-  "resolutions": {
-    "@types/react": "^17.0.45"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn lint && yarn tsc",
-      "pre-push": "jest"
-    }
+    "reassure": "^0.1.1",
+    "ts-jest": "^28.0.5",
+    "turbo": "^1.3.1",
+    "typescript": "^4.7.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint \"**/*.{js,ts,jsx,tsx}\" --fix"
+      "bash -c 'pnpm tsc'",
+      "eslint --fix"
     ]
   }
 }

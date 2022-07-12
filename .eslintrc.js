@@ -5,7 +5,20 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['example/src/**/*.tsx'],
+            files: ['apps/expo/src/**/*.tsx'],
+            rules: {
+                'react-native/no-inline-styles': 'off',
+                'react-native/no-color-literals': 'off',
+            },
+        },
+        {
+            files: ['apps/e2e/e2e/*.**'],
+            globals: {
+                by: true,
+                element: true,
+                device: true,
+                waitFor: true,
+            },
             rules: {
                 'react-native/no-inline-styles': 'off',
                 'react-native/no-color-literals': 'off',

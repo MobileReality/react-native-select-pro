@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "@monorepo/expo",
+    "slug": "react-native-select-pro-example",
+    "description": "Example app for react-native-select-pro",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

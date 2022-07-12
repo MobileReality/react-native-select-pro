@@ -1,0 +1,39 @@
+{
+  "name": "@monorepo/expo",
+  "description": "Example app for @mobile-reality/react-native-select-pro",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index",
+  "scripts": {
+    "dev-start": "expo start --clear",
+    "dev-ios": "expo start --clear --ios",
+    "dev-android": "expo start --clear --android",
+    "tsc": "tsc --noEmit",
+    "clean": "rm -Rf .turbo && rm -Rf node_modules"
+  },
+  "dependencies": {
+    "@gorhom/portal": "1.0.14",
+    "expo": "^45.0.6",
+    "expo-splash-screen": "~0.15.1",
+    "react": "17.0.2",
+    "react-hook-form": "^7.33.1",
+    "react-native": "0.68.2",
+    "react-native-unimodules": "~0.15.0",
+    "react-native-web": "0.17.7"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.18.6",
+    "@babel/runtime": "^7.18.6",
+    "@mobile-reality/react-native-select-pro": "workspace:*",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-preset-expo": "9.1.0",
+    "expo-cli": "^5.4.12"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "17.0.2",
+    "react-native": "0.68.2",
+
+    "jest": "^28.1.2"
+  }
+}

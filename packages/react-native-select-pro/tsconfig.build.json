@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "packages/expo",
+    "packages/e2e",
+    "website",
+    "src/__tests__"
+  ]
+}
