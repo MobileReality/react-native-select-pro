@@ -11,8 +11,7 @@
     "pnpm": ">=7"
   },
   "scripts": {
-    "dev-ios": "turbo run dev-ios",
-    "dev-android": "turbo run dev-android",
+    "dev-start": "pnpm --filter '@monorepo/expo' run dev-start",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "test": "turbo run test",

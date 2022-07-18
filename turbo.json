@@ -8,25 +8,11 @@
         "^build"
       ]
     },
-    "dev-ios": {
-      "cache": false
-    },
-    "dev-android": {
-      "cache": false
-    },
     "test": {
       "inputs": [
         "src/**/*.tsx",
         "src/**/*.ts"
       ]
-    },
-    "detox-ios-build": {
-    },
-    "detox-ios-metro-start": {
-      "cache": false
-    },
-    "detox-ios-run": {
-      "cache": false
     },
     "test-e2e-ios": {
       "dependsOn": [
