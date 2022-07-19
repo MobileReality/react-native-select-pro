@@ -43,8 +43,6 @@ Clone this repo https://github.com/MobileReality/react-native-select-pro and nex
 ```sh
 cd apps/expo
 yarn dev-start
-yarn dev-ios #run example app for iOS
-yarn dev-android #run example app for Android
 ```
 
 ## Documentation
