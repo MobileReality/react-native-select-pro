@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 1.10.1
+
+### Patch Changes
+
+-   [#76](https://github.com/MobileReality/react-native-select-pro/pull/76) [`89ecb85`](https://github.com/MobileReality/react-native-select-pro/commit/89ecb85b6d39b09ebf5e64facd4937e189789083) Thanks [@irekrog](https://github.com/irekrog)! - scroll to selected option works properly now
+
 ## 1.10.0
 
 ### Minor Changes
