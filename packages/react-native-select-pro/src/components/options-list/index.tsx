@@ -1,4 +1,4 @@
-import React, { ComponentProps, useCallback, useRef } from 'react';
+import React, { ComponentProps, useCallback } from 'react';
 import {
     AccessibilityInfo,
     findNodeHandle,
@@ -58,6 +58,7 @@ type OptionsListProps = OptionalToRequired<
             | 'selectedOption'
             | 'searchedOptions'
             | 'searchValue'
+            | 'selectedOptionIndex'
         > & {
             onOutsidePress: OnOutsidePress;
             onPressOption: OnPressOptionType;
@@ -88,11 +89,31 @@ export const OptionsList = ({
     optionsListStyle,
     NoOptionsComponent,
     OptionComponent,
+    selectedOptionIndex,
 }: OptionsListProps) => {
     const selectedOptionTyped = selectedOption as OptionType;
-    const ref = useRef<FlatList>(null);
+
+    const flatList = useCallback(
+        // TODO: remove any
+        (node: any) => {
+            const isScrollToSelectedOption =
+                node &&
+                scrollToSelectedOption &&
+                selectedOptionIndex >= 0 &&
+                typeof selectedOptionIndex === 'number';
+
+            if (isScrollToSelectedOption) {
+                node.scrollToIndex({
+                    index: selectedOptionIndex,
+                    animated: false,
+                });
+            }
+        },
+        [scrollToSelectedOption, selectedOptionIndex, onPressOption],
+    );
 
     const measuredRef = useCallback(
+        // TODO: remove any
         (node: any) => {
             if (node !== null) {
                 const reactTag = findNodeHandle(node);
@@ -161,7 +182,7 @@ export const OptionsList = ({
                     ]}
                 >
                     <FlatList
-                        ref={ref}
+                        ref={flatList}
                         accessibilityLabel="Options list"
                         accessibilityState={{
                             expanded: isOpened,
@@ -186,17 +207,6 @@ export const OptionsList = ({
                         renderItem={({ item, index }) => {
                             const { value } = item;
                             const isSelected = !!resolveIsSelected(item);
-                            const isScrollToSelectedOption =
-                                isSelected &&
-                                ref.current &&
-                                scrollToSelectedOption;
-
-                            if (isScrollToSelectedOption) {
-                                ref.current.scrollToIndex({
-                                    index,
-                                    animated: false,
-                                });
-                            }
 
                             return (
                                 <Option
