@@ -416,6 +416,7 @@ export const Select = forwardRef(
                     searchable={searchable}
                     searchedOptions={searchedOptions}
                     selectedOption={selectedOption}
+                    selectedOptionIndex={selectedOptionIndex}
                     onOutsidePress={onOutsidePress}
                     onPressOption={onPressOption}
                     onSelect={onSelect}
