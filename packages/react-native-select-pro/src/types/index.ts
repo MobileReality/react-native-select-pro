@@ -7,6 +7,7 @@ import type {
     StyleProp,
     TextStyle,
     ViewStyle,
+    TextInputProps,
 } from 'react-native';
 
 import type { OnChooseOption, OptionProps } from '../components/option';
@@ -335,6 +336,13 @@ export interface SelectProps {
      *  @category Styles
      */
     multiSelectionOptionStyle?: StyleProp<ViewStyle>;
+
+    /**
+     *  Other input props
+     *
+     *  @Search input props
+     */
+    inputProps?: TextInputProps;
 }
 
 /**

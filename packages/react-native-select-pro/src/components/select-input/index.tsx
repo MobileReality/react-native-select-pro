@@ -5,6 +5,7 @@ import {
     StyleSheet,
     TextInput,
     TextStyle,
+    TextInputProps,
 } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../constants/styles';
@@ -29,7 +30,7 @@ type SelectInputProps = OptionalToRequired<
             | 'placeholderTextColor'
         > & { onPressSelectControl: OnPressSelectControlType } & {
             setPosition: OnSetPosition;
-        }
+        } & {inputProps?: TextInputProps}
 >;
 
 export const SelectInput = ({

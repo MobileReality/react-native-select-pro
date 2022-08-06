@@ -17,6 +17,7 @@ import {
     TextStyle,
     View,
     ViewStyle,
+    TextInputProps,
 } from 'react-native';
 
 import {
@@ -78,7 +79,7 @@ type SelectControlProps = OptionalToRequired<
             dispatch: DispatchType;
         } & Pick<Position, 'aboveSelectControl'> & {
             setPosition: OnSetPosition;
-        }
+        } & {inputProps?: TextInputProps}
 >;
 
 const arrowImage = require('./../../assets/icons/chevron-down.png');
