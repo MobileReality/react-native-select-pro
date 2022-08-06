@@ -394,6 +394,7 @@ export const Select = forwardRef(
                     setPosition={setPosition}
                     onPressSelectControl={onPressSelectControl}
                     onSelect={onSelect}
+                    {...props}
                 />
                 <OptionsList
                     NoOptionsComponent={NoOptionsComponent}
