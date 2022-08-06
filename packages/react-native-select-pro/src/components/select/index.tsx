@@ -91,6 +91,7 @@ export const Select = forwardRef(
             selectControlTextStyle,
             customLeftIconStyles,
             multiSelectionOptionStyle,
+            inputProps,
         } = props;
         const [state, dispatch] = useReducer(reducer, initialData);
         const {
@@ -394,7 +395,7 @@ export const Select = forwardRef(
                     setPosition={setPosition}
                     onPressSelectControl={onPressSelectControl}
                     onSelect={onSelect}
-                    {...props}
+                    inputProps={inputProps}
                 />
                 <OptionsList
                     NoOptionsComponent={NoOptionsComponent}

@@ -45,7 +45,7 @@ export const SelectInput = ({
     selectedOption,
     placeholderTextColor,
     selectControlTextStyle,
-    ...props
+    inputProps,
 }: SelectInputProps) => {
     const searchInputRef = useRef<TextInput>(null);
 
@@ -120,7 +120,7 @@ export const SelectInput = ({
             value={searchValue}
             onChangeText={onChangeText}
             onPressIn={disabled ? () => null : onPressSelectControl}
-            {...props}
+            {...inputProps}
         />
     );
 };

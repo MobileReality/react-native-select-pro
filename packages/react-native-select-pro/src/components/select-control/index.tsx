@@ -119,7 +119,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             customLeftIconSource,
             customLeftIconStyles,
             selectedOptionIndex,
-            ...props
+            inputProps,
         },
         ref,
     ) => {
@@ -292,7 +292,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         selectedOption={selectedOption}
                         setPosition={setPosition}
                         onPressSelectControl={onPressSelectControl}
-                        {...props}
+                        inputProps={inputProps}
                     />
                 );
             }
