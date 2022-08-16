@@ -3,13 +3,7 @@ describe('Searchable', () => {
         //Scroll to Searchable button and press it
         await waitFor(element(by.text('Searchable')))
             .toBeVisible()
-            .whileElement(
-                by.type(
-                    device.getPlatform() === 'ios'
-                        ? 'UIScrollView'
-                        : 'android.widget.ScrollView',
-                ),
-            )
+            .whileElement(by.id('Examples List'))
             .scroll(100, 'down');
         await element(by.text('Searchable')).tap();
 

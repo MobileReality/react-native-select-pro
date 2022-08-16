@@ -52,6 +52,7 @@ type FromSelectComponentProps = Pick<
     | 'hideSelectControlArrow'
     | 'multiSelection'
     | 'onSelect'
+    | 'onRemove'
     | 'selectControlArrowImageStyle'
     | 'selectControlClearOptionA11yLabel'
     | 'selectControlOpenDropdownA11yLabel'
@@ -114,6 +115,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             multiSelectionOptionStyle,
             hideSelectControlArrow,
             onSelect,
+            onRemove,
             selectControlTextStyle,
             aboveSelectControl,
             customLeftIconSource,
@@ -141,6 +143,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
 
         const onPressRemove = (option: OptionType | null = null) => {
             if (!disabled) {
+                let removedOption = selectedOption;
+                let removedOptionIndex = selectedOptionIndex;
                 if (multiSelection) {
                     let removedSelectedOptions: null | OptionType[] = [];
                     removedSelectedOptions = (
@@ -152,11 +156,11 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     if (removedSelectedOptions.length === 0) {
                         removedSelectedOptions = null;
                     }
-
                     const foundIndex = options.findIndex(
                         ({ value }) => value === option?.value,
                     );
-
+                    removedOptionIndex = foundIndex;
+                    removedOption = option;
                     const resolveSelectedOptionIndex = (
                         selectedOptionIndex as number[]
                     ).filter((item) => item !== foundIndex);
@@ -189,9 +193,12 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         type: Action.SetOptionsData,
                         payload: options,
                     });
-                    if (onSelect) {
-                        onSelect(null, -1);
-                    }
+                }
+                if (onSelect) {
+                    onSelect(null, -1);
+                }
+                if (onRemove) {
+                    onRemove(removedOption, removedOptionIndex);
                 }
             }
         };

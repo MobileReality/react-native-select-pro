@@ -51,6 +51,18 @@ export interface SelectProps {
     onSelect?: (option: OptionType | null, optionIndex: number) => void;
 
     /**
+     * Callback that is called when option(s) is cleared
+     *
+     * @param option removed option(s)
+     * @param optionIndex removed option(s) index(es)
+     * @category Callback
+     */
+    onRemove?: (
+        option: OptionType | OptionsType | null,
+        optionIndex: number | number[],
+    ) => void;
+
+    /**
      * Callback that is called when dropdown is opened
      *
      * @category Callback

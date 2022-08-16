@@ -88,6 +88,32 @@ describe('Select', () => {
         expect(clearButton).toBeTruthy();
     });
 
+    it('should fire callbacks with right arguments after select and remove option', () => {
+        const onSelect = jest.fn();
+        const onRemove = jest.fn();
+        const { getByLabelText } = render(
+            <SelectProvider>
+                <Select
+                    clearable={true}
+                    options={DATA}
+                    onSelect={onSelect}
+                    onRemove={onRemove}
+                />
+            </SelectProvider>,
+        );
+
+        const open = getByLabelText('Open a dropdown');
+        fireEvent.press(open);
+
+        const optionPress = getByLabelText(`Choose ${DATA[1].label} option`);
+        fireEvent.press(optionPress);
+        expect(onSelect).toBeCalledWith(DATA[1], 1);
+
+        const clearButton = getByLabelText('Clear a chosen option');
+        fireEvent.press(clearButton);
+        expect(onRemove).toBeCalledWith(DATA[1], 1);
+    });
+
     it('should close dropdown menu after pressed outside dropdown', () => {
         const { getByLabelText, queryByLabelText } = render(
             <SelectProvider>
