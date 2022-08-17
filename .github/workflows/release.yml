@@ -48,9 +48,7 @@ jobs:
             turbo-${{ github.job }}-${{ github.ref_name }}-   
 
       - name: Install dependencies
-        run: pnpm install
-        env:
-          HUSKY: 0
+        run: pnpm install --ignore-scripts
 
       - name: Build
         run: pnpm build
