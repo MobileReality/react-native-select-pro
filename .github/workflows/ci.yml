@@ -2,6 +2,9 @@ name: CI
 
 on: [push, pull_request]
 
+env:
+  HUSKY: 0
+
 jobs:
   cache-and-install:
     runs-on: ubuntu-latest
