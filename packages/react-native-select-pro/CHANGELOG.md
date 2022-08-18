@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 1.11.0
+
+### Minor Changes
+
+-   [#83](https://github.com/MobileReality/react-native-select-pro/pull/83) [`d656aa9`](https://github.com/MobileReality/react-native-select-pro/commit/d656aa986da11f95d31dbb0a727c71f9fcb2f3ec) Thanks [@kkaplinski](https://github.com/kkaplinski)! - add onRemove callback
+
 ## 1.10.1
 
 ### Patch Changes
