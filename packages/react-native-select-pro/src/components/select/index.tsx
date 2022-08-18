@@ -43,6 +43,7 @@ export const Select = forwardRef(
             options,
             // Callbacks
             onSelect,
+            onRemove,
             onDropdownOpened,
             onDropdownClosed,
             // Texts
@@ -147,6 +148,9 @@ export const Select = forwardRef(
                     payload: { selectedOption: null, selectedOptionIndex: -1 },
                 });
                 dispatch({ type: Action.SetOptionsData, payload: options });
+                if (onRemove) {
+                    onRemove(selectedOption, selectedOptionIndex);
+                }
             },
             open: () => {
                 if (containerRef.current && !disabled) {
@@ -394,6 +398,7 @@ export const Select = forwardRef(
                     setPosition={setPosition}
                     onPressSelectControl={onPressSelectControl}
                     onSelect={onSelect}
+                    onRemove={onRemove}
                 />
                 <OptionsList
                     NoOptionsComponent={NoOptionsComponent}

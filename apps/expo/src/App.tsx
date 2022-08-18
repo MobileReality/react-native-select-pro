@@ -106,6 +106,7 @@ export const App = () => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#f0f3e8' }}>
             <FlatList
+                testID="Examples List"
                 data={data}
                 renderItem={({ item: { getScreen, name } }) => (
                     <Button

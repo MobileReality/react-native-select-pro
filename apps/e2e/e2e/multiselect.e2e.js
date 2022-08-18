@@ -3,13 +3,7 @@ describe('Multi Select', () => {
         //Scroll to Multi Select button and press it
         await waitFor(element(by.text('Multi Select')))
             .toBeVisible()
-            .whileElement(
-                by.type(
-                    device.getPlatform() === 'ios'
-                        ? 'UIScrollView'
-                        : 'android.widget.ScrollView',
-                ),
-            )
+            .whileElement(by.id('Examples List'))
             .scroll(100, 'down');
         await element(by.text('Multi Select')).tap();
 
@@ -21,6 +15,7 @@ describe('Multi Select', () => {
         await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
         await element(by.text('THIRD LABEL')).tap();
         await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
+        await element(by.text('THIRD LABEL')).atIndex(1).swipe('up');
         await element(by.text('----Fourth label----')).tap();
         await expect(element(by.text('First label'))).toExist();
         await expect(element(by.text('THIRD LABEL'))).toExist();
