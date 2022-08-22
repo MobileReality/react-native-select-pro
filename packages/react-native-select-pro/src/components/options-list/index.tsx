@@ -1,8 +1,10 @@
-import React, { ComponentProps, useCallback } from 'react';
+import React, { ComponentProps, useCallback, useMemo } from 'react';
 import {
     AccessibilityInfo,
     findNodeHandle,
     FlatList,
+    ListRenderItem,
+    ListRenderItemInfo,
     StyleSheet,
     TouchableWithoutFeedback,
     View,
@@ -36,6 +38,8 @@ type FromSelectComponentProps = Pick<
     | 'optionSelectedStyle'
     | 'optionStyle'
     | 'optionTextStyle'
+    | 'parentOptionStyle'
+    | 'parentOptionTextStyle'
     | 'scrollToSelectedOption'
     | 'noOptionsText'
     | 'onSelect'
@@ -83,6 +87,8 @@ export const OptionsList = ({
     optionSelectedStyle,
     optionStyle,
     optionTextStyle,
+    parentOptionStyle,
+    parentOptionTextStyle,
     noOptionsText,
     scrollToSelectedOption,
     onSelect,
@@ -92,8 +98,9 @@ export const OptionsList = ({
     selectedOptionIndex,
 }: OptionsListProps) => {
     const selectedOptionTyped = selectedOption as OptionType;
+    const isCategorized = optionsData.some((option) => option?.parent);
 
-    const flatList = useCallback(
+    const flatListRef = useCallback(
         // TODO: remove any
         (node: any) => {
             const isScrollToSelectedOption =
@@ -125,32 +132,58 @@ export const OptionsList = ({
         [isOpened],
     );
 
-    const resolveData = () => {
-        if (!searchable) {
-            return optionsData;
-        }
-        if (searchable && searchValue.length === 0) {
-            return optionsData;
-        }
-        if (
+    const resolvedData = useMemo(() => {
+        const isEmptySearch = searchable && searchValue.length === 0;
+        const isSearchedItemSelected =
             selectedOptionTyped &&
             searchValue?.length > 0 &&
-            searchValue === selectedOptionTyped.label
-        ) {
+            searchValue === selectedOptionTyped.label;
+
+        if (!searchable || isEmptySearch || isSearchedItemSelected) {
             return optionsData;
         }
         return searchedOptions;
-    };
+    }, [
+        optionsData,
+        searchedOptions,
+        searchValue,
+        searchable,
+        selectedOptionTyped,
+    ]);
 
-    const resolveIsSelected = (item: OptionType) => {
-        if (!multiSelection) {
-            return item.value === selectedOptionTyped?.value;
-        }
+    const resolvedRenderedItem = ({
+        item,
+        index,
+    }: ListRenderItemInfo<OptionType>) => {
+        const resolveIsSelected = () => {
+            if (!multiSelection) {
+                return item.value === selectedOptionTyped?.value;
+            }
+            return !!(
+                selectedOption &&
+                (selectedOption as OptionType[]).some(
+                    (option) => item.value === option.value,
+                )
+            );
+        };
+
         return (
-            selectedOption &&
-            (selectedOption as OptionType[]).find(
-                (option) => item.value === option.value,
-            )
+            <Option
+                key={item.value}
+                ref={index === 0 ? measuredRef : undefined}
+                OptionComponent={OptionComponent}
+                isSelected={resolveIsSelected()}
+                isCategorized={isCategorized}
+                option={item}
+                optionSelectedStyle={optionSelectedStyle}
+                optionStyle={optionStyle}
+                optionTextStyle={optionTextStyle}
+                parentOptionStyle={parentOptionStyle}
+                parentOptionTextStyle={parentOptionTextStyle}
+                optionIndex={index}
+                onPressOption={onPressOption}
+                onSelect={onSelect}
+            />
         );
     };
 
@@ -182,13 +215,13 @@ export const OptionsList = ({
                     ]}
                 >
                     <FlatList
-                        ref={flatList}
+                        ref={flatListRef}
                         accessibilityLabel="Options list"
                         accessibilityState={{
                             expanded: isOpened,
                         }}
                         bounces={false}
-                        data={resolveData()}
+                        data={resolvedData}
                         getItemLayout={(_data, index) => {
                             const height =
                                 StyleSheet.flatten(optionStyle)?.height;
@@ -204,26 +237,7 @@ export const OptionsList = ({
                         keyExtractor={({ value }) => value}
                         keyboardShouldPersistTaps="handled"
                         persistentScrollbar={true}
-                        renderItem={({ item, index }) => {
-                            const { value } = item;
-                            const isSelected = !!resolveIsSelected(item);
-
-                            return (
-                                <Option
-                                    key={value}
-                                    ref={index === 0 ? measuredRef : undefined}
-                                    OptionComponent={OptionComponent}
-                                    isSelected={isSelected}
-                                    option={item}
-                                    optionSelectedStyle={optionSelectedStyle}
-                                    optionStyle={optionStyle}
-                                    optionTextStyle={optionTextStyle}
-                                    optionIndex={index}
-                                    onPressOption={onPressOption}
-                                    onSelect={onSelect}
-                                />
-                            );
-                        }}
+                        renderItem={resolvedRenderedItem}
                         {...flatListProps}
                         ListEmptyComponent={
                             NoOptionsComponent || (

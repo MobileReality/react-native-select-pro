@@ -80,6 +80,8 @@ export const Select = forwardRef(
             optionStyle,
             optionsListStyle,
             optionTextStyle,
+            parentOptionStyle,
+            parentOptionTextStyle,
             optionSelectedStyle,
             selectContainerStyle,
             selectControlArrowImageStyle,
@@ -414,6 +416,8 @@ export const Select = forwardRef(
                     optionSelectedStyle={optionSelectedStyle}
                     optionStyle={optionStyle}
                     optionTextStyle={optionTextStyle}
+                    parentOptionStyle={parentOptionStyle}
+                    parentOptionTextStyle={parentOptionTextStyle}
                     optionsData={optionsData}
                     optionsListStyle={optionsListStyle}
                     scrollToSelectedOption={scrollToSelectedOption}

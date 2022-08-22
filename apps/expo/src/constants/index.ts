@@ -24,3 +24,15 @@ export const DATA = [
         label: 'Last',
     },
 ];
+
+export const CATEGORIZED_DATA = [
+    { label: 'Europe', value: 'eu' },
+    { label: 'Poland 🇵🇱', value: 'poland', parent: 'eu' },
+    { label: 'Belgium 🇧🇪', value: 'belgium', parent: 'eu' },
+    { label: 'Greece 🇬🇷', value: 'greece', parent: 'eu' },
+    { label: 'Croatia 🇭🇷', value: 'croatia', parent: 'eu' },
+    { label: 'South America', value: 'sa' },
+    { label: 'Argentina 🇦🇷', value: 'argentina', parent: 'sa' },
+    { label: 'Peru 🇵🇪', value: 'peru', parent: 'sa' },
+    { label: 'Brazil 🇧🇷', value: 'brazil', parent: 'sa' },
+];

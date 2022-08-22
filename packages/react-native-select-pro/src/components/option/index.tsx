@@ -12,6 +12,7 @@ import {
     FONT_SIZE,
     ITEM_HEIGHT,
     PADDING,
+    PARENT_ITEM_HEIGHT,
 } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import type { OptionType } from '../../index';
@@ -22,6 +23,8 @@ type FromSelectComponentProps = Pick<
     | 'optionSelectedStyle'
     | 'optionStyle'
     | 'optionTextStyle'
+    | 'parentOptionStyle'
+    | 'parentOptionTextStyle'
     | 'onSelect'
     | 'onPressOption'
     | 'OptionComponent'
@@ -31,6 +34,7 @@ export type OptionProps = OptionalToRequired<FromSelectComponentProps> & {
     isSelected: boolean;
     option: OptionType;
     optionIndex: number;
+    isCategorized?: boolean;
 };
 
 export type OnChooseOption = () => void;
@@ -41,7 +45,10 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
             optionSelectedStyle,
             optionStyle,
             optionTextStyle,
+            parentOptionStyle,
+            parentOptionTextStyle,
             isSelected,
+            isCategorized,
             onPressOption,
             option,
             onSelect,
@@ -50,7 +57,8 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
         },
         ref,
     ) => {
-        const { label } = option;
+        const { label, parent } = option;
+        const isParentOption = isCategorized && !parent;
 
         const onChooseOption: OnChooseOption = () => {
             onPressOption(option, optionIndex);
@@ -77,12 +85,23 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
                 accessible={true}
                 style={[
                     styles.option,
-                    optionStyle,
+                    !isParentOption && optionStyle,
                     isSelected && [styles.selected, optionSelectedStyle],
+                    isParentOption ? parentOptionStyle : styles.parentOption,
                 ]}
+                disabled={isParentOption}
                 onPress={onChooseOption}
             >
-                <Text numberOfLines={1} style={[styles.text, optionTextStyle]}>
+                <Text
+                    numberOfLines={1}
+                    style={[
+                        styles.text,
+                        !isParentOption && optionTextStyle,
+                        isParentOption
+                            ? parentOptionTextStyle
+                            : styles.parentText,
+                    ]}
+                >
                     {label}
                 </Text>
             </TouchableOpacity>
@@ -92,8 +111,10 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
 
 type Styles = {
     option: ViewStyle;
+    parentOption: ViewStyle;
     selected: ViewStyle;
     text: TextStyle;
+    parentText: TextStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -102,6 +123,10 @@ const styles = StyleSheet.create<Styles>({
         justifyContent: 'center',
         paddingHorizontal: PADDING,
     },
+    parentOption: {
+        height: PARENT_ITEM_HEIGHT,
+        marginTop: PADDING,
+    },
     text: {
         fontSize: FONT_SIZE,
         color: COLORS.BLACK,
@@ -109,6 +134,10 @@ const styles = StyleSheet.create<Styles>({
     },
     selected: {
         backgroundColor: COLORS.SELECTED,
+    },
+    parentText: {
+        color: COLORS.DISABLED,
+        textTransform: 'uppercase',
     },
 });
 

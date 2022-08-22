@@ -17,7 +17,13 @@ export type OptionTypeRequired = {
     value: string;
 };
 
-export type OptionType<T = unknown> = OptionTypeRequired & T;
+export type OptionTypeOptional = {
+    parent?: string;
+};
+
+export type OptionType<T = unknown> = OptionTypeRequired &
+    OptionTypeOptional &
+    T;
 
 export type OptionsType = OptionType[];
 
@@ -333,6 +339,20 @@ export interface SelectProps {
      * @category Styles
      */
     optionSelectedStyle?: StyleProp<ViewStyle>;
+
+    /**
+     * Style of single parent option
+     *
+     * @category Styles
+     */
+    parentOptionStyle?: StyleProp<ViewStyle>;
+
+    /**
+     * Style of single parent option text
+     *
+     * @category Styles
+     */
+    parentOptionTextStyle?: StyleProp<ViewStyle>;
 
     /**
      *  Custom left icon styles

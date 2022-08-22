@@ -7,6 +7,7 @@ import { Button } from './components/Button';
 import { Animated } from './examples/Animated';
 import { Basic } from './examples/Basic';
 import { Callbacks } from './examples/Callbacks';
+import { Categorized } from './examples/Categorized';
 import { CustomComponent } from './examples/CustomComponent';
 import { CustomLeftIcon } from './examples/CustomLeftIcon';
 import { CustomOptionsData } from './examples/CustomOptionsData';
@@ -43,6 +44,10 @@ const data = [
     {
         name: 'Selects',
         getScreen: () => <Selects />,
+    },
+    {
+        name: 'Categorized',
+        getScreen: () => <Categorized />,
     },
     {
         name: 'Custom Styles',
