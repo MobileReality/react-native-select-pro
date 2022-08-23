@@ -3,7 +3,6 @@ import {
     AccessibilityInfo,
     findNodeHandle,
     FlatList,
-    ListRenderItem,
     ListRenderItemInfo,
     StyleSheet,
     TouchableWithoutFeedback,

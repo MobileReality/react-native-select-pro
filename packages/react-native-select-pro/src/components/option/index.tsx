@@ -12,7 +12,7 @@ import {
     FONT_SIZE,
     ITEM_HEIGHT,
     PADDING,
-    PARENT_ITEM_HEIGHT,
+    PARENT_FONT_SIZE,
 } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import type { OptionType } from '../../index';
@@ -85,9 +85,8 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
                 accessible={true}
                 style={[
                     styles.option,
-                    !isParentOption && optionStyle,
                     isSelected && [styles.selected, optionSelectedStyle],
-                    isParentOption ? parentOptionStyle : styles.parentOption,
+                    isParentOption ? parentOptionStyle : optionStyle,
                 ]}
                 disabled={isParentOption}
                 onPress={onChooseOption}
@@ -96,10 +95,9 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
                     numberOfLines={1}
                     style={[
                         styles.text,
-                        !isParentOption && optionTextStyle,
                         isParentOption
-                            ? parentOptionTextStyle
-                            : styles.parentText,
+                            ? parentOptionTextStyle || styles.parentText
+                            : optionTextStyle,
                     ]}
                 >
                     {label}
@@ -111,7 +109,6 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
 
 type Styles = {
     option: ViewStyle;
-    parentOption: ViewStyle;
     selected: ViewStyle;
     text: TextStyle;
     parentText: TextStyle;
@@ -123,10 +120,6 @@ const styles = StyleSheet.create<Styles>({
         justifyContent: 'center',
         paddingHorizontal: PADDING,
     },
-    parentOption: {
-        height: PARENT_ITEM_HEIGHT,
-        marginTop: PADDING,
-    },
     text: {
         fontSize: FONT_SIZE,
         color: COLORS.BLACK,
@@ -136,7 +129,8 @@ const styles = StyleSheet.create<Styles>({
         backgroundColor: COLORS.SELECTED,
     },
     parentText: {
-        color: COLORS.DISABLED,
+        fontSize: PARENT_FONT_SIZE,
+        color: COLORS.GRAY,
         textTransform: 'uppercase',
     },
 });

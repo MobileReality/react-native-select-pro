@@ -352,7 +352,7 @@ export interface SelectProps {
      *
      * @category Styles
      */
-    parentOptionTextStyle?: StyleProp<ViewStyle>;
+    parentOptionTextStyle?: StyleProp<TextStyle>;
 
     /**
      *  Custom left icon styles
