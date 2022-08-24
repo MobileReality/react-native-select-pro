@@ -63,6 +63,7 @@ type FromSelectComponentProps = Pick<
     | 'customLeftIconSource'
     | 'customLeftIconStyles'
     | 'multiSelectionOptionStyle'
+    | 'testID'
 >;
 
 type SelectControlProps = OptionalToRequired<
@@ -121,6 +122,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             customLeftIconSource,
             customLeftIconStyles,
             selectedOptionIndex,
+            testID,
         },
         ref,
     ) => {
@@ -346,7 +348,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             isShowClearOptionButtonA11y && !multiSelection;
 
         return (
-            <View style={styles.rootView}>
+            <View style={styles.rootView} testID={testID}>
                 <Component
                     ref={ref}
                     accessibilityHint={resolveAccessibilityHint()}

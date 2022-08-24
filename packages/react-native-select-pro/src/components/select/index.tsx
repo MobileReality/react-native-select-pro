@@ -61,6 +61,7 @@ export const Select = forwardRef(
             // Additional features
             defaultOption,
             flatListProps,
+            testID,
             // Search
             searchable = false,
             searchPattern = (payload: string) => `(${payload})`,
@@ -398,6 +399,7 @@ export const Select = forwardRef(
                     selectedOption={selectedOption}
                     selectedOptionIndex={selectedOptionIndex}
                     setPosition={setPosition}
+                    testID={testID}
                     onPressSelectControl={onPressSelectControl}
                     onSelect={onSelect}
                     onRemove={onRemove}

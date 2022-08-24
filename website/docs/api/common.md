@@ -87,3 +87,9 @@ If `true` let user search in a select options by typing in select
 searchPattern?: (payload: string) => string;
 ```
 Regex definition for searching options
+
+### testID
+```typescript jsx
+testID?: string;
+```
+Use this prop only as matching element helper for e2e tests (e.g. Detox)
