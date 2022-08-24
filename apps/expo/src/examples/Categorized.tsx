@@ -35,15 +35,6 @@ const data = [
             />
         ),
     },
-    {
-        title: 'With Counter:',
-        component: (
-            <Select
-                options={CATEGORIZED_DATA}
-                selectControlStyle={{ width: 180 }}
-            />
-        ),
-    },
 ];
 
 export const Categorized = () => {

@@ -82,6 +82,18 @@ optionTextStyle?: StyleProp<TextStyle>;
 ```
 Style of single option text
 
+### parentOptionStyle
+```typescript jsx
+parentOptionStyle?: StyleProp<ViewStyle>;
+```
+Style of single parent option
+
+### parentOptionTextStyle
+```typescript jsx
+parentOptionTextStyle?: StyleProp<TextStyle>;
+```
+Style of single parent option text
+
 ### optionSelectedStyle
 ```typescript jsx
 optionSelectedStyle?: StyleProp<ViewStyle>;

@@ -21,6 +21,17 @@ const DATA = [
     },
 ];
 
+const CATEGORIZED_DATA = [
+    { label: 'Europe', value: 'eu' },
+    { label: 'Poland', value: 'poland', parent: 'eu' },
+    { label: 'Belgium', value: 'belgium', parent: 'eu' },
+    { label: 'Greece', value: 'greece', parent: 'eu' },
+    { label: 'South America', value: 'sa' },
+    { label: 'Argentina', value: 'argentina', parent: 'sa' },
+    { label: 'Peru', value: 'peru', parent: 'sa' },
+    { label: 'Brazil', value: 'brazil', parent: 'sa' },
+];
+
 const SEARCHABLE_DATA = [
     {
         value: 'test1',
@@ -49,6 +60,15 @@ describe('Select', () => {
         const wrapper = render(
             <SelectProvider>
                 <Select options={DATA} />
+            </SelectProvider>,
+        );
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should generate Select snapshot with categories', () => {
+        const wrapper = render(
+            <SelectProvider>
+                <Select options={CATEGORIZED_DATA} />
             </SelectProvider>,
         );
         expect(wrapper).toMatchSnapshot();
