@@ -174,13 +174,6 @@ export interface SelectProps {
         'data' | 'renderItem' | 'ListEmptyComponent'
     >;
 
-    /**
-     *  Use this prop only as matching element helper for e2e tests (e.g. Detox)
-     *
-     *  @category Additional Features
-     */
-    testID?: string;
-
     //---SEARCH---//
     /**
      *  If `true` let user search in a select options by typing in select

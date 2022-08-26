@@ -9,7 +9,6 @@ const data = [
         title: 'Default:',
         component: (
             <Select
-                testID="default_select"
                 options={CATEGORIZED_DATA}
                 selectControlStyle={{ width: 180 }}
             />
@@ -19,7 +18,6 @@ const data = [
         title: 'Custom Categories:',
         component: (
             <Select
-                testID="custom_select"
                 options={CATEGORIZED_DATA}
                 selectControlStyle={{ width: 180 }}
                 parentOptionStyle={{
