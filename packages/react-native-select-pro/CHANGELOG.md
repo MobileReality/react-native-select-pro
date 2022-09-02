@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 1.11.1
+
+### Patch Changes
+
+-   [#88](https://github.com/MobileReality/react-native-select-pro/pull/88) [`71cbbaa`](https://github.com/MobileReality/react-native-select-pro/commit/71cbbaa1408ae3dd13aed0e586308f31c8fbf90d) Thanks [@irekrog](https://github.com/irekrog)! - fix app crash when a word does not exist
+
 ## 1.11.0
 
 ### Minor Changes
