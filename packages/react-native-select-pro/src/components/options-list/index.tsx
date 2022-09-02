@@ -98,7 +98,6 @@ export const OptionsList = ({
         (node: FlatList | null) => {
             if (node !== null) {
                 const isScrollToSelectedOption =
-                    node &&
                     scrollToSelectedOption &&
                     selectedOptionIndex >= 0 &&
                     typeof selectedOptionIndex === 'number';
