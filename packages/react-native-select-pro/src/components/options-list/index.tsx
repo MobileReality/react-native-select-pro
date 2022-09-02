@@ -4,6 +4,7 @@ import {
     findNodeHandle,
     FlatList,
     StyleSheet,
+    TouchableOpacity,
     TouchableWithoutFeedback,
     View,
     ViewStyle,
@@ -94,27 +95,29 @@ export const OptionsList = ({
     const selectedOptionTyped = selectedOption as OptionType;
 
     const flatList = useCallback(
-        // TODO: remove any
-        (node: any) => {
-            const isScrollToSelectedOption =
-                node &&
-                scrollToSelectedOption &&
-                selectedOptionIndex >= 0 &&
-                typeof selectedOptionIndex === 'number';
+        (node: FlatList | null) => {
+            if (node !== null) {
+                const isScrollToSelectedOption =
+                    scrollToSelectedOption &&
+                    selectedOptionIndex >= 0 &&
+                    typeof selectedOptionIndex === 'number';
 
-            if (isScrollToSelectedOption) {
-                node.scrollToIndex({
-                    index: selectedOptionIndex,
-                    animated: false,
-                });
+                if (isScrollToSelectedOption) {
+                    try {
+                        node.scrollToIndex({
+                            index: selectedOptionIndex,
+                            animated: false,
+                        });
+                        // eslint-disable-next-line no-empty
+                    } catch {}
+                }
             }
         },
         [scrollToSelectedOption, selectedOptionIndex, onPressOption],
     );
 
     const measuredRef = useCallback(
-        // TODO: remove any
-        (node: any) => {
+        (node: TouchableOpacity | null) => {
             if (node !== null) {
                 const reactTag = findNodeHandle(node);
                 if (reactTag) {
