@@ -87,3 +87,21 @@ If `true` let user search in a select options by typing in select
 searchPattern?: (payload: string) => string;
 ```
 Regex definition for searching options
+
+### textInputProps
+```typescript jsx
+     textInputProps?: Omit<
+        TextInputProps,
+        | 'ref'
+        | 'accessibilityLabel'
+        | 'editable'
+        | 'placeholder'
+        | 'placeholderTextColor'
+        | 'style'
+        | 'textAlign'
+        | 'value'
+        | 'onChangeText'
+        | 'onPressIn'
+    >;
+```
+`TextInputProps` imported from `react-native`

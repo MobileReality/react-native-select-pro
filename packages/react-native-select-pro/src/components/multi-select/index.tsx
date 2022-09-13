@@ -26,6 +26,7 @@ type FromSelectComponentProps = Pick<
     | 'selectControlStyle'
     | 'disabled'
     | 'searchPattern'
+    | 'textInputProps'
     | 'searchable'
     | 'multiSelection'
     | 'multiSelectionOptionStyle'
@@ -57,6 +58,7 @@ export const MultiSelect = ({
     isOpened,
     onPressSelectControl,
     searchPattern,
+    textInputProps,
     searchValue,
     setPosition,
     multiSelection,
@@ -136,6 +138,7 @@ export const MultiSelect = ({
                     placeholderText={placeholderText}
                     placeholderTextColor={placeholderTextColor}
                     searchPattern={searchPattern}
+                    textInputProps={textInputProps}
                     searchValue={searchValue}
                     selectControlTextStyle={selectControlTextStyle}
                     selectedOption={selectedOption}

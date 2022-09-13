@@ -16,12 +16,9 @@
     },
     "detox-ios-build": {},
     "detox-ios-metro-start": {},
-    "detox-ios-run": {},
-    "test-e2e-ios": {
+    "detox-ios-test": {
       "dependsOn": [
-        "detox-ios-build",
-        "detox-ios-metro-start",
-        "detox-ios-run"
+        "detox-ios-build"
       ]
     },
     "tsc": {

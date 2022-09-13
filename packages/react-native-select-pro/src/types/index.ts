@@ -5,6 +5,7 @@ import type {
     ImageStyle,
     Insets,
     StyleProp,
+    TextInputProps,
     TextStyle,
     ViewStyle,
 } from 'react-native';
@@ -183,6 +184,24 @@ export interface SelectProps {
      *  @category Search
      */
     searchPattern?: (payload: string) => string;
+    /**
+     *  Text input props for searchable field
+     *
+     *  @Search input props
+     */
+    textInputProps?: Omit<
+        TextInputProps,
+        | 'ref'
+        | 'accessibilityLabel'
+        | 'editable'
+        | 'placeholder'
+        | 'placeholderTextColor'
+        | 'style'
+        | 'textAlign'
+        | 'value'
+        | 'onChangeText'
+        | 'onPressIn'
+    >;
 
     //---MULTISELECT---//
     /**

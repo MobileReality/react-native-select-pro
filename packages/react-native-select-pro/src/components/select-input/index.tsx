@@ -27,6 +27,7 @@ type SelectInputProps = OptionalToRequired<
             | 'multiSelection'
             | 'selectControlTextStyle'
             | 'placeholderTextColor'
+            | 'textInputProps'
         > & { onPressSelectControl: OnPressSelectControlType } & {
             setPosition: OnSetPosition;
         }
@@ -37,6 +38,7 @@ export const SelectInput = ({
     isOpened,
     searchValue,
     searchPattern,
+    textInputProps,
     placeholderText,
     onPressSelectControl,
     dispatch,
@@ -101,6 +103,7 @@ export const SelectInput = ({
 
     return (
         <TextInput
+            {...textInputProps}
             ref={searchInputRef}
             accessibilityLabel="Place text"
             editable={!disabled}
