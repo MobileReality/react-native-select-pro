@@ -177,6 +177,7 @@ export interface SelectProps {
      *  @category Search
      */
     searchable?: boolean;
+
     /**
      *  Regex definition for searching options
      *
@@ -184,10 +185,11 @@ export interface SelectProps {
      *  @category Search
      */
     searchPattern?: (payload: string) => string;
+
     /**
-     *  Text input props for searchable field
+     *  `TextInputProps` imported from `react-native`
      *
-     *  @Search input props
+     *  @category Search
      */
     textInputProps?: Omit<
         TextInputProps,
