@@ -53,6 +53,7 @@ type FromSelectComponentProps = Pick<
     | 'multiSelection'
     | 'onSelect'
     | 'onRemove'
+    | 'customSelectControlArrowIconSource'
     | 'selectControlArrowImageStyle'
     | 'selectControlClearOptionA11yLabel'
     | 'selectControlOpenDropdownA11yLabel'
@@ -104,6 +105,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             searchPattern,
             searchValue,
             setPosition,
+            customSelectControlArrowIconSource,
             selectControlArrowImageStyle,
             selectControlDisabledStyle,
             selectControlClearOptionButtonHitSlop,
@@ -224,9 +226,12 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
 
         const renderArrowImage = (): ReactElement => {
             const accessibilityLabel = 'Arrow for opening dropdown';
+            const arrowSource = customSelectControlArrowIconSource
+                ? customSelectControlArrowIconSource
+                : arrowImage;
             const arrow: ReactElement = animated ? (
                 <Animated.Image
-                    source={arrowImage}
+                    source={arrowSource}
                     style={[
                         styles.arrowIcon,
                         { transform: [{ rotate }] },
@@ -235,7 +240,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                 />
             ) : (
                 <Image
-                    source={arrowImage}
+                    source={arrowSource}
                     style={[
                         styles.arrowIcon,
                         isOpened
