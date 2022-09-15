@@ -1,5 +1,13 @@
 # @mobile-reality/react-native-select-pro
 
+## 1.12.0
+
+### Minor Changes
+
+-   [#92](https://github.com/MobileReality/react-native-select-pro/pull/92) [`788396b`](https://github.com/MobileReality/react-native-select-pro/commit/788396bea04b61b005168c0774e83d6264527122) Thanks [@kkaplinski](https://github.com/kkaplinski)! - add `textInputProps` for search input
+
+*   [#93](https://github.com/MobileReality/react-native-select-pro/pull/93) [`08749a0`](https://github.com/MobileReality/react-native-select-pro/commit/08749a0de51ff397e9aac87f76436215deef6a8e) Thanks [@kkaplinski](https://github.com/kkaplinski)! - add custom select arrow icon prop `customSelectControlArrowIconSource`
+
 ## 1.11.1
 
 ### Patch Changes
