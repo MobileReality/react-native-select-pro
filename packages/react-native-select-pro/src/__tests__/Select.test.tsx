@@ -396,6 +396,22 @@ describe('Select with custom left icon', () => {
     });
 });
 
+describe('Select with custom select control arrow icon', () => {
+    it('should generate Select with custom select control arrow icon snapshot', () => {
+        const wrapper = render(
+            <SelectProvider>
+                <Select
+                    customSelectControlArrowIconSource={require('./assets/arrow-down.png')}
+                    // eslint-disable-next-line react-native/no-inline-styles
+                    selectControlArrowImageStyle={{ height: 15, width: 15 }}
+                    options={DATA}
+                />
+            </SelectProvider>,
+        );
+        expect(wrapper).toMatchSnapshot();
+    });
+});
+
 describe('Select with multi selection', () => {
     it('should generate Select with multi selection enabled snapshot', () => {
         const wrapper = render(

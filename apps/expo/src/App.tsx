@@ -8,7 +8,7 @@ import { Animated } from './examples/Animated';
 import { Basic } from './examples/Basic';
 import { Callbacks } from './examples/Callbacks';
 import { CustomComponent } from './examples/CustomComponent';
-import { CustomLeftIcon } from './examples/CustomLeftIcon';
+import { CustomIcons } from './examples/CustomIcons';
 import { CustomOptionsData } from './examples/CustomOptionsData';
 import { CustomStyles } from './examples/CustomStyles';
 import { ModalExample } from './examples/ModalExample';
@@ -82,8 +82,8 @@ const data = [
         getScreen: () => <Animated />,
     },
     {
-        name: 'Custom Left Icon',
-        getScreen: () => <CustomLeftIcon />,
+        name: 'Custom Icons',
+        getScreen: () => <CustomIcons />,
     },
     {
         name: 'Multi Select',

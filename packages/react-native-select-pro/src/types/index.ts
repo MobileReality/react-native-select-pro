@@ -237,6 +237,13 @@ export interface SelectProps {
      */
     customLeftIconSource?: ImageSourcePropType;
 
+    /**
+     *  Custom select control arrow icon source
+     *
+     *  @category Custom Sources
+     */
+    customSelectControlArrowIconSource?: ImageSourcePropType;
+
     //---COLORS---//
     /**
      * Placeholder text color

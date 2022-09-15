@@ -72,6 +72,7 @@ export const Select = forwardRef(
             OptionComponent,
             // Custom sources
             customLeftIconSource,
+            customSelectControlArrowIconSource,
             // Colors
             placeholderTextColor = COLORS.GRAY,
             // Accessibility
@@ -372,6 +373,9 @@ export const Select = forwardRef(
                     searchPattern={searchPattern}
                     searchValue={searchValue}
                     searchable={searchable}
+                    customSelectControlArrowIconSource={
+                        customSelectControlArrowIconSource
+                    }
                     textInputProps={textInputProps}
                     selectControlArrowImageStyle={selectControlArrowImageStyle}
                     selectControlButtonsContainerStyle={

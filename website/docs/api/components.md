@@ -10,6 +10,12 @@ customLeftIconSource?: ImageSourcePropType;
 ```
 Custom left icon source
 
+### customSelectControlArrowIconSource
+```typescript jsx
+customSelectControlArrowIconSource?: ImageSourcePropType;
+```
+Custom select control arrow icon source
+
 ### NoOptionsComponent
 ```typescript jsx
 NoOptionsComponent?: JSX.Element;
