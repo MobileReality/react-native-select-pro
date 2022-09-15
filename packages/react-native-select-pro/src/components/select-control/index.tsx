@@ -45,6 +45,7 @@ type FromSelectComponentProps = Pick<
     | 'disabled'
     | 'searchable'
     | 'searchPattern'
+    | 'textInputProps'
     | 'placeholderText'
     | 'placeholderTextColor'
     | 'selectControlDisabledStyle'
@@ -102,6 +103,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             placeholderTextColor,
             searchable,
             searchPattern,
+            textInputProps,
             searchValue,
             setPosition,
             selectControlArrowImageStyle,
@@ -268,6 +270,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     placeholderText={placeholderText}
                     placeholderTextColor={placeholderTextColor}
                     searchPattern={searchPattern}
+                    textInputProps={textInputProps}
                     searchValue={searchValue}
                     searchable={searchable}
                     selectControlStyle={selectControlStyle}
@@ -293,6 +296,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         placeholderText={placeholderText}
                         placeholderTextColor={placeholderTextColor}
                         searchPattern={searchPattern}
+                        textInputProps={textInputProps}
                         searchValue={searchValue}
                         selectControlTextStyle={selectControlTextStyle}
                         selectedOption={selectedOption}
