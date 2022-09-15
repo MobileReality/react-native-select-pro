@@ -355,6 +355,29 @@ describe('Select with searchable enabled', () => {
 
         expect(input.props.value).toBe(selectOptionInputData);
     });
+
+    it('should fire onFocus and onBlur callbacks', () => {
+        const onFocus = jest.fn();
+        const onBlur = jest.fn();
+        const { getByLabelText } = render(
+            <SelectProvider>
+                <Select
+                    options={SEARCHABLE_DATA}
+                    searchable={true}
+                    textInputProps={{
+                        onFocus,
+                        onBlur,
+                    }}
+                />
+            </SelectProvider>,
+        );
+
+        const input = getByLabelText('Place text');
+        fireEvent(input, 'onFocus');
+        expect(onFocus).toBeCalled();
+        fireEvent(input, 'onBlur');
+        expect(onBlur).toBeCalled();
+    });
 });
 
 describe('Select with custom left icon', () => {

@@ -64,6 +64,7 @@ export const Select = forwardRef(
             // Search
             searchable = false,
             searchPattern = (payload: string) => `(${payload})`,
+            textInputProps,
             // Multiselect
             multiSelection = false,
             // Custom components
@@ -375,6 +376,7 @@ export const Select = forwardRef(
                     customSelectControlArrowIconSource={
                         customSelectControlArrowIconSource
                     }
+                    textInputProps={textInputProps}
                     selectControlArrowImageStyle={selectControlArrowImageStyle}
                     selectControlButtonsContainerStyle={
                         selectControlButtonsContainerStyle

@@ -9,10 +9,9 @@
     "start": "react-native start",
     "detox-ios-metro-start": "react-native start",
     "detox-ios-build": "detox build -c ios",
-    "detox-ios-run": "detox test -c ios",
+    "detox-ios-test": "detox test -c ios",
     "detox-android-build": "detox build -c android.emu.release",
     "detox-android-test": "detox test -c android.emu.release",
-    "detox-android-run": "yarn detox-android-build && yarn detox-android-test",
     "tsc": "tsc --noEmit",
     "clean": "rm -Rf .turbo && rm -Rf node_modules"
   },

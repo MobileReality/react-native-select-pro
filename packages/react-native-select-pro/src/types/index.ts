@@ -5,6 +5,7 @@ import type {
     ImageStyle,
     Insets,
     StyleProp,
+    TextInputProps,
     TextStyle,
     ViewStyle,
 } from 'react-native';
@@ -176,6 +177,7 @@ export interface SelectProps {
      *  @category Search
      */
     searchable?: boolean;
+
     /**
      *  Regex definition for searching options
      *
@@ -183,6 +185,25 @@ export interface SelectProps {
      *  @category Search
      */
     searchPattern?: (payload: string) => string;
+
+    /**
+     *  `TextInputProps` imported from `react-native`
+     *
+     *  @category Search
+     */
+    textInputProps?: Omit<
+        TextInputProps,
+        | 'ref'
+        | 'accessibilityLabel'
+        | 'editable'
+        | 'placeholder'
+        | 'placeholderTextColor'
+        | 'style'
+        | 'textAlign'
+        | 'value'
+        | 'onChangeText'
+        | 'onPressIn'
+    >;
 
     //---MULTISELECT---//
     /**

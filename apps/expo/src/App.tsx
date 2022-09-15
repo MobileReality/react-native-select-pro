@@ -21,6 +21,7 @@ import { ScrollToSelectedOption } from './examples/ScrollToSelectedOption';
 import { Searchable } from './examples/Searchable';
 import { SearchableInModal } from './examples/SearchableInModal';
 import { Selects } from './examples/Selects';
+import { TextInputProps } from './examples/TextInputProps';
 
 const data = [
     {
@@ -91,6 +92,10 @@ const data = [
     {
         name: 'Multi Select with searchable',
         getScreen: () => <MultiSelectWithSearchable />,
+    },
+    {
+        name: 'TextInputProps',
+        getScreen: () => <TextInputProps />,
     },
 ];
 
