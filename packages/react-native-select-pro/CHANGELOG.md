@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 1.12.1
+
+### Patch Changes
+
+-   [#97](https://github.com/MobileReality/react-native-select-pro/pull/97) [`35fbd39`](https://github.com/MobileReality/react-native-select-pro/commit/35fbd391e2679b1159b6a01923ccb293a46bdc3c) Thanks [@kkaplinski](https://github.com/kkaplinski)! - fix: android e2e tests
+
 ## 1.12.0
 
 ### Minor Changes
