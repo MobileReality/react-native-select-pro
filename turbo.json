@@ -14,11 +14,17 @@
         "src/**/*.ts"
       ]
     },
+    "detox-metro-start": {},
     "detox-ios-build": {},
-    "detox-ios-metro-start": {},
     "detox-ios-test": {
       "dependsOn": [
         "detox-ios-build"
+      ]
+    },
+    "detox-android-build": {},
+    "detox-android-test": {
+      "dependsOn": [
+        "detox-android-build"
       ]
     },
     "tsc": {

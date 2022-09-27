@@ -15,7 +15,10 @@ describe('Multi Select', () => {
         await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
         await element(by.text('THIRD LABEL')).tap();
         await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
-        await element(by.text('THIRD LABEL')).atIndex(1).swipe('up');
+        await waitFor(element(by.text('----Fourth label----')))
+            .toBeVisible()
+            .whileElement(by.id('Options list'))
+            .scroll(100, 'down');
         await element(by.text('----Fourth label----')).tap();
         await expect(element(by.text('First label'))).toExist();
         await expect(element(by.text('THIRD LABEL'))).toExist();
@@ -24,12 +27,11 @@ describe('Multi Select', () => {
         ).toExist();
         await expect(element(by.text('----Fourth label----'))).toExist();
 
-        //Swipe to the last element in input and clear all of them beginning from the last
-        await element(by.text('First label')).swipe('left');
-        await element(by.text('----Fourth label----')).tap();
-        await element(by.text('THIRD LABEL')).tap();
-        await element(by.text('Second label in options list.')).tap();
+        //Clear all of the options
         await element(by.text('First label')).tap();
+        await element(by.text('Second label in options list.')).tap();
+        await element(by.text('THIRD LABEL')).tap();
+        await element(by.text('----Fourth label----')).tap();
         await expect(element(by.text('Select...'))).toExist();
     });
 });

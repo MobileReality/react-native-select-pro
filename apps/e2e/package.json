@@ -7,7 +7,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "detox-ios-metro-start": "react-native start",
+    "detox-metro-start": "react-native start",
     "detox-ios-build": "detox build -c ios",
     "detox-ios-test": "detox test -c ios",
     "detox-android-build": "detox build -c android.emu.release",
