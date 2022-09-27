@@ -186,6 +186,7 @@ export const OptionsList = ({
                 >
                     <FlatList
                         ref={flatList}
+                        testID="Options list"
                         accessibilityLabel="Options list"
                         accessibilityState={{
                             expanded: isOpened,

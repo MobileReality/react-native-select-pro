@@ -62,7 +62,7 @@ const data = [
         getScreen: () => <CustomComponent />,
     },
     {
-        name: 'Custom Options Data 3',
+        name: 'Custom Options Data',
         getScreen: () => <CustomOptionsData />,
     },
     {

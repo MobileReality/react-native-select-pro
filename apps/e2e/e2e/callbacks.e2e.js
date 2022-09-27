@@ -8,7 +8,10 @@ describe('Callbacks', () => {
         await element(by.text('Callbacks')).tap();
         //Select option to fire onSelect event
         await element(by.text('Select...')).tap();
-        await element(by.text('First label')).swipe('up');
+        await waitFor(element(by.text('Last')))
+            .toBeVisible()
+            .whileElement(by.id('Options list'))
+            .scroll(200, 'down');
         await element(by.text('Last')).tap();
         await expect(
             element(

@@ -11,12 +11,12 @@
     "android.debug": {
       "type": "android.apk",
       "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
-      "build": "cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && cd .."
+      "build": "cd android && ./gradlew assembleDebug  && ./gradlew assembleAndroidTest -DtestBuildType=debug && cd .."
     },
     "android.release": {
       "type": "android.apk",
       "binaryPath": "android/app/build/outputs/apk/release/app-release.apk",
-      "build": "cd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && cd .."
+      "build": "cd android && ./gradlew assembleRelease && ./gradlew assembleAndroidTest -DtestBuildType=release && cd .."
     }
   },
   "devices": {
