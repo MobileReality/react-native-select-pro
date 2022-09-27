@@ -14,7 +14,7 @@ describe('Searchable', () => {
         await element(by.label('Clear a chosen option')).atIndex(0).tap();
     });
 
-    it('should search with wrong text', async () => {
+    it('should search without results and show "No options" placeholder', async () => {
         await element(by.label('Place text')).atIndex(0).typeText('Test');
         await expect(element(by.text('No options'))).toExist();
     });
