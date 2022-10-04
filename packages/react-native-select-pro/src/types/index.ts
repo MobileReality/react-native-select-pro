@@ -71,7 +71,7 @@ export interface SelectProps {
      * @category Callback
      */
     onRemove?: (
-        option: OptionType | OptionTypeRequired[] | null,
+        option: OptionType | OptionType[] | null,
         optionIndex: number | number[],
     ) => void;
 
