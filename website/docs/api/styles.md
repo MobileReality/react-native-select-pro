@@ -100,30 +100,6 @@ multiSelectionOptionStyle?: StyleProp<ViewStyle>;
 ```
 Custom multiselection option styles
 
-### optionsListStyle
-```typescript jsx
-optionsListStyle?: StyleProp<ViewStyle>;
-```
-Style of options list
-
-### multiSelectionOptionStyle
-```typescript jsx
-multiSelectionOptionStyle?: StyleProp<ViewStyle>;
-```
-Custom multiselection option styles
-
-### optionsListStyle
-```typescript jsx
-optionsListStyle?: StyleProp<ViewStyle>;
-```
-Style of options list
-
-### multiSelectionOptionStyle
-```typescript jsx
-multiSelectionOptionStyle?: StyleProp<ViewStyle>;
-```
-Custom multiselection option styles
-
 ### sectionHeaderContainerStyle
 ```typescript jsx
 sectionHeaderContainerStyle?: StyleProp<ViewStyle>;

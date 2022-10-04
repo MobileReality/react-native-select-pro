@@ -12,13 +12,13 @@ In `<Select />` is only one required prop
 options: OptionsType;
 ```
 
-Data can be passed as array with label and value object
+Data can be passed as an array with label and value object
 
 ```typescript jsx
 [{ value: 'somevalue', label: 'somelabel' }];
 ```
 
-OR as array with structure known from react-native SectionList component
+OR as an array with structure known from react-native SectionList
 
 ```typescript jsx
 [
@@ -29,7 +29,7 @@ OR as array with structure known from react-native SectionList component
 ];
 ```
 
-For now options list with sections are not working with multiselect, searchable and scrollToSelectedOption. We will unblock all of the features soon.
+For now options list with sections are not working with multiSelection, searchable and scrollToSelectedOption. We will unblock all of the features soon.
 
 If array is empty then is showing "No options" text.
 
