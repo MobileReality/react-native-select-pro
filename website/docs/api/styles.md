@@ -99,3 +99,39 @@ Style of options list
 multiSelectionOptionStyle?: StyleProp<ViewStyle>;
 ```
 Custom multiselection option styles
+
+### optionsListStyle
+```typescript jsx
+optionsListStyle?: StyleProp<ViewStyle>;
+```
+Style of options list
+
+### multiSelectionOptionStyle
+```typescript jsx
+multiSelectionOptionStyle?: StyleProp<ViewStyle>;
+```
+Custom multiselection option styles
+
+### optionsListStyle
+```typescript jsx
+optionsListStyle?: StyleProp<ViewStyle>;
+```
+Style of options list
+
+### multiSelectionOptionStyle
+```typescript jsx
+multiSelectionOptionStyle?: StyleProp<ViewStyle>;
+```
+Custom multiselection option styles
+
+### sectionHeaderContainerStyle
+```typescript jsx
+sectionHeaderContainerStyle?: StyleProp<ViewStyle>;
+```
+Style of section header container when section data type is provided
+
+### sectionHeaderTextStyle
+```typescript jsx
+sectionHeaderTextStyle?: StyleProp<TextStyle>;
+```
+Style of section header text when section data type is provided

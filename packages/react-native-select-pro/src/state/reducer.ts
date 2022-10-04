@@ -1,3 +1,5 @@
+import { isSectionOptionsType } from '../helpers/isSectionOptionsType';
+
 import { Action, ActionType, State } from './types';
 
 export const initialData: State = {
@@ -45,7 +47,10 @@ export const reducer = (state: State, action: ActionType): State => {
                 searchValue: action.payload,
             };
         case Action.SearchOptions: {
-            if (action.payload === '') {
+            if (
+                action.payload === '' ||
+                isSectionOptionsType(state.optionsData)
+            ) {
                 return {
                     ...state,
                     searchedOptions: [],

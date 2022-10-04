@@ -46,6 +46,12 @@ flatListProps?: Omit<FlatListProps<OptionType>, 'data' | 'renderItem' | 'ListEmp
 ```
 `FlatListProps` imported from `react-native`
 
+### sectionListProps
+```typescript jsx
+sectionListProps?: Omit<SectionListProps<SectionOptionType>, 'data' | 'renderItem' | 'renderSectionHeader' | 'ListEmptyComponent'>;
+```
+`SectionListProps` imported from `react-native`
+
 ### hideSelectControlArrow
 ```typescript jsx
 hideSelectControlArrow?: boolean;
@@ -56,7 +62,7 @@ If `true` hide select control arrow
 ```typescript jsx
 multiSelection?: boolean;
 ```
-If `true` let user select multiple options in a select, working also with searchable
+If `true` let user select multiple options in a select, working also with searchable. Not working for options list with sections
 
 ### noOptionsText
 ```typescript jsx
@@ -74,13 +80,13 @@ Placeholder text
 ```typescript jsx
 scrollToSelectedOption?: boolean;
 ```
-If `true` options list is scrolled to the selected option
+If `true` options list is scrolled to the selected option. Not working for options list with sections 
 
 ### searchable
 ```typescript jsx
 searchable?: boolean;
 ```
-If `true` let user search in a select options by typing in select
+If `true` let user search in a select options by typing in select. Not working for options list with sections 
 
 ### searchPattern
 ```typescript jsx

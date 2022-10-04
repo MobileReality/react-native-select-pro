@@ -20,6 +20,7 @@ import { RHF } from './examples/RHF';
 import { ScrollToSelectedOption } from './examples/ScrollToSelectedOption';
 import { Searchable } from './examples/Searchable';
 import { SearchableInModal } from './examples/SearchableInModal';
+import { Sections } from './examples/Sections';
 import { Selects } from './examples/Selects';
 import { TextInputProps } from './examples/TextInputProps';
 
@@ -97,6 +98,10 @@ const data = [
         name: 'TextInputProps',
         getScreen: () => <TextInputProps />,
     },
+    {
+        name: 'Sections',
+        getScreen: () => <Sections />,
+    },
 ];
 
 export const App = () => {
@@ -169,8 +174,8 @@ export const App = () => {
                         style={{
                             position: 'absolute',
                             flex: 1,
-                            height: Dimensions.get('window').height,
-                            width: Dimensions.get('window').width,
+                            height: Dimensions.get('screen').height,
+                            width: Dimensions.get('screen').width,
                             backgroundColor: '#f0f3e8',
                         }}
                     >

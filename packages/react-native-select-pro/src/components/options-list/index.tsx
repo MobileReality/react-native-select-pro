@@ -3,7 +3,10 @@ import {
     AccessibilityInfo,
     findNodeHandle,
     FlatList,
+    SectionList,
     StyleSheet,
+    Text,
+    TextStyle,
     TouchableOpacity,
     TouchableWithoutFeedback,
     View,
@@ -15,10 +18,14 @@ import { Portals } from '../../constants/portals';
 import {
     BORDER_WIDTH,
     COLORS,
+    FONT_SIZE,
     ITEM_HEIGHT,
     MAX_HEIGHT_LIST,
+    PADDING,
     SHAPE,
 } from '../../constants/styles';
+import { getReducedSectionData } from '../../helpers/getReducedSectionData';
+import { isSectionOptionsType } from '../../helpers/isSectionOptionsType';
 import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import type { Position, State } from '../../state/types';
 import type {
@@ -47,6 +54,9 @@ type FromSelectComponentProps = Pick<
     | 'OptionComponent'
     | 'searchable'
     | 'multiSelection'
+    | 'sectionHeaderContainerStyle'
+    | 'sectionHeaderTextStyle'
+    | 'sectionListProps'
 >;
 
 type OptionsListProps = OptionalToRequired<
@@ -91,6 +101,9 @@ export const OptionsList = ({
     NoOptionsComponent,
     OptionComponent,
     selectedOptionIndex,
+    sectionHeaderContainerStyle,
+    sectionHeaderTextStyle,
+    sectionListProps,
 }: OptionsListProps) => {
     const selectedOptionTyped = selectedOption as OptionType;
 
@@ -157,6 +170,64 @@ export const OptionsList = ({
         );
     };
 
+    const renderItem = (
+        item: OptionType,
+        index: number,
+        sectionTitle?: string,
+    ) => {
+        const { value } = item;
+        const isSelected = !!resolveIsSelected(item);
+        let optionIndex = index;
+        let section;
+        if (isSectionOptionsType(optionsData)) {
+            optionIndex = getReducedSectionData(optionsData).indexOf(item);
+            section = {
+                title: sectionTitle,
+                index: optionsData.findIndex((el) => el.title === sectionTitle),
+            };
+        }
+        return (
+            <Option
+                key={value}
+                ref={index === 0 ? measuredRef : undefined}
+                OptionComponent={OptionComponent}
+                isSelected={isSelected}
+                option={{ ...item, section }}
+                optionSelectedStyle={optionSelectedStyle}
+                optionStyle={optionStyle}
+                optionTextStyle={optionTextStyle}
+                optionIndex={optionIndex}
+                onPressOption={onPressOption}
+                onSelect={onSelect}
+            />
+        );
+    };
+
+    const getItemLayout = (index: number) => {
+        const height = StyleSheet.flatten(optionStyle)?.height;
+        const isNumber = typeof height === 'number';
+        return {
+            length: isNumber ? height : ITEM_HEIGHT,
+            offset: isNumber ? height * index : ITEM_HEIGHT * index,
+            index,
+        };
+    };
+
+    const renderSectionHeader = (title: string) => (
+        <View
+            style={[
+                styles.sectionHeaderContainerStyle,
+                sectionHeaderContainerStyle,
+            ]}
+        >
+            <Text
+                style={[styles.sectionHeaderTextStyle, sectionHeaderTextStyle]}
+            >
+                {title}
+            </Text>
+        </View>
+    );
+
     return (
         <>
             {isOpened && (
@@ -184,57 +255,61 @@ export const OptionsList = ({
                             : styles.notOverflown,
                     ]}
                 >
-                    <FlatList
-                        ref={flatList}
-                        testID="Options list"
-                        accessibilityLabel="Options list"
-                        accessibilityState={{
-                            expanded: isOpened,
-                        }}
-                        bounces={false}
-                        data={resolveData()}
-                        getItemLayout={(_data, index) => {
-                            const height =
-                                StyleSheet.flatten(optionStyle)?.height;
-                            const isNumber = typeof height === 'number';
-                            return {
-                                length: isNumber ? height : ITEM_HEIGHT,
-                                offset: isNumber
-                                    ? height * index
-                                    : ITEM_HEIGHT * index,
-                                index,
-                            };
-                        }}
-                        keyExtractor={({ value }) => value}
-                        keyboardShouldPersistTaps="handled"
-                        persistentScrollbar={true}
-                        renderItem={({ item, index }) => {
-                            const { value } = item;
-                            const isSelected = !!resolveIsSelected(item);
-
-                            return (
-                                <Option
-                                    key={value}
-                                    ref={index === 0 ? measuredRef : undefined}
-                                    OptionComponent={OptionComponent}
-                                    isSelected={isSelected}
-                                    option={item}
-                                    optionSelectedStyle={optionSelectedStyle}
-                                    optionStyle={optionStyle}
-                                    optionTextStyle={optionTextStyle}
-                                    optionIndex={index}
-                                    onPressOption={onPressOption}
-                                    onSelect={onSelect}
-                                />
-                            );
-                        }}
-                        {...flatListProps}
-                        ListEmptyComponent={
-                            NoOptionsComponent || (
-                                <NoOptions noOptionsText={noOptionsText} />
-                            )
-                        }
-                    />
+                    {isSectionOptionsType(optionsData) ? (
+                        <SectionList
+                            testID="Options list"
+                            accessibilityLabel="Options list"
+                            accessibilityState={{
+                                expanded: isOpened,
+                            }}
+                            bounces={false}
+                            sections={optionsData} // disabled multiselect and searchable
+                            getItemLayout={(_data, index) =>
+                                getItemLayout(index)
+                            }
+                            keyExtractor={({ value }) => value}
+                            keyboardShouldPersistTaps="handled"
+                            persistentScrollbar={true}
+                            renderSectionHeader={({ section: { title } }) =>
+                                renderSectionHeader(title)
+                            }
+                            renderItem={({ item, index, section }) =>
+                                renderItem(item, index, section.title)
+                            }
+                            {...sectionListProps}
+                            ListEmptyComponent={
+                                NoOptionsComponent || (
+                                    <NoOptions noOptionsText={noOptionsText} />
+                                )
+                            }
+                        />
+                    ) : (
+                        <FlatList
+                            ref={flatList}
+                            testID="Options list"
+                            accessibilityLabel="Options list"
+                            accessibilityState={{
+                                expanded: isOpened,
+                            }}
+                            bounces={false}
+                            data={resolveData()}
+                            getItemLayout={(_data, index) =>
+                                getItemLayout(index)
+                            }
+                            keyExtractor={({ value }) => value}
+                            keyboardShouldPersistTaps="handled"
+                            persistentScrollbar={true}
+                            renderItem={({ item, index }) =>
+                                renderItem(item, index)
+                            }
+                            {...flatListProps}
+                            ListEmptyComponent={
+                                NoOptionsComponent || (
+                                    <NoOptions noOptionsText={noOptionsText} />
+                                )
+                            }
+                        />
+                    )}
                 </OptionsListWrapper>
             </Portal>
         </>
@@ -243,6 +318,8 @@ export const OptionsList = ({
 
 type Styles = {
     modalOverlay: ViewStyle;
+    sectionHeaderTextStyle: TextStyle;
+    sectionHeaderContainerStyle: ViewStyle;
     options: ViewStyle;
     notOverflown: ViewStyle;
     overflown: ViewStyle;
@@ -271,5 +348,15 @@ const styles = StyleSheet.create<Styles>({
         borderBottomWidth: 0,
         borderTopRightRadius: SHAPE,
         borderTopLeftRadius: SHAPE,
+    },
+    sectionHeaderTextStyle: {
+        fontSize: FONT_SIZE,
+        color: COLORS.BLACK,
+        fontWeight: 'bold',
+        textAlign: 'left',
+    },
+    sectionHeaderContainerStyle: {
+        padding: PADDING,
+        backgroundColor: COLORS.WHITE,
     },
 });

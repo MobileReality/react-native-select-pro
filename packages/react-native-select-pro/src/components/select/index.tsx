@@ -23,6 +23,8 @@ import {
     MAX_HEIGHT_LIST,
 } from '../../constants/styles';
 import { getSize } from '../../helpers';
+import { getReducedSectionData } from '../../helpers/getReducedSectionData';
+import { isSectionOptionsType } from '../../helpers/isSectionOptionsType';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
 import type {
@@ -61,6 +63,7 @@ export const Select = forwardRef(
             // Additional features
             defaultOption,
             flatListProps,
+            sectionListProps,
             // Search
             searchable = false,
             searchPattern = (payload: string) => `(${payload})`,
@@ -94,6 +97,8 @@ export const Select = forwardRef(
             selectControlTextStyle,
             customLeftIconStyles,
             multiSelectionOptionStyle,
+            sectionHeaderTextStyle,
+            sectionHeaderContainerStyle,
         } = props;
         const [state, dispatch] = useReducer(reducer, initialData);
         const {
@@ -110,6 +115,9 @@ export const Select = forwardRef(
         const selectedOptionTyped = selectedOption as OptionType;
 
         const containerRef = useRef<View>(null);
+        const isMultiSelection =
+            multiSelection && !isSectionOptionsType(options);
+        const isSearchable = searchable && !isSectionOptionsType(options);
 
         useEffect(() => {
             if (!Array.isArray(options)) {
@@ -129,9 +137,11 @@ export const Select = forwardRef(
                     defaultOption.hasOwnProperty('label');
 
                 if (isValidPassDefaultOption) {
-                    const foundIndex = options.findIndex(
-                        ({ value }) => value === defaultOption.value,
-                    );
+                    const isSectionData = isSectionOptionsType(options);
+                    const foundIndex = isSectionData
+                        ? getReducedSectionData(options).indexOf(defaultOption)
+                        : options.indexOf(defaultOption);
+
                     dispatch({
                         type: Action.SelectOption,
                         payload: {
@@ -189,7 +199,7 @@ export const Select = forwardRef(
             }
 
             const resolveOption = () => {
-                if (!multiSelection) {
+                if (!isMultiSelection || isSectionOptionsType(optionsData)) {
                     return {
                         selectedOption: option,
                         selectedOptionIndex: optionIndex,
@@ -244,8 +254,8 @@ export const Select = forwardRef(
                 },
             });
 
-            if (searchable) {
-                if (multiSelection) {
+            if (isSearchable) {
+                if (isMultiSelection) {
                     dispatch({ type: Action.SetSearchValue, payload: '' });
                 } else {
                     dispatch({
@@ -285,10 +295,14 @@ export const Select = forwardRef(
                             sizeFallback: MAX_HEIGHT_LIST,
                             screenSize: windowDimensions.height,
                         });
-
+                        const optionsDataLength = isSectionOptionsType(
+                            optionsData,
+                        )
+                            ? getReducedSectionData(optionsData).length
+                            : optionsData.length;
                         const finalHeight =
-                            listHeight >= optionsData.length * optionHeight
-                                ? optionsData.length * optionHeight
+                            listHeight >= optionsDataLength * optionHeight
+                                ? optionsDataLength * optionHeight
                                 : listHeight;
 
                         const isOverflow =
@@ -331,7 +345,7 @@ export const Select = forwardRef(
         const onOutsidePress: OnOutsidePress = () => {
             dispatch({ type: Action.Close });
             dispatch({ type: Action.SetOptionsData, payload: options });
-            if (searchable && selectedOptionTyped?.label) {
+            if (isSearchable && selectedOptionTyped?.label) {
                 dispatch({
                     type: Action.SetSearchValue,
                     payload: selectedOptionTyped.label,
@@ -365,14 +379,14 @@ export const Select = forwardRef(
                     dispatch={dispatch}
                     hideSelectControlArrow={hideSelectControlArrow}
                     isOpened={isOpened}
-                    multiSelection={multiSelection}
+                    multiSelection={isMultiSelection}
                     multiSelectionOptionStyle={multiSelectionOptionStyle}
                     options={options}
                     placeholderText={placeholderText}
                     placeholderTextColor={placeholderTextColor}
                     searchPattern={searchPattern}
                     searchValue={searchValue}
-                    searchable={searchable}
+                    searchable={isSearchable}
                     customSelectControlArrowIconSource={
                         customSelectControlArrowIconSource
                     }
@@ -414,7 +428,7 @@ export const Select = forwardRef(
                     animationDuration={animationDuration}
                     flatListProps={flatListProps}
                     isOpened={isOpened}
-                    multiSelection={multiSelection}
+                    multiSelection={isMultiSelection}
                     noOptionsText={noOptionsText}
                     openedPosition={openedPosition}
                     optionSelectedStyle={optionSelectedStyle}
@@ -424,10 +438,13 @@ export const Select = forwardRef(
                     optionsListStyle={optionsListStyle}
                     scrollToSelectedOption={scrollToSelectedOption}
                     searchValue={searchValue}
-                    searchable={searchable}
+                    searchable={isSearchable}
                     searchedOptions={searchedOptions}
                     selectedOption={selectedOption}
                     selectedOptionIndex={selectedOptionIndex}
+                    sectionHeaderContainerStyle={sectionHeaderContainerStyle}
+                    sectionHeaderTextStyle={sectionHeaderTextStyle}
+                    sectionListProps={sectionListProps}
                     onOutsidePress={onOutsidePress}
                     onPressOption={onPressOption}
                     onSelect={onSelect}
