@@ -4,6 +4,7 @@ import type {
     ImageSourcePropType,
     ImageStyle,
     Insets,
+    SectionListProps,
     StyleProp,
     TextInputProps,
     TextStyle,
@@ -18,9 +19,20 @@ export type OptionTypeRequired = {
     value: string;
 };
 
-export type OptionType<T = unknown> = OptionTypeRequired & T;
+export type SectionType = {
+    title: string | undefined;
+    index: number;
+};
 
-export type OptionsType = OptionType[];
+export type OptionType<T = unknown> = OptionTypeRequired &
+    T & { section?: SectionType };
+
+export type SectionOptionType = {
+    title: string;
+    data: OptionType[];
+};
+
+export type OptionsType = SectionOptionType[] | OptionType[];
 
 export type OptionComponentProps = Pick<
     OptionProps,
@@ -59,7 +71,7 @@ export interface SelectProps {
      * @category Callback
      */
     onRemove?: (
-        option: OptionType | OptionsType | null,
+        option: OptionType | OptionType[] | null,
         optionIndex: number | number[],
     ) => void;
 
@@ -167,6 +179,16 @@ export interface SelectProps {
     flatListProps?: Omit<
         FlatListProps<OptionType>,
         'data' | 'renderItem' | 'ListEmptyComponent'
+    >;
+
+    /**
+     *  `SectionListProps` imported from `react-native`
+     *
+     *  @category Additional Features
+     */
+    sectionListProps?: Omit<
+        SectionListProps<OptionType>,
+        'sections' | 'renderItem' | 'renderSectionHeader' | 'ListEmptyComponent'
     >;
 
     //---SEARCH---//
@@ -375,6 +397,20 @@ export interface SelectProps {
      *  @category Styles
      */
     multiSelectionOptionStyle?: StyleProp<ViewStyle>;
+
+    /**
+     * Style of section header container when section data type is provided
+     *
+     * @category Styles
+     */
+    sectionHeaderContainerStyle?: StyleProp<ViewStyle>;
+
+    /**
+     * Style of section header title when section data type is provided
+     *
+     * @category Styles
+     */
+    sectionHeaderTextStyle?: StyleProp<TextStyle>;
 }
 
 /**

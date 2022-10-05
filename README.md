@@ -19,6 +19,7 @@
 ## Features
 
 * Customizable
+* Sections / Grouping
 * Searchable
 * Animations
 * Multi select
@@ -96,6 +97,17 @@ const SomeComponent = () => {
         </View>
     )
 };
+```
+
+Additionally you can pass second available data structure:
+
+```typescript jsx
+[
+    {
+        title: 'sometitle',
+        data: { value: 'somevalue', label: 'somelabel' },
+    },
+];
 ```
 
 If you want to use `Select` component inside:

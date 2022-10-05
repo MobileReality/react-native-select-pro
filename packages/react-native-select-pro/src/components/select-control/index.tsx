@@ -27,6 +27,7 @@ import {
     SHAPE,
 } from '../../constants/styles';
 import { isAndroid } from '../../helpers';
+import { isSectionOptionsType } from '../../helpers/isSectionOptionsType';
 import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
 import type { OptionType, Select } from '../../index';
 import { Action, DispatchType, Position, State } from '../../state/types';
@@ -129,7 +130,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         ref,
     ) => {
         const rotateAnimation = useRef(new Animated.Value(0)).current;
-
         useEffect(() => {
             if (animated) {
                 Animated.timing(rotateAnimation, {
@@ -149,7 +149,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             if (!disabled) {
                 let removedOption = selectedOption;
                 let removedOptionIndex = selectedOptionIndex;
-                if (multiSelection) {
+                if (multiSelection && !isSectionOptionsType(options)) {
                     let removedSelectedOptions: null | OptionType[] = [];
                     removedSelectedOptions = (
                         selectedOption as OptionType[]

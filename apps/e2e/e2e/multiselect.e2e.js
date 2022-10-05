@@ -4,7 +4,7 @@ describe('Multi Select', () => {
         await waitFor(element(by.text('Multi Select')))
             .toBeVisible()
             .whileElement(by.id('Examples List'))
-            .scroll(100, 'down');
+            .scroll(200, 'down');
         await element(by.text('Multi Select')).tap();
 
         //Select four elements one by one from the dropdown list

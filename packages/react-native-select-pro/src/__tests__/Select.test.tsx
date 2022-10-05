@@ -21,6 +21,39 @@ const DATA = [
     },
 ];
 
+const SECTIONS_DATA = [
+    {
+        title: 'North America',
+        data: [
+            {
+                value: 'us',
+                label: 'United States of America',
+            },
+            {
+                value: 'ca',
+                label: 'Canada',
+            },
+        ],
+    },
+    {
+        title: 'Europe',
+        data: [
+            {
+                value: 'pl',
+                label: 'Poland',
+            },
+            {
+                value: 'es',
+                label: 'Spain',
+            },
+            {
+                value: 'fr',
+                label: 'France',
+            },
+        ],
+    },
+];
+
 const SEARCHABLE_DATA = [
     {
         value: 'test1',
@@ -86,6 +119,22 @@ describe('Select', () => {
 
         const clearButton = getByLabelText('Clear a chosen option');
         expect(clearButton).toBeTruthy();
+    });
+
+    it('should select option from section list', () => {
+        const { getByLabelText } = render(
+            <SelectProvider>
+                <Select options={SECTIONS_DATA} />
+            </SelectProvider>,
+        );
+
+        const open = getByLabelText('Open a dropdown');
+        fireEvent.press(open);
+
+        const optionPress = getByLabelText(
+            `Choose ${SECTIONS_DATA[0].data[0].label} option`,
+        );
+        fireEvent.press(optionPress);
     });
 
     it('should fire callbacks with right arguments after select and remove option', () => {

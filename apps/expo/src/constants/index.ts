@@ -24,3 +24,36 @@ export const DATA = [
         label: 'Last',
     },
 ];
+
+export const SECTIONS_DATA = [
+    {
+        title: 'North America',
+        data: [
+            {
+                value: 'us',
+                label: 'United States of America',
+            },
+            {
+                value: 'ca',
+                label: 'Canada',
+            },
+        ],
+    },
+    {
+        title: 'Europe',
+        data: [
+            {
+                value: 'pl',
+                label: 'Poland',
+            },
+            {
+                value: 'es',
+                label: 'Spain',
+            },
+            {
+                value: 'fr',
+                label: 'France',
+            },
+        ],
+    },
+];
