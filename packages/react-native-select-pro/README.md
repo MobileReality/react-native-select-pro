@@ -19,7 +19,7 @@
 ## Features
 
 * Customizable
-* Sections/Grouping
+* Sections / Grouping
 * Searchable
 * Animations
 * Multi select
