@@ -1,5 +1,34 @@
 # @mobile-reality/react-native-select-pro
 
+## 1.13.0
+
+### Minor Changes
+
+-   [#99](https://github.com/MobileReality/react-native-select-pro/pull/99) [`1ca307d`](https://github.com/MobileReality/react-native-select-pro/commit/1ca307d49e865df5103d42bcc6ce6e214574b899) Thanks [@kkaplinski](https://github.com/kkaplinski)! - Now you can pass second available data structure - Section List:
+
+    ```jsx
+    import React from 'react';
+    import { View } from 'react-native';
+    import { Select } from '@mobile-reality/react-native-select-pro';
+
+    const SomeComponent = () => {
+        return (
+            <View>
+                <Select
+                    options={
+                        [
+                            {
+                                title: 'sometitle',
+                                data: { value: 'somevalue', label: 'somelabel' },
+                            },
+                        ];
+                    }
+                />
+            </View>
+        )
+    };
+    ```
+
 ## 1.12.1
 
 ### Patch Changes
