@@ -4,6 +4,7 @@ import {
     findNodeHandle,
     FlatList,
     SectionList,
+    SectionListData,
     StyleSheet,
     Text,
     TextStyle,
@@ -142,6 +143,9 @@ export const OptionsList = ({
     );
 
     const resolveData = () => {
+        if (isSectionOptionsType(optionsData)) {
+            return optionsData;
+        }
         if (!searchable) {
             return optionsData;
         }
@@ -170,18 +174,23 @@ export const OptionsList = ({
         );
     };
 
-    const renderItem = (
-        item: OptionType,
-        index: number,
-        sectionTitle?: string,
-    ) => {
+    const renderItem = <T,>({
+        item,
+        index,
+        section,
+    }: {
+        item: OptionType;
+        index: number;
+        section?: SectionListData<T>;
+    }) => {
         const { value } = item;
         const isSelected = !!resolveIsSelected(item);
         let optionIndex = index;
-        let section;
+        const sectionTitle = section?.title;
+        let sectionObj;
         if (isSectionOptionsType(optionsData)) {
             optionIndex = getReducedSectionData(optionsData).indexOf(item);
-            section = {
+            sectionObj = {
                 title: sectionTitle,
                 index: optionsData.findIndex((el) => el.title === sectionTitle),
             };
@@ -192,7 +201,7 @@ export const OptionsList = ({
                 ref={index === 0 ? measuredRef : undefined}
                 OptionComponent={OptionComponent}
                 isSelected={isSelected}
-                option={{ ...item, section }}
+                option={{ ...item, section: sectionObj }}
                 optionSelectedStyle={optionSelectedStyle}
                 optionStyle={optionStyle}
                 optionTextStyle={optionTextStyle}
@@ -203,7 +212,7 @@ export const OptionsList = ({
         );
     };
 
-    const getItemLayout = (index: number) => {
+    const getItemLayout = <T,>(_data: T, index: number) => {
         const height = StyleSheet.flatten(optionStyle)?.height;
         const isNumber = typeof height === 'number';
         return {
@@ -213,7 +222,7 @@ export const OptionsList = ({
         };
     };
 
-    const renderSectionHeader = (title: string) => (
+    const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => (
         <View
             style={[
                 styles.sectionHeaderContainerStyle,
@@ -223,7 +232,7 @@ export const OptionsList = ({
             <Text
                 style={[styles.sectionHeaderTextStyle, sectionHeaderTextStyle]}
             >
-                {title}
+                {info.section.title}
             </Text>
         </View>
     );
@@ -264,18 +273,12 @@ export const OptionsList = ({
                             }}
                             bounces={false}
                             sections={optionsData} // disabled multiselect and searchable
-                            getItemLayout={(_data, index) =>
-                                getItemLayout(index)
-                            }
+                            getItemLayout={getItemLayout}
                             keyExtractor={({ value }) => value}
                             keyboardShouldPersistTaps="handled"
                             persistentScrollbar={true}
-                            renderSectionHeader={({ section: { title } }) =>
-                                renderSectionHeader(title)
-                            }
-                            renderItem={({ item, index, section }) =>
-                                renderItem(item, index, section.title)
-                            }
+                            renderSectionHeader={renderSectionHeader}
+                            renderItem={renderItem}
                             {...sectionListProps}
                             ListEmptyComponent={
                                 NoOptionsComponent || (
@@ -293,15 +296,11 @@ export const OptionsList = ({
                             }}
                             bounces={false}
                             data={resolveData()}
-                            getItemLayout={(_data, index) =>
-                                getItemLayout(index)
-                            }
+                            getItemLayout={getItemLayout}
                             keyExtractor={({ value }) => value}
                             keyboardShouldPersistTaps="handled"
                             persistentScrollbar={true}
-                            renderItem={({ item, index }) =>
-                                renderItem(item, index)
-                            }
+                            renderItem={renderItem}
                             {...flatListProps}
                             ListEmptyComponent={
                                 NoOptionsComponent || (

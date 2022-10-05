@@ -98,6 +98,17 @@ const SomeComponent = () => {
 };
 ```
 
+Additionally you can pass second available data structure:
+
+```typescript jsx
+[
+    {
+        title: 'sometitle',
+        data: { value: 'somevalue', label: 'somelabel' },
+    },
+];
+```
+
 If you want to use `Select` component inside:
 
 * `Modal` from `react-native` / `react-native-modal`

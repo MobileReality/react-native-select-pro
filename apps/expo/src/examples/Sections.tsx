@@ -13,6 +13,7 @@ export const Sections = () => {
                     color: 'darkblue',
                 }}
                 options={SECTIONS_DATA}
+                sectionListProps={{ bounces: true }}
                 selectControlStyle={{ width: 200 }}
             />
         </SafeAreaViewWrapper>
