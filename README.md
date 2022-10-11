@@ -153,6 +153,14 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 [MIT](LICENSE.md)
 
+## Made at Mobile Reality 🔥
+
+Open source projects are everywhere. We have used these since the beginning. In Mobile Reality we would like to share
+and give back to community our work. `react-native-select-pro` is this kind of work and if you see this library useful
+for you please star it 🌟. 
+
+Like our approach and other open source projects? Don't hesitate to contact us at office@mobilereality.pl in terms of any questions.
+
 ## Want more from Mobile Reality?
 
 Contact with us https://mobilereality.pl/en
