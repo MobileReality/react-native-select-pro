@@ -22,7 +22,7 @@
 
 // https://github.com/callstack/reassure/issues/70 for now doesn't work
 test('Component', async () => {
-    return null;
+    await Promise.resolve(null);
     // await measurePerformance(
     //     <SelectProvider>
     //         <Select options={DATA} />

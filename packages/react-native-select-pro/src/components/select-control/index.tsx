@@ -1,22 +1,14 @@
-import React, {
-    ComponentPropsWithRef,
-    forwardRef,
-    ReactElement,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
+import type { ComponentPropsWithRef, ReactElement } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import {
     AccessibilityInfo,
     Animated,
     Image,
-    ImageStyle,
     Pressable,
     StyleSheet,
     Text,
-    TextStyle,
     View,
-    ViewStyle,
 } from 'react-native';
 
 import {
@@ -27,14 +19,17 @@ import {
     SHAPE,
 } from '../../constants/styles';
 import { isAndroid } from '../../helpers';
-import { isSectionOptionsType } from '../../helpers/isSectionOptionsType';
-import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
+import { isSectionOptionsType } from '../../helpers/is-section-options-type';
+import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type { OptionType, Select } from '../../index';
-import { Action, DispatchType, Position, State } from '../../state/types';
+import type { DispatchType, Position, State } from '../../state/types';
+import { Action } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition } from '../../types';
 import { ClearOption } from '../clear-option';
 import { MultiSelect } from '../multi-select';
 import { SelectInput } from '../select-input';
+
+const arrowImage = require('./../../assets/icons/chevron-down.png');
 
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
@@ -85,9 +80,9 @@ type SelectControlProps = OptionalToRequired<
         }
 >;
 
-const arrowImage = require('./../../assets/icons/chevron-down.png');
-
 export const SelectControl = forwardRef<View, SelectControlProps>(
+    // TODO
+    // eslint-disable-next-line complexity
     (
         {
             isOpened,
@@ -138,6 +133,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     useNativeDriver: true,
                 }).start();
             }
+            // TODO
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [rotateAnimation, isOpened, animated]);
 
         const rotate = rotateAnimation.interpolate({
@@ -212,9 +209,11 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
 
         useEffect(() => {
             if (!isAndroid) {
-                AccessibilityInfo.isScreenReaderEnabled().then((e) => {
-                    setIsScreenReaderEnabled(e);
-                });
+                AccessibilityInfo.isScreenReaderEnabled()
+                    .then((e) => {
+                        setIsScreenReaderEnabled(e);
+                    }) // eslint-disable-next-line no-console
+                    .catch(() => console.error('isScreenReaderEnabled error'));
                 AccessibilityInfo.addEventListener('change', (e) => {
                     setIsScreenReaderEnabled(e);
                 });
@@ -228,9 +227,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
 
         const renderArrowImage = (): ReactElement => {
             const accessibilityLabel = 'Arrow for opening dropdown';
-            const arrowSource = customSelectControlArrowIconSource
-                ? customSelectControlArrowIconSource
-                : arrowImage;
+            const arrowSource =
+                customSelectControlArrowIconSource ?? arrowImage;
             const arrow: ReactElement = animated ? (
                 <Animated.Image
                     source={arrowSource}
@@ -319,7 +317,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         {
                             color: selectedOptionTyped?.label
                                 ? StyleSheet.flatten(selectControlTextStyle)
-                                      ?.color || COLORS.BLACK
+                                      ?.color ?? COLORS.BLACK
                                 : placeholderTextColor,
                         },
                     ]}
@@ -331,7 +329,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
 
         const resolveAccessibilityHint = () => {
             if (!selectedOption) {
-                return undefined;
+                return;
             }
             if (!multiSelection) {
                 const selectedOptionTyped = selectedOption as OptionType; // for proper typing
@@ -362,7 +360,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     accessibilityLabel={
                         isOpened
                             ? ''
-                            : selectControlOpenDropdownA11yLabel ||
+                            : selectControlOpenDropdownA11yLabel ??
                               'Open a dropdown'
                     }
                     style={[

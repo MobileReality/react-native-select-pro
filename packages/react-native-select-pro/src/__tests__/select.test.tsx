@@ -1,5 +1,6 @@
 import React from 'react';
-import { MeasureOnSuccessCallback, Pressable, Text, View } from 'react-native';
+import type { MeasureOnSuccessCallback } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { fireEvent, render } from '@testing-library/react-native';
 
 import { Select } from '../components/select';

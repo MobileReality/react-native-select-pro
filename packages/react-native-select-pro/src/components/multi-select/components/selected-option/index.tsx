@@ -1,11 +1,7 @@
-import React, { ComponentPropsWithRef } from 'react';
-import {
-    Pressable,
-    StyleSheet,
-    Text,
-    TextStyle,
-    ViewStyle,
-} from 'react-native';
+import type { ComponentPropsWithRef } from 'react';
+import React from 'react';
+import type { TextStyle, ViewStyle } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../../../constants/styles';
 import type { OptionType, Select } from '../../../../index';
@@ -39,7 +35,7 @@ export const MultiSelectedOption = ({
         <Pressable
             accessibilityLabel={
                 option
-                    ? `${(option as OptionType).label} selected`
+                    ? `${option.label} selected`
                     : 'Placeholder in multi-select'
             }
             style={[
@@ -61,12 +57,12 @@ export const MultiSelectedOption = ({
                     {
                         color: option?.label
                             ? StyleSheet.flatten(selectControlTextStyle)
-                                  ?.color || COLORS.BLACK
+                                  ?.color ?? COLORS.BLACK
                             : placeholderTextColor,
                     },
                 ]}
             >
-                {option?.label || placeholderText}
+                {option?.label ?? placeholderText}
             </Text>
         </Pressable>
     );

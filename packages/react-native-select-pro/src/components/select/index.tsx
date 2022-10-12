@@ -1,19 +1,17 @@
+import type { ForwardedRef, RefObject } from 'react';
 import React, {
-    ForwardedRef,
     forwardRef,
-    RefObject,
     useEffect,
     useImperativeHandle,
     useReducer,
     useRef,
 } from 'react';
+import type { TextInput, ViewStyle } from 'react-native';
 import {
     I18nManager,
     StyleSheet,
-    TextInput,
     useWindowDimensions,
     View,
-    ViewStyle,
 } from 'react-native';
 
 import {
@@ -23,8 +21,8 @@ import {
     MAX_HEIGHT_LIST,
 } from '../../constants/styles';
 import { getSize } from '../../helpers';
-import { getReducedSectionData } from '../../helpers/getReducedSectionData';
-import { isSectionOptionsType } from '../../helpers/isSectionOptionsType';
+import { getReducedSectionData } from '../../helpers/get-reduced-section-data';
+import { isSectionOptionsType } from '../../helpers/is-section-options-type';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
 import type {
@@ -131,10 +129,8 @@ export const Select = forwardRef(
 
                 const isValidPassDefaultOption =
                     defaultOption &&
-                    // eslint-disable-next-line no-prototype-builtins
-                    defaultOption.hasOwnProperty('value') &&
-                    // eslint-disable-next-line no-prototype-builtins
-                    defaultOption.hasOwnProperty('label');
+                    Object.hasOwn(defaultOption, 'value') &&
+                    Object.hasOwn(defaultOption, 'label');
 
                 if (isValidPassDefaultOption) {
                     const isSectionData = isSectionOptionsType(options);
@@ -151,6 +147,8 @@ export const Select = forwardRef(
                     });
                 }
             }
+            // TODO
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [options]);
 
         useImperativeHandle(ref, () => ({
@@ -209,12 +207,10 @@ export const Select = forwardRef(
                 const selectedOptionAsArray = selectedOption as
                     | OptionType[]
                     | null;
-                const foundSelectedOption =
-                    selectedOptionAsArray &&
-                    selectedOptionAsArray.find(
-                        (selectedOption: OptionType) =>
-                            selectedOption.value === option.value,
-                    );
+                const foundSelectedOption = selectedOptionAsArray?.find(
+                    (selectedOption: OptionType) =>
+                        selectedOption.value === option.value,
+                );
 
                 if (foundSelectedOption) {
                     return {
@@ -235,9 +231,9 @@ export const Select = forwardRef(
                         if (sOption.some(({ value }) => value === item.value)) {
                             return index;
                         }
-                        return undefined;
+                        return null;
                     })
-                    .filter((item) => item !== undefined) as number[];
+                    .filter((item): item is number => item !== null);
 
                 return {
                     selectedOption: sOption,
@@ -360,6 +356,8 @@ export const Select = forwardRef(
             } else {
                 onDropdownClosed?.();
             }
+            // TODO
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [isOpened]);
 
         return (

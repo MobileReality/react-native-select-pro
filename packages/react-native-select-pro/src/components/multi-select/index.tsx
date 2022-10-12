@@ -1,13 +1,10 @@
-import React, { ComponentPropsWithRef } from 'react';
-import {
-    ScrollView,
-    StyleSheet,
-    useWindowDimensions,
-    ViewStyle,
-} from 'react-native';
+import type { ComponentPropsWithRef } from 'react';
+import React from 'react';
+import type { ViewStyle } from 'react-native';
+import { ScrollView, StyleSheet, useWindowDimensions } from 'react-native';
 
 import { parsePercentageToNumber } from '../../helpers';
-import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
+import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type {
     OnPressSelectControlType,
     OnSetPosition,

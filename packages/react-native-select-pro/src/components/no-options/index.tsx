@@ -1,8 +1,10 @@
-import React, { ComponentProps } from 'react';
-import { StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native';
+import type { ComponentProps } from 'react';
+import React from 'react';
+import type { TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
+import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type { OptionsList } from '../options-list';
 
 type FromParentProps = Pick<

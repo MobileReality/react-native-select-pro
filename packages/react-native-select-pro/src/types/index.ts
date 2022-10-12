@@ -45,7 +45,7 @@ export type OptionComponentProps = Pick<
  * `<Select />` component props
  */
 export interface SelectProps {
-    //---REQUIRED---//
+    // ---REQUIRED--- //
     /**
      *  Options to show on the list
      *
@@ -53,7 +53,7 @@ export interface SelectProps {
      */
     options: OptionsType;
 
-    //---CALLBACKS---//
+    // ---CALLBACKS--- //
     /**
      * Callback that is called when option is selected
      *
@@ -89,7 +89,7 @@ export interface SelectProps {
      */
     onDropdownClosed?: () => void;
 
-    //---TEXTS---//
+    // ---TEXTS--- //
     /**
      * No options text
      *
@@ -106,7 +106,7 @@ export interface SelectProps {
      */
     placeholderText?: string;
 
-    //---ANIMATIONS---//
+    // ---ANIMATIONS--- //
     /**
      *  If `true` toggling the select is animated
      *
@@ -123,7 +123,7 @@ export interface SelectProps {
      */
     animationDuration?: number;
 
-    //---BEHAVIOURS---//
+    // ---BEHAVIOURS--- //
     /**
      *  If `true` enables a clear button to remove selected option
      *
@@ -164,7 +164,7 @@ export interface SelectProps {
      */
     hideSelectControlArrow?: boolean;
 
-    //---ADDITIONAL-FEATURES---//
+    // ---ADDITIONAL-FEATURES--- //
     /**
      *  Set a default option
      *  @category Additional Features
@@ -191,7 +191,7 @@ export interface SelectProps {
         'sections' | 'renderItem' | 'renderSectionHeader' | 'ListEmptyComponent'
     >;
 
-    //---SEARCH---//
+    // ---SEARCH--- //
     /**
      *  If `true` let user search in a select options by typing in select
      *
@@ -227,7 +227,7 @@ export interface SelectProps {
         | 'onPressIn'
     >;
 
-    //---MULTISELECT---//
+    // ---MULTISELECT--- //
     /**
      *  if `true` then multi option can be picked
      *
@@ -236,7 +236,7 @@ export interface SelectProps {
      */
     multiSelection?: boolean;
 
-    //---CUSTOM-COMPONENT---//
+    // ---CUSTOM-COMPONENT--- //
     /**
      * NoOptionsComponent
      *
@@ -251,7 +251,7 @@ export interface SelectProps {
      */
     OptionComponent?: (props: OptionComponentProps) => JSX.Element;
 
-    //---CUSTOM-SOURCES---//
+    // ---CUSTOM-SOURCES--- //
     /**
      *  Custom left icon source
      *
@@ -266,7 +266,7 @@ export interface SelectProps {
      */
     customSelectControlArrowIconSource?: ImageSourcePropType;
 
-    //---COLORS---//
+    // ---COLORS--- //
     /**
      * Placeholder text color
      *
@@ -275,7 +275,7 @@ export interface SelectProps {
      */
     placeholderTextColor?: string;
 
-    //---ACCESSIBILITY---//
+    // ---ACCESSIBILITY--- //
     /**
      * selectControlClearOptionA11yLabel
      *
@@ -292,7 +292,7 @@ export interface SelectProps {
      */
     selectControlOpenDropdownA11yLabel?: string;
 
-    //---STYLES---//
+    // ---STYLES--- //
     /**
      *  Style of arrow image
      *

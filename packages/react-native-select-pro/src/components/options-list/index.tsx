@@ -1,17 +1,20 @@
-import React, { ComponentProps, useCallback } from 'react';
+import type { ComponentProps } from 'react';
+import React, { useCallback } from 'react';
+import type {
+    SectionListData,
+    TextStyle,
+    TouchableOpacity,
+    ViewStyle,
+} from 'react-native';
 import {
     AccessibilityInfo,
     findNodeHandle,
     FlatList,
     SectionList,
-    SectionListData,
     StyleSheet,
     Text,
-    TextStyle,
-    TouchableOpacity,
     TouchableWithoutFeedback,
     View,
-    ViewStyle,
 } from 'react-native';
 import { Portal } from '@gorhom/portal';
 
@@ -25,9 +28,9 @@ import {
     PADDING,
     SHAPE,
 } from '../../constants/styles';
-import { getReducedSectionData } from '../../helpers/getReducedSectionData';
-import { isSectionOptionsType } from '../../helpers/isSectionOptionsType';
-import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
+import { getReducedSectionData } from '../../helpers/get-reduced-section-data';
+import { isSectionOptionsType } from '../../helpers/is-section-options-type';
+import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type { Position, State } from '../../state/types';
 import type {
     OnOutsidePress,
@@ -127,6 +130,8 @@ export const OptionsList = ({
                 }
             }
         },
+        // TODO
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [scrollToSelectedOption, selectedOptionIndex, onPressOption],
     );
 
@@ -139,6 +144,8 @@ export const OptionsList = ({
                 }
             }
         },
+        // TODO
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [isOpened],
     );
 
@@ -281,7 +288,7 @@ export const OptionsList = ({
                             renderItem={renderItem}
                             {...sectionListProps}
                             ListEmptyComponent={
-                                NoOptionsComponent || (
+                                NoOptionsComponent ?? (
                                     <NoOptions noOptionsText={noOptionsText} />
                                 )
                             }
@@ -303,7 +310,7 @@ export const OptionsList = ({
                             renderItem={renderItem}
                             {...flatListProps}
                             ListEmptyComponent={
-                                NoOptionsComponent || (
+                                NoOptionsComponent ?? (
                                     <NoOptions noOptionsText={noOptionsText} />
                                 )
                             }

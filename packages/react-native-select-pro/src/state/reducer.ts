@@ -1,6 +1,7 @@
-import { isSectionOptionsType } from '../helpers/isSectionOptionsType';
+import { isSectionOptionsType } from '../helpers/is-section-options-type';
 
-import { Action, ActionType, State } from './types';
+import type { ActionType, State } from './types';
+import { Action } from './types';
 
 export const initialData: State = {
     isOpened: false,
@@ -76,5 +77,7 @@ export const reducer = (state: State, action: ActionType): State => {
                 ...state,
                 openedPosition: { ...state.openedPosition, ...action.payload },
             };
+        default:
+            return state;
     }
 };

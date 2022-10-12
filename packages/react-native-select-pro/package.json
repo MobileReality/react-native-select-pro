@@ -14,6 +14,7 @@
   "scripts": {
     "build": "bob build",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint --fix ./src --ext .js,.jsx,.ts,.tsx",
     "tsc": "tsc --noEmit",
     "test": "jest --runInBand --detectOpenHandles --forceExit --config ../../jest.config.js",
     "clean": "rm -Rf .turbo && rm -Rf node_modules && rm -Rf dist"
