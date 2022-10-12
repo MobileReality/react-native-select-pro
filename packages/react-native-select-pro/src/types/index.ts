@@ -24,8 +24,7 @@ export type SectionType = {
     index: number;
 };
 
-export type OptionType<T = unknown> = OptionTypeRequired &
-    T & { section?: SectionType };
+export type OptionType<T = unknown> = OptionTypeRequired & T & { section?: SectionType };
 
 export type SectionOptionType = {
     title: string;
@@ -34,10 +33,7 @@ export type SectionOptionType = {
 
 export type OptionsType = SectionOptionType[] | OptionType[];
 
-export type OptionComponentProps = Pick<
-    OptionProps,
-    'isSelected' | 'option'
-> & {
+export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option'> & {
     onPressOption: OnChooseOption;
 };
 
@@ -45,7 +41,7 @@ export type OptionComponentProps = Pick<
  * `<Select />` component props
  */
 export interface SelectProps {
-    //---REQUIRED---//
+    // ---REQUIRED--- //
     /**
      *  Options to show on the list
      *
@@ -53,7 +49,7 @@ export interface SelectProps {
      */
     options: OptionsType;
 
-    //---CALLBACKS---//
+    // ---CALLBACKS--- //
     /**
      * Callback that is called when option is selected
      *
@@ -70,10 +66,7 @@ export interface SelectProps {
      * @param optionIndex removed option(s) index(es)
      * @category Callback
      */
-    onRemove?: (
-        option: OptionType | OptionType[] | null,
-        optionIndex: number | number[],
-    ) => void;
+    onRemove?: (option: OptionType | OptionType[] | null, optionIndex: number | number[]) => void;
 
     /**
      * Callback that is called when dropdown is opened
@@ -89,7 +82,7 @@ export interface SelectProps {
      */
     onDropdownClosed?: () => void;
 
-    //---TEXTS---//
+    // ---TEXTS--- //
     /**
      * No options text
      *
@@ -106,7 +99,7 @@ export interface SelectProps {
      */
     placeholderText?: string;
 
-    //---ANIMATIONS---//
+    // ---ANIMATIONS--- //
     /**
      *  If `true` toggling the select is animated
      *
@@ -123,7 +116,7 @@ export interface SelectProps {
      */
     animationDuration?: number;
 
-    //---BEHAVIOURS---//
+    // ---BEHAVIOURS--- //
     /**
      *  If `true` enables a clear button to remove selected option
      *
@@ -164,7 +157,7 @@ export interface SelectProps {
      */
     hideSelectControlArrow?: boolean;
 
-    //---ADDITIONAL-FEATURES---//
+    // ---ADDITIONAL-FEATURES--- //
     /**
      *  Set a default option
      *  @category Additional Features
@@ -176,10 +169,7 @@ export interface SelectProps {
      *
      *  @category Additional Features
      */
-    flatListProps?: Omit<
-        FlatListProps<OptionType>,
-        'data' | 'renderItem' | 'ListEmptyComponent'
-    >;
+    flatListProps?: Omit<FlatListProps<OptionType>, 'data' | 'renderItem' | 'ListEmptyComponent'>;
 
     /**
      *  `SectionListProps` imported from `react-native`
@@ -191,7 +181,7 @@ export interface SelectProps {
         'sections' | 'renderItem' | 'renderSectionHeader' | 'ListEmptyComponent'
     >;
 
-    //---SEARCH---//
+    // ---SEARCH--- //
     /**
      *  If `true` let user search in a select options by typing in select
      *
@@ -227,7 +217,7 @@ export interface SelectProps {
         | 'onPressIn'
     >;
 
-    //---MULTISELECT---//
+    // ---MULTISELECT--- //
     /**
      *  if `true` then multi option can be picked
      *
@@ -236,7 +226,7 @@ export interface SelectProps {
      */
     multiSelection?: boolean;
 
-    //---CUSTOM-COMPONENT---//
+    // ---CUSTOM-COMPONENT--- //
     /**
      * NoOptionsComponent
      *
@@ -251,7 +241,7 @@ export interface SelectProps {
      */
     OptionComponent?: (props: OptionComponentProps) => JSX.Element;
 
-    //---CUSTOM-SOURCES---//
+    // ---CUSTOM-SOURCES--- //
     /**
      *  Custom left icon source
      *
@@ -266,7 +256,7 @@ export interface SelectProps {
      */
     customSelectControlArrowIconSource?: ImageSourcePropType;
 
-    //---COLORS---//
+    // ---COLORS--- //
     /**
      * Placeholder text color
      *
@@ -275,7 +265,7 @@ export interface SelectProps {
      */
     placeholderTextColor?: string;
 
-    //---ACCESSIBILITY---//
+    // ---ACCESSIBILITY--- //
     /**
      * selectControlClearOptionA11yLabel
      *
@@ -292,7 +282,7 @@ export interface SelectProps {
      */
     selectControlOpenDropdownA11yLabel?: string;
 
-    //---STYLES---//
+    // ---STYLES--- //
     /**
      *  Style of arrow image
      *
@@ -438,10 +428,7 @@ export interface SelectRef {
 /**
  * @ignore
  */
-export type OnPressOptionType = (
-    option: OptionType,
-    optionIndex: number,
-) => void;
+export type OnPressOptionType = (option: OptionType, optionIndex: number) => void;
 /**
  * @ignore
  */

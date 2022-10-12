@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import React from 'react';
 import { PortalHost, PortalProvider } from '@gorhom/portal';
 
 import { Portals } from '../../constants/portals';

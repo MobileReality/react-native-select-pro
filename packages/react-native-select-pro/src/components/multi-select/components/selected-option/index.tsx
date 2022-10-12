@@ -1,11 +1,7 @@
-import React, { ComponentPropsWithRef } from 'react';
-import {
-    Pressable,
-    StyleSheet,
-    Text,
-    TextStyle,
-    ViewStyle,
-} from 'react-native';
+import type { ComponentPropsWithRef } from 'react';
+import React from 'react';
+import type { TextStyle, ViewStyle } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../../../constants/styles';
 import type { OptionType, Select } from '../../../../index';
@@ -37,21 +33,13 @@ export const MultiSelectedOption = ({
 }: Props & FromSelectComponentProps) => {
     return (
         <Pressable
-            accessibilityLabel={
-                option
-                    ? `${(option as OptionType).label} selected`
-                    : 'Placeholder in multi-select'
-            }
+            accessibilityLabel={option ? `${option.label} selected` : 'Placeholder in multi-select'}
             style={[
-                isPlaceholder
-                    ? styles.placeholderText
-                    : styles.multiSelectionOption,
+                isPlaceholder ? styles.placeholderText : styles.multiSelectionOption,
                 multiSelectionOptionStyle,
                 { width: optionWidth },
             ]}
-            onPress={() =>
-                onPressRemove ? onPressRemove(option as OptionType) : undefined
-            }
+            onPress={() => (onPressRemove ? onPressRemove(option as OptionType) : undefined)}
         >
             <Text
                 numberOfLines={1}
@@ -60,13 +48,12 @@ export const MultiSelectedOption = ({
                     selectControlTextStyle,
                     {
                         color: option?.label
-                            ? StyleSheet.flatten(selectControlTextStyle)
-                                  ?.color || COLORS.BLACK
+                            ? StyleSheet.flatten(selectControlTextStyle)?.color ?? COLORS.BLACK
                             : placeholderTextColor,
                     },
                 ]}
             >
-                {option?.label || placeholderText}
+                {option?.label ?? placeholderText}
             </Text>
         </Pressable>
     );

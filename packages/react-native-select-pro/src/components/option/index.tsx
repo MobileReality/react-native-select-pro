@@ -1,19 +1,10 @@
-import React, { ComponentPropsWithRef, forwardRef } from 'react';
-import {
-    StyleSheet,
-    Text,
-    TextStyle,
-    TouchableOpacity,
-    ViewStyle,
-} from 'react-native';
+import type { ComponentPropsWithRef } from 'react';
+import React, { forwardRef } from 'react';
+import type { TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import {
-    COLORS,
-    FONT_SIZE,
-    ITEM_HEIGHT,
-    PADDING,
-} from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
+import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING } from '../../constants/styles';
+import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type { OptionType } from '../../index';
 import type { OptionsList } from '../options-list';
 

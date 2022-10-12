@@ -1,5 +1,5 @@
-import { heightPercentageToDP } from './heightPercentageToDP';
-import { widthPercentageToDP } from './widthPercentageToDP';
+import { heightPercentageToDP } from './height-percentage-to-dp';
+import { widthPercentageToDP } from './width-percentage-to-dp';
 
 type Size = {
     size: string | number | undefined;

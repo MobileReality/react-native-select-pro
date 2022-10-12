@@ -1,20 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import {
-    I18nManager,
-    Keyboard,
-    StyleSheet,
-    TextInput,
-    TextStyle,
-} from 'react-native';
+import type { TextStyle } from 'react-native';
+import { I18nManager, Keyboard, StyleSheet, TextInput } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
-import { Action, DispatchType, State } from '../../state/types';
-import type {
-    OnPressSelectControlType,
-    OnSetPosition,
-    SelectProps,
-} from '../../types';
+import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import type { DispatchType, State } from '../../state/types';
+import { Action } from '../../state/types';
+import type { OnPressSelectControlType, OnSetPosition, SelectProps } from '../../types';
 
 type SelectInputProps = OptionalToRequired<
     Pick<State, 'isOpened' | 'searchValue' | 'selectedOption'> & {
@@ -69,6 +61,8 @@ export const SelectInput = ({
                 payload: null,
             });
         };
+        // TODO
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onChangeText = (payload: string) => {
@@ -91,11 +85,7 @@ export const SelectInput = ({
     };
 
     const resolvePlaceholder = () => {
-        if (
-            multiSelection &&
-            Array.isArray(selectedOption) &&
-            selectedOption.length > 0
-        ) {
+        if (multiSelection && Array.isArray(selectedOption) && selectedOption.length > 0) {
             return '  ';
         }
         return placeholderText;
@@ -111,11 +101,7 @@ export const SelectInput = ({
             placeholderTextColor={placeholderTextColor}
             style={
                 disabled
-                    ? [
-                          styles.disabled,
-                          styles.text,
-                          multiSelection && { marginRight: 5 },
-                      ]
+                    ? [styles.disabled, styles.text, multiSelection && { marginRight: 5 }]
                     : [styles.text, selectControlTextStyle]
             }
             textAlign={I18nManager.isRTL ? 'right' : 'left'}

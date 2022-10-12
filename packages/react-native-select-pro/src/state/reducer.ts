@@ -1,6 +1,7 @@
-import { isSectionOptionsType } from '../helpers/isSectionOptionsType';
+import { isSectionOptionsType } from '../helpers/is-section-options-type';
 
-import { Action, ActionType, State } from './types';
+import type { ActionType, State } from './types';
+import { Action } from './types';
 
 export const initialData: State = {
     isOpened: false,
@@ -47,18 +48,13 @@ export const reducer = (state: State, action: ActionType): State => {
                 searchValue: action.payload,
             };
         case Action.SearchOptions: {
-            if (
-                action.payload === '' ||
-                isSectionOptionsType(state.optionsData)
-            ) {
+            if (action.payload === '' || isSectionOptionsType(state.optionsData)) {
                 return {
                     ...state,
                     searchedOptions: [],
                 };
             }
-            const regex = new RegExp(
-                action.searchPattern(action.payload.toLowerCase()),
-            );
+            const regex = new RegExp(action.searchPattern(action.payload.toLowerCase()));
             return {
                 ...state,
                 searchedOptions: state.optionsData.filter((option) =>
@@ -76,5 +72,7 @@ export const reducer = (state: State, action: ActionType): State => {
                 ...state,
                 openedPosition: { ...state.openedPosition, ...action.payload },
             };
+        default:
+            return state;
     }
 };

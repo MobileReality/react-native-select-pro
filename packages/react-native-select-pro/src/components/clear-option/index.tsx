@@ -1,13 +1,9 @@
-import React, { ComponentProps } from 'react';
-import {
-    Image,
-    ImageStyle,
-    Pressable,
-    StyleSheet,
-    ViewStyle,
-} from 'react-native';
+import type { ComponentProps } from 'react';
+import React from 'react';
+import type { ImageStyle, ViewStyle } from 'react-native';
+import { Image, Pressable, StyleSheet } from 'react-native';
 
-import type { OptionalToRequired } from '../../helpers/types/OptionalToRequired';
+import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type { SelectControl } from '../select-control';
 
 type FromSelectControlProps = Pick<
@@ -33,17 +29,11 @@ export const ClearOption = ({
 }: ClearOptionProps) => {
     return (
         <Pressable
-            accessibilityLabel={
-                selectControlClearOptionA11yLabel || 'Clear a chosen option'
-            }
+            accessibilityLabel={selectControlClearOptionA11yLabel ?? 'Clear a chosen option'}
             accessibilityRole="button"
             accessible={true}
             disabled={disabled}
-            hitSlop={
-                selectControlClearOptionButtonHitSlop
-                    ? selectControlClearOptionButtonHitSlop
-                    : { right: 3, left: 3 }
-            }
+            hitSlop={selectControlClearOptionButtonHitSlop ?? { right: 3, left: 3 }}
             style={[styles.xIconWrapper, selectControlClearOptionButtonStyle]}
             onPress={onPressRemove}
         >
