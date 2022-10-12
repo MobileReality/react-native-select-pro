@@ -26,9 +26,7 @@ module.exports = {
         },
     },
     rules: {
-        '@typescript-eslint/prefer-literal-enum-member': 'off',
         'no-void': 'off',
-        'unicorn/prefer-node-protocol': 'off',
         'no-inline-comments': 'off',
         'line-comment-position': 'off',
         '@typescript-eslint/no-unused-expressions': [
