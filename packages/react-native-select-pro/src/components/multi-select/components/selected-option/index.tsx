@@ -33,21 +33,13 @@ export const MultiSelectedOption = ({
 }: Props & FromSelectComponentProps) => {
     return (
         <Pressable
-            accessibilityLabel={
-                option
-                    ? `${option.label} selected`
-                    : 'Placeholder in multi-select'
-            }
+            accessibilityLabel={option ? `${option.label} selected` : 'Placeholder in multi-select'}
             style={[
-                isPlaceholder
-                    ? styles.placeholderText
-                    : styles.multiSelectionOption,
+                isPlaceholder ? styles.placeholderText : styles.multiSelectionOption,
                 multiSelectionOptionStyle,
                 { width: optionWidth },
             ]}
-            onPress={() =>
-                onPressRemove ? onPressRemove(option as OptionType) : undefined
-            }
+            onPress={() => (onPressRemove ? onPressRemove(option as OptionType) : undefined)}
         >
             <Text
                 numberOfLines={1}
@@ -56,8 +48,7 @@ export const MultiSelectedOption = ({
                     selectControlTextStyle,
                     {
                         color: option?.label
-                            ? StyleSheet.flatten(selectControlTextStyle)
-                                  ?.color ?? COLORS.BLACK
+                            ? StyleSheet.flatten(selectControlTextStyle)?.color ?? COLORS.BLACK
                             : placeholderTextColor,
                     },
                 ]}

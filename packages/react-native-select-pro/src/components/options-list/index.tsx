@@ -1,11 +1,6 @@
 import type { ComponentProps } from 'react';
 import React, { useCallback } from 'react';
-import type {
-    SectionListData,
-    TextStyle,
-    TouchableOpacity,
-    ViewStyle,
-} from 'react-native';
+import type { SectionListData, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
 import {
     AccessibilityInfo,
     findNodeHandle,
@@ -32,11 +27,7 @@ import { getReducedSectionData } from '../../helpers/get-reduced-section-data';
 import { isSectionOptionsType } from '../../helpers/is-section-options-type';
 import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type { Position, State } from '../../state/types';
-import type {
-    OnOutsidePress,
-    OnPressOptionType,
-    OptionType,
-} from '../../types';
+import type { OnOutsidePress, OnPressOptionType, OptionType } from '../../types';
 import { NoOptions } from '../no-options';
 import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';
@@ -175,9 +166,7 @@ export const OptionsList = ({
         }
         return (
             selectedOption &&
-            (selectedOption as OptionType[]).find(
-                (option) => item.value === option.value,
-            )
+            (selectedOption as OptionType[]).find((option) => item.value === option.value)
         );
     };
 
@@ -230,15 +219,8 @@ export const OptionsList = ({
     };
 
     const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => (
-        <View
-            style={[
-                styles.sectionHeaderContainerStyle,
-                sectionHeaderContainerStyle,
-            ]}
-        >
-            <Text
-                style={[styles.sectionHeaderTextStyle, sectionHeaderTextStyle]}
-            >
+        <View style={[styles.sectionHeaderContainerStyle, sectionHeaderContainerStyle]}>
+            <Text style={[styles.sectionHeaderTextStyle, sectionHeaderTextStyle]}>
                 {info.section.title}
             </Text>
         </View>
@@ -266,9 +248,7 @@ export const OptionsList = ({
                         styles.options,
                         optionsListStyle,
                         { top, left, width },
-                        aboveSelectControl
-                            ? styles.overflown
-                            : styles.notOverflown,
+                        aboveSelectControl ? styles.overflown : styles.notOverflown,
                     ]}
                 >
                     {isSectionOptionsType(optionsData) ? (
@@ -288,9 +268,7 @@ export const OptionsList = ({
                             renderItem={renderItem}
                             {...sectionListProps}
                             ListEmptyComponent={
-                                NoOptionsComponent ?? (
-                                    <NoOptions noOptionsText={noOptionsText} />
-                                )
+                                NoOptionsComponent ?? <NoOptions noOptionsText={noOptionsText} />
                             }
                         />
                     ) : (
@@ -310,9 +288,7 @@ export const OptionsList = ({
                             renderItem={renderItem}
                             {...flatListProps}
                             ListEmptyComponent={
-                                NoOptionsComponent ?? (
-                                    <NoOptions noOptionsText={noOptionsText} />
-                                )
+                                NoOptionsComponent ?? <NoOptions noOptionsText={noOptionsText} />
                             }
                         />
                     )}

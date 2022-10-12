@@ -6,11 +6,7 @@ import { COLORS, FONT_SIZE } from '../../constants/styles';
 import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type { DispatchType, State } from '../../state/types';
 import { Action } from '../../state/types';
-import type {
-    OnPressSelectControlType,
-    OnSetPosition,
-    SelectProps,
-} from '../../types';
+import type { OnPressSelectControlType, OnSetPosition, SelectProps } from '../../types';
 
 type SelectInputProps = OptionalToRequired<
     Pick<State, 'isOpened' | 'searchValue' | 'selectedOption'> & {
@@ -89,11 +85,7 @@ export const SelectInput = ({
     };
 
     const resolvePlaceholder = () => {
-        if (
-            multiSelection &&
-            Array.isArray(selectedOption) &&
-            selectedOption.length > 0
-        ) {
+        if (multiSelection && Array.isArray(selectedOption) && selectedOption.length > 0) {
             return '  ';
         }
         return placeholderText;
@@ -109,11 +101,7 @@ export const SelectInput = ({
             placeholderTextColor={placeholderTextColor}
             style={
                 disabled
-                    ? [
-                          styles.disabled,
-                          styles.text,
-                          multiSelection && { marginRight: 5 },
-                      ]
+                    ? [styles.disabled, styles.text, multiSelection && { marginRight: 5 }]
                     : [styles.text, selectControlTextStyle]
             }
             textAlign={I18nManager.isRTL ? 'right' : 'left'}

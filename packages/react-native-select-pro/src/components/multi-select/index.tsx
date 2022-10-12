@@ -5,12 +5,7 @@ import { ScrollView, StyleSheet, useWindowDimensions } from 'react-native';
 
 import { parsePercentageToNumber } from '../../helpers';
 import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
-import type {
-    OnPressSelectControlType,
-    OnSetPosition,
-    OptionType,
-    Select,
-} from '../../index';
+import type { OnPressSelectControlType, OnSetPosition, OptionType, Select } from '../../index';
 import type { DispatchType, State } from '../../state/types';
 import { SelectInput } from '../select-input';
 
@@ -85,9 +80,7 @@ export const MultiSelect = ({
             const WIDTH_THRESHOLD = 100;
             const WIDTH_OFFSET = 72;
             const { length } = selectedOptionTyped;
-            const initialWidth = selectControlStyle
-                ? (selectControlStyle as ViewStyle).width
-                : 100;
+            const initialWidth = selectControlStyle ? (selectControlStyle as ViewStyle).width : 100;
             let calculatedWidth = 100;
             if (typeof initialWidth === 'number') {
                 calculatedWidth = (initialWidth - WIDTH_OFFSET) / length;

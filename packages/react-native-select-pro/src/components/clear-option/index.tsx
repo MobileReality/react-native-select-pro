@@ -29,15 +29,11 @@ export const ClearOption = ({
 }: ClearOptionProps) => {
     return (
         <Pressable
-            accessibilityLabel={
-                selectControlClearOptionA11yLabel ?? 'Clear a chosen option'
-            }
+            accessibilityLabel={selectControlClearOptionA11yLabel ?? 'Clear a chosen option'}
             accessibilityRole="button"
             accessible={true}
             disabled={disabled}
-            hitSlop={
-                selectControlClearOptionButtonHitSlop ?? { right: 3, left: 3 }
-            }
+            hitSlop={selectControlClearOptionButtonHitSlop ?? { right: 3, left: 3 }}
             style={[styles.xIconWrapper, selectControlClearOptionButtonStyle]}
             onPress={onPressRemove}
         >

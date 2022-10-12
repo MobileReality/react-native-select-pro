@@ -24,8 +24,7 @@ export type SectionType = {
     index: number;
 };
 
-export type OptionType<T = unknown> = OptionTypeRequired &
-    T & { section?: SectionType };
+export type OptionType<T = unknown> = OptionTypeRequired & T & { section?: SectionType };
 
 export type SectionOptionType = {
     title: string;
@@ -34,10 +33,7 @@ export type SectionOptionType = {
 
 export type OptionsType = SectionOptionType[] | OptionType[];
 
-export type OptionComponentProps = Pick<
-    OptionProps,
-    'isSelected' | 'option'
-> & {
+export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option'> & {
     onPressOption: OnChooseOption;
 };
 
@@ -70,10 +66,7 @@ export interface SelectProps {
      * @param optionIndex removed option(s) index(es)
      * @category Callback
      */
-    onRemove?: (
-        option: OptionType | OptionType[] | null,
-        optionIndex: number | number[],
-    ) => void;
+    onRemove?: (option: OptionType | OptionType[] | null, optionIndex: number | number[]) => void;
 
     /**
      * Callback that is called when dropdown is opened
@@ -176,10 +169,7 @@ export interface SelectProps {
      *
      *  @category Additional Features
      */
-    flatListProps?: Omit<
-        FlatListProps<OptionType>,
-        'data' | 'renderItem' | 'ListEmptyComponent'
-    >;
+    flatListProps?: Omit<FlatListProps<OptionType>, 'data' | 'renderItem' | 'ListEmptyComponent'>;
 
     /**
      *  `SectionListProps` imported from `react-native`
@@ -438,10 +428,7 @@ export interface SelectRef {
 /**
  * @ignore
  */
-export type OnPressOptionType = (
-    option: OptionType,
-    optionIndex: number,
-) => void;
+export type OnPressOptionType = (option: OptionType, optionIndex: number) => void;
 /**
  * @ignore
  */
