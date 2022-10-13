@@ -42,8 +42,7 @@ type FromSelectComponentProps = Pick<
     | 'scrollToSelectedOption'
     | 'noOptionsText'
     | 'onSelect'
-    | 'animated'
-    | 'animationDuration'
+    | 'animation'
     | 'optionsListStyle'
     | 'NoOptionsComponent'
     | 'OptionComponent'
@@ -76,8 +75,7 @@ export const OptionsList = ({
     flatListProps,
     onPressOption,
     selectedOption,
-    animated,
-    animationDuration,
+    animation,
     searchedOptions,
     searchValue,
     searchable,
@@ -241,8 +239,7 @@ export const OptionsList = ({
             )}
             <Portal hostName={Portals.Select}>
                 <OptionsListWrapper
-                    animated={animated}
-                    animationDuration={animationDuration}
+                    animation={animation}
                     isOpened={isOpened}
                     wrapperStyles={[
                         styles.options,

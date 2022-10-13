@@ -1,37 +1,26 @@
-import type { ComponentPropsWithRef, ReactElement } from 'react';
+import type { ComponentPropsWithRef } from 'react';
 import React, { forwardRef, useEffect, useState } from 'react';
-import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
-import {
-    AccessibilityInfo,
-    Animated,
-    Image,
-    Pressable,
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native';
+import type { TextStyle, ViewStyle } from 'react-native';
+import { AccessibilityInfo, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
 import { isAndroid } from '../../helpers';
 import { isSectionOptionsType } from '../../helpers/is-section-options-type';
 import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
-import { useAnimation } from '../../hooks/use-animation';
 import type { OptionType, Select } from '../../index';
 import type { DispatchType, Position, State } from '../../state/types';
 import { Action } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition } from '../../types';
+import { Arrow } from '../arrow';
 import { ClearOption } from '../clear-option';
 import { MultiSelect } from '../multi-select';
 import { SelectInput } from '../select-input';
-
-const arrowImage = require('./../../assets/icons/chevron-down.png');
 
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
     | 'selectControlStyle'
     | 'clearable'
-    | 'animated'
-    | 'animationDuration'
+    | 'animation'
     | 'options'
     | 'disabled'
     | 'searchable'
@@ -75,8 +64,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
     (
         {
             isOpened,
-            animated,
-            animationDuration,
+            animation,
             selectControlStyle,
             selectedOption,
             onPressSelectControl,
@@ -113,12 +101,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         },
         ref,
     ) => {
-        const animation = useAnimation({ isOpened, animated, animationDuration });
-        const rotate = animation.interpolate({
-            inputRange: [0, 1],
-            outputRange: ['0deg', '180deg'],
-        });
-
         const onPressRemove = (option: OptionType | null = null) => {
             if (!disabled) {
                 let removedOption = selectedOption;
@@ -194,41 +176,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         const isShowClearOptionButton = clearable && selectedOption && !isScreenReaderEnabled;
         const isShowClearOptionButtonA11y =
             clearable && selectedOption && isScreenReaderEnabled && !isAndroid;
-
-        const renderArrowImage = (): ReactElement => {
-            const accessibilityLabel = 'Arrow for opening dropdown';
-            const arrowSource = customSelectControlArrowIconSource ?? arrowImage;
-            const arrow: ReactElement = animated ? (
-                <Animated.Image
-                    source={arrowSource}
-                    style={[
-                        styles.arrowIcon,
-                        { transform: [{ rotate }] },
-                        selectControlArrowImageStyle,
-                    ]}
-                />
-            ) : (
-                <Image
-                    source={arrowSource}
-                    style={[
-                        styles.arrowIcon,
-                        isOpened ? styles.arrowIconOpened : styles.arrowIconClosed,
-                        selectControlArrowImageStyle,
-                    ]}
-                />
-            );
-            if (multiSelection) {
-                return (
-                    <Pressable
-                        accessibilityLabel={accessibilityLabel}
-                        onPress={disabled ? undefined : onPressSelectControl}
-                    >
-                        {arrow}
-                    </Pressable>
-                );
-            }
-            return arrow;
-        };
 
         const renderMultiselect = () => {
             return (
@@ -368,7 +315,19 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                                 onPressRemove={onPressRemove}
                             />
                         )}
-                        {!hideSelectControlArrow && renderArrowImage()}
+                        {!hideSelectControlArrow && (
+                            <Arrow
+                                isOpened={isOpened}
+                                disabled={disabled}
+                                animation={animation}
+                                multiSelection={multiSelection}
+                                selectControlArrowImageStyle={selectControlArrowImageStyle}
+                                customSelectControlArrowIconSource={
+                                    customSelectControlArrowIconSource
+                                }
+                                onPressSelectControl={onPressSelectControl}
+                            />
+                        )}
                     </View>
                 </Component>
                 {shouldRenderClearButtonA11y && (
@@ -403,9 +362,6 @@ type Styles = {
     openedAbove: ViewStyle;
     disabled: ViewStyle;
     iconsContainer: ViewStyle;
-    arrowIcon: ImageStyle;
-    arrowIconOpened: ImageStyle;
-    arrowIconClosed: ImageStyle;
     xIconWrapper: ViewStyle;
     leftIconWrapper: ViewStyle;
     a11IconWrapper: ViewStyle;
@@ -458,23 +414,12 @@ const styles = StyleSheet.create<Styles>({
         flexDirection: 'row',
         height: '100%',
     },
-    arrowIcon: {
-        width: 25,
-        height: 25,
-        zIndex: -1,
-    },
     leftIconWrapper: {
         paddingLeft: 8,
     },
     xIconWrapper: {
         height: '100%',
         justifyContent: 'center',
-    },
-    arrowIconOpened: {
-        transform: [{ rotate: '180deg' }],
-    },
-    arrowIconClosed: {
-        transform: [{ rotate: '0deg' }],
     },
     a11IconWrapper: {
         position: 'absolute',

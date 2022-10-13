@@ -7,10 +7,7 @@ import type { OptionalToRequired } from '../../helpers/types/optional-to-require
 import { useAnimation } from '../../hooks/use-animation';
 import type { OptionsList } from '../options-list';
 
-type FromOptionListProps = Pick<
-    ComponentProps<typeof OptionsList>,
-    'animated' | 'animationDuration' | 'isOpened'
->;
+type FromOptionListProps = Pick<ComponentProps<typeof OptionsList>, 'animation' | 'isOpened'>;
 
 type WrapperStyles = {
     wrapperStyles: StyleProp<ViewStyle>;
@@ -22,17 +19,16 @@ type OptionsListWrapperProps = OptionalToRequired<FromOptionListProps> & {
 
 export const OptionsListWrapper = ({
     children,
-    animated,
-    animationDuration,
+    animation,
     isOpened,
     wrapperStyles,
 }: OptionsListWrapperProps) => {
-    const animation = useAnimation({ isOpened, animated, animationDuration });
+    const fadeAnimation = useAnimation({ isOpened, animation });
 
-    return animated ? (
+    return fadeAnimation ? (
         <Animated.View
             pointerEvents={isOpened ? 'auto' : 'none'}
-            style={[wrapperStyles, { opacity: animation }]}
+            style={[wrapperStyles, { opacity: fadeAnimation }]}
         >
             {children}
         </Animated.View>
