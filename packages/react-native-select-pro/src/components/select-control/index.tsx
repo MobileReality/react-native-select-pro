@@ -1,5 +1,5 @@
 import type { ComponentPropsWithRef, ReactElement } from 'react';
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import {
     AccessibilityInfo,
@@ -15,6 +15,7 @@ import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants
 import { isAndroid } from '../../helpers';
 import { isSectionOptionsType } from '../../helpers/is-section-options-type';
 import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import { useAnimation } from '../../hooks/use-animation';
 import type { OptionType, Select } from '../../index';
 import type { DispatchType, Position, State } from '../../state/types';
 import { Action } from '../../state/types';
@@ -112,20 +113,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         },
         ref,
     ) => {
-        const rotateAnimation = useRef(new Animated.Value(0)).current;
-        useEffect(() => {
-            if (animated) {
-                Animated.timing(rotateAnimation, {
-                    toValue: isOpened ? 1 : 0,
-                    duration: animationDuration,
-                    useNativeDriver: true,
-                }).start();
-            }
-            // TODO
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [rotateAnimation, isOpened, animated]);
-
-        const rotate = rotateAnimation.interpolate({
+        const animation = useAnimation({ isOpened, animated, animationDuration });
+        const rotate = animation.interpolate({
             inputRange: [0, 1],
             outputRange: ['0deg', '180deg'],
         });

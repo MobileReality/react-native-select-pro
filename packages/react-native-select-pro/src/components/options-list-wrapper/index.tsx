@@ -1,9 +1,10 @@
 import type { ComponentProps, ReactNode } from 'react';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { Animated, View } from 'react-native';
 
 import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import { useAnimation } from '../../hooks/use-animation';
 import type { OptionsList } from '../options-list';
 
 type FromOptionListProps = Pick<
@@ -26,24 +27,12 @@ export const OptionsListWrapper = ({
     isOpened,
     wrapperStyles,
 }: OptionsListWrapperProps) => {
-    const fadeAnimation = useRef(new Animated.Value(0)).current;
-
-    useEffect(() => {
-        if (animated) {
-            Animated.timing(fadeAnimation, {
-                toValue: isOpened ? 1 : 0,
-                duration: animationDuration,
-                useNativeDriver: true,
-            }).start();
-        }
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fadeAnimation, isOpened]);
+    const animation = useAnimation({ isOpened, animated, animationDuration });
 
     return animated ? (
         <Animated.View
             pointerEvents={isOpened ? 'auto' : 'none'}
-            style={[wrapperStyles, { opacity: fadeAnimation }]}
+            style={[wrapperStyles, { opacity: animation }]}
         >
             {children}
         </Animated.View>
