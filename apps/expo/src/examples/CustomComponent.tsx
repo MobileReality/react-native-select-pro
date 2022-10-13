@@ -1,9 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import {
-    OptionComponentProps,
-    Select,
-} from '@mobile-reality/react-native-select-pro';
+import type { OptionComponentProps } from '@mobile-reality/react-native-select-pro';
+import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 import { DATA } from '../constants';
@@ -30,12 +28,12 @@ export const CustomComponent = () => {
             <Select
                 OptionComponent={(props) => <MyOption {...props} />}
                 options={DATA}
-                selectControlStyle={{ width: 200 }}
+                containerStyle={{ width: 200 }}
             />
             <Select
                 NoOptionsComponent={<NoOptions />}
                 options={[]}
-                selectControlStyle={{ width: 200 }}
+                containerStyle={{ width: 200 }}
             />
         </SafeAreaViewWrapper>
     );

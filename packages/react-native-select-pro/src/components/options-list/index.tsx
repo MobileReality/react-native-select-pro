@@ -28,6 +28,7 @@ import { isSectionOptionsType } from '../../helpers/is-section-options-type';
 import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type { Position, State } from '../../state/types';
 import type { OnOutsidePress, OnPressOptionType, OptionType } from '../../types';
+import type { OptionsListStyles } from '../../types/styles';
 import { NoOptions } from '../no-options';
 import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';
@@ -36,21 +37,15 @@ import type { Select } from '../select';
 type FromSelectComponentProps = Pick<
     ComponentProps<typeof Select>,
     | 'flatListProps'
-    | 'optionSelectedStyle'
-    | 'optionStyle'
-    | 'optionTextStyle'
     | 'scrollToSelectedOption'
     | 'noOptionsText'
     | 'onSelect'
     | 'animated'
     | 'animationDuration'
-    | 'optionsListStyle'
     | 'NoOptionsComponent'
     | 'OptionComponent'
     | 'searchable'
     | 'multiSelection'
-    | 'sectionHeaderContainerStyle'
-    | 'sectionHeaderTextStyle'
     | 'sectionListProps'
 >;
 
@@ -69,7 +64,8 @@ type OptionsListProps = OptionalToRequired<
             onOutsidePress: OnOutsidePress;
             onPressOption: OnPressOptionType;
         } & Pick<Position, 'aboveSelectControl'>
->;
+> &
+    OptionsListStyles;
 
 export const OptionsList = ({
     aboveSelectControl,
@@ -86,19 +82,19 @@ export const OptionsList = ({
     multiSelection,
     openedPosition: { width, top, left },
     optionsData,
-    optionSelectedStyle,
-    optionStyle,
-    optionTextStyle,
     noOptionsText,
     scrollToSelectedOption,
     onSelect,
-    optionsListStyle,
     NoOptionsComponent,
     OptionComponent,
     selectedOptionIndex,
+    sectionListProps,
+    optionSelectedStyle,
+    optionStyle,
+    optionTextStyle,
     sectionHeaderContainerStyle,
     sectionHeaderTextStyle,
-    sectionListProps,
+    containerStyle,
 }: OptionsListProps) => {
     const selectedOptionTyped = selectedOption as OptionType;
 
@@ -246,7 +242,7 @@ export const OptionsList = ({
                     isOpened={isOpened}
                     wrapperStyles={[
                         styles.options,
-                        optionsListStyle,
+                        containerStyle,
                         { top, left, width },
                         aboveSelectControl ? styles.overflown : styles.notOverflown,
                     ]}

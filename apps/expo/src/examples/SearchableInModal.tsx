@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import {
-    Select,
-    SelectModalProvider,
-} from '@mobile-reality/react-native-select-pro';
+import { Select, SelectModalProvider } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 import { DATA } from '../constants';
@@ -13,11 +10,7 @@ export const SearchableInModal = () => {
 
     return (
         <SafeAreaViewWrapper>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-            >
+            <Modal animationType="slide" transparent={true} visible={modalVisible}>
                 <SelectModalProvider>
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
@@ -30,7 +23,7 @@ export const SearchableInModal = () => {
                             <Select
                                 options={DATA}
                                 searchable={true}
-                                selectControlStyle={{ width: 250 }}
+                                containerStyle={{ width: 250 }}
                             />
                         </View>
                     </View>

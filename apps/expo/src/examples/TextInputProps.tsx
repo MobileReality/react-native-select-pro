@@ -9,13 +9,11 @@ export const TextInputProps = () => {
     const [isFocused, setIsFocused] = useState(false);
     return (
         <SafeAreaViewWrapper>
-            <Text style={{ marginBottom: 20 }}>
-                isFocused: {isFocused.toString()}
-            </Text>
+            <Text style={{ marginBottom: 20 }}>isFocused: {isFocused.toString()}</Text>
             <Select
                 options={DATA}
                 searchable={true}
-                selectControlStyle={{ width: 250 }}
+                containerStyle={{ width: 250 }}
                 textInputProps={{
                     onFocus: () => {
                         setIsFocused(true);

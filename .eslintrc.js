@@ -42,4 +42,14 @@ module.exports = {
         'unicorn/prefer-module': 'off',
         '@typescript-eslint/no-var-requires': 'off',
     },
+    overrides: [
+        {
+            files: ['apps/expo/src/**/*.tsx'],
+            rules: {
+                'react-native/no-inline-styles': 'off',
+                'react-native/no-color-literals': 'off',
+                'unicorn/filename-case': 'off',
+            },
+        },
+    ],
 };

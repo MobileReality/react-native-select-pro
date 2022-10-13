@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import {
-    Select,
-    SelectModalProvider,
-} from '@mobile-reality/react-native-select-pro';
+import { Select, SelectModalProvider } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 import { DATA } from '../constants';
@@ -18,11 +15,7 @@ export const ModalExample = () => {
                 justifyContent: 'center',
             }}
         >
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-            >
+            <Modal animationType="slide" transparent={true} visible={modalVisible}>
                 <SelectModalProvider>
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
@@ -35,12 +28,12 @@ export const ModalExample = () => {
                             <Select
                                 clearable={true}
                                 options={DATA}
-                                selectControlStyle={{ width: 200 }}
+                                containerStyle={{ width: 200 }}
                             />
                             <Select
                                 clearable={true}
                                 options={DATA}
-                                selectControlStyle={{ width: 200 }}
+                                containerStyle={{ width: 200 }}
                             />
                         </View>
                     </View>

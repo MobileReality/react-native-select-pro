@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import { OptionType, Select } from '@mobile-reality/react-native-select-pro';
+import type { OptionType } from '@mobile-reality/react-native-select-pro';
+import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
 
@@ -53,7 +54,7 @@ export const DATA = [
         user: {
             name: 'Michael',
             age: 31,
-            phone: 321321321,
+            phone: 321_321_321,
         },
     },
     {
@@ -65,7 +66,7 @@ export const DATA = [
         user: {
             name: 'Angelina',
             age: 55,
-            phone: 123123123,
+            phone: 123_123_123,
         },
     },
     {
@@ -102,25 +103,21 @@ export const CustomOptionsData = () => {
     return (
         <SafeAreaViewWrapper>
             <Select
-                selectContainerStyle={{
+                containerStyle={{
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}
                 // FIXME infer types
                 options={DATA}
-                selectControlStyle={{ width: 150 }}
+                selectControlStyles={{ containerStyle: { width: 150 } }}
                 onSelect={(option) => {
                     // FIXME infer types
                     setSelected(option as Fields);
                 }}
             />
             <View style={{ flex: 1 }}>
-                {selected && (
-                    <Text>
-                        Selected item: {JSON.stringify(selected, null, 4)}
-                    </Text>
-                )}
+                {selected && <Text>Selected item: {JSON.stringify(selected, null, 4)}</Text>}
             </View>
         </SafeAreaViewWrapper>
     );

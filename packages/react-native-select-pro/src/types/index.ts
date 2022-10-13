@@ -1,18 +1,10 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
-import type {
-    FlatListProps,
-    ImageSourcePropType,
-    ImageStyle,
-    Insets,
-    SectionListProps,
-    StyleProp,
-    TextInputProps,
-    TextStyle,
-    ViewStyle,
-} from 'react-native';
+import type { FlatListProps, SectionListProps, TextInputProps } from 'react-native';
 
 import type { OnChooseOption, OptionProps } from '../components/option';
 import type { State } from '../state/types';
+
+import type { SelectStyles } from './styles';
 
 export type OptionTypeRequired = {
     label: string;
@@ -40,7 +32,7 @@ export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option'> & 
 /**
  * `<Select />` component props
  */
-export interface SelectProps {
+export interface SelectProps extends SelectStyles {
     // ---REQUIRED--- //
     /**
      *  Options to show on the list
@@ -95,7 +87,7 @@ export interface SelectProps {
      * Placeholder text
      *
      * @category Text
-     * @default "Select..."
+     * @default "#808080"
      */
     placeholderText?: string;
 
@@ -241,21 +233,6 @@ export interface SelectProps {
      */
     OptionComponent?: (props: OptionComponentProps) => JSX.Element;
 
-    // ---CUSTOM-SOURCES--- //
-    /**
-     *  Custom left icon source
-     *
-     *  @category Custom Sources
-     */
-    customLeftIconSource?: ImageSourcePropType;
-
-    /**
-     *  Custom select control arrow icon source
-     *
-     *  @category Custom Sources
-     */
-    customSelectControlArrowIconSource?: ImageSourcePropType;
-
     // ---COLORS--- //
     /**
      * Placeholder text color
@@ -281,126 +258,6 @@ export interface SelectProps {
      * @default "Open a dropdown"
      */
     selectControlOpenDropdownA11yLabel?: string;
-
-    // ---STYLES--- //
-    /**
-     *  Style of arrow image
-     *
-     *  @category Styles
-     */
-    selectControlArrowImageStyle?: StyleProp<ImageStyle>;
-
-    /**
-     *  Style of text select control
-     *
-     *  @category Styles
-     */
-    selectControlTextStyle?: StyleProp<TextStyle>;
-
-    /**
-     *  Style of select control
-     *
-     *  @category Styles
-     */
-    selectControlStyle?: StyleProp<ViewStyle>;
-
-    /**
-     *  Style of disabled select control
-     *
-     *  @category Styles
-     */
-    selectControlDisabledStyle?: StyleProp<TextStyle>;
-
-    /**
-     *  Style of container buttons in select control
-     *
-     *  @category Styles
-     */
-    selectControlButtonsContainerStyle?: StyleProp<ViewStyle>;
-
-    /**
-     *  Style of clear option button
-     *
-     *  @category Styles
-     */
-    selectControlClearOptionButtonStyle?: StyleProp<ViewStyle>;
-
-    /**
-     *  Hit Slop for clear option button
-     *
-     *  @category Styles
-     */
-    selectControlClearOptionButtonHitSlop?: Insets;
-
-    /**
-     *  Style of clear option image
-     *
-     *  @category Styles
-     */
-    selectControlClearOptionImageStyle?: ImageStyle;
-
-    /**
-     * Style of container select control
-     *
-     * @category Styles
-     */
-    selectContainerStyle?: StyleProp<ViewStyle>;
-
-    /**
-     *  Style of options list
-     *
-     *  @category Styles
-     */
-    optionsListStyle?: StyleProp<ViewStyle>;
-
-    /**
-     * Style of single option
-     *
-     * @category Styles
-     */
-    optionStyle?: StyleProp<ViewStyle>;
-
-    /**
-     * Style of single option text
-     *
-     * @category Styles
-     */
-    optionTextStyle?: StyleProp<TextStyle>;
-
-    /**
-     * Style of selected single option
-     *
-     * @category Styles
-     */
-    optionSelectedStyle?: StyleProp<ViewStyle>;
-
-    /**
-     *  Custom left icon styles
-     *
-     *  @category Styles
-     */
-    customLeftIconStyles?: StyleProp<ImageStyle>;
-
-    /**
-     *  Custom multiselection option style
-     *
-     *  @category Styles
-     */
-    multiSelectionOptionStyle?: StyleProp<ViewStyle>;
-
-    /**
-     * Style of section header container when section data type is provided
-     *
-     * @category Styles
-     */
-    sectionHeaderContainerStyle?: StyleProp<ViewStyle>;
-
-    /**
-     * Style of section header title when section data type is provided
-     *
-     * @category Styles
-     */
-    sectionHeaderTextStyle?: StyleProp<TextStyle>;
 }
 
 /**
