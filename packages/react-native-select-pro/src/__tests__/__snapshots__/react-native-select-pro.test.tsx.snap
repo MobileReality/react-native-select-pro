@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Arrow should generate Arrow snapshot 1`] = `
+<Arrow
+  animation={200}
+  customSelectControlArrowIconSource={Object {}}
+  disabled={false}
+  isOpened={true}
+  multiSelection={false}
+  onPressSelectControl={[Function]}
+  selectControlArrowImageStyle={Object {}}
+/>
+`;
+
 exports[`Select should generate Select snapshot 1`] = `
 Array [
   <View

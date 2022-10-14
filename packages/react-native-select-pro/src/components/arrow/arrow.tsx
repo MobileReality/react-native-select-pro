@@ -1,27 +1,12 @@
-import type { ComponentProps } from 'react';
 import React from 'react';
 import type { ImageStyle } from 'react-native';
 import { Animated, Image, Pressable, StyleSheet } from 'react-native';
 
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import { useAnimation } from '../../hooks/use-animation';
-import type { State } from '../../state/types';
-import type { OnPressSelectControlType } from '../../types';
-import type { Select } from '../select';
+
+import type { ArrowProps } from './arrow.types';
 
 const arrowImage = require('./../../assets/icons/chevron-down.png');
-
-type ArrowProps = OptionalToRequired<
-    { onPressSelectControl: OnPressSelectControlType } & Pick<State, 'isOpened'> &
-        Pick<
-            ComponentProps<typeof Select>,
-            | 'animation'
-            | 'multiSelection'
-            | 'disabled'
-            | 'selectControlArrowImageStyle'
-            | 'customSelectControlArrowIconSource'
-        >
->;
 
 export const Arrow = ({
     isOpened,
