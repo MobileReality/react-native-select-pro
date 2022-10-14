@@ -321,13 +321,6 @@ Array [
             </Text>
           </View>
         </View>
-        <View
-          style={
-            Object {
-              "height": 80,
-            }
-          }
-        />
       </View>
     </RCTScrollView>
   </View>,
@@ -682,13 +675,6 @@ Array [
             </Text>
           </View>
         </View>
-        <View
-          style={
-            Object {
-              "height": 80,
-            }
-          }
-        />
       </View>
     </RCTScrollView>
   </View>,
@@ -1016,13 +1002,6 @@ Array [
             </Text>
           </View>
         </View>
-        <View
-          style={
-            Object {
-              "height": 80,
-            }
-          }
-        />
       </View>
     </RCTScrollView>
   </View>,
@@ -1378,13 +1357,6 @@ Array [
             </Text>
           </View>
         </View>
-        <View
-          style={
-            Object {
-              "height": 80,
-            }
-          }
-        />
       </View>
     </RCTScrollView>
   </View>,
@@ -1768,13 +1740,6 @@ Array [
             </Text>
           </View>
         </View>
-        <View
-          style={
-            Object {
-              "height": 80,
-            }
-          }
-        />
       </View>
     </RCTScrollView>
   </View>,
@@ -2103,13 +2068,6 @@ Array [
             </Text>
           </View>
         </View>
-        <View
-          style={
-            Object {
-              "height": 80,
-            }
-          }
-        />
       </View>
     </RCTScrollView>
   </View>,
