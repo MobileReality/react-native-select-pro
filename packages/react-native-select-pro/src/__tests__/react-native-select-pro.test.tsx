@@ -3,10 +3,8 @@ import type { MeasureOnSuccessCallback } from 'react-native';
 import { Pressable, Text, View } from 'react-native';
 import { fireEvent, render } from '@testing-library/react-native';
 
-import { Arrow } from '../components/arrow';
 import { Select } from '../components/select';
 import { SelectProvider } from '../components/select-provider';
-import { ANIMATION_DURATION } from '../constants/styles';
 import type { OptionComponentProps } from '../index';
 
 const DATA = [
@@ -597,22 +595,5 @@ describe('Select with multi selection and searchable', () => {
 
         const currentPlaceholderText = getByPlaceholderText('');
         expect(currentPlaceholderText).toBeTruthy();
-    });
-});
-
-describe('Arrow', () => {
-    it('should generate Arrow snapshot', () => {
-        const arrow = (
-            <Arrow
-                isOpened={true}
-                disabled={false}
-                animation={ANIMATION_DURATION}
-                multiSelection={false}
-                selectControlArrowImageStyle={{}}
-                customSelectControlArrowIconSource={{}}
-                onPressSelectControl={() => {}}
-            />
-        );
-        expect(arrow).toMatchSnapshot();
     });
 });
