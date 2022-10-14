@@ -15,21 +15,17 @@ export const CustomIcons = () => {
         <SafeAreaViewWrapper>
             <Text style={{ marginBottom: 20 }}>Custom left icon</Text>
             <Select
-                selectControlStyles={{
-                    customLeftIconStyles: {
-                        iconStyle: { height: 20, width: 20 },
-                        iconSource: globeImage,
-                    },
+                customLeftIconStyles={{
+                    iconStyle: { height: 20, width: 20 },
+                    iconSource: globeImage,
                 }}
                 options={DATA}
                 containerStyle={{ width: 180, marginBottom: 20 }}
             />
             <Select
-                selectControlStyles={{
-                    customLeftIconStyles: {
-                        iconStyle: { height: 25, width: 25 },
-                        iconSource: searchImage,
-                    },
+                customLeftIconStyles={{
+                    iconStyle: { height: 25, width: 25 },
+                    iconSource: searchImage,
                 }}
                 options={DATA}
                 placeholderText="Search..."
@@ -39,21 +35,17 @@ export const CustomIcons = () => {
             />
             <Text style={{ marginBottom: 20 }}>Custom select control arrow</Text>
             <Select
-                selectControlStyles={{
-                    arrowIconStyles: {
-                        iconStyle: { height: 25, width: 25 },
-                        iconSource: chevronsImage,
-                    },
+                arrowIconStyles={{
+                    iconStyle: { height: 25, width: 25 },
+                    iconSource: chevronsImage,
                 }}
                 containerStyle={{ width: 250, marginBottom: 20 }}
                 options={DATA}
             />
             <Select
-                selectControlStyles={{
-                    arrowIconStyles: {
-                        iconStyle: { height: 25, width: 25 },
-                        iconSource: arrowImage,
-                    },
+                arrowIconStyles={{
+                    iconStyle: { height: 25, width: 25 },
+                    iconSource: arrowImage,
                 }}
                 containerStyle={{ width: 250, marginBottom: 20 }}
                 options={DATA}

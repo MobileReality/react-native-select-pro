@@ -63,6 +63,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         selectControlStyles,
         optionsListStyles,
         containerStyle,
+        clearOptionStyles,
+        arrowIconStyles,
+        customLeftIconStyles,
     } = props;
     const [state, dispatch] = useReducer(reducer, { ...initialData, optionsData: options });
     const {
@@ -328,9 +331,12 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectedOption={selectedOption}
                 selectedOptionIndex={selectedOptionIndex}
                 setPosition={setPosition}
+                clearOptionStyles={clearOptionStyles}
+                arrowIconStyles={arrowIconStyles}
                 onPressSelectControl={onPressSelectControl}
                 onSelect={onSelect}
                 onRemove={onRemove}
+                {...customLeftIconStyles}
                 {...selectControlStyles}
             />
             <OptionsList

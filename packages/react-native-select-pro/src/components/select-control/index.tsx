@@ -19,7 +19,7 @@ import type { OptionType, Select } from '../../index';
 import type { DispatchType, Position, State } from '../../state/types';
 import { Action } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition } from '../../types';
-import type { SelectControlStyles } from '../../types/styles';
+import type { SelectControlStyles, SelectStyles } from '../../types/styles';
 import { ClearOption } from '../clear-option';
 import { MultiSelect } from '../multi-select';
 import { SelectInput } from '../select-input';
@@ -56,7 +56,8 @@ type SelectControlProps = OptionalToRequired<
             setPosition: OnSetPosition;
         }
 > &
-    SelectControlStyles;
+    SelectControlStyles &
+    Pick<SelectStyles, 'arrowIconStyles' | 'clearOptionStyles' | 'customLeftIconStyles'>;
 
 export const SelectControl = forwardRef<View, SelectControlProps>(
     // TODO

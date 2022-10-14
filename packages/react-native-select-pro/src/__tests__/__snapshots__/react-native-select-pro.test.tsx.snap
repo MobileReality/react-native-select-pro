@@ -179,33 +179,6 @@ exports[`Select with custom left icon should generate Select with custom left ic
         style={
           Array [
             Object {
-              "paddingLeft": 8,
-            },
-            Object {
-              "height": "100%",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <Image
-          source={
-            Object {
-              "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
-            }
-          }
-          style={
-            Object {
-              "height": 15,
-              "width": 15,
-            }
-          }
-        />
-      </View>
-      <View
-        style={
-          Array [
-            Object {
               "flex": 1,
               "height": "100%",
               "justifyContent": "center",

@@ -27,9 +27,9 @@ export const CustomStyles = () => {
                         height: 80,
                     },
                     textStyle: { fontSize: 20, color: 'white' },
-                    arrowIconStyles: {
-                        iconStyle: { tintColor: 'pink' },
-                    },
+                }}
+                arrowIconStyles={{
+                    iconStyle: { tintColor: 'pink' },
                 }}
             />
         </SafeAreaViewWrapper>

@@ -413,11 +413,9 @@ describe('Select with custom left icon', () => {
         const wrapper = render(
             <SelectProvider>
                 <Select
-                    selectControlStyles={{
-                        customLeftIconStyles: {
-                            iconSource: require('./assets/search.png'),
-                            iconStyle: { height: 15, width: 15 },
-                        },
+                    customLeftIconStyles={{
+                        iconSource: require('./assets/search.png'),
+                        iconStyle: { height: 15, width: 15 },
                     }}
                     options={DATA}
                 />
@@ -432,11 +430,9 @@ describe('Select with custom select control arrow icon', () => {
         const wrapper = render(
             <SelectProvider>
                 <Select
-                    selectControlStyles={{
-                        arrowIconStyles: {
-                            iconSource: require('./assets/arrow-down.png'),
-                            iconStyle: { height: 15, width: 15 },
-                        },
+                    arrowIconStyles={{
+                        iconSource: require('./assets/arrow-down.png'),
+                        iconStyle: { height: 15, width: 15 },
                     }}
                     options={DATA}
                 />

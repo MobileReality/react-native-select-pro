@@ -23,6 +23,27 @@ export type SelectStyles = {
     optionsListStyles?: OptionsListStyles;
 
     /**
+     *  Styles of arrow in select control
+     *
+     *  @category Styles
+     */
+    arrowIconStyles?: ArrowIconStyles;
+
+    /**
+     *  Styles of clear option in select control
+     *
+     *  @category Styles
+     */
+    clearOptionStyles?: ClearOptionStyles;
+
+    /**
+     * Styles of custom left icon in select control
+     *
+     * @category Styles
+     */
+    customLeftIconStyles?: CustomLeftIconStyles;
+
+    /**
      * Style of container select control
      *
      * @category Styles
@@ -65,27 +86,6 @@ export type SelectControlStyles = {
      *  @category Styles
      */
     multiSelectionOptionStyle?: StyleProp<ViewStyle>;
-
-    /**
-     *  Styles of arrow in select control
-     *
-     *  @category Styles
-     */
-    arrowIconStyles?: ArrowIconStyles;
-
-    /**
-     *  Styles of clear option in select control
-     *
-     *  @category Styles
-     */
-    clearOptionStyles?: ClearOptionStyles;
-
-    /**
-     * Styles of custom left icon in select control
-     *
-     * @category Styles
-     */
-    customLeftIconStyles?: CustomLeftIconStyles;
 };
 
 export type ClearOptionStyles = {
