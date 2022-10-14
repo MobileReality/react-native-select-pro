@@ -20,6 +20,11 @@ import type {
 import { OptionsList } from '../options-list';
 import { SelectControl } from '../select-control';
 
+const logDataError = () => {
+    // eslint-disable-next-line no-console
+    console.error('You must pass array in the options prop');
+};
+
 export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRef>) => {
     const {
         // Required
@@ -80,7 +85,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         sectionHeaderTextStyle,
         sectionHeaderContainerStyle,
     } = props;
-    const [state, dispatch] = useReducer(reducer, { ...initialData, optionsData: options });
+    const [state, dispatch] = useReducer(reducer, {
+        ...initialData,
+        optionsData: Array.isArray(options) ? options : [],
+    });
     const {
         isOpened,
         selectedOption,
@@ -94,43 +102,56 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     const { aboveSelectControl } = openedPosition;
     const selectedOptionTyped = selectedOption as OptionType;
 
+    const firstRenderRef = useRef(false);
     const containerRef = useRef<View>(null);
     const isMultiSelection = multiSelection && !isSectionOptionsType(optionsData);
     const isSearchable = searchable && !isSectionOptionsType(optionsData);
 
     useEffect(() => {
-        if (!Array.isArray(optionsData)) {
-            // eslint-disable-next-line no-console
-            console.error('You must pass array in the options prop');
+        const isArray = Array.isArray(options);
+
+        if (!firstRenderRef.current) {
+            if (!isArray) {
+                logDataError();
+            }
+            firstRenderRef.current = true;
             return;
         }
 
-        if (optionsData.length > 0) {
-            dispatch({ type: Action.SetOptionsData, payload: options });
-
-            const isValidPassDefaultOption =
-                defaultOption &&
-                Object.hasOwn(defaultOption, 'value') &&
-                Object.hasOwn(defaultOption, 'label');
-
-            if (isValidPassDefaultOption) {
-                const isSectionData = isSectionOptionsType(optionsData);
-                const foundIndex = isSectionData
-                    ? getReducedSectionData(optionsData).indexOf(defaultOption)
-                    : optionsData.indexOf(defaultOption);
-
-                dispatch({
-                    type: Action.SelectOption,
-                    payload: {
-                        selectedOption: defaultOption,
-                        selectedOptionIndex: foundIndex,
-                    },
-                });
-            }
+        if (!isArray) {
+            logDataError();
+            dispatch({ type: Action.SetOptionsData, payload: [] });
+            return;
         }
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [optionsData]);
+
+        if (options.length > 0) {
+            dispatch({ type: Action.SetOptionsData, payload: options });
+        }
+    }, [options]);
+
+    useEffect(() => {
+        const isValidPassDefaultOption =
+            defaultOption &&
+            Object.hasOwn(defaultOption, 'value') &&
+            Object.hasOwn(defaultOption, 'label');
+
+        if (optionsData.length === 0 || !isValidPassDefaultOption) {
+            return;
+        }
+
+        const isSectionData = isSectionOptionsType(optionsData);
+        const foundIndex = isSectionData
+            ? getReducedSectionData(optionsData).indexOf(defaultOption)
+            : optionsData.indexOf(defaultOption);
+
+        dispatch({
+            type: Action.SelectOption,
+            payload: {
+                selectedOption: defaultOption,
+                selectedOptionIndex: foundIndex,
+            },
+        });
+    }, [optionsData, defaultOption]);
 
     useImperativeHandle(ref, () => ({
         clear: () => {
@@ -311,9 +332,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         } else {
             onDropdownClosed?.();
         }
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isOpened]);
+    }, [isOpened, onDropdownOpened, onDropdownClosed]);
 
     return (
         <View style={[styles.relative, selectContainerStyle]} onLayout={setPosition}>
