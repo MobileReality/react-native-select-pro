@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import {
-    Select,
-    SelectModalProvider,
-} from '@mobile-reality/react-native-select-pro';
+import { Select, SelectModalProvider } from '@mobile-reality/react-native-select-pro';
 
-import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
+import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 import { DATA } from '../constants';
 
-export const SearchableInModal = () => {
+export const ModalExample = () => {
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
-        <SafeAreaViewWrapper>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-            >
+        <SafeAreaViewWrapper
+            style={{
+                flex: 1,
+                justifyContent: 'center',
+            }}
+        >
+            <Modal animationType="slide" transparent={true} visible={modalVisible}>
                 <SelectModalProvider>
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
@@ -28,15 +26,19 @@ export const SearchableInModal = () => {
                                 <Text style={styles.textStyle}>Hide Modal</Text>
                             </Pressable>
                             <Select
+                                clearable={true}
                                 options={DATA}
-                                searchable={true}
-                                selectControlStyle={{ width: 250 }}
+                                selectControlStyle={{ width: 200 }}
+                            />
+                            <Select
+                                clearable={true}
+                                options={DATA}
+                                selectControlStyle={{ width: 200 }}
                             />
                         </View>
                     </View>
                 </SelectModalProvider>
             </Modal>
-            <Text>Search sth...</Text>
             <Pressable
                 style={[styles.button, styles.buttonOpen]}
                 onPress={() => setModalVisible(true)}
@@ -55,8 +57,6 @@ const styles = StyleSheet.create({
         marginTop: 22,
     },
     modalView: {
-        borderWidth: 3,
-        borderColor: 'black',
         margin: 20,
         backgroundColor: 'white',
         borderRadius: 20,

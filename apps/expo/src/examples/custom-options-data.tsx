@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import { OptionType, Select } from '@mobile-reality/react-native-select-pro';
+import type { OptionType } from '@mobile-reality/react-native-select-pro';
+import { Select } from '@mobile-reality/react-native-select-pro';
 
-import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
+import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 
 // Only `value` and `label` is required, besides these fields you can add additional fields
 export const DATA = [
@@ -53,7 +54,7 @@ export const DATA = [
         user: {
             name: 'Michael',
             age: 31,
-            phone: 321321321,
+            phone: 321_321_321,
         },
     },
     {
@@ -65,7 +66,7 @@ export const DATA = [
         user: {
             name: 'Angelina',
             age: 55,
-            phone: 123123123,
+            phone: 123_123_123,
         },
     },
     {
@@ -116,11 +117,7 @@ export const CustomOptionsData = () => {
                 }}
             />
             <View style={{ flex: 1 }}>
-                {selected && (
-                    <Text>
-                        Selected item: {JSON.stringify(selected, null, 4)}
-                    </Text>
-                )}
+                {selected && <Text>Selected item: {JSON.stringify(selected, null, 4)}</Text>}
             </View>
         </SafeAreaViewWrapper>
     );
