@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import type { OptionType } from '@mobile-reality/react-native-select-pro';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
-import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
+import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 
 // Only `value` and `label` is required, besides these fields you can add additional fields
 export const DATA = [

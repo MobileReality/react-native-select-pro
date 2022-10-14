@@ -4,7 +4,7 @@ import type { SelectRef } from '@mobile-reality/react-native-select-pro';
 import { Select } from '@mobile-reality/react-native-select-pro';
 import type { State } from 'packages/react-native-select-pro/src/state/types';
 
-import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
+import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 import { DATA } from '../constants';
 
 export const Ref = () => {

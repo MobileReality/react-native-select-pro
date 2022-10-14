@@ -3,26 +3,26 @@ import { useState } from 'react';
 import { Dimensions, FlatList, SafeAreaView, Text, View } from 'react-native';
 import { SelectProvider } from '@mobile-reality/react-native-select-pro';
 
-import { Button } from './components/Button';
-import { Animated } from './examples/Animated';
-import { Basic } from './examples/Basic';
-import { Callbacks } from './examples/Callbacks';
-import { CustomComponent } from './examples/CustomComponent';
-import { CustomIcons } from './examples/CustomIcons';
-import { CustomOptionsData } from './examples/CustomOptionsData';
-import { CustomStyles } from './examples/CustomStyles';
-import { ModalExample } from './examples/ModalExample';
-import { MultiSelect } from './examples/MultiSelect';
-import { MultiSelectWithSearchable } from './examples/MultiSelectWithSearchable';
-import { Overflow } from './examples/Overflow';
-import { Ref } from './examples/Ref';
-import { RHF } from './examples/RHF';
-import { ScrollToSelectedOption } from './examples/ScrollToSelectedOption';
-import { Searchable } from './examples/Searchable';
-import { SearchableInModal } from './examples/SearchableInModal';
-import { Sections } from './examples/Sections';
-import { Selects } from './examples/Selects';
-import { TextInputProps } from './examples/TextInputProps';
+import { Button } from './components/button';
+import { Animated } from './examples/animated';
+import { Basic } from './examples/basic';
+import { Callbacks } from './examples/callbacks';
+import { CustomComponent } from './examples/custom-component';
+import { CustomIcons } from './examples/custom-icons';
+import { CustomOptionsData } from './examples/custom-options-data';
+import { CustomStyles } from './examples/custom-styles';
+import { ModalExample } from './examples/modal-example';
+import { MultiSelect } from './examples/multiselect';
+import { MultiSelectWithSearchable } from './examples/multiselect-with-searchable';
+import { Overflow } from './examples/overflow';
+import { Ref } from './examples/ref';
+import { RHF } from './examples/rhf';
+import { ScrollToSelectedOption } from './examples/scroll-to-selected-option';
+import { Searchable } from './examples/searchable';
+import { SearchableInModal } from './examples/searchable-in-modal';
+import { Sections } from './examples/sections';
+import { Selects } from './examples/selects';
+import { TextInputProps } from './examples/text-input-props';
 
 const data = [
     {
@@ -87,11 +87,11 @@ const data = [
         getScreen: () => <CustomIcons />,
     },
     {
-        name: 'Multi Select',
+        name: 'MultiSelect',
         getScreen: () => <MultiSelect />,
     },
     {
-        name: 'Multi Select with searchable',
+        name: 'MultiSelect with searchable',
         getScreen: () => <MultiSelectWithSearchable />,
     },
     {
@@ -148,9 +148,7 @@ export const App = () => {
                                 position: 'absolute',
                             }}
                         >
-                            <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
-                                {screen.title}
-                            </Text>
+                            <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{screen.title}</Text>
                         </View>
                         <View
                             style={{
