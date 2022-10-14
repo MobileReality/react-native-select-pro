@@ -21,9 +21,7 @@ export const Button = ({ title, onPress }: Props) => {
             }}
             onPress={onPress}
         >
-            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>
-                {title}
-            </Text>
+            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>{title}</Text>
         </TouchableOpacity>
     );
 };

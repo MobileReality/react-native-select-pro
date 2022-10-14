@@ -1,11 +1,9 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import {
-    OptionComponentProps,
-    Select,
-} from '@mobile-reality/react-native-select-pro';
+import type { OptionComponentProps } from '@mobile-reality/react-native-select-pro';
+import { Select } from '@mobile-reality/react-native-select-pro';
 
-import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
+import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 import { DATA } from '../constants';
 
 const MyOption = ({ option, onPressOption }: OptionComponentProps) => {

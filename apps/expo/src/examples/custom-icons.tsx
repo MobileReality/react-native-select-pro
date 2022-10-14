@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
-import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
+import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 import { DATA } from '../constants';
 
 const searchImage = require('../assets/search.png');
@@ -29,9 +29,7 @@ export const CustomIcons = () => {
                 selectControlStyle={{ width: 250, marginBottom: 20 }}
                 animated={true}
             />
-            <Text style={{ marginBottom: 20 }}>
-                Custom select control arrow
-            </Text>
+            <Text style={{ marginBottom: 20 }}>Custom select control arrow</Text>
             <Select
                 customSelectControlArrowIconSource={chevronsImage}
                 selectControlArrowImageStyle={{ height: 25, width: 25 }}

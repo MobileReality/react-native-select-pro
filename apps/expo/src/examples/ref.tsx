@@ -1,12 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { Button, ScrollView, Text, View } from 'react-native';
-import { Select, SelectRef } from '@mobile-reality/react-native-select-pro';
+import type { SelectRef } from '@mobile-reality/react-native-select-pro';
+import { Select } from '@mobile-reality/react-native-select-pro';
+import type { State } from 'packages/react-native-select-pro/src/state/types';
 
-import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
+import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 import { DATA } from '../constants';
 
 export const Ref = () => {
-    const [currentState, setCurrentState] = useState<any>(null);
+    const [currentState, setCurrentState] = useState<State>();
     const ref = useRef<SelectRef>(null);
 
     const onPress = () => {
@@ -39,11 +41,7 @@ export const Ref = () => {
                 <Button title="Open" onPress={onPress} />
                 <Button title="Reset" onPress={onClear} />
                 <Button title="Get current Select state" onPress={onGetState} />
-                <Select
-                    ref={ref}
-                    options={DATA}
-                    selectControlStyle={{ width: 300 }}
-                />
+                <Select ref={ref} options={DATA} selectControlStyle={{ width: 300 }} />
             </View>
 
             <ScrollView style={{ flex: 1 }}>
