@@ -193,19 +193,6 @@ Array [
       testID="Options list"
       viewabilityConfigCallbackPairs={Array []}
     >
-<<<<<<< HEAD
-      <View
-        style={
-          Array [
-            Object {
-              "flex": 1,
-              "height": "100%",
-              "justifyContent": "center",
-              "paddingHorizontal": 12,
-            },
-            Object {
-              "paddingRight": 55,
-=======
       <View>
         <View
           style={null}
@@ -382,7 +369,6 @@ Array [
               "borderWidth": 1,
               "flexDirection": "row",
               "height": 40,
->>>>>>> b0d405552988ac69a00a4a305b2089db57aeb05e
             },
             Object {},
             undefined,
@@ -390,33 +376,6 @@ Array [
           ]
         }
       >
-        <View
-          style={
-            Array [
-              Object {
-                "paddingLeft": 8,
-              },
-              Object {
-                "height": "100%",
-                "justifyContent": "center",
-              },
-            ]
-          }
-        >
-          <Image
-            source={
-              Object {
-                "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
-              }
-            }
-            style={
-              Object {
-                "height": 15,
-                "width": 15,
-              }
-            }
-          />
-        </View>
         <View
           style={
             Array [
