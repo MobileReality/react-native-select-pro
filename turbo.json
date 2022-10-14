@@ -12,8 +12,7 @@
       "inputs": [
         "src/**/*.tsx",
         "src/**/*.ts"
-      ],
-      "cache": false
+      ]
     },
     "detox-metro-start": {},
     "detox-ios-build": {},
