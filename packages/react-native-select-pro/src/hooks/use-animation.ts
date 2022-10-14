@@ -9,16 +9,17 @@ type UseAnimationProps = Pick<ComponentProps<typeof OptionsList>, 'animation' | 
 
 export const useAnimation = ({ isOpened, animation }: UseAnimationProps) => {
     const ref = useRef(new Animated.Value(0));
+    const isAnimated = (typeof animation === 'number' && animation === 0) || animation;
 
     useEffect(() => {
-        if ((typeof animation === 'number' && animation === 0) || animation) {
+        if (isAnimated) {
             Animated.timing(ref.current, {
                 toValue: isOpened ? 1 : 0,
                 duration: typeof animation === 'boolean' ? ANIMATION_DURATION : animation,
                 useNativeDriver: true,
             }).start();
         }
-    }, [isOpened, animation]);
+    }, [isOpened, animation, isAnimated]);
 
-    return animation ? ref.current : null;
+    return isAnimated ? ref.current : null;
 };
