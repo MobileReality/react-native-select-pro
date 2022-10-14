@@ -101,20 +101,12 @@ export interface SelectProps {
 
     // ---ANIMATIONS--- //
     /**
-     *  If `true` toggling the select is animated
+     *  If provided value is `false` then animation is disabled
      *
      *  @category Animations
-     *  @default false
+     *  @default true
      */
-    animated?: boolean;
-
-    /**
-     *  Animation duration in ms
-     *
-     *  @category Animations
-     *  @default 200
-     */
-    animationDuration?: number;
+    animation?: boolean | number;
 
     // ---BEHAVIOURS--- //
     /**

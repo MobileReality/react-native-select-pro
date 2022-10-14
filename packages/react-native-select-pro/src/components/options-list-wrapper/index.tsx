@@ -1,15 +1,13 @@
 import type { ComponentProps, ReactNode } from 'react';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { Animated, View } from 'react-native';
 
 import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import { useAnimation } from '../../hooks/use-animation';
 import type { OptionsList } from '../options-list';
 
-type FromOptionListProps = Pick<
-    ComponentProps<typeof OptionsList>,
-    'animated' | 'animationDuration' | 'isOpened'
->;
+type FromOptionListProps = Pick<ComponentProps<typeof OptionsList>, 'animation' | 'isOpened'>;
 
 type WrapperStyles = {
     wrapperStyles: StyleProp<ViewStyle>;
@@ -21,26 +19,13 @@ type OptionsListWrapperProps = OptionalToRequired<FromOptionListProps> & {
 
 export const OptionsListWrapper = ({
     children,
-    animated,
-    animationDuration,
+    animation,
     isOpened,
     wrapperStyles,
 }: OptionsListWrapperProps) => {
-    const fadeAnimation = useRef(new Animated.Value(0)).current;
+    const fadeAnimation = useAnimation({ isOpened, animation });
 
-    useEffect(() => {
-        if (animated) {
-            Animated.timing(fadeAnimation, {
-                toValue: isOpened ? 1 : 0,
-                duration: animationDuration,
-                useNativeDriver: true,
-            }).start();
-        }
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fadeAnimation, isOpened]);
-
-    return animated ? (
+    return fadeAnimation ? (
         <Animated.View
             pointerEvents={isOpened ? 'auto' : 'none'}
             style={[wrapperStyles, { opacity: fadeAnimation }]}

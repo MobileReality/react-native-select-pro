@@ -4,17 +4,11 @@ title: Common features props
 sidebar_label: Common features
 ---
 
-### animated
+### animation
 ```typescript jsx
-animated?: boolean;
+animation?: boolean | number;
 ```
-If `true` toggling the select is animated
-
-### animationDuration
-```typescript jsx
-animationDuration?: number;
-```
-Animation duration in ms
+If provided value is `false` then animation is disabled
 
 ### clearable
 ```typescript jsx

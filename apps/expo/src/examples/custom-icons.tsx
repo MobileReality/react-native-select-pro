@@ -27,7 +27,6 @@ export const CustomIcons = () => {
                 placeholderText="Search..."
                 searchable={true}
                 selectControlStyle={{ width: 250, marginBottom: 20 }}
-                animated={true}
             />
             <Text style={{ marginBottom: 20 }}>Custom select control arrow</Text>
             <Select
@@ -41,7 +40,6 @@ export const CustomIcons = () => {
                 selectControlArrowImageStyle={{ height: 25, width: 25 }}
                 selectControlStyle={{ width: 250, marginBottom: 20 }}
                 options={DATA}
-                animated={true}
             />
         </SafeAreaViewWrapper>
     );
