@@ -80,7 +80,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         sectionHeaderTextStyle,
         sectionHeaderContainerStyle,
     } = props;
-    const [state, dispatch] = useReducer(reducer, initialData);
+    const [state, dispatch] = useReducer(reducer, { ...initialData, optionsData: options });
     const {
         isOpened,
         selectedOption,
@@ -95,17 +95,17 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     const selectedOptionTyped = selectedOption as OptionType;
 
     const containerRef = useRef<View>(null);
-    const isMultiSelection = multiSelection && !isSectionOptionsType(options);
-    const isSearchable = searchable && !isSectionOptionsType(options);
+    const isMultiSelection = multiSelection && !isSectionOptionsType(optionsData);
+    const isSearchable = searchable && !isSectionOptionsType(optionsData);
 
     useEffect(() => {
-        if (!Array.isArray(options)) {
+        if (!Array.isArray(optionsData)) {
             // eslint-disable-next-line no-console
             console.error('You must pass array in the options prop');
             return;
         }
 
-        if (options.length > 0) {
+        if (optionsData.length > 0) {
             dispatch({ type: Action.SetOptionsData, payload: options });
 
             const isValidPassDefaultOption =
@@ -114,10 +114,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 Object.hasOwn(defaultOption, 'label');
 
             if (isValidPassDefaultOption) {
-                const isSectionData = isSectionOptionsType(options);
+                const isSectionData = isSectionOptionsType(optionsData);
                 const foundIndex = isSectionData
-                    ? getReducedSectionData(options).indexOf(defaultOption)
-                    : options.indexOf(defaultOption);
+                    ? getReducedSectionData(optionsData).indexOf(defaultOption)
+                    : optionsData.indexOf(defaultOption);
 
                 dispatch({
                     type: Action.SelectOption,
@@ -130,7 +130,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         }
         // TODO
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [options]);
+    }, [optionsData]);
 
     useImperativeHandle(ref, () => ({
         clear: () => {
@@ -138,7 +138,6 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 type: Action.SelectOption,
                 payload: { selectedOption: null, selectedOptionIndex: -1 },
             });
-            dispatch({ type: Action.SetOptionsData, payload: options });
             if (onRemove) {
                 onRemove(selectedOption, selectedOptionIndex);
             }
@@ -229,7 +228,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 });
             }
         }
-        dispatch({ type: Action.SetOptionsData, payload: options });
+
         if (option) {
             hideKeyboardIfNeeded();
         }
@@ -297,7 +296,6 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
 
     const onOutsidePress: OnOutsidePress = () => {
         dispatch({ type: Action.Close });
-        dispatch({ type: Action.SetOptionsData, payload: options });
         if (isSearchable && selectedOptionTyped?.label) {
             dispatch({
                 type: Action.SetSearchValue,
@@ -332,7 +330,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 isOpened={isOpened}
                 multiSelection={isMultiSelection}
                 multiSelectionOptionStyle={multiSelectionOptionStyle}
-                options={options}
+                optionsData={optionsData}
                 placeholderText={placeholderText}
                 placeholderTextColor={placeholderTextColor}
                 searchPattern={searchPattern}

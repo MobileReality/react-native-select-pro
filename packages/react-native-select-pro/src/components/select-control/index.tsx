@@ -21,7 +21,6 @@ type FromSelectComponentProps = Pick<
     | 'selectControlStyle'
     | 'clearable'
     | 'animation'
-    | 'options'
     | 'disabled'
     | 'searchable'
     | 'searchPattern'
@@ -45,7 +44,8 @@ type FromSelectComponentProps = Pick<
     | 'customLeftIconSource'
     | 'customLeftIconStyles'
     | 'multiSelectionOptionStyle'
->;
+> &
+    Pick<State, 'optionsData'>;
 
 type SelectControlProps = OptionalToRequired<
     {
@@ -70,7 +70,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             onPressSelectControl,
             dispatch,
             clearable,
-            options,
+            optionsData,
             disabled,
             multiSelection,
             placeholderText,
@@ -105,7 +105,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             if (!disabled) {
                 let removedOption = selectedOption;
                 let removedOptionIndex = selectedOptionIndex;
-                if (multiSelection && !isSectionOptionsType(options)) {
+                if (multiSelection && !isSectionOptionsType(optionsData)) {
                     let removedSelectedOptions: null | OptionType[] = [];
                     removedSelectedOptions = (selectedOption as OptionType[]).filter(
                         (selected) => selected.value !== (option as OptionType).value,
@@ -113,7 +113,9 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     if (removedSelectedOptions.length === 0) {
                         removedSelectedOptions = null;
                     }
-                    const foundIndex = options.findIndex(({ value }) => value === option?.value);
+                    const foundIndex = optionsData.findIndex(
+                        ({ value }) => value === option?.value,
+                    );
                     removedOptionIndex = foundIndex;
                     removedOption = option;
                     const resolveSelectedOptionIndex = (selectedOptionIndex as number[]).filter(
@@ -144,10 +146,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                             payload: '',
                         });
                     }
-                    dispatch({
-                        type: Action.SetOptionsData,
-                        payload: options,
-                    });
                 }
                 if (onSelect) {
                     onSelect(null, -1);
