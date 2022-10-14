@@ -158,7 +158,7 @@ describe('Select', () => {
     it('should close dropdown menu after pressed outside dropdown', () => {
         const { getByLabelText, queryByLabelText } = render(
             <SelectProvider>
-                <Select options={DATA} />
+                <Select options={DATA} animation={false} />
             </SelectProvider>,
         );
 
@@ -455,7 +455,7 @@ describe('Select with multi selection', () => {
     it('should, while multiSelection enabled, click and open options', () => {
         const { getByLabelText, queryByLabelText } = render(
             <SelectProvider>
-                <Select multiSelection={true} options={DATA} />
+                <Select multiSelection={true} options={DATA} animation={false} />
             </SelectProvider>,
         );
 
@@ -475,7 +475,7 @@ describe('Select with multi selection', () => {
     it('should, while multiSelection enabled, click should NOT execute opening dropdown', () => {
         const { getByLabelText, queryByLabelText } = render(
             <SelectProvider>
-                <Select multiSelection={true} options={DATA} />
+                <Select multiSelection={true} options={DATA} animation={false} />
             </SelectProvider>,
         );
 
@@ -542,6 +542,7 @@ describe('Select with multi selection', () => {
         expect(onOpen).not.toHaveBeenCalled();
     });
 });
+
 describe('Select with multi selection and searchable', () => {
     it('should generate Select with multi selection and searchable enabled snapshot', () => {
         const wrapper = render(

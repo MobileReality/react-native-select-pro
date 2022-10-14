@@ -3,7 +3,7 @@ import React, { forwardRef, useEffect, useImperativeHandle, useReducer, useRef }
 import type { TextInput, ViewStyle } from 'react-native';
 import { I18nManager, StyleSheet, useWindowDimensions, View } from 'react-native';
 
-import { ANIMATION_DURATION, COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
+import { COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize } from '../../helpers';
 import { getReducedSectionData } from '../../helpers/get-reduced-section-data';
 import { isSectionOptionsType } from '../../helpers/is-section-options-type';
@@ -33,8 +33,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         noOptionsText = 'No options',
         placeholderText = 'Select...',
         // Animations
-        animated = false,
-        animationDuration = ANIMATION_DURATION,
+        animation = true,
         // Behaviour
         clearable = true,
         closeDropdownOnSelect = true,
@@ -311,8 +310,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
             <SelectControl
                 ref={containerRef}
                 aboveSelectControl={aboveSelectControl}
-                animated={animated}
-                animationDuration={animationDuration}
+                animation={animation}
                 clearable={clearable}
                 disabled={disabled}
                 dispatch={dispatch}
@@ -343,8 +341,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 NoOptionsComponent={NoOptionsComponent}
                 OptionComponent={OptionComponent}
                 aboveSelectControl={aboveSelectControl}
-                animated={animated}
-                animationDuration={animationDuration}
+                animation={animation}
                 flatListProps={flatListProps}
                 isOpened={isOpened}
                 multiSelection={isMultiSelection}
