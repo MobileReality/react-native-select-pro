@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Text } from 'react-native';
-import { OptionType, Select } from '@mobile-reality/react-native-select-pro';
+import type { OptionType } from '@mobile-reality/react-native-select-pro';
+import { Select } from '@mobile-reality/react-native-select-pro';
 
-import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
+import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 import { DATA } from '../constants';
 
 export const Callbacks = () => {
@@ -10,24 +11,18 @@ export const Callbacks = () => {
     const [selected, setSelected] = useState<OptionType | null>(null);
     const [selectedItemIndex, setSelectedItemIndex] = useState<number>(-1);
 
-    const [removed, setRemoved] = useState<OptionType | OptionType[] | null>(
-        null,
-    );
+    const [removed, setRemoved] = useState<OptionType | OptionType[] | null>(null);
     const [removedIndex, setRemovedIndex] = useState<number | number[]>(-1);
 
     return (
         <SafeAreaViewWrapper>
-            <Text style={{ marginBottom: 20 }}>
-                isOpened: {isOpened.toString()}
-            </Text>
+            <Text style={{ marginBottom: 20 }}>isOpened: {isOpened.toString()}</Text>
             {selected && (
                 <>
                     <Text style={{ marginBottom: 20 }}>
                         Selected item: {JSON.stringify(selected, null, 4)}
                     </Text>
-                    <Text style={{ marginBottom: 20 }}>
-                        Selected index: {selectedItemIndex}
-                    </Text>
+                    <Text style={{ marginBottom: 20 }}>Selected index: {selectedItemIndex}</Text>
                 </>
             )}
             {removed && (
@@ -35,9 +30,7 @@ export const Callbacks = () => {
                     <Text style={{ marginBottom: 20 }}>
                         Removed item: {JSON.stringify(removed, null, 4)}
                     </Text>
-                    <Text style={{ marginBottom: 20 }}>
-                        Removed index: {removedIndex}
-                    </Text>
+                    <Text style={{ marginBottom: 20 }}>Removed index: {removedIndex}</Text>
                 </>
             )}
             <Select

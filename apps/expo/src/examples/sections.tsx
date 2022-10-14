@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
-import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
+import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 import { SECTIONS_DATA } from '../constants';
 
 export const Sections = () => {

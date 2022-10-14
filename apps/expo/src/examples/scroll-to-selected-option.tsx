@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
-import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper';
+import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 import { DATA } from '../constants';
 
 export const ScrollToSelectedOption = () => {
@@ -11,20 +11,14 @@ export const ScrollToSelectedOption = () => {
             <Text>Scroll to selected option</Text>
             <Select options={DATA} selectControlStyle={{ width: 150 }} />
             <Text>Scroll to selected option with default option</Text>
-            <Select
-                defaultOption={DATA[4]}
-                options={DATA}
-                selectControlStyle={{ width: 150 }}
-            />
+            <Select defaultOption={DATA[4]} options={DATA} selectControlStyle={{ width: 150 }} />
             <Text>Scroll to selected option is disabled</Text>
             <Select
                 options={DATA}
                 scrollToSelectedOption={false}
                 selectControlStyle={{ width: 150 }}
             />
-            <Text>
-                Scroll to selected option with changed height of the option
-            </Text>
+            <Text>Scroll to selected option with changed height of the option</Text>
             <Select
                 optionStyle={{
                     height: 60,

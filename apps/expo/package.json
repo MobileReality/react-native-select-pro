@@ -7,7 +7,9 @@
   "scripts": {
     "dev-start": "expo start --clear",
     "tsc": "tsc --noEmit",
-    "clean": "rm -Rf .turbo && rm -Rf node_modules"
+    "clean": "rm -Rf .turbo && rm -Rf node_modules",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint --fix ./src --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@gorhom/portal": "1.0.14",
