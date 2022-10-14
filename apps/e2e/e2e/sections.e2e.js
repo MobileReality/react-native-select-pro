@@ -7,7 +7,7 @@ describe('Sections', () => {
         await element(by.text('Sections')).tap();
         await element(by.text('Select...')).tap();
         await element(by.text('Canada')).tap();
-        await expect(element(by.text('Canada'))).toExist();
+        await expect(element(by.text('Canada')).atIndex(0)).toExist();
         await element(by.label('Clear a chosen option')).atIndex(0).tap();
         await expect(element(by.text('Select...'))).toExist();
     });
