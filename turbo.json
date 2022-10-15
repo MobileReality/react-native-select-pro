@@ -9,11 +9,7 @@
       ]
     },
     "test": {
-      "inputs": [
-        "src/**/*.tsx",
-        "src/**/*.ts"
-      ],
-      "cache": false
+      "inputs": ["**/*.{ts,tsx,js,jsx}"]
     },
     "detox-metro-start": {},
     "detox-ios-build": {},
