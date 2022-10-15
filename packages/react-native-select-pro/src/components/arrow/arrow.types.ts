@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import type { OptionalToRequired } from '../../helpers';
 import type { State } from '../../state/types';
 import type { OnPressSelectControlType } from '../../types';
 import type { Select } from '../select';

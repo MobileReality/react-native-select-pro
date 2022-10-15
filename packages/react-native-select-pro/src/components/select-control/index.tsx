@@ -4,9 +4,8 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import { AccessibilityInfo, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
-import { isAndroid } from '../../helpers';
-import { isSectionOptionsType } from '../../helpers/is-section-options-type';
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import type { OptionalToRequired } from '../../helpers';
+import { isAndroid, isSectionOptionsType } from '../../helpers';
 import type { OptionType, Select } from '../../index';
 import type { DispatchType, Position, State } from '../../state/types';
 import { Action } from '../../state/types';

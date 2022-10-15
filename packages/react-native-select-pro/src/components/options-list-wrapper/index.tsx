@@ -3,8 +3,8 @@ import React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { Animated, View } from 'react-native';
 
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
-import { useAnimation } from '../../hooks/use-animation';
+import type { OptionalToRequired } from '../../helpers';
+import { useAnimation } from '../../hooks';
 import type { OptionsList } from '../options-list';
 
 type FromOptionListProps = Pick<ComponentProps<typeof OptionsList>, 'animation' | 'isOpened'>;
