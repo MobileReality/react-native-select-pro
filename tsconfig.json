@@ -8,11 +8,10 @@
     },
     "target": "esnext",
     "module": "commonjs",
-    "types": ["react-native", "jest"],
     "lib": [
       "es2019"
     ],
-    "jsx": "react-native",
+    "jsx": "react",
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "esModuleInterop": true,
