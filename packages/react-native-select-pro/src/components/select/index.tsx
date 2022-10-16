@@ -108,11 +108,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
             dispatch({ type: Action.SetOptionsData, payload: options });
 
             const isValidPassDefaultOption =
-                defaultOption &&
-                Object.hasOwn(defaultOption, 'value') &&
-                Object.hasOwn(defaultOption, 'label');
+                Object.prototype.hasOwnProperty.call(defaultOption, 'value') &&
+                Object.prototype.hasOwnProperty.call(defaultOption, 'label');
 
-            if (isValidPassDefaultOption) {
+            if (isValidPassDefaultOption && defaultOption) {
                 const isSectionData = isSectionOptionsType(optionsData);
                 const foundIndex = isSectionData
                     ? getReducedSectionData(optionsData).indexOf(defaultOption)
