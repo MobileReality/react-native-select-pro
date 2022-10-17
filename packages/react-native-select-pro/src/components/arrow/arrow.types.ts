@@ -8,6 +8,6 @@ import type { Select } from '../select';
 
 export type ArrowProps = OptionalToRequired<
     { onPressSelectControl: OnPressSelectControlType } & Pick<State, 'isOpened'> &
-        Pick<ComponentProps<typeof Select>, 'animation' | 'multiSelection' | 'disabled'>
-> &
-    Pick<SelectStyles, 'arrowIconStyles'>;
+        Pick<ComponentProps<typeof Select>, 'animation' | 'multiSelection' | 'disabled'> &
+        Pick<SelectStyles, 'arrowIconStyles'>
+>;

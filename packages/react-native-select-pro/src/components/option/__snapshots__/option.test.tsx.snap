@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Option should generate Option snapshot 1`] = `
+<Option
+  isSelected={false}
+  onPressOption={[Function]}
+  onSelect={[Function]}
+  option={
+    {
+      "label": "test",
+      "value": "test",
+    }
+  }
+  optionIndex={0}
+  optionSelectedStyle={{}}
+  optionStyle={{}}
+  optionTextStyle={{}}
+/>
+`;

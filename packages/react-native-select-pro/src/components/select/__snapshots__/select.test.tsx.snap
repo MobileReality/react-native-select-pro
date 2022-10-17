@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select should generate Select snapshot 1`] = `
+<Select
+  options={
+    [
+      {
+        "label": "test",
+        "value": "test",
+      },
+    ]
+  }
+/>
+`;
