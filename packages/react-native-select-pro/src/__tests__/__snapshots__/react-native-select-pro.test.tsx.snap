@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Select should generate Select snapshot 1`] = `
-Array [
+[
   <View
     onLayout={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "position": "relative",
         },
         undefined,
@@ -15,7 +15,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "position": "relative",
         }
       }
@@ -35,30 +35,30 @@ Array [
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#ffffff",
               "borderRadius": 4,
               "borderWidth": 1,
               "flexDirection": "row",
               "height": 40,
             },
-            Object {},
+            {},
             undefined,
-            Object {},
+            {},
           ]
         }
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flex": 1,
                 "height": "100%",
                 "justifyContent": "center",
                 "paddingHorizontal": 12,
               },
-              Object {
+              {
                 "paddingRight": 55,
               },
             ]
@@ -67,13 +67,13 @@ Array [
           <Text
             numberOfLines={1}
             style={
-              Array [
-                Object {
+              [
+                {
                   "fontSize": 12,
                   "textAlign": "left",
                 },
                 undefined,
-                Object {
+                {
                   "color": "#808080",
                 },
               ]
@@ -84,8 +84,8 @@ Array [
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
@@ -101,15 +101,15 @@ Array [
           <Image
             collapsable={false}
             source={
-              Object {
+              {
                 "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
               }
             }
             style={
-              Object {
+              {
                 "height": 25,
-                "transform": Array [
-                  Object {
+                "transform": [
+                  {
                     "rotate": "0deg",
                   },
                 ],
@@ -126,7 +126,7 @@ Array [
     collapsable={false}
     pointerEvents="none"
     style={
-      Object {
+      {
         "backgroundColor": "#ffffff",
         "borderBottomLeftRadius": 4,
         "borderBottomRightRadius": 4,
@@ -152,22 +152,22 @@ Array [
       }
       accessibilityLabel="Options list"
       accessibilityState={
-        Object {
+        {
           "expanded": false,
         }
       }
       bounces={false}
       data={
-        Array [
-          Object {
+        [
+          {
             "label": "First Option",
             "value": "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
           },
-          Object {
+          {
             "label": "Second Option",
             "value": "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
           },
-          Object {
+          {
             "label": "Third Option",
             "value": "58694a0f-3da1-471f-bd96-145571e29d72",
           },
@@ -189,9 +189,9 @@ Array [
       removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
+      stickyHeaderIndices={[]}
       testID="Options list"
-      viewabilityConfigCallbackPairs={Array []}
+      viewabilityConfigCallbackPairs={[]}
     >
       <View>
         <View
@@ -212,7 +212,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -223,8 +223,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -254,7 +254,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -265,8 +265,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -296,7 +296,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -307,8 +307,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -328,12 +328,12 @@ Array [
 `;
 
 exports[`Select with custom left icon should generate Select with custom left icon snapshot 1`] = `
-Array [
+[
   <View
     onLayout={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "position": "relative",
         },
         undefined,
@@ -342,7 +342,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "position": "relative",
         }
       }
@@ -362,27 +362,27 @@ Array [
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#ffffff",
               "borderRadius": 4,
               "borderWidth": 1,
               "flexDirection": "row",
               "height": 40,
             },
-            Object {},
+            {},
             undefined,
-            Object {},
+            {},
           ]
         }
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "paddingLeft": 8,
               },
-              Object {
+              {
                 "height": "100%",
                 "justifyContent": "center",
               },
@@ -391,12 +391,12 @@ Array [
         >
           <Image
             source={
-              Object {
+              {
                 "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
               }
             }
             style={
-              Object {
+              {
                 "height": 15,
                 "width": 15,
               }
@@ -405,14 +405,14 @@ Array [
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flex": 1,
                 "height": "100%",
                 "justifyContent": "center",
                 "paddingHorizontal": 12,
               },
-              Object {
+              {
                 "paddingRight": 55,
               },
             ]
@@ -421,13 +421,13 @@ Array [
           <Text
             numberOfLines={1}
             style={
-              Array [
-                Object {
+              [
+                {
                   "fontSize": 12,
                   "textAlign": "left",
                 },
                 undefined,
-                Object {
+                {
                   "color": "#808080",
                 },
               ]
@@ -438,8 +438,8 @@ Array [
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
@@ -455,15 +455,15 @@ Array [
           <Image
             collapsable={false}
             source={
-              Object {
+              {
                 "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
               }
             }
             style={
-              Object {
+              {
                 "height": 25,
-                "transform": Array [
-                  Object {
+                "transform": [
+                  {
                     "rotate": "0deg",
                   },
                 ],
@@ -480,7 +480,7 @@ Array [
     collapsable={false}
     pointerEvents="none"
     style={
-      Object {
+      {
         "backgroundColor": "#ffffff",
         "borderBottomLeftRadius": 4,
         "borderBottomRightRadius": 4,
@@ -506,22 +506,22 @@ Array [
       }
       accessibilityLabel="Options list"
       accessibilityState={
-        Object {
+        {
           "expanded": false,
         }
       }
       bounces={false}
       data={
-        Array [
-          Object {
+        [
+          {
             "label": "First Option",
             "value": "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
           },
-          Object {
+          {
             "label": "Second Option",
             "value": "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
           },
-          Object {
+          {
             "label": "Third Option",
             "value": "58694a0f-3da1-471f-bd96-145571e29d72",
           },
@@ -543,9 +543,9 @@ Array [
       removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
+      stickyHeaderIndices={[]}
       testID="Options list"
-      viewabilityConfigCallbackPairs={Array []}
+      viewabilityConfigCallbackPairs={[]}
     >
       <View>
         <View
@@ -566,7 +566,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -577,8 +577,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -608,7 +608,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -619,8 +619,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -650,7 +650,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -661,8 +661,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -682,12 +682,12 @@ Array [
 `;
 
 exports[`Select with custom select control arrow icon should generate Select with custom select control arrow icon snapshot 1`] = `
-Array [
+[
   <View
     onLayout={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "position": "relative",
         },
         undefined,
@@ -696,7 +696,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "position": "relative",
         }
       }
@@ -716,30 +716,30 @@ Array [
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#ffffff",
               "borderRadius": 4,
               "borderWidth": 1,
               "flexDirection": "row",
               "height": 40,
             },
-            Object {},
+            {},
             undefined,
-            Object {},
+            {},
           ]
         }
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flex": 1,
                 "height": "100%",
                 "justifyContent": "center",
                 "paddingHorizontal": 12,
               },
-              Object {
+              {
                 "paddingRight": 55,
               },
             ]
@@ -748,13 +748,13 @@ Array [
           <Text
             numberOfLines={1}
             style={
-              Array [
-                Object {
+              [
+                {
                   "fontSize": 12,
                   "textAlign": "left",
                 },
                 undefined,
-                Object {
+                {
                   "color": "#808080",
                 },
               ]
@@ -765,8 +765,8 @@ Array [
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
@@ -782,15 +782,15 @@ Array [
           <Image
             collapsable={false}
             source={
-              Object {
+              {
                 "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
               }
             }
             style={
-              Object {
+              {
                 "height": 15,
-                "transform": Array [
-                  Object {
+                "transform": [
+                  {
                     "rotate": "0deg",
                   },
                 ],
@@ -807,7 +807,7 @@ Array [
     collapsable={false}
     pointerEvents="none"
     style={
-      Object {
+      {
         "backgroundColor": "#ffffff",
         "borderBottomLeftRadius": 4,
         "borderBottomRightRadius": 4,
@@ -833,22 +833,22 @@ Array [
       }
       accessibilityLabel="Options list"
       accessibilityState={
-        Object {
+        {
           "expanded": false,
         }
       }
       bounces={false}
       data={
-        Array [
-          Object {
+        [
+          {
             "label": "First Option",
             "value": "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
           },
-          Object {
+          {
             "label": "Second Option",
             "value": "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
           },
-          Object {
+          {
             "label": "Third Option",
             "value": "58694a0f-3da1-471f-bd96-145571e29d72",
           },
@@ -870,9 +870,9 @@ Array [
       removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
+      stickyHeaderIndices={[]}
       testID="Options list"
-      viewabilityConfigCallbackPairs={Array []}
+      viewabilityConfigCallbackPairs={[]}
     >
       <View>
         <View
@@ -893,7 +893,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -904,8 +904,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -935,7 +935,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -946,8 +946,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -977,7 +977,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -988,8 +988,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -1009,12 +1009,12 @@ Array [
 `;
 
 exports[`Select with multi selection and searchable should generate Select with multi selection and searchable enabled snapshot 1`] = `
-Array [
+[
   <View
     onLayout={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "position": "relative",
         },
         undefined,
@@ -1023,7 +1023,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "position": "relative",
         }
       }
@@ -1043,30 +1043,30 @@ Array [
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#ffffff",
               "borderRadius": 4,
               "borderWidth": 1,
               "flexDirection": "row",
               "height": 40,
             },
-            Object {},
+            {},
             undefined,
-            Object {},
+            {},
           ]
         }
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flex": 1,
                 "height": "100%",
                 "justifyContent": "center",
                 "paddingHorizontal": 12,
               },
-              Object {
+              {
                 "paddingRight": 40,
               },
             ]
@@ -1075,7 +1075,7 @@ Array [
           <RCTScrollView
             horizontal={true}
             style={
-              Object {
+              {
                 "flex": 1,
               }
             }
@@ -1089,8 +1089,8 @@ Array [
                 placeholder="Select..."
                 placeholderTextColor="#808080"
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "fontSize": 12,
                     },
                     undefined,
@@ -1104,8 +1104,8 @@ Array [
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
@@ -1136,15 +1136,15 @@ Array [
             <Image
               collapsable={false}
               source={
-                Object {
+                {
                   "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
                 }
               }
               style={
-                Object {
+                {
                   "height": 25,
-                  "transform": Array [
-                    Object {
+                  "transform": [
+                    {
                       "rotate": "0deg",
                     },
                   ],
@@ -1162,7 +1162,7 @@ Array [
     collapsable={false}
     pointerEvents="none"
     style={
-      Object {
+      {
         "backgroundColor": "#ffffff",
         "borderBottomLeftRadius": 4,
         "borderBottomRightRadius": 4,
@@ -1188,22 +1188,22 @@ Array [
       }
       accessibilityLabel="Options list"
       accessibilityState={
-        Object {
+        {
           "expanded": false,
         }
       }
       bounces={false}
       data={
-        Array [
-          Object {
+        [
+          {
             "label": "First test options",
             "value": "test1",
           },
-          Object {
+          {
             "label": "Second test options",
             "value": "test2",
           },
-          Object {
+          {
             "label": "Third test option",
             "value": "test3",
           },
@@ -1225,9 +1225,9 @@ Array [
       removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
+      stickyHeaderIndices={[]}
       testID="Options list"
-      viewabilityConfigCallbackPairs={Array []}
+      viewabilityConfigCallbackPairs={[]}
     >
       <View>
         <View
@@ -1248,7 +1248,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -1259,8 +1259,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -1290,7 +1290,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -1301,8 +1301,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -1332,7 +1332,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -1343,8 +1343,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -1364,12 +1364,12 @@ Array [
 `;
 
 exports[`Select with multi selection should generate Select with multi selection enabled snapshot 1`] = `
-Array [
+[
   <View
     onLayout={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "position": "relative",
         },
         undefined,
@@ -1378,7 +1378,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "position": "relative",
         }
       }
@@ -1398,30 +1398,30 @@ Array [
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#ffffff",
               "borderRadius": 4,
               "borderWidth": 1,
               "flexDirection": "row",
               "height": 40,
             },
-            Object {},
+            {},
             undefined,
-            Object {},
+            {},
           ]
         }
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flex": 1,
                 "height": "100%",
                 "justifyContent": "center",
                 "paddingHorizontal": 12,
               },
-              Object {
+              {
                 "paddingRight": 40,
               },
             ]
@@ -1430,7 +1430,7 @@ Array [
           <RCTScrollView
             horizontal={true}
             style={
-              Object {
+              {
                 "flex": 1,
               }
             }
@@ -1451,14 +1451,14 @@ Array [
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "flex-start",
                       "display": "flex",
                       "justifyContent": "center",
                     },
                     undefined,
-                    Object {
+                    {
                       "width": "100%",
                     },
                   ]
@@ -1467,13 +1467,13 @@ Array [
                 <Text
                   numberOfLines={1}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "fontSize": 12,
                         "textAlign": "left",
                       },
                       undefined,
-                      Object {
+                      {
                         "color": "#808080",
                       },
                     ]
@@ -1487,8 +1487,8 @@ Array [
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
@@ -1519,15 +1519,15 @@ Array [
             <Image
               collapsable={false}
               source={
-                Object {
+                {
                   "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
                 }
               }
               style={
-                Object {
+                {
                   "height": 25,
-                  "transform": Array [
-                    Object {
+                  "transform": [
+                    {
                       "rotate": "0deg",
                     },
                   ],
@@ -1545,7 +1545,7 @@ Array [
     collapsable={false}
     pointerEvents="none"
     style={
-      Object {
+      {
         "backgroundColor": "#ffffff",
         "borderBottomLeftRadius": 4,
         "borderBottomRightRadius": 4,
@@ -1571,22 +1571,22 @@ Array [
       }
       accessibilityLabel="Options list"
       accessibilityState={
-        Object {
+        {
           "expanded": false,
         }
       }
       bounces={false}
       data={
-        Array [
-          Object {
+        [
+          {
             "label": "First Option",
             "value": "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
           },
-          Object {
+          {
             "label": "Second Option",
             "value": "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
           },
-          Object {
+          {
             "label": "Third Option",
             "value": "58694a0f-3da1-471f-bd96-145571e29d72",
           },
@@ -1608,9 +1608,9 @@ Array [
       removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
+      stickyHeaderIndices={[]}
       testID="Options list"
-      viewabilityConfigCallbackPairs={Array []}
+      viewabilityConfigCallbackPairs={[]}
     >
       <View>
         <View
@@ -1631,7 +1631,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -1642,8 +1642,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -1673,7 +1673,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -1684,8 +1684,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -1715,7 +1715,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -1726,8 +1726,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -1747,12 +1747,12 @@ Array [
 `;
 
 exports[`Select with searchable enabled should generate Select with searchable enabled snapshot 1`] = `
-Array [
+[
   <View
     onLayout={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "position": "relative",
         },
         undefined,
@@ -1761,7 +1761,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "position": "relative",
         }
       }
@@ -1781,30 +1781,30 @@ Array [
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#ffffff",
               "borderRadius": 4,
               "borderWidth": 1,
               "flexDirection": "row",
               "height": 40,
             },
-            Object {},
+            {},
             undefined,
-            Object {},
+            {},
           ]
         }
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flex": 1,
                 "height": "100%",
                 "justifyContent": "center",
                 "paddingHorizontal": 12,
               },
-              Object {
+              {
                 "paddingRight": 55,
               },
             ]
@@ -1818,8 +1818,8 @@ Array [
             placeholder="Select..."
             placeholderTextColor="#808080"
             style={
-              Array [
-                Object {
+              [
+                {
                   "fontSize": 12,
                 },
                 undefined,
@@ -1831,8 +1831,8 @@ Array [
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": "100%",
@@ -1848,15 +1848,15 @@ Array [
           <Image
             collapsable={false}
             source={
-              Object {
+              {
                 "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
               }
             }
             style={
-              Object {
+              {
                 "height": 25,
-                "transform": Array [
-                  Object {
+                "transform": [
+                  {
                     "rotate": "0deg",
                   },
                 ],
@@ -1873,7 +1873,7 @@ Array [
     collapsable={false}
     pointerEvents="none"
     style={
-      Object {
+      {
         "backgroundColor": "#ffffff",
         "borderBottomLeftRadius": 4,
         "borderBottomRightRadius": 4,
@@ -1899,22 +1899,22 @@ Array [
       }
       accessibilityLabel="Options list"
       accessibilityState={
-        Object {
+        {
           "expanded": false,
         }
       }
       bounces={false}
       data={
-        Array [
-          Object {
+        [
+          {
             "label": "First test options",
             "value": "test1",
           },
-          Object {
+          {
             "label": "Second test options",
             "value": "test2",
           },
-          Object {
+          {
             "label": "Third test option",
             "value": "test3",
           },
@@ -1936,9 +1936,9 @@ Array [
       removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
+      stickyHeaderIndices={[]}
       testID="Options list"
-      viewabilityConfigCallbackPairs={Array []}
+      viewabilityConfigCallbackPairs={[]}
     >
       <View>
         <View
@@ -1959,7 +1959,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -1970,8 +1970,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -2001,7 +2001,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -2012,8 +2012,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",
@@ -2043,7 +2043,7 @@ Array [
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "height": 40,
                 "justifyContent": "center",
                 "opacity": 1,
@@ -2054,8 +2054,8 @@ Array [
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#000000",
                     "fontSize": 12,
                     "textAlign": "left",

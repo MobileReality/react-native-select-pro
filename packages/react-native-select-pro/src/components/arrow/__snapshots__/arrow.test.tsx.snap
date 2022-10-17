@@ -3,7 +3,7 @@
 exports[`Arrow should generate Arrow snapshot 1`] = `
 <Arrow
   animation={200}
-  arrowIconStyles={Object {}}
+  arrowIconStyles={{}}
   disabled={false}
   isOpened={true}
   multiSelection={false}
