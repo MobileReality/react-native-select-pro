@@ -18,7 +18,7 @@ export const RHF = () => {
                     return (
                         <Select
                             options={DATA}
-                            selectControlStyle={{ width: 300 }}
+                            containerStyle={{ width: 300 }}
                             onSelect={field.onChange}
                         />
                     );

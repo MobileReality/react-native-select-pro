@@ -7,7 +7,7 @@ describe('Basic', () => {
             .whileElement(by.id('Options list'))
             .scroll(200, 'down');
         await element(by.text('Last')).tap();
-        await expect(element(by.text('Last'))).toExist();
+        await expect(element(by.text('Last')).atIndex(0)).toExist();
         await element(by.label('Clear a chosen option')).atIndex(0).tap();
         await expect(element(by.text('Select...'))).toExist();
     });

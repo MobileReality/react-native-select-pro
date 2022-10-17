@@ -8,13 +8,15 @@ export const Sections = () => {
     return (
         <SafeAreaViewWrapper>
             <Select
-                sectionHeaderContainerStyle={{ backgroundColor: 'lightblue' }}
-                sectionHeaderTextStyle={{
-                    color: 'darkblue',
+                optionsListStyles={{
+                    sectionHeaderContainerStyle: { backgroundColor: 'lightblue' },
+                    sectionHeaderTextStyle: {
+                        color: 'darkblue',
+                    },
                 }}
                 options={SECTIONS_DATA}
                 sectionListProps={{ bounces: true }}
-                selectControlStyle={{ width: 200 }}
+                containerStyle={{ width: 200 }}
             />
         </SafeAreaViewWrapper>
     );

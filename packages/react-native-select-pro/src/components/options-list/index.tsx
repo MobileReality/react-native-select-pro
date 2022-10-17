@@ -27,6 +27,7 @@ import type { OptionalToRequired } from '../../helpers';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
 import type { Position, State } from '../../state/types';
 import type { OnOutsidePress, OnPressOptionType, OptionType } from '../../types';
+import type { SelectStyles } from '../../types/styles';
 import { NoOptions } from '../no-options';
 import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';
@@ -35,20 +36,14 @@ import type { Select } from '../select';
 type FromSelectComponentProps = Pick<
     ComponentProps<typeof Select>,
     | 'flatListProps'
-    | 'optionSelectedStyle'
-    | 'optionStyle'
-    | 'optionTextStyle'
     | 'scrollToSelectedOption'
     | 'noOptionsText'
     | 'onSelect'
     | 'animation'
-    | 'optionsListStyle'
     | 'NoOptionsComponent'
     | 'OptionComponent'
     | 'searchable'
     | 'multiSelection'
-    | 'sectionHeaderContainerStyle'
-    | 'sectionHeaderTextStyle'
     | 'sectionListProps'
 >;
 
@@ -67,7 +62,8 @@ type OptionsListProps = OptionalToRequired<
             onOutsidePress: OnOutsidePress;
             onPressOption: OnPressOptionType;
         } & Pick<Position, 'aboveSelectControl'>
->;
+> &
+    Pick<SelectStyles, 'optionsListStyles'>;
 
 export const OptionsList = ({
     aboveSelectControl,
@@ -83,21 +79,24 @@ export const OptionsList = ({
     multiSelection,
     openedPosition: { width, top, left },
     optionsData,
-    optionSelectedStyle,
-    optionStyle,
-    optionTextStyle,
     noOptionsText,
     scrollToSelectedOption,
     onSelect,
-    optionsListStyle,
     NoOptionsComponent,
     OptionComponent,
     selectedOptionIndex,
-    sectionHeaderContainerStyle,
-    sectionHeaderTextStyle,
     sectionListProps,
+    optionsListStyles,
 }: OptionsListProps) => {
     const selectedOptionTyped = selectedOption as OptionType;
+    const {
+        optionSelectedStyle,
+        optionStyle,
+        optionTextStyle,
+        sectionHeaderContainerStyle,
+        sectionHeaderTextStyle,
+        containerStyle,
+    } = optionsListStyles ?? {};
 
     const flatList = useCallback(
         (node: FlatList | null) => {
@@ -242,7 +241,7 @@ export const OptionsList = ({
                     isOpened={isOpened}
                     wrapperStyles={[
                         styles.options,
-                        optionsListStyle,
+                        containerStyle,
                         { top, left, width },
                         aboveSelectControl ? styles.overflown : styles.notOverflown,
                     ]}

@@ -13,15 +13,15 @@ export const Arrow = ({
     disabled,
     animation,
     multiSelection,
-    selectControlArrowImageStyle,
-    customSelectControlArrowIconSource,
     onPressSelectControl,
+    arrowIconStyles,
 }: ArrowProps) => {
     const rotateAnimation = useAnimation({ isOpened, animation });
     const accessibilityLabel = 'Arrow for opening dropdown';
+    const { iconStyle, iconSource } = arrowIconStyles ?? {};
 
     const resolveContent = () => {
-        const arrowSource = customSelectControlArrowIconSource ?? arrowImage;
+        const arrowSource = iconSource ?? arrowImage;
 
         if (rotateAnimation) {
             const rotate = rotateAnimation.interpolate({
@@ -32,11 +32,7 @@ export const Arrow = ({
             return (
                 <Animated.Image
                     source={arrowSource}
-                    style={[
-                        styles.arrowIcon,
-                        { transform: [{ rotate }] },
-                        selectControlArrowImageStyle,
-                    ]}
+                    style={[styles.arrowIcon, { transform: [{ rotate }] }, iconStyle]}
                 />
             );
         }
@@ -47,7 +43,7 @@ export const Arrow = ({
                 style={[
                     styles.arrowIcon,
                     isOpened ? styles.arrowIconOpened : styles.arrowIconClosed,
-                    selectControlArrowImageStyle,
+                    iconStyle,
                 ]}
             />
         );

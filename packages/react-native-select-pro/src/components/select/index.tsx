@@ -52,32 +52,18 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         // Custom components
         NoOptionsComponent,
         OptionComponent,
-        // Custom sources
-        customLeftIconSource,
-        customSelectControlArrowIconSource,
         // Colors
         placeholderTextColor = COLORS.GRAY,
         // Accessibility
         selectControlClearOptionA11yLabel,
         selectControlOpenDropdownA11yLabel,
         // Styles
-        optionStyle,
-        optionsListStyle,
-        optionTextStyle,
-        optionSelectedStyle,
-        selectContainerStyle,
-        selectControlArrowImageStyle,
-        selectControlButtonsContainerStyle,
-        selectControlClearOptionButtonStyle,
-        selectControlClearOptionImageStyle,
-        selectControlClearOptionButtonHitSlop,
-        selectControlDisabledStyle,
-        selectControlStyle,
-        selectControlTextStyle,
+        selectControlStyles,
+        optionsListStyles,
+        containerStyle,
+        clearOptionStyles,
+        arrowIconStyles,
         customLeftIconStyles,
-        multiSelectionOptionStyle,
-        sectionHeaderTextStyle,
-        sectionHeaderContainerStyle,
     } = props;
     const [state, dispatch] = useReducer(reducer, { ...initialData, optionsData: options });
     const {
@@ -238,9 +224,13 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     const setPosition = () => {
         if (containerRef.current) {
             containerRef.current.measure((_x, _y, width, height, pageX, pageY) => {
-                const listHeightFromProp = StyleSheet.flatten(optionsListStyle)?.maxHeight;
+                const listHeightFromProp = StyleSheet.flatten(
+                    optionsListStyles?.containerStyle,
+                )?.maxHeight;
 
-                const optionHeightFromProp = StyleSheet.flatten(optionStyle)?.height;
+                const optionHeightFromProp = StyleSheet.flatten(
+                    optionsListStyles?.optionStyle,
+                )?.height;
 
                 const optionHeight = getSize({
                     size: optionHeightFromProp,
@@ -315,40 +305,32 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     }, [isOpened]);
 
     return (
-        <View style={[styles.relative, selectContainerStyle]} onLayout={setPosition}>
+        <View style={[styles.relative, containerStyle]} onLayout={setPosition}>
             <SelectControl
                 ref={containerRef}
                 aboveSelectControl={aboveSelectControl}
                 animation={animation}
                 clearable={clearable}
-                customLeftIconSource={customLeftIconSource}
-                customLeftIconStyles={customLeftIconStyles}
                 disabled={disabled}
                 dispatch={dispatch}
                 hideSelectControlArrow={hideSelectControlArrow}
                 isOpened={isOpened}
                 multiSelection={isMultiSelection}
-                multiSelectionOptionStyle={multiSelectionOptionStyle}
                 optionsData={optionsData}
                 placeholderText={placeholderText}
                 placeholderTextColor={placeholderTextColor}
                 searchPattern={searchPattern}
                 searchValue={searchValue}
                 searchable={isSearchable}
-                customSelectControlArrowIconSource={customSelectControlArrowIconSource}
                 textInputProps={textInputProps}
-                selectControlArrowImageStyle={selectControlArrowImageStyle}
-                selectControlButtonsContainerStyle={selectControlButtonsContainerStyle}
                 selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
-                selectControlClearOptionButtonHitSlop={selectControlClearOptionButtonHitSlop}
-                selectControlClearOptionButtonStyle={selectControlClearOptionButtonStyle}
-                selectControlClearOptionImageStyle={selectControlClearOptionImageStyle}
-                selectControlDisabledStyle={selectControlDisabledStyle}
                 selectControlOpenDropdownA11yLabel={selectControlOpenDropdownA11yLabel}
-                selectControlStyle={selectControlStyle}
-                selectControlTextStyle={selectControlTextStyle}
                 selectedOption={selectedOption}
                 selectedOptionIndex={selectedOptionIndex}
+                clearOptionStyles={clearOptionStyles}
+                customLeftIconStyles={customLeftIconStyles}
+                selectControlStyles={selectControlStyles}
+                arrowIconStyles={arrowIconStyles}
                 setPosition={setPosition}
                 onPressSelectControl={onPressSelectControl}
                 onSelect={onSelect}
@@ -364,20 +346,15 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 multiSelection={isMultiSelection}
                 noOptionsText={noOptionsText}
                 openedPosition={openedPosition}
-                optionSelectedStyle={optionSelectedStyle}
-                optionStyle={optionStyle}
-                optionTextStyle={optionTextStyle}
                 optionsData={optionsData}
-                optionsListStyle={optionsListStyle}
                 scrollToSelectedOption={scrollToSelectedOption}
                 searchValue={searchValue}
                 searchable={isSearchable}
                 searchedOptions={searchedOptions}
                 selectedOption={selectedOption}
                 selectedOptionIndex={selectedOptionIndex}
-                sectionHeaderContainerStyle={sectionHeaderContainerStyle}
-                sectionHeaderTextStyle={sectionHeaderTextStyle}
                 sectionListProps={sectionListProps}
+                optionsListStyles={optionsListStyles}
                 onOutsidePress={onOutsidePress}
                 onPressOption={onPressOption}
                 onSelect={onSelect}

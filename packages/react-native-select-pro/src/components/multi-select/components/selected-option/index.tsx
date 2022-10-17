@@ -2,6 +2,7 @@ import type { ComponentPropsWithRef } from 'react';
 import React from 'react';
 import type { TextStyle, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
+import type { SelectControlStyles } from 'packages/react-native-select-pro/src/types/styles';
 
 import { COLORS, FONT_SIZE } from '../../../../constants/styles';
 import type { OptionType, Select } from '../../../../index';
@@ -15,16 +16,14 @@ type Props = {
 
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
-    | 'selectControlTextStyle'
-    | 'placeholderText'
-    | 'placeholderTextColor'
-    | 'multiSelectionOptionStyle'
->;
+    'placeholderText' | 'placeholderTextColor'
+> &
+    Pick<SelectControlStyles, 'textStyle' | 'multiSelectionOptionStyle'>;
 
 export const MultiSelectedOption = ({
     isPlaceholder = false,
     option,
-    selectControlTextStyle,
+    textStyle,
     multiSelectionOptionStyle,
     placeholderText,
     placeholderTextColor,
@@ -45,10 +44,10 @@ export const MultiSelectedOption = ({
                 numberOfLines={1}
                 style={[
                     styles.text,
-                    selectControlTextStyle,
+                    textStyle,
                     {
                         color: option?.label
-                            ? StyleSheet.flatten(selectControlTextStyle)?.color ?? COLORS.BLACK
+                            ? StyleSheet.flatten(textStyle)?.color ?? COLORS.BLACK
                             : placeholderTextColor,
                     },
                 ]}

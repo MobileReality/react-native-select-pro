@@ -413,9 +413,10 @@ describe('Select with custom left icon', () => {
         const wrapper = render(
             <SelectProvider>
                 <Select
-                    customLeftIconSource={require('./assets/search.png')}
-                    // eslint-disable-next-line react-native/no-inline-styles
-                    customLeftIconStyles={{ height: 15, width: 15 }}
+                    customLeftIconStyles={{
+                        iconSource: require('./assets/search.png'),
+                        iconStyle: { height: 15, width: 15 },
+                    }}
                     options={DATA}
                 />
             </SelectProvider>,
@@ -429,9 +430,10 @@ describe('Select with custom select control arrow icon', () => {
         const wrapper = render(
             <SelectProvider>
                 <Select
-                    customSelectControlArrowIconSource={require('./assets/arrow-down.png')}
-                    // eslint-disable-next-line react-native/no-inline-styles
-                    selectControlArrowImageStyle={{ height: 15, width: 15 }}
+                    arrowIconStyles={{
+                        iconSource: require('./assets/arrow-down.png'),
+                        iconStyle: { height: 15, width: 15 },
+                    }}
                     options={DATA}
                 />
             </SelectProvider>,

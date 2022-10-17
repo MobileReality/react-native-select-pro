@@ -23,7 +23,7 @@ export const SearchableInModal = () => {
                             <Select
                                 options={DATA}
                                 searchable={true}
-                                selectControlStyle={{ width: 250 }}
+                                containerStyle={{ width: 250 }}
                             />
                         </View>
                     </View>
