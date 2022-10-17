@@ -6,8 +6,7 @@ import { I18nManager, StyleSheet, useWindowDimensions, View } from 'react-native
 
 import { COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize } from '../../helpers';
-import { getReducedSectionData } from '../../helpers/get-reduced-section-data';
-import { isSectionOptionsType } from '../../helpers/is-section-options-type';
+import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
 import { ERRORS, logError } from '../../helpers/log-error';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
@@ -135,8 +134,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     useEffect(() => {
         const isValidPassDefaultOption =
             defaultOption &&
-            Object.hasOwn(defaultOption, 'value') &&
-            Object.hasOwn(defaultOption, 'label');
+            Object.prototype.hasOwnProperty.call(defaultOption, 'value') &&
+            Object.prototype.hasOwnProperty.call(defaultOption, 'label');
 
         if (optionsData.length === 0 || !isValidPassDefaultOption) {
             return;

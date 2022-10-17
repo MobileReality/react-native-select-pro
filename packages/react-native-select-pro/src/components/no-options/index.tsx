@@ -4,7 +4,7 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import type { OptionalToRequired } from '../../helpers';
 import type { OptionsList } from '../options-list';
 
 type FromParentProps = Pick<ComponentProps<typeof OptionsList>, 'noOptionsText'>;

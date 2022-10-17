@@ -64,7 +64,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "react-native-builder-bob": "^0.18.2"
+    "react-native-builder-bob": "0.20.0"
   },
   "dependencies": {
     "@gorhom/portal": "1.0.14"
