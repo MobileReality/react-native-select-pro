@@ -28,7 +28,6 @@ type FromSelectComponentProps = Pick<
     | 'placeholderTextColor'
     | 'hideSelectControlArrow'
     | 'multiSelection'
-    | 'onSelect'
     | 'onRemove'
     | 'selectControlClearOptionA11yLabel'
     | 'selectControlOpenDropdownA11yLabel'
@@ -74,7 +73,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             selectControlClearOptionA11yLabel,
             selectControlOpenDropdownA11yLabel,
             hideSelectControlArrow,
-            onSelect,
             onRemove,
             aboveSelectControl,
             selectedOptionIndex,
@@ -93,61 +91,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             buttonsContainerStyle,
         } = selectControlStyles ?? {};
 
-        const onPressRemove = (option: OptionType | null = null) => {
-            if (!disabled) {
-                let removedOption = selectedOption;
-                let removedOptionIndex = selectedOptionIndex;
-                if (multiSelection && !isSectionOptionsType(optionsData)) {
-                    let removedSelectedOptions: null | OptionType[] = [];
-                    removedSelectedOptions = (selectedOption as OptionType[]).filter(
-                        (selected) => selected.value !== (option as OptionType).value,
-                    );
-                    if (removedSelectedOptions.length === 0) {
-                        removedSelectedOptions = null;
-                    }
-                    const foundIndex = optionsData.findIndex(
-                        ({ value }) => value === option?.value,
-                    );
-                    removedOptionIndex = foundIndex;
-                    removedOption = option;
-                    const resolveSelectedOptionIndex = (selectedOptionIndex as number[]).filter(
-                        (item) => item !== foundIndex,
-                    );
-
-                    dispatch({
-                        type: Action.SelectOption,
-                        payload: {
-                            selectedOption: removedSelectedOptions,
-                            selectedOptionIndex:
-                                resolveSelectedOptionIndex?.length > 0
-                                    ? resolveSelectedOptionIndex
-                                    : -1,
-                        },
-                    });
-                } else {
-                    dispatch({
-                        type: Action.SelectOption,
-                        payload: {
-                            selectedOption: null,
-                            selectedOptionIndex: -1,
-                        },
-                    });
-                    if (searchable) {
-                        dispatch({
-                            type: Action.SetSearchValue,
-                            payload: '',
-                        });
-                    }
-                }
-                if (onSelect) {
-                    onSelect(null, -1);
-                }
-                if (onRemove) {
-                    onRemove(removedOption, removedOptionIndex);
-                }
-            }
-        };
-
         const [isScreenReaderEnabled, setIsScreenReaderEnabled] = useState(false);
 
         useEffect(() => {
@@ -163,9 +106,68 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             }
         }, []);
 
-        const isShowClearOptionButton = clearable && selectedOption && !isScreenReaderEnabled;
-        const isShowClearOptionButtonA11y =
-            clearable && selectedOption && isScreenReaderEnabled && !isAndroid;
+        const removeOptionInMultiSelection = (option: OptionType) => {
+            const removedSelectedOptions = (selectedOption as OptionType[]).filter(
+                (selected) => selected.value !== option.value,
+            );
+            const foundIndex = optionsData.findIndex(
+                (props) => (props as OptionType).value === option?.value,
+            );
+            const resolveSelectedOptionIndex = (selectedOptionIndex as number[]).filter(
+                (item) => item !== foundIndex,
+            );
+
+            dispatch({
+                type: Action.SelectOption,
+                payload: {
+                    selectedOption:
+                        removedSelectedOptions.length > 0 ? removedSelectedOptions : null,
+                    selectedOptionIndex:
+                        resolveSelectedOptionIndex?.length > 0 ? resolveSelectedOptionIndex : -1,
+                },
+            });
+
+            return { index: foundIndex, option };
+        };
+
+        const removeSingleOption = () => {
+            dispatch({
+                type: Action.SelectOption,
+                payload: {
+                    selectedOption: null,
+                    selectedOptionIndex: -1,
+                },
+            });
+
+            if (searchable) {
+                dispatch({
+                    type: Action.SetSearchValue,
+                    payload: '',
+                });
+            }
+        };
+
+        const onPressRemove = (option: OptionType | null = null) => {
+            if (disabled) {
+                return;
+            }
+
+            let removedOption = null;
+
+            if (option && multiSelection && !isSectionOptionsType(optionsData)) {
+                removedOption = removeOptionInMultiSelection(option);
+            } else {
+                removeSingleOption();
+                removedOption = {
+                    option: selectedOption,
+                    index: selectedOptionIndex,
+                };
+            }
+
+            if (onRemove) {
+                onRemove(removedOption.option, removedOption.index);
+            }
+        };
 
         const renderMultiselect = () => {
             return (
@@ -250,9 +252,13 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
 
         const { Component } = resolveContainer();
 
+        const isShowClearOptionButton = clearable && selectedOption && !isScreenReaderEnabled;
+        const isShowClearOptionButtonA11y =
+            clearable && selectedOption && isScreenReaderEnabled && !isAndroid;
         const shouldRenderClearButton = isShowClearOptionButton && !multiSelection;
         const shouldRenderClearButtonA11y = isShowClearOptionButtonA11y && !multiSelection;
         const { iconStyle, iconSource } = customLeftIconStyles ?? {};
+
         return (
             <View style={styles.rootView}>
                 <Component
