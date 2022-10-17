@@ -1,4 +1,5 @@
 import type { ComponentPropsWithRef } from 'react';
+import { useMemo } from 'react';
 import React, { forwardRef, useEffect, useState } from 'react';
 import type { TextStyle, ViewStyle } from 'react-native';
 import { AccessibilityInfo, Image, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -194,7 +195,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         };
 
         const renderSelection = () => {
-            const selectedOptionTyped = selectedOption as OptionType; // for proper typing
             if (searchable) {
                 return (
                     <SelectInput
@@ -214,6 +214,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     />
                 );
             }
+
+            const selectedOptionTyped = selectedOption as OptionType; // for proper typing
             return (
                 <Text
                     numberOfLines={1}
@@ -243,14 +245,17 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             return 'You have selected multiple items';
         };
 
-        const resolveContainer = () => {
-            if (multiSelection && selectedOption) {
-                return { Component: View };
+        const handleOnPress = () => {
+            if (disabled || (multiSelection && selectedOption)) {
+                return;
             }
-            return { Component: Pressable };
+            onPressSelectControl();
         };
 
-        const { Component } = resolveContainer();
+        const Component = useMemo(
+            () => (multiSelection && selectedOption ? View : Pressable),
+            [multiSelection, selectedOption],
+        );
 
         const isShowClearOptionButton = clearable && selectedOption && !isScreenReaderEnabled;
         const isShowClearOptionButtonA11y =
@@ -273,11 +278,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         containerStyle,
                         disabled ? [styles.disabled, disabledStyle] : {},
                     ]}
-                    onPress={
-                        disabled || (multiSelection && selectedOption)
-                            ? undefined
-                            : onPressSelectControl
-                    }
+                    onPress={handleOnPress}
                 >
                     {!!iconSource && (
                         <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
