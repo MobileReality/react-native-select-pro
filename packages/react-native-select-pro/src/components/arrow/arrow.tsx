@@ -2,7 +2,7 @@ import React from 'react';
 import type { ImageStyle } from 'react-native';
 import { Animated, Image, Pressable, StyleSheet } from 'react-native';
 
-import { useAnimation } from '../../hooks/use-animation';
+import { useAnimation } from '../../hooks';
 
 import type { ArrowProps } from './arrow.types';
 

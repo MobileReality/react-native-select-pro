@@ -3,7 +3,7 @@ import React from 'react';
 import type { ImageStyle, ViewStyle } from 'react-native';
 import { Image, Pressable, StyleSheet } from 'react-native';
 
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import type { OptionalToRequired } from '../../helpers';
 import type { SelectControl } from '../select-control';
 
 type FromSelectControlProps = Pick<
