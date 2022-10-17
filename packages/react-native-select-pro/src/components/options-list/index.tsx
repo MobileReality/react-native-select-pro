@@ -23,9 +23,8 @@ import {
     PADDING,
     SHAPE,
 } from '../../constants/styles';
-import { getReducedSectionData } from '../../helpers/get-reduced-section-data';
-import { isSectionOptionsType } from '../../helpers/is-section-options-type';
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import type { OptionalToRequired } from '../../helpers';
+import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
 import type { Position, State } from '../../state/types';
 import type { OnOutsidePress, OnPressOptionType, OptionType } from '../../types';
 import type { SelectStyles } from '../../types/styles';

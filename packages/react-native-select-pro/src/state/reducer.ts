@@ -1,4 +1,4 @@
-import { isSectionOptionsType } from '../helpers/is-section-options-type';
+import { isSectionOptionsType } from '../helpers';
 
 import type { ActionType, State } from './types';
 import { Action } from './types';

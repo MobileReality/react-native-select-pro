@@ -3,9 +3,8 @@
 exports[`Arrow should generate Arrow snapshot 1`] = `
 <Arrow
   animation={200}
+  arrowIconStyles={Object {}}
   disabled={false}
-  iconSource={Object {}}
-  iconStyle={Object {}}
   isOpened={true}
   multiSelection={false}
   onPressSelectControl={[Function]}

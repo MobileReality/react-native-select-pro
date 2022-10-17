@@ -4,7 +4,7 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import type { OptionalToRequired } from '../../helpers';
 import type { OptionType } from '../../index';
 import type { OptionsListStyles } from '../../types/styles';
 import type { OptionsList } from '../options-list';

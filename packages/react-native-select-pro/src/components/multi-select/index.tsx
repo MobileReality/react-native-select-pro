@@ -3,8 +3,8 @@ import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { ScrollView, StyleSheet, useWindowDimensions } from 'react-native';
 
+import type { OptionalToRequired } from '../../helpers';
 import { parsePercentageToNumber } from '../../helpers';
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type { OnPressSelectControlType, OnSetPosition, OptionType, Select } from '../../index';
 import type { DispatchType, State } from '../../state/types';
 import type { SelectControlStyles } from '../../types/styles';

@@ -3,7 +3,7 @@ import type { TextStyle } from 'react-native';
 import { I18nManager, Keyboard, StyleSheet, TextInput } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import type { OptionalToRequired } from '../../helpers';
 import type { DispatchType, State } from '../../state/types';
 import { Action } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition, SelectProps } from '../../types';
