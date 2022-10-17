@@ -1,4 +1,5 @@
 import type { ForwardedRef, RefObject } from 'react';
+import { useCallback } from 'react';
 import React, { forwardRef, useEffect, useImperativeHandle, useReducer, useRef } from 'react';
 import type { TextInput, ViewStyle } from 'react-native';
 import { I18nManager, StyleSheet, useWindowDimensions, View } from 'react-native';
@@ -6,6 +7,7 @@ import { I18nManager, StyleSheet, useWindowDimensions, View } from 'react-native
 import { COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize } from '../../helpers';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
+import { ERRORS, logError } from '../../helpers/log-error';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
 import type {
@@ -65,7 +67,11 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         arrowIconStyles,
         customLeftIconStyles,
     } = props;
-    const [state, dispatch] = useReducer(reducer, { ...initialData, optionsData: options });
+
+    const [state, dispatch] = useReducer(reducer, {
+        ...initialData,
+        optionsData: Array.isArray(options) ? options : [],
+    });
     const {
         isOpened,
         selectedOption,
@@ -78,44 +84,62 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     } = state;
     const { aboveSelectControl } = openedPosition;
     const selectedOptionTyped = selectedOption as OptionType;
-
-    const containerRef = useRef<View>(null);
     const isMultiSelection = multiSelection && !isSectionOptionsType(optionsData);
     const isSearchable = searchable && !isSectionOptionsType(optionsData);
 
+    const containerRef = useRef<View>(null);
+    const isFirstRenderRef = useRef(true);
+
+    const checkData = useCallback(() => {
+        if (!Array.isArray(options)) {
+            logError(ERRORS.NO_ARRAY_OPTIONS);
+            return false;
+        }
+
+        return true;
+    }, [options]);
+
     useEffect(() => {
-        if (!Array.isArray(optionsData)) {
-            // eslint-disable-next-line no-console
-            console.error('You must pass array in the options prop');
+        if (isFirstRenderRef.current) {
+            checkData();
+            isFirstRenderRef.current = false;
             return;
         }
 
-        if (optionsData.length > 0) {
-            dispatch({ type: Action.SetOptionsData, payload: options });
-
-            const isValidPassDefaultOption =
-                defaultOption &&
-                Object.prototype.hasOwnProperty.call(defaultOption, 'value') &&
-                Object.prototype.hasOwnProperty.call(defaultOption, 'label');
-
-            if (isValidPassDefaultOption) {
-                const isSectionData = isSectionOptionsType(optionsData);
-                const foundIndex = isSectionData
-                    ? getReducedSectionData(optionsData).indexOf(defaultOption)
-                    : optionsData.indexOf(defaultOption);
-
-                dispatch({
-                    type: Action.SelectOption,
-                    payload: {
-                        selectedOption: defaultOption,
-                        selectedOptionIndex: foundIndex,
-                    },
-                });
-            }
+        const isDataValid = checkData();
+        if (!isDataValid) {
+            dispatch({ type: Action.SetOptionsData, payload: [] });
+            return;
         }
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [optionsData]);
+
+        if (options.length > 0) {
+            dispatch({ type: Action.SetOptionsData, payload: options });
+        }
+    }, [options, checkData]);
+
+    useEffect(() => {
+        const isValidPassDefaultOption =
+            defaultOption &&
+            Object.prototype.hasOwnProperty.call(defaultOption, 'value') &&
+            Object.prototype.hasOwnProperty.call(defaultOption, 'label');
+
+        if (optionsData.length === 0 || !isValidPassDefaultOption) {
+            return;
+        }
+
+        const isSectionData = isSectionOptionsType(optionsData);
+        const foundIndex = isSectionData
+            ? getReducedSectionData(optionsData).indexOf(defaultOption)
+            : optionsData.indexOf(defaultOption);
+
+        dispatch({
+            type: Action.SelectOption,
+            payload: {
+                selectedOption: defaultOption,
+                selectedOptionIndex: foundIndex,
+            },
+        });
+    }, [optionsData, defaultOption]);
 
     useImperativeHandle(ref, () => ({
         clear: () => {
@@ -300,9 +324,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         } else {
             onDropdownClosed?.();
         }
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isOpened]);
+    }, [isOpened, onDropdownOpened, onDropdownClosed]);
 
     return (
         <View style={[styles.relative, containerStyle]} onLayout={setPosition}>
