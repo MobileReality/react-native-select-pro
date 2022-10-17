@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiSelect should generate MultiSelect snapshot 1`] = `
+<MultiSelect
+  containerStyle={{}}
+  disabled={false}
+  dispatch={[Function]}
+  isOpened={false}
+  multiSelection={true}
+  multiSelectionOptionStyle={{}}
+  onPressRemove={[Function]}
+  onPressSelectControl={[Function]}
+  searchValue=""
+  searchable={false}
+  selectedOption={
+    {
+      "label": "test",
+      "value": "test",
+    }
+  }
+  setPosition={[Function]}
+  textInputProps={{}}
+  textStyle={{}}
+/>
+`;

@@ -9,7 +9,8 @@
       ]
     },
     "test": {
-      "inputs": ["**/*.{ts,tsx,js,jsx}"]
+      "inputs": ["**/*.{ts,tsx,js,jsx}"],
+      "cache": false
     },
     "detox-metro-start": {},
     "detox-ios-build": {},
@@ -27,10 +28,12 @@
     "tsc": {
     },
     "lint": {
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "lint:fix": {
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "clean": {
       "cache": false
