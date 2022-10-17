@@ -12,8 +12,7 @@ describe('Arrow', () => {
                 disabled={false}
                 animation={ANIMATION_DURATION}
                 multiSelection={false}
-                iconStyle={{}}
-                iconSource={{}}
+                arrowIconStyles={{}}
                 onPressSelectControl={() => {}}
             />
         );

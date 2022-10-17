@@ -28,7 +28,7 @@ import { isSectionOptionsType } from '../../helpers/is-section-options-type';
 import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type { Position, State } from '../../state/types';
 import type { OnOutsidePress, OnPressOptionType, OptionType } from '../../types';
-import type { OptionsListStyles } from '../../types/styles';
+import type { SelectStyles } from '../../types/styles';
 import { NoOptions } from '../no-options';
 import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';
@@ -64,7 +64,7 @@ type OptionsListProps = OptionalToRequired<
             onPressOption: OnPressOptionType;
         } & Pick<Position, 'aboveSelectControl'>
 > &
-    OptionsListStyles;
+    Pick<SelectStyles, 'optionsListStyles'>;
 
 export const OptionsList = ({
     aboveSelectControl,
@@ -87,14 +87,17 @@ export const OptionsList = ({
     OptionComponent,
     selectedOptionIndex,
     sectionListProps,
-    optionSelectedStyle,
-    optionStyle,
-    optionTextStyle,
-    sectionHeaderContainerStyle,
-    sectionHeaderTextStyle,
-    containerStyle,
+    optionsListStyles,
 }: OptionsListProps) => {
     const selectedOptionTyped = selectedOption as OptionType;
+    const {
+        optionSelectedStyle,
+        optionStyle,
+        optionTextStyle,
+        sectionHeaderContainerStyle,
+        sectionHeaderTextStyle,
+        containerStyle,
+    } = optionsListStyles ?? {};
 
     const flatList = useCallback(
         (node: FlatList | null) => {

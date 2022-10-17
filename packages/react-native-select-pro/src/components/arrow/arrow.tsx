@@ -13,12 +13,12 @@ export const Arrow = ({
     disabled,
     animation,
     multiSelection,
-    iconStyle,
-    iconSource,
     onPressSelectControl,
+    arrowIconStyles,
 }: ArrowProps) => {
     const rotateAnimation = useAnimation({ isOpened, animation });
     const accessibilityLabel = 'Arrow for opening dropdown';
+    const { iconStyle, iconSource } = arrowIconStyles ?? {};
 
     const resolveContent = () => {
         const arrowSource = iconSource ?? arrowImage;

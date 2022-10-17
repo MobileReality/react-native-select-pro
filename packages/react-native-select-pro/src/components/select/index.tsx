@@ -328,14 +328,14 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectControlOpenDropdownA11yLabel={selectControlOpenDropdownA11yLabel}
                 selectedOption={selectedOption}
                 selectedOptionIndex={selectedOptionIndex}
-                setPosition={setPosition}
                 clearOptionStyles={clearOptionStyles}
+                customLeftIconStyles={customLeftIconStyles}
+                selectControlStyles={selectControlStyles}
                 arrowIconStyles={arrowIconStyles}
+                setPosition={setPosition}
                 onPressSelectControl={onPressSelectControl}
                 onSelect={onSelect}
                 onRemove={onRemove}
-                {...customLeftIconStyles}
-                {...selectControlStyles}
             />
             <OptionsList
                 NoOptionsComponent={NoOptionsComponent}
@@ -355,10 +355,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectedOption={selectedOption}
                 selectedOptionIndex={selectedOptionIndex}
                 sectionListProps={sectionListProps}
+                optionsListStyles={optionsListStyles}
                 onOutsidePress={onOutsidePress}
                 onPressOption={onPressOption}
                 onSelect={onSelect}
-                {...optionsListStyles}
             />
         </View>
     );

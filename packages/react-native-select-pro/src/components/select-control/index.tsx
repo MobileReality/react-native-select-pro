@@ -11,7 +11,7 @@ import type { OptionType, Select } from '../../index';
 import type { DispatchType, Position, State } from '../../state/types';
 import { Action } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition } from '../../types';
-import type { SelectControlStyles, SelectStyles } from '../../types/styles';
+import type { SelectStyles } from '../../types/styles';
 import { Arrow } from '../arrow';
 import { ClearOption } from '../clear-option';
 import { MultiSelect } from '../multi-select';
@@ -46,8 +46,10 @@ type SelectControlProps = OptionalToRequired<
             setPosition: OnSetPosition;
         }
 > &
-    SelectControlStyles &
-    Pick<SelectStyles, 'arrowIconStyles' | 'clearOptionStyles' | 'customLeftIconStyles'>;
+    Pick<
+        SelectStyles,
+        'arrowIconStyles' | 'clearOptionStyles' | 'customLeftIconStyles' | 'selectControlStyles'
+    >;
 
 export const SelectControl = forwardRef<View, SelectControlProps>(
     // TODO
@@ -77,17 +79,21 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             onRemove,
             aboveSelectControl,
             selectedOptionIndex,
+            customLeftIconStyles,
+            arrowIconStyles,
+            clearOptionStyles,
+            selectControlStyles,
+        },
+        ref,
+    ) => {
+        const {
             textStyle,
             containerStyle,
             multiSelectionOptionStyle,
             disabledStyle,
-            customLeftIconStyles,
-            arrowIconStyles,
             buttonsContainerStyle,
-            clearOptionStyles,
-        },
-        ref,
-    ) => {
+        } = selectControlStyles ?? {};
+
         const onPressRemove = (option: OptionType | null = null) => {
             if (!disabled) {
                 let removedOption = selectedOption;
@@ -288,8 +294,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                                 selectControlClearOptionA11yLabel={
                                     selectControlClearOptionA11yLabel
                                 }
+                                clearOptionStyles={clearOptionStyles}
                                 onPressRemove={onPressRemove}
-                                {...clearOptionStyles}
                             />
                         )}
                         {!hideSelectControlArrow && (
@@ -298,7 +304,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                                 disabled={disabled}
                                 animation={animation}
                                 multiSelection={multiSelection}
-                                {...arrowIconStyles}
+                                arrowIconStyles={arrowIconStyles}
                                 onPressSelectControl={onPressSelectControl}
                             />
                         )}
@@ -309,8 +315,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         <ClearOption
                             disabled={disabled}
                             selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
+                            clearOptionStyles={clearOptionStyles}
                             onPressRemove={onPressRemove}
-                            {...clearOptionStyles}
                         />
                     </View>
                 )}

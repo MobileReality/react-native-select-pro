@@ -4,7 +4,7 @@ import type { ImageStyle, ViewStyle } from 'react-native';
 import { Image, Pressable, StyleSheet } from 'react-native';
 
 import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
-import type { ClearOptionStyles } from '../../types/styles';
+import type { SelectStyles } from '../../types/styles';
 import type { SelectControl } from '../select-control';
 
 type FromSelectControlProps = Pick<
@@ -14,16 +14,17 @@ type FromSelectControlProps = Pick<
     onPressRemove: () => void;
 };
 
-type ClearOptionProps = OptionalToRequired<FromSelectControlProps> & ClearOptionStyles;
+type ClearOptionProps = OptionalToRequired<FromSelectControlProps> &
+    Pick<SelectStyles, 'clearOptionStyles'>;
 
 export const ClearOption = ({
     selectControlClearOptionA11yLabel,
     disabled,
-    buttonHitSlop,
-    buttonStyle,
-    iconStyle,
     onPressRemove,
+    clearOptionStyles,
 }: ClearOptionProps) => {
+    const { buttonHitSlop, buttonStyle, iconStyle } = clearOptionStyles ?? {};
+
     return (
         <Pressable
             accessibilityLabel={selectControlClearOptionA11yLabel ?? 'Clear a chosen option'}
