@@ -1,12 +1,8 @@
 {
   "private": true,
   "name": "@monorepo/eslint-config",
-  "version": "1.0.0",
-  "license": "MIT",
+  "version": "0.0.0",
   "main": "index.js",
-  "scripts": {
-    "lint": "eslint --ext js,ts,tsx ."
-  },
   "dependencies": {
     "@mobile-reality/eslint-config": "0.8.0",
     "eslint": "8.20.0",
@@ -19,8 +15,5 @@
     "@typescript-eslint/eslint-plugin": "5.31.0",
     "@typescript-eslint/parser": "5.31.0",
     "prettier": "2.7.1"
-  },
-  "eslintConfig": {
-    "extends": "."
   }
 }
