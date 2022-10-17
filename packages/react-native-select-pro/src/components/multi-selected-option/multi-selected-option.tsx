@@ -1,24 +1,11 @@
-import type { ComponentPropsWithRef } from 'react';
 import React from 'react';
 import type { TextStyle, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
-import type { SelectControlStyles } from 'packages/react-native-select-pro/src/types/styles';
 
-import { COLORS, FONT_SIZE } from '../../../../constants/styles';
-import type { OptionType, Select } from '../../../../index';
+import { COLORS, FONT_SIZE } from '../../constants/styles';
+import type { OptionType } from '../../index';
 
-type Props = {
-    option: OptionType | null;
-    optionWidth: number | string;
-    isPlaceholder?: boolean;
-    onPressRemove?: (option: OptionType) => void;
-};
-
-type FromSelectComponentProps = Pick<
-    ComponentPropsWithRef<typeof Select>,
-    'placeholderText' | 'placeholderTextColor'
-> &
-    Pick<SelectControlStyles, 'textStyle' | 'multiSelectionOptionStyle'>;
+import type { MultiSelectedOptionProps } from './multi-selected-option.types';
 
 export const MultiSelectedOption = ({
     isPlaceholder = false,
@@ -29,7 +16,7 @@ export const MultiSelectedOption = ({
     placeholderTextColor,
     optionWidth,
     onPressRemove,
-}: Props & FromSelectComponentProps) => {
+}: MultiSelectedOptionProps) => {
     return (
         <Pressable
             accessibilityLabel={option ? `${option.label} selected` : 'Placeholder in multi-select'}

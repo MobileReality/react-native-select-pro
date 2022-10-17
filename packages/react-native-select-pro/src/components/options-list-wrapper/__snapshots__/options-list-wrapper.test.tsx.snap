@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OptionsListWrapper should generate OptionsListWrapper snapshot 1`] = `
+<OptionsListWrapper
+  animation={false}
+  isOpened={false}
+  wrapperStyles={{}}
+>
+  <View>
+    <Text>
+      Test
+    </Text>
+  </View>
+</OptionsListWrapper>
+`;
