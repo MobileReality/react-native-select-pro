@@ -15,30 +15,38 @@ export const CustomIcons = () => {
         <SafeAreaViewWrapper>
             <Text style={{ marginBottom: 20 }}>Custom left icon</Text>
             <Select
-                customLeftIconSource={globeImage}
-                customLeftIconStyles={{ height: 20, width: 20 }}
+                customLeftIconStyles={{
+                    iconStyle: { height: 20, width: 20 },
+                    iconSource: globeImage,
+                }}
                 options={DATA}
-                selectControlStyle={{ width: 180, marginBottom: 20 }}
+                containerStyle={{ width: 180, marginBottom: 20 }}
             />
             <Select
-                customLeftIconSource={searchImage}
-                customLeftIconStyles={{ height: 25, width: 25 }}
+                customLeftIconStyles={{
+                    iconStyle: { height: 25, width: 25 },
+                    iconSource: searchImage,
+                }}
                 options={DATA}
                 placeholderText="Search..."
                 searchable={true}
-                selectControlStyle={{ width: 250, marginBottom: 20 }}
+                containerStyle={{ width: 250, marginBottom: 20 }}
             />
             <Text style={{ marginBottom: 20 }}>Custom select control arrow</Text>
             <Select
-                customSelectControlArrowIconSource={chevronsImage}
-                selectControlArrowImageStyle={{ height: 25, width: 25 }}
-                selectControlStyle={{ width: 250, marginBottom: 20 }}
+                arrowIconStyles={{
+                    iconStyle: { height: 25, width: 25 },
+                    iconSource: chevronsImage,
+                }}
+                containerStyle={{ width: 250, marginBottom: 20 }}
                 options={DATA}
             />
             <Select
-                customSelectControlArrowIconSource={arrowImage}
-                selectControlArrowImageStyle={{ height: 25, width: 25 }}
-                selectControlStyle={{ width: 250, marginBottom: 20 }}
+                arrowIconStyles={{
+                    iconStyle: { height: 25, width: 25 },
+                    iconSource: arrowImage,
+                }}
+                containerStyle={{ width: 250, marginBottom: 20 }}
                 options={DATA}
             />
         </SafeAreaViewWrapper>

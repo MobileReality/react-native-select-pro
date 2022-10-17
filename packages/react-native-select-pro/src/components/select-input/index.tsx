@@ -3,10 +3,11 @@ import type { TextStyle } from 'react-native';
 import { I18nManager, Keyboard, StyleSheet, TextInput } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
+import type { OptionalToRequired } from '../../helpers';
 import type { DispatchType, State } from '../../state/types';
 import { Action } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition, SelectProps } from '../../types';
+import type { SelectControlStyles } from '../../types/styles';
 
 type SelectInputProps = OptionalToRequired<
     Pick<State, 'isOpened' | 'searchValue' | 'selectedOption'> & {
@@ -17,12 +18,11 @@ type SelectInputProps = OptionalToRequired<
             | 'searchPattern'
             | 'disabled'
             | 'multiSelection'
-            | 'selectControlTextStyle'
             | 'placeholderTextColor'
             | 'textInputProps'
         > & { onPressSelectControl: OnPressSelectControlType } & {
             setPosition: OnSetPosition;
-        }
+        } & Pick<SelectControlStyles, 'textStyle'>
 >;
 
 export const SelectInput = ({
@@ -38,7 +38,7 @@ export const SelectInput = ({
     multiSelection,
     selectedOption,
     placeholderTextColor,
-    selectControlTextStyle,
+    textStyle,
 }: SelectInputProps) => {
     const searchInputRef = useRef<TextInput>(null);
 
@@ -102,7 +102,7 @@ export const SelectInput = ({
             style={
                 disabled
                     ? [styles.disabled, styles.text, multiSelection && { marginRight: 5 }]
-                    : [styles.text, selectControlTextStyle]
+                    : [styles.text, textStyle]
             }
             textAlign={I18nManager.isRTL ? 'right' : 'left'}
             value={searchValue}

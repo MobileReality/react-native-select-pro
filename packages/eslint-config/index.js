@@ -32,5 +32,6 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'unicorn/prefer-module': 'off',
         '@typescript-eslint/no-var-requires': 'off',
+        'prefer-object-has-own': 'off',
     }
 };

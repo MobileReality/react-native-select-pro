@@ -17,7 +17,7 @@ export const DATA = [
         user: {
             name: 'Tom',
             age: 20,
-            phone: 123,
+            phone: '123-123-123',
         },
     },
     {
@@ -54,7 +54,7 @@ export const DATA = [
         user: {
             name: 'Michael',
             age: 31,
-            phone: 321_321_321,
+            phone: '321-321-321',
         },
     },
     {
@@ -66,7 +66,7 @@ export const DATA = [
         user: {
             name: 'Angelina',
             age: 55,
-            phone: 123_123_123,
+            phone: '123-123-123',
         },
     },
     {
@@ -91,7 +91,7 @@ type AdditionalFields = {
     user: {
         name: string;
         age: number;
-        phone: number | null;
+        phone: string | null;
     };
 };
 
@@ -103,14 +103,14 @@ export const CustomOptionsData = () => {
     return (
         <SafeAreaViewWrapper>
             <Select
-                selectContainerStyle={{
+                containerStyle={{
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}
                 // FIXME infer types
                 options={DATA}
-                selectControlStyle={{ width: 150 }}
+                selectControlStyles={{ containerStyle: { width: 150 } }}
                 onSelect={(option) => {
                     // FIXME infer types
                     setSelected(option as Fields);

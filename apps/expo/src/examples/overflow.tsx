@@ -7,7 +7,7 @@ import { DATA } from '../constants';
 export const Overflow = () => {
     return (
         <SafeAreaViewWrapper style={{ justifyContent: 'flex-end' }}>
-            <Select options={DATA} selectControlStyle={{ width: 300 }} />
+            <Select options={DATA} containerStyle={{ width: 300 }} />
         </SafeAreaViewWrapper>
     );
 };

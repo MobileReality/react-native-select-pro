@@ -22,9 +22,7 @@ describe('Multi Select', () => {
         await element(by.text('----Fourth label----')).tap();
         await expect(element(by.text('First label'))).toExist();
         await expect(element(by.text('THIRD LABEL'))).toExist();
-        await expect(
-            element(by.text('Second label in options list.')),
-        ).toExist();
+        await expect(element(by.text('Second label in options list.'))).toExist();
         await expect(element(by.text('----Fourth label----'))).toExist();
 
         //Clear all of the options

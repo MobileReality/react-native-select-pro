@@ -13,7 +13,7 @@ export const TextInputProps = () => {
             <Select
                 options={DATA}
                 searchable={true}
-                selectControlStyle={{ width: 250 }}
+                containerStyle={{ width: 250 }}
                 textInputProps={{
                     onFocus: () => {
                         setIsFocused(true);

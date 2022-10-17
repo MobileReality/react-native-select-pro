@@ -3,27 +3,26 @@ import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { ScrollView, StyleSheet, useWindowDimensions } from 'react-native';
 
+import type { OptionalToRequired } from '../../helpers';
 import { parsePercentageToNumber } from '../../helpers';
-import type { OptionalToRequired } from '../../helpers/types/optional-to-required';
 import type { OnPressSelectControlType, OnSetPosition, OptionType, Select } from '../../index';
 import type { DispatchType, State } from '../../state/types';
+import type { SelectControlStyles } from '../../types/styles';
 import { SelectInput } from '../select-input';
 
 import { MultiSelectedOption } from './components/selected-option';
 
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
-    | 'selectControlTextStyle'
     | 'placeholderText'
-    | 'selectControlStyle'
     | 'disabled'
     | 'searchPattern'
     | 'textInputProps'
     | 'searchable'
     | 'multiSelection'
-    | 'multiSelectionOptionStyle'
     | 'placeholderTextColor'
->;
+> &
+    Pick<SelectControlStyles, 'multiSelectionOptionStyle' | 'textStyle' | 'containerStyle'>;
 
 type SelectControlProps = OptionalToRequired<
     FromSelectComponentProps & Pick<State, 'selectedOption'>
@@ -39,8 +38,8 @@ type Props = {
 
 export const MultiSelect = ({
     searchable,
-    selectControlTextStyle,
-    selectControlStyle,
+    textStyle,
+    containerStyle,
     selectedOption,
     placeholderText,
     placeholderTextColor,
@@ -71,7 +70,7 @@ export const MultiSelect = ({
                     optionWidth="100%"
                     placeholderText={placeholderText}
                     placeholderTextColor={placeholderTextColor}
-                    selectControlTextStyle={selectControlTextStyle}
+                    textStyle={textStyle}
                 />
             );
         }
@@ -80,7 +79,7 @@ export const MultiSelect = ({
             const WIDTH_THRESHOLD = 100;
             const WIDTH_OFFSET = 72;
             const { length } = selectedOptionTyped;
-            const initialWidth = selectControlStyle ? (selectControlStyle as ViewStyle).width : 100;
+            const initialWidth = containerStyle ? (containerStyle as ViewStyle).width : 100;
             let calculatedWidth = 100;
             if (typeof initialWidth === 'number') {
                 calculatedWidth = (initialWidth - WIDTH_OFFSET) / length;
@@ -109,7 +108,7 @@ export const MultiSelect = ({
                     option={option}
                     optionWidth={optionWidth()}
                     placeholderText={placeholderText}
-                    selectControlTextStyle={selectControlTextStyle}
+                    textStyle={textStyle}
                     multiSelectionOptionStyle={multiSelectionOptionStyle}
                     onPressRemove={onPressRemove}
                 />
@@ -130,7 +129,7 @@ export const MultiSelect = ({
                     searchPattern={searchPattern}
                     textInputProps={textInputProps}
                     searchValue={searchValue}
-                    selectControlTextStyle={selectControlTextStyle}
+                    textStyle={textStyle}
                     selectedOption={selectedOption}
                     setPosition={setPosition}
                     onPressSelectControl={onPressSelectControl}

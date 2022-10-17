@@ -28,12 +28,12 @@ export const CustomComponent = () => {
             <Select
                 OptionComponent={(props) => <MyOption {...props} />}
                 options={DATA}
-                selectControlStyle={{ width: 200 }}
+                containerStyle={{ width: 200 }}
             />
             <Select
                 NoOptionsComponent={<NoOptions />}
                 options={[]}
-                selectControlStyle={{ width: 200 }}
+                containerStyle={{ width: 200 }}
             />
         </SafeAreaViewWrapper>
     );

@@ -28,12 +28,12 @@ export const ModalExample = () => {
                             <Select
                                 clearable={true}
                                 options={DATA}
-                                selectControlStyle={{ width: 200 }}
+                                containerStyle={{ width: 200 }}
                             />
                             <Select
                                 clearable={true}
                                 options={DATA}
-                                selectControlStyle={{ width: 200 }}
+                                containerStyle={{ width: 200 }}
                             />
                         </View>
                     </View>
