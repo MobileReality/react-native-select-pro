@@ -1,4 +1,5 @@
 import type { ForwardedRef, RefObject } from 'react';
+import { useCallback } from 'react';
 import React, { forwardRef, useEffect, useImperativeHandle, useReducer, useRef } from 'react';
 import type { TextInput, ViewStyle } from 'react-native';
 import { I18nManager, StyleSheet, useWindowDimensions, View } from 'react-native';
@@ -7,6 +8,7 @@ import { COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize } from '../../helpers';
 import { getReducedSectionData } from '../../helpers/get-reduced-section-data';
 import { isSectionOptionsType } from '../../helpers/is-section-options-type';
+import { ERRORS, logError } from '../../helpers/log-error';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
 import type {
@@ -19,11 +21,6 @@ import type {
 } from '../../types';
 import { OptionsList } from '../options-list';
 import { SelectControl } from '../select-control';
-
-const logDataError = () => {
-    // eslint-disable-next-line no-console
-    console.error('You must pass array in the options prop');
-};
 
 export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRef>) => {
     const {
@@ -85,6 +82,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         sectionHeaderTextStyle,
         sectionHeaderContainerStyle,
     } = props;
+
     const [state, dispatch] = useReducer(reducer, {
         ...initialData,
         optionsData: Array.isArray(options) ? options : [],
@@ -101,25 +99,30 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     } = state;
     const { aboveSelectControl } = openedPosition;
     const selectedOptionTyped = selectedOption as OptionType;
-
-    const firstRenderRef = useRef(false);
-    const containerRef = useRef<View>(null);
     const isMultiSelection = multiSelection && !isSectionOptionsType(optionsData);
     const isSearchable = searchable && !isSectionOptionsType(optionsData);
 
-    useEffect(() => {
-        const isArray = Array.isArray(options);
+    const containerRef = useRef<View>(null);
+    const isFirstRenderRef = useRef(true);
 
-        if (!firstRenderRef.current) {
-            if (!isArray) {
-                logDataError();
-            }
-            firstRenderRef.current = true;
+    const checkData = useCallback(() => {
+        if (!Array.isArray(options)) {
+            logError(ERRORS.NO_ARRAY_OPTIONS);
+            return false;
+        }
+
+        return true;
+    }, [options]);
+
+    useEffect(() => {
+        if (isFirstRenderRef.current) {
+            checkData();
+            isFirstRenderRef.current = false;
             return;
         }
 
-        if (!isArray) {
-            logDataError();
+        const isDataValid = checkData();
+        if (!isDataValid) {
             dispatch({ type: Action.SetOptionsData, payload: [] });
             return;
         }
@@ -127,7 +130,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         if (options.length > 0) {
             dispatch({ type: Action.SetOptionsData, payload: options });
         }
-    }, [options]);
+    }, [options, checkData]);
 
     useEffect(() => {
         const isValidPassDefaultOption =
