@@ -9,10 +9,8 @@ import { useAccessibilityScreenReader } from '../../hooks';
 import type { OptionType } from '../../index';
 import { Action } from '../../state/types';
 import { Arrow } from '../arrow';
-import type { ArrowProps } from '../arrow/arrow.types';
 import { ClearOption } from '../clear-option';
 import { SelectFieldType } from '../select-field-type';
-import type { SelectFieldTypeProps } from '../select-field-type/select-field-type.types';
 
 import type { SelectControlProps } from './select-control.types';
 
@@ -156,34 +154,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             />
         );
 
-        const selectFieldTypeProps: SelectFieldTypeProps = {
-            isOpened,
-            selectedOption,
-            onPressSelectControl,
-            dispatch,
-            disabled,
-            multiSelection,
-            placeholderText,
-            placeholderTextColor,
-            searchable,
-            searchPattern,
-            textInputProps,
-            searchValue,
-            setPosition,
-            onPressRemove,
-            textStyle,
-            containerStyle,
-            multiSelectionOptionStyle,
-        };
-        const arrowProps: ArrowProps = {
-            isOpened,
-            disabled,
-            animation,
-            multiSelection,
-            arrowIconStyles,
-            onPressSelectControl,
-        };
-
         const clearOptionStatus = useMemo(() => {
             const result = { showClearOption: false, showClearOptionA11y: false };
 
@@ -218,10 +188,41 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                             <Image source={iconSource} style={iconStyle} />
                         </View>
                     )}
-                    <SelectFieldType {...selectFieldTypeProps} />
+                    <SelectFieldType
+                        {...{
+                            isOpened,
+                            selectedOption,
+                            onPressSelectControl,
+                            dispatch,
+                            disabled,
+                            multiSelection,
+                            placeholderText,
+                            placeholderTextColor,
+                            searchable,
+                            searchPattern,
+                            textInputProps,
+                            searchValue,
+                            setPosition,
+                            onPressRemove,
+                            textStyle,
+                            containerStyle,
+                            multiSelectionOptionStyle,
+                        }}
+                    />
                     <View style={[styles.buttonsContainer, buttonsContainerStyle]}>
                         {showClearOption && clearOption}
-                        {!hideSelectControlArrow && <Arrow {...arrowProps} />}
+                        {!hideSelectControlArrow && (
+                            <Arrow
+                                {...{
+                                    isOpened,
+                                    disabled,
+                                    animation,
+                                    multiSelection,
+                                    arrowIconStyles,
+                                    onPressSelectControl,
+                                }}
+                            />
+                        )}
                     </View>
                 </Component>
                 {showClearOptionA11y && <View style={styles.a11IconWrapper}>{clearOption}</View>}
