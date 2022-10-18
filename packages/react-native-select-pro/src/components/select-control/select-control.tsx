@@ -5,6 +5,7 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, FONT_SIZE, SHAPE } from '../../constants/styles';
 import { isAndroid, isSectionOptionsType } from '../../helpers';
+import { useAccessibilityScreenReader } from '../../hooks';
 import type { OptionType } from '../../index';
 import { Action } from '../../state/types';
 import { Arrow } from '../arrow';
@@ -13,7 +14,6 @@ import { ClearOption } from '../clear-option';
 import { SelectFieldType } from '../select-field-type';
 import type { SelectFieldTypeProps } from '../select-field-type/select-field-type.types';
 
-import { useAccessibilityScreenReader } from './select-control.hooks';
 import type { SelectControlProps } from './select-control.types';
 
 export const SelectControl = forwardRef<View, SelectControlProps>(
