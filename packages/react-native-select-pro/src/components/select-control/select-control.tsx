@@ -147,10 +147,12 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         );
         const clearOption = (
             <ClearOption
-                disabled={disabled}
-                selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
-                clearOptionStyles={clearOptionStyles}
-                onPressRemove={onPressRemove}
+                {...{
+                    disabled,
+                    selectControlClearOptionA11yLabel,
+                    clearOptionStyles,
+                    onPressRemove,
+                }}
             />
         );
 
