@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OptionsList should generate OptionsList snapshot 1`] = `
+<OptionsList
+  aboveSelectControl={false}
+  animation={false}
+  flatListProps={{}}
+  isOpened={false}
+  multiSelection={false}
+  onOutsidePress={[Function]}
+  onPressOption={[Function]}
+  onSelect={[Function]}
+  openedPosition={
+    {
+      "aboveSelectControl": false,
+      "left": 0,
+      "top": 0,
+      "width": 0,
+    }
+  }
+  optionsData={
+    [
+      {
+        "label": "test",
+        "value": "test",
+      },
+    ]
+  }
+  optionsListStyles={{}}
+  scrollToSelectedOption={false}
+  searchValue=""
+  searchable={false}
+  searchedOptions={[]}
+  sectionListProps={{}}
+  selectedOption={
+    {
+      "label": "test",
+      "value": "test",
+    }
+  }
+  selectedOptionIndex={0}
+/>
+`;

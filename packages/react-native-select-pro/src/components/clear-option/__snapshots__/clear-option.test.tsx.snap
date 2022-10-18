@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClearOption should generate ClearOption snapshot 1`] = `
+<ClearOption
+  clearOptionStyles={{}}
+  disabled={false}
+  onPressRemove={[Function]}
+/>
+`;

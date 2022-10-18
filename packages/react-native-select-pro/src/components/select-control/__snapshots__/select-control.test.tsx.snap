@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectControl should generate SelectControl snapshot 1`] = `
+<SelectControl
+  aboveSelectControl={false}
+  animation={false}
+  arrowIconStyles={{}}
+  clearOptionStyles={{}}
+  clearable={false}
+  customLeftIconStyles={{}}
+  disabled={false}
+  dispatch={[Function]}
+  hideSelectControlArrow={false}
+  isOpened={false}
+  multiSelection={false}
+  onPressSelectControl={[Function]}
+  onRemove={[Function]}
+  optionsData={
+    [
+      {
+        "label": "test",
+        "value": "test",
+      },
+    ]
+  }
+  searchValue=""
+  searchable={false}
+  selectControlStyles={{}}
+  selectedOption={null}
+  selectedOptionIndex={-1}
+  setPosition={[Function]}
+  textInputProps={{}}
+/>
+`;
