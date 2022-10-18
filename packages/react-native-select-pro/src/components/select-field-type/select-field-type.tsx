@@ -5,7 +5,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
 import type { OptionType } from '../../index';
 import { MultiSelect } from '../multi-select';
+import type { MultiSelectProps } from '../multi-select/multi-select.types';
 import { SelectInput } from '../select-input';
+import type { SelectInputProps } from '../select-input/select-input.types';
 
 import type { SelectFieldTypeProps } from './select-field-type.types';
 
@@ -28,45 +30,43 @@ export const SelectFieldType = ({
     textStyle,
     multiSelectionOptionStyle,
 }: SelectFieldTypeProps) => {
-    const multiSelect = (
-        <MultiSelect
-            disabled={disabled}
-            dispatch={dispatch}
-            isOpened={isOpened}
-            multiSelection={multiSelection}
-            placeholderText={placeholderText}
-            placeholderTextColor={placeholderTextColor}
-            searchPattern={searchPattern}
-            textInputProps={textInputProps}
-            searchValue={searchValue}
-            searchable={searchable}
-            containerStyle={containerStyle}
-            textStyle={textStyle}
-            multiSelectionOptionStyle={multiSelectionOptionStyle}
-            selectedOption={selectedOption as OptionType[]}
-            setPosition={setPosition}
-            onPressRemove={onPressRemove}
-            onPressSelectControl={onPressSelectControl}
-        />
-    );
+    const multiSelectProps: MultiSelectProps = {
+        disabled,
+        dispatch,
+        isOpened,
+        multiSelection,
+        placeholderText,
+        placeholderTextColor,
+        searchPattern,
+        textInputProps,
+        searchValue,
+        searchable,
+        containerStyle,
+        textStyle,
+        multiSelectionOptionStyle,
+        selectedOption,
+        setPosition,
+        onPressRemove,
+        onPressSelectControl,
+    };
+    const multiSelect = <MultiSelect {...multiSelectProps} />;
 
-    const selectInput = (
-        <SelectInput
-            disabled={disabled}
-            dispatch={dispatch}
-            isOpened={isOpened}
-            multiSelection={multiSelection}
-            placeholderText={placeholderText}
-            placeholderTextColor={placeholderTextColor}
-            searchPattern={searchPattern}
-            textInputProps={textInputProps}
-            searchValue={searchValue}
-            textStyle={textStyle}
-            selectedOption={selectedOption}
-            setPosition={setPosition}
-            onPressSelectControl={onPressSelectControl}
-        />
-    );
+    const selectInputProps: SelectInputProps = {
+        disabled,
+        dispatch,
+        isOpened,
+        multiSelection,
+        placeholderText,
+        placeholderTextColor,
+        searchPattern,
+        textInputProps,
+        searchValue,
+        textStyle,
+        selectedOption,
+        setPosition,
+        onPressSelectControl,
+    };
+    const selectInput = <SelectInput {...selectInputProps} />;
 
     const selectedOptionTyped = selectedOption as OptionType; // for proper typing
     const textField = (
