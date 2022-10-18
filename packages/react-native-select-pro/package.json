@@ -64,7 +64,8 @@
     "access": "public"
   },
   "devDependencies": {
-    "react-native-builder-bob": "0.20.0"
+    "react-native-builder-bob": "0.20.0",
+    "@monorepo/eslint-config": "workspace:*"
   },
   "dependencies": {
     "@gorhom/portal": "1.0.14"
