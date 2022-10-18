@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectFieldType should generate SelectFieldType snapshot 1`] = `
+<SelectFieldType
+  disabled={false}
+  dispatch={[Function]}
+  isOpened={false}
+  multiSelection={false}
+  onPressRemove={[Function]}
+  onPressSelectControl={[Function]}
+  searchValue=""
+  searchable={false}
+  selectedOption={null}
+  setPosition={[Function]}
+  textInputProps={{}}
+/>
+`;
