@@ -8,6 +8,7 @@ import { COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize } from '../../helpers';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
 import { ERRORS, logError } from '../../helpers/log-error';
+import { selectedOptionResolver } from '../../helpers/selected-option-resolver';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
 import type {
@@ -86,6 +87,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     const optionsWithSections = isSectionOptionsType(optionsData);
     const isMultiSelection = multiSelection && !optionsWithSections;
     const isSearchable = searchable && !optionsWithSections;
+    const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
 
     const containerRef = useRef<View>(null);
     const isFirstRenderRef = useRef(true);
@@ -186,14 +188,12 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 };
             }
 
-            const selectedOptionAsArray = selectedOption as OptionType[] | null;
-            const foundSelectedOption = selectedOptionAsArray?.find(
+            const foundSelectedOption = selectedOptions?.find(
                 (selectedOption: OptionType) => selectedOption.value === option.value,
             );
-
             if (foundSelectedOption) {
                 return {
-                    selectedOption: selectedOptionAsArray,
+                    selectedOption: selectedOptions,
                     selectedOptionIndex:
                         typeof selectedOptionIndex === 'number'
                             ? selectedOptionIndex
@@ -201,8 +201,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 };
             }
 
-            const sOption = selectedOptionAsArray ? selectedOptionAsArray.concat(option) : [option];
-
+            const sOption = selectedOptions ? selectedOptions.concat(option) : [option];
             const sOptionIndex = optionsData
                 .map((item, index) => {
                     if (sOption.some(({ value }) => value === item.value)) {
@@ -220,10 +219,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
 
         dispatch({
             type: Action.SelectOption,
-            payload: {
-                selectedOption: resolveOption().selectedOption,
-                selectedOptionIndex: resolveOption().selectedOptionIndex,
-            },
+            payload: resolveOption(),
         });
 
         if (isSearchable) {
@@ -307,15 +303,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     };
 
     const onOutsidePress: OnOutsidePress = () => {
-        if (
-            selectedOption &&
-            !Array.isArray(selectedOption) &&
-            selectedOption.label &&
-            isSearchable
-        ) {
+        if (selectedOptionLabel && isSearchable) {
             dispatch({
                 type: Action.SetSearchValue,
-                payload: selectedOption.label,
+                payload: selectedOptionLabel,
             });
         }
 

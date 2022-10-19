@@ -23,6 +23,7 @@ import {
     SHAPE,
 } from '../../constants/styles';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
+import { selectedOptionResolver } from '../../helpers/selected-option-resolver';
 import type { OptionType } from '../../types';
 import { NoOptions } from '../no-options';
 import { Option } from '../option';
@@ -59,20 +60,9 @@ export const OptionsList = ({
         sectionHeaderTextStyle,
         containerStyle,
     } = optionsListStyles ?? {};
-
-    let selectedOptionValue = '';
-    let selectedOptionLabel = '';
-    let selectedOptions: OptionType[] | null = null;
     const optionsWithSections = isSectionOptionsType(optionsData);
-
-    if (selectedOption) {
-        if (Array.isArray(selectedOption)) {
-            selectedOptions = selectedOption;
-        } else {
-            selectedOptionValue = selectedOption.value;
-            selectedOptionLabel = selectedOption.value;
-        }
-    }
+    const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
+        selectedOptionResolver(selectedOption);
 
     const flatList = useCallback(
         (node: FlatList | null) => {

@@ -28,7 +28,7 @@ export const SelectFieldType = ({
     textStyle,
     multiSelectionOptionStyle,
 }: SelectFieldTypeProps) => {
-    const resolveSelectedOptions = useMemo(() => {
+    const resolveMultiSelectOptions = useMemo(() => {
         if (!selectedOption) {
             return null;
         }
@@ -51,7 +51,7 @@ export const SelectFieldType = ({
                 containerStyle,
                 textStyle,
                 multiSelectionOptionStyle,
-                selectedOptions: resolveSelectedOptions,
+                selectedOptions: resolveMultiSelectOptions,
                 setPosition,
                 onPressRemove,
                 onPressSelectControl,
