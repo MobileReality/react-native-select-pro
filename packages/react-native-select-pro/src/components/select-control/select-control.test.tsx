@@ -33,7 +33,6 @@ describe('SelectControl', () => {
                 arrowIconStyles={{}}
                 setPosition={() => {}}
                 onPressSelectControl={() => {}}
-                onSelect={() => {}}
                 onRemove={() => {}}
             />
         );

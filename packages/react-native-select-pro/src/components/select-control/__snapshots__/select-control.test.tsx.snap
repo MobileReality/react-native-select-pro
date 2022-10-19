@@ -15,7 +15,6 @@ exports[`SelectControl should generate SelectControl snapshot 1`] = `
   multiSelection={false}
   onPressSelectControl={[Function]}
   onRemove={[Function]}
-  onSelect={[Function]}
   optionsData={
     [
       {

@@ -1,58 +1,20 @@
-import type { ComponentPropsWithRef } from 'react';
-import React, { forwardRef, useEffect, useState } from 'react';
+import { useMemo } from 'react';
+import React, { forwardRef } from 'react';
 import type { TextStyle, ViewStyle } from 'react-native';
-import { AccessibilityInfo, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
-import { BORDER_WIDTH, COLORS, FONT_SIZE, PADDING, SHAPE } from '../../constants/styles';
-import type { OptionalToRequired } from '../../helpers';
+import { BORDER_WIDTH, COLORS, FONT_SIZE, SHAPE } from '../../constants/styles';
 import { isAndroid, isSectionOptionsType } from '../../helpers';
-import type { OptionType, Select } from '../../index';
-import type { DispatchType, Position, State } from '../../state/types';
+import { useAccessibilityScreenReader } from '../../hooks';
+import type { OptionType } from '../../index';
 import { Action } from '../../state/types';
-import type { OnPressSelectControlType, OnSetPosition } from '../../types';
-import type { SelectStyles } from '../../types/styles';
 import { Arrow } from '../arrow';
 import { ClearOption } from '../clear-option';
-import { MultiSelect } from '../multi-select';
-import { SelectInput } from '../select-input';
+import { SelectFieldType } from '../select-field-type';
 
-type FromSelectComponentProps = Pick<
-    ComponentPropsWithRef<typeof Select>,
-    | 'clearable'
-    | 'animation'
-    | 'disabled'
-    | 'searchable'
-    | 'searchPattern'
-    | 'textInputProps'
-    | 'placeholderText'
-    | 'placeholderTextColor'
-    | 'hideSelectControlArrow'
-    | 'multiSelection'
-    | 'onSelect'
-    | 'onRemove'
-    | 'selectControlClearOptionA11yLabel'
-    | 'selectControlOpenDropdownA11yLabel'
-> &
-    Pick<State, 'optionsData'>;
-
-type SelectControlProps = OptionalToRequired<
-    {
-        onPressSelectControl: OnPressSelectControlType;
-    } & FromSelectComponentProps &
-        Pick<State, 'isOpened' | 'selectedOption' | 'searchValue' | 'selectedOptionIndex'> & {
-            dispatch: DispatchType;
-        } & Pick<Position, 'aboveSelectControl'> & {
-            setPosition: OnSetPosition;
-        }
-> &
-    Pick<
-        SelectStyles,
-        'arrowIconStyles' | 'clearOptionStyles' | 'customLeftIconStyles' | 'selectControlStyles'
-    >;
+import type { SelectControlProps } from './select-control.types';
 
 export const SelectControl = forwardRef<View, SelectControlProps>(
-    // TODO
-    // eslint-disable-next-line complexity
     (
         {
             isOpened,
@@ -74,7 +36,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             selectControlClearOptionA11yLabel,
             selectControlOpenDropdownA11yLabel,
             hideSelectControlArrow,
-            onSelect,
             onRemove,
             aboveSelectControl,
             selectedOptionIndex,
@@ -93,144 +54,79 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             buttonsContainerStyle,
         } = selectControlStyles ?? {};
 
-        const onPressRemove = (option: OptionType | null = null) => {
-            if (!disabled) {
-                let removedOption = selectedOption;
-                let removedOptionIndex = selectedOptionIndex;
-                if (multiSelection && !isSectionOptionsType(optionsData)) {
-                    let removedSelectedOptions: null | OptionType[] = [];
-                    removedSelectedOptions = (selectedOption as OptionType[]).filter(
-                        (selected) => selected.value !== (option as OptionType).value,
-                    );
-                    if (removedSelectedOptions.length === 0) {
-                        removedSelectedOptions = null;
-                    }
-                    const foundIndex = optionsData.findIndex(
-                        ({ value }) => value === option?.value,
-                    );
-                    removedOptionIndex = foundIndex;
-                    removedOption = option;
-                    const resolveSelectedOptionIndex = (selectedOptionIndex as number[]).filter(
-                        (item) => item !== foundIndex,
-                    );
+        const isScreenReaderEnabled = useAccessibilityScreenReader();
 
-                    dispatch({
-                        type: Action.SelectOption,
-                        payload: {
-                            selectedOption: removedSelectedOptions,
-                            selectedOptionIndex:
-                                resolveSelectedOptionIndex?.length > 0
-                                    ? resolveSelectedOptionIndex
-                                    : -1,
-                        },
-                    });
-                } else {
-                    dispatch({
-                        type: Action.SelectOption,
-                        payload: {
-                            selectedOption: null,
-                            selectedOptionIndex: -1,
-                        },
-                    });
-                    if (searchable) {
-                        dispatch({
-                            type: Action.SetSearchValue,
-                            payload: '',
-                        });
-                    }
-                }
-                if (onSelect) {
-                    onSelect(null, -1);
-                }
-                if (onRemove) {
-                    onRemove(removedOption, removedOptionIndex);
-                }
-            }
+        const removeOptionInMultiSelection = (option: OptionType) => {
+            const removedSelectedOptions = (selectedOption as OptionType[]).filter(
+                (selected) => selected.value !== option.value,
+            );
+            const foundIndex = optionsData.findIndex(
+                (props) => (props as OptionType).value === option?.value,
+            );
+            const resolveSelectedOptionIndex = (selectedOptionIndex as number[]).filter(
+                (item) => item !== foundIndex,
+            );
+
+            dispatch({
+                type: Action.SelectOption,
+                payload: {
+                    selectedOption:
+                        removedSelectedOptions.length > 0 ? removedSelectedOptions : null,
+                    selectedOptionIndex:
+                        resolveSelectedOptionIndex?.length > 0 ? resolveSelectedOptionIndex : -1,
+                },
+            });
+
+            return { index: foundIndex, option };
         };
 
-        const [isScreenReaderEnabled, setIsScreenReaderEnabled] = useState(false);
+        const removeSingleOption = () => {
+            dispatch({
+                type: Action.SelectOption,
+                payload: {
+                    selectedOption: null,
+                    selectedOptionIndex: -1,
+                },
+            });
 
-        useEffect(() => {
-            if (!isAndroid) {
-                AccessibilityInfo.isScreenReaderEnabled()
-                    .then((e) => {
-                        setIsScreenReaderEnabled(e);
-                    }) // eslint-disable-next-line no-console
-                    .catch(() => console.error('isScreenReaderEnabled error'));
-                AccessibilityInfo.addEventListener('change', (e) => {
-                    setIsScreenReaderEnabled(e);
+            if (searchable) {
+                dispatch({
+                    type: Action.SetSearchValue,
+                    payload: '',
                 });
             }
-        }, []);
-
-        const isShowClearOptionButton = clearable && selectedOption && !isScreenReaderEnabled;
-        const isShowClearOptionButtonA11y =
-            clearable && selectedOption && isScreenReaderEnabled && !isAndroid;
-
-        const renderMultiselect = () => {
-            return (
-                <MultiSelect
-                    disabled={disabled}
-                    dispatch={dispatch}
-                    isOpened={isOpened}
-                    multiSelection={multiSelection}
-                    placeholderText={placeholderText}
-                    placeholderTextColor={placeholderTextColor}
-                    searchPattern={searchPattern}
-                    textInputProps={textInputProps}
-                    searchValue={searchValue}
-                    searchable={searchable}
-                    containerStyle={containerStyle}
-                    textStyle={textStyle}
-                    multiSelectionOptionStyle={multiSelectionOptionStyle}
-                    selectedOption={selectedOption as OptionType[]}
-                    setPosition={setPosition}
-                    onPressRemove={onPressRemove}
-                    onPressSelectControl={onPressSelectControl}
-                />
-            );
         };
 
-        const renderSelection = () => {
-            const selectedOptionTyped = selectedOption as OptionType; // for proper typing
-            if (searchable) {
-                return (
-                    <SelectInput
-                        disabled={disabled}
-                        dispatch={dispatch}
-                        isOpened={isOpened}
-                        multiSelection={multiSelection}
-                        placeholderText={placeholderText}
-                        placeholderTextColor={placeholderTextColor}
-                        searchPattern={searchPattern}
-                        textInputProps={textInputProps}
-                        searchValue={searchValue}
-                        textStyle={textStyle}
-                        selectedOption={selectedOption}
-                        setPosition={setPosition}
-                        onPressSelectControl={onPressSelectControl}
-                    />
-                );
+        const onPressRemove = (option: OptionType | null = null) => {
+            if (disabled) {
+                return;
             }
-            return (
-                <Text
-                    numberOfLines={1}
-                    style={[
-                        styles.text,
-                        textStyle,
-                        {
-                            color: selectedOptionTyped?.label
-                                ? StyleSheet.flatten(textStyle)?.color ?? COLORS.BLACK
-                                : placeholderTextColor,
-                        },
-                    ]}
-                >
-                    {selectedOptionTyped?.label || placeholderText}
-                </Text>
-            );
+
+            let removedOption = null;
+
+            if (option && multiSelection && !isSectionOptionsType(optionsData)) {
+                removedOption = removeOptionInMultiSelection(option);
+            } else {
+                removeSingleOption();
+                removedOption = {
+                    option: selectedOption,
+                    index: selectedOptionIndex,
+                };
+            }
+
+            if (onRemove) {
+                onRemove(removedOption.option, removedOption.index);
+            }
         };
 
-        const resolveAccessibilityHint = () => {
+        const onPress = () => {
+            if (disabled || (multiSelection && selectedOption)) {
+                return;
+            }
+            onPressSelectControl();
+        };
+
+        const accessibilityHint = useMemo(() => {
             if (!selectedOption) {
                 return;
             }
@@ -239,86 +135,99 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                 return `Current selected item is ${selectedOptionTyped?.label}`;
             }
             return 'You have selected multiple items';
-        };
+        }, [selectedOption, multiSelection]);
+        const accessibilityLabel = useMemo(
+            () => (isOpened ? '' : selectControlOpenDropdownA11yLabel ?? 'Open a dropdown'),
+            [isOpened, selectControlOpenDropdownA11yLabel],
+        );
 
-        const resolveContainer = () => {
-            if (multiSelection && selectedOption) {
-                return { Component: View };
+        const Component = useMemo(
+            () => (multiSelection && selectedOption ? View : Pressable),
+            [multiSelection, selectedOption],
+        );
+        const clearOption = (
+            <ClearOption
+                {...{
+                    disabled,
+                    selectControlClearOptionA11yLabel,
+                    clearOptionStyles,
+                    onPressRemove,
+                }}
+            />
+        );
+
+        const clearOptionStatus = useMemo(() => {
+            const result = { showClearOption: false, showClearOptionA11y: false };
+
+            if (!multiSelection && clearable && selectedOption) {
+                if (!isScreenReaderEnabled) {
+                    result.showClearOption = true;
+                } else if (!isAndroid) {
+                    result.showClearOptionA11y = true;
+                }
             }
-            return { Component: Pressable };
-        };
-
-        const { Component } = resolveContainer();
-
-        const shouldRenderClearButton = isShowClearOptionButton && !multiSelection;
-        const shouldRenderClearButtonA11y = isShowClearOptionButtonA11y && !multiSelection;
+            return result;
+        }, [clearable, isScreenReaderEnabled, multiSelection, selectedOption]);
+        const { showClearOption, showClearOptionA11y } = clearOptionStatus;
         const { iconStyle, iconSource } = customLeftIconStyles ?? {};
+
         return (
             <View style={styles.rootView}>
                 <Component
                     ref={ref}
-                    accessibilityHint={resolveAccessibilityHint()}
-                    accessibilityLabel={
-                        isOpened ? '' : selectControlOpenDropdownA11yLabel ?? 'Open a dropdown'
-                    }
+                    accessibilityHint={accessibilityHint}
+                    accessibilityLabel={accessibilityLabel}
                     style={[
                         styles.container,
                         isOpened ? (aboveSelectControl ? styles.openedAbove : styles.opened) : {},
                         containerStyle,
                         disabled ? [styles.disabled, disabledStyle] : {},
                     ]}
-                    onPress={
-                        disabled || (multiSelection && selectedOption)
-                            ? undefined
-                            : onPressSelectControl
-                    }
+                    onPress={onPress}
                 >
                     {!!iconSource && (
                         <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
                             <Image source={iconSource} style={iconStyle} />
                         </View>
                     )}
-                    <View
-                        style={[
-                            styles.press,
-                            multiSelection ? styles.pressMultiSelection : styles.pressNormal,
-                        ]}
-                    >
-                        {multiSelection ? renderMultiselect() : renderSelection()}
-                    </View>
-                    <View style={[styles.iconsContainer, buttonsContainerStyle]}>
-                        {shouldRenderClearButton && (
-                            <ClearOption
-                                disabled={disabled}
-                                selectControlClearOptionA11yLabel={
-                                    selectControlClearOptionA11yLabel
-                                }
-                                clearOptionStyles={clearOptionStyles}
-                                onPressRemove={onPressRemove}
-                            />
-                        )}
+                    <SelectFieldType
+                        {...{
+                            isOpened,
+                            selectedOption,
+                            onPressSelectControl,
+                            dispatch,
+                            disabled,
+                            multiSelection,
+                            placeholderText,
+                            placeholderTextColor,
+                            searchable,
+                            searchPattern,
+                            textInputProps,
+                            searchValue,
+                            setPosition,
+                            onPressRemove,
+                            textStyle,
+                            containerStyle,
+                            multiSelectionOptionStyle,
+                        }}
+                    />
+                    <View style={[styles.buttonsContainer, buttonsContainerStyle]}>
+                        {showClearOption && clearOption}
                         {!hideSelectControlArrow && (
                             <Arrow
-                                isOpened={isOpened}
-                                disabled={disabled}
-                                animation={animation}
-                                multiSelection={multiSelection}
-                                arrowIconStyles={arrowIconStyles}
-                                onPressSelectControl={onPressSelectControl}
+                                {...{
+                                    isOpened,
+                                    disabled,
+                                    animation,
+                                    multiSelection,
+                                    arrowIconStyles,
+                                    onPressSelectControl,
+                                }}
                             />
                         )}
                     </View>
                 </Component>
-                {shouldRenderClearButtonA11y && (
-                    <View style={styles.a11IconWrapper}>
-                        <ClearOption
-                            disabled={disabled}
-                            selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
-                            clearOptionStyles={clearOptionStyles}
-                            onPressRemove={onPressRemove}
-                        />
-                    </View>
-                )}
+                {showClearOptionA11y && <View style={styles.a11IconWrapper}>{clearOption}</View>}
             </View>
         );
     },
@@ -327,14 +236,11 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
 type Styles = {
     rootView: ViewStyle;
     container: ViewStyle;
-    press: ViewStyle;
-    pressMultiSelection: ViewStyle;
-    pressNormal: ViewStyle;
     text: TextStyle;
     opened: ViewStyle;
     openedAbove: ViewStyle;
     disabled: ViewStyle;
-    iconsContainer: ViewStyle;
+    buttonsContainer: ViewStyle;
     xIconWrapper: ViewStyle;
     leftIconWrapper: ViewStyle;
     a11IconWrapper: ViewStyle;
@@ -351,18 +257,6 @@ const styles = StyleSheet.create<Styles>({
         borderWidth: BORDER_WIDTH,
         backgroundColor: COLORS.WHITE,
     },
-    press: {
-        flex: 1,
-        height: '100%',
-        paddingHorizontal: PADDING,
-        justifyContent: 'center',
-    },
-    pressMultiSelection: {
-        paddingRight: 40,
-    },
-    pressNormal: {
-        paddingRight: 55,
-    },
     disabled: {
         backgroundColor: COLORS.DISABLED,
     },
@@ -378,7 +272,7 @@ const styles = StyleSheet.create<Styles>({
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
     },
-    iconsContainer: {
+    buttonsContainer: {
         position: 'absolute',
         right: 8,
         top: 0,

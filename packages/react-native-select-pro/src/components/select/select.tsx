@@ -355,7 +355,6 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 arrowIconStyles={arrowIconStyles}
                 setPosition={setPosition}
                 onPressSelectControl={onPressSelectControl}
-                onSelect={onSelect}
                 onRemove={onRemove}
             />
             <OptionsList

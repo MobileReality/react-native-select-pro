@@ -49,6 +49,8 @@ export const Callbacks = () => {
                 onRemove={(option, optionIndex) => {
                     setRemoved(option);
                     setRemovedIndex(optionIndex);
+                    setSelected(null);
+                    setSelectedItemIndex(-1);
                 }}
             />
         </SafeAreaViewWrapper>
