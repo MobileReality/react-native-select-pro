@@ -83,9 +83,9 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         selectedOptionIndex,
     } = state;
     const { aboveSelectControl } = openedPosition;
-    const selectedOptionTyped = selectedOption as OptionType;
-    const isMultiSelection = multiSelection && !isSectionOptionsType(optionsData);
-    const isSearchable = searchable && !isSectionOptionsType(optionsData);
+    const optionsWithSections = isSectionOptionsType(optionsData);
+    const isMultiSelection = multiSelection && !optionsWithSections;
+    const isSearchable = searchable && !optionsWithSections;
 
     const containerRef = useRef<View>(null);
     const isFirstRenderRef = useRef(true);
@@ -127,8 +127,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
             return;
         }
 
-        const isSectionData = isSectionOptionsType(optionsData);
-        const foundIndex = isSectionData
+        const foundIndex = optionsWithSections
             ? getReducedSectionData(optionsData).indexOf(defaultOption)
             : optionsData.indexOf(defaultOption);
 
@@ -139,7 +138,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectedOptionIndex: foundIndex,
             },
         });
-    }, [optionsData, defaultOption]);
+    }, [optionsData, defaultOption, optionsWithSections]);
 
     useImperativeHandle(ref, () => ({
         clear: () => {
@@ -180,7 +179,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         }
 
         const resolveOption = () => {
-            if (!isMultiSelection || isSectionOptionsType(optionsData)) {
+            if (!isMultiSelection || optionsWithSections) {
                 return {
                     selectedOption: option,
                     selectedOptionIndex: optionIndex,
@@ -269,7 +268,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                     sizeFallback: MAX_HEIGHT_LIST,
                     screenSize: windowDimensions.height,
                 });
-                const optionsDataLength = isSectionOptionsType(optionsData)
+                const optionsDataLength = optionsWithSections
                     ? getReducedSectionData(optionsData).length
                     : optionsData.length;
                 const finalHeight =
@@ -308,13 +307,19 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     };
 
     const onOutsidePress: OnOutsidePress = () => {
-        dispatch({ type: Action.Close });
-        if (isSearchable && selectedOptionTyped?.label) {
+        if (
+            selectedOption &&
+            !Array.isArray(selectedOption) &&
+            selectedOption.label &&
+            isSearchable
+        ) {
             dispatch({
                 type: Action.SetSearchValue,
-                payload: selectedOptionTyped.label,
+                payload: selectedOption.label,
             });
         }
+
+        dispatch({ type: Action.Close });
         hideKeyboardIfNeeded();
     };
 
@@ -364,13 +369,11 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 animation={animation}
                 flatListProps={flatListProps}
                 isOpened={isOpened}
-                multiSelection={isMultiSelection}
                 noOptionsText={noOptionsText}
                 openedPosition={openedPosition}
                 optionsData={optionsData}
                 scrollToSelectedOption={scrollToSelectedOption}
                 searchValue={searchValue}
-                searchable={isSearchable}
                 searchedOptions={searchedOptions}
                 selectedOption={selectedOption}
                 selectedOptionIndex={selectedOptionIndex}

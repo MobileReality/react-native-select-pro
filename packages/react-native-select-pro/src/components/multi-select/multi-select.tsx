@@ -13,7 +13,7 @@ export const MultiSelect = ({
     searchable,
     textStyle,
     containerStyle,
-    selectedOption,
+    selectedOptions,
     placeholderText,
     placeholderTextColor,
     onPressRemove,
@@ -29,10 +29,9 @@ export const MultiSelect = ({
     multiSelectionOptionStyle,
 }: MultiSelectProps) => {
     const { width } = useWindowDimensions();
-    const selectedOptionTyped = selectedOption as OptionType[];
 
     const resolveSelectedOptions = () => {
-        if (!selectedOptionTyped) {
+        if (!selectedOptions) {
             if (searchable) {
                 return null;
             }
@@ -52,7 +51,7 @@ export const MultiSelect = ({
         const optionWidth = () => {
             const WIDTH_THRESHOLD = 100;
             const WIDTH_OFFSET = 72;
-            const { length } = selectedOptionTyped;
+            const { length } = selectedOptions;
             const initialWidth = containerStyle ? (containerStyle as ViewStyle).width : 100;
             let calculatedWidth = 100;
             if (typeof initialWidth === 'number') {
@@ -75,7 +74,7 @@ export const MultiSelect = ({
             return 0;
         };
 
-        return selectedOptionTyped.map((option: OptionType, index) => {
+        return selectedOptions.map((option: OptionType, index) => {
             return (
                 <MultiSelectedOption
                     key={index}
@@ -105,7 +104,7 @@ export const MultiSelect = ({
                     textInputProps={textInputProps}
                     searchValue={searchValue}
                     textStyle={textStyle}
-                    selectedOption={selectedOption}
+                    selectedOption={selectedOptions}
                     setPosition={setPosition}
                     onPressSelectControl={onPressSelectControl}
                 />

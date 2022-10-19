@@ -15,8 +15,6 @@ type FromSelectComponentProps = Pick<
     | 'animation'
     | 'NoOptionsComponent'
     | 'OptionComponent'
-    | 'searchable'
-    | 'multiSelection'
     | 'sectionListProps'
 > &
     Pick<SelectStyles, 'optionsListStyles'>;

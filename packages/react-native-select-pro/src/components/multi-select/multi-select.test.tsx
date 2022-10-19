@@ -6,7 +6,7 @@ describe('MultiSelect', () => {
     it('should generate MultiSelect snapshot', () => {
         const multiSelect = (
             <MultiSelect
-                selectedOption={{ label: 'test', value: 'test' }}
+                selectedOptions={[{ label: 'test', value: 'test' }]}
                 placeholderText={undefined}
                 disabled={false}
                 searchPattern={undefined}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import type { TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -28,6 +28,13 @@ export const SelectFieldType = ({
     textStyle,
     multiSelectionOptionStyle,
 }: SelectFieldTypeProps) => {
+    const resolveSelectedOptions = useMemo(() => {
+        if (!selectedOption) {
+            return null;
+        }
+        return Array.isArray(selectedOption) ? selectedOption : [selectedOption];
+    }, [selectedOption]);
+
     const multiSelect = (
         <MultiSelect
             {...{
@@ -44,7 +51,7 @@ export const SelectFieldType = ({
                 containerStyle,
                 textStyle,
                 multiSelectionOptionStyle,
-                selectedOption,
+                selectedOptions: resolveSelectedOptions,
                 setPosition,
                 onPressRemove,
                 onPressSelectControl,

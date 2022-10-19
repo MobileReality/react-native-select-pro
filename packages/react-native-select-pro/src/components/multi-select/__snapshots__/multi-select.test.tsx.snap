@@ -12,11 +12,13 @@ exports[`MultiSelect should generate MultiSelect snapshot 1`] = `
   onPressSelectControl={[Function]}
   searchValue=""
   searchable={false}
-  selectedOption={
-    {
-      "label": "test",
-      "value": "test",
-    }
+  selectedOptions={
+    [
+      {
+        "label": "test",
+        "value": "test",
+      },
+    ]
   }
   setPosition={[Function]}
   textInputProps={{}}
