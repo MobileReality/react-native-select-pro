@@ -22,7 +22,7 @@
     "detox-android-test": {
       "dependsOn": [
         "detox-android-build"
-      ],
+      ]
     },
     "tsc": {
     },
