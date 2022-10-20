@@ -553,7 +553,7 @@ describe('Select with multi selection and searchable', () => {
         expect(wrapper).toMatchSnapshot();
     });
 
-    it('should, while multiSelection and searchable enabled select and delete options via filtered options list', () => {
+    it('should, while multiSelection and searchable enabled select option via filtered options', () => {
         const { getByLabelText } = render(
             <SelectProvider>
                 <Select multiSelection={true} options={SEARCHABLE_DATA} searchable={true} />
