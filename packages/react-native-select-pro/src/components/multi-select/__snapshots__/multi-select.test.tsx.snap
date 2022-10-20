@@ -11,7 +11,6 @@ exports[`MultiSelect should generate MultiSelect snapshot 1`] = `
   onPressRemove={[Function]}
   onPressSelectControl={[Function]}
   searchValue=""
-  searchable={false}
   selectedOptions={
     [
       {

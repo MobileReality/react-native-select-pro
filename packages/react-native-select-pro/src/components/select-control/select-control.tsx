@@ -29,7 +29,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             multiSelection,
             placeholderText,
             placeholderTextColor,
-            searchable,
             searchPattern,
             textInputProps,
             searchValue,
@@ -98,7 +97,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                 },
             });
 
-            if (searchable) {
+            const isSearchable = typeof searchValue === 'string';
+            if (isSearchable) {
                 dispatch({
                     type: Action.SetSearchValue,
                     payload: '',
@@ -207,7 +207,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                             multiSelection,
                             placeholderText,
                             placeholderTextColor,
-                            searchable,
                             searchPattern,
                             textInputProps,
                             searchValue,

@@ -103,7 +103,11 @@ export const OptionsList = ({
     );
 
     const resolveData = () => {
-        if (optionsWithSections || searchValue === selectedOptionLabel) {
+        if (
+            optionsWithSections ||
+            !searchValue ||
+            (searchValue.length > 0 && searchValue === selectedOptionLabel)
+        ) {
             return optionsData;
         }
         return searchedOptions;

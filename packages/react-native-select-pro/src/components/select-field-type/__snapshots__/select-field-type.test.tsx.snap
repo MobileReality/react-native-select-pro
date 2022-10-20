@@ -9,7 +9,6 @@ exports[`SelectFieldType should generate SelectFieldType snapshot 1`] = `
   onPressRemove={[Function]}
   onPressSelectControl={[Function]}
   searchValue=""
-  searchable={false}
   selectedOption={null}
   setPosition={[Function]}
   textInputProps={{}}

@@ -10,7 +10,6 @@ import { SelectInput } from '../select-input';
 import type { MultiSelectProps } from './multi-select.types';
 
 export const MultiSelect = ({
-    searchable,
     textStyle,
     containerStyle,
     selectedOptions,
@@ -29,26 +28,42 @@ export const MultiSelect = ({
     multiSelectionOptionStyle,
 }: MultiSelectProps) => {
     const { width } = useWindowDimensions();
+    const isSearchable = typeof searchValue === 'string';
 
-    const resolveSelectedOptions = () => {
-        if (!selectedOptions) {
-            if (searchable) {
-                return null;
-            }
-            return (
-                <MultiSelectedOption
-                    isPlaceholder={true}
-                    option={null}
-                    optionWidth="100%"
-                    placeholderText={placeholderText}
-                    placeholderTextColor={placeholderTextColor}
-                    textStyle={textStyle}
-                    multiSelectionOptionStyle={multiSelectionOptionStyle}
-                />
-            );
-        }
+    const resolveNoSelectedOptions = () => {
+        const selectInput = (
+            <SelectInput
+                disabled={disabled}
+                dispatch={dispatch}
+                isOpened={isOpened}
+                multiSelection={multiSelection}
+                placeholderText={placeholderText}
+                placeholderTextColor={placeholderTextColor}
+                searchPattern={searchPattern}
+                textInputProps={textInputProps}
+                searchValue={searchValue}
+                textStyle={textStyle}
+                selectedOption={selectedOptions}
+                setPosition={setPosition}
+                onPressSelectControl={onPressSelectControl}
+            />
+        );
+        const placeholderMultiOption = (
+            <MultiSelectedOption
+                isPlaceholder={true}
+                option={null}
+                optionWidth="100%"
+                placeholderText={placeholderText}
+                placeholderTextColor={placeholderTextColor}
+                textStyle={textStyle}
+                multiSelectionOptionStyle={multiSelectionOptionStyle}
+            />
+        );
+        return isSearchable ? selectInput : placeholderMultiOption;
+    };
 
-        const optionWidth = () => {
+    const resolveSelectedOptions = (selectedOptions: OptionType[]) => {
+        const calculateWidth = () => {
             const WIDTH_THRESHOLD = 100;
             const WIDTH_OFFSET = 72;
             const { length } = selectedOptions;
@@ -79,7 +94,7 @@ export const MultiSelect = ({
                 <MultiSelectedOption
                     key={index}
                     option={option}
-                    optionWidth={optionWidth()}
+                    optionWidth={calculateWidth()}
                     placeholderText={placeholderText}
                     textStyle={textStyle}
                     multiSelectionOptionStyle={multiSelectionOptionStyle}
@@ -92,24 +107,7 @@ export const MultiSelect = ({
 
     return (
         <ScrollView horizontal={true} style={styles.multiSelectionWrapper}>
-            {searchable && (
-                <SelectInput
-                    disabled={disabled}
-                    dispatch={dispatch}
-                    isOpened={isOpened}
-                    multiSelection={multiSelection}
-                    placeholderText={placeholderText}
-                    placeholderTextColor={placeholderTextColor}
-                    searchPattern={searchPattern}
-                    textInputProps={textInputProps}
-                    searchValue={searchValue}
-                    textStyle={textStyle}
-                    selectedOption={selectedOptions}
-                    setPosition={setPosition}
-                    onPressSelectControl={onPressSelectControl}
-                />
-            )}
-            {resolveSelectedOptions()}
+            {selectedOptions ? resolveSelectedOptions(selectedOptions) : resolveNoSelectedOptions()}
         </ScrollView>
     );
 };

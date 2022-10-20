@@ -10,7 +10,6 @@ import type { SelectControlStyles } from '../../types/styles';
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
     | 'disabled'
-    | 'searchable'
     | 'searchPattern'
     | 'textInputProps'
     | 'placeholderText'

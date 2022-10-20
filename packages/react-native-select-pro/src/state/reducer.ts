@@ -7,7 +7,7 @@ export const initialData: State = {
     isOpened: false,
     selectedOption: null,
     selectedOptionIndex: -1,
-    searchValue: '',
+    searchValue: null,
     searchedOptions: [],
     searchInputRef: null,
     openedPosition: {

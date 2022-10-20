@@ -69,10 +69,14 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         customLeftIconStyles,
     } = props;
 
-    const [state, dispatch] = useReducer(reducer, {
+    const resolvedOptionsData = Array.isArray(options) ? options : [];
+    const isSearchable = !isSectionOptionsType(resolvedOptionsData) && searchable;
+    const initialState = {
         ...initialData,
-        optionsData: Array.isArray(options) ? options : [],
-    });
+        optionsData: resolvedOptionsData,
+        searchValue: isSearchable ? '' : null,
+    };
+    const [state, dispatch] = useReducer(reducer, initialState);
     const {
         isOpened,
         selectedOption,
@@ -83,10 +87,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         searchInputRef,
         selectedOptionIndex,
     } = state;
+
     const { aboveSelectControl } = openedPosition;
     const optionsWithSections = isSectionOptionsType(optionsData);
     const isMultiSelection = multiSelection && !optionsWithSections;
-    const isSearchable = searchable && !optionsWithSections;
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
 
     const containerRef = useRef<View>(null);
@@ -339,7 +343,6 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 placeholderTextColor={placeholderTextColor}
                 searchPattern={searchPattern}
                 searchValue={searchValue}
-                searchable={isSearchable}
                 textInputProps={textInputProps}
                 selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
                 selectControlOpenDropdownA11yLabel={selectControlOpenDropdownA11yLabel}

@@ -12,7 +12,6 @@ describe('MultiSelect', () => {
                 searchPattern={undefined}
                 multiSelection={true}
                 placeholderTextColor={undefined}
-                searchable={false}
                 textInputProps={{}}
                 isOpened={false}
                 searchValue=""

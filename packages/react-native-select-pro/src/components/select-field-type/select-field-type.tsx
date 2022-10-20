@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import type { TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
-import type { OptionType } from '../../index';
+import { selectedOptionResolver } from '../../helpers/selected-option-resolver';
 import { MultiSelect } from '../multi-select';
 import { SelectInput } from '../select-input';
 
@@ -18,7 +18,6 @@ export const SelectFieldType = ({
     multiSelection,
     placeholderText,
     placeholderTextColor,
-    searchable,
     searchPattern,
     textInputProps,
     searchValue,
@@ -28,12 +27,7 @@ export const SelectFieldType = ({
     textStyle,
     multiSelectionOptionStyle,
 }: SelectFieldTypeProps) => {
-    const resolveMultiSelectOptions = useMemo(() => {
-        if (!selectedOption) {
-            return null;
-        }
-        return Array.isArray(selectedOption) ? selectedOption : [selectedOption];
-    }, [selectedOption]);
+    const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
 
     const multiSelect = (
         <MultiSelect
@@ -47,11 +41,10 @@ export const SelectFieldType = ({
                 searchPattern,
                 textInputProps,
                 searchValue,
-                searchable,
                 containerStyle,
                 textStyle,
                 multiSelectionOptionStyle,
-                selectedOptions: resolveMultiSelectOptions,
+                selectedOptions,
                 setPosition,
                 onPressRemove,
                 onPressSelectControl,
@@ -79,7 +72,6 @@ export const SelectFieldType = ({
         />
     );
 
-    const selectedOptionTyped = selectedOption as OptionType; // for proper typing
     const textField = (
         <Text
             numberOfLines={1}
@@ -87,19 +79,20 @@ export const SelectFieldType = ({
                 styles.text,
                 textStyle,
                 {
-                    color: selectedOptionTyped?.label
+                    color: selectedOptionLabel
                         ? StyleSheet.flatten(textStyle)?.color ?? COLORS.BLACK
                         : placeholderTextColor,
                 },
             ]}
         >
-            {selectedOptionTyped?.label || placeholderText}
+            {selectedOptionLabel || placeholderText}
         </Text>
     );
 
+    const isSearchable = typeof searchValue === 'string';
     return (
         <View style={[styles.container, multiSelection ? styles.multiSelect : styles.singleSelect]}>
-            {multiSelection ? multiSelect : searchable ? selectInput : textField}
+            {multiSelection ? multiSelect : isSearchable ? selectInput : textField}
         </View>
     );
 };

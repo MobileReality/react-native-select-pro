@@ -13,7 +13,6 @@ describe('SelectFieldType', () => {
                 multiSelection={false}
                 placeholderText={undefined}
                 placeholderTextColor={undefined}
-                searchable={false}
                 searchPattern={undefined}
                 textInputProps={{}}
                 searchValue=""

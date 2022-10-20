@@ -63,7 +63,7 @@ export type State = {
     selectedOptionIndex: number | number[];
     optionsData: OptionsType;
     openedPosition: Position;
-    searchValue: string;
+    searchValue: string | null;
     searchedOptions: OptionType[];
     searchInputRef: Ref<TextInput> | null;
 };

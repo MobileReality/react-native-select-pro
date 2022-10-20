@@ -11,7 +11,6 @@ type FromSelectComponentProps = Pick<
     | 'disabled'
     | 'searchPattern'
     | 'textInputProps'
-    | 'searchable'
     | 'multiSelection'
     | 'placeholderTextColor'
 > &
