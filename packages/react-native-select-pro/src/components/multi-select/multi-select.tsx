@@ -2,7 +2,7 @@ import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { ScrollView, StyleSheet, useWindowDimensions } from 'react-native';
 
-import { parsePercentageToNumber } from '../../helpers';
+import { dimensionPercentageToDP } from '../../helpers/dimension-percentage-to-dp';
 import type { OptionType } from '../../index';
 import { MultiSelectedOption } from '../multi-selected-option';
 import { SelectInput } from '../select-input';
@@ -28,7 +28,7 @@ export const MultiSelect = ({
     multiSelection,
     multiSelectionOptionStyle,
 }: MultiSelectProps) => {
-    const { width } = useWindowDimensions();
+    const { width: screenWidth } = useWindowDimensions();
     const selectedOptionTyped = selectedOption as OptionType[];
 
     const resolveSelectedOptions = () => {
@@ -63,9 +63,7 @@ export const MultiSelect = ({
                 return Math.floor(calculatedWidth);
             }
             if (typeof initialWidth === 'string') {
-                const ratioToScreen = Math.floor(
-                    width * (parsePercentageToNumber(initialWidth) / 100),
-                );
+                const ratioToScreen = dimensionPercentageToDP(initialWidth, screenWidth);
                 calculatedWidth = ratioToScreen / length;
                 if (calculatedWidth - WIDTH_OFFSET < WIDTH_THRESHOLD) {
                     return WIDTH_THRESHOLD;

@@ -243,48 +243,46 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         }
     };
 
-    const windowDimensions = useWindowDimensions();
+    const { height: screenHeight, width: screenWidth } = useWindowDimensions();
 
     const setPosition = () => {
         if (containerRef.current) {
             containerRef.current.measure((_x, _y, width, height, pageX, pageY) => {
-                const listHeightFromProp = StyleSheet.flatten(
-                    optionsListStyles?.containerStyle,
-                )?.maxHeight;
-
                 const optionHeightFromProp = StyleSheet.flatten(
                     optionsListStyles?.optionStyle,
                 )?.height;
-
                 const optionHeight = getSize({
                     size: optionHeightFromProp,
-                    sizeType: 'height',
                     sizeFallback: ITEM_HEIGHT,
-                    screenSize: windowDimensions.height,
+                    screenSize: screenHeight,
                 });
 
+                const listHeightFromProp = StyleSheet.flatten(
+                    optionsListStyles?.containerStyle,
+                )?.maxHeight;
                 const listHeight = getSize({
                     size: listHeightFromProp,
-                    sizeType: 'height',
                     sizeFallback: MAX_HEIGHT_LIST,
-                    screenSize: windowDimensions.height,
+                    screenSize: screenHeight,
                 });
+
                 const optionsDataLength = isSectionOptionsType(optionsData)
                     ? getReducedSectionData(optionsData).length
                     : optionsData.length;
+
                 const finalHeight =
                     listHeight >= optionsDataLength * optionHeight
                         ? optionsDataLength * optionHeight
                         : listHeight;
 
-                const isOverflow = pageY + height + finalHeight > windowDimensions.height;
+                const isOverflow = pageY + height + finalHeight > screenHeight;
 
                 dispatch({
                     type: Action.SetPosition,
                     payload: {
                         width,
                         top: isOverflow ? pageY - finalHeight : pageY + height,
-                        left: I18nManager.isRTL ? windowDimensions.width - width - pageX : pageX,
+                        left: I18nManager.isRTL ? screenWidth - width - pageX : pageX,
                         aboveSelectControl: isOverflow,
                     },
                 });

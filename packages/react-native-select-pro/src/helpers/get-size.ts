@@ -1,31 +1,14 @@
-import { heightPercentageToDP } from './height-percentage-to-dp';
-import { widthPercentageToDP } from './width-percentage-to-dp';
+import { dimensionPercentageToDP } from './dimension-percentage-to-dp';
 
 type Size = {
     size: string | number | undefined;
-    sizeType: 'width' | 'height';
     screenSize: number;
     sizeFallback: number;
 };
 
-export const getSize = ({ size, sizeType, screenSize, sizeFallback }: Size) => {
-    if (typeof size === 'undefined') {
-        return sizeFallback;
-    }
-
-    if (typeof size === 'number') {
-        return size ?? sizeFallback;
-    }
-
+export const getSize = ({ size, screenSize, sizeFallback }: Size) => {
     if (typeof size === 'string') {
-        if (sizeType === 'width') {
-            return widthPercentageToDP(size, screenSize);
-        }
-
-        if (sizeType === 'height') {
-            return heightPercentageToDP(size, screenSize);
-        }
+        return dimensionPercentageToDP(size, screenSize);
     }
-
-    return sizeFallback;
+    return size ?? sizeFallback;
 };
