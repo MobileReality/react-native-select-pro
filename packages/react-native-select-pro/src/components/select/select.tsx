@@ -89,8 +89,8 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     } = state;
 
     const { aboveSelectControl } = openedPosition;
-    const optionsWithSections = isSectionOptionsType(optionsData);
-    const isMultiSelection = multiSelection && !optionsWithSections;
+    const isSectionedOptions = isSectionOptionsType(optionsData);
+    const isMultiSelection = multiSelection && !isSectionedOptions;
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
 
     const containerRef = useRef<View>(null);
@@ -133,7 +133,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
             return;
         }
 
-        const foundIndex = optionsWithSections
+        const foundIndex = isSectionedOptions
             ? getReducedSectionData(optionsData).indexOf(defaultOption)
             : optionsData.indexOf(defaultOption);
 
@@ -144,7 +144,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectedOptionIndex: foundIndex,
             },
         });
-    }, [optionsData, defaultOption, optionsWithSections]);
+    }, [optionsData, defaultOption, isSectionedOptions]);
 
     useImperativeHandle(ref, () => ({
         clear: () => {
@@ -185,7 +185,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         }
 
         const resolveOption = () => {
-            if (!isMultiSelection || optionsWithSections) {
+            if (!isMultiSelection || isSectionedOptions) {
                 return {
                     selectedOption: option,
                     selectedOptionIndex: optionIndex,
@@ -268,7 +268,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                     sizeFallback: MAX_HEIGHT_LIST,
                     screenSize: windowDimensions.height,
                 });
-                const optionsDataLength = optionsWithSections
+                const optionsDataLength = isSectionedOptions
                     ? getReducedSectionData(optionsData).length
                     : optionsData.length;
                 const finalHeight =

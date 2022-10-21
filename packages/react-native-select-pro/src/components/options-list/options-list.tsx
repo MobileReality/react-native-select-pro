@@ -60,7 +60,7 @@ export const OptionsList = ({
         sectionHeaderTextStyle,
         containerStyle,
     } = optionsListStyles ?? {};
-    const optionsWithSections = isSectionOptionsType(optionsData);
+    const isSectionedOptions = isSectionOptionsType(optionsData);
     const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
         selectedOptionResolver(selectedOption);
 
@@ -104,7 +104,7 @@ export const OptionsList = ({
 
     const resolveData = () => {
         if (
-            optionsWithSections ||
+            isSectionedOptions ||
             !searchValue ||
             (searchValue.length > 0 && searchValue === selectedOptionLabel)
         ) {
@@ -137,7 +137,7 @@ export const OptionsList = ({
         let optionIndex = index;
         const sectionTitle = section?.title;
         let sectionObj;
-        if (optionsWithSections) {
+        if (isSectionedOptions) {
             optionIndex = getReducedSectionData(optionsData).indexOf(item);
             sectionObj = {
                 title: sectionTitle,
@@ -203,7 +203,7 @@ export const OptionsList = ({
                         aboveSelectControl ? styles.overflown : styles.notOverflown,
                     ]}
                 >
-                    {optionsWithSections ? (
+                    {isSectionedOptions ? (
                         <SectionList
                             testID="Options list"
                             accessibilityLabel="Options list"
