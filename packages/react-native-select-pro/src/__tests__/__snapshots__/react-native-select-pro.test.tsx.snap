@@ -200,6 +200,11 @@ exports[`Select should generate Select snapshot 1`] = `
           <View
             accessibilityLabel="Choose First Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -243,6 +248,11 @@ exports[`Select should generate Select snapshot 1`] = `
           <View
             accessibilityLabel="Choose Second Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -285,6 +295,11 @@ exports[`Select should generate Select snapshot 1`] = `
           <View
             accessibilityLabel="Choose Third Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -554,6 +569,11 @@ exports[`Select with custom left icon should generate Select with custom left ic
           <View
             accessibilityLabel="Choose First Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -597,6 +617,11 @@ exports[`Select with custom left icon should generate Select with custom left ic
           <View
             accessibilityLabel="Choose Second Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -639,6 +664,11 @@ exports[`Select with custom left icon should generate Select with custom left ic
           <View
             accessibilityLabel="Choose Third Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -881,6 +911,11 @@ exports[`Select with custom select control arrow icon should generate Select wit
           <View
             accessibilityLabel="Choose First Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -924,6 +959,11 @@ exports[`Select with custom select control arrow icon should generate Select wit
           <View
             accessibilityLabel="Choose Second Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -966,6 +1006,11 @@ exports[`Select with custom select control arrow icon should generate Select wit
           <View
             accessibilityLabel="Choose Third Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -1236,6 +1281,11 @@ exports[`Select with multi selection and searchable should generate Select with 
           <View
             accessibilityLabel="Choose First test options option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -1279,6 +1329,11 @@ exports[`Select with multi selection and searchable should generate Select with 
           <View
             accessibilityLabel="Choose Second test options option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -1321,6 +1376,11 @@ exports[`Select with multi selection and searchable should generate Select with 
           <View
             accessibilityLabel="Choose Third test option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -1619,6 +1679,11 @@ exports[`Select with multi selection should generate Select with multi selection
           <View
             accessibilityLabel="Choose First Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -1662,6 +1727,11 @@ exports[`Select with multi selection should generate Select with multi selection
           <View
             accessibilityLabel="Choose Second Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -1704,6 +1774,11 @@ exports[`Select with multi selection should generate Select with multi selection
           <View
             accessibilityLabel="Choose Third Option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -1947,6 +2022,11 @@ exports[`Select with searchable enabled should generate Select with searchable e
           <View
             accessibilityLabel="Choose First test options option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -1990,6 +2070,11 @@ exports[`Select with searchable enabled should generate Select with searchable e
           <View
             accessibilityLabel="Choose Second test options option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -2032,6 +2117,11 @@ exports[`Select with searchable enabled should generate Select with searchable e
           <View
             accessibilityLabel="Choose Third test option option"
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "disabled": false,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
