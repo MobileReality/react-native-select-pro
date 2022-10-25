@@ -27,7 +27,8 @@ export const MultiSelect = ({
     multiSelection,
     multiSelectionOptionStyle,
 }: MultiSelectProps) => {
-    const { calculatedOptionWidth } = useMultiSelect({ selectedOptions, containerStyle });
+    const containerWidth = (containerStyle as ViewStyle)?.width;
+    const { calculatedOptionWidth } = useMultiSelect({ selectedOptions, containerWidth });
     const isSearchable = typeof searchValue === 'string';
 
     const resolveNoSelectedOptions = () => {

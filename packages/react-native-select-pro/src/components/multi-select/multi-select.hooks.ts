@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import type { StyleProp, ViewStyle } from 'react-native';
 import { useWindowDimensions } from 'react-native';
 
 import { parsePercentageToNumber } from '../../helpers';
@@ -10,10 +9,10 @@ const WIDTH_OFFSET = 72;
 
 type UseMultiSelectProps = {
     selectedOptions: OptionType[] | null;
-    containerStyle: StyleProp<ViewStyle>;
+    containerWidth: string | number | undefined;
 };
 
-export const useMultiSelect = ({ selectedOptions, containerStyle }: UseMultiSelectProps) => {
+export const useMultiSelect = ({ selectedOptions, containerWidth }: UseMultiSelectProps) => {
     const { width } = useWindowDimensions();
 
     const calculatedOptionWidth = useMemo(() => {
@@ -22,7 +21,7 @@ export const useMultiSelect = ({ selectedOptions, containerStyle }: UseMultiSele
         }
 
         const { length } = selectedOptions;
-        const initialWidth = containerStyle ? (containerStyle as ViewStyle).width : 100;
+        const initialWidth = containerWidth ?? 100;
         let calculatedWidth = 100;
         if (typeof initialWidth === 'number') {
             calculatedWidth = (initialWidth - WIDTH_OFFSET) / length;
@@ -40,7 +39,7 @@ export const useMultiSelect = ({ selectedOptions, containerStyle }: UseMultiSele
             return calculatedWidth - WIDTH_OFFSET;
         }
         return 0;
-    }, [selectedOptions, containerStyle, width]);
+    }, [selectedOptions, containerWidth, width]);
 
     return {
         calculatedOptionWidth,
