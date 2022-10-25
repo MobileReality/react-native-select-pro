@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useWindowDimensions } from 'react-native';
 
-import { parsePercentageToNumber } from '../../helpers';
+import { dimensionPercentageToDP } from '../../helpers';
 import type { OptionType } from '../../types';
 
 const WIDTH_THRESHOLD = 100;
@@ -13,7 +13,7 @@ type UseMultiSelectProps = {
 };
 
 export const useMultiSelect = ({ selectedOptions, containerWidth }: UseMultiSelectProps) => {
-    const { width } = useWindowDimensions();
+    const { width: screenWidth } = useWindowDimensions();
 
     const calculatedOptionWidth = useMemo(() => {
         if (!selectedOptions) {
@@ -31,7 +31,7 @@ export const useMultiSelect = ({ selectedOptions, containerWidth }: UseMultiSele
             return Math.floor(calculatedWidth);
         }
         if (typeof initialWidth === 'string') {
-            const ratioToScreen = Math.floor(width * (parsePercentageToNumber(initialWidth) / 100));
+            const ratioToScreen = dimensionPercentageToDP(initialWidth, screenWidth);
             calculatedWidth = ratioToScreen / length;
             if (calculatedWidth - WIDTH_OFFSET < WIDTH_THRESHOLD) {
                 return WIDTH_THRESHOLD;
@@ -39,7 +39,7 @@ export const useMultiSelect = ({ selectedOptions, containerWidth }: UseMultiSele
             return calculatedWidth - WIDTH_OFFSET;
         }
         return 0;
-    }, [selectedOptions, containerWidth, width]);
+    }, [selectedOptions, containerWidth, screenWidth]);
 
     return {
         calculatedOptionWidth,
