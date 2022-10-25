@@ -27,19 +27,24 @@ const config = {
             ({
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    editUrl:
-                        'https://github.com/MobileReality/react-native-select-pro/website/',
+                    editUrl: 'https://github.com/MobileReality/react-native-select-pro/website/',
                     remarkPlugins: [
-                        [
-                            require('@docusaurus/remark-plugin-npm2yarn'),
-                            { sync: true },
-                        ],
+                        [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
                     ],
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
             }),
+        ],
+    ],
+
+    themes: [
+        [
+            require.resolve('@easyops-cn/docusaurus-search-local'),
+            {
+                hashed: true,
+            },
         ],
     ],
 
