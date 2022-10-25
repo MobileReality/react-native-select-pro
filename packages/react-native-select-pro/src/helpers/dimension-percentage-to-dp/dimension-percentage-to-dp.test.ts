@@ -1,4 +1,4 @@
-import { dimensionPercentageToDP } from './index';
+import { dimensionPercentageToDP } from './';
 
 const SCREEN_WIDTH = 400;
 
