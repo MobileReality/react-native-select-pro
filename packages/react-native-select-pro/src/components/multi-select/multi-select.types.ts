@@ -11,20 +11,18 @@ type FromSelectComponentProps = Pick<
     | 'disabled'
     | 'searchPattern'
     | 'textInputProps'
-    | 'searchable'
     | 'multiSelection'
     | 'placeholderTextColor'
 > &
     Pick<SelectControlStyles, 'multiSelectionOptionStyle' | 'textStyle' | 'containerStyle'>;
 
-type SelectControlProps = OptionalToRequired<
-    FromSelectComponentProps & Pick<State, 'selectedOption'>
->;
+type SelectControlProps = OptionalToRequired<FromSelectComponentProps>;
 
-export type MultiSelectProps = {
-    onPressRemove: (option: OptionType | null) => void;
-    onPressSelectControl: OnPressSelectControlType;
-} & SelectControlProps &
-    Pick<State, 'isOpened' | 'selectedOption' | 'searchValue'> & {
+export type MultiSelectProps = SelectControlProps &
+    Pick<State, 'isOpened' | 'searchValue'> & {
+        onPressRemove: (option: OptionType | null) => void;
+        onPressSelectControl: OnPressSelectControlType;
         dispatch: DispatchType;
-    } & { setPosition: OnSetPosition };
+        setPosition: OnSetPosition;
+        selectedOptions: OptionType[] | null;
+    };

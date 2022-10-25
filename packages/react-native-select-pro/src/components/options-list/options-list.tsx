@@ -23,6 +23,7 @@ import {
     SHAPE,
 } from '../../constants/styles';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
+import { selectedOptionResolver } from '../../helpers';
 import type { OptionType } from '../../types';
 import { NoOptions } from '../no-options';
 import { Option } from '../option';
@@ -38,10 +39,8 @@ export const OptionsList = ({
     animation,
     searchedOptions,
     searchValue,
-    searchable,
     isOpened,
     onOutsidePress,
-    multiSelection,
     openedPosition: { width, top, left },
     optionsData,
     noOptionsText,
@@ -53,7 +52,6 @@ export const OptionsList = ({
     sectionListProps,
     optionsListStyles,
 }: OptionsListProps) => {
-    const selectedOptionTyped = selectedOption as OptionType;
     const {
         optionSelectedStyle,
         optionStyle,
@@ -62,6 +60,9 @@ export const OptionsList = ({
         sectionHeaderTextStyle,
         containerStyle,
     } = optionsListStyles ?? {};
+    const isSectionedOptions = isSectionOptionsType(optionsData);
+    const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
+        selectedOptionResolver(selectedOption);
 
     const flatList = useCallback(
         (node: FlatList | null) => {
@@ -102,33 +103,24 @@ export const OptionsList = ({
     );
 
     const resolveData = () => {
-        if (isSectionOptionsType(optionsData)) {
-            return optionsData;
-        }
-        if (!searchable) {
-            return optionsData;
-        }
-        if (searchable && searchValue.length === 0) {
-            return optionsData;
-        }
         if (
-            selectedOptionTyped &&
-            searchValue?.length > 0 &&
-            searchValue === selectedOptionTyped.label
+            isSectionedOptions ||
+            !searchValue ||
+            (searchValue.length > 0 && searchValue === selectedOptionLabel)
         ) {
             return optionsData;
         }
         return searchedOptions;
     };
 
-    const resolveIsSelected = (item: OptionType) => {
-        if (!multiSelection) {
-            return item.value === selectedOptionTyped?.value;
+    const findSelectedOption = (item: OptionType) => {
+        if (selectedOptionValue) {
+            return item.value === selectedOptionValue;
         }
-        return (
-            selectedOption &&
-            (selectedOption as OptionType[]).find((option) => item.value === option.value)
-        );
+        if (selectedOptions) {
+            return selectedOptions.some((option) => item.value === option.value);
+        }
+        return false;
     };
 
     const renderItem = <T,>({
@@ -141,11 +133,11 @@ export const OptionsList = ({
         section?: SectionListData<T>;
     }) => {
         const { value } = item;
-        const isSelected = !!resolveIsSelected(item);
+        const isSelected = findSelectedOption(item);
         let optionIndex = index;
         const sectionTitle = section?.title;
         let sectionObj;
-        if (isSectionOptionsType(optionsData)) {
+        if (isSectionedOptions) {
             optionIndex = getReducedSectionData(optionsData).indexOf(item);
             sectionObj = {
                 title: sectionTitle,
@@ -211,7 +203,7 @@ export const OptionsList = ({
                         aboveSelectControl ? styles.overflown : styles.notOverflown,
                     ]}
                 >
-                    {isSectionOptionsType(optionsData) ? (
+                    {isSectionedOptions ? (
                         <SectionList
                             testID="Options list"
                             accessibilityLabel="Options list"
@@ -219,7 +211,7 @@ export const OptionsList = ({
                                 expanded: isOpened,
                             }}
                             bounces={false}
-                            sections={optionsData} // disabled multiselect and searchable
+                            sections={optionsData} // search and multiselect are disabled
                             getItemLayout={getItemLayout}
                             keyExtractor={({ value }) => value}
                             keyboardShouldPersistTaps="handled"

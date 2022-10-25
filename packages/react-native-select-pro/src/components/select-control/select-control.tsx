@@ -5,6 +5,7 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, FONT_SIZE, SHAPE } from '../../constants/styles';
 import { isAndroid, isSectionOptionsType } from '../../helpers';
+import { selectedOptionResolver } from '../../helpers';
 import { useAccessibilityScreenReader } from '../../hooks';
 import type { OptionType } from '../../index';
 import { Action } from '../../state/types';
@@ -28,7 +29,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             multiSelection,
             placeholderText,
             placeholderTextColor,
-            searchable,
             searchPattern,
             textInputProps,
             searchValue,
@@ -53,27 +53,35 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             disabledStyle,
             buttonsContainerStyle,
         } = selectControlStyles ?? {};
+        const { selectedOptions, selectedOptionLabel } = selectedOptionResolver(selectedOption);
 
         const isScreenReaderEnabled = useAccessibilityScreenReader();
 
-        const removeOptionInMultiSelection = (option: OptionType) => {
-            const removedSelectedOptions = (selectedOption as OptionType[]).filter(
+        const removeOptionInMultiSelection = (
+            option: OptionType,
+            selectedOptions: OptionType[],
+        ) => {
+            const removedSelectedOptions = selectedOptions.filter(
                 (selected) => selected.value !== option.value,
             );
+
             const foundIndex = optionsData.findIndex(
-                (props) => (props as OptionType).value === option?.value,
+                (props) => 'value' in props && props.value === option?.value,
             );
-            const resolveSelectedOptionIndex = (selectedOptionIndex as number[]).filter(
-                (item) => item !== foundIndex,
-            );
+
+            let resolveSelectedOptionsIndexes: number | number[] = -1;
+            if (Array.isArray(selectedOptionIndex)) {
+                const filteredIndexes = selectedOptionIndex.filter((item) => item !== foundIndex);
+                resolveSelectedOptionsIndexes =
+                    filteredIndexes.length > 0 ? filteredIndexes : resolveSelectedOptionsIndexes;
+            }
 
             dispatch({
                 type: Action.SelectOption,
                 payload: {
                     selectedOption:
                         removedSelectedOptions.length > 0 ? removedSelectedOptions : null,
-                    selectedOptionIndex:
-                        resolveSelectedOptionIndex?.length > 0 ? resolveSelectedOptionIndex : -1,
+                    selectedOptionIndex: resolveSelectedOptionsIndexes,
                 },
             });
 
@@ -89,7 +97,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                 },
             });
 
-            if (searchable) {
+            const isSearchable = typeof searchValue === 'string';
+            if (isSearchable) {
                 dispatch({
                     type: Action.SetSearchValue,
                     payload: '',
@@ -103,9 +112,8 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             }
 
             let removedOption = null;
-
-            if (option && multiSelection && !isSectionOptionsType(optionsData)) {
-                removedOption = removeOptionInMultiSelection(option);
+            if (option && multiSelection && selectedOptions && !isSectionOptionsType(optionsData)) {
+                removedOption = removeOptionInMultiSelection(option, selectedOptions);
             } else {
                 removeSingleOption();
                 removedOption = {
@@ -127,15 +135,14 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
         };
 
         const accessibilityHint = useMemo(() => {
-            if (!selectedOption) {
+            if (!selectedOptionLabel) {
                 return;
             }
             if (!multiSelection) {
-                const selectedOptionTyped = selectedOption as OptionType; // for proper typing
-                return `Current selected item is ${selectedOptionTyped?.label}`;
+                return `Current selected item is ${selectedOptionLabel}`;
             }
             return 'You have selected multiple items';
-        }, [selectedOption, multiSelection]);
+        }, [selectedOptionLabel, multiSelection]);
         const accessibilityLabel = useMemo(
             () => (isOpened ? '' : selectControlOpenDropdownA11yLabel ?? 'Open a dropdown'),
             [isOpened, selectControlOpenDropdownA11yLabel],
@@ -200,7 +207,6 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                             multiSelection,
                             placeholderText,
                             placeholderTextColor,
-                            searchable,
                             searchPattern,
                             textInputProps,
                             searchValue,

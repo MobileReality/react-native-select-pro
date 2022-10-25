@@ -3,7 +3,6 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../constants/styles';
-import type { OptionType } from '../../index';
 
 import type { MultiSelectedOptionProps } from './multi-selected-option.types';
 
@@ -25,7 +24,7 @@ export const MultiSelectedOption = ({
                 multiSelectionOptionStyle,
                 { width: optionWidth },
             ]}
-            onPress={() => (onPressRemove ? onPressRemove(option as OptionType) : undefined)}
+            onPress={onPressRemove && option ? () => onPressRemove(option) : undefined}
         >
             <Text
                 numberOfLines={1}
