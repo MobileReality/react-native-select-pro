@@ -24,7 +24,6 @@ exports[`SelectControl should generate SelectControl snapshot 1`] = `
     ]
   }
   searchValue=""
-  searchable={false}
   selectControlStyles={{}}
   selectedOption={null}
   selectedOptionIndex={-1}

@@ -553,49 +553,44 @@ describe('Select with multi selection and searchable', () => {
         expect(wrapper).toMatchSnapshot();
     });
 
-    it('should, while multiSelection and searchable enabled, click and open options', () => {
-        const { getByLabelText, getByPlaceholderText } = render(
+    it('should, while multiSelection and searchable enabled select option via filtered options', () => {
+        const { getByLabelText } = render(
             <SelectProvider>
                 <Select multiSelection={true} options={SEARCHABLE_DATA} searchable={true} />
             </SelectProvider>,
         );
 
         const inputData = 'Second';
-        const nextInputData = 'First';
 
+        // Select first option via search
         const input = getByLabelText('Place text');
-
         fireEvent.changeText(input, inputData);
-
         const list = getByLabelText('Options list');
-
         expect(list.props.data.length).toBe(1);
-
-        const firstOption = getByLabelText(`Choose ${inputData} test options option`);
-
+        const wholeOptionLabel = `${inputData} test options`;
+        const firstOption = getByLabelText(`Choose ${wholeOptionLabel} option`);
         fireEvent.press(firstOption);
 
-        const inputAgain = getByLabelText('Place text');
+        // Check that SelectInput isn't available anymore
+        let shouldContinue = false;
+        try {
+            getByLabelText('Place text');
+        } catch {
+            shouldContinue = true;
+        }
+        expect(shouldContinue).toBeTruthy();
 
-        expect(inputAgain.props.value).toBe('');
-
-        fireEvent.changeText(inputAgain, nextInputData);
-        expect(inputAgain.props.value).toBe(nextInputData);
-
-        const listAgain = getByLabelText('Options list');
-
-        expect(listAgain.props.data.length).toBe(1);
-
-        const secondOption = getByLabelText(`Choose ${nextInputData} test options option`);
-
-        fireEvent.press(secondOption);
-
-        const selectedFirstOption = getByLabelText(`${SEARCHABLE_DATA[1].label} selected`);
+        // Check that selected option now in multilist
+        const selectedFirstOption = getByLabelText(`${wholeOptionLabel} selected`);
         expect(selectedFirstOption).toBeTruthy();
-        const selectedSecondOption = getByLabelText(`${SEARCHABLE_DATA[0].label} selected`);
-        expect(selectedSecondOption).toBeTruthy();
 
-        const currentPlaceholderText = getByPlaceholderText('');
-        expect(currentPlaceholderText).toBeTruthy();
+        // Delete selected option and expect that SelectInput is available once again
+        fireEvent.press(selectedFirstOption);
+        try {
+            getByLabelText('Place text');
+        } catch {
+            shouldContinue = false;
+        }
+        expect(shouldContinue).toBeTruthy();
     });
 });

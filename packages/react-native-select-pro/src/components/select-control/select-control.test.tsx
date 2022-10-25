@@ -21,7 +21,6 @@ describe('SelectControl', () => {
                 placeholderTextColor={undefined}
                 searchPattern={undefined}
                 searchValue=""
-                searchable={false}
                 textInputProps={{}}
                 selectControlClearOptionA11yLabel={undefined}
                 selectControlOpenDropdownA11yLabel={undefined}

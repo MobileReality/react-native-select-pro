@@ -7,6 +7,7 @@ import { I18nManager, StyleSheet, useWindowDimensions, View } from 'react-native
 import { COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize } from '../../helpers';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
+import { selectedOptionResolver } from '../../helpers';
 import { ERRORS, logError } from '../../helpers/log-error';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
@@ -68,10 +69,14 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         customLeftIconStyles,
     } = props;
 
-    const [state, dispatch] = useReducer(reducer, {
+    const resolvedOptionsData = Array.isArray(options) ? options : [];
+    const isSearchable = !isSectionOptionsType(resolvedOptionsData) && searchable;
+    const initialState = {
         ...initialData,
-        optionsData: Array.isArray(options) ? options : [],
-    });
+        optionsData: resolvedOptionsData,
+        searchValue: isSearchable ? '' : null,
+    };
+    const [state, dispatch] = useReducer(reducer, initialState);
     const {
         isOpened,
         selectedOption,
@@ -82,10 +87,11 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         searchInputRef,
         selectedOptionIndex,
     } = state;
+
     const { aboveSelectControl } = openedPosition;
-    const selectedOptionTyped = selectedOption as OptionType;
-    const isMultiSelection = multiSelection && !isSectionOptionsType(optionsData);
-    const isSearchable = searchable && !isSectionOptionsType(optionsData);
+    const isSectionedOptions = isSectionOptionsType(optionsData);
+    const isMultiSelection = multiSelection && !isSectionedOptions;
+    const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
 
     const containerRef = useRef<View>(null);
     const isFirstRenderRef = useRef(true);
@@ -127,8 +133,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
             return;
         }
 
-        const isSectionData = isSectionOptionsType(optionsData);
-        const foundIndex = isSectionData
+        const foundIndex = isSectionedOptions
             ? getReducedSectionData(optionsData).indexOf(defaultOption)
             : optionsData.indexOf(defaultOption);
 
@@ -139,7 +144,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 selectedOptionIndex: foundIndex,
             },
         });
-    }, [optionsData, defaultOption]);
+    }, [optionsData, defaultOption, isSectionedOptions]);
 
     useImperativeHandle(ref, () => ({
         clear: () => {
@@ -180,21 +185,19 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         }
 
         const resolveOption = () => {
-            if (!isMultiSelection || isSectionOptionsType(optionsData)) {
+            if (!isMultiSelection || isSectionedOptions) {
                 return {
                     selectedOption: option,
                     selectedOptionIndex: optionIndex,
                 };
             }
 
-            const selectedOptionAsArray = selectedOption as OptionType[] | null;
-            const foundSelectedOption = selectedOptionAsArray?.find(
+            const foundSelectedOption = selectedOptions?.find(
                 (selectedOption: OptionType) => selectedOption.value === option.value,
             );
-
             if (foundSelectedOption) {
                 return {
-                    selectedOption: selectedOptionAsArray,
+                    selectedOption: selectedOptions,
                     selectedOptionIndex:
                         typeof selectedOptionIndex === 'number'
                             ? selectedOptionIndex
@@ -202,8 +205,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 };
             }
 
-            const sOption = selectedOptionAsArray ? selectedOptionAsArray.concat(option) : [option];
-
+            const sOption = selectedOptions ? selectedOptions.concat(option) : [option];
             const sOptionIndex = optionsData
                 .map((item, index) => {
                     if (sOption.some(({ value }) => value === item.value)) {
@@ -221,10 +223,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
 
         dispatch({
             type: Action.SelectOption,
-            payload: {
-                selectedOption: resolveOption().selectedOption,
-                selectedOptionIndex: resolveOption().selectedOptionIndex,
-            },
+            payload: resolveOption(),
         });
 
         if (isSearchable) {
@@ -265,8 +264,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                     sizeFallback: MAX_HEIGHT_LIST,
                     screenSize: screenHeight,
                 });
-
-                const optionsDataLength = isSectionOptionsType(optionsData)
+                const optionsDataLength = isSectionedOptions
                     ? getReducedSectionData(optionsData).length
                     : optionsData.length;
 
@@ -306,13 +304,14 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     };
 
     const onOutsidePress: OnOutsidePress = () => {
-        dispatch({ type: Action.Close });
-        if (isSearchable && selectedOptionTyped?.label) {
+        if (selectedOptionLabel && isSearchable) {
             dispatch({
                 type: Action.SetSearchValue,
-                payload: selectedOptionTyped.label,
+                payload: selectedOptionLabel,
             });
         }
+
+        dispatch({ type: Action.Close });
         hideKeyboardIfNeeded();
     };
 
@@ -341,7 +340,6 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 placeholderTextColor={placeholderTextColor}
                 searchPattern={searchPattern}
                 searchValue={searchValue}
-                searchable={isSearchable}
                 textInputProps={textInputProps}
                 selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
                 selectControlOpenDropdownA11yLabel={selectControlOpenDropdownA11yLabel}
@@ -362,13 +360,11 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 animation={animation}
                 flatListProps={flatListProps}
                 isOpened={isOpened}
-                multiSelection={isMultiSelection}
                 noOptionsText={noOptionsText}
                 openedPosition={openedPosition}
                 optionsData={optionsData}
                 scrollToSelectedOption={scrollToSelectedOption}
                 searchValue={searchValue}
-                searchable={isSearchable}
                 searchedOptions={searchedOptions}
                 selectedOption={selectedOption}
                 selectedOptionIndex={selectedOptionIndex}

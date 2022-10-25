@@ -11,7 +11,6 @@ type FromSelectComponentProps = Pick<
     | 'clearable'
     | 'animation'
     | 'disabled'
-    | 'searchable'
     | 'searchPattern'
     | 'textInputProps'
     | 'placeholderText'
