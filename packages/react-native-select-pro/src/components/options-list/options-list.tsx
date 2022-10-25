@@ -23,7 +23,7 @@ import {
     SHAPE,
 } from '../../constants/styles';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
-import { selectedOptionResolver } from '../../helpers/selected-option-resolver';
+import { selectedOptionResolver } from '../../helpers';
 import type { OptionType } from '../../types';
 import { NoOptions } from '../no-options';
 import { Option } from '../option';

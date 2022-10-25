@@ -1,12 +1,12 @@
 import React from 'react';
 import type { ViewStyle } from 'react-native';
-import { ScrollView, StyleSheet, useWindowDimensions } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 
-import { parsePercentageToNumber } from '../../helpers';
 import type { OptionType } from '../../index';
 import { MultiSelectedOption } from '../multi-selected-option';
 import { SelectInput } from '../select-input';
 
+import { useMultiSelect } from './multi-select.hooks';
 import type { MultiSelectProps } from './multi-select.types';
 
 export const MultiSelect = ({
@@ -27,25 +27,27 @@ export const MultiSelect = ({
     multiSelection,
     multiSelectionOptionStyle,
 }: MultiSelectProps) => {
-    const { width } = useWindowDimensions();
+    const { calculatedOptionWidth } = useMultiSelect({ selectedOptions, containerStyle });
     const isSearchable = typeof searchValue === 'string';
 
     const resolveNoSelectedOptions = () => {
         const selectInput = (
             <SelectInput
-                disabled={disabled}
-                dispatch={dispatch}
-                isOpened={isOpened}
-                multiSelection={multiSelection}
-                placeholderText={placeholderText}
-                placeholderTextColor={placeholderTextColor}
-                searchPattern={searchPattern}
-                textInputProps={textInputProps}
-                searchValue={searchValue}
-                textStyle={textStyle}
                 selectedOption={selectedOptions}
-                setPosition={setPosition}
-                onPressSelectControl={onPressSelectControl}
+                {...{
+                    disabled,
+                    dispatch,
+                    isOpened,
+                    multiSelection,
+                    placeholderText,
+                    placeholderTextColor,
+                    searchPattern,
+                    textInputProps,
+                    searchValue,
+                    textStyle,
+                    setPosition,
+                    onPressSelectControl,
+                }}
             />
         );
         const placeholderMultiOption = (
@@ -53,53 +55,26 @@ export const MultiSelect = ({
                 isPlaceholder={true}
                 option={null}
                 optionWidth="100%"
-                placeholderText={placeholderText}
-                placeholderTextColor={placeholderTextColor}
-                textStyle={textStyle}
-                multiSelectionOptionStyle={multiSelectionOptionStyle}
+                {...{ placeholderText, placeholderTextColor, textStyle, multiSelectionOptionStyle }}
             />
         );
         return isSearchable ? selectInput : placeholderMultiOption;
     };
 
     const resolveSelectedOptions = (selectedOptions: OptionType[]) => {
-        const calculateWidth = () => {
-            const WIDTH_THRESHOLD = 100;
-            const WIDTH_OFFSET = 72;
-            const { length } = selectedOptions;
-            const initialWidth = containerStyle ? (containerStyle as ViewStyle).width : 100;
-            let calculatedWidth = 100;
-            if (typeof initialWidth === 'number') {
-                calculatedWidth = (initialWidth - WIDTH_OFFSET) / length;
-                if (calculatedWidth < WIDTH_THRESHOLD) {
-                    return WIDTH_THRESHOLD;
-                }
-                return Math.floor(calculatedWidth);
-            }
-            if (typeof initialWidth === 'string') {
-                const ratioToScreen = Math.floor(
-                    width * (parsePercentageToNumber(initialWidth) / 100),
-                );
-                calculatedWidth = ratioToScreen / length;
-                if (calculatedWidth - WIDTH_OFFSET < WIDTH_THRESHOLD) {
-                    return WIDTH_THRESHOLD;
-                }
-                return calculatedWidth - WIDTH_OFFSET;
-            }
-            return 0;
-        };
-
         return selectedOptions.map((option: OptionType, index) => {
             return (
                 <MultiSelectedOption
                     key={index}
-                    option={option}
-                    optionWidth={calculateWidth()}
-                    placeholderText={placeholderText}
-                    textStyle={textStyle}
-                    multiSelectionOptionStyle={multiSelectionOptionStyle}
-                    placeholderTextColor={placeholderTextColor}
-                    onPressRemove={onPressRemove}
+                    optionWidth={calculatedOptionWidth}
+                    {...{
+                        option,
+                        placeholderText,
+                        textStyle,
+                        multiSelectionOptionStyle,
+                        placeholderTextColor,
+                        onPressRemove,
+                    }}
                 />
             );
         });

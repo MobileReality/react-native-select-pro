@@ -3,7 +3,7 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
-import { selectedOptionResolver } from '../../helpers/selected-option-resolver';
+import { selectedOptionResolver } from '../../helpers';
 import { MultiSelect } from '../multi-select';
 import { SelectInput } from '../select-input';
 

@@ -7,8 +7,8 @@ import { I18nManager, StyleSheet, useWindowDimensions, View } from 'react-native
 import { COLORS, ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize } from '../../helpers';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
+import { selectedOptionResolver } from '../../helpers';
 import { ERRORS, logError } from '../../helpers/log-error';
-import { selectedOptionResolver } from '../../helpers/selected-option-resolver';
 import { initialData, reducer } from '../../state/reducer';
 import { Action } from '../../state/types';
 import type {

@@ -24,7 +24,7 @@ export const MultiSelectedOption = ({
                 multiSelectionOptionStyle,
                 { width: optionWidth },
             ]}
-            onPress={() => (onPressRemove && option ? onPressRemove(option) : undefined)}
+            onPress={onPressRemove && option ? () => onPressRemove(option) : undefined}
         >
             <Text
                 numberOfLines={1}

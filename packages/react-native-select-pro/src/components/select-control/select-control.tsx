@@ -5,7 +5,7 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, FONT_SIZE, SHAPE } from '../../constants/styles';
 import { isAndroid, isSectionOptionsType } from '../../helpers';
-import { selectedOptionResolver } from '../../helpers/selected-option-resolver';
+import { selectedOptionResolver } from '../../helpers';
 import { useAccessibilityScreenReader } from '../../hooks';
 import type { OptionType } from '../../index';
 import { Action } from '../../state/types';
