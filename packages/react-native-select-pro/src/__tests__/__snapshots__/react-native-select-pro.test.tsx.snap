@@ -43,7 +43,7 @@ exports[`Select should generate Select snapshot 1`] = `
               "flexDirection": "row",
               "height": 40,
             },
-            {},
+            false,
             undefined,
             {},
           ]
@@ -385,7 +385,7 @@ exports[`Select with custom left icon should generate Select with custom left ic
               "flexDirection": "row",
               "height": 40,
             },
-            {},
+            false,
             undefined,
             {},
           ]
@@ -754,7 +754,7 @@ exports[`Select with custom select control arrow icon should generate Select wit
               "flexDirection": "row",
               "height": 40,
             },
-            {},
+            false,
             undefined,
             {},
           ]
@@ -1096,7 +1096,7 @@ exports[`Select with multi selection and searchable should generate Select with 
               "flexDirection": "row",
               "height": 40,
             },
-            {},
+            false,
             undefined,
             {},
           ]
@@ -1466,7 +1466,7 @@ exports[`Select with multi selection should generate Select with multi selection
               "flexDirection": "row",
               "height": 40,
             },
-            {},
+            false,
             undefined,
             {},
           ]
@@ -1864,7 +1864,7 @@ exports[`Select with searchable enabled should generate Select with searchable e
               "flexDirection": "row",
               "height": 40,
             },
-            {},
+            false,
             undefined,
             {},
           ]
