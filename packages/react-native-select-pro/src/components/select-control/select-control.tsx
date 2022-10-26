@@ -1,18 +1,13 @@
-import { useMemo } from 'react';
-import React, { forwardRef } from 'react';
-import type { TextStyle, ViewStyle } from 'react-native';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import React, { forwardRef, Fragment } from 'react';
+import type { ViewStyle } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
-import { BORDER_WIDTH, COLORS, FONT_SIZE, SHAPE } from '../../constants/styles';
-import { isAndroid, isSectionOptionsType } from '../../helpers';
-import { selectedOptionResolver } from '../../helpers';
-import { useAccessibilityScreenReader } from '../../hooks';
-import type { OptionType } from '../../index';
-import { Action } from '../../state/types';
 import { Arrow } from '../arrow';
 import { ClearOption } from '../clear-option';
+import { SelectControlWrapper } from '../select-control-wrapper/select-control-wrapper';
 import { SelectFieldType } from '../select-field-type';
 
+import { useSelectControl } from './select-control.hooks';
 import type { SelectControlProps } from './select-control.types';
 
 export const SelectControl = forwardRef<View, SelectControlProps>(
@@ -53,105 +48,23 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             disabledStyle,
             buttonsContainerStyle,
         } = selectControlStyles ?? {};
-        const { selectedOptions, selectedOptionLabel } = selectedOptionResolver(selectedOption);
 
-        const isScreenReaderEnabled = useAccessibilityScreenReader();
-
-        const removeOptionInMultiSelection = (
-            option: OptionType,
-            selectedOptions: OptionType[],
-        ) => {
-            const removedSelectedOptions = selectedOptions.filter(
-                (selected) => selected.value !== option.value,
-            );
-
-            const foundIndex = optionsData.findIndex(
-                (props) => 'value' in props && props.value === option?.value,
-            );
-
-            let resolveSelectedOptionsIndexes: number | number[] = -1;
-            if (Array.isArray(selectedOptionIndex)) {
-                const filteredIndexes = selectedOptionIndex.filter((item) => item !== foundIndex);
-                resolveSelectedOptionsIndexes =
-                    filteredIndexes.length > 0 ? filteredIndexes : resolveSelectedOptionsIndexes;
-            }
-
-            dispatch({
-                type: Action.SelectOption,
-                payload: {
-                    selectedOption:
-                        removedSelectedOptions.length > 0 ? removedSelectedOptions : null,
-                    selectedOptionIndex: resolveSelectedOptionsIndexes,
-                },
+        const { accessibilityHint, accessibilityLabel, clearOptionStatus, onPressRemove, onPress } =
+            useSelectControl({
+                searchValue,
+                dispatch,
+                multiSelection,
+                selectControlOpenDropdownA11yLabel,
+                isOpened,
+                selectedOption,
+                clearable,
+                disabled,
+                onRemove,
+                selectedOptionIndex,
+                optionsData,
+                onPressSelectControl,
             });
 
-            return { index: foundIndex, option };
-        };
-
-        const removeSingleOption = () => {
-            dispatch({
-                type: Action.SelectOption,
-                payload: {
-                    selectedOption: null,
-                    selectedOptionIndex: -1,
-                },
-            });
-
-            const isSearchable = typeof searchValue === 'string';
-            if (isSearchable) {
-                dispatch({
-                    type: Action.SetSearchValue,
-                    payload: '',
-                });
-            }
-        };
-
-        const onPressRemove = (option: OptionType | null = null) => {
-            if (disabled) {
-                return;
-            }
-
-            let removedOption = null;
-            if (option && multiSelection && selectedOptions && !isSectionOptionsType(optionsData)) {
-                removedOption = removeOptionInMultiSelection(option, selectedOptions);
-            } else {
-                removeSingleOption();
-                removedOption = {
-                    option: selectedOption,
-                    index: selectedOptionIndex,
-                };
-            }
-
-            if (onRemove) {
-                onRemove(removedOption.option, removedOption.index);
-            }
-        };
-
-        const onPress = () => {
-            if (disabled || (multiSelection && selectedOption)) {
-                return;
-            }
-            onPressSelectControl();
-        };
-
-        const accessibilityHint = useMemo(() => {
-            if (!selectedOptionLabel) {
-                return;
-            }
-            if (!multiSelection) {
-                return `Current selected item is ${selectedOptionLabel}`;
-            }
-            return 'You have selected multiple items';
-        }, [selectedOptionLabel, multiSelection]);
-        const accessibilityLabel = useMemo(
-            () => (isOpened ? '' : selectControlOpenDropdownA11yLabel ?? 'Open a dropdown'),
-            [isOpened, selectControlOpenDropdownA11yLabel],
-        );
-
-        const Component = useMemo(
-            () => (multiSelection && selectedOption ? View : Pressable),
-            [multiSelection, selectedOption],
-        );
         const clearOption = (
             <ClearOption
                 {...{
@@ -163,33 +76,25 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             />
         );
 
-        const clearOptionStatus = useMemo(() => {
-            const result = { showClearOption: false, showClearOptionA11y: false };
-
-            if (!multiSelection && clearable && selectedOption) {
-                if (!isScreenReaderEnabled) {
-                    result.showClearOption = true;
-                } else if (!isAndroid) {
-                    result.showClearOptionA11y = true;
-                }
-            }
-            return result;
-        }, [clearable, isScreenReaderEnabled, multiSelection, selectedOption]);
         const { showClearOption, showClearOptionA11y } = clearOptionStatus;
         const { iconStyle, iconSource } = customLeftIconStyles ?? {};
 
         return (
-            <View style={styles.rootView}>
-                <Component
-                    ref={ref}
-                    accessibilityHint={accessibilityHint}
-                    accessibilityLabel={accessibilityLabel}
-                    style={[
-                        styles.container,
-                        isOpened ? (aboveSelectControl ? styles.openedAbove : styles.opened) : {},
+            <Fragment>
+                <SelectControlWrapper
+                    {...{
+                        multiSelection,
+                        selectedOption,
+                        accessibilityHint,
+                        accessibilityLabel,
+                        aboveSelectControl,
+                        isOpened,
+                        disabled,
+                        onPress,
                         containerStyle,
-                        disabled ? [styles.disabled, disabledStyle] : {},
-                    ]}
+                        disabledStyle,
+                    }}
+                    ref={ref}
                     onPress={onPress}
                 >
                     {!!iconSource && (
@@ -232,20 +137,14 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                             />
                         )}
                     </View>
-                </Component>
+                </SelectControlWrapper>
                 {showClearOptionA11y && <View style={styles.a11IconWrapper}>{clearOption}</View>}
-            </View>
+            </Fragment>
         );
     },
 );
 
 type Styles = {
-    rootView: ViewStyle;
-    container: ViewStyle;
-    text: TextStyle;
-    opened: ViewStyle;
-    openedAbove: ViewStyle;
-    disabled: ViewStyle;
     buttonsContainer: ViewStyle;
     xIconWrapper: ViewStyle;
     leftIconWrapper: ViewStyle;
@@ -253,31 +152,6 @@ type Styles = {
 };
 
 const styles = StyleSheet.create<Styles>({
-    rootView: {
-        position: 'relative',
-    },
-    container: {
-        height: 40,
-        flexDirection: 'row',
-        borderRadius: SHAPE,
-        borderWidth: BORDER_WIDTH,
-        backgroundColor: COLORS.WHITE,
-    },
-    disabled: {
-        backgroundColor: COLORS.DISABLED,
-    },
-    text: {
-        fontSize: FONT_SIZE,
-        textAlign: 'left',
-    },
-    openedAbove: {
-        borderTopLeftRadius: 0,
-        borderTopRightRadius: 0,
-    },
-    opened: {
-        borderBottomLeftRadius: 0,
-        borderBottomRightRadius: 0,
-    },
     buttonsContainer: {
         position: 'absolute',
         right: 8,
