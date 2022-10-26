@@ -6,6 +6,8 @@ import type { DispatchType, Position, State } from '../../state/types';
 import type { OnPressSelectControlType, OnSetPosition } from '../../types';
 import type { SelectStyles } from '../../types/styles';
 
+import type { SelectControl } from './select-control';
+
 type FromSelectComponentProps = Pick<
     ComponentPropsWithRef<typeof Select>,
     | 'clearable'
@@ -36,3 +38,21 @@ export type SelectControlProps = OptionalToRequired<
             'arrowIconStyles' | 'clearOptionStyles' | 'customLeftIconStyles' | 'selectControlStyles'
         >
 >;
+
+type FromSelectControlComponent = Pick<
+    ComponentPropsWithRef<typeof SelectControl>,
+    | 'dispatch'
+    | 'searchValue'
+    | 'multiSelection'
+    | 'isOpened'
+    | 'selectControlOpenDropdownA11yLabel'
+    | 'clearable'
+    | 'selectedOption'
+    | 'disabled'
+    | 'optionsData'
+    | 'selectedOptionIndex'
+    | 'onRemove'
+    | 'onPressSelectControl'
+>;
+
+export type UseSelectControl = FromSelectControlComponent;
