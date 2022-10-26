@@ -1,35 +1,18 @@
-import React, { useCallback } from 'react';
-import type { SectionListData, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
-import {
-    AccessibilityInfo,
-    findNodeHandle,
-    FlatList,
-    SectionList,
-    StyleSheet,
-    Text,
-    TouchableWithoutFeedback,
-    View,
-} from 'react-native';
+import React from 'react';
+import type { ViewStyle } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { Portal } from '@gorhom/portal';
 
 import { Portals } from '../../constants/portals';
-import {
-    BORDER_WIDTH,
-    COLORS,
-    FONT_SIZE,
-    ITEM_HEIGHT,
-    MAX_HEIGHT_LIST,
-    PADDING,
-    SHAPE,
-} from '../../constants/styles';
+import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
-import { selectedOptionResolver } from '../../helpers';
-import type { OptionType } from '../../types';
-import { NoOptions } from '../no-options';
+import { FlatOptionsList } from '../flat-options-list';
 import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';
+import { SectionOptionsList } from '../section-options-list';
 
-import type { OptionsListProps } from './options-list.types';
+import { useOptionsList } from './options-list.hook';
+import type { OptionsListProps, RenderItemProps } from './options-list.types';
 
 export const OptionsList = ({
     aboveSelectControl,
@@ -61,77 +44,17 @@ export const OptionsList = ({
         containerStyle,
     } = optionsListStyles ?? {};
     const isSectionedOptions = isSectionOptionsType(optionsData);
-    const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
-        selectedOptionResolver(selectedOption);
 
-    const flatList = useCallback(
-        (node: FlatList | null) => {
-            if (node !== null) {
-                const isScrollToSelectedOption =
-                    scrollToSelectedOption &&
-                    selectedOptionIndex >= 0 &&
-                    typeof selectedOptionIndex === 'number';
+    const { getItemLayout, measuredRef, findSelectedOption, resolveData } = useOptionsList({
+        selectedOption,
+        searchedOptions,
+        searchValue,
+        isOpened,
+        optionsData,
+        optionStyle,
+    });
 
-                if (isScrollToSelectedOption) {
-                    try {
-                        node.scrollToIndex({
-                            index: selectedOptionIndex,
-                            animated: false,
-                        });
-                        // eslint-disable-next-line no-empty
-                    } catch {}
-                }
-            }
-        },
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [scrollToSelectedOption, selectedOptionIndex, onPressOption],
-    );
-
-    const measuredRef = useCallback(
-        (node: TouchableOpacity | null) => {
-            if (node !== null) {
-                const reactTag = findNodeHandle(node);
-                if (reactTag) {
-                    AccessibilityInfo.setAccessibilityFocus(reactTag);
-                }
-            }
-        },
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [isOpened],
-    );
-
-    const resolveData = () => {
-        if (
-            isSectionedOptions ||
-            !searchValue ||
-            (searchValue.length > 0 && searchValue === selectedOptionLabel)
-        ) {
-            return optionsData;
-        }
-        return searchedOptions;
-    };
-
-    const findSelectedOption = (item: OptionType) => {
-        if (selectedOptionValue) {
-            return item.value === selectedOptionValue;
-        }
-        if (selectedOptions) {
-            return selectedOptions.some((option) => item.value === option.value);
-        }
-        return false;
-    };
-
-    const renderItem = <T,>({
-        item,
-        index,
-        section,
-    }: {
-        item: OptionType;
-        index: number;
-        section?: SectionListData<T>;
-    }) => {
+    const renderItem = <T,>({ item, index, section }: RenderItemProps<T>) => {
         const { value } = item;
         const isSelected = findSelectedOption(item);
         let optionIndex = index;
@@ -151,33 +74,17 @@ export const OptionsList = ({
                 OptionComponent={OptionComponent}
                 isSelected={isSelected}
                 option={{ ...item, section: sectionObj }}
-                optionSelectedStyle={optionSelectedStyle}
-                optionStyle={optionStyle}
-                optionTextStyle={optionTextStyle}
-                optionIndex={optionIndex}
-                onPressOption={onPressOption}
-                onSelect={onSelect}
+                {...{
+                    optionSelectedStyle,
+                    optionStyle,
+                    optionTextStyle,
+                    optionIndex,
+                    onPressOption,
+                    onSelect,
+                }}
             />
         );
     };
-
-    const getItemLayout = <T,>(_data: T, index: number) => {
-        const height = StyleSheet.flatten(optionStyle)?.height;
-        const isNumber = typeof height === 'number';
-        return {
-            length: isNumber ? height : ITEM_HEIGHT,
-            offset: isNumber ? height * index : ITEM_HEIGHT * index,
-            index,
-        };
-    };
-
-    const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => (
-        <View style={[styles.sectionHeaderContainerStyle, sectionHeaderContainerStyle]}>
-            <Text style={[styles.sectionHeaderTextStyle, sectionHeaderTextStyle]}>
-                {info.section.title}
-            </Text>
-        </View>
-    );
 
     return (
         <>
@@ -204,44 +111,33 @@ export const OptionsList = ({
                     ]}
                 >
                     {isSectionedOptions ? (
-                        <SectionList
-                            testID="Options list"
-                            accessibilityLabel="Options list"
-                            accessibilityState={{
-                                expanded: isOpened,
+                        <SectionOptionsList
+                            {...{
+                                isOpened,
+                                optionsData,
+                                noOptionsText,
+                                NoOptionsComponent,
+                                getItemLayout,
+                                renderItem,
+                                sectionHeaderTextStyle,
+                                sectionHeaderContainerStyle,
+                                sectionListProps,
                             }}
-                            bounces={false}
-                            sections={optionsData} // search and multiselect are disabled
-                            getItemLayout={getItemLayout}
-                            keyExtractor={({ value }) => value}
-                            keyboardShouldPersistTaps="handled"
-                            persistentScrollbar={true}
-                            renderSectionHeader={renderSectionHeader}
-                            renderItem={renderItem}
-                            {...sectionListProps}
-                            ListEmptyComponent={
-                                NoOptionsComponent ?? <NoOptions noOptionsText={noOptionsText} />
-                            }
                         />
                     ) : (
-                        <FlatList
-                            ref={flatList}
-                            testID="Options list"
-                            accessibilityLabel="Options list"
-                            accessibilityState={{
-                                expanded: isOpened,
+                        <FlatOptionsList
+                            {...{
+                                isOpened,
+                                noOptionsText,
+                                scrollToSelectedOption,
+                                NoOptionsComponent,
+                                selectedOptionIndex,
+                                onPressOption,
+                                resolveData,
+                                getItemLayout,
+                                renderItem,
+                                flatListProps,
                             }}
-                            bounces={false}
-                            data={resolveData()}
-                            getItemLayout={getItemLayout}
-                            keyExtractor={({ value }) => value}
-                            keyboardShouldPersistTaps="handled"
-                            persistentScrollbar={true}
-                            renderItem={renderItem}
-                            {...flatListProps}
-                            ListEmptyComponent={
-                                NoOptionsComponent ?? <NoOptions noOptionsText={noOptionsText} />
-                            }
                         />
                     )}
                 </OptionsListWrapper>
@@ -252,8 +148,6 @@ export const OptionsList = ({
 
 type Styles = {
     modalOverlay: ViewStyle;
-    sectionHeaderTextStyle: TextStyle;
-    sectionHeaderContainerStyle: ViewStyle;
     options: ViewStyle;
     notOverflown: ViewStyle;
     overflown: ViewStyle;
@@ -282,15 +176,5 @@ const styles = StyleSheet.create<Styles>({
         borderBottomWidth: 0,
         borderTopRightRadius: SHAPE,
         borderTopLeftRadius: SHAPE,
-    },
-    sectionHeaderTextStyle: {
-        fontSize: FONT_SIZE,
-        color: COLORS.BLACK,
-        fontWeight: 'bold',
-        textAlign: 'left',
-    },
-    sectionHeaderContainerStyle: {
-        padding: PADDING,
-        backgroundColor: COLORS.WHITE,
     },
 });

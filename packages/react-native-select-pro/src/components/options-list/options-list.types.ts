@@ -1,9 +1,10 @@
 import type { ComponentProps } from 'react';
+import type { SectionListData } from 'react-native';
 
 import type { OptionalToRequired } from '../../helpers';
 import type { Position, State } from '../../state/types';
-import type { OnOutsidePress, OnPressOptionType } from '../../types';
-import type { SelectStyles } from '../../types/styles';
+import type { OnOutsidePress, OnPressOptionType, OptionType } from '../../types';
+import type { OptionsListStyles, SelectStyles } from '../../types/styles';
 import type { Select } from '../select';
 
 type FromSelectComponentProps = Pick<
@@ -30,8 +31,26 @@ export type OptionsListProps = OptionalToRequired<
             | 'searchedOptions'
             | 'searchValue'
             | 'selectedOptionIndex'
-        > & {
-            onOutsidePress: OnOutsidePress;
-            onPressOption: OnPressOptionType;
-        } & Pick<Position, 'aboveSelectControl'>
->;
+        >
+> & {
+    onOutsidePress: OnOutsidePress;
+    onPressOption: OnPressOptionType;
+} & Pick<Position, 'aboveSelectControl'>;
+
+export type UseOptionsListProps = Pick<
+    State,
+    'isOpened' | 'optionsData' | 'selectedOption' | 'searchedOptions' | 'searchValue'
+> &
+    OptionalToRequired<Pick<OptionsListStyles, 'optionStyle'>>;
+
+export type RenderItemProps<T> = {
+    item: OptionType;
+    index: number;
+    section?: SectionListData<T>;
+};
+
+export type ItemLayout = {
+    length: number;
+    offset: number;
+    index: number;
+};

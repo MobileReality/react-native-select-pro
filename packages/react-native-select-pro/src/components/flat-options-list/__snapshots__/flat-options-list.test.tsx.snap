@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlatOptionsList should generate FlatOptionsList snapshot 1`] = `
+<FlatOptionsList
+  getItemLayout={[Function]}
+  isOpened={false}
+  onPressOption={[Function]}
+  renderItem={[Function]}
+  resolveData={[Function]}
+  scrollToSelectedOption={false}
+  selectedOptionIndex={0}
+/>
+`;

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionOptionsList should generate SectionOptionsList snapshot 1`] = `
+<SectionOptionsList
+  getItemLayout={[Function]}
+  isOpened={false}
+  optionsData={
+    [
+      {
+        "data": [
+          {
+            "label": "test",
+            "value": "test",
+          },
+        ],
+        "title": "test",
+      },
+    ]
+  }
+  renderItem={[Function]}
+/>
+`;
