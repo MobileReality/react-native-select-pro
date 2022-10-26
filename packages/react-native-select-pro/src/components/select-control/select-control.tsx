@@ -4,7 +4,7 @@ import { Image, StyleSheet, View } from 'react-native';
 
 import { Arrow } from '../arrow';
 import { ClearOption } from '../clear-option';
-import { SelectControlWrapper } from '../select-control-wrapper/select-control-wrapper';
+import { SelectControlWrapper } from '../select-control-wrapper';
 import { SelectFieldType } from '../select-field-type';
 
 import { useSelectControl } from './select-control.hooks';
@@ -90,12 +90,11 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                         aboveSelectControl,
                         isOpened,
                         disabled,
-                        onPress,
                         containerStyle,
                         disabledStyle,
+                        onPress,
+                        ref,
                     }}
-                    ref={ref}
-                    onPress={onPress}
                 >
                     {!!iconSource && (
                         <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
