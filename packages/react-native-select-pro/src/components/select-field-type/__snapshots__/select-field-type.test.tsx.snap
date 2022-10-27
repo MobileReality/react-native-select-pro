@@ -1,16 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SelectFieldType should generate SelectFieldType snapshot 1`] = `
-<SelectFieldType
-  disabled={false}
-  dispatch={[Function]}
-  isOpened={false}
-  multiSelection={false}
-  onPressRemove={[Function]}
-  onPressSelectControl={[Function]}
-  searchValue=""
-  selectedOption={null}
-  setPosition={[Function]}
-  textInputProps={{}}
-/>
+<View
+  style={
+    [
+      {
+        "flex": 1,
+        "height": "100%",
+        "justifyContent": "center",
+        "paddingHorizontal": 12,
+      },
+      {
+        "paddingRight": 55,
+      },
+    ]
+  }
+>
+  <TextInput
+    accessibilityLabel="Place text"
+    editable={true}
+    onChangeText={[Function]}
+    onPressIn={[Function]}
+    style={
+      [
+        {
+          "fontSize": 12,
+        },
+        undefined,
+      ]
+    }
+    textAlign="left"
+    value=""
+  />
+</View>
 `;

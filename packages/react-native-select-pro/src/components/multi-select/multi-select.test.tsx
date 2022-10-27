@@ -1,10 +1,11 @@
 import React from 'react';
+import { render } from '@testing-library/react-native';
 
 import { MultiSelect } from './multi-select';
 
 describe('MultiSelect', () => {
     it('should generate MultiSelect snapshot', () => {
-        const multiSelect = (
+        const multiSelect = render(
             <MultiSelect
                 selectedOptions={[{ label: 'test', value: 'test' }]}
                 placeholderText={undefined}
@@ -22,7 +23,7 @@ describe('MultiSelect', () => {
                 textStyle={{}}
                 onPressRemove={() => {}}
                 onPressSelectControl={() => {}}
-            />
+            />,
         );
         expect(multiSelect).toMatchSnapshot();
     });

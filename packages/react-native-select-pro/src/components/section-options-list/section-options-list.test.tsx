@@ -1,28 +1,29 @@
 import React from 'react';
 import { Text } from 'react-native';
+import { render } from '@testing-library/react-native';
 
 import { SectionOptionsList } from './section-options-list';
 
 describe('SectionOptionsList', () => {
     it('should generate SectionOptionsList snapshot', () => {
-        const sections = [{ title: 'test', data: [{ label: 'test', value: 'test' }] }];
-        const itemLayout = {
+        const DATA = [{ title: 'test', data: [{ label: 'test', value: 'test' }] }];
+        const ITEM_LAYOUT = {
             length: 0,
             offset: 0,
             index: 0,
         };
-        const sectionOptionsList = (
+        const sectionOptionsList = render(
             <SectionOptionsList
                 isOpened={false}
-                optionsData={sections}
+                optionsData={DATA}
                 noOptionsText={undefined}
                 NoOptionsComponent={undefined}
                 sectionListProps={undefined}
                 sectionHeaderTextStyle={undefined}
                 sectionHeaderContainerStyle={undefined}
-                getItemLayout={() => itemLayout}
+                getItemLayout={() => ITEM_LAYOUT}
                 renderItem={() => <Text>Test</Text>}
-            />
+            />,
         );
         expect(sectionOptionsList).toMatchSnapshot();
     });

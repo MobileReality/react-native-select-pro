@@ -1,12 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Arrow should generate Arrow snapshot 1`] = `
-<Arrow
-  animation={200}
-  arrowIconStyles={{}}
-  disabled={false}
-  isOpened={true}
-  multiSelection={false}
-  onPressSelectControl={[Function]}
+<Image
+  collapsable={false}
+  source={
+    {
+      "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+    }
+  }
+  style={
+    {
+      "height": 25,
+      "transform": [
+        {
+          "rotate": "0deg",
+        },
+      ],
+      "width": 25,
+      "zIndex": -1,
+    }
+  }
 />
 `;

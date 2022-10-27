@@ -1,19 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Option should generate Option snapshot 1`] = `
-<Option
-  isSelected={false}
-  onPressOption={[Function]}
-  onSelect={[Function]}
-  option={
+<View
+  accessibilityLabel="Choose test option"
+  accessibilityRole="button"
+  accessibilityState={
     {
-      "label": "test",
-      "value": "test",
+      "disabled": false,
     }
   }
-  optionIndex={0}
-  optionSelectedStyle={{}}
-  optionStyle={{}}
-  optionTextStyle={{}}
-/>
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "height": 40,
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingHorizontal": 12,
+    }
+  }
+>
+  <Text
+    numberOfLines={1}
+    style={
+      [
+        {
+          "color": "#000000",
+          "fontSize": 12,
+          "textAlign": "left",
+        },
+        {},
+      ]
+    }
+  >
+    test
+  </Text>
+</View>
 `;

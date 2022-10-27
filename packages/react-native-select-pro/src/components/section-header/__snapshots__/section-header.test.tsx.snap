@@ -1,7 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SectionHeader should generate SectionHeader snapshot 1`] = `
-<SectionHeader
-  title="Test Section"
-/>
+<View
+  style={
+    [
+      {
+        "backgroundColor": "#ffffff",
+        "padding": 12,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "#000000",
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "left",
+        },
+        undefined,
+      ]
+    }
+  >
+    Test Section
+  </Text>
+</View>
 `;

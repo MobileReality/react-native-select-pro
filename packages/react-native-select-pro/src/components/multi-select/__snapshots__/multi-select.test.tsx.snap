@@ -1,26 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MultiSelect should generate MultiSelect snapshot 1`] = `
-<MultiSelect
-  containerStyle={{}}
-  disabled={false}
-  dispatch={[Function]}
-  isOpened={false}
-  multiSelection={true}
-  multiSelectionOptionStyle={{}}
-  onPressRemove={[Function]}
-  onPressSelectControl={[Function]}
-  searchValue=""
-  selectedOptions={
-    [
-      {
-        "label": "test",
-        "value": "test",
-      },
-    ]
+<RCTScrollView
+  horizontal={true}
+  style={
+    {
+      "flex": 1,
+    }
   }
-  setPosition={[Function]}
-  textInputProps={{}}
-  textStyle={{}}
-/>
+>
+  <View>
+    <View
+      accessibilityLabel="test selected"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        [
+          {
+            "alignItems": "flex-start",
+            "backgroundColor": "#e0e0e0",
+            "borderColor": "#000000",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "display": "flex",
+            "justifyContent": "center",
+            "margin": 2,
+            "paddingLeft": 5,
+          },
+          {},
+          {
+            "width": 100,
+          },
+        ]
+      }
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "fontSize": 12,
+              "textAlign": "left",
+            },
+            {},
+            {
+              "color": "#000000",
+            },
+          ]
+        }
+      >
+        test
+      </Text>
+    </View>
+  </View>
+</RCTScrollView>
 `;

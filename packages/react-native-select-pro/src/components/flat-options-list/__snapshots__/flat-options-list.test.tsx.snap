@@ -1,13 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FlatOptionsList should generate FlatOptionsList snapshot 1`] = `
-<FlatOptionsList
+<RCTScrollView
+  ListEmptyComponent={<NoOptions />}
+  accessibilityLabel="Options list"
+  accessibilityState={
+    {
+      "expanded": false,
+    }
+  }
+  bounces={false}
+  data={
+    [
+      {
+        "label": "test",
+        "value": "test",
+      },
+    ]
+  }
+  getItem={[Function]}
+  getItemCount={[Function]}
   getItemLayout={[Function]}
-  isOpened={false}
-  onPressOption={[Function]}
+  keyExtractor={[Function]}
+  keyboardShouldPersistTaps="handled"
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  persistentScrollbar={true}
+  removeClippedSubviews={false}
   renderItem={[Function]}
-  resolveData={[Function]}
-  scrollToSelectedOption={false}
-  selectedOptionIndex={0}
-/>
+  scrollEventThrottle={50}
+  stickyHeaderIndices={[]}
+  testID="Options list"
+  viewabilityConfigCallbackPairs={[]}
+>
+  <View>
+    <View
+      style={null}
+    >
+      <Text>
+        Test Item
+      </Text>
+    </View>
+  </View>
+</RCTScrollView>
 `;
