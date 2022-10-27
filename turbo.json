@@ -11,6 +11,9 @@
     "test": {
       "inputs": ["**/*.{ts,tsx,js,jsx}"]
     },
+    "test:fix": {
+      "inputs": ["**/*.{ts,tsx,js,jsx}"]
+    },
     "detox-metro-start": {},
     "detox-ios-build": {},
     "detox-ios-test": {

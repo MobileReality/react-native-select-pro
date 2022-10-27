@@ -1,4 +1,5 @@
 import React from 'react';
+import { render } from '@testing-library/react-native';
 
 import { ANIMATION_DURATION } from '../../constants/styles';
 
@@ -6,7 +7,7 @@ import { Arrow } from './arrow';
 
 describe('Arrow', () => {
     it('should generate Arrow snapshot', () => {
-        const arrow = (
+        const arrow = render(
             <Arrow
                 isOpened={true}
                 disabled={false}
@@ -14,7 +15,7 @@ describe('Arrow', () => {
                 multiSelection={false}
                 arrowIconStyles={{}}
                 onPressSelectControl={() => {}}
-            />
+            />,
         );
         expect(arrow).toMatchSnapshot();
     });

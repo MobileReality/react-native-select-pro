@@ -1,16 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SelectInput should generate SelectInput snapshot 1`] = `
-<SelectInput
-  disabled={false}
-  dispatch={[Function]}
-  isOpened={false}
-  multiSelection={false}
-  onPressSelectControl={[Function]}
-  searchValue=""
-  selectedOption={null}
-  setPosition={[Function]}
-  textInputProps={{}}
-  textStyle={{}}
+<TextInput
+  accessibilityLabel="Place text"
+  editable={true}
+  onChangeText={[Function]}
+  onPressIn={[Function]}
+  style={
+    [
+      {
+        "fontSize": 12,
+      },
+      {},
+    ]
+  }
+  textAlign="left"
+  value=""
 />
 `;

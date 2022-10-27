@@ -1,11 +1,12 @@
 import React from 'react';
+import { render } from '@testing-library/react-native';
 
 import { SelectControl } from './select-control';
 
 describe('SelectControl', () => {
     it('should generate SelectControl snapshot', () => {
-        const data = [{ label: 'test', value: 'test' }];
-        const selectControl = (
+        const DATA = [{ label: 'test', value: 'test' }];
+        const selectControl = render(
             <SelectControl
                 ref={null}
                 aboveSelectControl={false}
@@ -16,7 +17,7 @@ describe('SelectControl', () => {
                 hideSelectControlArrow={false}
                 isOpened={false}
                 multiSelection={false}
-                optionsData={data}
+                optionsData={DATA}
                 placeholderText={undefined}
                 placeholderTextColor={undefined}
                 searchPattern={undefined}
@@ -33,7 +34,7 @@ describe('SelectControl', () => {
                 setPosition={() => {}}
                 onPressSelectControl={() => {}}
                 onRemove={() => {}}
-            />
+            />,
         );
         expect(selectControl).toMatchSnapshot();
     });
