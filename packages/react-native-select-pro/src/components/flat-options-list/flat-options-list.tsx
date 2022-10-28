@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { FlatList } from 'react-native';
 
+import { ERRORS, logError } from '../../helpers/log-error';
 import { NoOptions } from '../no-options';
 
 import type { FlatOptionsListProps } from './flat-options-list.types';
@@ -32,8 +33,9 @@ export const FlatOptionsList = ({
                         index,
                         animated: false,
                     });
-                    // eslint-disable-next-line no-empty
-                } catch {}
+                } catch {
+                    logError(ERRORS.SCROLL_TO_INDEX);
+                }
             }
         },
         // TODO

@@ -3,6 +3,7 @@ import type { SectionListData } from 'react-native';
 import { SectionList } from 'react-native';
 
 import { getSectionLocation } from '../../helpers/get-section-location';
+import { ERRORS, logError } from '../../helpers/log-error';
 import { NoOptions } from '../no-options';
 import { SectionHeader } from '../section-header/section-header';
 
@@ -41,8 +42,9 @@ export const SectionOptionsList = ({
                         }),
                         animated: false,
                     });
-                    // eslint-disable-next-line no-empty
-                } catch {}
+                } catch {
+                    logError(ERRORS.SCROLL_TO_LOCATION);
+                }
             }
         },
         // TODO
