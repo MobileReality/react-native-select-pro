@@ -122,6 +122,9 @@ export const OptionsList = ({
                                 sectionHeaderTextStyle,
                                 sectionHeaderContainerStyle,
                                 sectionListProps,
+                                onPressOption,
+                                selectedOption,
+                                scrollToSelectedOption,
                             }}
                         />
                     ) : (

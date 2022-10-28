@@ -74,7 +74,7 @@ Placeholder text
 ```typescript jsx
 scrollToSelectedOption?: boolean;
 ```
-If `true` options list is scrolled to the selected option. Not working for options list with sections 
+If `true` options list is scrolled to the selected option.
 
 ### searchable
 ```typescript jsx

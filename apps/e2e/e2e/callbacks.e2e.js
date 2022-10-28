@@ -23,8 +23,8 @@ describe('Callbacks', () => {
                     )}`,
                 ),
             ),
-        ).toExist();
-        await expect(element(by.text('Selected index: 5'))).toExist();
+        ).toBeVisible();
+        await expect(element(by.text('Selected index: 5'))).toBeVisible();
         //Clear option to fire onRemove event
         await element(by.label('Clear a chosen option')).atIndex(0).tap();
         await expect(
@@ -37,7 +37,7 @@ describe('Callbacks', () => {
                     )}`,
                 ),
             ),
-        ).toExist();
-        await expect(element(by.text('Removed index: 5'))).toExist();
+        ).toBeVisible();
+        await expect(element(by.text('Removed index: 5'))).toBeVisible();
     });
 });

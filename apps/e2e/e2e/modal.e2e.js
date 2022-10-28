@@ -5,6 +5,6 @@ describe('Modal', () => {
         await element(by.text('Select...')).atIndex(0).tap();
         await element(by.text('First label')).atIndex(0).tap();
         await element(by.text('Hide Modal')).tap();
-        await expect(element(by.text('Hide Modal'))).not.toExist();
+        await expect(element(by.text('Hide Modal'))).not.toBeVisible();
     });
 });

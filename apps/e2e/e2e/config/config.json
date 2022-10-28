@@ -1,5 +1,3 @@
-
-
 {
   "setupFilesAfterEnv": ["./setup.ts"],
   "maxWorkers": 1,
@@ -10,5 +8,6 @@
   "transform": {
     "\\.tsx?$": "ts-jest"
   },
-  "verbose": true
+  "verbose": true,
+  "roots": ["../"]
 }

@@ -30,6 +30,6 @@ describe('Multi Select', () => {
         await element(by.text('Second label in options list.')).tap();
         await element(by.text('THIRD LABEL')).tap();
         await element(by.text('----Fourth label----')).tap();
-        await expect(element(by.text('Select...'))).toExist();
+        await expect(element(by.text('Select...'))).toBeVisible();
     });
 });

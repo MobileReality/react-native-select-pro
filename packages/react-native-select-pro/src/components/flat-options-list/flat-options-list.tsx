@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { FlatList } from 'react-native';
 
+import { ERRORS, logError } from '../../helpers/log-error';
 import { NoOptions } from '../no-options';
 
 import type { FlatOptionsListProps } from './flat-options-list.types';
@@ -20,19 +21,20 @@ export const FlatOptionsList = ({
     const flatList = useCallback(
         (node: FlatList | null) => {
             if (node !== null) {
-                const isScrollToSelectedOption =
+                const index =
                     scrollToSelectedOption &&
                     selectedOptionIndex >= 0 &&
-                    typeof selectedOptionIndex === 'number';
+                    typeof selectedOptionIndex === 'number'
+                        ? selectedOptionIndex
+                        : 0;
 
-                if (isScrollToSelectedOption) {
-                    try {
-                        node.scrollToIndex({
-                            index: selectedOptionIndex,
-                            animated: false,
-                        });
-                        // eslint-disable-next-line no-empty
-                    } catch {}
+                try {
+                    node.scrollToIndex({
+                        index,
+                        animated: false,
+                    });
+                } catch {
+                    logError(ERRORS.SCROLL_TO_INDEX);
                 }
             }
         },
@@ -40,6 +42,7 @@ export const FlatOptionsList = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [scrollToSelectedOption, selectedOptionIndex, onPressOption],
     );
+
     return (
         <FlatList
             ref={flatList}
