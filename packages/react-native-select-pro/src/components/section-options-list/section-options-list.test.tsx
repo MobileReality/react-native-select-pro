@@ -16,6 +16,12 @@ describe('SectionOptionsList', () => {
             <SectionOptionsList
                 isOpened={false}
                 optionsData={DATA}
+                selectedOption={{
+                    label: 'test',
+                    value: 'test',
+                    section: { title: 'test', index: 0 },
+                }}
+                scrollToSelectedOption={false}
                 noOptionsText={undefined}
                 NoOptionsComponent={undefined}
                 sectionListProps={undefined}
@@ -23,6 +29,7 @@ describe('SectionOptionsList', () => {
                 sectionHeaderContainerStyle={undefined}
                 getItemLayout={() => ITEM_LAYOUT}
                 renderItem={() => <Text>Test</Text>}
+                onPressOption={() => {}}
             />,
         );
         expect(sectionOptionsList).toMatchSnapshot();

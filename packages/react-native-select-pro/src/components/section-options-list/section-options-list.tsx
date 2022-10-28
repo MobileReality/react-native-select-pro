@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import type { SectionListData } from 'react-native';
 import { SectionList } from 'react-native';
 
+import { getSectionLocation } from '../../helpers/get-section-location';
 import { NoOptions } from '../no-options';
 import { SectionHeader } from '../section-header/section-header';
 
@@ -17,6 +18,9 @@ export const SectionOptionsList = ({
     sectionHeaderContainerStyle,
     getItemLayout,
     renderItem,
+    onPressOption,
+    selectedOption,
+    scrollToSelectedOption,
 }: SectionOptionsListProps) => {
     const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => (
         <SectionHeader
@@ -25,8 +29,30 @@ export const SectionOptionsList = ({
         />
     );
 
+    const sectionList = useCallback(
+        (node: SectionList | null) => {
+            if (node !== null) {
+                try {
+                    node.scrollToLocation({
+                        ...getSectionLocation({
+                            data: optionsData,
+                            selectedOption,
+                            scrollToSelectedOption,
+                        }),
+                        animated: false,
+                    });
+                    // eslint-disable-next-line no-empty
+                } catch {}
+            }
+        },
+        // TODO
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [onPressOption, scrollToSelectedOption, selectedOption, optionsData],
+    );
+
     return (
         <SectionList
+            ref={sectionList}
             testID="Options list"
             accessibilityLabel="Options list"
             accessibilityState={{

@@ -20,26 +20,27 @@ export const FlatOptionsList = ({
     const flatList = useCallback(
         (node: FlatList | null) => {
             if (node !== null) {
-                const isScrollToSelectedOption =
+                const index =
                     scrollToSelectedOption &&
                     selectedOptionIndex >= 0 &&
-                    typeof selectedOptionIndex === 'number';
+                    typeof selectedOptionIndex === 'number'
+                        ? selectedOptionIndex
+                        : 0;
 
-                if (isScrollToSelectedOption) {
-                    try {
-                        node.scrollToIndex({
-                            index: selectedOptionIndex,
-                            animated: false,
-                        });
-                        // eslint-disable-next-line no-empty
-                    } catch {}
-                }
+                try {
+                    node.scrollToIndex({
+                        index,
+                        animated: false,
+                    });
+                    // eslint-disable-next-line no-empty
+                } catch {}
             }
         },
         // TODO
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [scrollToSelectedOption, selectedOptionIndex, onPressOption],
     );
+
     return (
         <FlatList
             ref={flatList}
