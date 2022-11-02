@@ -16,6 +16,7 @@ export const MultiSelectedOption = ({
     optionWidth,
     onPressRemove,
 }: MultiSelectedOptionProps) => {
+    const isPressable = onPressRemove && option;
     return (
         <Pressable
             accessibilityLabel={option ? `${option.label} selected` : 'Placeholder in multi-select'}
@@ -24,7 +25,8 @@ export const MultiSelectedOption = ({
                 multiSelectionOptionStyle,
                 { width: optionWidth },
             ]}
-            onPress={onPressRemove && option ? () => onPressRemove(option) : undefined}
+            disabled={!isPressable}
+            onPress={isPressable ? () => onPressRemove(option) : undefined}
         >
             <Text
                 numberOfLines={1}

@@ -10,8 +10,30 @@ exports[`MultiSelect should generate MultiSelect snapshot 1`] = `
   }
 >
   <View>
+    <TextInput
+      accessibilityLabel="Place text"
+      editable={true}
+      onChangeText={[Function]}
+      onPressIn={[Function]}
+      placeholder="  "
+      style={
+        [
+          {
+            "fontSize": 12,
+          },
+          {},
+        ]
+      }
+      textAlign="left"
+      value=""
+    />
     <View
       accessibilityLabel="test selected"
+      accessibilityState={
+        {
+          "disabled": false,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
