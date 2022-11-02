@@ -31,8 +31,8 @@ export const MultiSelect = ({
     const { calculatedOptionWidth } = useMultiSelect({ selectedOptions, containerWidth });
     const isSearchable = typeof searchValue === 'string';
 
-    const resolveNoSelectedOptions = () => {
-        const selectInput = (
+    const resolveContent = () => {
+        const searchInput = (
             <SelectInput
                 selectedOption={selectedOptions}
                 {...{
@@ -51,20 +51,27 @@ export const MultiSelect = ({
                 }}
             />
         );
-        const placeholderMultiOption = (
+
+        const emptyList = (
             <MultiSelectedOption
                 isPlaceholder={true}
                 option={null}
                 optionWidth="100%"
-                {...{ placeholderText, placeholderTextColor, textStyle, multiSelectionOptionStyle }}
+                {...{
+                    placeholderText,
+                    placeholderTextColor,
+                    textStyle,
+                    multiSelectionOptionStyle,
+                }}
             />
         );
-        return isSearchable ? selectInput : placeholderMultiOption;
-    };
 
-    const resolveSelectedOptions = (selectedOptions: OptionType[]) => {
-        return selectedOptions.map((option: OptionType, index) => {
-            return (
+        const resolveSelectedOptionsList = () => {
+            if (!selectedOptions) {
+                return isSearchable ? null : emptyList;
+            }
+
+            return selectedOptions.map((option: OptionType, index) => (
                 <MultiSelectedOption
                     key={index}
                     optionWidth={calculatedOptionWidth}
@@ -77,13 +84,20 @@ export const MultiSelect = ({
                         onPressRemove,
                     }}
                 />
-            );
-        });
+            ));
+        };
+
+        return (
+            <>
+                {isSearchable && searchInput}
+                {resolveSelectedOptionsList()}
+            </>
+        );
     };
 
     return (
         <ScrollView horizontal={true} style={styles.multiSelectionWrapper}>
-            {selectedOptions ? resolveSelectedOptions(selectedOptions) : resolveNoSelectedOptions()}
+            {resolveContent()}
         </ScrollView>
     );
 };
