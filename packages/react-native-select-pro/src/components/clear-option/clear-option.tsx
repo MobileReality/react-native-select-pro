@@ -17,9 +17,9 @@ export const ClearOption = ({
             accessibilityLabel={selectControlClearOptionA11yLabel ?? 'Clear a chosen option'}
             accessibilityRole="button"
             accessible={true}
-            disabled={disabled}
             hitSlop={buttonHitSlop ?? { right: 3, left: 3 }}
             style={[styles.xIconWrapper, buttonStyle]}
+            disabled={disabled}
             onPress={onPressRemove}
         >
             <Image

@@ -57,7 +57,8 @@ export const Arrow = ({
     return (
         <Pressable
             accessibilityLabel={accessibilityLabel}
-            onPress={disabled ? undefined : onPressSelectControl}
+            disabled={disabled}
+            onPress={onPressSelectControl}
         >
             {arrowContent}
         </Pressable>
