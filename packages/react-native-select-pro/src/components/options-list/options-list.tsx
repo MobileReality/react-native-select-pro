@@ -11,7 +11,7 @@ import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';
 import { SectionOptionsList } from '../section-options-list';
 
-import { useOptionsList } from './options-list.hook';
+import { useOptionsList } from './options-list.hooks';
 import type { OptionsListProps, RenderItemProps } from './options-list.types';
 
 export const OptionsList = ({
