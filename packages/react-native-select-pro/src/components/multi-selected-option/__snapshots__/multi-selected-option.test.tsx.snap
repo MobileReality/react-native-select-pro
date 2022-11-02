@@ -3,6 +3,11 @@
 exports[`MultiSelectedOption should generate MultiSelectedOption snapshot 1`] = `
 <View
   accessibilityLabel="test selected"
+  accessibilityState={
+    {
+      "disabled": true,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
