@@ -20,26 +20,26 @@ import type {
 import type { UseSelect } from './select.types';
 
 export const useSelect = ({
-    options,
+    ref,
     containerRef,
-    dispatch,
+    state,
+    options,
     defaultOption,
-    onRemove,
     disabled,
     closeDropdownOnSelect,
     isSearchable,
     isMultiSelection,
     optionsListStyles,
+    dispatch,
+    onRemove,
     onDropdownOpened,
     onDropdownClosed,
-    ref,
-    state,
 }: UseSelect) => {
+    const isFirstRenderRef = useRef(true);
+    const { height: screenHeight, width: screenWidth } = useWindowDimensions();
     const { isOpened, selectedOption, optionsData, searchInputRef, selectedOptionIndex } = state;
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
     const isSectionedOptions = isSectionOptionsType(optionsData);
-
-    const isFirstRenderRef = useRef(true);
 
     const checkData = useCallback(() => {
         if (!Array.isArray(options)) {
@@ -190,8 +190,6 @@ export const useSelect = ({
             hideKeyboardIfNeeded();
         }
     };
-
-    const { height: screenHeight, width: screenWidth } = useWindowDimensions();
 
     const setPosition = () => {
         if (containerRef.current) {

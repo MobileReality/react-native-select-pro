@@ -8,15 +8,14 @@ import type { SelectRef } from '../../types';
 
 type FromSelectComponent = Pick<
     ComponentPropsWithRef<typeof Select>,
-    | 'onDropdownOpened'
-    | 'onDropdownClosed'
-    | 'closeDropdownOnSelect'
+    | 'options'
     | 'defaultOption'
     | 'disabled'
     | 'optionsListStyles'
-    | 'defaultOption'
+    | 'closeDropdownOnSelect'
+    | 'onDropdownOpened'
+    | 'onDropdownClosed'
     | 'onRemove'
-    | 'options'
 >;
 
 export type UseSelect = OptionalToRequired<
