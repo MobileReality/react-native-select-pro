@@ -20,7 +20,7 @@ describe('FlatOptionsList', () => {
                 scrollToSelectedOption={false}
                 NoOptionsComponent={undefined}
                 selectedOptionIndex={0}
-                resolveData={() => DATA}
+                resolvedData={DATA}
                 renderItem={() => <Text>Test Item</Text>}
                 getItemLayout={() => ITEM_LAYOUT}
                 onPressOption={() => {}}

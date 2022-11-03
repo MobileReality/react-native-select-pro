@@ -64,7 +64,7 @@ export type State = {
     optionsData: OptionsType;
     openedPosition: Position;
     searchValue: string | null;
-    searchedOptions: OptionType[];
+    searchedOptions: OptionsType;
     searchInputRef: Ref<TextInput> | null;
 };
 

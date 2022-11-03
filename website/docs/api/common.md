@@ -80,7 +80,7 @@ If `true` options list is scrolled to the selected option.
 ```typescript jsx
 searchable?: boolean;
 ```
-If `true` let user search in a select options by typing in select. Not working for options list with sections 
+If `true` let user search in a select options by typing in select.
 
 ### searchPattern
 ```typescript jsx

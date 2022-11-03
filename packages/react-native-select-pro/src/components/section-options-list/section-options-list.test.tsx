@@ -15,7 +15,7 @@ describe('SectionOptionsList', () => {
         const sectionOptionsList = render(
             <SectionOptionsList
                 isOpened={false}
-                optionsData={DATA}
+                resolvedData={DATA}
                 selectedOption={{
                     label: 'test',
                     value: 'test',

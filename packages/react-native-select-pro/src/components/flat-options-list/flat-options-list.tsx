@@ -14,7 +14,7 @@ export const FlatOptionsList = ({
     NoOptionsComponent,
     selectedOptionIndex,
     onPressOption,
-    resolveData,
+    resolvedData,
     getItemLayout,
     renderItem,
 }: FlatOptionsListProps) => {
@@ -27,20 +27,21 @@ export const FlatOptionsList = ({
                     typeof selectedOptionIndex === 'number'
                         ? selectedOptionIndex
                         : 0;
-
-                try {
-                    node.scrollToIndex({
-                        index,
-                        animated: false,
-                    });
-                } catch {
-                    logError(ERRORS.SCROLL_TO_INDEX);
+                if (index < resolvedData.length) {
+                    try {
+                        node.scrollToIndex({
+                            index,
+                            animated: false,
+                        });
+                    } catch {
+                        logError(ERRORS.SCROLL_TO_INDEX);
+                    }
                 }
             }
         },
         // TODO
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [scrollToSelectedOption, selectedOptionIndex, onPressOption],
+        [scrollToSelectedOption, selectedOptionIndex, onPressOption, resolvedData],
     );
 
     return (
@@ -52,7 +53,7 @@ export const FlatOptionsList = ({
                 expanded: isOpened,
             }}
             bounces={false}
-            data={resolveData()}
+            data={resolvedData}
             getItemLayout={getItemLayout}
             keyExtractor={({ value }) => value}
             keyboardShouldPersistTaps="handled"

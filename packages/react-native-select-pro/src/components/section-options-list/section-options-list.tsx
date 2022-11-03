@@ -11,7 +11,7 @@ import type { SectionOptionsListProps } from './section-options-list.types';
 
 export const SectionOptionsList = ({
     isOpened,
-    optionsData,
+    resolvedData,
     noOptionsText,
     NoOptionsComponent,
     sectionListProps,
@@ -36,7 +36,7 @@ export const SectionOptionsList = ({
                 try {
                     node.scrollToLocation({
                         ...getSectionLocation({
-                            data: optionsData,
+                            data: resolvedData,
                             selectedOption,
                             scrollToSelectedOption,
                         }),
@@ -49,7 +49,7 @@ export const SectionOptionsList = ({
         },
         // TODO
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [onPressOption, scrollToSelectedOption, selectedOption, optionsData],
+        [onPressOption, scrollToSelectedOption, selectedOption, resolvedData],
     );
 
     return (
@@ -61,7 +61,7 @@ export const SectionOptionsList = ({
                 expanded: isOpened,
             }}
             bounces={false}
-            sections={optionsData} // search and multiselect are disabled
+            sections={resolvedData}
             getItemLayout={getItemLayout}
             keyExtractor={({ value }) => value}
             keyboardShouldPersistTaps="handled"

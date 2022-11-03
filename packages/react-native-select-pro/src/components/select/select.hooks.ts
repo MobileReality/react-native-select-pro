@@ -27,7 +27,7 @@ export const useSelect = ({
     defaultOption,
     disabled,
     closeDropdownOnSelect,
-    isSearchable,
+    searchable,
     isMultiSelection,
     optionsListStyles,
     dispatch,
@@ -175,7 +175,7 @@ export const useSelect = ({
             payload: resolveOption(),
         });
 
-        if (isSearchable) {
+        if (searchable) {
             if (isMultiSelection) {
                 dispatch({ type: Action.SetSearchValue, payload: '' });
             } else {
@@ -251,7 +251,7 @@ export const useSelect = ({
     };
 
     const onOutsidePress: OnOutsidePress = () => {
-        if (selectedOptionLabel && isSearchable) {
+        if (selectedOptionLabel && searchable) {
             dispatch({
                 type: Action.SetSearchValue,
                 payload: selectedOptionLabel,

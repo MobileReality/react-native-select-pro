@@ -1,10 +1,10 @@
 describe('ScrollToSelectedOption', () => {
-    it('should go to Scroll To The Selected Option Screen and check if dropdown scroll to selected option', async () => {
-        await waitFor(element(by.text('Scroll To The Selected Option')))
+    it('should go to ScrollToSelectedOption Screen and check if dropdown scroll to selected option', async () => {
+        await waitFor(element(by.text('Scroll To Selected Option')))
             .toBeVisible()
             .whileElement(by.id('Examples List'))
             .scroll(200, 'down');
-        await element(by.text('Scroll To The Selected Option')).tap();
+        await element(by.text('Scroll To Selected Option')).tap();
         await element(by.text('🐈🐈🐈 Fifth label')).tap();
         await expect(
             element(by.label('Choose 🐈🐈🐈 Fifth label option')).atIndex(0),
