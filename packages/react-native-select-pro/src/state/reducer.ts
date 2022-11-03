@@ -60,9 +60,11 @@ export const reducer = (state: State, action: ActionType): State => {
                 const filteredSections = state.optionsData
                     .map((section) => ({
                         ...section,
-                        data: section.data.filter((option) =>
-                            regex.test(option.label.toLowerCase()),
-                        ),
+                        data: regex.test(section.title.toLocaleLowerCase())
+                            ? section.data
+                            : section.data.filter((option) =>
+                                  regex.test(option.label.toLowerCase()),
+                              ),
                     }))
                     .filter((section) => section.data.length > 0);
 
