@@ -1,6 +1,6 @@
 describe('SectionsWithSearchable', () => {
     it('should go to SectionsWithSearchable Screen and search for option Poland', async () => {
-        //Scroll to Searchable button and press it
+        //Scroll to Sections with searchable button and press it
         await waitFor(element(by.text('Sections with searchable')))
             .toBeVisible()
             .whileElement(by.id('Examples List'))
