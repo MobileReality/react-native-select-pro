@@ -48,13 +48,32 @@ export const reducer = (state: State, action: ActionType): State => {
                 searchValue: action.payload,
             };
         case Action.SearchOptions: {
-            if (action.payload === '' || isSectionOptionsType(state.optionsData)) {
+            if (action.payload === '') {
                 return {
                     ...state,
                     searchedOptions: [],
                 };
             }
             const regex = new RegExp(action.searchPattern(action.payload.toLowerCase()));
+
+            if (isSectionOptionsType(state.optionsData)) {
+                const filteredSections = state.optionsData
+                    .map((section) => ({
+                        ...section,
+                        data: regex.test(section.title.toLocaleLowerCase())
+                            ? section.data
+                            : section.data.filter((option) =>
+                                  regex.test(option.label.toLowerCase()),
+                              ),
+                    }))
+                    .filter((section) => section.data.length > 0);
+
+                return {
+                    ...state,
+                    searchedOptions: filteredSections,
+                };
+            }
+
             return {
                 ...state,
                 searchedOptions: state.optionsData.filter((option) =>

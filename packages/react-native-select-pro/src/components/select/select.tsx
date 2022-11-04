@@ -60,11 +60,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     } = props;
 
     const resolvedOptionsData = Array.isArray(options) ? options : [];
-    const isSearchable = !isSectionOptionsType(resolvedOptionsData) && searchable;
     const initialState = {
         ...initialData,
         optionsData: resolvedOptionsData,
-        searchValue: isSearchable ? '' : null,
+        searchValue: searchable ? '' : null,
     };
     const [state, dispatch] = useReducer(reducer, initialState);
     const {
@@ -90,7 +89,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         onRemove,
         disabled,
         closeDropdownOnSelect,
-        isSearchable,
+        searchable,
         isMultiSelection,
         optionsListStyles,
         onDropdownOpened,

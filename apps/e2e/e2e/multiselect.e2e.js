@@ -1,5 +1,5 @@
-describe('Multi Select', () => {
-    it('should go to Multi Select Screen and select four options and then clear all of them', async () => {
+describe('MultiSelect', () => {
+    it('should go to MultiSelect Screen and select four options and then clear all of them', async () => {
         //Scroll to Multi Select button and press it
         await waitFor(element(by.text('MultiSelect')))
             .toBeVisible()

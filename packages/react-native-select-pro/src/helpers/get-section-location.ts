@@ -14,7 +14,7 @@ export const getSectionLocation = ({ data, selectedOption, scrollToSelectedOptio
         const { value, section } = selectedOption;
         const sectionItem = data.find((item) => item.title === section?.title);
         if (sectionItem) {
-            sectionIndex = section?.index ?? 0;
+            sectionIndex = data.findIndex((item) => item.title === sectionItem.title);
             itemIndex = sectionItem?.data.findIndex((item) => item.value === value);
         }
     }

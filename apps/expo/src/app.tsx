@@ -21,6 +21,7 @@ import { ScrollToSelectedOption } from './examples/scroll-to-selected-option';
 import { Searchable } from './examples/searchable';
 import { SearchableInModal } from './examples/searchable-in-modal';
 import { Sections } from './examples/sections';
+import { SectionsWithSearchable } from './examples/sections-with-searchable';
 import { Selects } from './examples/selects';
 import { TextInputProps } from './examples/text-input-props';
 
@@ -67,7 +68,7 @@ const data = [
         getScreen: () => <CustomOptionsData />,
     },
     {
-        name: 'Scroll To The Selected Option',
+        name: 'Scroll To Selected Option',
         getScreen: () => <ScrollToSelectedOption />,
     },
     {
@@ -101,6 +102,10 @@ const data = [
     {
         name: 'Sections',
         getScreen: () => <Sections />,
+    },
+    {
+        name: 'Sections with searchable',
+        getScreen: () => <SectionsWithSearchable />,
     },
 ];
 

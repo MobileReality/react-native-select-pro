@@ -3,7 +3,6 @@ import type { TouchableOpacity } from 'react-native';
 import { AccessibilityInfo, findNodeHandle, StyleSheet } from 'react-native';
 
 import { ITEM_HEIGHT } from '../../constants/styles';
-import { isSectionOptionsType } from '../../helpers';
 import { selectedOptionResolver } from '../../helpers';
 import type { OptionType } from '../../types';
 
@@ -17,7 +16,6 @@ export const useOptionsList = ({
     optionsData,
     optionStyle,
 }: UseOptionsListProps) => {
-    const isSectionedOptions = isSectionOptionsType(optionsData);
     const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
         selectedOptionResolver(selectedOption);
 
@@ -36,11 +34,7 @@ export const useOptionsList = ({
     );
 
     const resolveData = () => {
-        if (
-            isSectionedOptions ||
-            !searchValue ||
-            (searchValue.length > 0 && searchValue === selectedOptionLabel)
-        ) {
+        if (!searchValue || (searchValue.length > 0 && searchValue === selectedOptionLabel)) {
             return optionsData;
         }
         return searchedOptions;

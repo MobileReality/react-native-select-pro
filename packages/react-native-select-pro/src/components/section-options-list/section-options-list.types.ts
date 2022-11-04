@@ -16,7 +16,7 @@ export type SectionOptionsListProps = {
     renderItem: <T>({ item, index, section }: RenderItemProps<T>) => ReactElement;
     getItemLayout: <T>(_data: T, index: number) => ItemLayout;
     onPressOption: OnPressOptionType;
-    optionsData: SectionOptionType[];
+    resolvedData: SectionOptionType[];
 } & Pick<State, 'isOpened' | 'selectedOption'> &
     OptionalToRequired<
         FromSelectComponentProps &

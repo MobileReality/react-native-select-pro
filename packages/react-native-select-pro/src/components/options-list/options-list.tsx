@@ -43,7 +43,6 @@ export const OptionsList = ({
         sectionHeaderTextStyle,
         containerStyle,
     } = optionsListStyles ?? {};
-    const isSectionedOptions = isSectionOptionsType(optionsData);
 
     const { getItemLayout, measuredRef, findSelectedOption, resolveData } = useOptionsList({
         selectedOption,
@@ -54,6 +53,9 @@ export const OptionsList = ({
         optionStyle,
     });
 
+    const resolvedData = resolveData();
+    const isSectionedOptions = isSectionOptionsType(resolvedData);
+
     const renderItem = <T,>({ item, index, section }: RenderItemProps<T>) => {
         const { value } = item;
         const isSelected = findSelectedOption(item);
@@ -61,10 +63,10 @@ export const OptionsList = ({
         const sectionTitle = section?.title;
         let sectionObj;
         if (isSectionedOptions) {
-            optionIndex = getReducedSectionData(optionsData).indexOf(item);
+            optionIndex = getReducedSectionData(resolvedData).indexOf(item);
             sectionObj = {
                 title: sectionTitle,
-                index: optionsData.findIndex((el) => el.title === sectionTitle),
+                index: resolvedData.findIndex((el) => el.title === sectionTitle),
             };
         }
         return (
@@ -114,7 +116,7 @@ export const OptionsList = ({
                         <SectionOptionsList
                             {...{
                                 isOpened,
-                                optionsData,
+                                resolvedData,
                                 noOptionsText,
                                 NoOptionsComponent,
                                 getItemLayout,
@@ -136,7 +138,7 @@ export const OptionsList = ({
                                 NoOptionsComponent,
                                 selectedOptionIndex,
                                 onPressOption,
-                                resolveData,
+                                resolvedData,
                                 getItemLayout,
                                 renderItem,
                                 flatListProps,
