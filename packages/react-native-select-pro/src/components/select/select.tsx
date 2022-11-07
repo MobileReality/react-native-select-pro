@@ -4,7 +4,6 @@ import type { ViewStyle } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 
 import { COLORS } from '../../constants/styles';
-import { isSectionOptionsType } from '../../helpers';
 import { initialData, reducer } from '../../state/reducer';
 import type { SelectProps, SelectRef } from '../../types';
 import { OptionsList } from '../options-list';
@@ -77,7 +76,6 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
     } = state;
 
     const { aboveSelectControl } = openedPosition;
-    const isMultiSelection = multiSelection && !isSectionOptionsType(optionsData);
 
     const containerRef = useRef<View>(null);
 
@@ -90,7 +88,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         disabled,
         closeDropdownOnSelect,
         searchable,
-        isMultiSelection,
+        multiSelection,
         optionsListStyles,
         onDropdownOpened,
         onDropdownClosed,
@@ -109,7 +107,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 dispatch={dispatch}
                 hideSelectControlArrow={hideSelectControlArrow}
                 isOpened={isOpened}
-                multiSelection={isMultiSelection}
+                multiSelection={multiSelection}
                 optionsData={optionsData}
                 placeholderText={placeholderText}
                 placeholderTextColor={placeholderTextColor}

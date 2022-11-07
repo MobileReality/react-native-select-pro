@@ -12,6 +12,7 @@ type FromSelectComponent = Pick<
     | 'defaultOption'
     | 'disabled'
     | 'searchable'
+    | 'multiSelection'
     | 'optionsListStyles'
     | 'closeDropdownOnSelect'
     | 'onDropdownOpened'
@@ -21,7 +22,6 @@ type FromSelectComponent = Pick<
 
 export type UseSelect = OptionalToRequired<
     FromSelectComponent & {
-        isMultiSelection: boolean;
         dispatch: DispatchType;
         containerRef: React.RefObject<View>;
         ref: ForwardedRef<SelectRef>;

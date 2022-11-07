@@ -21,6 +21,7 @@ import { ScrollToSelectedOption } from './examples/scroll-to-selected-option';
 import { Searchable } from './examples/searchable';
 import { SearchableInModal } from './examples/searchable-in-modal';
 import { Sections } from './examples/sections';
+import { SectionsWithMultiSelect } from './examples/sections-with-multiselect';
 import { SectionsWithSearchable } from './examples/sections-with-searchable';
 import { Selects } from './examples/selects';
 import { TextInputProps } from './examples/text-input-props';
@@ -92,7 +93,7 @@ const data = [
         getScreen: () => <MultiSelect />,
     },
     {
-        name: 'MultiSelect with searchable',
+        name: 'MultiSelect with Searchable',
         getScreen: () => <MultiSelectWithSearchable />,
     },
     {
@@ -104,8 +105,12 @@ const data = [
         getScreen: () => <Sections />,
     },
     {
-        name: 'Sections with searchable',
+        name: 'Sections with Searchable',
         getScreen: () => <SectionsWithSearchable />,
+    },
+    {
+        name: 'Sections with MultiSelect',
+        getScreen: () => <SectionsWithMultiSelect />,
     },
 ];
 

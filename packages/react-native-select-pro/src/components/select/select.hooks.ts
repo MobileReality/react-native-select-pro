@@ -28,7 +28,7 @@ export const useSelect = ({
     disabled,
     closeDropdownOnSelect,
     searchable,
-    isMultiSelection,
+    multiSelection,
     optionsListStyles,
     dispatch,
     onRemove,
@@ -134,7 +134,7 @@ export const useSelect = ({
         }
 
         const resolveOption = () => {
-            if (!isMultiSelection || isSectionedOptions) {
+            if (!multiSelection) {
                 return {
                     selectedOption: option,
                     selectedOptionIndex: optionIndex,
@@ -155,7 +155,10 @@ export const useSelect = ({
             }
 
             const sOption = selectedOptions ? selectedOptions.concat(option) : [option];
-            const sOptionIndex = optionsData
+            const resolvedOptionsData = isSectionedOptions
+                ? getReducedSectionData(optionsData)
+                : optionsData;
+            const sOptionIndex = resolvedOptionsData
                 .map((item, index) => {
                     if (sOption.some(({ value }) => value === item.value)) {
                         return index;
@@ -176,7 +179,7 @@ export const useSelect = ({
         });
 
         if (searchable) {
-            if (isMultiSelection) {
+            if (multiSelection) {
                 dispatch({ type: Action.SetSearchValue, payload: '' });
             } else {
                 dispatch({

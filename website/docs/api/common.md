@@ -56,7 +56,7 @@ If `true` hide select control arrow
 ```typescript jsx
 multiSelection?: boolean;
 ```
-If `true` let user select multiple options in a select, working also with searchable. Not working for options list with sections
+If `true` let user select multiple options in a select, working also with searchable.
 
 ### noOptionsText
 ```typescript jsx
