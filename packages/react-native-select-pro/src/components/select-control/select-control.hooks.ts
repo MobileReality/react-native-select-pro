@@ -1,7 +1,12 @@
 import { useMemo } from 'react';
 import type { OptionType } from '@mobile-reality/react-native-select-pro';
 
-import { isAndroid, isSectionOptionsType, selectedOptionResolver } from '../../helpers';
+import {
+    getReducedSectionData,
+    isAndroid,
+    isSectionOptionsType,
+    selectedOptionResolver,
+} from '../../helpers';
 import { useAccessibilityScreenReader } from '../../hooks';
 import { Action } from '../../state/types';
 
@@ -76,8 +81,12 @@ export const useSelectControl = ({
             (selected) => selected.value !== option.value,
         );
 
-        const foundIndex = optionsData.findIndex(
-            (props) => 'value' in props && props.value === option?.value,
+        const isSectionedOptions = isSectionOptionsType(optionsData);
+        const resolvedOptionsData = isSectionedOptions
+            ? getReducedSectionData(optionsData)
+            : optionsData;
+        const foundIndex = resolvedOptionsData.findIndex(
+            (item) => 'value' in item && item.value === option?.value,
         );
 
         let resolveSelectedOptionsIndexes: number | number[] = -1;
@@ -102,9 +111,8 @@ export const useSelectControl = ({
         if (disabled) {
             return;
         }
-
         let removedOption = null;
-        if (option && multiSelection && selectedOptions && !isSectionOptionsType(optionsData)) {
+        if (option && multiSelection && selectedOptions) {
             removedOption = removeOptionInMultiSelection(option, selectedOptions);
         } else {
             removeSingleOption();

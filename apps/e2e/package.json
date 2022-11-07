@@ -9,7 +9,7 @@
     "start": "react-native start",
     "detox-metro-start": "react-native start",
     "detox-ios-build": "detox build -c ios",
-    "detox-ios-test": "detox test -c ios",
+    "detox-ios-test": "detox test -c ios sections-with-multiselect.e2e.js",
     "detox-android-build": "detox build -c android.emu.release",
     "detox-android-test": "detox test -c android.emu.release",
     "detox-clean": "detox clean-framework-cache && detox build-framework-cache",

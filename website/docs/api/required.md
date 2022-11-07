@@ -29,8 +29,6 @@ OR as an array with structure known from react-native SectionList
 ];
 ```
 
-For now options list with sections are not working with multiSelection.
-
 If array is empty then is showing "No options" text.
 
 #### Example
