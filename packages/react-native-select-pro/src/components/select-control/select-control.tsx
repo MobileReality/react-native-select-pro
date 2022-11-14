@@ -30,7 +30,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
             setPosition,
             selectControlClearOptionA11yLabel,
             selectControlOpenDropdownA11yLabel,
-            hideSelectControlArrow,
+            hideArrow,
             onRemove,
             aboveSelectControl,
             selectedOptionIndex,
@@ -123,7 +123,7 @@ export const SelectControl = forwardRef<View, SelectControlProps>(
                     />
                     <View style={[styles.buttonsContainer, buttonsContainerStyle]}>
                         {showClearOption && clearOption}
-                        {!hideSelectControlArrow && (
+                        {!hideArrow && (
                             <Arrow
                                 {...{
                                     isOpened,

@@ -107,13 +107,13 @@ exports[`Select should generate Select snapshot 1`] = `
             }
             style={
               {
-                "height": 25,
+                "height": 24,
                 "transform": [
                   {
                     "rotate": "0deg",
                   },
                 ],
-                "width": 25,
+                "width": 24,
                 "zIndex": -1,
               }
             }
@@ -476,13 +476,13 @@ exports[`Select with custom left icon should generate Select with custom left ic
             }
             style={
               {
-                "height": 25,
+                "height": 24,
                 "transform": [
                   {
                     "rotate": "0deg",
                   },
                 ],
-                "width": 25,
+                "width": 24,
                 "zIndex": -1,
               }
             }
@@ -1192,13 +1192,13 @@ exports[`Select with multi selection and searchable should generate Select with 
               }
               style={
                 {
-                  "height": 25,
+                  "height": 24,
                   "transform": [
                     {
                       "rotate": "0deg",
                     },
                   ],
-                  "width": 25,
+                  "width": 24,
                   "zIndex": -1,
                 }
               }
@@ -1600,13 +1600,13 @@ exports[`Select with multi selection should generate Select with multi selection
               }
               style={
                 {
-                  "height": 25,
+                  "height": 24,
                   "transform": [
                     {
                       "rotate": "0deg",
                     },
                   ],
-                  "width": 25,
+                  "width": 24,
                   "zIndex": -1,
                 }
               }
@@ -1944,13 +1944,13 @@ exports[`Select with searchable enabled should generate Select with searchable e
             }
             style={
               {
-                "height": 25,
+                "height": 24,
                 "transform": [
                   {
                     "rotate": "0deg",
                   },
                 ],
-                "width": 25,
+                "width": 24,
                 "zIndex": -1,
               }
             }

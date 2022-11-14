@@ -17,7 +17,7 @@ type FromSelectComponentProps = Pick<
     | 'textInputProps'
     | 'placeholderText'
     | 'placeholderTextColor'
-    | 'hideSelectControlArrow'
+    | 'hideArrow'
     | 'multiSelection'
     | 'onRemove'
     | 'selectControlClearOptionA11yLabel'

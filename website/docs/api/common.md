@@ -46,9 +46,9 @@ sectionListProps?: Omit<SectionListProps<SectionOptionType>, 'data' | 'renderIte
 ```
 `SectionListProps` imported from `react-native`
 
-### hideSelectControlArrow
+### hideArrow
 ```typescript jsx
-hideSelectControlArrow?: boolean;
+hideArrow?: boolean;
 ```
 If `true` hide select control arrow
 

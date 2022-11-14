@@ -30,7 +30,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         closeDropdownOnSelect = true,
         disabled = false,
         scrollToSelectedOption = true,
-        hideSelectControlArrow = false,
+        hideArrow = false,
         // Additional features
         defaultOption,
         flatListProps,
@@ -105,7 +105,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
                 clearable={clearable}
                 disabled={disabled}
                 dispatch={dispatch}
-                hideSelectControlArrow={hideSelectControlArrow}
+                hideArrow={hideArrow}
                 isOpened={isOpened}
                 multiSelection={multiSelection}
                 optionsData={optionsData}
