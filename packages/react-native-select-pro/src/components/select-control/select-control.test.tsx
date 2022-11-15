@@ -14,7 +14,7 @@ describe('SelectControl', () => {
                 clearable={false}
                 disabled={false}
                 dispatch={() => {}}
-                hideSelectControlArrow={false}
+                hideArrow={false}
                 isOpened={false}
                 multiSelection={false}
                 optionsData={DATA}

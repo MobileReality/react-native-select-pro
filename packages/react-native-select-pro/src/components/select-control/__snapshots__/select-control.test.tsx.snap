@@ -94,17 +94,11 @@ exports[`SelectControl should generate SelectControl snapshot 1`] = `
         style={
           [
             {
-              "height": 25,
-              "width": 25,
+              "height": 24,
+              "width": 24,
               "zIndex": -1,
             },
-            {
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-            },
+            false,
             undefined,
           ]
         }

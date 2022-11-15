@@ -139,7 +139,7 @@ export interface SelectProps extends SelectStyles {
      *  @category Behaviour
      *  @default false
      */
-    hideSelectControlArrow?: boolean;
+    hideArrow?: boolean;
 
     // ---ADDITIONAL-FEATURES--- //
     /**
