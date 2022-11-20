@@ -11,8 +11,8 @@ type Props = {
 const PortalHosts = () => {
     return (
         <>
-            <PortalHost name={Portals.SelectOutsideWrapper} />
-            <PortalHost name={Portals.Select} />
+            <PortalHost name={Portals.Backdrop} />
+            <PortalHost name={Portals.OptionsList} />
         </>
     );
 };

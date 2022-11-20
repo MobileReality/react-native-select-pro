@@ -1,7 +1,7 @@
 import type { ForwardedRef } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
 import type { ViewStyle } from 'react-native';
-import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Portal } from '@gorhom/portal';
 
 import { Portals } from '../../constants/portals';
@@ -9,6 +9,7 @@ import { COLORS } from '../../constants/styles';
 import { OptionsListContextProvider, SelectContextProvider } from '../../context';
 import { initialData, reducer } from '../../state/reducer';
 import type { SelectProps, SelectRef } from '../../types';
+import { Backdrop } from '../backdrop';
 import { OptionsList } from '../options-list';
 import { SelectControl } from '../select-control';
 
@@ -134,16 +135,10 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
             </SelectContextProvider>
             {isOpened && (
                 <>
-                    <Portal hostName={Portals.SelectOutsideWrapper}>
-                        <TouchableWithoutFeedback
-                            accessibilityLabel="Close a dropdown from outside"
-                            accessibilityRole="button"
-                            onPress={onOutsidePress}
-                        >
-                            <View style={styles.modalOverlay} />
-                        </TouchableWithoutFeedback>
+                    <Portal hostName={Portals.Backdrop}>
+                        <Backdrop onOutsidePress={onOutsidePress} />
                     </Portal>
-                    <Portal hostName={Portals.Select}>
+                    <Portal hostName={Portals.OptionsList}>
                         <OptionsListContextProvider
                             value={{
                                 animation,
@@ -177,16 +172,11 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
 
 type Styles = {
     relative: ViewStyle;
-    modalOverlay: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
     relative: {
         position: 'relative',
-    },
-    modalOverlay: {
-        ...StyleSheet.absoluteFillObject,
-        zIndex: 1,
     },
 });
 
