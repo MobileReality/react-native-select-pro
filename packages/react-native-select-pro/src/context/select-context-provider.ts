@@ -36,6 +36,5 @@ type SelectContextProviderTypes = {
         setPosition: () => void;
     };
 
-const [useSelectContext, SelectContextProvider] = createSafeContext<SelectContextProviderTypes>();
-
-export { SelectContextProvider, useSelectContext };
+export const [useSelectContext, SelectContextProvider] =
+    createSafeContext<SelectContextProviderTypes>();

@@ -72,6 +72,8 @@ const SEARCHABLE_DATA = [
 
 const searchPattern = (value: string) => `^${value}`;
 
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+
 jest.spyOn(View.prototype, 'measure').mockImplementation((fn: MeasureOnSuccessCallback): void => {
     fn(0, 0, 45, 20, 0, 0);
 });

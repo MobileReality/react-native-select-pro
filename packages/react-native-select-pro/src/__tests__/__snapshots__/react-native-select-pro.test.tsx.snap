@@ -1,471 +1,529 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Select should generate Select snapshot 1`] = `
-[
+<View
+  onLayout={[Function]}
+  style={
+    [
+      {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
   <View
-    onLayout={[Function]}
     style={
-      [
-        {
-          "position": "relative",
-        },
-        undefined,
-      ]
+      {
+        "position": "relative",
+      }
     }
   >
     <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        {
-          "position": "relative",
-        }
+        [
+          {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "height": 40,
+          },
+          false,
+          undefined,
+          {},
+        ]
       }
     >
       <View
-        accessibilityLabel="Open a dropdown"
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           [
             {
-              "backgroundColor": "#ffffff",
-              "borderRadius": 4,
-              "borderWidth": 1,
-              "flexDirection": "row",
-              "height": 40,
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
             },
-            false,
-            undefined,
-            {},
+            {
+              "paddingRight": 55,
+            },
           ]
         }
       >
-        <View
+        <Text
+          numberOfLines={1}
           style={
             [
               {
-                "flex": 1,
-                "height": "100%",
-                "justifyContent": "center",
-                "paddingHorizontal": 12,
-              },
-              {
-                "paddingRight": 55,
-              },
-            ]
-          }
-        >
-          <Text
-            numberOfLines={1}
-            style={
-              [
-                {
-                  "fontSize": 12,
-                  "textAlign": "left",
-                },
-                undefined,
-                {
-                  "color": "#808080",
-                },
-              ]
-            }
-          >
-            Select...
-          </Text>
-        </View>
-        <View
-          style={
-            [
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": "100%",
-                "justifyContent": "center",
-                "position": "absolute",
-                "right": 8,
-                "top": 0,
+                "fontSize": 12,
+                "textAlign": "left",
               },
               undefined,
+              {
+                "color": "#808080",
+              },
             ]
           }
         >
-          <Image
-            collapsable={false}
-            source={
-              {
-                "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
-              }
+          Select...
+        </Text>
+      </View>
+      <View
+        style={
+          [
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 8,
+              "top": 0,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Image
+          collapsable={false}
+          source={
+            {
+              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
             }
-            style={
-              {
-                "height": 24,
-                "transform": [
-                  {
-                    "rotate": "0deg",
-                  },
-                ],
-                "width": 24,
-                "zIndex": -1,
-              }
+          }
+          style={
+            {
+              "height": 24,
+              "transform": [
+                {
+                  "rotate": "0deg",
+                },
+              ],
+              "width": 24,
+              "zIndex": -1,
             }
-          />
-        </View>
+          }
+        />
       </View>
     </View>
-  </View>,
-  <View
-    collapsable={false}
-    pointerEvents="none"
-    style={
-      {
-        "backgroundColor": "#ffffff",
-        "borderBottomLeftRadius": 4,
-        "borderBottomRightRadius": 4,
-        "borderTopWidth": 0,
-        "borderWidth": 1,
-        "elevation": 5,
-        "flex": 1,
-        "left": 0,
-        "maxHeight": 120,
-        "opacity": 0,
-        "position": "absolute",
-        "top": 0,
-        "width": 0,
-        "zIndex": 1,
-      }
-    }
-  >
-    <RCTScrollView
-      ListEmptyComponent={
-        <NoOptions
-          noOptionsText="No options"
-        />
-      }
-      accessibilityLabel="Options list"
-      accessibilityState={
-        {
-          "expanded": false,
-        }
-      }
-      bounces={false}
-      data={
-        [
-          {
-            "label": "First Option",
-            "value": "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-          },
-          {
-            "label": "Second Option",
-            "value": "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-          },
-          {
-            "label": "Third Option",
-            "value": "58694a0f-3da1-471f-bd96-145571e29d72",
-          },
-        ]
-      }
-      getItem={[Function]}
-      getItemCount={[Function]}
-      getItemLayout={[Function]}
-      keyExtractor={[Function]}
-      keyboardShouldPersistTaps="handled"
-      onContentSizeChange={[Function]}
-      onLayout={[Function]}
-      onMomentumScrollBegin={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      persistentScrollbar={true}
-      removeClippedSubviews={false}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={[]}
-      testID="Options list"
-      viewabilityConfigCallbackPairs={[]}
-    >
-      <View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose First Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            forwardedRef={[Function]}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              First Option
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Second Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Second Option
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Third Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Third Option
-            </Text>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>,
-]
+  </View>
+</View>
 `;
 
 exports[`Select with custom left icon should generate Select with custom left icon snapshot 1`] = `
-[
+<View
+  onLayout={[Function]}
+  style={
+    [
+      {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
   <View
-    onLayout={[Function]}
     style={
-      [
-        {
-          "position": "relative",
-        },
-        undefined,
-      ]
+      {
+        "position": "relative",
+      }
     }
   >
     <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        {
-          "position": "relative",
-        }
+        [
+          {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "height": 40,
+          },
+          false,
+          undefined,
+          {},
+        ]
       }
     >
       <View
-        accessibilityLabel="Open a dropdown"
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           [
             {
-              "backgroundColor": "#ffffff",
-              "borderRadius": 4,
-              "borderWidth": 1,
-              "flexDirection": "row",
-              "height": 40,
+              "paddingLeft": 8,
             },
-            false,
+            {
+              "height": "100%",
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            {
+              "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
+            }
+          }
+          style={
+            {
+              "height": 15,
+              "width": 15,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            {
+              "paddingRight": 55,
+            },
+          ]
+        }
+      >
+        <Text
+          numberOfLines={1}
+          style={
+            [
+              {
+                "fontSize": 12,
+                "textAlign": "left",
+              },
+              undefined,
+              {
+                "color": "#808080",
+              },
+            ]
+          }
+        >
+          Select...
+        </Text>
+      </View>
+      <View
+        style={
+          [
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 8,
+              "top": 0,
+            },
             undefined,
-            {},
+          ]
+        }
+      >
+        <Image
+          collapsable={false}
+          source={
+            {
+              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+            }
+          }
+          style={
+            {
+              "height": 24,
+              "transform": [
+                {
+                  "rotate": "0deg",
+                },
+              ],
+              "width": 24,
+              "zIndex": -1,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Select with custom select control arrow icon should generate Select with custom select control arrow icon snapshot 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    [
+      {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "position": "relative",
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        [
+          {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "height": 40,
+          },
+          false,
+          undefined,
+          {},
+        ]
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            {
+              "paddingRight": 55,
+            },
+          ]
+        }
+      >
+        <Text
+          numberOfLines={1}
+          style={
+            [
+              {
+                "fontSize": 12,
+                "textAlign": "left",
+              },
+              undefined,
+              {
+                "color": "#808080",
+              },
+            ]
+          }
+        >
+          Select...
+        </Text>
+      </View>
+      <View
+        style={
+          [
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 8,
+              "top": 0,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Image
+          collapsable={false}
+          source={
+            {
+              "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
+            }
+          }
+          style={
+            {
+              "height": 15,
+              "transform": [
+                {
+                  "rotate": "0deg",
+                },
+              ],
+              "width": 15,
+              "zIndex": -1,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Select with multi selection and searchable should generate Select with multi selection and searchable enabled snapshot 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    [
+      {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "position": "relative",
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        [
+          {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "height": 40,
+          },
+          false,
+          undefined,
+          {},
+        ]
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            {
+              "paddingRight": 40,
+            },
+          ]
+        }
+      >
+        <RCTScrollView
+          horizontal={true}
+          style={
+            {
+              "flex": 1,
+            }
+          }
+        >
+          <View>
+            <TextInput
+              accessibilityLabel="Place text"
+              editable={true}
+              onChangeText={[Function]}
+              onPressIn={[Function]}
+              placeholder="Select..."
+              placeholderTextColor="#808080"
+              style={
+                [
+                  {
+                    "fontSize": 12,
+                  },
+                  undefined,
+                ]
+              }
+              textAlign="left"
+              value=""
+            />
+          </View>
+        </RCTScrollView>
+      </View>
+      <View
+        style={
+          [
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 8,
+              "top": 0,
+            },
+            undefined,
           ]
         }
       >
         <View
-          style={
-            [
-              {
-                "paddingLeft": 8,
-              },
-              {
-                "height": "100%",
-                "justifyContent": "center",
-              },
-            ]
-          }
-        >
-          <Image
-            source={
-              {
-                "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
-              }
+          accessibilityLabel="Arrow for opening dropdown"
+          accessibilityState={
+            {
+              "disabled": false,
             }
-            style={
-              {
-                "height": 15,
-                "width": 15,
-              }
-            }
-          />
-        </View>
-        <View
-          style={
-            [
-              {
-                "flex": 1,
-                "height": "100%",
-                "justifyContent": "center",
-                "paddingHorizontal": 12,
-              },
-              {
-                "paddingRight": 55,
-              },
-            ]
           }
-        >
-          <Text
-            numberOfLines={1}
-            style={
-              [
-                {
-                  "fontSize": 12,
-                  "textAlign": "left",
-                },
-                undefined,
-                {
-                  "color": "#808080",
-                },
-              ]
-            }
-          >
-            Select...
-          </Text>
-        </View>
-        <View
-          style={
-            [
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": "100%",
-                "justifyContent": "center",
-                "position": "absolute",
-                "right": 8,
-                "top": 0,
-              },
-              undefined,
-            ]
-          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
         >
           <Image
             collapsable={false}
@@ -490,1450 +548,171 @@ exports[`Select with custom left icon should generate Select with custom left ic
         </View>
       </View>
     </View>
-  </View>,
-  <View
-    collapsable={false}
-    pointerEvents="none"
-    style={
-      {
-        "backgroundColor": "#ffffff",
-        "borderBottomLeftRadius": 4,
-        "borderBottomRightRadius": 4,
-        "borderTopWidth": 0,
-        "borderWidth": 1,
-        "elevation": 5,
-        "flex": 1,
-        "left": 0,
-        "maxHeight": 120,
-        "opacity": 0,
-        "position": "absolute",
-        "top": 0,
-        "width": 0,
-        "zIndex": 1,
-      }
-    }
-  >
-    <RCTScrollView
-      ListEmptyComponent={
-        <NoOptions
-          noOptionsText="No options"
-        />
-      }
-      accessibilityLabel="Options list"
-      accessibilityState={
-        {
-          "expanded": false,
-        }
-      }
-      bounces={false}
-      data={
-        [
-          {
-            "label": "First Option",
-            "value": "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-          },
-          {
-            "label": "Second Option",
-            "value": "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-          },
-          {
-            "label": "Third Option",
-            "value": "58694a0f-3da1-471f-bd96-145571e29d72",
-          },
-        ]
-      }
-      getItem={[Function]}
-      getItemCount={[Function]}
-      getItemLayout={[Function]}
-      keyExtractor={[Function]}
-      keyboardShouldPersistTaps="handled"
-      onContentSizeChange={[Function]}
-      onLayout={[Function]}
-      onMomentumScrollBegin={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      persistentScrollbar={true}
-      removeClippedSubviews={false}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={[]}
-      testID="Options list"
-      viewabilityConfigCallbackPairs={[]}
-    >
-      <View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose First Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            forwardedRef={[Function]}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              First Option
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Second Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Second Option
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Third Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Third Option
-            </Text>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>,
-]
+  </View>
+</View>
 `;
 
-exports[`Select with custom select control arrow icon should generate Select with custom select control arrow icon snapshot 1`] = `
-[
+exports[`Select with multi selection should generate Select with multi selection enabled snapshot 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    [
+      {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
   <View
-    onLayout={[Function]}
     style={
-      [
-        {
-          "position": "relative",
-        },
-        undefined,
-      ]
+      {
+        "position": "relative",
+      }
     }
   >
     <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        {
-          "position": "relative",
-        }
-      }
-    >
-      <View
-        accessibilityLabel="Open a dropdown"
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          [
-            {
-              "backgroundColor": "#ffffff",
-              "borderRadius": 4,
-              "borderWidth": 1,
-              "flexDirection": "row",
-              "height": 40,
-            },
-            false,
-            undefined,
-            {},
-          ]
-        }
-      >
-        <View
-          style={
-            [
-              {
-                "flex": 1,
-                "height": "100%",
-                "justifyContent": "center",
-                "paddingHorizontal": 12,
-              },
-              {
-                "paddingRight": 55,
-              },
-            ]
-          }
-        >
-          <Text
-            numberOfLines={1}
-            style={
-              [
-                {
-                  "fontSize": 12,
-                  "textAlign": "left",
-                },
-                undefined,
-                {
-                  "color": "#808080",
-                },
-              ]
-            }
-          >
-            Select...
-          </Text>
-        </View>
-        <View
-          style={
-            [
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": "100%",
-                "justifyContent": "center",
-                "position": "absolute",
-                "right": 8,
-                "top": 0,
-              },
-              undefined,
-            ]
-          }
-        >
-          <Image
-            collapsable={false}
-            source={
-              {
-                "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
-              }
-            }
-            style={
-              {
-                "height": 15,
-                "transform": [
-                  {
-                    "rotate": "0deg",
-                  },
-                ],
-                "width": 15,
-                "zIndex": -1,
-              }
-            }
-          />
-        </View>
-      </View>
-    </View>
-  </View>,
-  <View
-    collapsable={false}
-    pointerEvents="none"
-    style={
-      {
-        "backgroundColor": "#ffffff",
-        "borderBottomLeftRadius": 4,
-        "borderBottomRightRadius": 4,
-        "borderTopWidth": 0,
-        "borderWidth": 1,
-        "elevation": 5,
-        "flex": 1,
-        "left": 0,
-        "maxHeight": 120,
-        "opacity": 0,
-        "position": "absolute",
-        "top": 0,
-        "width": 0,
-        "zIndex": 1,
-      }
-    }
-  >
-    <RCTScrollView
-      ListEmptyComponent={
-        <NoOptions
-          noOptionsText="No options"
-        />
-      }
-      accessibilityLabel="Options list"
-      accessibilityState={
-        {
-          "expanded": false,
-        }
-      }
-      bounces={false}
-      data={
         [
           {
-            "label": "First Option",
-            "value": "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+            "backgroundColor": "#ffffff",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "height": 40,
           },
-          {
-            "label": "Second Option",
-            "value": "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-          },
-          {
-            "label": "Third Option",
-            "value": "58694a0f-3da1-471f-bd96-145571e29d72",
-          },
+          false,
+          undefined,
+          {},
         ]
-      }
-      getItem={[Function]}
-      getItemCount={[Function]}
-      getItemLayout={[Function]}
-      keyExtractor={[Function]}
-      keyboardShouldPersistTaps="handled"
-      onContentSizeChange={[Function]}
-      onLayout={[Function]}
-      onMomentumScrollBegin={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      persistentScrollbar={true}
-      removeClippedSubviews={false}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={[]}
-      testID="Options list"
-      viewabilityConfigCallbackPairs={[]}
-    >
-      <View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose First Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            forwardedRef={[Function]}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              First Option
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Second Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Second Option
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Third Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Third Option
-            </Text>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>,
-]
-`;
-
-exports[`Select with multi selection and searchable should generate Select with multi selection and searchable enabled snapshot 1`] = `
-[
-  <View
-    onLayout={[Function]}
-    style={
-      [
-        {
-          "position": "relative",
-        },
-        undefined,
-      ]
-    }
-  >
-    <View
-      style={
-        {
-          "position": "relative",
-        }
       }
     >
       <View
-        accessibilityLabel="Open a dropdown"
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           [
             {
-              "backgroundColor": "#ffffff",
-              "borderRadius": 4,
-              "borderWidth": 1,
-              "flexDirection": "row",
-              "height": 40,
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
             },
-            false,
-            undefined,
-            {},
+            {
+              "paddingRight": 40,
+            },
           ]
         }
       >
-        <View
+        <RCTScrollView
+          horizontal={true}
           style={
-            [
-              {
-                "flex": 1,
-                "height": "100%",
-                "justifyContent": "center",
-                "paddingHorizontal": 12,
-              },
-              {
-                "paddingRight": 40,
-              },
-            ]
+            {
+              "flex": 1,
+            }
           }
         >
-          <RCTScrollView
-            horizontal={true}
-            style={
-              {
-                "flex": 1,
+          <View>
+            <View
+              accessibilityLabel="Placeholder in multi-select"
+              accessibilityState={
+                {
+                  "disabled": true,
+                }
               }
-            }
-          >
-            <View>
-              <TextInput
-                accessibilityLabel="Place text"
-                editable={true}
-                onChangeText={[Function]}
-                onPressIn={[Function]}
-                placeholder="Select..."
-                placeholderTextColor="#808080"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                [
+                  {
+                    "alignItems": "flex-start",
+                    "display": "flex",
+                    "justifyContent": "center",
+                  },
+                  undefined,
+                  {
+                    "width": "100%",
+                  },
+                ]
+              }
+            >
+              <Text
+                numberOfLines={1}
                 style={
                   [
                     {
                       "fontSize": 12,
-                    },
-                    undefined,
-                  ]
-                }
-                textAlign="left"
-                value=""
-              />
-            </View>
-          </RCTScrollView>
-        </View>
-        <View
-          style={
-            [
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": "100%",
-                "justifyContent": "center",
-                "position": "absolute",
-                "right": 8,
-                "top": 0,
-              },
-              undefined,
-            ]
-          }
-        >
-          <View
-            accessibilityLabel="Arrow for opening dropdown"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <Image
-              collapsable={false}
-              source={
-                {
-                  "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
-                }
-              }
-              style={
-                {
-                  "height": 24,
-                  "transform": [
-                    {
-                      "rotate": "0deg",
-                    },
-                  ],
-                  "width": 24,
-                  "zIndex": -1,
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-    </View>
-  </View>,
-  <View
-    collapsable={false}
-    pointerEvents="none"
-    style={
-      {
-        "backgroundColor": "#ffffff",
-        "borderBottomLeftRadius": 4,
-        "borderBottomRightRadius": 4,
-        "borderTopWidth": 0,
-        "borderWidth": 1,
-        "elevation": 5,
-        "flex": 1,
-        "left": 0,
-        "maxHeight": 120,
-        "opacity": 0,
-        "position": "absolute",
-        "top": 0,
-        "width": 0,
-        "zIndex": 1,
-      }
-    }
-  >
-    <RCTScrollView
-      ListEmptyComponent={
-        <NoOptions
-          noOptionsText="No options"
-        />
-      }
-      accessibilityLabel="Options list"
-      accessibilityState={
-        {
-          "expanded": false,
-        }
-      }
-      bounces={false}
-      data={
-        [
-          {
-            "label": "First test options",
-            "value": "test1",
-          },
-          {
-            "label": "Second test options",
-            "value": "test2",
-          },
-          {
-            "label": "Third test option",
-            "value": "test3",
-          },
-        ]
-      }
-      getItem={[Function]}
-      getItemCount={[Function]}
-      getItemLayout={[Function]}
-      keyExtractor={[Function]}
-      keyboardShouldPersistTaps="handled"
-      onContentSizeChange={[Function]}
-      onLayout={[Function]}
-      onMomentumScrollBegin={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      persistentScrollbar={true}
-      removeClippedSubviews={false}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={[]}
-      testID="Options list"
-      viewabilityConfigCallbackPairs={[]}
-    >
-      <View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose First test options option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            forwardedRef={[Function]}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              First test options
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Second test options option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Second test options
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Third test option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Third test option
-            </Text>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>,
-]
-`;
-
-exports[`Select with multi selection should generate Select with multi selection enabled snapshot 1`] = `
-[
-  <View
-    onLayout={[Function]}
-    style={
-      [
-        {
-          "position": "relative",
-        },
-        undefined,
-      ]
-    }
-  >
-    <View
-      style={
-        {
-          "position": "relative",
-        }
-      }
-    >
-      <View
-        accessibilityLabel="Open a dropdown"
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          [
-            {
-              "backgroundColor": "#ffffff",
-              "borderRadius": 4,
-              "borderWidth": 1,
-              "flexDirection": "row",
-              "height": 40,
-            },
-            false,
-            undefined,
-            {},
-          ]
-        }
-      >
-        <View
-          style={
-            [
-              {
-                "flex": 1,
-                "height": "100%",
-                "justifyContent": "center",
-                "paddingHorizontal": 12,
-              },
-              {
-                "paddingRight": 40,
-              },
-            ]
-          }
-        >
-          <RCTScrollView
-            horizontal={true}
-            style={
-              {
-                "flex": 1,
-              }
-            }
-          >
-            <View>
-              <View
-                accessibilityLabel="Placeholder in multi-select"
-                accessibilityState={
-                  {
-                    "disabled": true,
-                  }
-                }
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  [
-                    {
-                      "alignItems": "flex-start",
-                      "display": "flex",
-                      "justifyContent": "center",
+                      "textAlign": "left",
                     },
                     undefined,
                     {
-                      "width": "100%",
+                      "color": "#808080",
                     },
                   ]
                 }
               >
-                <Text
-                  numberOfLines={1}
-                  style={
-                    [
-                      {
-                        "fontSize": 12,
-                        "textAlign": "left",
-                      },
-                      undefined,
-                      {
-                        "color": "#808080",
-                      },
-                    ]
-                  }
-                >
-                  Select...
-                </Text>
-              </View>
+                Select...
+              </Text>
             </View>
-          </RCTScrollView>
-        </View>
-        <View
-          style={
-            [
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": "100%",
-                "justifyContent": "center",
-                "position": "absolute",
-                "right": 8,
-                "top": 0,
-              },
-              undefined,
-            ]
-          }
-        >
-          <View
-            accessibilityLabel="Arrow for opening dropdown"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <Image
-              collapsable={false}
-              source={
-                {
-                  "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
-                }
-              }
-              style={
-                {
-                  "height": 24,
-                  "transform": [
-                    {
-                      "rotate": "0deg",
-                    },
-                  ],
-                  "width": 24,
-                  "zIndex": -1,
-                }
-              }
-            />
           </View>
-        </View>
+        </RCTScrollView>
       </View>
-    </View>
-  </View>,
-  <View
-    collapsable={false}
-    pointerEvents="none"
-    style={
-      {
-        "backgroundColor": "#ffffff",
-        "borderBottomLeftRadius": 4,
-        "borderBottomRightRadius": 4,
-        "borderTopWidth": 0,
-        "borderWidth": 1,
-        "elevation": 5,
-        "flex": 1,
-        "left": 0,
-        "maxHeight": 120,
-        "opacity": 0,
-        "position": "absolute",
-        "top": 0,
-        "width": 0,
-        "zIndex": 1,
-      }
-    }
-  >
-    <RCTScrollView
-      ListEmptyComponent={
-        <NoOptions
-          noOptionsText="No options"
-        />
-      }
-      accessibilityLabel="Options list"
-      accessibilityState={
-        {
-          "expanded": false,
-        }
-      }
-      bounces={false}
-      data={
-        [
-          {
-            "label": "First Option",
-            "value": "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-          },
-          {
-            "label": "Second Option",
-            "value": "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-          },
-          {
-            "label": "Third Option",
-            "value": "58694a0f-3da1-471f-bd96-145571e29d72",
-          },
-        ]
-      }
-      getItem={[Function]}
-      getItemCount={[Function]}
-      getItemLayout={[Function]}
-      keyExtractor={[Function]}
-      keyboardShouldPersistTaps="handled"
-      onContentSizeChange={[Function]}
-      onLayout={[Function]}
-      onMomentumScrollBegin={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      persistentScrollbar={true}
-      removeClippedSubviews={false}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={[]}
-      testID="Options list"
-      viewabilityConfigCallbackPairs={[]}
-    >
-      <View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose First Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            forwardedRef={[Function]}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              First Option
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Second Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Second Option
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Third Option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Third Option
-            </Text>
-          </View>
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>,
-]
-`;
-
-exports[`Select with searchable enabled should generate Select with searchable enabled snapshot 1`] = `
-[
-  <View
-    onLayout={[Function]}
-    style={
-      [
-        {
-          "position": "relative",
-        },
-        undefined,
-      ]
-    }
-  >
-    <View
-      style={
-        {
-          "position": "relative",
-        }
-      }
-    >
       <View
-        accessibilityLabel="Open a dropdown"
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           [
             {
-              "backgroundColor": "#ffffff",
-              "borderRadius": 4,
-              "borderWidth": 1,
+              "alignItems": "center",
               "flexDirection": "row",
-              "height": 40,
+              "height": "100%",
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 8,
+              "top": 0,
             },
-            false,
             undefined,
-            {},
           ]
         }
       >
         <View
-          style={
-            [
-              {
-                "flex": 1,
-                "height": "100%",
-                "justifyContent": "center",
-                "paddingHorizontal": 12,
-              },
-              {
-                "paddingRight": 55,
-              },
-            ]
-          }
-        >
-          <TextInput
-            accessibilityLabel="Place text"
-            editable={true}
-            onChangeText={[Function]}
-            onPressIn={[Function]}
-            placeholder="Select..."
-            placeholderTextColor="#808080"
-            style={
-              [
-                {
-                  "fontSize": 12,
-                },
-                undefined,
-              ]
+          accessibilityLabel="Arrow for opening dropdown"
+          accessibilityState={
+            {
+              "disabled": false,
             }
-            textAlign="left"
-            value=""
-          />
-        </View>
-        <View
-          style={
-            [
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": "100%",
-                "justifyContent": "center",
-                "position": "absolute",
-                "right": 8,
-                "top": 0,
-              },
-              undefined,
-            ]
           }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
         >
           <Image
             collapsable={false}
@@ -1958,223 +737,130 @@ exports[`Select with searchable enabled should generate Select with searchable e
         </View>
       </View>
     </View>
-  </View>,
+  </View>
+</View>
+`;
+
+exports[`Select with searchable enabled should generate Select with searchable enabled snapshot 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    [
+      {
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
   <View
-    collapsable={false}
-    pointerEvents="none"
     style={
       {
-        "backgroundColor": "#ffffff",
-        "borderBottomLeftRadius": 4,
-        "borderBottomRightRadius": 4,
-        "borderTopWidth": 0,
-        "borderWidth": 1,
-        "elevation": 5,
-        "flex": 1,
-        "left": 0,
-        "maxHeight": 120,
-        "opacity": 0,
-        "position": "absolute",
-        "top": 0,
-        "width": 0,
-        "zIndex": 1,
+        "position": "relative",
       }
     }
   >
-    <RCTScrollView
-      ListEmptyComponent={
-        <NoOptions
-          noOptionsText="No options"
-        />
-      }
-      accessibilityLabel="Options list"
-      accessibilityState={
-        {
-          "expanded": false,
-        }
-      }
-      bounces={false}
-      data={
+    <View
+      accessibilityLabel="Open a dropdown"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
         [
           {
-            "label": "First test options",
-            "value": "test1",
+            "backgroundColor": "#ffffff",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "flexDirection": "row",
+            "height": 40,
           },
-          {
-            "label": "Second test options",
-            "value": "test2",
-          },
-          {
-            "label": "Third test option",
-            "value": "test3",
-          },
+          false,
+          undefined,
+          {},
         ]
       }
-      getItem={[Function]}
-      getItemCount={[Function]}
-      getItemLayout={[Function]}
-      keyExtractor={[Function]}
-      keyboardShouldPersistTaps="handled"
-      onContentSizeChange={[Function]}
-      onLayout={[Function]}
-      onMomentumScrollBegin={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      persistentScrollbar={true}
-      removeClippedSubviews={false}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={[]}
-      testID="Options list"
-      viewabilityConfigCallbackPairs={[]}
     >
-      <View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose First test options option"
-            accessibilityRole="button"
-            accessibilityState={
+      <View
+        style={
+          [
+            {
+              "flex": 1,
+              "height": "100%",
+              "justifyContent": "center",
+              "paddingHorizontal": 12,
+            },
+            {
+              "paddingRight": 55,
+            },
+          ]
+        }
+      >
+        <TextInput
+          accessibilityLabel="Place text"
+          editable={true}
+          onChangeText={[Function]}
+          onPressIn={[Function]}
+          placeholder="Select..."
+          placeholderTextColor="#808080"
+          style={
+            [
               {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            forwardedRef={[Function]}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              First test options
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Second test options option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Second test options
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            accessibilityLabel="Choose Third test option option"
-            accessibilityRole="button"
-            accessibilityState={
-              {
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "height": 40,
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingHorizontal": 12,
-              }
-            }
-          >
-            <Text
-              numberOfLines={1}
-              style={
-                [
-                  {
-                    "color": "#000000",
-                    "fontSize": 12,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Third test option
-            </Text>
-          </View>
-        </View>
+                "fontSize": 12,
+              },
+              undefined,
+            ]
+          }
+          textAlign="left"
+          value=""
+        />
       </View>
-    </RCTScrollView>
-  </View>,
-]
+      <View
+        style={
+          [
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 8,
+              "top": 0,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Image
+          collapsable={false}
+          source={
+            {
+              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+            }
+          }
+          style={
+            {
+              "height": 24,
+              "transform": [
+                {
+                  "rotate": "0deg",
+                },
+              ],
+              "width": 24,
+              "zIndex": -1,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+</View>
 `;
