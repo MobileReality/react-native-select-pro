@@ -10,8 +10,6 @@ describe('MultiSelectedOption', () => {
                 option={{ label: 'test', value: 'test' }}
                 optionWidth="100%"
                 isPlaceholder={false}
-                placeholderText={undefined}
-                placeholderTextColor={undefined}
                 textStyle={{}}
                 multiSelectionOptionStyle={{}}
             />,

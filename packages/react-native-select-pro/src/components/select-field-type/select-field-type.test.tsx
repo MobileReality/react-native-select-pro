@@ -7,21 +7,9 @@ describe('SelectFieldType', () => {
     it('should generate SelectFieldType snapshot', () => {
         const selectFieldType = render(
             <SelectFieldType
-                isOpened={false}
-                selectedOption={null}
-                dispatch={() => {}}
-                disabled={false}
-                multiSelection={false}
-                placeholderText={undefined}
-                placeholderTextColor={undefined}
-                searchPattern={undefined}
-                textInputProps={{}}
-                searchValue=""
-                setPosition={() => {}}
                 textStyle={undefined}
                 containerStyle={undefined}
                 multiSelectionOptionStyle={undefined}
-                onPressSelectControl={() => {}}
                 onPressRemove={() => {}}
             />,
         );

@@ -1,14 +1,12 @@
-import type { ComponentPropsWithRef } from 'react';
 import type { SelectControlStyles } from 'packages/react-native-select-pro/src/types/styles';
 
 import type { OptionalToRequired } from '../../helpers';
-import type { OptionType, Select } from '../../index';
+import type { OptionType } from '../../index';
 
 type FromSelectComponentProps = Pick<
-    ComponentPropsWithRef<typeof Select>,
-    'placeholderText' | 'placeholderTextColor'
-> &
-    Pick<SelectControlStyles, 'textStyle' | 'multiSelectionOptionStyle'>;
+    SelectControlStyles,
+    'textStyle' | 'multiSelectionOptionStyle'
+>;
 
 export type MultiSelectedOptionProps = {
     option: OptionType | null;

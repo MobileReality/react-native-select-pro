@@ -3,10 +3,11 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
+import { useOptionsListContext } from '../../context';
 
-import type { NoOptionsProps } from './no-options.types';
+export const NoOptions = () => {
+    const { noOptionsText } = useOptionsListContext();
 
-export const NoOptions = ({ noOptionsText }: NoOptionsProps) => {
     return (
         <View style={styles.option}>
             <Text style={styles.text}>{noOptionsText}</Text>

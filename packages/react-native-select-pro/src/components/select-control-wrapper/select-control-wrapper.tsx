@@ -4,26 +4,24 @@ import type { ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, SHAPE } from '../../constants/styles';
+import { useSelectContext } from '../../context';
 
 import type { SelectControlWrapperProps } from './select-control-wrapper.types';
 
 export const SelectControlWrapper = forwardRef(
     (
         {
-            multiSelection,
-            selectedOption,
             accessibilityHint,
             accessibilityLabel,
-            aboveSelectControl,
-            isOpened,
             children,
-            disabled,
             onPress,
             containerStyle,
             disabledStyle,
         }: SelectControlWrapperProps,
         ref: ForwardedRef<View>,
     ) => {
+        const { isOpened, disabled, aboveSelectControl, multiSelection, selectedOption } =
+            useSelectContext();
         const renderContent = useCallback(() => {
             const properties = {
                 ref,

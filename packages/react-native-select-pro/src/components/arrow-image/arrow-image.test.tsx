@@ -5,9 +5,7 @@ import { ArrowImage } from './arrow-image';
 
 describe('ArrowImage', () => {
     it('should generate ArrowImage snapshot', () => {
-        const arrowImage = render(
-            <ArrowImage arrowIconStyles={{}} isOpened={true} animation={true} />,
-        );
+        const arrowImage = render(<ArrowImage />);
         expect(arrowImage).toMatchSnapshot();
     });
 });

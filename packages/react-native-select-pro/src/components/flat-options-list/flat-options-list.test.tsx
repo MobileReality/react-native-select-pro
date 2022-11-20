@@ -14,16 +14,9 @@ describe('FlatOptionsList', () => {
         };
         const flatOptionsList = render(
             <FlatOptionsList
-                flatListProps={undefined}
-                isOpened={false}
-                noOptionsText={undefined}
-                scrollToSelectedOption={false}
-                NoOptionsComponent={undefined}
-                selectedOptionIndex={0}
                 resolvedData={DATA}
                 renderItem={() => <Text>Test Item</Text>}
                 getItemLayout={() => ITEM_LAYOUT}
-                onPressOption={() => {}}
             />,
         );
         expect(flatOptionsList).toMatchSnapshot();

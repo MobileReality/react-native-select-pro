@@ -7,7 +7,7 @@ import { OptionsListWrapper } from './options-list-wrapper';
 describe('OptionsListWrapper', () => {
     it('should generate OptionsListWrapper snapshot', () => {
         const optionsListWrapper = render(
-            <OptionsListWrapper animation={false} isOpened={false} wrapperStyles={{}}>
+            <OptionsListWrapper wrapperStyles={{}}>
                 <View>
                     <Text>Test</Text>
                 </View>

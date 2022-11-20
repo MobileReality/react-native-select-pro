@@ -1,23 +1,26 @@
 import React, { useCallback } from 'react';
 import { FlatList } from 'react-native';
 
-import { ERRORS, logError } from '../../helpers/log-error';
+import { useOptionsListContext } from '../../context';
+import { ERRORS, logError } from '../../helpers';
 import { NoOptions } from '../no-options';
 
 import type { FlatOptionsListProps } from './flat-options-list.types';
 
 export const FlatOptionsList = ({
-    flatListProps,
-    isOpened,
-    noOptionsText,
-    scrollToSelectedOption,
-    NoOptionsComponent,
-    selectedOptionIndex,
-    onPressOption,
     resolvedData,
     getItemLayout,
     renderItem,
 }: FlatOptionsListProps) => {
+    const {
+        NoOptionsComponent,
+        flatListProps,
+        isOpened,
+        scrollToSelectedOption,
+        onPressOption,
+        selectedOptionIndex,
+    } = useOptionsListContext();
+
     const flatList = useCallback(
         (node: FlatList | null) => {
             if (node !== null) {
@@ -60,7 +63,7 @@ export const FlatOptionsList = ({
             persistentScrollbar={true}
             renderItem={renderItem}
             {...flatListProps}
-            ListEmptyComponent={NoOptionsComponent ?? <NoOptions noOptionsText={noOptionsText} />}
+            ListEmptyComponent={NoOptionsComponent ?? <NoOptions />}
         />
     );
 };

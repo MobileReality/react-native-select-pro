@@ -2,6 +2,7 @@ import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { ScrollView, StyleSheet } from 'react-native';
 
+import { useSelectContext } from '../../context';
 import type { OptionType } from '../../index';
 import { MultiSelectedOption } from '../multi-selected-option';
 import { SelectInput } from '../select-input';
@@ -13,20 +14,10 @@ export const MultiSelect = ({
     textStyle,
     containerStyle,
     selectedOptions,
-    placeholderText,
-    placeholderTextColor,
     onPressRemove,
-    disabled,
-    dispatch,
-    isOpened,
-    onPressSelectControl,
-    searchPattern,
-    textInputProps,
-    searchValue,
-    setPosition,
-    multiSelection,
     multiSelectionOptionStyle,
 }: MultiSelectProps) => {
+    const { searchValue } = useSelectContext();
     const containerWidth = (containerStyle as ViewStyle)?.width;
     const { calculatedOptionWidth } = useMultiSelect({ selectedOptions, containerWidth });
     const isSearchable = typeof searchValue === 'string';
@@ -36,18 +27,7 @@ export const MultiSelect = ({
             <SelectInput
                 selectedOption={selectedOptions}
                 {...{
-                    disabled,
-                    dispatch,
-                    isOpened,
-                    multiSelection,
-                    placeholderText,
-                    placeholderTextColor,
-                    searchPattern,
-                    textInputProps,
-                    searchValue,
                     textStyle,
-                    setPosition,
-                    onPressSelectControl,
                 }}
             />
         );
@@ -58,8 +38,6 @@ export const MultiSelect = ({
                 option={null}
                 optionWidth="100%"
                 {...{
-                    placeholderText,
-                    placeholderTextColor,
                     textStyle,
                     multiSelectionOptionStyle,
                 }}
@@ -77,10 +55,8 @@ export const MultiSelect = ({
                     optionWidth={calculatedOptionWidth}
                     {...{
                         option,
-                        placeholderText,
                         textStyle,
                         multiSelectionOptionStyle,
-                        placeholderTextColor,
                         onPressRemove,
                     }}
                 />

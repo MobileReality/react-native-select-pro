@@ -5,14 +5,7 @@ import { ClearOption } from './clear-option';
 
 describe('ClearOption', () => {
     it('should generate ClearOption snapshot', () => {
-        const clearOption = render(
-            <ClearOption
-                selectControlClearOptionA11yLabel={undefined}
-                disabled={false}
-                clearOptionStyles={{}}
-                onPressRemove={() => {}}
-            />,
-        );
+        const clearOption = render(<ClearOption onPressRemove={() => {}} />);
         expect(clearOption).toMatchSnapshot();
     });
 });

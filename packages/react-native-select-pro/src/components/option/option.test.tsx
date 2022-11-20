@@ -13,9 +13,6 @@ describe('Option', () => {
                 optionSelectedStyle={{}}
                 optionStyle={{}}
                 optionTextStyle={{}}
-                OptionComponent={undefined}
-                onPressOption={() => {}}
-                onSelect={() => {}}
             />,
         );
         expect(option).toMatchSnapshot();

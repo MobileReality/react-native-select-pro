@@ -5,23 +5,7 @@ import { SelectInput } from './select-input';
 
 describe('SelectInput', () => {
     it('should generate SelectInput snapshot', () => {
-        const selectInput = render(
-            <SelectInput
-                disabled={false}
-                isOpened={false}
-                searchValue=""
-                searchPattern={undefined}
-                textInputProps={{}}
-                placeholderText={undefined}
-                dispatch={() => {}}
-                setPosition={() => {}}
-                multiSelection={false}
-                selectedOption={null}
-                placeholderTextColor={undefined}
-                textStyle={{}}
-                onPressSelectControl={() => {}}
-            />,
-        );
+        const selectInput = render(<SelectInput selectedOption={null} textStyle={{}} />);
         expect(selectInput).toMatchSnapshot();
     });
 });

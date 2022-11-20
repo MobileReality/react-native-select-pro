@@ -14,22 +14,11 @@ describe('SectionOptionsList', () => {
         };
         const sectionOptionsList = render(
             <SectionOptionsList
-                isOpened={false}
                 resolvedData={DATA}
-                selectedOption={{
-                    label: 'test',
-                    value: 'test',
-                    section: { title: 'test', index: 0 },
-                }}
-                scrollToSelectedOption={false}
-                noOptionsText={undefined}
-                NoOptionsComponent={undefined}
-                sectionListProps={undefined}
                 sectionHeaderTextStyle={undefined}
                 sectionHeaderContainerStyle={undefined}
                 getItemLayout={() => ITEM_LAYOUT}
                 renderItem={() => <Text>Test</Text>}
-                onPressOption={() => {}}
             />,
         );
         expect(sectionOptionsList).toMatchSnapshot();

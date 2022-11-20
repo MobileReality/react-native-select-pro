@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import type { EmitterSubscription } from 'react-native';
 import { AccessibilityInfo } from 'react-native';
 
-import { isAndroid } from '../helpers';
-import { ERRORS, logError } from '../helpers/log-error';
+import { ERRORS, isAndroid, logError } from '../helpers';
 
 export const useAccessibilityScreenReader = () => {
     const [isScreenReaderEnabled, setIsScreenReaderEnabled] = useState(false);

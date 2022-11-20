@@ -3,6 +3,7 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
+import { useSelectContext } from '../../context';
 import { selectedOptionResolver } from '../../helpers';
 import { MultiSelect } from '../multi-select';
 import { SelectInput } from '../select-input';
@@ -10,44 +11,23 @@ import { SelectInput } from '../select-input';
 import type { SelectFieldTypeProps } from './select-field-type.types';
 
 export const SelectFieldType = ({
-    isOpened,
-    selectedOption,
-    onPressSelectControl,
-    dispatch,
-    disabled,
-    multiSelection,
-    placeholderText,
-    placeholderTextColor,
-    searchPattern,
-    textInputProps,
-    searchValue,
-    setPosition,
     onPressRemove,
     containerStyle,
     textStyle,
     multiSelectionOptionStyle,
 }: SelectFieldTypeProps) => {
+    const { multiSelection, placeholderText, placeholderTextColor, searchValue, selectedOption } =
+        useSelectContext();
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
 
     const multiSelect = (
         <MultiSelect
             {...{
-                disabled,
-                dispatch,
-                isOpened,
-                multiSelection,
-                placeholderText,
-                placeholderTextColor,
-                searchPattern,
-                textInputProps,
-                searchValue,
                 containerStyle,
                 textStyle,
                 multiSelectionOptionStyle,
                 selectedOptions,
-                setPosition,
                 onPressRemove,
-                onPressSelectControl,
             }}
         />
     );
@@ -55,19 +35,8 @@ export const SelectFieldType = ({
     const selectInput = (
         <SelectInput
             {...{
-                disabled,
-                dispatch,
-                isOpened,
-                multiSelection,
-                placeholderText,
-                placeholderTextColor,
-                searchPattern,
-                textInputProps,
-                searchValue,
                 textStyle,
                 selectedOption,
-                setPosition,
-                onPressSelectControl,
             }}
         />
     );
