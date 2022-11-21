@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Dimensions, FlatList, Text, View } from 'react-native';
+import { Dimensions, FlatList, SafeAreaView, Text, View } from 'react-native';
 import { SelectProvider } from '@mobile-reality/react-native-select-pro';
 
 import { Button } from './components/Button';
@@ -114,7 +114,7 @@ export const App = () => {
     });
 
     return (
-        <View style={{ flex: 1, backgroundColor: '#f0f3e8' }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#f0f3e8' }}>
             <FlatList
                 testID="Examples List"
                 data={data}
@@ -183,6 +183,6 @@ export const App = () => {
                     </View>
                 </>
             )}
-        </View>
+        </SafeAreaView>
     );
 };
