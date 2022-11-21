@@ -6,10 +6,11 @@ import { useSelectContext } from '../../context';
 
 import type { ClearOptionProps } from './clear-option.types';
 
+const icon = require('./../../assets/icons/x.png');
+
 export const ClearOption = ({ onPressRemove }: ClearOptionProps) => {
-    const { selectControlClearOptionA11yLabel, clearOptionStyles } = useSelectContext();
+    const { selectControlClearOptionA11yLabel, clearOptionStyles, disabled } = useSelectContext();
     const { buttonHitSlop, buttonStyle, iconStyle } = clearOptionStyles ?? {};
-    const { disabled } = useSelectContext();
 
     return (
         <Pressable
@@ -21,10 +22,7 @@ export const ClearOption = ({ onPressRemove }: ClearOptionProps) => {
             disabled={disabled}
             onPress={onPressRemove}
         >
-            <Image
-                source={require('./../../assets/icons/x.png')}
-                style={[styles.xIcon, iconStyle]}
-            />
+            <Image source={icon} style={[styles.xIcon, iconStyle]} />
         </Pressable>
     );
 };
