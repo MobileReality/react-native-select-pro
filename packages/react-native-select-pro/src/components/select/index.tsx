@@ -2,6 +2,7 @@ import React, {
     ForwardedRef,
     forwardRef,
     RefObject,
+    useContext,
     useEffect,
     useImperativeHandle,
     useReducer,
@@ -37,6 +38,7 @@ import type {
 } from '../../types';
 import { OptionsList } from '../options-list';
 import { SelectControl } from '../select-control';
+import { SelectModalContext } from '../select-provider';
 
 export const Select = forwardRef(
     (props: SelectProps, ref: ForwardedRef<SelectRef>) => {
@@ -271,6 +273,7 @@ export const Select = forwardRef(
         };
 
         const windowDimensions = useWindowDimensions();
+        const valueY = useContext(SelectModalContext);
 
         const setPosition = () => {
             if (containerRef.current) {
@@ -315,7 +318,7 @@ export const Select = forwardRef(
                                 width,
                                 top: isOverflow
                                     ? pageY - finalHeight
-                                    : pageY + height,
+                                    : pageY + height - valueY,
                                 left: I18nManager.isRTL
                                     ? windowDimensions.width - width - pageX
                                     : pageX,
