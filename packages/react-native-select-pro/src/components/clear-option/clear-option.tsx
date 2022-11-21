@@ -2,14 +2,14 @@ import React from 'react';
 import type { ImageStyle, ViewStyle } from 'react-native';
 import { Image, Pressable, StyleSheet } from 'react-native';
 
+import { useSelectContext } from '../../context';
+
 import type { ClearOptionProps } from './clear-option.types';
 
-export const ClearOption = ({
-    selectControlClearOptionA11yLabel,
-    disabled,
-    onPressRemove,
-    clearOptionStyles,
-}: ClearOptionProps) => {
+const icon = require('./../../assets/icons/x.png');
+
+export const ClearOption = ({ onPressRemove }: ClearOptionProps) => {
+    const { selectControlClearOptionA11yLabel, clearOptionStyles, disabled } = useSelectContext();
     const { buttonHitSlop, buttonStyle, iconStyle } = clearOptionStyles ?? {};
 
     return (
@@ -22,10 +22,7 @@ export const ClearOption = ({
             disabled={disabled}
             onPress={onPressRemove}
         >
-            <Image
-                source={require('./../../assets/icons/x.png')}
-                style={[styles.xIcon, iconStyle]}
-            />
+            <Image source={icon} style={[styles.xIcon, iconStyle]} />
         </Pressable>
     );
 };

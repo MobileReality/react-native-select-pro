@@ -1,11 +1,11 @@
-import type { ComponentProps } from 'react';
 import { useEffect, useRef } from 'react';
 import { Animated } from 'react-native';
+import type { SelectProps } from '@mobile-reality/react-native-select-pro';
 
-import type { OptionsList } from '../components/options-list';
 import { ANIMATION_DURATION } from '../constants/styles';
+import type { State } from '../state/types';
 
-type UseAnimationProps = Pick<ComponentProps<typeof OptionsList>, 'animation' | 'isOpened'>;
+type UseAnimationProps = Pick<SelectProps, 'animation'> & Pick<State, 'isOpened'>;
 
 export const useAnimation = ({ isOpened, animation }: UseAnimationProps) => {
     const ref = useRef(new Animated.Value(0));

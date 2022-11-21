@@ -1,4 +1,4 @@
-import type { ComponentPropsWithRef, ForwardedRef } from 'react';
+import type { ComponentPropsWithRef, ForwardedRef, RefObject } from 'react';
 import type { View } from 'react-native';
 
 import type { OptionalToRequired } from '../../helpers';
@@ -23,7 +23,7 @@ type FromSelectComponent = Pick<
 export type UseSelect = OptionalToRequired<
     FromSelectComponent & {
         dispatch: DispatchType;
-        containerRef: React.RefObject<View>;
+        containerRef: RefObject<View>;
         ref: ForwardedRef<SelectRef>;
         state: State;
     }

@@ -3,24 +3,16 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING } from '../../constants/styles';
+import { useOptionsListContext } from '../../context';
 
 import type { OnChooseOption, OptionProps } from './option.types';
 
 export const Option = forwardRef<TouchableOpacity, OptionProps>(
     (
-        {
-            optionSelectedStyle,
-            optionStyle,
-            optionTextStyle,
-            isSelected,
-            onPressOption,
-            option,
-            onSelect,
-            OptionComponent,
-            optionIndex,
-        },
+        { optionSelectedStyle, optionStyle, optionTextStyle, isSelected, option, optionIndex },
         ref,
     ) => {
+        const { OptionComponent, onSelect, onPressOption } = useOptionsListContext();
         const { label } = option;
 
         const onChooseOption: OnChooseOption = () => {

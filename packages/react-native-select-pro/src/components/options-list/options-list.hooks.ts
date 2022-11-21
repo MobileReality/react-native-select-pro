@@ -3,19 +3,16 @@ import type { TouchableOpacity } from 'react-native';
 import { AccessibilityInfo, findNodeHandle, StyleSheet } from 'react-native';
 
 import { ITEM_HEIGHT } from '../../constants/styles';
+import { useOptionsListContext } from '../../context';
 import { selectedOptionResolver } from '../../helpers';
 import type { OptionType } from '../../types';
 
 import type { ItemLayout, UseOptionsListProps } from './options-list.types';
 
-export const useOptionsList = ({
-    selectedOption,
-    searchedOptions,
-    searchValue,
-    isOpened,
-    optionsData,
-    optionStyle,
-}: UseOptionsListProps) => {
+export const useOptionsList = ({ optionStyle }: UseOptionsListProps) => {
+    const { isOpened, optionsData, searchValue, selectedOption, searchedOptions } =
+        useOptionsListContext();
+
     const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
         selectedOptionResolver(selectedOption);
 

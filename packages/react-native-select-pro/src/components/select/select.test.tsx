@@ -5,6 +5,8 @@ import { SelectProvider } from '../select-provider';
 
 import { Select } from './select';
 
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+
 describe('Select', () => {
     it('should generate Select snapshot', () => {
         const DATA = [{ label: 'test', value: 'test' }];

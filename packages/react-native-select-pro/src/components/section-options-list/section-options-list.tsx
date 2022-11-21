@@ -2,27 +2,30 @@ import React, { useCallback } from 'react';
 import type { SectionListData } from 'react-native';
 import { SectionList } from 'react-native';
 
+import { useOptionsListContext } from '../../context';
+import { ERRORS, logError } from '../../helpers';
 import { getSectionLocation } from '../../helpers/get-section-location';
-import { ERRORS, logError } from '../../helpers/log-error';
 import { NoOptions } from '../no-options';
-import { SectionHeader } from '../section-header/section-header';
+import { SectionHeader } from '../section-header';
 
 import type { SectionOptionsListProps } from './section-options-list.types';
 
 export const SectionOptionsList = ({
-    isOpened,
     resolvedData,
-    noOptionsText,
-    NoOptionsComponent,
-    sectionListProps,
     sectionHeaderTextStyle,
     sectionHeaderContainerStyle,
     getItemLayout,
     renderItem,
-    onPressOption,
-    selectedOption,
-    scrollToSelectedOption,
 }: SectionOptionsListProps) => {
+    const {
+        NoOptionsComponent,
+        isOpened,
+        scrollToSelectedOption,
+        onPressOption,
+        selectedOption,
+        sectionListProps,
+    } = useOptionsListContext();
+
     const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => (
         <SectionHeader
             title={info.section.title}
@@ -69,7 +72,7 @@ export const SectionOptionsList = ({
             renderSectionHeader={renderSectionHeader}
             renderItem={renderItem}
             {...sectionListProps}
-            ListEmptyComponent={NoOptionsComponent ?? <NoOptions noOptionsText={noOptionsText} />}
+            ListEmptyComponent={NoOptionsComponent ?? <NoOptions />}
         />
     );
 };

@@ -1,16 +1,13 @@
 import React from 'react';
 import { Animated, View } from 'react-native';
 
+import { useOptionsListContext } from '../../context';
 import { useAnimation } from '../../hooks';
 
 import type { OptionsListWrapperProps } from './options-list-wrapper.types';
 
-export const OptionsListWrapper = ({
-    children,
-    animation,
-    isOpened,
-    wrapperStyles,
-}: OptionsListWrapperProps) => {
+export const OptionsListWrapper = ({ children, wrapperStyles }: OptionsListWrapperProps) => {
+    const { animation, isOpened } = useOptionsListContext();
     const fadeAnimation = useAnimation({ isOpened, animation });
 
     return fadeAnimation ? (

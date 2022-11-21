@@ -8,13 +8,14 @@ import { ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize, isSectionOptionsType } from '../../helpers';
 import { getReducedSectionData } from '../../helpers';
 import { selectedOptionResolver } from '../../helpers';
-import { ERRORS, logError } from '../../helpers/log-error';
+import { ERRORS, logError } from '../../helpers';
 import { Action } from '../../state/types';
 import type {
     OnOutsidePress,
     OnPressOptionType,
     OnPressSelectControlType,
     OptionType,
+    SelectRef,
 } from '../../types';
 
 import type { UseSelect } from './select.types';
@@ -95,31 +96,34 @@ export const useSelect = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [optionsData, defaultOption, isSectionedOptions]);
 
-    useImperativeHandle(ref, () => ({
-        clear: () => {
-            dispatch({
-                type: Action.SelectOption,
-                payload: { selectedOption: null, selectedOptionIndex: -1 },
-            });
-            if (onRemove) {
-                onRemove(selectedOption, selectedOptionIndex);
-            }
-        },
-        open: () => {
-            if (containerRef.current && !disabled) {
+    useImperativeHandle(
+        ref,
+        (): SelectRef => ({
+            clear: () => {
                 dispatch({
-                    type: Action.Open,
+                    type: Action.SelectOption,
+                    payload: { selectedOption: null, selectedOptionIndex: -1 },
                 });
-                setPosition();
-            }
-        },
-        close: () => {
-            dispatch({
-                type: Action.Close,
-            });
-        },
-        getState: () => state,
-    }));
+                if (onRemove) {
+                    onRemove(selectedOption, selectedOptionIndex);
+                }
+            },
+            open: () => {
+                if (containerRef.current && !disabled) {
+                    dispatch({
+                        type: Action.Open,
+                    });
+                    setPosition();
+                }
+            },
+            close: () => {
+                dispatch({
+                    type: Action.Close,
+                });
+            },
+            getState: () => state,
+        }),
+    );
 
     const hideKeyboardIfNeeded = () => {
         // TODO: Better condition handling, however, typo error appears in every combination

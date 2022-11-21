@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import type { OptionType } from '@mobile-reality/react-native-select-pro';
 
+import { useSelectContext } from '../../context';
 import {
     getReducedSectionData,
     isAndroid,
@@ -9,23 +9,23 @@ import {
 } from '../../helpers';
 import { useAccessibilityScreenReader } from '../../hooks';
 import { Action } from '../../state/types';
+import type { OptionType } from '../../types';
 
-import type { UseSelectControl } from './select-control.types';
-
-export const useSelectControl = ({
-    dispatch,
-    searchValue,
-    multiSelection,
-    isOpened,
-    selectControlOpenDropdownA11yLabel,
-    clearable,
-    selectedOption,
-    disabled,
-    optionsData,
-    selectedOptionIndex,
-    onRemove,
-    onPressSelectControl,
-}: UseSelectControl) => {
+export const useSelectControl = () => {
+    const {
+        isOpened,
+        clearable,
+        disabled,
+        multiSelection,
+        optionsData,
+        searchValue,
+        onPressSelectControl,
+        selectControlOpenDropdownA11yLabel,
+        onRemove,
+        dispatch,
+        selectedOption,
+        selectedOptionIndex,
+    } = useSelectContext();
     const { selectedOptions, selectedOptionLabel } = selectedOptionResolver(selectedOption);
 
     const isScreenReaderEnabled = useAccessibilityScreenReader();
@@ -111,7 +111,7 @@ export const useSelectControl = ({
         if (disabled) {
             return;
         }
-        let removedOption = null;
+        let removedOption;
         if (option && multiSelection && selectedOptions) {
             removedOption = removeOptionInMultiSelection(option, selectedOptions);
         } else {

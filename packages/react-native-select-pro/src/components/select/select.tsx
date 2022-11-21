@@ -2,10 +2,14 @@ import type { ForwardedRef } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
 import type { ViewStyle } from 'react-native';
 import { StyleSheet, View } from 'react-native';
+import { Portal } from '@gorhom/portal';
 
+import { Portals } from '../../constants/portals';
 import { COLORS } from '../../constants/styles';
+import { OptionsListContextProvider, SelectContextProvider } from '../../context';
 import { initialData, reducer } from '../../state/reducer';
 import type { SelectProps, SelectRef } from '../../types';
+import { Backdrop } from '../backdrop';
 import { OptionsList } from '../options-list';
 import { SelectControl } from '../select-control';
 
@@ -98,55 +102,70 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
 
     return (
         <View style={[styles.relative, containerStyle]} onLayout={setPosition}>
-            <SelectControl
-                ref={containerRef}
-                aboveSelectControl={aboveSelectControl}
-                animation={animation}
-                clearable={clearable}
-                disabled={disabled}
-                dispatch={dispatch}
-                hideArrow={hideArrow}
-                isOpened={isOpened}
-                multiSelection={multiSelection}
-                optionsData={optionsData}
-                placeholderText={placeholderText}
-                placeholderTextColor={placeholderTextColor}
-                searchPattern={searchPattern}
-                searchValue={searchValue}
-                textInputProps={textInputProps}
-                selectControlClearOptionA11yLabel={selectControlClearOptionA11yLabel}
-                selectControlOpenDropdownA11yLabel={selectControlOpenDropdownA11yLabel}
-                selectedOption={selectedOption}
-                selectedOptionIndex={selectedOptionIndex}
-                clearOptionStyles={clearOptionStyles}
-                customLeftIconStyles={customLeftIconStyles}
-                selectControlStyles={selectControlStyles}
-                arrowIconStyles={arrowIconStyles}
-                setPosition={setPosition}
-                onPressSelectControl={onPressSelectControl}
-                onRemove={onRemove}
-            />
-            <OptionsList
-                NoOptionsComponent={NoOptionsComponent}
-                OptionComponent={OptionComponent}
-                aboveSelectControl={aboveSelectControl}
-                animation={animation}
-                flatListProps={flatListProps}
-                isOpened={isOpened}
-                noOptionsText={noOptionsText}
-                openedPosition={openedPosition}
-                optionsData={optionsData}
-                scrollToSelectedOption={scrollToSelectedOption}
-                searchValue={searchValue}
-                searchedOptions={searchedOptions}
-                selectedOption={selectedOption}
-                selectedOptionIndex={selectedOptionIndex}
-                sectionListProps={sectionListProps}
-                optionsListStyles={optionsListStyles}
-                onOutsidePress={onOutsidePress}
-                onPressOption={onPressOption}
-                onSelect={onSelect}
-            />
+            <SelectContextProvider
+                value={{
+                    isOpened,
+                    arrowIconStyles,
+                    animation,
+                    aboveSelectControl,
+                    clearable,
+                    disabled,
+                    hideArrow,
+                    multiSelection,
+                    optionsData,
+                    placeholderText,
+                    placeholderTextColor,
+                    searchPattern,
+                    searchValue,
+                    onPressSelectControl,
+                    textInputProps,
+                    selectControlClearOptionA11yLabel,
+                    selectControlOpenDropdownA11yLabel,
+                    clearOptionStyles,
+                    onRemove,
+                    dispatch,
+                    customLeftIconStyles,
+                    selectControlStyles,
+                    setPosition,
+                    selectedOption,
+                    selectedOptionIndex,
+                }}
+            >
+                <SelectControl ref={containerRef} />
+            </SelectContextProvider>
+            {isOpened && (
+                <>
+                    <Portal hostName={Portals.Backdrop}>
+                        <Backdrop onOutsidePress={onOutsidePress} />
+                    </Portal>
+                    <Portal hostName={Portals.OptionsList}>
+                        <OptionsListContextProvider
+                            value={{
+                                animation,
+                                NoOptionsComponent,
+                                OptionComponent,
+                                aboveSelectControl,
+                                flatListProps,
+                                isOpened,
+                                noOptionsText,
+                                openedPosition,
+                                optionsData,
+                                scrollToSelectedOption,
+                                searchValue,
+                                onSelect,
+                                onPressOption,
+                                selectedOption,
+                                searchedOptions,
+                                selectedOptionIndex,
+                                sectionListProps,
+                                optionsListStyles,
+                            }}
+                        >
+                            <OptionsList />
+                        </OptionsListContextProvider>
+                    </Portal>
+                </>
+            )}
         </View>
     );
 });

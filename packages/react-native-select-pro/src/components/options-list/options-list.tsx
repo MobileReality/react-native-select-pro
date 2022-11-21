@@ -1,10 +1,9 @@
 import React from 'react';
 import type { ViewStyle } from 'react-native';
-import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
-import { Portal } from '@gorhom/portal';
+import { StyleSheet } from 'react-native';
 
-import { Portals } from '../../constants/portals';
 import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
+import { useOptionsListContext } from '../../context';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
 import { FlatOptionsList } from '../flat-options-list';
 import { Option } from '../option';
@@ -12,29 +11,15 @@ import { OptionsListWrapper } from '../options-list-wrapper';
 import { SectionOptionsList } from '../section-options-list';
 
 import { useOptionsList } from './options-list.hooks';
-import type { OptionsListProps, RenderItemProps } from './options-list.types';
+import type { RenderItemProps } from './options-list.types';
 
-export const OptionsList = ({
-    aboveSelectControl,
-    flatListProps,
-    onPressOption,
-    selectedOption,
-    animation,
-    searchedOptions,
-    searchValue,
-    isOpened,
-    onOutsidePress,
-    openedPosition: { width, top, left },
-    optionsData,
-    noOptionsText,
-    scrollToSelectedOption,
-    onSelect,
-    NoOptionsComponent,
-    OptionComponent,
-    selectedOptionIndex,
-    sectionListProps,
-    optionsListStyles,
-}: OptionsListProps) => {
+export const OptionsList = () => {
+    const {
+        aboveSelectControl,
+        openedPosition: { width, top, left },
+        optionsListStyles,
+    } = useOptionsListContext();
+
     const {
         optionSelectedStyle,
         optionStyle,
@@ -45,11 +30,6 @@ export const OptionsList = ({
     } = optionsListStyles ?? {};
 
     const { getItemLayout, measuredRef, findSelectedOption, resolveData } = useOptionsList({
-        selectedOption,
-        searchedOptions,
-        searchValue,
-        isOpened,
-        optionsData,
         optionStyle,
     });
 
@@ -73,7 +53,6 @@ export const OptionsList = ({
             <Option
                 key={value}
                 ref={index === 0 ? measuredRef : undefined}
-                OptionComponent={OptionComponent}
                 isSelected={isSelected}
                 option={{ ...item, section: sectionObj }}
                 {...{
@@ -81,88 +60,50 @@ export const OptionsList = ({
                     optionStyle,
                     optionTextStyle,
                     optionIndex,
-                    onPressOption,
-                    onSelect,
                 }}
             />
         );
     };
 
     return (
-        <>
-            {isOpened && (
-                <Portal hostName={Portals.SelectOutsideWrapper}>
-                    <TouchableWithoutFeedback
-                        accessibilityLabel="Close a dropdown from outside"
-                        accessibilityRole="button"
-                        onPress={onOutsidePress}
-                    >
-                        <View style={styles.modalOverlay} />
-                    </TouchableWithoutFeedback>
-                </Portal>
+        <OptionsListWrapper
+            wrapperStyles={[
+                styles.options,
+                containerStyle,
+                { top, left, width },
+                aboveSelectControl ? styles.overflown : styles.notOverflown,
+            ]}
+        >
+            {isSectionedOptions ? (
+                <SectionOptionsList
+                    {...{
+                        resolvedData,
+                        getItemLayout,
+                        renderItem,
+                        sectionHeaderTextStyle,
+                        sectionHeaderContainerStyle,
+                    }}
+                />
+            ) : (
+                <FlatOptionsList
+                    {...{
+                        resolvedData,
+                        getItemLayout,
+                        renderItem,
+                    }}
+                />
             )}
-            <Portal hostName={Portals.Select}>
-                <OptionsListWrapper
-                    animation={animation}
-                    isOpened={isOpened}
-                    wrapperStyles={[
-                        styles.options,
-                        containerStyle,
-                        { top, left, width },
-                        aboveSelectControl ? styles.overflown : styles.notOverflown,
-                    ]}
-                >
-                    {isSectionedOptions ? (
-                        <SectionOptionsList
-                            {...{
-                                isOpened,
-                                resolvedData,
-                                noOptionsText,
-                                NoOptionsComponent,
-                                getItemLayout,
-                                renderItem,
-                                sectionHeaderTextStyle,
-                                sectionHeaderContainerStyle,
-                                sectionListProps,
-                                onPressOption,
-                                selectedOption,
-                                scrollToSelectedOption,
-                            }}
-                        />
-                    ) : (
-                        <FlatOptionsList
-                            {...{
-                                isOpened,
-                                noOptionsText,
-                                scrollToSelectedOption,
-                                NoOptionsComponent,
-                                selectedOptionIndex,
-                                onPressOption,
-                                resolvedData,
-                                getItemLayout,
-                                renderItem,
-                                flatListProps,
-                            }}
-                        />
-                    )}
-                </OptionsListWrapper>
-            </Portal>
-        </>
+        </OptionsListWrapper>
     );
 };
 
 type Styles = {
-    modalOverlay: ViewStyle;
     options: ViewStyle;
     notOverflown: ViewStyle;
     overflown: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
-    modalOverlay: {
-        ...StyleSheet.absoluteFillObject,
-        zIndex: 1,
-    },
     options: {
         flex: 1,
         position: 'absolute',

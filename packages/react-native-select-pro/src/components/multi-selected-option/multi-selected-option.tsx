@@ -3,6 +3,7 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../constants/styles';
+import { useSelectContext } from '../../context';
 
 import type { MultiSelectedOptionProps } from './multi-selected-option.types';
 
@@ -11,11 +12,10 @@ export const MultiSelectedOption = ({
     option,
     textStyle,
     multiSelectionOptionStyle,
-    placeholderText,
-    placeholderTextColor,
     optionWidth,
     onPressRemove,
 }: MultiSelectedOptionProps) => {
+    const { placeholderText, placeholderTextColor } = useSelectContext();
     const isPressable = onPressRemove && option;
     return (
         <Pressable

@@ -3,25 +3,25 @@ import type { TextStyle } from 'react-native';
 import { I18nManager, Keyboard, StyleSheet, TextInput } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../constants/styles';
+import { useSelectContext } from '../../context';
 import { Action } from '../../state/types';
 
 import type { SelectInputProps } from './select-input.types';
 
-export const SelectInput = ({
-    disabled,
-    isOpened,
-    searchValue,
-    searchPattern,
-    textInputProps,
-    placeholderText,
-    onPressSelectControl,
-    dispatch,
-    setPosition,
-    multiSelection,
-    selectedOption,
-    placeholderTextColor,
-    textStyle,
-}: SelectInputProps) => {
+export const SelectInput = ({ selectedOption, textStyle }: SelectInputProps) => {
+    const {
+        isOpened,
+        disabled,
+        multiSelection,
+        placeholderText,
+        placeholderTextColor,
+        searchPattern,
+        searchValue,
+        onPressSelectControl,
+        textInputProps,
+        dispatch,
+        setPosition,
+    } = useSelectContext();
     const searchInputRef = useRef<TextInput>(null);
 
     useEffect(() => {

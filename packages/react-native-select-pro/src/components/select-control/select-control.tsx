@@ -2,146 +2,72 @@ import React, { forwardRef, Fragment } from 'react';
 import type { ViewStyle } from 'react-native';
 import { Image, StyleSheet, View } from 'react-native';
 
+import { useSelectContext } from '../../context';
 import { Arrow } from '../arrow';
 import { ClearOption } from '../clear-option';
 import { SelectControlWrapper } from '../select-control-wrapper';
 import { SelectFieldType } from '../select-field-type';
 
 import { useSelectControl } from './select-control.hooks';
-import type { SelectControlProps } from './select-control.types';
 
-export const SelectControl = forwardRef<View, SelectControlProps>(
-    (
-        {
-            isOpened,
-            animation,
-            selectedOption,
-            onPressSelectControl,
-            dispatch,
-            clearable,
-            optionsData,
-            disabled,
-            multiSelection,
-            placeholderText,
-            placeholderTextColor,
-            searchPattern,
-            textInputProps,
-            searchValue,
-            setPosition,
-            selectControlClearOptionA11yLabel,
-            selectControlOpenDropdownA11yLabel,
-            hideArrow,
-            onRemove,
-            aboveSelectControl,
-            selectedOptionIndex,
-            customLeftIconStyles,
-            arrowIconStyles,
-            clearOptionStyles,
-            selectControlStyles,
-        },
-        ref,
-    ) => {
-        const {
-            textStyle,
-            containerStyle,
-            multiSelectionOptionStyle,
-            disabledStyle,
-            buttonsContainerStyle,
-        } = selectControlStyles ?? {};
+export const SelectControl = forwardRef<View>((_, ref) => {
+    const { hideArrow, customLeftIconStyles, selectControlStyles } = useSelectContext();
+    const {
+        textStyle,
+        containerStyle,
+        multiSelectionOptionStyle,
+        disabledStyle,
+        buttonsContainerStyle,
+    } = selectControlStyles ?? {};
 
-        const { accessibilityHint, accessibilityLabel, clearOptionStatus, onPressRemove, onPress } =
-            useSelectControl({
-                searchValue,
-                dispatch,
-                multiSelection,
-                selectControlOpenDropdownA11yLabel,
-                isOpened,
-                selectedOption,
-                clearable,
-                disabled,
-                onRemove,
-                selectedOptionIndex,
-                optionsData,
-                onPressSelectControl,
-            });
+    const { accessibilityHint, accessibilityLabel, clearOptionStatus, onPressRemove, onPress } =
+        useSelectControl();
 
-        const clearOption = (
-            <ClearOption
+    const clearOption = (
+        <ClearOption
+            {...{
+                onPressRemove,
+            }}
+        />
+    );
+
+    const { showClearOption, showClearOptionA11y } = clearOptionStatus;
+    const { iconStyle, iconSource } = customLeftIconStyles ?? {};
+
+    return (
+        <Fragment>
+            <SelectControlWrapper
                 {...{
-                    disabled,
-                    selectControlClearOptionA11yLabel,
-                    clearOptionStyles,
-                    onPressRemove,
+                    accessibilityHint,
+                    accessibilityLabel,
+                    containerStyle,
+                    disabledStyle,
+                    onPress,
+                    ref,
                 }}
-            />
-        );
-
-        const { showClearOption, showClearOptionA11y } = clearOptionStatus;
-        const { iconStyle, iconSource } = customLeftIconStyles ?? {};
-
-        return (
-            <Fragment>
-                <SelectControlWrapper
-                    {...{
-                        multiSelection,
-                        selectedOption,
-                        accessibilityHint,
-                        accessibilityLabel,
-                        aboveSelectControl,
-                        isOpened,
-                        disabled,
-                        containerStyle,
-                        disabledStyle,
-                        onPress,
-                        ref,
-                    }}
-                >
-                    {!!iconSource && (
-                        <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
-                            <Image source={iconSource} style={iconStyle} />
-                        </View>
-                    )}
-                    <SelectFieldType
-                        {...{
-                            isOpened,
-                            selectedOption,
-                            onPressSelectControl,
-                            dispatch,
-                            disabled,
-                            multiSelection,
-                            placeholderText,
-                            placeholderTextColor,
-                            searchPattern,
-                            textInputProps,
-                            searchValue,
-                            setPosition,
-                            onPressRemove,
-                            textStyle,
-                            containerStyle,
-                            multiSelectionOptionStyle,
-                        }}
-                    />
-                    <View style={[styles.buttonsContainer, buttonsContainerStyle]}>
-                        {showClearOption && clearOption}
-                        {!hideArrow && (
-                            <Arrow
-                                {...{
-                                    isOpened,
-                                    disabled,
-                                    animation,
-                                    multiSelection,
-                                    arrowIconStyles,
-                                    onPressSelectControl,
-                                }}
-                            />
-                        )}
+            >
+                {!!iconSource && (
+                    <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
+                        <Image source={iconSource} style={iconStyle} />
                     </View>
-                </SelectControlWrapper>
-                {showClearOptionA11y && <View style={styles.a11IconWrapper}>{clearOption}</View>}
-            </Fragment>
-        );
-    },
-);
+                )}
+                <SelectFieldType
+                    {...{
+                        onPressRemove,
+                        textStyle,
+                        containerStyle,
+                        multiSelectionOptionStyle,
+                    }}
+                />
+                <View style={[styles.buttonsContainer, buttonsContainerStyle]}>
+                    {showClearOption && clearOption}
+                    {!hideArrow && <Arrow />}
+                </View>
+            </SelectControlWrapper>
+            {showClearOptionA11y && <View style={styles.a11IconWrapper}>{clearOption}</View>}
+        </Fragment>
+    );
+});
 
 type Styles = {
     buttonsContainer: ViewStyle;

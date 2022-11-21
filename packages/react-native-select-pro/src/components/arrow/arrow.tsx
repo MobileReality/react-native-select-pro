@@ -1,30 +1,13 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 
+import { useSelectContext } from '../../context';
 import { ArrowImage } from '../arrow-image';
 
-import type { ArrowProps } from './arrow.types';
-
-export const Arrow = ({
-    isOpened,
-    disabled,
-    animation,
-    multiSelection,
-    onPressSelectControl,
-    arrowIconStyles,
-}: ArrowProps) => {
-    const arrowImage = (
-        <ArrowImage
-            {...{
-                isOpened,
-                animation,
-                arrowIconStyles,
-            }}
-        />
-    );
-
+export const Arrow = () => {
+    const { disabled, multiSelection, onPressSelectControl } = useSelectContext();
     if (!multiSelection) {
-        return arrowImage;
+        return <ArrowImage />;
     }
 
     return (
@@ -33,7 +16,7 @@ export const Arrow = ({
             disabled={disabled}
             onPress={onPressSelectControl}
         >
-            {arrowImage}
+            <ArrowImage />
         </Pressable>
     );
 };

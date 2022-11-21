@@ -1,13 +1,9 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import type { OptionalToRequired } from '../../helpers';
 import type { SelectControlStyles } from '../../types/styles';
-import type { SelectControl } from '../select-control';
 
-export type FromSelectControlComponent = Pick<
-    ComponentPropsWithRef<typeof SelectControl>,
-    'multiSelection' | 'selectedOption' | 'aboveSelectControl' | 'isOpened' | 'disabled'
-> & {
+export type FromSelectControlComponent = {
     accessibilityHint: string | undefined;
     accessibilityLabel: string;
     children: ReactNode;

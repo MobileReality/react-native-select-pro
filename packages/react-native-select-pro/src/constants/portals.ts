@@ -1,4 +1,4 @@
 export enum Portals {
-    Select = 'select',
-    SelectOutsideWrapper = 'selectOutsideWrapper',
+    Backdrop = 'backdrop',
+    OptionsList = 'optionsList',
 }

@@ -2,13 +2,13 @@ import React from 'react';
 import type { ImageStyle } from 'react-native';
 import { Animated, Image, StyleSheet } from 'react-native';
 
+import { useSelectContext } from '../../context';
 import { useAnimation } from '../../hooks';
-
-import type { ArrowImageProps } from './arrow-image.types';
 
 const arrowImage = require('./../../assets/icons/chevron-down.png');
 
-export const ArrowImage = ({ isOpened, animation, arrowIconStyles }: ArrowImageProps) => {
+export const ArrowImage = () => {
+    const { isOpened, arrowIconStyles, animation } = useSelectContext();
     const rotateAnimation = useAnimation({ isOpened, animation });
     const { iconStyle, iconSource } = arrowIconStyles ?? {};
 
