@@ -14,6 +14,7 @@ import { CustomStyles } from './examples/custom-styles';
 import { ModalExample } from './examples/modal-example';
 import { MultiSelect } from './examples/multiselect';
 import { MultiSelectWithSearchable } from './examples/multiselect-with-searchable';
+import { NoBackdrop } from './examples/no-backdrop';
 import { Overflow } from './examples/overflow';
 import { Ref } from './examples/ref';
 import { RHF } from './examples/rhf';
@@ -111,6 +112,10 @@ const data = [
     {
         name: 'Sections with MultiSelect',
         getScreen: () => <SectionsWithMultiSelect />,
+    },
+    {
+        name: 'No Backdrop',
+        getScreen: () => <NoBackdrop />,
     },
 ];
 

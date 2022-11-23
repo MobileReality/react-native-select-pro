@@ -52,6 +52,12 @@ hideArrow?: boolean;
 ```
 If `true` hide select control arrow
 
+### noBackdrop
+```typescript jsx
+noBackdrop?: boolean;
+```
+If `true` don't render Backdrop component
+
 ### multiSelection
 ```typescript jsx
 multiSelection?: boolean;

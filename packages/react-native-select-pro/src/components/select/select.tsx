@@ -36,6 +36,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         disabled = false,
         scrollToSelectedOption = true,
         hideArrow = false,
+        noBackdrop = false,
         // Additional features
         defaultOption,
         flatListProps,
@@ -136,9 +137,11 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
             </SelectContextProvider>
             {isOpened && (
                 <>
-                    <Portal hostName={Portals.Backdrop}>
-                        <Backdrop onOutsidePress={onOutsidePress} />
-                    </Portal>
+                    {!noBackdrop && (
+                        <Portal hostName={Portals.Backdrop}>
+                            <Backdrop onOutsidePress={onOutsidePress} />
+                        </Portal>
+                    )}
                     <Portal hostName={Portals.OptionsList}>
                         <OptionsListContextProvider
                             value={{

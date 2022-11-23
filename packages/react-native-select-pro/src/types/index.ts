@@ -147,6 +147,14 @@ export interface SelectProps<T = unknown> extends SelectStyles {
      */
     hideArrow?: boolean;
 
+    /**
+     *  If `true` don't render Backdrop component
+     *
+     *  @category Behaviour
+     *  @default false
+     */
+    noBackdrop?: boolean;
+
     // ---ADDITIONAL-FEATURES--- //
     /**
      *  Set a default option
