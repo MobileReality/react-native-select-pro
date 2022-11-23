@@ -16,11 +16,7 @@ export const RHF = () => {
                 name="select-name"
                 render={({ field }) => {
                     return (
-                        <Select
-                            options={DATA}
-                            containerStyle={{ width: 300 }}
-                            onSelect={field.onChange}
-                        />
+                        <Select options={DATA} styles={{ width: 300 }} onSelect={field.onChange} />
                     );
                 }}
             />

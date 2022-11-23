@@ -103,14 +103,16 @@ export const CustomOptionsData = () => {
     return (
         <SafeAreaViewWrapper>
             <Select
-                containerStyle={{
+                styles={{
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
+                    select: {
+                        width: 150,
+                    },
                 }}
                 // FIXME infer types
                 options={DATA}
-                selectControlStyles={{ containerStyle: { width: 150 } }}
                 onSelect={(option) => {
                     // FIXME infer types
                     setSelected(option as Fields);

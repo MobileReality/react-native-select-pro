@@ -28,13 +28,9 @@ export const CustomComponent = () => {
             <Select
                 OptionComponent={(props) => <MyOption {...props} />}
                 options={DATA}
-                containerStyle={{ width: 200 }}
+                styles={{ width: 200 }}
             />
-            <Select
-                NoOptionsComponent={<NoOptions />}
-                options={[]}
-                containerStyle={{ width: 200 }}
-            />
+            <Select NoOptionsComponent={<NoOptions />} options={[]} styles={{ width: 200 }} />
         </SafeAreaViewWrapper>
     );
 };

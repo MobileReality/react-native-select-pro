@@ -7,13 +7,9 @@ import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
 
 import type { SectionHeaderProps } from './section-header.types';
 
-export const SectionHeader = ({
-    title,
-    sectionHeaderTextStyle,
-    sectionHeaderContainerStyle,
-}: SectionHeaderProps) => (
-    <View style={[styles.sectionHeaderContainerStyle, sectionHeaderContainerStyle]}>
-        <Text style={[styles.sectionHeaderTextStyle, sectionHeaderTextStyle]}>{title}</Text>
+export const SectionHeader = ({ title, optionsList }: SectionHeaderProps) => (
+    <View style={[styles.sectionHeaderContainerStyle, optionsList?.sectionHeader]}>
+        <Text style={[styles.sectionHeaderTextStyle, optionsList?.sectionTitle]}>{title}</Text>
     </View>
 );
 

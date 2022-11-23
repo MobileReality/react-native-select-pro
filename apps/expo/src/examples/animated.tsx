@@ -9,9 +9,9 @@ export const Animated = () => {
     return (
         <SafeAreaViewWrapper>
             <Text style={{ marginBottom: 10 }}>With default animation duration (200 ms)</Text>
-            <Select options={DATA} containerStyle={{ width: 280, marginBottom: 20 }} animation />
+            <Select options={DATA} styles={{ width: 280, marginBottom: 20 }} animation />
             <Text style={{ marginBottom: 10 }}>With custom animation duration (500 ms)</Text>
-            <Select options={DATA} containerStyle={{ width: 280 }} animation={500} />
+            <Select options={DATA} styles={{ width: 280 }} animation={500} />
         </SafeAreaViewWrapper>
     );
 };

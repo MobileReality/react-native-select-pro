@@ -8,12 +8,16 @@ import { useOptionsListContext } from '../../context';
 import type { OnChooseOption, OptionProps } from './option.types';
 
 export const Option = forwardRef<TouchableOpacity, OptionProps>(
-    (
-        { optionSelectedStyle, optionStyle, optionTextStyle, isSelected, option, optionIndex },
-        ref,
-    ) => {
-        const { OptionComponent, onSelect, onPressOption } = useOptionsListContext();
+    ({ isSelected, option, optionIndex }, ref) => {
+        const {
+            OptionComponent,
+            onSelect,
+            onPressOption,
+            styles: mainStyles,
+        } = useOptionsListContext();
         const { label } = option;
+
+        const { option: optionStyles } = mainStyles ?? {};
 
         const onChooseOption: OnChooseOption = () => {
             onPressOption(option, optionIndex);
@@ -40,13 +44,13 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
                 accessible={true}
                 style={[
                     styles.option,
-                    optionStyle,
-                    isSelected && [styles.selected, optionSelectedStyle],
+                    optionStyles,
+                    isSelected && [styles.selected, optionStyles?.selected],
                 ]}
                 disabled={isSelected}
                 onPress={onChooseOption}
             >
-                <Text numberOfLines={1} style={[styles.text, optionTextStyle]}>
+                <Text numberOfLines={1} style={[styles.text, optionStyles?.text]}>
                     {label}
                 </Text>
             </TouchableOpacity>

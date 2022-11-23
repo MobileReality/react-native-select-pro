@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 
-import type { OptionalToRequired } from '../../helpers';
 import type { SelectControlStyles } from '../../types/styles';
 
 export type FromSelectControlComponent = {
@@ -8,6 +7,7 @@ export type FromSelectControlComponent = {
     accessibilityLabel: string;
     children: ReactNode;
     onPress: () => void;
-} & OptionalToRequired<Pick<SelectControlStyles, 'containerStyle' | 'disabledStyle'>>;
+    selectStyles: SelectControlStyles | undefined;
+};
 
 export type SelectControlWrapperProps = FromSelectControlComponent;

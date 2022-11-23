@@ -1,7 +1,8 @@
+import type { StyleProp, TextStyle } from 'react-native';
+
 import type { OptionalToRequired } from '../../helpers';
 import type { State } from '../../state/types';
-import type { SelectControlStyles } from '../../types/styles';
 
-export type SelectInputProps = OptionalToRequired<
-    Pick<State, 'selectedOption'> & Pick<SelectControlStyles, 'textStyle'>
->;
+export type SelectInputProps = OptionalToRequired<Pick<State, 'selectedOption'>> & {
+    textStyle: StyleProp<TextStyle>;
+};

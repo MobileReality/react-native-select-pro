@@ -15,8 +15,7 @@ export const SelectControlWrapper = forwardRef(
             accessibilityLabel,
             children,
             onPress,
-            containerStyle,
-            disabledStyle,
+            selectStyles,
         }: SelectControlWrapperProps,
         ref: ForwardedRef<View>,
     ) => {
@@ -30,8 +29,8 @@ export const SelectControlWrapper = forwardRef(
                 style: [
                     styles.container,
                     isOpened && (aboveSelectControl ? styles.openedAbove : styles.opened),
-                    containerStyle,
-                    disabled ? [styles.disabled, disabledStyle] : {},
+                    selectStyles,
+                    disabled ? [styles.disabled, selectStyles?.disabled] : {},
                 ],
             };
 
@@ -49,9 +48,8 @@ export const SelectControlWrapper = forwardRef(
             accessibilityHint,
             accessibilityLabel,
             children,
-            containerStyle,
             disabled,
-            disabledStyle,
+            selectStyles,
             isOpened,
             multiSelection,
             onPress,

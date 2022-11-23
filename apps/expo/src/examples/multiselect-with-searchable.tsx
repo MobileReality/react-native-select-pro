@@ -11,7 +11,7 @@ export const MultiSelectWithSearchable = () => {
                 multiSelection={true}
                 options={DATA}
                 searchable={true}
-                containerStyle={{ width: 300 }}
+                styles={{ width: 300 }}
             />
         </SafeAreaViewWrapper>
     );

@@ -10,7 +10,7 @@ export const MultiSelect = () => {
             <Select
                 multiSelection={true}
                 options={DATA}
-                containerStyle={{ width: 200 }}
+                styles={{ width: 200 }}
                 animation={false}
             />
         </SafeAreaViewWrapper>

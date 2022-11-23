@@ -20,11 +20,7 @@ export const SearchableInModal = () => {
                             >
                                 <Text style={styles.textStyle}>Hide Modal</Text>
                             </Pressable>
-                            <Select
-                                options={DATA}
-                                searchable={true}
-                                containerStyle={{ width: 250 }}
-                            />
+                            <Select options={DATA} searchable={true} styles={{ width: 250 }} />
                         </View>
                     </View>
                 </SelectModalProvider>

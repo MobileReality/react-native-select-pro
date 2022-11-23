@@ -35,7 +35,7 @@ export const Callbacks = () => {
             )}
             <Select
                 options={DATA}
-                containerStyle={{ width: 250 }}
+                styles={{ width: 250 }}
                 onDropdownClosed={() => {
                     setIsOpened(false);
                 }}

@@ -131,7 +131,19 @@ exports[`Select with custom left icon should generate Select with custom left ic
       {
         "position": "relative",
       },
-      undefined,
+      {
+        "select": {
+          "leftIcon": {
+            "icon": {
+              "height": 15,
+              "width": 15,
+            },
+            "source": {
+              "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
+            },
+          },
+        },
+      },
     ]
   }
 >
@@ -166,7 +178,17 @@ exports[`Select with custom left icon should generate Select with custom left ic
             "height": 40,
           },
           false,
-          undefined,
+          {
+            "leftIcon": {
+              "icon": {
+                "height": 15,
+                "width": 15,
+              },
+              "source": {
+                "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
+              },
+            },
+          },
           {},
         ]
       }
@@ -281,7 +303,19 @@ exports[`Select with custom select control arrow icon should generate Select wit
       {
         "position": "relative",
       },
-      undefined,
+      {
+        "select": {
+          "arrow": {
+            "icon": {
+              "height": 15,
+              "width": 15,
+            },
+            "source": {
+              "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
+            },
+          },
+        },
+      },
     ]
   }
 >
@@ -316,7 +350,17 @@ exports[`Select with custom select control arrow icon should generate Select wit
             "height": 40,
           },
           false,
-          undefined,
+          {
+            "arrow": {
+              "icon": {
+                "height": 15,
+                "width": 15,
+              },
+              "source": {
+                "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
+              },
+            },
+          },
           {},
         ]
       }

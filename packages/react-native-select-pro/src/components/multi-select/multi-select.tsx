@@ -10,26 +10,15 @@ import { SelectInput } from '../select-input';
 import { useMultiSelect } from './multi-select.hooks';
 import type { MultiSelectProps } from './multi-select.types';
 
-export const MultiSelect = ({
-    textStyle,
-    containerStyle,
-    selectedOptions,
-    onPressRemove,
-    multiSelectionOptionStyle,
-}: MultiSelectProps) => {
+export const MultiSelect = ({ selectedOptions, onPressRemove, selectStyles }: MultiSelectProps) => {
     const { searchValue } = useSelectContext();
-    const containerWidth = (containerStyle as ViewStyle)?.width;
+    const containerWidth = (selectStyles as ViewStyle)?.width;
     const { calculatedOptionWidth } = useMultiSelect({ selectedOptions, containerWidth });
     const isSearchable = typeof searchValue === 'string';
 
     const resolveContent = () => {
         const searchInput = (
-            <SelectInput
-                selectedOption={selectedOptions}
-                {...{
-                    textStyle,
-                }}
-            />
+            <SelectInput selectedOption={selectedOptions} textStyle={selectStyles?.text} />
         );
 
         const emptyList = (
@@ -37,10 +26,7 @@ export const MultiSelect = ({
                 isPlaceholder={true}
                 option={null}
                 optionWidth="100%"
-                {...{
-                    textStyle,
-                    multiSelectionOptionStyle,
-                }}
+                selectStyles={selectStyles}
             />
         );
 
@@ -55,8 +41,7 @@ export const MultiSelect = ({
                     optionWidth={calculatedOptionWidth}
                     {...{
                         option,
-                        textStyle,
-                        multiSelectionOptionStyle,
+                        selectStyles,
                         onPressRemove,
                     }}
                 />

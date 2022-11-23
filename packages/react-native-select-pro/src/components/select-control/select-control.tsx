@@ -11,14 +11,9 @@ import { SelectFieldType } from '../select-field-type';
 import { useSelectControl } from './select-control.hooks';
 
 export const SelectControl = forwardRef<View>((_, ref) => {
-    const { hideArrow, customLeftIconStyles, selectControlStyles } = useSelectContext();
-    const {
-        textStyle,
-        containerStyle,
-        multiSelectionOptionStyle,
-        disabledStyle,
-        buttonsContainerStyle,
-    } = selectControlStyles ?? {};
+    const { hideArrow, styles: mainStyles } = useSelectContext();
+    const { select: selectStyles } = mainStyles ?? {};
+    const { buttons, leftIcon } = selectStyles ?? {};
 
     const { accessibilityHint, accessibilityLabel, clearOptionStatus, onPressRemove, onPress } =
         useSelectControl();
@@ -32,7 +27,6 @@ export const SelectControl = forwardRef<View>((_, ref) => {
     );
 
     const { showClearOption, showClearOptionA11y } = clearOptionStatus;
-    const { iconStyle, iconSource } = customLeftIconStyles ?? {};
 
     return (
         <Fragment>
@@ -40,26 +34,23 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                 {...{
                     accessibilityHint,
                     accessibilityLabel,
-                    containerStyle,
-                    disabledStyle,
+                    selectStyles,
                     onPress,
                     ref,
                 }}
             >
-                {!!iconSource && (
+                {!!leftIcon?.source && (
                     <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
-                        <Image source={iconSource} style={iconStyle} />
+                        <Image source={leftIcon?.source} style={leftIcon?.icon} />
                     </View>
                 )}
                 <SelectFieldType
                     {...{
                         onPressRemove,
-                        textStyle,
-                        containerStyle,
-                        multiSelectionOptionStyle,
+                        selectStyles,
                     }}
                 />
-                <View style={[styles.buttonsContainer, buttonsContainerStyle]}>
+                <View style={[styles.buttonsContainer, buttons]}>
                     {showClearOption && clearOption}
                     {!hideArrow && <Arrow />}
                 </View>
