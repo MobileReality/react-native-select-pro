@@ -16,14 +16,17 @@ export type SectionType = {
     index: number;
 };
 
-export type OptionType<T = unknown> = OptionTypeRequired & T & { section?: SectionType };
+export type CustomData<T> = T extends SectionOptionType<T> ? Pick<T, 'data'> : T;
 
-export type SectionOptionType = {
+export type OptionType<T = unknown> = OptionTypeRequired &
+    CustomData<T> & { section?: SectionType };
+
+export type SectionOptionType<T = unknown> = {
     title: string;
-    data: OptionType[];
+    data: OptionType<T>[];
 };
 
-export type OptionsType = SectionOptionType[] | OptionType[];
+export type OptionsType<T> = SectionOptionType<T>[] | OptionType<T>[];
 
 export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option'> & {
     onPressOption: OnChooseOption;
@@ -32,14 +35,14 @@ export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option'> & 
 /**
  * `<Select />` component props
  */
-export interface SelectProps extends SelectStyles {
+export interface SelectProps<T = unknown> extends SelectStyles {
     // ---REQUIRED--- //
     /**
      *  Options to show on the list
      *
      *  @category Required
      */
-    options: OptionsType;
+    options: OptionsType<T>;
 
     // ---CALLBACKS--- //
     /**
@@ -49,7 +52,7 @@ export interface SelectProps extends SelectStyles {
      * @param optionIndex Selected option index
      * @category Callback
      */
-    onSelect?: (option: OptionType | null, optionIndex: number) => void;
+    onSelect?: (option: OptionType<T> | null, optionIndex: number) => void;
 
     /**
      * Callback that is called when option(s) is cleared
@@ -58,7 +61,10 @@ export interface SelectProps extends SelectStyles {
      * @param optionIndex removed option(s) index(es)
      * @category Callback
      */
-    onRemove?: (option: OptionType | OptionType[] | null, optionIndex: number | number[]) => void;
+    onRemove?: (
+        option: OptionType<T> | OptionType<T>[] | null,
+        optionIndex: number | number[],
+    ) => void;
 
     /**
      * Callback that is called when dropdown is opened
@@ -146,7 +152,7 @@ export interface SelectProps extends SelectStyles {
      *  Set a default option
      *  @category Additional Features
      */
-    defaultOption?: OptionType;
+    defaultOption?: OptionType<T>;
 
     /**
      *  `FlatListProps` imported from `react-native`
@@ -255,7 +261,7 @@ export interface SelectProps extends SelectStyles {
 /**
  * `<Select />` component ref
  */
-export interface SelectRef {
+export interface SelectRef<T = unknown> {
     /**
      * Clear a selected option
      */
@@ -271,13 +277,13 @@ export interface SelectRef {
     /**
      * Get current state of select
      */
-    getState: () => State;
+    getState: () => State<T>;
 }
 
 /**
  * @ignore
  */
-export type OnPressOptionType = (option: OptionType, optionIndex: number) => void;
+export type OnPressOptionType<T> = (option: OptionType<T>, optionIndex: number) => void;
 /**
  * @ignore
  */

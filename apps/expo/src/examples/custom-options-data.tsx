@@ -108,12 +108,10 @@ export const CustomOptionsData = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}
-                // FIXME infer types
                 options={DATA}
                 selectControlStyles={{ containerStyle: { width: 150 } }}
                 onSelect={(option) => {
-                    // FIXME infer types
-                    setSelected(option as Fields);
+                    setSelected(option);
                 }}
             />
             <View style={{ flex: 1 }}>
