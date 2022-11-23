@@ -8,7 +8,7 @@ import { Action } from '../../state/types';
 
 import type { SelectInputProps } from './select-input.types';
 
-export const SelectInput = ({ selectedOption, textStyle }: SelectInputProps) => {
+export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<T>) => {
     const {
         isOpened,
         disabled,

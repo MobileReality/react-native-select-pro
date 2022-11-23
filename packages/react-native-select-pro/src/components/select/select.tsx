@@ -1,4 +1,4 @@
-import type { ForwardedRef } from 'react';
+import type { ForwardedRef, NamedExoticComponent, ReactElement, Reducer } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
 import type { ViewStyle } from 'react-native';
 import { StyleSheet, View } from 'react-native';
@@ -8,6 +8,7 @@ import { Portals } from '../../constants/portals';
 import { COLORS } from '../../constants/styles';
 import { OptionsListContextProvider, SelectContextProvider } from '../../context';
 import { initialData, reducer } from '../../state/reducer';
+import type { ActionType, State } from '../../state/types';
 import type { SelectProps, SelectRef } from '../../types';
 import { Backdrop } from '../backdrop';
 import { OptionsList } from '../options-list';
@@ -15,7 +16,7 @@ import { SelectControl } from '../select-control';
 
 import { useSelect } from './select.hooks';
 
-export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRef>) => {
+export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<T>>) => {
     const {
         // Required
         options,
@@ -35,6 +36,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         disabled = false,
         scrollToSelectedOption = true,
         hideArrow = false,
+        noBackdrop = false,
         // Additional features
         defaultOption,
         flatListProps,
@@ -63,7 +65,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
         optionsData: resolvedOptionsData,
         searchValue: searchable ? '' : null,
     };
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer<Reducer<State<T>, ActionType<T>>>(reducer, initialState);
     const {
         isOpened,
         selectedOption,
@@ -78,7 +80,7 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
 
     const containerRef = useRef<View>(null);
 
-    const { setPosition, onPressOption, onOutsidePress, onPressSelectControl } = useSelect({
+    const { setPosition, onPressOption, onOutsidePress, onPressSelectControl } = useSelect<T>({
         options,
         containerRef,
         dispatch,
@@ -127,9 +129,11 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
             </SelectContextProvider>
             {isOpened && (
                 <>
-                    <Portal hostName={Portals.Backdrop}>
-                        <Backdrop onOutsidePress={onOutsidePress} />
-                    </Portal>
+                    {!noBackdrop && (
+                        <Portal hostName={Portals.Backdrop}>
+                            <Backdrop onOutsidePress={onOutsidePress} />
+                        </Portal>
+                    )}
                     <Portal hostName={Portals.OptionsList}>
                         <OptionsListContextProvider
                             value={{
@@ -160,7 +164,11 @@ export const Select = forwardRef((props: SelectProps, ref: ForwardedRef<SelectRe
             )}
         </View>
     );
-});
+};
+
+export const Select = forwardRef(SelectComp) as <T>(
+    props: SelectProps<T> & { ref?: ForwardedRef<SelectRef<T>> },
+) => ReactElement;
 
 type Styles = {
     relative: ViewStyle;
@@ -172,4 +180,4 @@ const styles = StyleSheet.create<Styles>({
     },
 });
 
-Select.displayName = 'Select';
+(Select as NamedExoticComponent).displayName = 'Select';

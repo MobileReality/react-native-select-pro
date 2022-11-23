@@ -14,7 +14,7 @@ export enum Action {
     SetPosition = 'setPosition',
 }
 
-export type ActionType =
+export type ActionType<T> =
     | {
           type: Action.Open;
       }
@@ -24,13 +24,13 @@ export type ActionType =
     | {
           type: Action.SelectOption;
           payload: {
-              selectedOption: OptionType | OptionType[] | null;
+              selectedOption: OptionType<T> | OptionType<T>[] | null;
               selectedOptionIndex: number | number[];
           };
       }
     | {
           type: Action.SetOptionsData;
-          payload: OptionsType;
+          payload: OptionsType<T>;
       }
     | {
           type: Action.SetPosition;
@@ -57,15 +57,15 @@ export type Position = {
     aboveSelectControl: boolean;
 };
 
-export type State = {
+export type State<T = unknown> = {
     isOpened: boolean;
-    selectedOption: OptionType | null | OptionType[];
+    selectedOption: OptionType<T> | null | OptionType<T>[];
     selectedOptionIndex: number | number[];
-    optionsData: OptionsType;
+    optionsData: OptionsType<T>;
     openedPosition: Position;
     searchValue: string | null;
-    searchedOptions: OptionsType;
+    searchedOptions: OptionsType<T>;
     searchInputRef: Ref<TextInput> | null;
 };
 
-export type DispatchType = Dispatch<ActionType>;
+export type DispatchType<T> = Dispatch<ActionType<T>>;

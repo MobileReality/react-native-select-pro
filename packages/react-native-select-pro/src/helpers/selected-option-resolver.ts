@@ -1,13 +1,15 @@
 import type { OptionType } from '../types';
 
-type SelectedOptionResolverOutput = {
+type SelectedOptionResolverOutput<T> = {
     selectedOptionValue: string;
     selectedOptionLabel: string;
-    selectedOptions: OptionType[] | null;
+    selectedOptions: OptionType<T>[] | null;
 };
 
-export const selectedOptionResolver = (selectedOption: OptionType | OptionType[] | null) => {
-    const result: SelectedOptionResolverOutput = {
+export const selectedOptionResolver = <T>(
+    selectedOption: OptionType<T> | OptionType<T>[] | null,
+) => {
+    const result: SelectedOptionResolverOutput<T> = {
         selectedOptionValue: '',
         selectedOptionLabel: '',
         selectedOptions: null,

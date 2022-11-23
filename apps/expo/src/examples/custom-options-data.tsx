@@ -111,11 +111,9 @@ export const CustomOptionsData = () => {
                         width: 150,
                     },
                 }}
-                // FIXME infer types
                 options={DATA}
                 onSelect={(option) => {
-                    // FIXME infer types
-                    setSelected(option as Fields);
+                    setSelected(option);
                 }}
             />
             <View style={{ flex: 1 }}>

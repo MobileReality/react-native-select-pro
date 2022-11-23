@@ -1,13 +1,12 @@
-import type { ComponentPropsWithRef, ForwardedRef, RefObject } from 'react';
+import type { ForwardedRef, RefObject } from 'react';
 import type { View } from 'react-native';
 
 import type { OptionalToRequired } from '../../helpers';
-import type { Select } from '../../index';
 import type { DispatchType, State } from '../../state/types';
-import type { SelectRef } from '../../types';
+import type { SelectProps, SelectRef } from '../../types';
 
-type FromSelectComponent = Pick<
-    ComponentPropsWithRef<typeof Select>,
+type FromSelectComponent<T> = Pick<
+    SelectProps<T>,
     | 'options'
     | 'defaultOption'
     | 'disabled'
@@ -20,11 +19,11 @@ type FromSelectComponent = Pick<
     | 'styles'
 >;
 
-export type UseSelect = OptionalToRequired<
-    FromSelectComponent & {
-        dispatch: DispatchType;
+export type UseSelect<T> = OptionalToRequired<
+    FromSelectComponent<T> & {
+        dispatch: DispatchType<T>;
         containerRef: RefObject<View>;
-        ref: ForwardedRef<SelectRef>;
-        state: State;
+        ref: ForwardedRef<SelectRef<T>>;
+        state: State<T>;
     }
 >;

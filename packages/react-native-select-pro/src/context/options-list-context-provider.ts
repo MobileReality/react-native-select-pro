@@ -2,8 +2,8 @@ import { createSafeContext } from '../helpers';
 import type { Position, State } from '../state/types';
 import type { OnPressOptionType, SelectProps } from '../types';
 
-type OptionsListContextProviderTypes = Pick<
-    SelectProps,
+type OptionsListContextProviderTypes<T> = Pick<
+    SelectProps<T>,
     | 'animation'
     | 'NoOptionsComponent'
     | 'OptionComponent'
@@ -16,9 +16,9 @@ type OptionsListContextProviderTypes = Pick<
 > & {
     aboveSelectControl: Position['aboveSelectControl'];
     openedPosition: Position;
-    onPressOption: OnPressOptionType;
+    onPressOption: OnPressOptionType<T>;
 } & Pick<
-        State,
+        State<T>,
         | 'optionsData'
         | 'searchValue'
         | 'selectedOption'
@@ -28,4 +28,5 @@ type OptionsListContextProviderTypes = Pick<
     >;
 
 export const [useOptionsListContext, OptionsListContextProvider] =
-    createSafeContext<OptionsListContextProviderTypes>();
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    createSafeContext<OptionsListContextProviderTypes<any>>();
