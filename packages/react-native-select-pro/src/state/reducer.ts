@@ -3,7 +3,7 @@ import { isSectionOptionsType } from '../helpers';
 import type { ActionType, State } from './types';
 import { Action } from './types';
 
-export const initialData: State = {
+export const initialData = {
     isOpened: false,
     selectedOption: null,
     selectedOptionIndex: -1,
@@ -19,7 +19,7 @@ export const initialData: State = {
     optionsData: [],
 };
 
-export const reducer = (state: State, action: ActionType): State => {
+export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => {
     switch (action.type) {
         case Action.Open:
             return {

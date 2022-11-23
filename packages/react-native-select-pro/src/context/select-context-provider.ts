@@ -6,10 +6,10 @@ import type {
 import { createSafeContext } from '../helpers';
 import type { DispatchType, Position, State } from '../state/types';
 
-type SelectContextProviderTypes = {
+type SelectContextProviderTypes<T> = {
     aboveSelectControl: Position['aboveSelectControl'];
 } & Pick<
-    SelectProps,
+    SelectProps<T>,
     | 'arrowIconStyles'
     | 'animation'
     | 'disabled'
@@ -28,13 +28,14 @@ type SelectContextProviderTypes = {
     | 'selectControlStyles'
 > &
     Pick<
-        State,
+        State<T>,
         'optionsData' | 'searchValue' | 'selectedOption' | 'selectedOptionIndex' | 'isOpened'
     > & {
         onPressSelectControl: OnPressSelectControlType;
-        dispatch: DispatchType;
+        dispatch: DispatchType<T>;
         setPosition: () => void;
     };
 
 export const [useSelectContext, SelectContextProvider] =
-    createSafeContext<SelectContextProviderTypes>();
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    createSafeContext<SelectContextProviderTypes<any>>();

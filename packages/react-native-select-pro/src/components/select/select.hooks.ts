@@ -20,7 +20,7 @@ import type {
 
 import type { UseSelect } from './select.types';
 
-export const useSelect = ({
+export const useSelect = <T>({
     ref,
     containerRef,
     state,
@@ -35,7 +35,7 @@ export const useSelect = ({
     onRemove,
     onDropdownOpened,
     onDropdownClosed,
-}: UseSelect) => {
+}: UseSelect<T>) => {
     const isFirstRenderRef = useRef(true);
     const { height: screenHeight, width: screenWidth } = useWindowDimensions();
     const { isOpened, selectedOption, optionsData, searchInputRef, selectedOptionIndex } = state;
@@ -98,7 +98,7 @@ export const useSelect = ({
 
     useImperativeHandle(
         ref,
-        (): SelectRef => ({
+        (): SelectRef<T> => ({
             clear: () => {
                 dispatch({
                     type: Action.SelectOption,
@@ -132,7 +132,7 @@ export const useSelect = ({
         }
     };
 
-    const onPressOption: OnPressOptionType = (option: OptionType, optionIndex: number) => {
+    const onPressOption: OnPressOptionType<T> = (option: OptionType<T>, optionIndex: number) => {
         if (closeDropdownOnSelect) {
             dispatch({ type: Action.Close });
         }

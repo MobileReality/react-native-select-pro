@@ -1,12 +1,16 @@
 import type { State } from '../state/types';
 import type { SectionOptionType } from '../types';
 
-type Props = {
-    data: SectionOptionType[];
+type Props<T> = {
+    data: SectionOptionType<T>[];
     scrollToSelectedOption?: boolean;
-} & Pick<State, 'selectedOption'>;
+} & Pick<State<T>, 'selectedOption'>;
 
-export const getSectionLocation = ({ data, selectedOption, scrollToSelectedOption }: Props) => {
+export const getSectionLocation = <T>({
+    data,
+    selectedOption,
+    scrollToSelectedOption,
+}: Props<T>) => {
     let sectionIndex = 0;
     let itemIndex = 0;
 
