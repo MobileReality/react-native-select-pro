@@ -12,8 +12,6 @@ import type { SectionOptionsListProps } from './section-options-list.types';
 
 export const SectionOptionsList = ({
     resolvedData,
-    sectionHeaderTextStyle,
-    sectionHeaderContainerStyle,
     getItemLayout,
     renderItem,
 }: SectionOptionsListProps) => {
@@ -24,13 +22,11 @@ export const SectionOptionsList = ({
         onPressOption,
         selectedOption,
         sectionListProps,
+        styles,
     } = useOptionsListContext();
 
     const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => (
-        <SectionHeader
-            title={info.section.title}
-            {...{ sectionHeaderContainerStyle, sectionHeaderTextStyle }}
-        />
+        <SectionHeader title={info.section.title} optionsList={styles?.optionsList} />
     );
 
     const sectionList = useCallback(

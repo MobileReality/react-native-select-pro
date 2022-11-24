@@ -25,16 +25,8 @@ export const ModalExample = () => {
                             >
                                 <Text style={styles.textStyle}>Hide Modal</Text>
                             </Pressable>
-                            <Select
-                                clearable={true}
-                                options={DATA}
-                                containerStyle={{ width: 200 }}
-                            />
-                            <Select
-                                clearable={true}
-                                options={DATA}
-                                containerStyle={{ width: 200 }}
-                            />
+                            <Select clearable={true} options={DATA} styles={{ width: 200 }} />
+                            <Select clearable={true} options={DATA} styles={{ width: 200 }} />
                         </View>
                     </View>
                 </SelectModalProvider>

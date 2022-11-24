@@ -9,47 +9,24 @@ import type {
 
 export type SelectStyles = {
     /**
-     * Styles of select control
-     *
-     * @category Styles
-     */
-    selectControlStyles?: SelectControlStyles;
-
-    /**
-     * Styles of optionsList
-     *
-     * @category Styles
-     */
-    optionsListStyles?: OptionsListStyles;
-
-    /**
-     *  Styles of arrow in select control
-     *
-     *  @category Styles
-     */
-    arrowIconStyles?: ArrowIconStyles;
-
-    /**
-     *  Styles of clear option in select control
-     *
-     *  @category Styles
-     */
-    clearOptionStyles?: ClearOptionStyles;
-
-    /**
-     * Styles of custom left icon in select control
-     *
-     * @category Styles
-     */
-    customLeftIconStyles?: CustomLeftIconStyles;
-
-    /**
      * Style of container select control
      *
      * @category Styles
      */
-    containerStyle?: StyleProp<ViewStyle>;
-};
+    select?: SelectControlStyles;
+    /**
+     * Style of single option
+     *
+     * @category Styles
+     */
+    option?: OptionStyles;
+    /**
+     *  Style of options list
+     *
+     *  @category Styles
+     */
+    optionsList?: OptionsListStyles;
+} & StyleProp<ViewStyle>;
 
 export type SelectControlStyles = {
     /**
@@ -57,36 +34,75 @@ export type SelectControlStyles = {
      *
      *  @category Styles
      */
-    textStyle?: StyleProp<TextStyle>;
-
-    /**
-     *  Style of select control
-     *
-     *  @category Styles
-     */
-    containerStyle?: StyleProp<ViewStyle>;
-
+    text?: StyleProp<TextStyle>;
     /**
      *  Style of disabled select control
      *
      *  @category Styles
      */
-    disabledStyle?: StyleProp<TextStyle>;
-
+    disabled?: StyleProp<TextStyle>;
     /**
      *  Style of container buttons in select control
      *
      *  @category Styles
      */
-    buttonsContainerStyle?: StyleProp<ViewStyle>;
-
+    buttons?: StyleProp<ViewStyle>;
     /**
-     *  Custom multiselection option style
+     *  Style of container buttons in select control
      *
      *  @category Styles
      */
-    multiSelectionOptionStyle?: StyleProp<ViewStyle>;
-};
+    multiSelectionOption?: StyleProp<ViewStyle>;
+    /**
+     *  Styles of arrow in select control
+     *
+     *  @category Styles
+     */
+    arrow?: ArrowIconStyles;
+    /**
+     *  Styles of clear option in select control
+     *
+     *  @category Styles
+     */
+    clear?: ClearOptionStyles;
+    /**
+     * Styles of custom left icon in select control
+     *
+     * @category Styles
+     */
+    leftIcon?: LeftIconStyles;
+} & StyleProp<ViewStyle>;
+
+export type OptionStyles = {
+    /**
+     * Style of selected single option
+     *
+     * @category Styles
+     */
+    selected?: StyleProp<ViewStyle>;
+    /**
+     * Style of single option text
+     *
+     * @category Styles
+     */
+    text?: StyleProp<TextStyle>;
+} & StyleProp<ViewStyle>;
+
+export type OptionsListStyles = {
+    /**
+     * Style of section header container when section data type is provided
+     *
+     * @category Styles
+     */
+    sectionHeader?: StyleProp<ViewStyle>;
+
+    /**
+     * Style of section header title when section data type is provided
+     *
+     * @category Styles
+     */
+    sectionTitle?: StyleProp<TextStyle>;
+} & StyleProp<ViewStyle>;
 
 export type ClearOptionStyles = {
     /**
@@ -94,21 +110,21 @@ export type ClearOptionStyles = {
      *
      *  @category Styles
      */
-    buttonStyle?: StyleProp<ViewStyle>;
+    button?: StyleProp<ViewStyle>;
 
     /**
      *  Hit Slop for clear option button
      *
      *  @category Styles
      */
-    buttonHitSlop?: Insets;
+    hitSlop?: Insets;
 
     /**
      *  Style of clear option image
      *
      *  @category Styles
      */
-    iconStyle?: StyleProp<ImageStyle>;
+    icon?: StyleProp<ImageStyle>;
 };
 
 export type ArrowIconStyles = {
@@ -117,72 +133,28 @@ export type ArrowIconStyles = {
      *
      *  @category Styles
      */
-    iconStyle?: StyleProp<ImageStyle>;
+    icon?: StyleProp<ImageStyle>;
 
     /**
      *  Custom select control arrow icon source
      *
      *  @category Custom Sources
      */
-    iconSource?: ImageSourcePropType;
+    source?: ImageSourcePropType;
 };
 
-export type CustomLeftIconStyles = {
+export type LeftIconStyles = {
     /**
-     *  Custom left icon styles
+     *  Left icon styles
      *
      *  @category Styles
      */
-    iconStyle?: StyleProp<ImageStyle>;
+    icon?: StyleProp<ImageStyle>;
 
     /**
-     *  Custom left icon source
+     *  Left icon source
      *
      *  @category Custom Sources
      */
-    iconSource?: ImageSourcePropType;
-};
-
-export type OptionsListStyles = {
-    /**
-     *  Style of options list
-     *
-     *  @category Styles
-     */
-    containerStyle?: StyleProp<ViewStyle>;
-
-    /**
-     * Style of single option
-     *
-     * @category Styles
-     */
-    optionStyle?: StyleProp<ViewStyle>;
-
-    /**
-     * Style of single option text
-     *
-     * @category Styles
-     */
-    optionTextStyle?: StyleProp<TextStyle>;
-
-    /**
-     * Style of selected single option
-     *
-     * @category Styles
-     */
-    optionSelectedStyle?: StyleProp<ViewStyle>;
-
-    /**
-     * Style of section header container when section data type is provided
-     *
-     * @category Styles
-     */
-    sectionHeaderContainerStyle?: StyleProp<ViewStyle>;
-
-    /**
-     * Style of section header title when section data type is provided
-     *
-     * @category Styles
-     */
-    sectionHeaderTextStyle?: StyleProp<TextStyle>;
+    source?: ImageSourcePropType;
 };

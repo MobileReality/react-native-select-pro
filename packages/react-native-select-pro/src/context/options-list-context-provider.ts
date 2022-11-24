@@ -12,7 +12,7 @@ type OptionsListContextProviderTypes<T> = Pick<
     | 'scrollToSelectedOption'
     | 'onSelect'
     | 'sectionListProps'
-    | 'optionsListStyles'
+    | 'styles'
 > & {
     aboveSelectControl: Position['aboveSelectControl'];
     openedPosition: Position;

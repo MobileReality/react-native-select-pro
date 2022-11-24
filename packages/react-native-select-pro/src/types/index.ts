@@ -35,7 +35,7 @@ export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option'> & 
 /**
  * `<Select />` component props
  */
-export interface SelectProps<T = unknown> extends SelectStyles {
+export interface SelectProps<T = unknown> {
     // ---REQUIRED--- //
     /**
      *  Options to show on the list
@@ -264,6 +264,13 @@ export interface SelectProps<T = unknown> extends SelectStyles {
      * @default "Open a dropdown"
      */
     selectControlOpenDropdownA11yLabel?: string;
+
+    /**
+     * Styles
+     *
+     * @category Styles
+     */
+    styles?: SelectStyles;
 }
 
 /**

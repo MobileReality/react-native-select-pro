@@ -10,12 +10,7 @@ import { SelectInput } from '../select-input';
 
 import type { SelectFieldTypeProps } from './select-field-type.types';
 
-export const SelectFieldType = ({
-    onPressRemove,
-    containerStyle,
-    textStyle,
-    multiSelectionOptionStyle,
-}: SelectFieldTypeProps) => {
+export const SelectFieldType = ({ onPressRemove, selectStyles }: SelectFieldTypeProps) => {
     const { multiSelection, placeholderText, placeholderTextColor, searchValue, selectedOption } =
         useSelectContext();
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
@@ -23,9 +18,7 @@ export const SelectFieldType = ({
     const multiSelect = (
         <MultiSelect
             {...{
-                containerStyle,
-                textStyle,
-                multiSelectionOptionStyle,
+                selectStyles,
                 selectedOptions,
                 onPressRemove,
             }}
@@ -35,7 +28,7 @@ export const SelectFieldType = ({
     const selectInput = (
         <SelectInput
             {...{
-                textStyle,
+                textStyle: selectStyles?.text,
                 selectedOption,
             }}
         />
@@ -46,10 +39,10 @@ export const SelectFieldType = ({
             numberOfLines={1}
             style={[
                 styles.text,
-                textStyle,
+                selectStyles?.text,
                 {
                     color: selectedOptionLabel
-                        ? StyleSheet.flatten(textStyle)?.color ?? COLORS.BLACK
+                        ? StyleSheet.flatten(selectStyles?.text)?.color ?? COLORS.BLACK
                         : placeholderTextColor,
                 },
             ]}

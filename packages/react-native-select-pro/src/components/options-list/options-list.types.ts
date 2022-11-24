@@ -2,9 +2,11 @@ import type { SectionListData } from 'react-native';
 
 import type { OptionalToRequired } from '../../helpers';
 import type { OptionType } from '../../types';
-import type { OptionsListStyles } from '../../types/styles';
+import type { OptionStyles } from '../../types/styles';
 
-export type UseOptionsListProps = OptionalToRequired<Pick<OptionsListStyles, 'optionStyle'>>;
+export type UseOptionsListProps = OptionalToRequired<{
+    optionStyles: OptionStyles | undefined;
+}>;
 
 export type RenderItemProps<T> = {
     item: OptionType;

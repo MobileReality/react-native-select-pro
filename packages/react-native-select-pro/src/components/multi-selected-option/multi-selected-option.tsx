@@ -10,8 +10,7 @@ import type { MultiSelectedOptionProps } from './multi-selected-option.types';
 export const MultiSelectedOption = ({
     isPlaceholder = false,
     option,
-    textStyle,
-    multiSelectionOptionStyle,
+    selectStyles,
     optionWidth,
     onPressRemove,
 }: MultiSelectedOptionProps) => {
@@ -22,7 +21,7 @@ export const MultiSelectedOption = ({
             accessibilityLabel={option ? `${option.label} selected` : 'Placeholder in multi-select'}
             style={[
                 isPlaceholder ? styles.placeholderText : styles.multiSelectionOption,
-                multiSelectionOptionStyle,
+                selectStyles?.multiSelectionOption,
                 { width: optionWidth },
             ]}
             disabled={!isPressable}
@@ -32,10 +31,10 @@ export const MultiSelectedOption = ({
                 numberOfLines={1}
                 style={[
                     styles.text,
-                    textStyle,
+                    selectStyles?.text,
                     {
                         color: option?.label
-                            ? StyleSheet.flatten(textStyle)?.color ?? COLORS.BLACK
+                            ? StyleSheet.flatten(selectStyles?.text)?.color ?? COLORS.BLACK
                             : placeholderTextColor,
                     },
                 ]}

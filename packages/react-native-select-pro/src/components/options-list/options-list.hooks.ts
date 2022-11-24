@@ -9,7 +9,7 @@ import type { OptionType } from '../../types';
 
 import type { ItemLayout, UseOptionsListProps } from './options-list.types';
 
-export const useOptionsList = ({ optionStyle }: UseOptionsListProps) => {
+export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
     const { isOpened, optionsData, searchValue, selectedOption, searchedOptions } =
         useOptionsListContext();
 
@@ -48,7 +48,7 @@ export const useOptionsList = ({ optionStyle }: UseOptionsListProps) => {
     };
 
     const getItemLayout = <T>(_data: T, index: number): ItemLayout => {
-        const height = StyleSheet.flatten(optionStyle)?.height;
+        const height = StyleSheet.flatten(optionStyles)?.height;
         const isNumber = typeof height === 'number';
         return {
             length: isNumber ? height : ITEM_HEIGHT,

@@ -30,7 +30,7 @@ export const useSelect = <T>({
     closeDropdownOnSelect,
     searchable,
     multiSelection,
-    optionsListStyles,
+    styles,
     dispatch,
     onRemove,
     onDropdownOpened,
@@ -201,18 +201,14 @@ export const useSelect = <T>({
     const setPosition = () => {
         if (containerRef.current) {
             containerRef.current.measure((_x, _y, width, height, pageX, pageY) => {
-                const optionHeightFromProp = StyleSheet.flatten(
-                    optionsListStyles?.optionStyle,
-                )?.height;
+                const optionHeightFromProp = StyleSheet.flatten(styles?.option)?.height;
                 const optionHeight = getSize({
                     size: optionHeightFromProp,
                     sizeFallback: ITEM_HEIGHT,
                     screenSize: screenHeight,
                 });
 
-                const listHeightFromProp = StyleSheet.flatten(
-                    optionsListStyles?.containerStyle,
-                )?.maxHeight;
+                const listHeightFromProp = StyleSheet.flatten(styles?.optionsList)?.maxHeight;
                 const listHeight = getSize({
                     size: listHeightFromProp,
                     sizeFallback: MAX_HEIGHT_LIST,

@@ -12,11 +12,11 @@ type FromSelectComponent<T> = Pick<
     | 'disabled'
     | 'searchable'
     | 'multiSelection'
-    | 'optionsListStyles'
     | 'closeDropdownOnSelect'
     | 'onDropdownOpened'
     | 'onDropdownClosed'
     | 'onRemove'
+    | 'styles'
 >;
 
 export type UseSelect<T> = OptionalToRequired<

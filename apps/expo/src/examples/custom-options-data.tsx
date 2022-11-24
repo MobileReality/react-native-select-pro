@@ -103,13 +103,15 @@ export const CustomOptionsData = () => {
     return (
         <SafeAreaViewWrapper>
             <Select
-                containerStyle={{
+                styles={{
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
+                    select: {
+                        width: 150,
+                    },
                 }}
                 options={DATA}
-                selectControlStyles={{ containerStyle: { width: 150 } }}
                 onSelect={(option) => {
                     setSelected(option);
                 }}

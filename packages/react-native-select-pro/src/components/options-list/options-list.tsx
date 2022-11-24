@@ -17,20 +17,11 @@ export const OptionsList = () => {
     const {
         aboveSelectControl,
         openedPosition: { width, top, left },
-        optionsListStyles,
+        styles: mainStyles,
     } = useOptionsListContext();
 
-    const {
-        optionSelectedStyle,
-        optionStyle,
-        optionTextStyle,
-        sectionHeaderContainerStyle,
-        sectionHeaderTextStyle,
-        containerStyle,
-    } = optionsListStyles ?? {};
-
     const { getItemLayout, measuredRef, findSelectedOption, resolveData } = useOptionsList({
-        optionStyle,
+        optionStyles: mainStyles?.optionsList,
     });
 
     const resolvedData = resolveData();
@@ -56,9 +47,6 @@ export const OptionsList = () => {
                 isSelected={isSelected}
                 option={{ ...item, section: sectionObj }}
                 {...{
-                    optionSelectedStyle,
-                    optionStyle,
-                    optionTextStyle,
                     optionIndex,
                 }}
             />
@@ -69,7 +57,7 @@ export const OptionsList = () => {
         <OptionsListWrapper
             wrapperStyles={[
                 styles.options,
-                containerStyle,
+                mainStyles?.optionsList,
                 { top, left, width },
                 aboveSelectControl ? styles.overflown : styles.notOverflown,
             ]}
@@ -80,8 +68,6 @@ export const OptionsList = () => {
                         resolvedData,
                         getItemLayout,
                         renderItem,
-                        sectionHeaderTextStyle,
-                        sectionHeaderContainerStyle,
                     }}
                 />
             ) : (

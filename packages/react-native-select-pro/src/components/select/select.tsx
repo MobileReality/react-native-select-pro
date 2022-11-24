@@ -56,12 +56,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         selectControlClearOptionA11yLabel,
         selectControlOpenDropdownA11yLabel,
         // Styles
-        selectControlStyles,
-        optionsListStyles,
-        containerStyle,
-        clearOptionStyles,
-        arrowIconStyles,
-        customLeftIconStyles,
+        styles: mainStyles,
     } = props;
 
     const resolvedOptionsData = Array.isArray(options) ? options : [];
@@ -95,7 +90,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         closeDropdownOnSelect,
         searchable,
         multiSelection,
-        optionsListStyles,
+        styles: mainStyles,
         onDropdownOpened,
         onDropdownClosed,
         ref,
@@ -103,11 +98,10 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
     });
 
     return (
-        <View style={[styles.relative, containerStyle]} onLayout={setPosition}>
+        <View style={[styles.relative, mainStyles]} onLayout={setPosition}>
             <SelectContextProvider
                 value={{
                     isOpened,
-                    arrowIconStyles,
                     animation,
                     aboveSelectControl,
                     clearable,
@@ -123,14 +117,12 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     textInputProps,
                     selectControlClearOptionA11yLabel,
                     selectControlOpenDropdownA11yLabel,
-                    clearOptionStyles,
                     onRemove,
                     dispatch,
-                    customLeftIconStyles,
-                    selectControlStyles,
                     setPosition,
                     selectedOption,
                     selectedOptionIndex,
+                    styles: mainStyles,
                 }}
             >
                 <SelectControl ref={containerRef} />
@@ -162,7 +154,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 searchedOptions,
                                 selectedOptionIndex,
                                 sectionListProps,
-                                optionsListStyles,
+                                styles: mainStyles,
                             }}
                         >
                             <OptionsList />

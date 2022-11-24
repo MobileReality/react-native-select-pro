@@ -10,7 +10,6 @@ type SelectContextProviderTypes<T> = {
     aboveSelectControl: Position['aboveSelectControl'];
 } & Pick<
     SelectProps<T>,
-    | 'arrowIconStyles'
     | 'animation'
     | 'disabled'
     | 'hideArrow'
@@ -22,10 +21,8 @@ type SelectContextProviderTypes<T> = {
     | 'textInputProps'
     | 'selectControlClearOptionA11yLabel'
     | 'selectControlOpenDropdownA11yLabel'
-    | 'clearOptionStyles'
     | 'onRemove'
-    | 'customLeftIconStyles'
-    | 'selectControlStyles'
+    | 'styles'
 > &
     Pick<
         State<T>,
