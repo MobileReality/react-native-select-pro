@@ -6,6 +6,7 @@ import { SelectProvider } from '@mobile-reality/react-native-select-pro';
 import { Button } from './components/button';
 import { Animated } from './examples/animated';
 import { Basic } from './examples/basic';
+import { SelectBottomSheet } from './examples/bottom-sheet';
 import { Callbacks } from './examples/callbacks';
 import { CustomComponent } from './examples/custom-component';
 import { CustomIcons } from './examples/custom-icons';
@@ -116,6 +117,10 @@ const data = [
     {
         name: 'No Backdrop',
         getScreen: () => <NoBackdrop />,
+    },
+    {
+        name: 'Bottom Sheet',
+        getScreen: () => <SelectBottomSheet />,
     },
 ];
 
