@@ -2,7 +2,7 @@ import type { ForwardedRef, RefObject } from 'react';
 import type { View } from 'react-native';
 
 import type { OptionalToRequired } from '../../helpers';
-import type { DispatchType, State } from '../../state/types';
+import type { DispatchType, State } from '../../state';
 import type { SelectProps, SelectRef } from '../../types';
 
 type FromSelectComponent<T> = Pick<

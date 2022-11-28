@@ -9,7 +9,7 @@ import { getSize, isSectionOptionsType } from '../../helpers';
 import { getReducedSectionData } from '../../helpers';
 import { selectedOptionResolver } from '../../helpers';
 import { ERRORS, logError } from '../../helpers';
-import { Action } from '../../state/types';
+import { Action } from '../../state';
 import type {
     OnOutsidePress,
     OnPressOptionType,
@@ -59,14 +59,7 @@ export const useSelect = <T>({
         }
 
         const isDataValid = checkData();
-        if (!isDataValid) {
-            dispatch({ type: Action.SetOptionsData, payload: [] });
-            return;
-        }
-
-        if (options.length > 0) {
-            dispatch({ type: Action.SetOptionsData, payload: options });
-        }
+        dispatch({ type: Action.SetOptionsData, payload: isDataValid ? options : [] });
         // TODO
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [options, checkData]);

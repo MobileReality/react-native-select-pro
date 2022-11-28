@@ -4,7 +4,7 @@ import type {
 } from '@mobile-reality/react-native-select-pro';
 
 import { createSafeContext } from '../helpers';
-import type { DispatchType, Position, State } from '../state/types';
+import type { DispatchType, Position, State } from '../state';
 
 type SelectContextProviderTypes<T> = {
     aboveSelectControl: Position['aboveSelectControl'];

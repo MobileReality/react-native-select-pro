@@ -1,4 +1,4 @@
-import type { State } from '../state/types';
+import type { State } from '../state';
 import type { SectionOptionType } from '../types';
 
 type Props<T> = {
