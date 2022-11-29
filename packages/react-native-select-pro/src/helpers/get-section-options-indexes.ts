@@ -2,7 +2,7 @@ import type { OptionType, SectionOptionType } from '../types';
 
 import { getReducedSectionData } from './get-reduced-section-data';
 
-export const getSectionOptionIndexes = <T>(
+export const getSectionOptionsIndexes = <T>(
     data: SectionOptionType<T>[],
     options: OptionType<T>[],
 ) =>

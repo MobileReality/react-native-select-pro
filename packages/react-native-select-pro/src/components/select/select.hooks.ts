@@ -7,7 +7,7 @@ import { ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize, isSectionOptionsType } from '../../helpers';
 import { getReducedSectionData } from '../../helpers';
 import { selectedOptionResolver } from '../../helpers';
-import { getSectionOptionIndexes } from '../../helpers/get-section-option-indexes';
+import { getSectionOptionsIndexes } from '../../helpers/get-section-options-indexes';
 import { Action } from '../../state';
 import type {
     OnOutsidePress,
@@ -130,13 +130,13 @@ export const useSelect = <T>({
             const resolvedOptionsData = isSectionedOptions
                 ? getReducedSectionData(optionsData)
                 : optionsData;
-            const optionIndexes = mergedOptions
+            const optionsIndexes = mergedOptions
                 .map((item) => resolvedOptionsData.findIndex(({ value }) => value === item.value))
                 .filter((item): item is number => item !== null);
 
             return {
                 selectedOption: mergedOptions,
-                selectedOptionIndex: optionIndexes.length > 0 ? [...optionIndexes] : -1,
+                selectedOptionIndex: optionsIndexes.length > 0 ? [...optionsIndexes] : -1,
             };
         };
 
@@ -170,9 +170,9 @@ export const useSelect = <T>({
         }
 
         const resolveOption = () => {
-            const sectionData = optionsData.find((item) => item.title === title)?.data;
-            const newSelectedOptions =
-                sectionData
+            const sectionOptions = optionsData.find((item) => item.title === title)?.data;
+            const formattedSectionOptions =
+                sectionOptions
                     ?.filter(
                         (item) =>
                             !selectedOptions?.some((selected) => selected.value === item.value),
@@ -185,28 +185,28 @@ export const useSelect = <T>({
                         },
                     })) ?? [];
 
-            if (newSelectedOptions.length === 0 && selectedOptions) {
+            if (formattedSectionOptions.length === 0 && selectedOptions) {
                 const restOptions = selectedOptions.filter(
-                    (item) => !sectionData?.some((selected) => selected.value === item.value),
+                    (item) => !sectionOptions?.some((selected) => selected.value === item.value),
                 );
 
                 return {
                     selectedOption: restOptions.length > 0 ? restOptions : null,
                     selectedOptionIndex: restOptions
-                        ? getSectionOptionIndexes(optionsData, restOptions)
+                        ? getSectionOptionsIndexes(optionsData, restOptions)
                         : -1,
                 };
             }
 
             const mergedOptions = selectedOptions
-                ? selectedOptions.concat(newSelectedOptions)
-                : newSelectedOptions;
+                ? selectedOptions.concat(formattedSectionOptions)
+                : formattedSectionOptions;
 
-            const optionIndexes = getSectionOptionIndexes(optionsData, mergedOptions);
+            const optionsIndexes = getSectionOptionsIndexes(optionsData, mergedOptions);
 
             return {
                 selectedOption: mergedOptions,
-                selectedOptionIndex: optionIndexes.length > 0 ? optionIndexes : -1,
+                selectedOptionIndex: optionsIndexes.length > 0 ? optionsIndexes : -1,
             };
         };
 
