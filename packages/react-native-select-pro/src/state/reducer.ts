@@ -110,11 +110,10 @@ export const createInitialState = <T>({
     if (!Array.isArray(options)) {
         throw new TypeError(ERRORS.NO_ARRAY_OPTIONS);
     }
-    const resolvedOptionsData = Array.isArray(options) ? options : [];
 
     return {
         ...initialData,
-        optionsData: resolvedOptionsData,
+        optionsData: options,
         searchValue: searchable ? '' : null,
     };
 };
