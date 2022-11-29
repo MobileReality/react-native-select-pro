@@ -1,9 +1,11 @@
-import { isSectionOptionsType } from '../helpers';
+import type { OptionsType } from '@mobile-reality/react-native-select-pro';
+
+import { ERRORS, isSectionOptionsType } from '../helpers';
 
 import type { ActionType, State } from './types';
 import { Action } from './types';
 
-export const initialData = {
+const initialData = {
     isOpened: false,
     selectedOption: null,
     selectedOptionIndex: -1,
@@ -94,4 +96,24 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
         default:
             return state;
     }
+};
+
+type CreateInitialStateType<T> = {
+    options: OptionsType<T>;
+    searchable: boolean;
+};
+
+export const createInitialState = <T>({
+    options,
+    searchable,
+}: CreateInitialStateType<T>): State<T> | undefined => {
+    if (!Array.isArray(options)) {
+        throw new TypeError(ERRORS.NO_ARRAY_OPTIONS);
+    }
+
+    return {
+        ...initialData,
+        optionsData: options,
+        searchValue: searchable ? '' : null,
+    };
 };

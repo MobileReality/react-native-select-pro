@@ -4,7 +4,7 @@ import { I18nManager, Keyboard, StyleSheet, TextInput } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../constants/styles';
 import { useSelectContext } from '../../context';
-import { Action } from '../../state/types';
+import { Action } from '../../state';
 
 import type { SelectInputProps } from './select-input.types';
 

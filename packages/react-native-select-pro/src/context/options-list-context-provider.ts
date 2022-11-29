@@ -1,5 +1,5 @@
 import { createSafeContext } from '../helpers';
-import type { Position, State } from '../state/types';
+import type { Position, State } from '../state';
 import type { OnPressOptionType, SelectProps } from '../types';
 
 type OptionsListContextProviderTypes<T> = Pick<
