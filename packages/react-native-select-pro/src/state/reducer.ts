@@ -1,6 +1,6 @@
 import type { OptionsType } from '@mobile-reality/react-native-select-pro';
 
-import { isSectionOptionsType } from '../helpers';
+import { ERRORS, isSectionOptionsType } from '../helpers';
 
 import type { ActionType, State } from './types';
 import { Action } from './types';
@@ -106,7 +106,10 @@ type CreateInitialStateType<T> = {
 export const createInitialState = <T>({
     options,
     searchable,
-}: CreateInitialStateType<T>): State<T> => {
+}: CreateInitialStateType<T>): State<T> | undefined => {
+    if (!Array.isArray(options)) {
+        throw new TypeError(ERRORS.NO_ARRAY_OPTIONS);
+    }
     const resolvedOptionsData = Array.isArray(options) ? options : [];
 
     return {

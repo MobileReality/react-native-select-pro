@@ -1,6 +1,5 @@
 import type { RefObject } from 'react';
-import { useCallback } from 'react';
-import { useEffect, useImperativeHandle, useRef } from 'react';
+import { useEffect, useImperativeHandle } from 'react';
 import type { TextInput } from 'react-native';
 import { I18nManager, StyleSheet, useWindowDimensions } from 'react-native';
 
@@ -8,7 +7,6 @@ import { ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize, isSectionOptionsType } from '../../helpers';
 import { getReducedSectionData } from '../../helpers';
 import { selectedOptionResolver } from '../../helpers';
-import { ERRORS, logError } from '../../helpers';
 import { Action } from '../../state';
 import type {
     OnOutsidePress,
@@ -24,7 +22,6 @@ export const useSelect = <T>({
     ref,
     containerRef,
     state,
-    options,
     defaultOption,
     disabled,
     closeDropdownOnSelect,
@@ -36,33 +33,10 @@ export const useSelect = <T>({
     onDropdownOpened,
     onDropdownClosed,
 }: UseSelect<T>) => {
-    const isFirstRenderRef = useRef(true);
     const { height: screenHeight, width: screenWidth } = useWindowDimensions();
     const { isOpened, selectedOption, optionsData, searchInputRef, selectedOptionIndex } = state;
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
     const isSectionedOptions = isSectionOptionsType(optionsData);
-
-    const checkData = useCallback(() => {
-        if (!Array.isArray(options)) {
-            logError(ERRORS.NO_ARRAY_OPTIONS);
-            return false;
-        }
-
-        return true;
-    }, [options]);
-
-    useEffect(() => {
-        if (isFirstRenderRef.current) {
-            checkData();
-            isFirstRenderRef.current = false;
-            return;
-        }
-
-        const isDataValid = checkData();
-        dispatch({ type: Action.SetOptionsData, payload: isDataValid ? options : [] });
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [options, checkData]);
 
     useEffect(() => {
         const isValidPassDefaultOption =

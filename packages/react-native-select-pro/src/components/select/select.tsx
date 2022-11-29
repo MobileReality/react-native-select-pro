@@ -82,7 +82,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
     const containerRef = useRef<View>(null);
 
     const { setPosition, onPressOption, onOutsidePress, onPressSelectControl } = useSelect<T>({
-        options,
         containerRef,
         dispatch,
         defaultOption,
