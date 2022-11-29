@@ -30,6 +30,8 @@
     "metro-react-native-babel-preset": "0.70.3",
     "react": "18.0.0",
     "react-native": "0.69.6",
+    "react-native-reanimated": "~2.9.1",
+    "react-native-gesture-handler": "~2.5.0",
     "react-native-monorepo-tools": "1.2.0"
   },
   "peerDependencies": {

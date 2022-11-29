@@ -75,17 +75,23 @@ export type SelectControlStyles = {
 
 export type OptionStyles = {
     /**
+     * Style of single option text
+     *
+     * @category Styles
+     */
+    text?: StyleProp<TextStyle>;
+    /**
      * Style of selected single option
      *
      * @category Styles
      */
     selected?: StyleProp<ViewStyle>;
     /**
-     * Style of single option text
+     * Style of selected single option text
      *
      * @category Styles
      */
-    text?: StyleProp<TextStyle>;
+    selectedText?: StyleProp<TextStyle>;
 } & StyleProp<ViewStyle>;
 
 export type OptionsListStyles = {
@@ -94,14 +100,38 @@ export type OptionsListStyles = {
      *
      * @category Styles
      */
-    sectionHeader?: StyleProp<ViewStyle>;
-
-    /**
-     * Style of section header title when section data type is provided
-     *
-     * @category Styles
-     */
-    sectionTitle?: StyleProp<TextStyle>;
+    sectionHeader?: {
+        /**
+         * Style of section header title when section data type is provided
+         *
+         * @category Styles
+         */
+        text?: StyleProp<TextStyle>;
+        /**
+         * Style of section header clear icon when all section options are selected
+         *
+         * @category Styles
+         */
+        clearIcon?: StyleProp<ImageStyle>;
+        /**
+         * Style of section header when all section options are selected
+         *
+         * @category Styles
+         */
+        selected?: StyleProp<ViewStyle>;
+        /**
+         * Style of section header title when all section options are selected
+         *
+         * @category Styles
+         */
+        selectedText?: StyleProp<TextStyle>;
+        /**
+         * Style of section header clear icon all section options are selected
+         *
+         * @category Styles
+         */
+        selectedClearIcon?: StyleProp<ImageStyle>;
+    } & StyleProp<ViewStyle>;
 } & StyleProp<ViewStyle>;
 
 export type ClearOptionStyles = {

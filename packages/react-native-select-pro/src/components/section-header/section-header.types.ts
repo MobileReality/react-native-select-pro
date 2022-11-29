@@ -1,6 +1,8 @@
 import type { OptionalToRequired } from '../../helpers';
-import type { SelectStyles } from '../../types/styles';
+import type { OptionsListStyles } from '../../types/styles';
 
-export type SectionHeaderProps = { title: string } & OptionalToRequired<
-    Pick<SelectStyles, 'optionsList'>
->;
+export type SectionHeaderProps = {
+    title: string;
+    onPressSection: (title: string) => void;
+    isSectionSelected: (title: string) => boolean;
+} & OptionalToRequired<Pick<OptionsListStyles, 'sectionHeader'>>;

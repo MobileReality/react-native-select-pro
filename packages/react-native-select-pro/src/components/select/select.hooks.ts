@@ -9,6 +9,7 @@ import { getSize, isSectionOptionsType } from '../../helpers';
 import { getReducedSectionData } from '../../helpers';
 import { selectedOptionResolver } from '../../helpers';
 import { ERRORS, logError } from '../../helpers';
+import { getSectionOptionIndexes } from '../../helpers/get-section-option-indexes';
 import { Action } from '../../state/types';
 import type {
     OnOutsidePress,
@@ -158,22 +159,17 @@ export const useSelect = <T>({
                 };
             }
 
-            const sOption = selectedOptions ? selectedOptions.concat(option) : [option];
+            const mergedOptions = selectedOptions ? selectedOptions.concat(option) : [option];
             const resolvedOptionsData = isSectionedOptions
                 ? getReducedSectionData(optionsData)
                 : optionsData;
-            const sOptionIndex = resolvedOptionsData
-                .map((item, index) => {
-                    if (sOption.some(({ value }) => value === item.value)) {
-                        return index;
-                    }
-                    return null;
-                })
+            const optionIndexes = mergedOptions
+                .map((item) => resolvedOptionsData.findIndex(({ value }) => value === item.value))
                 .filter((item): item is number => item !== null);
 
             return {
-                selectedOption: sOption,
-                selectedOptionIndex: sOptionIndex.length > 0 ? [...sOptionIndex] : -1,
+                selectedOption: mergedOptions,
+                selectedOptionIndex: optionIndexes.length > 0 ? [...optionIndexes] : -1,
             };
         };
 
@@ -196,6 +192,61 @@ export const useSelect = <T>({
         if (option) {
             hideKeyboardIfNeeded();
         }
+    };
+
+    const onPressSection = (title: string) => {
+        if (closeDropdownOnSelect && multiSelection) {
+            dispatch({ type: Action.Close });
+        }
+        if (!multiSelection || !isSectionedOptions) {
+            return;
+        }
+
+        const resolveOption = () => {
+            const sectionData = optionsData.find((item) => item.title === title)?.data;
+            const newSelectedOptions =
+                sectionData
+                    ?.filter(
+                        (item) =>
+                            !selectedOptions?.some((selected) => selected.value === item.value),
+                    )
+                    .map((item) => ({
+                        ...item,
+                        section: {
+                            title,
+                            index: optionsData.findIndex((el) => el.title === title),
+                        },
+                    })) ?? [];
+
+            if (newSelectedOptions.length === 0 && selectedOptions) {
+                const restOptions = selectedOptions.filter(
+                    (item) => !sectionData?.some((selected) => selected.value === item.value),
+                );
+
+                return {
+                    selectedOption: restOptions.length > 0 ? restOptions : null,
+                    selectedOptionIndex: restOptions
+                        ? getSectionOptionIndexes(optionsData, restOptions)
+                        : -1,
+                };
+            }
+
+            const mergedOptions = selectedOptions
+                ? selectedOptions.concat(newSelectedOptions)
+                : newSelectedOptions;
+
+            const optionIndexes = getSectionOptionIndexes(optionsData, mergedOptions);
+
+            return {
+                selectedOption: mergedOptions,
+                selectedOptionIndex: optionIndexes.length > 0 ? optionIndexes : -1,
+            };
+        };
+
+        dispatch({
+            type: Action.SelectOption,
+            payload: resolveOption(),
+        });
     };
 
     const setPosition = () => {
@@ -276,6 +327,7 @@ export const useSelect = <T>({
     return {
         setPosition,
         onPressOption,
+        onPressSection,
         onOutsidePress,
         onPressSelectControl,
     };

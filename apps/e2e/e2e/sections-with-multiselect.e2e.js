@@ -20,4 +20,14 @@ describe('SectionsWithMultiSelect', () => {
         await element(by.label('Canada selected')).atIndex(0).tap();
         await expect(element(by.text('Select...'))).toBeVisible();
     });
+
+    it('should go to SectionsWithMultiSelect Screen and select whole section with section header', async () => {
+        await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
+        await element(by.text('North America')).tap();
+        await expect(element(by.label('United States of America selected'))).toExist();
+        await expect(element(by.label('Canada selected'))).toExist();
+        await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
+        await element(by.text('North America')).tap();
+        await expect(element(by.text('Select...'))).toBeVisible();
+    });
 });

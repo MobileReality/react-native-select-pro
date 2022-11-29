@@ -80,22 +80,23 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
 
     const containerRef = useRef<View>(null);
 
-    const { setPosition, onPressOption, onOutsidePress, onPressSelectControl } = useSelect<T>({
-        options,
-        containerRef,
-        dispatch,
-        defaultOption,
-        onRemove,
-        disabled,
-        closeDropdownOnSelect,
-        searchable,
-        multiSelection,
-        styles: mainStyles,
-        onDropdownOpened,
-        onDropdownClosed,
-        ref,
-        state,
-    });
+    const { setPosition, onPressOption, onOutsidePress, onPressSelectControl, onPressSection } =
+        useSelect<T>({
+            options,
+            containerRef,
+            dispatch,
+            defaultOption,
+            onRemove,
+            disabled,
+            closeDropdownOnSelect,
+            searchable,
+            multiSelection,
+            styles: mainStyles,
+            onDropdownOpened,
+            onDropdownClosed,
+            ref,
+            state,
+        });
 
     return (
         <View style={[styles.relative, mainStyles]} onLayout={setPosition}>
@@ -150,6 +151,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 searchValue,
                                 onSelect,
                                 onPressOption,
+                                onPressSection,
                                 selectedOption,
                                 searchedOptions,
                                 selectedOptionIndex,

@@ -17,6 +17,7 @@ type OptionsListContextProviderTypes<T> = Pick<
     aboveSelectControl: Position['aboveSelectControl'];
     openedPosition: Position;
     onPressOption: OnPressOptionType<T>;
+    onPressSection: (title: string) => void;
 } & Pick<
         State<T>,
         | 'optionsData'

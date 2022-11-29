@@ -35,10 +35,18 @@ styles?: {
     },
     // Style of options list container
     optionsList: {
-        // Style of section header container when section data type is provided
-        sectionHeader?: StyleProp<ViewStyle>;
-        // Style of section header text when section data type is provided
-        sectionTitle?: StyleProp<TextStyle>;
+        // Style of section header
+        sectionHeader?: {
+            // Style of section header title
+            text?: StyleProp<TextStyle>;
+            // Style of section header clear icon when all section options are selected
+            clearIcon?: StyleProp<ImageStyle>;
+            // Style of section header when all section options are selected
+            selected?: StyleProp<ViewStyle>;
+            // Style of section header title when all section options are selected
+            selectedText?: StyleProp<TextStyle>;
+            // Style of section header clear icon all section options are selected
+            selectedClearIcon?: StyleProp<ImageStyle>;
     },
     // Style of single option container
     option: {
@@ -46,6 +54,8 @@ styles?: {
         text?: StyleProp<TextStyle>;
         // Style of selected single option
         selected?: StyleProp<ViewStyle>;
+        // Style of selected single option text
+        selectedText?: StyleProp<TextStyle>;
     }
 
 }

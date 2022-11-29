@@ -50,7 +50,14 @@ export const Option = forwardRef<TouchableOpacity, OptionProps>(
                 disabled={isSelected}
                 onPress={onChooseOption}
             >
-                <Text numberOfLines={1} style={[styles.text, optionStyles?.text]}>
+                <Text
+                    numberOfLines={1}
+                    style={[
+                        styles.text,
+                        optionStyles?.text,
+                        isSelected && optionStyles?.selectedText,
+                    ]}
+                >
                     {label}
                 </Text>
             </TouchableOpacity>

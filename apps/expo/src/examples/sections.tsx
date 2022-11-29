@@ -11,8 +11,10 @@ export const Sections = () => {
                 styles={{
                     width: 200,
                     optionsList: {
-                        sectionHeader: { backgroundColor: 'lightblue' },
-                        sectionTitle: { color: 'darkblue' },
+                        sectionHeader: {
+                            backgroundColor: 'lightblue',
+                            text: { color: 'darkblue' },
+                        },
                     },
                 }}
                 options={SECTIONS_DATA}
