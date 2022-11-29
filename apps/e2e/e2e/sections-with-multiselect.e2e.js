@@ -21,7 +21,7 @@ describe('SectionsWithMultiSelect', () => {
         await expect(element(by.text('Select...'))).toBeVisible();
     });
 
-    it('should select whole section by pressing section header and then clear them with the same section header', async () => {
+    it('should select whole section by pressing section header and then clear options by pressing section header second time', async () => {
         await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
         await element(by.text('North America')).tap();
         await expect(element(by.label('United States of America selected'))).toExist();
