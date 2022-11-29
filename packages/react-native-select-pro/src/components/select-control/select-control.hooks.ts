@@ -8,7 +8,7 @@ import {
     selectedOptionResolver,
 } from '../../helpers';
 import { useAccessibilityScreenReader } from '../../hooks';
-import { Action } from '../../state/types';
+import { Action } from '../../state';
 import type { OptionType } from '../../types';
 
 export const useSelectControl = () => {

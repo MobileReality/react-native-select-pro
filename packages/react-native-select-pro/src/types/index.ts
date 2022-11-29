@@ -2,7 +2,7 @@
 import type { FlatListProps, SectionListProps, TextInputProps } from 'react-native';
 
 import type { OnChooseOption, OptionProps } from '../components/option/option.types';
-import type { State } from '../state/types';
+import type { State } from '../state';
 
 import type { SelectStyles } from './styles';
 
