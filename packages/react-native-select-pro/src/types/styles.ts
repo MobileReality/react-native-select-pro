@@ -151,7 +151,7 @@ export type ClearOptionStyles = {
     button?: StyleProp<ViewStyle>;
 
     /**
-     *  Hit Slop for clear option button
+     *  Hit Slop of clear option button
      *
      *  @category Styles
      */
