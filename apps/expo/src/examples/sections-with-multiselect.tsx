@@ -12,13 +12,11 @@ export const SectionsWithMultiSelect = () => {
                 multiSelection={true}
                 styles={{
                     width: 200,
-                    optionsList: {
-                        sectionHeader: {
-                            backgroundColor: 'gainsboro',
-                            selected: { backgroundColor: 'cadetblue' },
-                            selectedText: { color: 'azure' },
-                            selectedClearIcon: { tintColor: 'azure' },
-                        },
+                    sectionHeader: {
+                        backgroundColor: 'gainsboro',
+                        selected: { backgroundColor: 'cadetblue' },
+                        selectedText: { color: 'azure' },
+                        selectedClearIcon: { tintColor: 'azure' },
                     },
                 }}
             />
