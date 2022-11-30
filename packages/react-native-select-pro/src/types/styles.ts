@@ -54,11 +54,18 @@ export type SelectControlStyles = {
      */
     buttons?: StyleProp<ViewStyle>;
     /**
-     *  Style of container buttons in select control
+     *  Style of selected option in select control if multiSelection is enabled
      *
      *  @category Styles
      */
-    multiSelectionOption?: StyleProp<ViewStyle>;
+    multiSelectedOption?: {
+        /**
+         *  Style of text in selected option if multiSelection is enabled
+         *
+         *  @category Styles
+         */
+        text?: StyleProp<TextStyle>;
+    } & StyleProp<ViewStyle>;
     /**
      *  Styles of arrow in select control
      *

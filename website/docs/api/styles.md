@@ -17,8 +17,11 @@ styles?: {
         disabled?: StyleProp<TextStyle>;
         // Style of container buttons in select control
         buttons: StyleProp<ViewStyle>;
-        // Style of multiselection option
-        multiSelectionOption?: StyleProp<ViewStyle>;
+        // Style of selected option in select control if multiSelection is enabled
+        multiSelectedOption?: {
+            // Style of text in selected option if multiSelection is enabled
+            text?: StyleProp<TextStyle>;
+        } & StyleProp<ViewStyle>;
         arrow: {
             // Style of arrow image
             icon?: StyleProp<ImageStyle>;
