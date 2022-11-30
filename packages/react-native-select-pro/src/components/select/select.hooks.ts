@@ -5,9 +5,11 @@ import { I18nManager, StyleSheet, useWindowDimensions } from 'react-native';
 
 import { ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize, isSectionOptionsType } from '../../helpers';
-import { getReducedSectionData } from '../../helpers';
-import { selectedOptionResolver } from '../../helpers';
-import { getSectionOptionsIndexes } from '../../helpers';
+import {
+    getReducedSectionData,
+    getSectionOptionsIndexes,
+    selectedOptionResolver,
+} from '../../helpers';
 import { Action } from '../../state';
 import type {
     OnOutsidePress,

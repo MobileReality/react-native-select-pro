@@ -21,7 +21,7 @@ export const OptionsList = () => {
     } = useOptionsListContext();
 
     const { getItemLayout, measuredRef, findSelectedOption, resolveData } = useOptionsList({
-        optionStyles: mainStyles?.optionsList,
+        optionStyles: mainStyles?.option,
     });
 
     const resolvedData = resolveData();
