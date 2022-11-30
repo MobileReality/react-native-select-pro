@@ -36,7 +36,7 @@ export type SelectStyles = {
 
 export type SelectControlStyles = {
     /**
-     *  Style of in select control
+     *  Style of text in select control
      *
      *  @category Styles
      */
@@ -48,7 +48,7 @@ export type SelectControlStyles = {
      */
     disabled?: StyleProp<TextStyle>;
     /**
-     *  Style of container buttons in select control
+     *  Style of buttons container in select control
      *
      *  @category Styles
      */

@@ -11,11 +11,11 @@ sidebar_label: Styles
 styles?: {
     // Style of select control container
     select: {
-        // Style of in select control
+        // Style of text in select control
         text?: StyleProp<TextStyle>;
         // Style of disabled select control
         disabled?: StyleProp<TextStyle>;
-        // Style of container buttons in select control
+        // Style of buttons container in select control
         buttons: StyleProp<ViewStyle>;
         // Style of selected option in select control if multiSelection is enabled
         multiSelectedOption?: {
@@ -25,13 +25,13 @@ styles?: {
         arrow: {
             // Style of arrow image
             icon?: StyleProp<ImageStyle>;
-            // Custom select control arrow icon source
+            // Custom arrow icon source
             source?: ImageSourcePropType;
         };
         clear: {
             // Style of clear option button
             button?: StyleProp<ViewStyle>;
-            // Hit Slop for clear option button
+            // Hit Slop of clear option button
             hitSlop?: Insets;
             // Style of clear option image
             icon?: StyleProp<ImageStyle>;
