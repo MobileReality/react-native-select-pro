@@ -7,7 +7,7 @@ import { ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
 import { getSize, isSectionOptionsType } from '../../helpers';
 import { getReducedSectionData } from '../../helpers';
 import { selectedOptionResolver } from '../../helpers';
-import { getSectionOptionsIndexes } from '../../helpers/get-section-options-indexes';
+import { getSectionOptionsIndexes } from '../../helpers';
 import { Action } from '../../state';
 import type {
     OnOutsidePress,
@@ -165,6 +165,7 @@ export const useSelect = <T>({
         if (closeDropdownOnSelect && multiSelection) {
             dispatch({ type: Action.Close });
         }
+
         if (!multiSelection || !isSectionedOptions) {
             return;
         }

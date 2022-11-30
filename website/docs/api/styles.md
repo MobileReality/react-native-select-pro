@@ -7,10 +7,11 @@ sidebar_label: Styles
 ### selectControlStyles
 
 ```typescript jsx
-// Style of select control container
+// Style of main container
 styles?: {
+    // Style of select control container
     select: {
-        // Style of text select control
+        // Style of in select control
         text?: StyleProp<TextStyle>;
         // Style of disabled select control
         disabled?: StyleProp<TextStyle>;
@@ -32,22 +33,22 @@ styles?: {
             // Style of clear option image
             icon?: StyleProp<ImageStyle>;
         };
-    },
+    } & StyleProp<ViewStyle>
     // Style of options list container
-    optionsList: {
-        // Style of section header
-        sectionHeader?: {
-            // Style of section header title
-            text?: StyleProp<TextStyle>;
-            // Style of section header clear icon when all section options are selected
-            clearIcon?: StyleProp<ImageStyle>;
-            // Style of section header when all section options are selected
-            selected?: StyleProp<ViewStyle>;
-            // Style of section header title when all section options are selected
-            selectedText?: StyleProp<TextStyle>;
-            // Style of section header clear icon all section options are selected
-            selectedClearIcon?: StyleProp<ImageStyle>;
-    },
+    optionsList: StyleProp<ViewStyle>
+    // Style of section header container
+    sectionHeader?: {
+        // Style of section header title
+        text?: StyleProp<TextStyle>;
+        // Style of section header clear icon when all section options are selected
+        clearIcon?: StyleProp<ImageStyle>;
+        // Style of section header when all section options are selected
+        selected?: StyleProp<ViewStyle>;
+        // Style of section header title when all section options are selected
+        selectedText?: StyleProp<TextStyle>;
+        // Style of section header clear icon all section options are selected
+        selectedClearIcon?: StyleProp<ImageStyle>;
+    } & StyleProp<ViewStyle>
     // Style of single option container
     option: {
         // Style of single option text
@@ -56,8 +57,7 @@ styles?: {
         selected?: StyleProp<ViewStyle>;
         // Style of selected single option text
         selectedText?: StyleProp<TextStyle>;
-    }
-
+    } & StyleProp<ViewStyle>
 }
 ```
 

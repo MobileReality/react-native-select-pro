@@ -9,7 +9,7 @@ import type {
 
 export type SelectStyles = {
     /**
-     * Style of container select control
+     * Style of select control
      *
      * @category Styles
      */
@@ -26,11 +26,17 @@ export type SelectStyles = {
      *  @category Styles
      */
     optionsList?: OptionsListStyles;
+    /**
+     * Style of section header when section data type is provided
+     *
+     * @category Styles
+     */
+    sectionHeader?: SectionHeaderStyles;
 } & StyleProp<ViewStyle>;
 
 export type SelectControlStyles = {
     /**
-     *  Style of text select control
+     *  Style of in select control
      *
      *  @category Styles
      */
@@ -94,44 +100,39 @@ export type OptionStyles = {
     selectedText?: StyleProp<TextStyle>;
 } & StyleProp<ViewStyle>;
 
-export type OptionsListStyles = {
+export type OptionsListStyles = StyleProp<ViewStyle>;
+
+export type SectionHeaderStyles = {
     /**
-     * Style of section header container when section data type is provided
+     * Style of section header title
      *
      * @category Styles
      */
-    sectionHeader?: {
-        /**
-         * Style of section header title when section data type is provided
-         *
-         * @category Styles
-         */
-        text?: StyleProp<TextStyle>;
-        /**
-         * Style of section header clear icon when all section options are selected
-         *
-         * @category Styles
-         */
-        clearIcon?: StyleProp<ImageStyle>;
-        /**
-         * Style of section header when all section options are selected
-         *
-         * @category Styles
-         */
-        selected?: StyleProp<ViewStyle>;
-        /**
-         * Style of section header title when all section options are selected
-         *
-         * @category Styles
-         */
-        selectedText?: StyleProp<TextStyle>;
-        /**
-         * Style of section header clear icon all section options are selected
-         *
-         * @category Styles
-         */
-        selectedClearIcon?: StyleProp<ImageStyle>;
-    } & StyleProp<ViewStyle>;
+    text?: StyleProp<TextStyle>;
+    /**
+     * Style of section header clear icon when all section options are selected
+     *
+     * @category Styles
+     */
+    clearIcon?: StyleProp<ImageStyle>;
+    /**
+     * Style of section header when all section options are selected
+     *
+     * @category Styles
+     */
+    selected?: StyleProp<ViewStyle>;
+    /**
+     * Style of section header title when all section options are selected
+     *
+     * @category Styles
+     */
+    selectedText?: StyleProp<TextStyle>;
+    /**
+     * Style of section header clear icon when all section options are selected
+     *
+     * @category Styles
+     */
+    selectedClearIcon?: StyleProp<ImageStyle>;
 } & StyleProp<ViewStyle>;
 
 export type ClearOptionStyles = {

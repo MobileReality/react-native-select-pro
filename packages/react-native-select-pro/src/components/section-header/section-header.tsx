@@ -14,40 +14,37 @@ export const SectionHeader = ({
     title,
     sectionHeader,
     onPressSection,
-    isSectionSelected,
-}: SectionHeaderProps) => {
-    const isSelected = isSectionSelected(title);
-    return (
-        <Pressable
+    isSelected,
+}: SectionHeaderProps) => (
+    <Pressable
+        style={[
+            styles.sectionHeaderContainerStyle,
+            sectionHeader,
+            isSelected && sectionHeader?.selected,
+        ]}
+        onPress={() => onPressSection(title)}
+    >
+        <Text
             style={[
-                styles.sectionHeaderContainerStyle,
-                sectionHeader,
-                isSelected && sectionHeader?.selected,
+                styles.sectionHeaderTextStyle,
+                sectionHeader?.text,
+                isSelected && sectionHeader?.selectedText,
             ]}
-            onPress={() => onPressSection(title)}
         >
-            <Text
+            {title}
+        </Text>
+        {isSelected && (
+            <Image
+                source={iconSource}
                 style={[
-                    styles.sectionHeaderTextStyle,
-                    sectionHeader?.text,
-                    isSelected && sectionHeader?.selectedText,
+                    styles.xIcon,
+                    sectionHeader?.clearIcon,
+                    isSelected && sectionHeader?.selectedClearIcon,
                 ]}
-            >
-                {title}
-            </Text>
-            {isSelected && (
-                <Image
-                    source={iconSource}
-                    style={[
-                        styles.xIcon,
-                        sectionHeader?.clearIcon,
-                        isSelected && sectionHeader?.selectedClearIcon,
-                    ]}
-                />
-            )}
-        </Pressable>
-    );
-};
+            />
+        )}
+    </Pressable>
+);
 
 type Styles = {
     sectionHeaderContainerStyle: ViewStyle;
@@ -70,7 +67,7 @@ const styles = StyleSheet.create<Styles>({
         justifyContent: 'space-between',
     },
     xIcon: {
-        width: 15,
-        height: 15,
+        width: 16,
+        height: 16,
     },
 });
