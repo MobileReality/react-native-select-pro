@@ -1,4 +1,4 @@
-import type { OptionTypeRequired, SectionOptionType } from '../types';
+import type { OptionType, SectionOptionType } from '../types';
 
 export const getReducedSectionData = <T>(data: SectionOptionType<T>[]) =>
-    data.reduce<OptionTypeRequired[]>((prev, current) => [...prev, ...current.data], []);
+    data.reduce<OptionType<T>[]>((prev, current) => [...prev, ...current.data], []);

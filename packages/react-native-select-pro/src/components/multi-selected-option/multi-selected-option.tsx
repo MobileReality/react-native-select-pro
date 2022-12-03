@@ -20,8 +20,8 @@ export const MultiSelectedOption = ({
         <Pressable
             accessibilityLabel={option ? `${option.label} selected` : 'Placeholder in multi-select'}
             style={[
-                isPlaceholder ? styles.placeholderText : styles.multiSelectionOption,
-                selectStyles?.multiSelectionOption,
+                isPlaceholder ? styles.placeholderText : styles.multiSelectedOption,
+                selectStyles?.multiSelectedOption,
                 { width: optionWidth },
             ]}
             disabled={!isPressable}
@@ -31,10 +31,11 @@ export const MultiSelectedOption = ({
                 numberOfLines={1}
                 style={[
                     styles.text,
-                    selectStyles?.text,
+                    selectStyles?.multiSelectedOption?.text,
                     {
                         color: option?.label
-                            ? StyleSheet.flatten(selectStyles?.text)?.color ?? COLORS.BLACK
+                            ? StyleSheet.flatten(selectStyles?.multiSelectedOption?.text)?.color ??
+                              COLORS.BLACK
                             : placeholderTextColor,
                     },
                 ]}
@@ -47,7 +48,7 @@ export const MultiSelectedOption = ({
 
 type Styles = {
     text: TextStyle;
-    multiSelectionOption: ViewStyle;
+    multiSelectedOption: ViewStyle;
     placeholderText: ViewStyle;
 };
 
@@ -61,7 +62,7 @@ const styles = StyleSheet.create<Styles>({
         justifyContent: 'center',
         display: 'flex',
     },
-    multiSelectionOption: {
+    multiSelectedOption: {
         alignItems: 'flex-start',
         justifyContent: 'center',
         display: 'flex',

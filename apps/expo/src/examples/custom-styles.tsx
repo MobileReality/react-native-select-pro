@@ -32,8 +32,9 @@ export const CustomStyles = () => {
                             fontSize: 20,
                         },
                         selected: {
-                            backgroundColor: 'lightgreen',
+                            backgroundColor: 'mediumseagreen',
                         },
+                        selectedText: { color: 'white' },
                     },
                 }}
                 options={DATA}

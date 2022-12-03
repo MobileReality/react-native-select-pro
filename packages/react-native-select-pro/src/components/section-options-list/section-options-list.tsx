@@ -3,7 +3,7 @@ import type { SectionListData } from 'react-native';
 import { SectionList } from 'react-native';
 
 import { useOptionsListContext } from '../../context';
-import { ERRORS, logError } from '../../helpers';
+import { ERRORS, isSectionSelected, logError } from '../../helpers';
 import { getSectionLocation } from '../../helpers/get-section-location';
 import { NoOptions } from '../no-options';
 import { SectionHeader } from '../section-header';
@@ -20,14 +20,28 @@ export const SectionOptionsList = ({
         isOpened,
         scrollToSelectedOption,
         onPressOption,
+        onPressSection,
         selectedOption,
         sectionListProps,
         styles,
     } = useOptionsListContext();
 
-    const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => (
-        <SectionHeader title={info.section.title} optionsList={styles?.optionsList} />
-    );
+    const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => {
+        const isSelected = isSectionSelected({
+            title: info.section.title,
+            selectedOptions: selectedOption,
+            sectionData: resolvedData,
+        });
+
+        return (
+            <SectionHeader
+                title={info.section.title}
+                sectionHeader={styles?.sectionHeader}
+                isSelected={isSelected}
+                onPressSection={onPressSection}
+            />
+        );
+    };
 
     const sectionList = useCallback(
         (node: SectionList | null) => {
