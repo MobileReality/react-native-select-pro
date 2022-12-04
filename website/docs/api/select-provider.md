@@ -1,7 +1,7 @@
 ---
 id: select-provider
 title: SelectProvider
-sidebar_label: SelectProvider
+sidebar_label: <SelectProvider />
 ---
 
 `<SelectProvider>` must wrap a whole app, so should be placed in the root app component file (index.js, App.js or sth like that). So children of this component is one required prop.

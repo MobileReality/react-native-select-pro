@@ -1,7 +1,7 @@
 ---
 id: select-modal
 title: SelectModalProvider
-sidebar_label: SelectModalProvider
+sidebar_label: <SelectModalProvider />
 ---
 
 If you want to use `Select` component inside:
