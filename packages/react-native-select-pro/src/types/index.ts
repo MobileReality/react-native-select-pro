@@ -93,7 +93,7 @@ export interface SelectProps<T = unknown> {
      * Placeholder text
      *
      * @category Text
-     * @default "#808080"
+     * @default "Select..."
      */
     placeholderText?: string;
 
@@ -127,7 +127,7 @@ export interface SelectProps<T = unknown> {
      *  If `true` disable a select control
      *
      *  @category Behaviour
-     *  @default true
+     *  @default false
      */
     disabled?: boolean;
 
@@ -244,7 +244,7 @@ export interface SelectProps<T = unknown> {
      * Placeholder text color
      *
      * @category Colors
-     * @default "Select..."
+     * @default "#808080"
      */
     placeholderTextColor?: string;
 

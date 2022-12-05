@@ -3,8 +3,9 @@ import React from 'react';
 type SnackLinkProps = {
     name: string;
     contents: string;
+    label?: string;
 };
-export const SnackLink = ({ name, contents }: SnackLinkProps) => {
+export const SnackLink = ({ name, contents, label = 'Link' }: SnackLinkProps) => {
     const code = {
         'App.tsx': {
             type: 'CODE',
@@ -18,7 +19,7 @@ export const SnackLink = ({ name, contents }: SnackLinkProps) => {
 
     return (
         <a href={url} target="_blank" aria-label={`Open ${name} example in Expo Snack`}>
-            Link
+            {label}
         </a>
     );
 };
