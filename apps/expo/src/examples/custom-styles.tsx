@@ -36,6 +36,7 @@ export const CustomStyles = () => {
                         },
                         selectedText: { color: 'white' },
                     },
+                    backdrop: { backgroundColor: 'black', opacity: 0.3 },
                 }}
                 options={DATA}
                 placeholderTextColor="blue"
