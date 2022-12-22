@@ -9,9 +9,10 @@ type Props = {
     buttonStyles?: ViewStyle;
 };
 
-const getPrimaryColor = (colorIndex: number, multiplier: number) => {
-    return colorIndex * multiplier > 255 ? 255 : colorIndex * multiplier;
-};
+const MAX_COLOR_INTENSITY = 255;
+
+const getPrimaryColor = (colorIndex: number, multiplier: number) =>
+    Math.min(colorIndex * multiplier, MAX_COLOR_INTENSITY);
 
 export const Button = ({ title, onPress, colorIndex, buttonStyles }: Props) => {
     return (
@@ -19,7 +20,7 @@ export const Button = ({ title, onPress, colorIndex, buttonStyles }: Props) => {
             style={[
                 {
                     backgroundColor: `rgb(
-                        ${255 - getPrimaryColor(colorIndex, 10)}, ${getPrimaryColor(
+                        ${MAX_COLOR_INTENSITY - getPrimaryColor(colorIndex, 10)}, ${getPrimaryColor(
                         colorIndex,
                         5,
                     )}, ${getPrimaryColor(colorIndex, 15)})`,
