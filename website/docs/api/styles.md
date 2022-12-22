@@ -36,9 +36,9 @@ styles?: {
             // Style of clear option image
             icon?: StyleProp<ImageStyle>;
         };
-    } & StyleProp<ViewStyle>
+    } & StyleProp<ViewStyle>;
     // Style of options list container
-    optionsList: StyleProp<ViewStyle>
+    optionsList: StyleProp<ViewStyle>;
     // Style of section header container
     sectionHeader?: {
         // Style of section header title
@@ -51,7 +51,7 @@ styles?: {
         selectedText?: StyleProp<TextStyle>;
         // Style of section header clear icon all section options are selected
         selectedClearIcon?: StyleProp<ImageStyle>;
-    } & StyleProp<ViewStyle>
+    } & StyleProp<ViewStyle>;
     // Style of single option container
     option: {
         // Style of single option text
@@ -60,7 +60,9 @@ styles?: {
         selected?: StyleProp<ViewStyle>;
         // Style of selected single option text
         selectedText?: StyleProp<TextStyle>;
-    } & StyleProp<ViewStyle>
+    } & StyleProp<ViewStyle>;
+    // Style of backdrop when options list is opened
+    backdrop?: StyleProp<ViewStyle>;
 }
 ```
 

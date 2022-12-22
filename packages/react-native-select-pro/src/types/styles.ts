@@ -32,6 +32,12 @@ export type SelectStyles = {
      * @category Styles
      */
     sectionHeader?: SectionHeaderStyles;
+    /**
+     * Style of backdrop when options list is opened
+     *
+     * @category Styles
+     */
+    backdrop?: StyleProp<ViewStyle>;
 } & StyleProp<ViewStyle>;
 
 export type SelectControlStyles = {

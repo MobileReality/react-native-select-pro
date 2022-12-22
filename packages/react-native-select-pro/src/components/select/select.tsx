@@ -132,7 +132,10 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                 <>
                     {!noBackdrop && (
                         <Portal hostName={Portals.Backdrop}>
-                            <Backdrop onOutsidePress={onOutsidePress} />
+                            <Backdrop
+                                backdrop={mainStyles?.backdrop}
+                                onOutsidePress={onOutsidePress}
+                            />
                         </Portal>
                     )}
                     <Portal hostName={Portals.OptionsList}>
