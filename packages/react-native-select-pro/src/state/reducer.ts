@@ -1,6 +1,6 @@
 import type { OptionsType } from '@mobile-reality/react-native-select-pro';
 
-import { ERRORS, isSectionOptionsType } from '../helpers';
+import { ERRORS, isSectionOptionsType, regexSearchTest } from '../helpers';
 
 import type { ActionType, State } from './types';
 import { Action } from './types';
@@ -57,16 +57,13 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 };
             }
             const regex = new RegExp(action.searchPattern(action.payload.toLowerCase()));
-
             if (isSectionOptionsType(state.optionsData)) {
                 const filteredSections = state.optionsData
                     .map((section) => ({
                         ...section,
-                        data: regex.test(section.title.toLocaleLowerCase())
+                        data: regexSearchTest(regex, section.title)
                             ? section.data
-                            : section.data.filter((option) =>
-                                  regex.test(option.label.toLowerCase()),
-                              ),
+                            : section.data.filter((option) => regexSearchTest(regex, option.label)),
                     }))
                     .filter((section) => section.data.length > 0);
 
@@ -79,7 +76,7 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
             return {
                 ...state,
                 searchedOptions: state.optionsData.filter((option) =>
-                    regex.test(option.label.toLowerCase()),
+                    regexSearchTest(regex, option.label),
                 ),
             };
         }

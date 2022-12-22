@@ -217,6 +217,10 @@ export const useSelect = <T>({
             type: Action.SelectOption,
             payload: resolveOption(),
         });
+
+        if (searchable) {
+            dispatch({ type: Action.SetSearchValue, payload: '' });
+        }
     };
 
     const setPosition = () => {
