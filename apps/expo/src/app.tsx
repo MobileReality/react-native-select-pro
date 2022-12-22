@@ -138,8 +138,15 @@ export const App = () => {
             <FlatList
                 testID="Examples List"
                 data={data}
-                renderItem={({ item: { getScreen, name } }) => (
+                numColumns={3}
+                columnWrapperStyle={{
+                    flex: 1,
+                    marginHorizontal: 5,
+                    justifyContent: 'space-around',
+                }}
+                renderItem={({ item: { getScreen, name }, index }) => (
                     <Button
+                        colorIndex={index}
                         title={name}
                         onPress={() =>
                             setScreen({
@@ -179,6 +186,8 @@ export const App = () => {
                         >
                             <Button
                                 title="Close"
+                                colorIndex={0}
+                                buttonStyles={{ width: 100, height: 50 }}
                                 onPress={() =>
                                     setScreen({
                                         screen: undefined,
