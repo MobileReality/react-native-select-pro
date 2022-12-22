@@ -7,5 +7,6 @@ export { isAndroid } from './is-android';
 export { isSectionOptionsType } from './is-section-options-type';
 export { isSectionSelected } from './is-section-selected';
 export { ERRORS, logError } from './log-error';
+export { regexSearchTest } from './regex-search-test';
 export { selectedOptionResolver } from './selected-option-resolver';
 export type { OptionalToRequired } from './types/optional-to-required';
