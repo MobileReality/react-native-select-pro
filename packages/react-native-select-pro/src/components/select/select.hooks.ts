@@ -1,5 +1,5 @@
 import type { RefObject } from 'react';
-import { useEffect, useImperativeHandle } from 'react';
+import { useContext, useEffect, useImperativeHandle } from 'react';
 import type { TextInput } from 'react-native';
 import { I18nManager, StyleSheet, useWindowDimensions } from 'react-native';
 
@@ -18,6 +18,7 @@ import type {
     OptionType,
     SelectRef,
 } from '../../types';
+import { SelectModalContext } from '../select-provider';
 
 import type { UseSelect } from './select.types';
 
@@ -37,6 +38,7 @@ export const useSelect = <T>({
     onDropdownClosed,
 }: UseSelect<T>) => {
     const { height: screenHeight, width: screenWidth } = useWindowDimensions();
+    const valueY = useContext(SelectModalContext);
     const { isOpened, selectedOption, optionsData, searchInputRef, selectedOptionIndex } = state;
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
     const isSectionedOptions = isSectionOptionsType(optionsData);
@@ -254,7 +256,7 @@ export const useSelect = <T>({
                     type: Action.SetPosition,
                     payload: {
                         width,
-                        top: isOverflow ? pageY - finalHeight : pageY + height,
+                        top: isOverflow ? pageY - finalHeight : pageY + height - valueY,
                         left: I18nManager.isRTL ? screenWidth - width - pageX : pageX,
                         aboveSelectControl: isOverflow,
                     },

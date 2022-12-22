@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 1.13.1
+
+### Patch Changes
+
+-   [#131](https://github.com/MobileReality/react-native-select-pro/pull/131) [`e3b4c04`](https://github.com/MobileReality/react-native-select-pro/commit/e3b4c04499b87c788504758021a0b3250a8b5c50) Thanks [@irekrog](https://github.com/irekrog)! - options list position with `presentationStyle="pageSheet"`
+
 ## 1.13.0
 
 ### Minor Changes
