@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import type { TouchableOpacity } from 'react-native';
+import type { View } from 'react-native';
 import { AccessibilityInfo, findNodeHandle, StyleSheet } from 'react-native';
 
 import { ITEM_HEIGHT } from '../../constants/styles';
@@ -17,7 +17,7 @@ export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
         selectedOptionResolver(selectedOption);
 
     const measuredRef = useCallback(
-        (node: TouchableOpacity | null) => {
+        (node: View | null) => {
             if (node !== null) {
                 const reactTag = findNodeHandle(node);
                 if (reactTag) {
