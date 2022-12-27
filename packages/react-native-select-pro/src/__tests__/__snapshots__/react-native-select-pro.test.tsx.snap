@@ -2,7 +2,6 @@
 
 exports[`Select should generate Select snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {
@@ -125,7 +124,6 @@ exports[`Select should generate Select snapshot 1`] = `
 
 exports[`Select with custom left icon should generate Select with custom left icon snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {
@@ -297,7 +295,6 @@ exports[`Select with custom left icon should generate Select with custom left ic
 
 exports[`Select with custom select control arrow icon should generate Select with custom select control arrow icon snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {
@@ -442,7 +439,6 @@ exports[`Select with custom select control arrow icon should generate Select wit
 
 exports[`Select with multi selection and searchable should generate Select with multi selection and searchable enabled snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {
@@ -598,7 +594,6 @@ exports[`Select with multi selection and searchable should generate Select with 
 
 exports[`Select with multi selection should generate Select with multi selection enabled snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {
@@ -787,7 +782,6 @@ exports[`Select with multi selection should generate Select with multi selection
 
 exports[`Select with searchable enabled should generate Select with searchable enabled snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {

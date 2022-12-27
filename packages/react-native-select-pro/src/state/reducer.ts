@@ -99,7 +99,7 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 ...state,
                 searchInputRef: action.payload,
             };
-        case Action.SetPosition:
+        case Action.SetOptionsListPosition:
             return {
                 ...state,
                 openedPosition: { ...state.openedPosition, ...action.payload },

@@ -30,7 +30,7 @@ type SelectContextProviderTypes<T> = {
     > & {
         onPressSelectControl: OnPressSelectControlType;
         dispatch: DispatchType<T>;
-        setPosition: () => void;
+        setOptionsListPosition: () => Promise<void>;
     };
 
 export const [useSelectContext, SelectContextProvider] =

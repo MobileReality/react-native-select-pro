@@ -1,5 +1,5 @@
-import React from 'react';
-import type { ViewStyle } from 'react-native';
+import React, { forwardRef } from 'react';
+import type { View, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
@@ -13,7 +13,7 @@ import { SectionOptionsList } from '../section-options-list';
 import { useOptionsList } from './options-list.hooks';
 import type { RenderItemProps } from './options-list.types';
 
-export const OptionsList = () => {
+export const OptionsList = forwardRef<View>((_, optionsListRef) => {
     const {
         aboveSelectControl,
         openedPosition: { width, top, left },
@@ -55,8 +55,9 @@ export const OptionsList = () => {
 
     return (
         <OptionsListWrapper
+            ref={optionsListRef}
             wrapperStyles={[
-                styles.options,
+                styles.optionsList,
                 mainStyles?.optionsList,
                 { top, left, width },
                 aboveSelectControl ? styles.overflown : styles.notOverflown,
@@ -81,22 +82,22 @@ export const OptionsList = () => {
             )}
         </OptionsListWrapper>
     );
-};
+});
 
 type Styles = {
-    options: ViewStyle;
+    optionsList: ViewStyle;
     notOverflown: ViewStyle;
     overflown: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
-    options: {
+    optionsList: {
         flex: 1,
         position: 'absolute',
         zIndex: 1,
         backgroundColor: COLORS.WHITE,
         borderWidth: BORDER_WIDTH,
-        maxHeight: MAX_HEIGHT_LIST,
+        height: MAX_HEIGHT_LIST,
         elevation: 5,
     },
     notOverflown: {
@@ -110,3 +111,5 @@ const styles = StyleSheet.create<Styles>({
         borderTopLeftRadius: SHAPE,
     },
 });
+
+OptionsList.displayName = 'OptionsList';

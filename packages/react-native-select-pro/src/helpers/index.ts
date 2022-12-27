@@ -6,6 +6,7 @@ export { getSize } from './get-size';
 export { isAndroid } from './is-android';
 export { isSectionOptionsType } from './is-section-options-type';
 export { isSectionSelected } from './is-section-selected';
+export { isValidDefaultOption } from './is-valid-default-option';
 export { ERRORS, logError } from './log-error';
 export { regexSearchTest } from './regex-search-test';
 export { selectedOptionResolver } from './selected-option-resolver';

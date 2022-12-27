@@ -11,7 +11,7 @@ export enum Action {
     SetSearchInputRef = 'setSearchInputRef',
     SetSearchValue = 'setSearchValue',
     SearchOptions = 'searchOptions',
-    SetPosition = 'setPosition',
+    SetOptionsListPosition = 'setOptionsListPo',
 }
 
 export type ActionType<T> =
@@ -33,7 +33,7 @@ export type ActionType<T> =
           payload: OptionsType<T>;
       }
     | {
-          type: Action.SetPosition;
+          type: Action.SetOptionsListPosition;
           payload: Position;
       }
     | {

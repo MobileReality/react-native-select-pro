@@ -1,8 +1,8 @@
 import { useContext, useEffect, useImperativeHandle } from 'react';
-import { I18nManager, StyleSheet, useWindowDimensions } from 'react-native';
+import type { LayoutRectangle } from 'react-native';
+import { I18nManager, useWindowDimensions } from 'react-native';
 
-import { ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
-import { getSize, isSectionOptionsType } from '../../helpers';
+import { isSectionOptionsType, isValidDefaultOption } from '../../helpers';
 import {
     getReducedSectionData,
     getSectionOptionsIndexes,
@@ -29,11 +29,11 @@ export const useSelect = <T>({
     closeDropdownOnSelect,
     searchable,
     multiSelection,
-    styles,
     dispatch,
     onRemove,
     onDropdownOpened,
     onDropdownClosed,
+    optionsListRef,
 }: UseSelect<T>) => {
     const { height: screenHeight, width: screenWidth } = useWindowDimensions();
     const valueY = useContext(SelectModalContext);
@@ -42,10 +42,7 @@ export const useSelect = <T>({
     const isSectionedOptions = isSectionOptionsType(optionsData);
 
     useEffect(() => {
-        const isValidPassDefaultOption =
-            defaultOption &&
-            Object.prototype.hasOwnProperty.call(defaultOption, 'value') &&
-            Object.prototype.hasOwnProperty.call(defaultOption, 'label');
+        const isValidPassDefaultOption = isValidDefaultOption(defaultOption);
 
         if (optionsData.length === 0 || !isValidPassDefaultOption) {
             return;
@@ -62,9 +59,59 @@ export const useSelect = <T>({
                 selectedOptionIndex: foundIndex,
             },
         });
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [optionsData, defaultOption, isSectionedOptions]);
+    }, [optionsData, defaultOption, isSectionedOptions, dispatch]);
+
+    const measureSelectInWindow = () => {
+        return new Promise<LayoutRectangle>((resolve) => {
+            if (containerRef.current) {
+                containerRef.current.measureInWindow((x, y, width, height) => {
+                    resolve({ x, y, width, height });
+                });
+            }
+        });
+    };
+
+    const measureOptionsListInWindow = () => {
+        return new Promise<Pick<LayoutRectangle, 'height'>>((resolve) => {
+            if (optionsListRef.current) {
+                optionsListRef.current.measureInWindow((_x, _y, _width, height) => {
+                    resolve({ height });
+                });
+            }
+        });
+    };
+
+    const setOptionsListPosition = async () => {
+        const { x, y, width, height } = await measureSelectInWindow();
+        const { height: optionsListHeight } = await measureOptionsListInWindow();
+
+        const isOverflow = x + height + optionsListHeight > screenHeight;
+
+        dispatch({
+            type: Action.SetOptionsListPosition,
+            payload: {
+                width,
+                top: isOverflow ? y - optionsListHeight : y + height - valueY,
+                left: I18nManager.getConstants().isRTL ? screenWidth - width - x : x,
+                aboveSelectControl: isOverflow,
+            },
+        });
+    };
+
+    const onPressSelectControl: OnPressSelectControlType = async () => {
+        if (isOpened) {
+            dispatch({
+                type: Action.Close,
+            });
+            return;
+        }
+        if (containerRef.current) {
+            dispatch({
+                type: Action.Open,
+            });
+        }
+        await setOptionsListPosition();
+    };
 
     useImperativeHandle(
         ref,
@@ -83,7 +130,7 @@ export const useSelect = <T>({
                     dispatch({
                         type: Action.Open,
                     });
-                    setPosition();
+                    void setOptionsListPosition();
                 }
             },
             close: () => {
@@ -218,61 +265,6 @@ export const useSelect = <T>({
         }
     };
 
-    const setPosition = () => {
-        if (containerRef.current) {
-            containerRef.current.measure((_x, _y, width, height, pageX, pageY) => {
-                const optionHeightFromProp = StyleSheet.flatten(styles?.option)?.height;
-                const optionHeight = getSize({
-                    size: optionHeightFromProp,
-                    sizeFallback: ITEM_HEIGHT,
-                    screenSize: screenHeight,
-                });
-
-                const listHeightFromProp = StyleSheet.flatten(styles?.optionsList)?.maxHeight;
-                const listHeight = getSize({
-                    size: listHeightFromProp,
-                    sizeFallback: MAX_HEIGHT_LIST,
-                    screenSize: screenHeight,
-                });
-                const optionsDataLength = isSectionedOptions
-                    ? getReducedSectionData(optionsData).length
-                    : optionsData.length;
-
-                const finalHeight =
-                    listHeight >= optionsDataLength * optionHeight
-                        ? optionsDataLength * optionHeight
-                        : listHeight;
-
-                const isOverflow = pageY + height + finalHeight > screenHeight;
-
-                dispatch({
-                    type: Action.SetPosition,
-                    payload: {
-                        width,
-                        top: isOverflow ? pageY - finalHeight : pageY + height - valueY,
-                        left: I18nManager.isRTL ? screenWidth - width - pageX : pageX,
-                        aboveSelectControl: isOverflow,
-                    },
-                });
-            });
-        }
-    };
-
-    const onPressSelectControl: OnPressSelectControlType = () => {
-        if (isOpened) {
-            dispatch({
-                type: Action.Close,
-            });
-            return;
-        }
-        setPosition();
-        if (containerRef.current) {
-            dispatch({
-                type: Action.Open,
-            });
-        }
-    };
-
     const onOutsidePress: OnOutsidePress = () => {
         if (selectedOptionLabel && searchable) {
             dispatch({
@@ -294,7 +286,7 @@ export const useSelect = <T>({
     }, [isOpened, onDropdownOpened, onDropdownClosed]);
 
     return {
-        setPosition,
+        setOptionsListPosition,
         onPressOption,
         onPressSection,
         onOutsidePress,

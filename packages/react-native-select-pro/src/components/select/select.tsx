@@ -85,26 +85,32 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
     const { aboveSelectControl } = openedPosition;
 
     const containerRef = useRef<View>(null);
+    const optionsListRef = useRef<View>(null);
 
-    const { setPosition, onPressOption, onOutsidePress, onPressSelectControl, onPressSection } =
-        useSelect<T>({
-            containerRef,
-            dispatch,
-            defaultOption,
-            onRemove,
-            disabled,
-            closeDropdownOnSelect,
-            searchable,
-            multiSelection,
-            styles: mainStyles,
-            onDropdownOpened,
-            onDropdownClosed,
-            ref,
-            state,
-        });
+    const {
+        setOptionsListPosition,
+        onPressOption,
+        onOutsidePress,
+        onPressSelectControl,
+        onPressSection,
+    } = useSelect<T>({
+        containerRef,
+        optionsListRef,
+        dispatch,
+        defaultOption,
+        onRemove,
+        disabled,
+        closeDropdownOnSelect,
+        searchable,
+        multiSelection,
+        onDropdownOpened,
+        onDropdownClosed,
+        ref,
+        state,
+    });
 
     return (
-        <View style={[styles.relative, mainStyles]} onLayout={setPosition}>
+        <View style={[styles.relative, mainStyles]}>
             <SelectContextProvider
                 value={{
                     isOpened,
@@ -125,7 +131,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     selectControlOpenDropdownA11yLabel,
                     onRemove,
                     dispatch,
-                    setPosition,
+                    setOptionsListPosition,
                     selectedOption,
                     selectedOptionIndex,
                     styles: mainStyles,
@@ -167,7 +173,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 styles: mainStyles,
                             }}
                         >
-                            <OptionsList />
+                            <OptionsList ref={optionsListRef} />
                         </OptionsListContextProvider>
                     </Portal>
                 </>

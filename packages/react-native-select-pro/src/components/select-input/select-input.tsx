@@ -20,16 +20,16 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
         onPressSelectControl,
         textInputProps,
         dispatch,
-        setPosition,
+        setOptionsListPosition,
     } = useSelectContext();
     const searchInputRef = useRef<TextInput>(null);
 
     useEffect(() => {
         const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
-            setPosition();
+            void setOptionsListPosition();
         });
         const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
-            setPosition();
+            void setOptionsListPosition();
         });
         dispatch({
             type: Action.SetSearchInputRef,
@@ -86,7 +86,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
                     ? [styles.disabled, styles.text, multiSelection && { marginRight: 5 }]
                     : [styles.text, textStyle]
             }
-            textAlign={I18nManager.isRTL ? 'right' : 'left'}
+            textAlign={I18nManager.getConstants().isRTL ? 'right' : 'left'}
             value={searchValue ?? ''}
             onChangeText={onChangeText}
             onPressIn={disabled ? () => null : onPressSelectControl}
