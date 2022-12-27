@@ -1,5 +1,7 @@
+import { LayoutAnimation } from 'react-native';
 import type { OptionsType } from '@mobile-reality/react-native-select-pro';
 
+import { ANIMATION_DURATION } from '../constants/styles';
 import { ERRORS, isSectionOptionsType, regexSearchTest } from '../helpers';
 
 import type { ActionType, State } from './types';
@@ -19,6 +21,7 @@ const initialData = {
         aboveSelectControl: false,
     },
     optionsData: [],
+    animation: 0,
 };
 
 export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => {
@@ -29,6 +32,13 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 isOpened: true,
             };
         case Action.Close:
+            LayoutAnimation.configureNext({
+                duration: state.animation,
+                delete: {
+                    type: LayoutAnimation.Types.linear,
+                    property: LayoutAnimation.Properties.opacity,
+                },
+            });
             return {
                 ...state,
                 isOpened: false,
@@ -98,11 +108,13 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
 type CreateInitialStateType<T> = {
     options: OptionsType<T>;
     searchable: boolean;
+    animation: boolean | number;
 };
 
 export const createInitialState = <T>({
     options,
     searchable,
+    animation,
 }: CreateInitialStateType<T>): State<T> | undefined => {
     if (!Array.isArray(options)) {
         throw new TypeError(ERRORS.NO_ARRAY_OPTIONS);
@@ -112,5 +124,7 @@ export const createInitialState = <T>({
         ...initialData,
         optionsData: options,
         searchValue: searchable ? '' : null,
+        animation:
+            typeof animation === 'boolean' ? (animation ? ANIMATION_DURATION : 0) : animation,
     };
 };

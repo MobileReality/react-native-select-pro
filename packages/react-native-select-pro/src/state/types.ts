@@ -66,6 +66,7 @@ export type State<T = unknown> = {
     searchValue: string | null;
     searchedOptions: OptionsType<T>;
     searchInputRef: Ref<TextInput> | null;
+    animation: number;
 };
 
 export type DispatchType<T> = Dispatch<ActionType<T>>;
