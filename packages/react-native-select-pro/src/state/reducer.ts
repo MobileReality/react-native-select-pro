@@ -21,7 +21,7 @@ const initialData = {
         aboveSelectControl: false,
     },
     optionsData: [],
-    animation: 0,
+    animationDuration: 0,
 };
 
 export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => {
@@ -32,13 +32,14 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 isOpened: true,
             };
         case Action.Close:
-            LayoutAnimation.configureNext({
-                duration: state.animation,
-                delete: {
-                    type: LayoutAnimation.Types.linear,
-                    property: LayoutAnimation.Properties.opacity,
-                },
-            });
+            state.animationDuration > 0 &&
+                LayoutAnimation.configureNext({
+                    duration: state.animationDuration,
+                    delete: {
+                        type: LayoutAnimation.Types.linear,
+                        property: LayoutAnimation.Properties.opacity,
+                    },
+                });
             return {
                 ...state,
                 isOpened: false,
@@ -124,7 +125,7 @@ export const createInitialState = <T>({
         ...initialData,
         optionsData: options,
         searchValue: searchable ? '' : null,
-        animation:
+        animationDuration:
             typeof animation === 'boolean' ? (animation ? ANIMATION_DURATION : 0) : animation,
     };
 };
