@@ -1,6 +1,7 @@
 import type { ForwardedRef, NamedExoticComponent, ReactElement, Reducer } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
 import type { ViewStyle } from 'react-native';
+import { Platform, UIManager } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { Portal } from '@gorhom/portal';
 
@@ -15,6 +16,10 @@ import { OptionsList } from '../options-list';
 import { SelectControl } from '../select-control';
 
 import { useSelect } from './select.hooks';
+
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<T>>) => {
     const {
@@ -63,7 +68,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         reducer,
         // TODO: fix this
         // @ts-expect-error initializerArg bad type
-        { options, searchable },
+        { options, searchable, animation },
         createInitialState,
     );
 
