@@ -27,6 +27,9 @@ const initialData = {
 export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => {
     switch (action.type) {
         case Action.Open:
+            if (state.searchValue !== null) {
+                state.searchInputRef?.current?.focus();
+            }
             return {
                 ...state,
                 isOpened: true,
