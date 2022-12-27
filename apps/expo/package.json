@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "dev": "expo start --clear --tunnel",
+    "dev": "expo start --clear",
     "tsc": "tsc --noEmit",
     "clean": "rm -Rf .turbo && rm -Rf node_modules",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
