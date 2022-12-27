@@ -1,6 +1,4 @@
-import type { RefObject } from 'react';
 import { useContext, useEffect, useImperativeHandle } from 'react';
-import type { TextInput } from 'react-native';
 import { I18nManager, StyleSheet, useWindowDimensions } from 'react-native';
 
 import { ITEM_HEIGHT, MAX_HEIGHT_LIST } from '../../constants/styles';
@@ -97,12 +95,7 @@ export const useSelect = <T>({
         }),
     );
 
-    const hideKeyboardIfNeeded = () => {
-        // TODO: Better condition handling, however, typo error appears in every combination
-        if (searchInputRef && (searchInputRef as RefObject<TextInput>).current) {
-            (searchInputRef as RefObject<TextInput>)?.current?.blur();
-        }
-    };
+    const hideKeyboardIfNeeded = () => searchInputRef?.current?.blur();
 
     const onPressOption: OnPressOptionType<T> = (option: OptionType<T>, optionIndex: number) => {
         if (closeDropdownOnSelect) {
