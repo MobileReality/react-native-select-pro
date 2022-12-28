@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import type { TextStyle, View, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING } from '../../constants/styles';
+import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING } from '../../constants';
 import { useOptionsListContext } from '../../context';
 
 import type { OnChooseOption, OptionProps } from './option.types';

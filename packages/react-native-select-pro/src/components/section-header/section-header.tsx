@@ -4,7 +4,7 @@ import { Image, Pressable } from 'react-native';
 import { Text } from 'react-native';
 import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
+import { COLORS, FONT_SIZE, PADDING } from '../../constants';
 
 import type { SectionHeaderProps } from './section-header.types';
 

@@ -20,7 +20,7 @@ type FromSelectComponent<T> = Pick<
 export type UseSelect<T> = OptionalToRequired<
     FromSelectComponent<T> & {
         dispatch: DispatchType<T>;
-        containerRef: RefObject<View>;
+        selectControlRef: RefObject<View>;
         optionsListRef: RefObject<View>;
         ref: ForwardedRef<SelectRef<T>>;
         state: State<T>;

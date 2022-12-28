@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import type { View, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
 
-import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST, SHAPE } from '../../constants/styles';
+import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST, SHAPE } from '../../constants';
 import { useOptionsListContext } from '../../context';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
 import { FlatOptionsList } from '../flat-options-list';

@@ -2,7 +2,7 @@ import React from 'react';
 import type { TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
+import { COLORS, FONT_SIZE, PADDING } from '../../constants';
 import { useOptionsListContext } from '../../context';
 
 export const NoOptions = () => {

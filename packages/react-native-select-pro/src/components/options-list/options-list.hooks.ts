@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import type { View } from 'react-native';
 import { AccessibilityInfo, findNodeHandle, StyleSheet } from 'react-native';
 
-import { ITEM_HEIGHT } from '../../constants/styles';
+import { ITEM_HEIGHT } from '../../constants';
 import { useOptionsListContext } from '../../context';
 import { selectedOptionResolver } from '../../helpers';
 import type { OptionType } from '../../types';

@@ -2,7 +2,7 @@ import React, { type ReactNode, createContext, useCallback, useRef, useState } f
 import { InteractionManager, View } from 'react-native';
 import { PortalHost, PortalProvider } from '@gorhom/portal';
 
-import { Portals } from '../../constants/portals';
+import { Portals } from '../../constants';
 
 type Props = {
     children: ReactNode;

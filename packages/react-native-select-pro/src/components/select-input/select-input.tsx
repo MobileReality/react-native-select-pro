@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import type { TextStyle } from 'react-native';
 import { I18nManager, Keyboard, StyleSheet, TextInput } from 'react-native';
 
-import { COLORS, FONT_SIZE } from '../../constants/styles';
+import { COLORS, FONT_SIZE } from '../../constants';
 import { useSelectContext } from '../../context';
 import { Action } from '../../state';
 

@@ -2,6 +2,7 @@ import { useContext, useEffect, useImperativeHandle } from 'react';
 import type { LayoutRectangle } from 'react-native';
 import { I18nManager, useWindowDimensions } from 'react-native';
 
+import { APPROX_STATUSBAR_HEIGHT } from '../../constants';
 import { isSectionOptionsType, isValidDefaultOption } from '../../helpers';
 import {
     getReducedSectionData,
@@ -22,7 +23,7 @@ import type { UseSelect } from './select.types';
 
 export const useSelect = <T>({
     ref,
-    containerRef,
+    selectControlRef,
     state,
     defaultOption,
     disabled,
@@ -41,30 +42,37 @@ export const useSelect = <T>({
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
     const isSectionedOptions = isSectionOptionsType(optionsData);
 
+    const open = () => dispatch({ type: Action.Open });
+    const close = () => dispatch({ type: Action.Close });
+
     useEffect(() => {
-        const isValidPassDefaultOption = isValidDefaultOption(defaultOption);
+        const setDefaultOption = () => {
+            const isValidPassDefaultOption = isValidDefaultOption(defaultOption);
 
-        if (optionsData.length === 0 || !isValidPassDefaultOption) {
-            return;
-        }
+            if (optionsData.length === 0 || !isValidPassDefaultOption) {
+                return;
+            }
 
-        const foundIndex = isSectionedOptions
-            ? getReducedSectionData(optionsData).indexOf(defaultOption)
-            : optionsData.indexOf(defaultOption);
+            const foundIndex = isSectionedOptions
+                ? getReducedSectionData(optionsData).indexOf(defaultOption)
+                : optionsData.indexOf(defaultOption);
 
-        dispatch({
-            type: Action.SelectOption,
-            payload: {
-                selectedOption: defaultOption,
-                selectedOptionIndex: foundIndex,
-            },
-        });
+            dispatch({
+                type: Action.SelectOption,
+                payload: {
+                    selectedOption: defaultOption,
+                    selectedOptionIndex: foundIndex,
+                },
+            });
+        };
+
+        setDefaultOption();
     }, [optionsData, defaultOption, isSectionedOptions, dispatch]);
 
     const measureSelectInWindow = () => {
         return new Promise<LayoutRectangle>((resolve) => {
-            if (containerRef.current) {
-                containerRef.current.measureInWindow((x, y, width, height) => {
+            if (selectControlRef.current) {
+                selectControlRef.current.measureInWindow((x, y, width, height) => {
                     resolve({ x, y, width, height });
                 });
             }
@@ -85,14 +93,18 @@ export const useSelect = <T>({
         const { x, y, width, height } = await measureSelectInWindow();
         const { height: optionsListHeight } = await measureOptionsListInWindow();
 
-        const isOverflow = x + height + optionsListHeight > screenHeight;
+        const isOverflow = y + height + optionsListHeight > screenHeight;
+        const top = isOverflow
+            ? y - optionsListHeight
+            : y + height - valueY + APPROX_STATUSBAR_HEIGHT;
+        const left = I18nManager.isRTL ? screenWidth - width - x : x;
 
         dispatch({
             type: Action.SetOptionsListPosition,
             payload: {
                 width,
-                top: isOverflow ? y - optionsListHeight : y + height - valueY,
-                left: I18nManager.getConstants().isRTL ? screenWidth - width - x : x,
+                top,
+                left,
                 aboveSelectControl: isOverflow,
             },
         });
@@ -100,17 +112,13 @@ export const useSelect = <T>({
 
     const onPressSelectControl: OnPressSelectControlType = async () => {
         if (isOpened) {
-            dispatch({
-                type: Action.Close,
-            });
+            close();
             return;
         }
-        if (containerRef.current) {
-            dispatch({
-                type: Action.Open,
-            });
+        if (selectControlRef.current) {
+            open();
+            await setOptionsListPosition();
         }
-        await setOptionsListPosition();
     };
 
     useImperativeHandle(
@@ -125,19 +133,13 @@ export const useSelect = <T>({
                     onRemove(selectedOption, selectedOptionIndex);
                 }
             },
-            open: () => {
-                if (containerRef.current && !disabled) {
-                    dispatch({
-                        type: Action.Open,
-                    });
-                    void setOptionsListPosition();
+            open: async () => {
+                if (selectControlRef.current && !disabled) {
+                    open();
+                    await setOptionsListPosition();
                 }
             },
-            close: () => {
-                dispatch({
-                    type: Action.Close,
-                });
-            },
+            close,
             getState: () => state,
         }),
     );
@@ -146,7 +148,7 @@ export const useSelect = <T>({
 
     const onPressOption: OnPressOptionType<T> = (option: OptionType<T>, optionIndex: number) => {
         if (closeDropdownOnSelect) {
-            dispatch({ type: Action.Close });
+            close();
         }
 
         const resolveOption = () => {
@@ -207,7 +209,7 @@ export const useSelect = <T>({
 
     const onPressSection = (title: string) => {
         if (closeDropdownOnSelect && multiSelection) {
-            dispatch({ type: Action.Close });
+            close();
         }
 
         if (!multiSelection || !isSectionedOptions) {
@@ -273,7 +275,7 @@ export const useSelect = <T>({
             });
         }
 
-        dispatch({ type: Action.Close });
+        close();
         hideKeyboardIfNeeded();
     };
 

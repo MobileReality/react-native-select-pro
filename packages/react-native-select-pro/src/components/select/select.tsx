@@ -5,8 +5,7 @@ import { Platform, UIManager } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { Portal } from '@gorhom/portal';
 
-import { Portals } from '../../constants/portals';
-import { COLORS } from '../../constants/styles';
+import { COLORS, Portals } from '../../constants';
 import { OptionsListContextProvider, SelectContextProvider } from '../../context';
 import type { ActionType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
@@ -84,7 +83,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
 
     const { aboveSelectControl } = openedPosition;
 
-    const containerRef = useRef<View>(null);
+    const selectControlRef = useRef<View>(null);
     const optionsListRef = useRef<View>(null);
 
     const {
@@ -94,7 +93,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         onPressSelectControl,
         onPressSection,
     } = useSelect<T>({
-        containerRef,
+        selectControlRef,
         optionsListRef,
         dispatch,
         defaultOption,
@@ -137,7 +136,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     styles: mainStyles,
                 }}
             >
-                <SelectControl ref={containerRef} />
+                <SelectControl ref={selectControlRef} />
             </SelectContextProvider>
             {isOpened && (
                 <>
