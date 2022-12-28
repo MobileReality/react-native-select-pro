@@ -23,6 +23,7 @@ import { RHF } from './examples/rhf';
 import { ScrollToSelectedOption } from './examples/scroll-to-selected-option';
 import { Searchable } from './examples/searchable';
 import { SearchableInModal } from './examples/searchable-in-modal';
+import { SearchableWithKeyboardAvoidView } from './examples/searchable-with-keyboard-avoid-view';
 import { Sections } from './examples/sections';
 import { SectionsWithMultiSelect } from './examples/sections-with-multiselect';
 import { SectionsWithSearchable } from './examples/sections-with-searchable';
@@ -126,6 +127,10 @@ const data = [
     {
         name: 'Real Example',
         getScreen: () => <RealExample />,
+    },
+    {
+        name: 'Searchable with keyboard avoid view',
+        getScreen: () => <SearchableWithKeyboardAvoidView />,
     },
 ];
 
