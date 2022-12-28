@@ -17,6 +17,7 @@ import { MultiSelect } from './examples/multiselect';
 import { MultiSelectWithSearchable } from './examples/multiselect-with-searchable';
 import { NoBackdrop } from './examples/no-backdrop';
 import { Overflow } from './examples/overflow';
+import { RealExample } from './examples/real-example';
 import { Ref } from './examples/ref';
 import { RHF } from './examples/rhf';
 import { ScrollToSelectedOption } from './examples/scroll-to-selected-option';
@@ -121,6 +122,10 @@ const data = [
     {
         name: 'Bottom Sheet',
         getScreen: () => <SelectBottomSheet />,
+    },
+    {
+        name: 'Real Example',
+        getScreen: () => <RealExample />,
     },
 ];
 
