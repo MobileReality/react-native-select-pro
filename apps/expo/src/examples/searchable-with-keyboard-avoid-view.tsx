@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import React from 'react';
 import { KeyboardAvoidingView, Platform, Text } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
@@ -5,7 +6,7 @@ import { Select } from '@mobile-reality/react-native-select-pro';
 import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 import { DATA } from '../constants';
 
-const KeyboardAware = ({ children }: { children: React.ReactNode }) => (
+const KeyboardAware = ({ children }: { children: ReactNode }) => (
     <KeyboardAvoidingView
         style={{
             flex: 1,
