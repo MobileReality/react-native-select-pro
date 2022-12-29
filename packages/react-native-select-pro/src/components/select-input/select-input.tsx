@@ -25,11 +25,11 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
     const searchInputRef = useRef<TextInput>(null);
 
     useEffect(() => {
-        const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
-            void setOptionsListPosition();
+        const showSubscription = Keyboard.addListener('keyboardDidShow', async () => {
+            await setOptionsListPosition();
         });
-        const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
-            void setOptionsListPosition();
+        const hideSubscription = Keyboard.addListener('keyboardDidHide', async () => {
+            await setOptionsListPosition();
         });
         dispatch({
             type: Action.SetSearchInputRef,
