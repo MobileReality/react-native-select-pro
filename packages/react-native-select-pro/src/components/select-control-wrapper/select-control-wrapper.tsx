@@ -3,7 +3,7 @@ import React, { forwardRef, useCallback } from 'react';
 import type { ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { BORDER_WIDTH, COLORS, SHAPE } from '../../constants/styles';
+import { BORDER_WIDTH, COLORS, SHAPE } from '../../constants';
 import { useSelectContext } from '../../context';
 
 import type { SelectControlWrapperProps } from './select-control-wrapper.types';

@@ -1,13 +1,13 @@
 import type { ForwardedRef, NamedExoticComponent, ReactElement, Reducer } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
 import type { ViewStyle } from 'react-native';
-import { Platform, UIManager } from 'react-native';
+import { UIManager } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { Portal } from '@gorhom/portal';
 
-import { Portals } from '../../constants/portals';
-import { COLORS } from '../../constants/styles';
+import { COLORS, Portals } from '../../constants';
 import { OptionsListContextProvider, SelectContextProvider } from '../../context';
+import { isAndroid } from '../../helpers';
 import type { ActionType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
 import type { SelectProps, SelectRef } from '../../types';
@@ -17,7 +17,7 @@ import { SelectControl } from '../select-control';
 
 import { useSelect } from './select.hooks';
 
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+if (isAndroid && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
@@ -84,27 +84,33 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
 
     const { aboveSelectControl } = openedPosition;
 
-    const containerRef = useRef<View>(null);
+    const selectControlRef = useRef<View>(null);
+    const optionsListRef = useRef<View>(null);
 
-    const { setPosition, onPressOption, onOutsidePress, onPressSelectControl, onPressSection } =
-        useSelect<T>({
-            containerRef,
-            dispatch,
-            defaultOption,
-            onRemove,
-            disabled,
-            closeDropdownOnSelect,
-            searchable,
-            multiSelection,
-            styles: mainStyles,
-            onDropdownOpened,
-            onDropdownClosed,
-            ref,
-            state,
-        });
+    const {
+        setOptionsListPosition,
+        onPressOption,
+        onOutsidePress,
+        onPressSelectControl,
+        onPressSection,
+    } = useSelect<T>({
+        selectControlRef,
+        optionsListRef,
+        dispatch,
+        defaultOption,
+        onRemove,
+        disabled,
+        closeDropdownOnSelect,
+        searchable,
+        multiSelection,
+        onDropdownOpened,
+        onDropdownClosed,
+        ref,
+        state,
+    });
 
     return (
-        <View style={[styles.relative, mainStyles]} onLayout={setPosition}>
+        <View style={[styles.relative, mainStyles]}>
             <SelectContextProvider
                 value={{
                     isOpened,
@@ -125,13 +131,13 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     selectControlOpenDropdownA11yLabel,
                     onRemove,
                     dispatch,
-                    setPosition,
+                    setOptionsListPosition,
                     selectedOption,
                     selectedOptionIndex,
                     styles: mainStyles,
                 }}
             >
-                <SelectControl ref={containerRef} />
+                <SelectControl ref={selectControlRef} />
             </SelectContextProvider>
             {isOpened && (
                 <>
@@ -167,7 +173,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 styles: mainStyles,
                             }}
                         >
-                            <OptionsList />
+                            <OptionsList ref={optionsListRef} />
                         </OptionsListContextProvider>
                     </Portal>
                 </>

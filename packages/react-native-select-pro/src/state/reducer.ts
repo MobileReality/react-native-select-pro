@@ -1,7 +1,7 @@
 import { LayoutAnimation } from 'react-native';
 import type { OptionsType } from '@mobile-reality/react-native-select-pro';
 
-import { ANIMATION_DURATION } from '../constants/styles';
+import { ANIMATION_DURATION } from '../constants';
 import { ERRORS, isSectionOptionsType, regexSearchTest } from '../helpers';
 
 import type { ActionType, State } from './types';
@@ -99,7 +99,7 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 ...state,
                 searchInputRef: action.payload,
             };
-        case Action.SetPosition:
+        case Action.SetOptionsListPosition:
             return {
                 ...state,
                 openedPosition: { ...state.openedPosition, ...action.payload },

@@ -2,7 +2,7 @@ import React from 'react';
 import type { TextStyle, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { COLORS, FONT_SIZE } from '../../constants/styles';
+import { COLORS, FONT_SIZE } from '../../constants';
 import { useSelectContext } from '../../context';
 
 import type { MultiSelectedOptionProps } from './multi-selected-option.types';

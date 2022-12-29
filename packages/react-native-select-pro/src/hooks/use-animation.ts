@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Animated } from 'react-native';
 import type { SelectProps } from '@mobile-reality/react-native-select-pro';
 
-import { ANIMATION_DURATION } from '../constants/styles';
+import { ANIMATION_DURATION } from '../constants';
 import type { State } from '../state';
 
 type UseAnimationProps = Pick<SelectProps, 'animation'> & Pick<State, 'isOpened'>;

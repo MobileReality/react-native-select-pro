@@ -307,4 +307,4 @@ export type OnPressSelectControlType = () => void;
  * @ignore
  */
 export type OnOutsidePress = () => void;
-export type OnSetPosition = () => void;
+export type OnSetOptionsListPosition = () => void;

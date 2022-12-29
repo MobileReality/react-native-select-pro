@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import type { TextStyle } from 'react-native';
 import { I18nManager, Keyboard, StyleSheet, TextInput } from 'react-native';
 
-import { COLORS, FONT_SIZE } from '../../constants/styles';
+import { COLORS, FONT_SIZE } from '../../constants';
 import { useSelectContext } from '../../context';
 import { Action } from '../../state';
 
@@ -20,16 +20,16 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
         onPressSelectControl,
         textInputProps,
         dispatch,
-        setPosition,
+        setOptionsListPosition,
     } = useSelectContext();
     const searchInputRef = useRef<TextInput>(null);
 
     useEffect(() => {
-        const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
-            setPosition();
+        const showSubscription = Keyboard.addListener('keyboardDidShow', async () => {
+            await setOptionsListPosition();
         });
-        const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
-            setPosition();
+        const hideSubscription = Keyboard.addListener('keyboardDidHide', async () => {
+            await setOptionsListPosition();
         });
         dispatch({
             type: Action.SetSearchInputRef,
@@ -86,7 +86,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
                     ? [styles.disabled, styles.text, multiSelection && { marginRight: 5 }]
                     : [styles.text, textStyle]
             }
-            textAlign={I18nManager.isRTL ? 'right' : 'left'}
+            textAlign={I18nManager.getConstants().isRTL ? 'right' : 'left'}
             value={searchValue ?? ''}
             onChangeText={onChangeText}
             onPressIn={disabled ? () => null : onPressSelectControl}
