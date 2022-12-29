@@ -1,12 +1,13 @@
 import type { ForwardedRef, NamedExoticComponent, ReactElement, Reducer } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
 import type { ViewStyle } from 'react-native';
-import { Platform, UIManager } from 'react-native';
+import { UIManager } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { Portal } from '@gorhom/portal';
 
 import { COLORS, Portals } from '../../constants';
 import { OptionsListContextProvider, SelectContextProvider } from '../../context';
+import { isAndroid } from '../../helpers';
 import type { ActionType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
 import type { SelectProps, SelectRef } from '../../types';
@@ -16,7 +17,7 @@ import { SelectControl } from '../select-control';
 
 import { useSelect } from './select.hooks';
 
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+if (isAndroid && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 

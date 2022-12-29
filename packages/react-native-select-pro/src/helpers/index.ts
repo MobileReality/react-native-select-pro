@@ -2,7 +2,6 @@ export { createSafeContext } from './create-safe-context';
 export { dimensionPercentageToDP } from './dimension-percentage-to-dp';
 export { getReducedSectionData } from './get-reduced-section-data';
 export { getSectionOptionsIndexes } from './get-section-options-indexes';
-export { getSize } from './get-size';
 export { isAndroid } from './is-android';
 export { isSectionOptionsType } from './is-section-options-type';
 export { isSectionSelected } from './is-section-selected';
