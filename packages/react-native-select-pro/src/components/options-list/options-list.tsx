@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import type { View, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
 
-import { BORDER_WIDTH, COLORS, MAX_HEIGHT_LIST, SHAPE } from '../../constants';
+import { BORDER_WIDTH, COLORS, OPTIONS_LIST_HEIGHT, SHAPE } from '../../constants';
 import { useOptionsListContext } from '../../context';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
 import { FlatOptionsList } from '../flat-options-list';
@@ -97,7 +97,7 @@ const styles = StyleSheet.create<Styles>({
         zIndex: 1,
         backgroundColor: COLORS.WHITE,
         borderWidth: BORDER_WIDTH,
-        height: MAX_HEIGHT_LIST,
+        height: OPTIONS_LIST_HEIGHT,
         elevation: 5,
     },
     notOverflown: {

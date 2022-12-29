@@ -97,7 +97,7 @@ export const useSelect = <T>({
         const top = isOverflow
             ? y - optionsListHeight
             : y + height - valueY + APPROX_STATUSBAR_HEIGHT;
-        const left = I18nManager.isRTL ? screenWidth - width - x : x;
+        const left = I18nManager.getConstants().isRTL ? screenWidth - width - x : x;
 
         dispatch({
             type: Action.SetOptionsListPosition,
