@@ -82,7 +82,6 @@ const styles = StyleSheet.create<Styles>({
     container: {
         backgroundColor: '#000a19',
         padding: 25,
-        flex: 1,
         paddingTop: 200,
         justifyContent: 'space-between',
     },
@@ -94,7 +93,11 @@ const styles = StyleSheet.create<Styles>({
         color: '#04e590',
         marginBottom: 10,
     },
-    label: { fontSize: 16, color: '#f34c54', marginBottom: 10 },
+    label: {
+        fontSize: 16,
+        color: '#f34c54',
+        marginBottom: 10,
+    },
     button: {
         width: '100%',
         height: 50,
