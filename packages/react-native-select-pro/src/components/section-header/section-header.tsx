@@ -34,14 +34,7 @@ export const SectionHeader = ({
             {title}
         </Text>
         {isSelected && (
-            <Image
-                source={iconSource}
-                style={[
-                    styles.xIcon,
-                    sectionHeader?.clearIcon,
-                    isSelected && sectionHeader?.selectedClearIcon,
-                ]}
-            />
+            <Image source={iconSource} style={[styles.xIcon, sectionHeader?.clearIcon]} />
         )}
     </Pressable>
 );

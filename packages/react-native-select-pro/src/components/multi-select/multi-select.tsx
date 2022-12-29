@@ -1,7 +1,9 @@
 import React from 'react';
-import type { ViewStyle } from 'react-native';
+import type { TextStyle, ViewStyle } from 'react-native';
+import { Text } from 'react-native';
 import { ScrollView, StyleSheet } from 'react-native';
 
+import { FONT_SIZE } from '../../constants';
 import { useSelectContext } from '../../context';
 import type { OptionType } from '../../index';
 import { MultiSelectedOption } from '../multi-selected-option';
@@ -11,7 +13,7 @@ import { useMultiSelect } from './multi-select.hooks';
 import type { MultiSelectProps } from './multi-select.types';
 
 export const MultiSelect = ({ selectedOptions, onPressRemove, selectStyles }: MultiSelectProps) => {
-    const { searchValue } = useSelectContext();
+    const { searchValue, placeholderText, placeholderTextColor } = useSelectContext();
     const containerWidth = (selectStyles as ViewStyle)?.width;
     const { calculatedOptionWidth } = useMultiSelect({ selectedOptions, containerWidth });
     const isSearchable = typeof searchValue === 'string';
@@ -21,18 +23,24 @@ export const MultiSelect = ({ selectedOptions, onPressRemove, selectStyles }: Mu
             <SelectInput selectedOption={selectedOptions} textStyle={selectStyles?.text} />
         );
 
-        const emptyList = (
-            <MultiSelectedOption
-                isPlaceholder={true}
-                option={null}
-                optionWidth="100%"
-                selectStyles={selectStyles}
-            />
+        const placeholder = (
+            <Text
+                numberOfLines={1}
+                style={[
+                    styles.placeholder,
+                    selectStyles?.text,
+                    {
+                        color: placeholderTextColor,
+                    },
+                ]}
+            >
+                {placeholderText}
+            </Text>
         );
 
         const resolveSelectedOptionsList = () => {
             if (!selectedOptions) {
-                return isSearchable ? null : emptyList;
+                return isSearchable ? null : placeholder;
             }
 
             return selectedOptions.map((option: OptionType, index) => (
@@ -65,10 +73,16 @@ export const MultiSelect = ({ selectedOptions, onPressRemove, selectStyles }: Mu
 
 type Styles = {
     multiSelectionWrapper: ViewStyle;
+    placeholder: TextStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
     multiSelectionWrapper: {
         flex: 1,
+    },
+    placeholder: {
+        fontSize: FONT_SIZE,
+        textAlign: 'left',
+        alignSelf: 'center',
     },
 });

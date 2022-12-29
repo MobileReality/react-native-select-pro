@@ -49,8 +49,6 @@ styles?: {
         selected?: StyleProp<ViewStyle>;
         // Style of section header title when all section options are selected
         selectedText?: StyleProp<TextStyle>;
-        // Style of section header clear icon all section options are selected
-        selectedClearIcon?: StyleProp<ImageStyle>;
     } & StyleProp<ViewStyle>;
     // Style of single option container
     option: {

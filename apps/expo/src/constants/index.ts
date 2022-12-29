@@ -80,7 +80,10 @@ export const SELECT_STYLES: SelectStyles = {
         backgroundColor: 'transparent',
         borderColor: '#f34c54',
         borderWidth: 1,
-        text: { fontWeight: 'bold' },
+        text: {
+            fontSize: 14,
+            color: '#f34c54',
+        },
         arrow: {
             icon: {
                 tintColor: '#04e590',
