@@ -1,3 +1,5 @@
+import type { SelectStyles } from 'packages/react-native-select-pro/src/types/styles';
+
 export const DATA = [
     {
         value: '96d27ec5-e196-4577-b18d-31c74ca9145c',
@@ -55,5 +57,85 @@ export const SECTIONS_DATA = [
                 label: 'France',
             },
         ],
+    },
+];
+
+export const SELECT_STYLES: SelectStyles = {
+    select: {
+        multiSelectedOption: {
+            borderRadius: 10,
+            margin: 5,
+            maxWidth: 120,
+            paddingHorizontal: 5,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#19222f',
+            text: {
+                fontSize: 14,
+                color: '#04e590',
+            },
+        },
+        width: '100%',
+        borderRadius: 5,
+        backgroundColor: 'transparent',
+        borderColor: '#f34c54',
+        borderWidth: 1,
+        text: { fontWeight: 'bold' },
+        arrow: {
+            icon: {
+                tintColor: '#04e590',
+            },
+        },
+    },
+    optionsList: {
+        borderWidth: 1,
+        borderColor: '#464e58',
+        backgroundColor: 'transparent',
+    },
+    option: {
+        backgroundColor: 'transparent',
+        borderBottomColor: '#464e58',
+        borderBottomWidth: 1,
+        text: {
+            fontSize: 14,
+            color: '#04e590',
+        },
+        selected: {
+            backgroundColor: 'transparent',
+        },
+        selectedText: {
+            color: '#611e21',
+        },
+    },
+};
+
+export const PROGRAMMING_LANGUAGES = [
+    {
+        value: 'javascript',
+        label: 'JavaScript',
+    },
+    {
+        value: 'typescript',
+        label: 'TypeScript',
+    },
+    {
+        value: 'java',
+        label: 'Java',
+    },
+    {
+        value: 'python',
+        label: 'Python',
+    },
+    {
+        value: 'c#',
+        label: 'C#',
+    },
+    {
+        value: 'c',
+        label: 'C',
+    },
+    {
+        value: 'c++',
+        label: 'C++',
     },
 ];
