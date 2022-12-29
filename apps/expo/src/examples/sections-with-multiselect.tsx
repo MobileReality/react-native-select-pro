@@ -16,7 +16,7 @@ export const SectionsWithMultiSelect = () => {
                         backgroundColor: 'gainsboro',
                         selected: { backgroundColor: 'cadetblue' },
                         selectedText: { color: 'azure' },
-                        selectedClearIcon: { tintColor: 'azure' },
+                        clearIcon: { tintColor: 'azure' },
                     },
                 }}
             />

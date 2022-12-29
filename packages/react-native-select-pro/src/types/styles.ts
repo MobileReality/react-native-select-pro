@@ -140,12 +140,6 @@ export type SectionHeaderStyles = {
      * @category Styles
      */
     selectedText?: StyleProp<TextStyle>;
-    /**
-     * Style of section header clear icon when all section options are selected
-     *
-     * @category Styles
-     */
-    selectedClearIcon?: StyleProp<ImageStyle>;
 } & StyleProp<ViewStyle>;
 
 export type ClearOptionStyles = {

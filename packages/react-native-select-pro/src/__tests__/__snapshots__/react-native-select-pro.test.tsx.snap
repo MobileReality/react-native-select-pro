@@ -663,57 +663,24 @@ exports[`Select with multi selection should generate Select with multi selection
           }
         >
           <View>
-            <View
-              accessibilityLabel="Placeholder in multi-select"
-              accessibilityState={
-                {
-                  "disabled": true,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onFocus={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
+            <Text
+              numberOfLines={1}
               style={
                 [
                   {
-                    "alignItems": "flex-start",
-                    "display": "flex",
-                    "justifyContent": "center",
+                    "alignSelf": "center",
+                    "fontSize": 12,
+                    "textAlign": "left",
                   },
                   undefined,
                   {
-                    "width": "100%",
+                    "color": "#808080",
                   },
                 ]
               }
             >
-              <Text
-                numberOfLines={1}
-                style={
-                  [
-                    {
-                      "fontSize": 12,
-                      "textAlign": "left",
-                    },
-                    undefined,
-                    {
-                      "color": "#808080",
-                    },
-                  ]
-                }
-              >
-                Select...
-              </Text>
-            </View>
+              Select...
+            </Text>
           </View>
         </RCTScrollView>
       </View>
