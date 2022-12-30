@@ -35,6 +35,7 @@ export const useSelect = <T>({
     onDropdownOpened,
     onDropdownClosed,
     optionsListRef,
+    onSelect,
 }: UseSelect<T>) => {
     const { height: screenHeight, width: screenWidth } = useWindowDimensions();
     const valueY = useContext(SelectModalContext);
@@ -204,6 +205,11 @@ export const useSelect = <T>({
 
         if (option) {
             hideKeyboardIfNeeded();
+        }
+
+        // callback
+        if (onSelect) {
+            onSelect(option, optionIndex);
         }
     };
 

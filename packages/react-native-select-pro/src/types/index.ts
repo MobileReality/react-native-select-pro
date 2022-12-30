@@ -28,7 +28,7 @@ export type SectionOptionType<T = unknown> = {
 
 export type OptionsType<T> = SectionOptionType<T>[] | OptionType<T>[];
 
-export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option'> & {
+export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option' | 'optionIndex'> & {
     onPressOption: OnChooseOption;
 };
 

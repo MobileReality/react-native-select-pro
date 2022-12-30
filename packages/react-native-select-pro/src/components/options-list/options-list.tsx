@@ -40,13 +40,14 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                 index: resolvedData.findIndex((el) => el.title === sectionTitle),
             };
         }
+
         return (
             <Option
                 key={value}
                 ref={index === 0 ? measuredRef : undefined}
-                isSelected={isSelected}
                 option={{ ...item, section: sectionObj }}
                 {...{
+                    isSelected,
                     optionIndex,
                 }}
             />
