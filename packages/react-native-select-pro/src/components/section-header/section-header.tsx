@@ -21,7 +21,7 @@ export const SectionHeader = ({
             styles.sectionHeaderContainerStyle,
             sectionHeader,
             isSelected && sectionHeader?.selected,
-            pressed ? sectionHeader?.pressed ?? PRESSED_STYLE : undefined,
+            pressed && (sectionHeader?.pressed ?? PRESSED_STYLE),
         ]}
         onPress={() => onPressSection(title)}
     >

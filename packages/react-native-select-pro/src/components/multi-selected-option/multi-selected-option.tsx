@@ -20,7 +20,7 @@ export const MultiSelectedOption = ({
                 styles.multiSelectedOption,
                 selectStyles?.multiSelectedOption,
                 { width: optionWidth },
-                pressed ? selectStyles?.multiSelectedOption?.pressed ?? PRESSED_STYLE : undefined,
+                pressed && (selectStyles?.multiSelectedOption?.pressed ?? PRESSED_STYLE),
             ]}
             disabled={!isPressable}
             onPress={isPressable ? () => onPressRemove(option) : undefined}

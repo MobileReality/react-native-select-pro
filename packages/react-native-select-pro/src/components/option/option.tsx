@@ -35,7 +35,7 @@ export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optio
                 styles.option,
                 optionStyles,
                 isSelected && [styles.selected, optionStyles?.selected],
-                pressed ? optionStyles?.pressed ?? PRESSED_STYLE : undefined,
+                pressed && (optionStyles?.pressed ?? PRESSED_STYLE),
             ]}
             disabled={isSelected}
             onPress={onChooseOption}
