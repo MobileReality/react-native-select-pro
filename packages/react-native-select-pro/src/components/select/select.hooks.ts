@@ -34,6 +34,8 @@ export const useSelect = <T>({
     onRemove,
     onDropdownOpened,
     onDropdownClosed,
+    onSectionSelect,
+    onSectionRemove,
     optionsListRef,
     onSelect,
 }: UseSelect<T>) => {
@@ -218,29 +220,31 @@ export const useSelect = <T>({
             close();
         }
 
-        if (!multiSelection || !isSectionedOptions) {
+        if (!multiSelection || !isSectionedOptions || !onSectionRemove || !onSectionSelect) {
             return;
         }
 
         const resolveOption = () => {
-            const sectionOptions = optionsData.find((item) => item.title === title)?.data;
-            const formattedSectionOptions =
-                sectionOptions
-                    ?.filter(
-                        (item) =>
-                            !selectedOptions?.some((selected) => selected.value === item.value),
-                    )
-                    .map((item) => ({
-                        ...item,
-                        section: {
-                            title,
-                            index: optionsData.findIndex((el) => el.title === title),
-                        },
-                    })) ?? [];
+            const sectionOptions = optionsData.find((item) => item.title === title)?.data ?? [];
+            const formattedSectionOptions = sectionOptions.map((item) => ({
+                ...item,
+                section: {
+                    title,
+                    index: optionsData.findIndex((el) => el.title === title),
+                },
+            }));
+            const newSectionOptions = formattedSectionOptions.filter(
+                (item) => !selectedOptions?.some((selected) => selected.value === item.value),
+            );
 
-            if (formattedSectionOptions.length === 0 && selectedOptions) {
+            if (newSectionOptions.length === 0 && selectedOptions) {
+                onSectionRemove?.(
+                    formattedSectionOptions,
+                    getSectionOptionsIndexes(optionsData, formattedSectionOptions),
+                );
                 const restOptions = selectedOptions.filter(
-                    (item) => !sectionOptions?.some((selected) => selected.value === item.value),
+                    (item) =>
+                        !formattedSectionOptions.some((selected) => selected.value === item.value),
                 );
 
                 return {
@@ -252,10 +256,15 @@ export const useSelect = <T>({
             }
 
             const mergedOptions = selectedOptions
-                ? selectedOptions.concat(formattedSectionOptions)
-                : formattedSectionOptions;
+                ? selectedOptions.concat(newSectionOptions)
+                : newSectionOptions;
 
             const optionsIndexes = getSectionOptionsIndexes(optionsData, mergedOptions);
+
+            onSectionSelect?.(
+                newSectionOptions,
+                getSectionOptionsIndexes(optionsData, newSectionOptions),
+            );
 
             return {
                 selectedOption: mergedOptions,

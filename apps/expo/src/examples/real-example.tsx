@@ -48,7 +48,11 @@ export const RealExample = () => {
                             field.onChange([...field.value, option]);
                         }}
                         onRemove={(option) => {
-                            field.onChange(field.value.filter((item) => item !== option));
+                            field.onChange(
+                                field.value.filter(
+                                    (item) => item.value !== (option as OptionType).value,
+                                ),
+                            );
                         }}
                     />
                 </View>
