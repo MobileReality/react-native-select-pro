@@ -19,10 +19,11 @@ type SelectContextProviderTypes<T> = {
     | 'placeholderTextColor'
     | 'searchPattern'
     | 'textInputProps'
-    | 'selectControlClearOptionA11yLabel'
     | 'selectControlOpenDropdownA11yLabel'
     | 'onRemove'
     | 'styles'
+    | 'clearOptionButtonProp'
+    | 'clearOptionImageProp'
 > &
     Pick<
         State<T>,

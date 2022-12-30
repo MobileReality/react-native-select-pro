@@ -48,6 +48,8 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         defaultOption,
         flatListProps,
         sectionListProps,
+        clearOptionButtonProp,
+        clearOptionImageProp,
         // Search
         searchable = false,
         searchPattern = (payload: string) => `(${payload})`,
@@ -60,7 +62,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         // Colors
         placeholderTextColor = COLORS.GRAY,
         // Accessibility
-        selectControlClearOptionA11yLabel,
         selectControlOpenDropdownA11yLabel,
         // Styles
         styles: mainStyles,
@@ -132,7 +133,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     searchValue,
                     onPressSelectControl,
                     textInputProps,
-                    selectControlClearOptionA11yLabel,
                     selectControlOpenDropdownA11yLabel,
                     onRemove,
                     dispatch,
@@ -140,6 +140,8 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     selectedOption,
                     selectedOptionIndex,
                     styles: mainStyles,
+                    clearOptionButtonProp,
+                    clearOptionImageProp,
                 }}
             >
                 <SelectControl ref={selectControlRef} />

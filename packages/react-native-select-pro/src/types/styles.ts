@@ -1,7 +1,6 @@
 import type {
     ImageSourcePropType,
     ImageStyle,
-    Insets,
     StyleProp,
     TextStyle,
     ViewStyle,
@@ -149,13 +148,6 @@ export type ClearOptionStyles = {
      *  @category Styles
      */
     button?: StyleProp<ViewStyle>;
-
-    /**
-     *  Hit Slop of clear option button
-     *
-     *  @category Styles
-     */
-    hitSlop?: Insets;
 
     /**
      *  Style of clear option image
