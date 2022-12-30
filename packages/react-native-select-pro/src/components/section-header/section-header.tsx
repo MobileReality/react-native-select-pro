@@ -4,7 +4,7 @@ import { Image, Pressable } from 'react-native';
 import { Text } from 'react-native';
 import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT_SIZE, PADDING } from '../../constants';
+import { COLORS, FONT_SIZE, PADDING, PRESSED_STYLE } from '../../constants';
 
 import type { SectionHeaderProps } from './section-header.types';
 
@@ -17,10 +17,11 @@ export const SectionHeader = ({
     isSelected,
 }: SectionHeaderProps) => (
     <Pressable
-        style={[
+        style={({ pressed }) => [
             styles.sectionHeaderContainerStyle,
             sectionHeader,
             isSelected && sectionHeader?.selected,
+            pressed && (sectionHeader?.pressed ?? PRESSED_STYLE),
         ]}
         onPress={() => onPressSection(title)}
     >

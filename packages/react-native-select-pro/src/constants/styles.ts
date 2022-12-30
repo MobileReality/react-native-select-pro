@@ -5,6 +5,7 @@ export const PADDING = 12;
 export const OPTIONS_LIST_HEIGHT = 120;
 export const ITEM_HEIGHT = 40;
 export const ANIMATION_DURATION = 200;
+export const PRESSED_STYLE = { opacity: 0.2 };
 
 export const COLORS = {
     WHITE: '#ffffff',

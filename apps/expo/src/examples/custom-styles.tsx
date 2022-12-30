@@ -35,6 +35,9 @@ export const CustomStyles = () => {
                             backgroundColor: 'mediumseagreen',
                         },
                         selectedText: { color: 'white' },
+                        pressed: {
+                            backgroundColor: 'lightblue',
+                        },
                     },
                     backdrop: { backgroundColor: 'black', opacity: 0.3 },
                 }}

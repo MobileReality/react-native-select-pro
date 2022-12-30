@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import type { TextStyle, View, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING } from '../../constants';
+import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING, PRESSED_STYLE } from '../../constants';
 import { useOptionsListContext } from '../../context';
 
 import type { OnChooseOption, OptionProps } from './option.types';
@@ -31,10 +31,11 @@ export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optio
             accessibilityLabel={`Choose ${label} option`}
             accessibilityRole="button"
             accessible={true}
-            style={[
+            style={({ pressed }) => [
                 styles.option,
                 optionStyles,
                 isSelected && [styles.selected, optionStyles?.selected],
+                pressed && (optionStyles?.pressed ?? PRESSED_STYLE),
             ]}
             disabled={isSelected}
             onPress={onChooseOption}
