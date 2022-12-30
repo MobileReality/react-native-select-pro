@@ -15,6 +15,7 @@ type FromSelectComponent<T> = Pick<
     | 'onDropdownOpened'
     | 'onDropdownClosed'
     | 'onRemove'
+    | 'onSelect'
 >;
 
 export type UseSelect<T> = OptionalToRequired<

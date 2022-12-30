@@ -8,32 +8,22 @@ import { useOptionsListContext } from '../../context';
 import type { OnChooseOption, OptionProps } from './option.types';
 
 export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optionIndex }, ref) => {
-    const {
-        OptionComponent,
-        onSelect,
-        onPressOption,
-        styles: mainStyles,
-    } = useOptionsListContext();
-    const { label } = option;
-
-    const { option: optionStyles } = mainStyles ?? {};
-
+    const { OptionComponent, onPressOption, styles: mainStyles } = useOptionsListContext();
     const onChooseOption: OnChooseOption = () => {
         onPressOption(option, optionIndex);
-        if (onSelect) {
-            onSelect(option, optionIndex);
-        }
     };
 
     if (OptionComponent) {
         return (
             <OptionComponent
-                isSelected={isSelected}
-                option={option}
+                {...{ isSelected, option, optionIndex }}
                 onPressOption={onChooseOption}
             />
         );
     }
+
+    const { label } = option;
+    const { option: optionStyles } = mainStyles ?? {};
 
     return (
         <Pressable
