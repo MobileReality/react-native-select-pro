@@ -30,12 +30,12 @@ Callback that is called when option is cleared. It's also called when you use `c
 
 ### onSectionSelect()
 ```typescript jsx
-function onSectionSelect(option: OptionType[], optionIndexes: number[]) => void;
+function onSectionSelect(options: OptionType[], optionIndexes: number[]) => void;
 ```
-Callback that is called when section is selected by pressing section header. `option` will be an array of section options that are NOT yet selected. (You need to add `onSectionSelect` , `onSectionRemove`, `multiSelection={true}` to use this feature).
+Callback that is called when section is selected by pressing section header. `options` will be an array of section options that are NOT yet selected. (You need to add `onSectionSelect` , `onSectionRemove`, `multiSelection={true}` to use this feature).
  
 ### onSectionRemove()
 ```typescript jsx
-function onSectionRemove(option: OptionType[], optionIndexes: number[]) => void;
+function onSectionRemove(options: OptionType[], optionIndexes: number[]) => void;
 ```
-Callback that is called when section is removed by pressing section header. `option` will be an array of all section options. (You need to add `onSectionSelect` , `onSectionRemove`, `multiSelection={true}` to use this feature).
+Callback that is called when section is removed by pressing section header. `options` will be an array of all section options. (You need to add `onSectionSelect` , `onSectionRemove`, `multiSelection={true}` to use this feature).

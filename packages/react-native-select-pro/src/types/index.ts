@@ -69,20 +69,20 @@ export interface SelectProps<T = unknown> {
     /**
      * Callback that is called when section is selected with section header
      *
-     * @param option Selected options
-     * @param optionIndex Selected option indexes
+     * @param options Selected options
+     * @param optionIndexes Selected option indexes
      * @category Callback
      */
-    onSectionSelect?: (option: OptionType<T>[], optionIndexes: number[]) => void;
+    onSectionSelect?: (options: OptionType<T>[], optionIndexes: number[]) => void;
 
     /**
      * Callback that is called when section is removed with section header
      *
-     * @param option Selected options
-     * @param optionIndex Selected option indexes
+     * @param options Selected options
+     * @param optionIndexes Selected option indexes
      * @category Callback
      */
-    onSectionRemove?: (option: OptionType<T>[], optionIndexes: number[]) => void;
+    onSectionRemove?: (options: OptionType<T>[], optionIndexes: number[]) => void;
 
     /**
      * Callback that is called when dropdown is opened
