@@ -6,7 +6,7 @@ import type { OptionType } from '@mobile-reality/react-native-select-pro';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
-import { SECTIONS_DATA, SELECT_STYLES } from '../constants';
+import { PROGRAMMING_LANGUAGES, SELECT_STYLES } from '../constants';
 
 export const RealExample = () => {
     const { control, handleSubmit, formState, watch, reset } = useForm<{ languages: OptionType[] }>(
@@ -41,19 +41,9 @@ export const RealExample = () => {
                     <Text style={styles.label}>Select your programming languages</Text>
                     <Select
                         styles={SELECT_STYLES}
-                        options={SECTIONS_DATA}
+                        options={PROGRAMMING_LANGUAGES}
                         placeholderTextColor="#f34c54"
                         multiSelection
-                        onSectionRemove={(options) => {
-                            field.onChange(
-                                field.value.filter(
-                                    (item) => !options.some((el) => el.value === item.value),
-                                ),
-                            );
-                        }}
-                        onSectionSelect={(options) => {
-                            field.onChange([...field.value, ...options]);
-                        }}
                         onSelect={(option) => {
                             field.onChange([...field.value, option]);
                         }}
