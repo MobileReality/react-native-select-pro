@@ -440,9 +440,11 @@ describe('Select with custom select control arrow icon', () => {
                         select: {
                             arrow: {
                                 icon: { height: 15, width: 15 },
-                                source: require('./assets/arrow-down.png'),
                             },
                         },
+                    }}
+                    arrowImageProp={{
+                        source: require('./assets/arrow-down.png'),
                     }}
                     options={DATA}
                 />

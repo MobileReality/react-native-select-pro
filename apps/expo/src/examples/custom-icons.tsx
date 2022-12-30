@@ -50,11 +50,11 @@ export const CustomIcons = () => {
                         marginBottom: 20,
                         arrow: {
                             icon: { height: 25, width: 25 },
-                            source: chevronsImage,
                         },
                     },
                 }}
                 options={DATA}
+                arrowImageProp={{ source: chevronsImage }}
             />
             <Select
                 styles={{
@@ -63,11 +63,11 @@ export const CustomIcons = () => {
                         marginBottom: 20,
                         arrow: {
                             icon: { height: 25, width: 25 },
-                            source: arrowImage,
                         },
                     },
                 }}
                 options={DATA}
+                arrowImageProp={{ source: arrowImage }}
             />
         </SafeAreaViewWrapper>
     );

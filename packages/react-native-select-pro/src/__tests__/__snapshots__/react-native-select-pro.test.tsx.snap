@@ -307,9 +307,6 @@ exports[`Select with custom select control arrow icon should generate Select wit
               "height": 15,
               "width": 15,
             },
-            "source": {
-              "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
-            },
           },
         },
       },
@@ -352,9 +349,6 @@ exports[`Select with custom select control arrow icon should generate Select wit
               "icon": {
                 "height": 15,
                 "width": 15,
-              },
-              "source": {
-                "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
               },
             },
           },

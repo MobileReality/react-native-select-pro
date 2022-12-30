@@ -50,6 +50,8 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         sectionListProps,
         clearOptionButtonProp,
         clearOptionImageProp,
+        arrowButtonProp,
+        arrowImageProp,
         // Search
         searchable = false,
         searchPattern = (payload: string) => `(${payload})`,
@@ -142,6 +144,8 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     styles: mainStyles,
                     clearOptionButtonProp,
                     clearOptionImageProp,
+                    arrowButtonProp,
+                    arrowImageProp,
                 }}
             >
                 <SelectControl ref={selectControlRef} />
