@@ -63,6 +63,12 @@ export type SelectControlStyles = {
      *
      *  @category Styles
      */
+    /**
+     * Style of pressed state of select control
+     *
+     * @category Styles
+     */
+    pressed?: StyleProp<ViewStyle>;
     multiSelectedOption?: {
         /**
          *  Style of text in selected option if multiSelection is enabled
@@ -70,6 +76,12 @@ export type SelectControlStyles = {
          *  @category Styles
          */
         text?: StyleProp<TextStyle>;
+        /**
+         * Style of pressed state of option
+         *
+         * @category Styles
+         */
+        pressed?: StyleProp<ViewStyle>;
     } & StyleProp<ViewStyle>;
     /**
      *  Styles of arrow in select control
@@ -110,6 +122,12 @@ export type OptionStyles = {
      * @category Styles
      */
     selectedText?: StyleProp<TextStyle>;
+    /**
+     * Style of pressed state of option
+     *
+     * @category Styles
+     */
+    pressed?: StyleProp<ViewStyle>;
 } & StyleProp<ViewStyle>;
 
 export type OptionsListStyles = StyleProp<ViewStyle>;
@@ -139,6 +157,12 @@ export type SectionHeaderStyles = {
      * @category Styles
      */
     selectedText?: StyleProp<TextStyle>;
+    /**
+     * Style of pressed state of section header
+     *
+     * @category Styles
+     */
+    pressed?: StyleProp<ViewStyle>;
 } & StyleProp<ViewStyle>;
 
 export type ClearOptionStyles = {
