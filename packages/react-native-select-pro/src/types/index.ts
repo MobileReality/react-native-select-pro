@@ -222,7 +222,7 @@ export interface SelectProps<T = unknown> {
      *
      *  @category Additional Features
      */
-    arrowButtonProp?: Omit<PressableProps, 'style'>;
+    arrowButtonProp?: Omit<PressableProps, 'style' | 'onPress'>;
 
     /**
      *  `ImageProps` for Arrow imported from `react-native`
