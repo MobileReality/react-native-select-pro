@@ -111,6 +111,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         state,
         onSectionSelect,
         onSectionRemove,
+        onSelect,
     });
 
     return (
@@ -167,7 +168,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 optionsData,
                                 scrollToSelectedOption,
                                 searchValue,
-                                onSelect,
                                 onPressOption,
                                 onPressSection,
                                 selectedOption,

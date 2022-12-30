@@ -17,6 +17,7 @@ type FromSelectComponent<T> = Pick<
     | 'onRemove'
     | 'onSectionSelect'
     | 'onSectionRemove'
+    | 'onSelect'
 >;
 
 export type UseSelect<T> = OptionalToRequired<

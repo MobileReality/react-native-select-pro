@@ -10,7 +10,6 @@ type OptionsListContextProviderTypes<T> = Pick<
     | 'flatListProps'
     | 'noOptionsText'
     | 'scrollToSelectedOption'
-    | 'onSelect'
     | 'sectionListProps'
     | 'styles'
 > & {
