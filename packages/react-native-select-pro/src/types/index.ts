@@ -1,5 +1,11 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
-import type { FlatListProps, SectionListProps, TextInputProps } from 'react-native';
+import type {
+    FlatListProps,
+    ImageProps,
+    PressableProps,
+    SectionListProps,
+    TextInputProps,
+} from 'react-native';
 
 import type { OnChooseOption, OptionProps } from '../components/option/option.types';
 import type { State } from '../state';
@@ -179,6 +185,20 @@ export interface SelectProps<T = unknown> {
         'sections' | 'renderItem' | 'renderSectionHeader' | 'ListEmptyComponent'
     >;
 
+    /**
+     *  `PressableProps` for ClearOption imported from `react-native`
+     *
+     *  @category Additional Features
+     */
+    clearOptionButtonProp?: Omit<PressableProps, 'style' | 'onPress'>;
+
+    /**
+     *  `ImageProps` for ClearOption imported from `react-native`
+     *
+     *  @category Additional Features
+     */
+    clearOptionImageProp?: Omit<ImageProps, 'style'>;
+
     // ---SEARCH--- //
     /**
      *  If `true` let user search in a select options by typing in select
@@ -249,13 +269,6 @@ export interface SelectProps<T = unknown> {
     placeholderTextColor?: string;
 
     // ---ACCESSIBILITY--- //
-    /**
-     * selectControlClearOptionA11yLabel
-     *
-     * @category Accessibility
-     * @default "Clear a chosen option"
-     */
-    selectControlClearOptionA11yLabel?: string;
 
     /**
      * selectControlOpenDropdownA11yLabel

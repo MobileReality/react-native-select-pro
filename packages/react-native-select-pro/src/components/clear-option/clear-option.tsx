@@ -9,20 +9,31 @@ import type { ClearOptionProps } from './clear-option.types';
 const iconSource = require('./../../assets/icons/x.png');
 
 export const ClearOption = ({ onPressRemove }: ClearOptionProps) => {
-    const { selectControlClearOptionA11yLabel, styles: mainStyles, disabled } = useSelectContext();
+    const {
+        styles: mainStyles,
+        disabled,
+        clearOptionButtonProp,
+        clearOptionImageProp,
+    } = useSelectContext();
+
     const { clear } = mainStyles?.select ?? {};
 
     return (
         <Pressable
-            accessibilityLabel={selectControlClearOptionA11yLabel ?? 'Clear a chosen option'}
+            accessibilityLabel="Clear a chosen option"
             accessibilityRole="button"
             accessible={true}
-            hitSlop={clear?.hitSlop ?? { right: 3, left: 3 }}
-            style={[styles.xIconWrapper, clear?.button]}
+            hitSlop={{ right: 3, left: 3 }}
             disabled={disabled}
+            {...clearOptionButtonProp}
+            style={[styles.xIconWrapper, clear?.button]}
             onPress={onPressRemove}
         >
-            <Image source={iconSource} style={[styles.xIcon, clear?.icon]} />
+            <Image
+                source={iconSource}
+                {...clearOptionImageProp}
+                style={[styles.xIcon, clear?.icon]}
+            />
         </Pressable>
     );
 };
