@@ -19,6 +19,8 @@ export const SectionsWithMultiSelect = () => {
                         clearIcon: { tintColor: 'azure' },
                     },
                 }}
+                onSectionSelect={() => {}}
+                onSectionRemove={() => {}}
             />
         </SafeAreaViewWrapper>
     );

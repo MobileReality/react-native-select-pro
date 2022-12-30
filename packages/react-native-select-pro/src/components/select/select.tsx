@@ -28,6 +28,8 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         // Callbacks
         onSelect,
         onRemove,
+        onSectionSelect,
+        onSectionRemove,
         onDropdownOpened,
         onDropdownClosed,
         // Texts
@@ -107,6 +109,8 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         onDropdownClosed,
         ref,
         state,
+        onSectionSelect,
+        onSectionRemove,
     });
 
     return (
