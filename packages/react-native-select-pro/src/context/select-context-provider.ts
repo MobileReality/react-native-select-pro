@@ -24,6 +24,8 @@ type SelectContextProviderTypes<T> = {
     | 'styles'
     | 'clearOptionButtonProp'
     | 'clearOptionImageProp'
+    | 'arrowButtonProp'
+    | 'arrowImageProp'
 > &
     Pick<
         State<T>,

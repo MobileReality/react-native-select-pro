@@ -159,18 +159,17 @@ export type ClearOptionStyles = {
 
 export type ArrowIconStyles = {
     /**
+     *  Style of arrow button
+     *
+     *  @category Styles
+     */
+    button?: StyleProp<ViewStyle>;
+    /**
      *  Style of arrow image
      *
      *  @category Styles
      */
     icon?: StyleProp<ImageStyle>;
-
-    /**
-     *  Custom select control arrow icon source
-     *
-     *  @category Custom Sources
-     */
-    source?: ImageSourcePropType;
 };
 
 export type LeftIconStyles = {

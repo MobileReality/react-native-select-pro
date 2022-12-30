@@ -8,11 +8,9 @@ import { useAnimation } from '../../hooks';
 const arrowImage = require('./../../assets/icons/chevron-down.png');
 
 export const ArrowImage = () => {
-    const { isOpened, styles: mainStyles, animation } = useSelectContext();
+    const { isOpened, styles: mainStyles, animation, arrowImageProp } = useSelectContext();
     const rotateAnimation = useAnimation({ isOpened, animation });
     const { arrow } = mainStyles?.select ?? {};
-
-    const arrowSource = arrow?.source ?? arrowImage;
 
     if (rotateAnimation) {
         const rotate = rotateAnimation.interpolate({
@@ -22,7 +20,8 @@ export const ArrowImage = () => {
 
         return (
             <Animated.Image
-                source={arrowSource}
+                source={arrowImage}
+                {...arrowImageProp}
                 style={[styles.arrowIcon, { transform: [{ rotate }] }, arrow?.icon]}
             />
         );
@@ -30,7 +29,8 @@ export const ArrowImage = () => {
 
     return (
         <Image
-            source={arrowSource}
+            source={arrowImage}
+            {...arrowImageProp}
             style={[styles.arrowIcon, isOpened && styles.arrowIconOpened, arrow?.icon]}
         />
     );

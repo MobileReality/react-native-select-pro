@@ -217,6 +217,20 @@ export interface SelectProps<T = unknown> {
      */
     clearOptionImageProp?: Omit<ImageProps, 'style'>;
 
+    /**
+     *  `PressableProps` for Arrow imported from `react-native`
+     *
+     *  @category Additional Features
+     */
+    arrowButtonProp?: Omit<PressableProps, 'style'>;
+
+    /**
+     *  `ImageProps` for Arrow imported from `react-native`
+     *
+     *  @category Additional Features
+     */
+    arrowImageProp?: Omit<ImageProps, 'style'>;
+
     // ---SEARCH--- //
     /**
      *  If `true` let user search in a select options by typing in select
