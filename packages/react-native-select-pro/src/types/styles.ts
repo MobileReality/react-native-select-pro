@@ -63,12 +63,6 @@ export type SelectControlStyles = {
      *
      *  @category Styles
      */
-    /**
-     * Style of pressed state of select control
-     *
-     * @category Styles
-     */
-    pressed?: StyleProp<ViewStyle>;
     multiSelectedOption?: {
         /**
          *  Style of text in selected option if multiSelection is enabled
