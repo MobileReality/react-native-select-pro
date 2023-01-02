@@ -20,6 +20,12 @@ export type SelectStyles = {
      */
     optionsList?: OptionsListStyles;
     /**
+     *  Style of options list
+     *
+     *  @category Styles
+     */
+    noOptions?: NoOptionsStyles;
+    /**
      * Style of section header when section data type is provided
      *
      * @category Styles
@@ -178,4 +184,19 @@ export type ArrowIconStyles = {
      *  @category Styles
      */
     icon?: StyleProp<ImageStyle>;
+};
+
+export type NoOptionsStyles = {
+    /**
+     *  Style of arrow button
+     *
+     *  @category Styles
+     */
+    container?: StyleProp<ViewStyle>;
+    /**
+     *  Style of arrow image
+     *
+     *  @category Styles
+     */
+    text?: StyleProp<TextStyle>;
 };

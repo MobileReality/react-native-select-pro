@@ -6,11 +6,18 @@ import { COLORS, FONT_SIZE, PADDING } from '../../constants';
 import { useOptionsListContext } from '../../context';
 
 export const NoOptions = () => {
-    const { noOptionsText, noOptionsProps, noOptionsTextProps } = useOptionsListContext();
+    const {
+        noOptionsText,
+        noOptionsProps,
+        noOptionsTextProps,
+        styles: mainStyles,
+    } = useOptionsListContext();
+
+    const { noOptions } = mainStyles ?? {};
 
     return (
-        <View {...noOptionsProps} style={styles.option}>
-            <Text {...noOptionsTextProps} style={styles.text}>
+        <View {...noOptionsProps} style={[styles.option, noOptions?.container]}>
+            <Text {...noOptionsTextProps} style={[styles.text, noOptions?.text]}>
                 {noOptionsText}
             </Text>
         </View>
