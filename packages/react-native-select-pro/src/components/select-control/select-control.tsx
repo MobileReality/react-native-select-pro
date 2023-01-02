@@ -11,22 +11,22 @@ import { SelectFieldType } from '../select-field-type';
 import { useSelectControl } from './select-control.hooks';
 
 export const SelectControl = forwardRef<View>((_, ref) => {
-    const { hideArrow, styles: mainStyles } = useSelectContext();
-    const { select: selectStyles } = mainStyles ?? {};
-    const { buttons, leftIcon } = selectStyles ?? {};
+    const {
+        hideArrow,
+        selectLeftIconsProps,
+        selectLeftIconImageProps,
+        selectRightIconsProps,
+        styles: mainStyles,
+    } = useSelectContext();
 
     const { accessibilityHint, accessibilityLabel, clearOptionStatus, onPressRemove, onPress } =
         useSelectControl();
 
-    const clearOption = (
-        <ClearOption
-            {...{
-                onPressRemove,
-            }}
-        />
-    );
+    const clearOption = <ClearOption onPressRemove={onPressRemove} />;
 
     const { showClearOption, showClearOptionA11y } = clearOptionStatus;
+    const { select: selectStyles } = mainStyles ?? {};
+    const { buttons, leftIcon } = selectStyles ?? {};
 
     return (
         <Fragment>
@@ -39,9 +39,12 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                     ref,
                 }}
             >
-                {!!leftIcon?.source && (
-                    <View style={[styles.leftIconWrapper, styles.xIconWrapper]}>
-                        <Image source={leftIcon?.source} style={leftIcon?.icon} />
+                {!!selectLeftIconImageProps?.source && (
+                    <View
+                        {...selectLeftIconsProps}
+                        style={[styles.leftIconWrapper, styles.xIconWrapper]}
+                    >
+                        <Image {...selectLeftIconImageProps} style={leftIcon} />
                     </View>
                 )}
                 <SelectFieldType
@@ -50,7 +53,7 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                         selectStyles,
                     }}
                 />
-                <View style={[styles.buttonsContainer, buttons]}>
+                <View {...selectRightIconsProps} style={[styles.buttonsContainer, buttons]}>
                     {showClearOption && clearOption}
                     {!hideArrow && <Arrow />}
                 </View>

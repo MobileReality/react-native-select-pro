@@ -30,7 +30,11 @@ export const CustomComponent = () => {
                 options={DATA}
                 styles={{ width: 200 }}
             />
-            <Select NoOptionsComponent={<NoOptions />} options={[]} styles={{ width: 200 }} />
+            <Select
+                flatListProps={{ ListEmptyComponent: <NoOptions /> }}
+                options={[]}
+                styles={{ width: 200 }}
+            />
         </SafeAreaViewWrapper>
     );
 };

@@ -132,13 +132,8 @@ exports[`Select with custom left icon should generate Select with custom left ic
       {
         "select": {
           "leftIcon": {
-            "icon": {
-              "height": 15,
-              "width": 15,
-            },
-            "source": {
-              "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
-            },
+            "height": 15,
+            "width": 15,
           },
         },
       },
@@ -178,13 +173,8 @@ exports[`Select with custom left icon should generate Select with custom left ic
           false,
           {
             "leftIcon": {
-              "icon": {
-                "height": 15,
-                "width": 15,
-              },
-              "source": {
-                "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
-              },
+              "height": 15,
+              "width": 15,
             },
           },
           {},

@@ -75,9 +75,9 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
 
     return (
         <TextInput
+            accessibilityLabel="Place text"
             {...textInputProps}
             ref={searchInputRef}
-            accessibilityLabel="Place text"
             editable={!disabled}
             placeholder={resolvePlaceholder()}
             placeholderTextColor={placeholderTextColor}

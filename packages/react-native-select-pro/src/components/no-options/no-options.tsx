@@ -6,11 +6,13 @@ import { COLORS, FONT_SIZE, PADDING } from '../../constants';
 import { useOptionsListContext } from '../../context';
 
 export const NoOptions = () => {
-    const { noOptionsText } = useOptionsListContext();
+    const { noOptionsText, noOptionsProps, noOptionsTextProps } = useOptionsListContext();
 
     return (
-        <View style={styles.option}>
-            <Text style={styles.text}>{noOptionsText}</Text>
+        <View {...noOptionsProps} style={styles.option}>
+            <Text {...noOptionsTextProps} style={styles.text}>
+                {noOptionsText}
+            </Text>
         </View>
     );
 };

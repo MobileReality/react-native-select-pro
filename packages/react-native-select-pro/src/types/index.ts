@@ -5,6 +5,9 @@ import type {
     PressableProps,
     SectionListProps,
     TextInputProps,
+    TextProps,
+    TouchableWithoutFeedbackProps,
+    ViewProps,
 } from 'react-native';
 
 import type { OnChooseOption, OptionProps } from '../components/option/option.types';
@@ -191,7 +194,10 @@ export interface SelectProps<T = unknown> {
      *
      *  @category Additional Features
      */
-    flatListProps?: Omit<FlatListProps<OptionType>, 'data' | 'renderItem' | 'ListEmptyComponent'>;
+    flatListProps?: Omit<
+        FlatListProps<OptionType>,
+        'ref' | 'data' | 'getItemLayout' | 'renderItem' | 'keyExtractor'
+    >;
 
     /**
      *  `SectionListProps` imported from `react-native`
@@ -200,7 +206,7 @@ export interface SelectProps<T = unknown> {
      */
     sectionListProps?: Omit<
         SectionListProps<OptionType>,
-        'sections' | 'renderItem' | 'renderSectionHeader' | 'ListEmptyComponent'
+        'ref' | 'renderSectionHeader' | 'sections' | 'getItemLayout' | 'renderItem' | 'keyExtractor'
     >;
 
     /**
@@ -208,28 +214,42 @@ export interface SelectProps<T = unknown> {
      *
      *  @category Additional Features
      */
-    clearOptionButtonProp?: Omit<PressableProps, 'style' | 'onPress'>;
+    clearOptionButtonProps?: Omit<PressableProps, 'style' | 'onPress'>;
 
     /**
      *  `ImageProps` for ClearOption imported from `react-native`
      *
      *  @category Additional Features
      */
-    clearOptionImageProp?: Omit<ImageProps, 'style'>;
+    clearOptionImageProps?: Omit<ImageProps, 'style'>;
 
     /**
      *  `PressableProps` for Arrow imported from `react-native`
      *
      *  @category Additional Features
      */
-    arrowButtonProp?: Omit<PressableProps, 'style' | 'onPress'>;
+    arrowButtonProps?: Omit<PressableProps, 'style' | 'onPress'>;
 
     /**
      *  `ImageProps` for Arrow imported from `react-native`
      *
      *  @category Additional Features
      */
-    arrowImageProp?: Omit<ImageProps, 'style'>;
+    arrowImageProps?: Omit<ImageProps, 'style'>;
+
+    backdropProps?: Omit<TouchableWithoutFeedbackProps, 'onPress'>;
+
+    backdropChildProps?: Omit<ViewProps, 'style'>;
+
+    optionButtonProps?: Omit<PressableProps, 'ref' | 'style' | 'onPress'>;
+
+    optionTextProps?: Omit<TextProps, 'style'>;
+
+    selectLeftIconsProps?: Omit<ViewProps, 'style'>;
+    selectRightIconsProps?: Omit<ViewProps, 'style'>;
+    selectLeftIconImageProps?: Omit<ImageProps, 'style'>;
+    noOptionsProps?: Omit<ViewProps, 'style'>;
+    noOptionsTextProps?: Omit<TextProps, 'style'>;
 
     // ---SEARCH--- //
     /**
@@ -256,7 +276,6 @@ export interface SelectProps<T = unknown> {
     textInputProps?: Omit<
         TextInputProps,
         | 'ref'
-        | 'accessibilityLabel'
         | 'editable'
         | 'placeholder'
         | 'placeholderTextColor'
@@ -277,12 +296,6 @@ export interface SelectProps<T = unknown> {
     multiSelection?: boolean;
 
     // ---CUSTOM-COMPONENT--- //
-    /**
-     * NoOptionsComponent
-     *
-     * @category Custom Component
-     */
-    NoOptionsComponent?: JSX.Element;
     /**
      * OptionComponent
      *

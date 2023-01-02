@@ -10,7 +10,7 @@ export const Arrow = () => {
         multiSelection,
         onPressSelectControl,
         styles: mainStyles,
-        arrowButtonProp,
+        arrowButtonProps,
     } = useSelectContext();
 
     if (!multiSelection) {
@@ -23,7 +23,7 @@ export const Arrow = () => {
         <Pressable
             accessibilityLabel="Arrow for opening dropdown"
             disabled={disabled}
-            {...arrowButtonProp}
+            {...arrowButtonProps}
             style={arrow?.button}
             onPress={onPressSelectControl}
         >

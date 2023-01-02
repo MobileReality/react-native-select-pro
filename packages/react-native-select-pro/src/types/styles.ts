@@ -1,10 +1,4 @@
-import type {
-    ImageSourcePropType,
-    ImageStyle,
-    StyleProp,
-    TextStyle,
-    ViewStyle,
-} from 'react-native';
+import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export type SelectStyles = {
     /**
@@ -89,12 +83,8 @@ export type SelectControlStyles = {
      *  @category Styles
      */
     clear?: ClearOptionStyles;
-    /**
-     * Styles of custom left icon in select control
-     *
-     * @category Styles
-     */
-    leftIcon?: LeftIconStyles;
+
+    leftIcon?: StyleProp<ImageStyle>;
 } & StyleProp<ViewStyle>;
 
 export type OptionStyles = {
@@ -188,20 +178,4 @@ export type ArrowIconStyles = {
      *  @category Styles
      */
     icon?: StyleProp<ImageStyle>;
-};
-
-export type LeftIconStyles = {
-    /**
-     *  Left icon styles
-     *
-     *  @category Styles
-     */
-    icon?: StyleProp<ImageStyle>;
-
-    /**
-     *  Left icon source
-     *
-     *  @category Custom Sources
-     */
-    source?: ImageSourcePropType;
 };
