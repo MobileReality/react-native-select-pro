@@ -1,11 +1,11 @@
-import React, { forwardRef, Fragment } from 'react';
+import React, { forwardRef } from 'react';
 import type { ViewStyle } from 'react-native';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
+import { BORDER_WIDTH, COLORS, SHAPE } from '../../constants';
 import { useSelectContext } from '../../context';
 import { Arrow } from '../arrow';
 import { ClearOption } from '../clear-option';
-import { SelectControlWrapper } from '../select-control-wrapper';
 import { SelectFieldType } from '../select-field-type';
 
 import { useSelectControl } from './select-control.hooks';
@@ -17,6 +17,10 @@ export const SelectControl = forwardRef<View>((_, ref) => {
         selectLeftIconImageProps,
         selectRightIconsProps,
         styles: mainStyles,
+        isOpened,
+        aboveSelectControl,
+        disabled,
+        onPressSelectControl,
     } = useSelectContext();
 
     const { accessibilityHint, accessibilityLabel, clearOptionStatus, onPressRemove } =
@@ -29,14 +33,21 @@ export const SelectControl = forwardRef<View>((_, ref) => {
     const { buttons, leftIcon } = selectStyles ?? {};
 
     return (
-        <Fragment>
-            <SelectControlWrapper
+        <View style={styles.rootView}>
+            <Pressable
                 {...{
                     accessibilityHint,
                     accessibilityLabel,
                     selectStyles,
                     ref,
                 }}
+                style={[
+                    styles.container,
+                    isOpened && (aboveSelectControl ? styles.openedAbove : styles.opened),
+                    selectStyles,
+                    disabled && [styles.disabled, selectStyles?.disabled],
+                ]}
+                onPress={onPressSelectControl}
             >
                 {!!selectLeftIconImageProps?.source && (
                     <View
@@ -56,9 +67,9 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                     {showClearOption && clearOption}
                     {!hideArrow && <Arrow />}
                 </View>
-            </SelectControlWrapper>
+            </Pressable>
             {showClearOptionA11y && <View style={styles.a11IconWrapper}>{clearOption}</View>}
-        </Fragment>
+        </View>
     );
 });
 
@@ -67,6 +78,11 @@ type Styles = {
     xIconWrapper: ViewStyle;
     leftIconWrapper: ViewStyle;
     a11IconWrapper: ViewStyle;
+    rootView: ViewStyle;
+    container: ViewStyle;
+    disabled: ViewStyle;
+    openedAbove: ViewStyle;
+    opened: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -91,6 +107,27 @@ const styles = StyleSheet.create<Styles>({
         right: -20,
         borderWidth: 1,
         height: '100%',
+    },
+    rootView: {
+        position: 'relative',
+    },
+    container: {
+        height: 40,
+        flexDirection: 'row',
+        borderRadius: SHAPE,
+        borderWidth: BORDER_WIDTH,
+        backgroundColor: COLORS.WHITE,
+    },
+    disabled: {
+        backgroundColor: COLORS.DISABLED,
+    },
+    openedAbove: {
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
+    },
+    opened: {
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
     },
 });
 

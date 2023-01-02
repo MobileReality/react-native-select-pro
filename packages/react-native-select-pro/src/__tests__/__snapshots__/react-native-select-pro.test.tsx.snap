@@ -161,6 +161,14 @@ exports[`Select with custom left icon should generate Select with custom left ic
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
+      selectStyles={
+        {
+          "leftIcon": {
+            "height": 15,
+            "width": 15,
+          },
+        }
+      }
       style={
         [
           {
@@ -324,6 +332,16 @@ exports[`Select with custom select control arrow icon should generate Select wit
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
+      selectStyles={
+        {
+          "arrow": {
+            "icon": {
+              "height": 15,
+              "width": 15,
+            },
+          },
+        }
+      }
       style={
         [
           {
