@@ -19,7 +19,7 @@ export const SelectControl = forwardRef<View>((_, ref) => {
         styles: mainStyles,
     } = useSelectContext();
 
-    const { accessibilityHint, accessibilityLabel, clearOptionStatus, onPressRemove, onPress } =
+    const { accessibilityHint, accessibilityLabel, clearOptionStatus, onPressRemove } =
         useSelectControl();
 
     const clearOption = <ClearOption onPressRemove={onPressRemove} />;
@@ -35,7 +35,6 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                     accessibilityHint,
                     accessibilityLabel,
                     selectStyles,
-                    onPress,
                     ref,
                 }}
             >

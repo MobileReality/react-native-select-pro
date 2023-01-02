@@ -6,7 +6,6 @@ export type FromSelectControlComponent = {
     accessibilityHint: string | undefined;
     accessibilityLabel: string;
     children: ReactNode;
-    onPress: () => void;
     selectStyles: SelectControlStyles | undefined;
 };
 

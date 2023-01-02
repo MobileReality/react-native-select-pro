@@ -1,5 +1,5 @@
 import type { ForwardedRef } from 'react';
-import React, { forwardRef, useCallback } from 'react';
+import React, { forwardRef } from 'react';
 import type { ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, View } from 'react-native';
 
@@ -14,51 +14,30 @@ export const SelectControlWrapper = forwardRef(
             accessibilityHint,
             accessibilityLabel,
             children,
-            onPress,
             selectStyles,
         }: SelectControlWrapperProps,
         ref: ForwardedRef<View>,
     ) => {
-        const { isOpened, disabled, aboveSelectControl, multiSelection, selectedOption } =
-            useSelectContext();
+        const { isOpened, disabled, aboveSelectControl, onPressSelectControl } = useSelectContext();
 
-        const renderContent = useCallback(() => {
-            const properties = {
-                ref,
-                accessibilityHint,
-                accessibilityLabel,
-                style: [
-                    styles.container,
-                    isOpened && (aboveSelectControl ? styles.openedAbove : styles.opened),
-                    selectStyles,
-                    disabled ? [styles.disabled, selectStyles?.disabled] : {},
-                ],
-            };
-
-            if (multiSelection && selectedOption) {
-                return <View {...properties}>{children}</View>;
-            }
-
-            return (
-                <Pressable {...properties} onPress={onPress}>
+        return (
+            <View style={styles.rootView}>
+                <Pressable
+                    ref={ref}
+                    accessibilityHint={accessibilityHint}
+                    accessibilityLabel={accessibilityLabel}
+                    style={[
+                        styles.container,
+                        isOpened && (aboveSelectControl ? styles.openedAbove : styles.opened),
+                        selectStyles,
+                        disabled && [styles.disabled, selectStyles?.disabled],
+                    ]}
+                    onPress={onPressSelectControl}
+                >
                     {children}
                 </Pressable>
-            );
-        }, [
-            aboveSelectControl,
-            accessibilityHint,
-            accessibilityLabel,
-            children,
-            disabled,
-            selectStyles,
-            isOpened,
-            multiSelection,
-            onPress,
-            ref,
-            selectedOption,
-        ]);
-
-        return <View style={styles.rootView}>{renderContent()}</View>;
+            </View>
+        );
     },
 );
 
