@@ -19,7 +19,6 @@ export const useSelectControl = () => {
         multiSelection,
         optionsData,
         searchValue,
-        onPressSelectControl,
         selectControlOpenDropdownA11yLabel,
         onRemove,
         dispatch,
@@ -127,18 +126,10 @@ export const useSelectControl = () => {
         }
     };
 
-    const onPress = () => {
-        if (disabled || (multiSelection && selectedOption)) {
-            return;
-        }
-        onPressSelectControl();
-    };
-
     return {
         accessibilityHint,
         accessibilityLabel,
         clearOptionStatus,
         onPressRemove,
-        onPress,
     };
 };

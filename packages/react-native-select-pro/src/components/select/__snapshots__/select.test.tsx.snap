@@ -43,7 +43,7 @@ exports[`Select should generate Select snapshot 1`] = `
           },
           false,
           undefined,
-          {},
+          false,
         ]
       }
     >
