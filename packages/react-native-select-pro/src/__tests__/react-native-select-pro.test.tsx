@@ -394,7 +394,7 @@ describe('Select with searchable enabled', () => {
                 <Select
                     options={SEARCHABLE_DATA}
                     searchable={true}
-                    textInputProps={{
+                    selectInputProps={{
                         onFocus,
                         onBlur,
                     }}

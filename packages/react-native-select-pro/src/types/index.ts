@@ -250,6 +250,10 @@ export interface SelectProps<T = unknown> {
     selectLeftIconImageProps?: Omit<ImageProps, 'style'>;
     noOptionsProps?: Omit<ViewProps, 'style'>;
     noOptionsTextProps?: Omit<TextProps, 'style'>;
+    sectionHeaderButtonProps?: Omit<PressableProps, 'style' | 'onPress'>;
+    sectionHeaderTextProps?: Omit<TextProps, 'style'>;
+    sectionHeaderImageProps?: Omit<ImageProps, 'style'>;
+    selectTextProps?: Omit<TextProps, 'style'>;
 
     // ---SEARCH--- //
     /**
@@ -269,11 +273,11 @@ export interface SelectProps<T = unknown> {
     searchPattern?: (payload: string) => string;
 
     /**
-     *  `TextInputProps` imported from `react-native`
+     *  `selectInputProps` imported from `react-native`
      *
      *  @category Search
      */
-    textInputProps?: Omit<
+    selectInputProps?: Omit<
         TextInputProps,
         | 'ref'
         | 'editable'

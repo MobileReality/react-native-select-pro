@@ -15,15 +15,8 @@ export const SectionOptionsList = ({
     getItemLayout,
     renderItem,
 }: SectionOptionsListProps) => {
-    const {
-        isOpened,
-        scrollToSelectedOption,
-        onPressOption,
-        onPressSection,
-        selectedOption,
-        sectionListProps,
-        styles,
-    } = useOptionsListContext();
+    const { isOpened, scrollToSelectedOption, onPressOption, selectedOption, sectionListProps } =
+        useOptionsListContext();
 
     const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => {
         const isSelected = isSectionSelected({
@@ -32,14 +25,7 @@ export const SectionOptionsList = ({
             sectionData: resolvedData,
         });
 
-        return (
-            <SectionHeader
-                title={info.section.title}
-                sectionHeader={styles?.sectionHeader}
-                isSelected={isSelected}
-                onPressSection={onPressSection}
-            />
-        );
+        return <SectionHeader title={info.section.title} isSelected={isSelected} />;
     };
 
     const sectionList = useCallback(

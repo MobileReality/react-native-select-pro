@@ -17,6 +17,9 @@ type OptionsListContextProviderTypes<T> = OptionalToRequired<
         | 'optionTextProps'
         | 'noOptionsProps'
         | 'noOptionsTextProps'
+        | 'sectionHeaderButtonProps'
+        | 'sectionHeaderTextProps'
+        | 'sectionHeaderImageProps'
     > & {
         aboveSelectControl: Position['aboveSelectControl'];
         openedPosition: Position;

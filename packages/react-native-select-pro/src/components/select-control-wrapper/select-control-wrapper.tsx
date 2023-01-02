@@ -21,6 +21,7 @@ export const SelectControlWrapper = forwardRef(
     ) => {
         const { isOpened, disabled, aboveSelectControl, multiSelection, selectedOption } =
             useSelectContext();
+
         const renderContent = useCallback(() => {
             const properties = {
                 ref,
