@@ -273,7 +273,7 @@ export interface SelectProps<T = unknown> {
     searchPattern?: (payload: string) => string;
 
     /**
-     *  `selectInputProps` imported from `react-native`
+     *  `TextInputProps` imported from `react-native`
      *
      *  @category Search
      */
