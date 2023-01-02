@@ -20,12 +20,13 @@ export const CustomIcons = () => {
                         width: 180,
                         marginBottom: 20,
                         leftIcon: {
-                            icon: { height: 20, width: 20 },
-                            source: globeImage,
+                            height: 20,
+                            width: 20,
                         },
                     },
                 }}
                 options={DATA}
+                selectLeftIconImageProps={{ source: globeImage }}
             />
             <Select
                 styles={{
@@ -33,14 +34,15 @@ export const CustomIcons = () => {
                         width: 250,
                         marginBottom: 20,
                         leftIcon: {
-                            icon: { height: 25, width: 25 },
-                            source: searchImage,
+                            height: 25,
+                            width: 25,
                         },
                     },
                 }}
                 options={DATA}
                 placeholderText="Search..."
                 searchable={true}
+                selectLeftIconImageProps={{ source: searchImage }}
             />
             <Text style={{ marginBottom: 20 }}>Custom select control arrow</Text>
             <Select

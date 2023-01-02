@@ -98,7 +98,7 @@ const styles = StyleSheet.create<Styles>({
         zIndex: 1,
         backgroundColor: COLORS.WHITE,
         borderWidth: BORDER_WIDTH,
-        height: OPTIONS_LIST_HEIGHT,
+        maxHeight: OPTIONS_LIST_HEIGHT,
         elevation: 5,
     },
     notOverflown: {

@@ -48,10 +48,19 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         defaultOption,
         flatListProps,
         sectionListProps,
-        clearOptionButtonProp,
-        clearOptionImageProp,
-        arrowButtonProp,
-        arrowImageProp,
+        clearOptionButtonProps,
+        clearOptionImageProps,
+        arrowButtonProps,
+        arrowImageProps,
+        backdropProps,
+        backdropChildProps,
+        optionTextProps,
+        optionButtonProps,
+        selectLeftIconsProps,
+        selectRightIconsProps,
+        selectLeftIconImageProps,
+        noOptionsTextProps,
+        noOptionsProps,
         // Search
         searchable = false,
         searchPattern = (payload: string) => `(${payload})`,
@@ -59,7 +68,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         // Multiselect
         multiSelection = false,
         // Custom components
-        NoOptionsComponent,
         OptionComponent,
         // Colors
         placeholderTextColor = COLORS.GRAY,
@@ -142,10 +150,13 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     selectedOption,
                     selectedOptionIndex,
                     styles: mainStyles,
-                    clearOptionButtonProp,
-                    clearOptionImageProp,
-                    arrowButtonProp,
-                    arrowImageProp,
+                    clearOptionButtonProps,
+                    clearOptionImageProps,
+                    arrowButtonProps,
+                    arrowImageProps,
+                    selectRightIconsProps,
+                    selectLeftIconsProps,
+                    selectLeftIconImageProps,
                 }}
             >
                 <SelectControl ref={selectControlRef} />
@@ -156,6 +167,8 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                         <Portal hostName={Portals.Backdrop}>
                             <Backdrop
                                 backdrop={mainStyles?.backdrop}
+                                backdropProps={backdropProps}
+                                backdropChildProps={backdropChildProps}
                                 onOutsidePress={onOutsidePress}
                             />
                         </Portal>
@@ -164,7 +177,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                         <OptionsListContextProvider
                             value={{
                                 animation,
-                                NoOptionsComponent,
                                 OptionComponent,
                                 aboveSelectControl,
                                 flatListProps,
@@ -181,6 +193,10 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 selectedOptionIndex,
                                 sectionListProps,
                                 styles: mainStyles,
+                                optionButtonProps,
+                                optionTextProps,
+                                noOptionsProps,
+                                noOptionsTextProps,
                             }}
                         >
                             <OptionsList ref={optionsListRef} />

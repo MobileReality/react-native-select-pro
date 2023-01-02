@@ -16,7 +16,6 @@ export const SectionOptionsList = ({
     renderItem,
 }: SectionOptionsListProps) => {
     const {
-        NoOptionsComponent,
         isOpened,
         scrollToSelectedOption,
         onPressOption,
@@ -67,22 +66,22 @@ export const SectionOptionsList = ({
 
     return (
         <SectionList
-            ref={sectionList}
             testID="Options list"
             accessibilityLabel="Options list"
             accessibilityState={{
                 expanded: isOpened,
             }}
             bounces={false}
-            sections={resolvedData}
-            getItemLayout={getItemLayout}
-            keyExtractor={({ value }) => value}
             keyboardShouldPersistTaps="handled"
             persistentScrollbar={true}
-            renderSectionHeader={renderSectionHeader}
-            renderItem={renderItem}
+            ListEmptyComponent={<NoOptions />}
             {...sectionListProps}
-            ListEmptyComponent={NoOptionsComponent ?? <NoOptions />}
+            ref={sectionList}
+            renderSectionHeader={renderSectionHeader}
+            sections={resolvedData}
+            getItemLayout={getItemLayout}
+            renderItem={renderItem}
+            keyExtractor={({ value }) => value}
         />
     );
 };

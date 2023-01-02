@@ -12,14 +12,8 @@ export const FlatOptionsList = ({
     getItemLayout,
     renderItem,
 }: FlatOptionsListProps) => {
-    const {
-        NoOptionsComponent,
-        flatListProps,
-        isOpened,
-        scrollToSelectedOption,
-        onPressOption,
-        selectedOptionIndex,
-    } = useOptionsListContext();
+    const { flatListProps, isOpened, scrollToSelectedOption, onPressOption, selectedOptionIndex } =
+        useOptionsListContext();
 
     const flatList = useCallback(
         (node: FlatList | null) => {
@@ -49,21 +43,21 @@ export const FlatOptionsList = ({
 
     return (
         <FlatList
-            ref={flatList}
             testID="Options list"
             accessibilityLabel="Options list"
             accessibilityState={{
                 expanded: isOpened,
             }}
             bounces={false}
-            data={resolvedData}
-            getItemLayout={getItemLayout}
-            keyExtractor={({ value }) => value}
             keyboardShouldPersistTaps="handled"
             persistentScrollbar={true}
-            renderItem={renderItem}
+            ListEmptyComponent={<NoOptions />}
             {...flatListProps}
-            ListEmptyComponent={NoOptionsComponent ?? <NoOptions />}
+            ref={flatList}
+            data={resolvedData}
+            getItemLayout={getItemLayout}
+            renderItem={renderItem}
+            keyExtractor={({ value }) => value}
         />
     );
 };

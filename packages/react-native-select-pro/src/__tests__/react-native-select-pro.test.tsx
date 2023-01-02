@@ -418,12 +418,13 @@ describe('Select with custom left icon', () => {
                     styles={{
                         select: {
                             leftIcon: {
-                                icon: { height: 15, width: 15 },
-                                source: require('./assets/search.png'),
+                                height: 15,
+                                width: 15,
                             },
                         },
                     }}
                     options={DATA}
+                    selectLeftIconImageProps={{ source: require('./assets/search.png') }}
                 />
             </SelectProvider>,
         );
@@ -443,7 +444,7 @@ describe('Select with custom select control arrow icon', () => {
                             },
                         },
                     }}
-                    arrowImageProp={{
+                    arrowImageProps={{
                         source: require('./assets/arrow-down.png'),
                     }}
                     options={DATA}

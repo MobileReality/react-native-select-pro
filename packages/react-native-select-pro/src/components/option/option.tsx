@@ -8,7 +8,13 @@ import { useOptionsListContext } from '../../context';
 import type { OnChooseOption, OptionProps } from './option.types';
 
 export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optionIndex }, ref) => {
-    const { OptionComponent, onPressOption, styles: mainStyles } = useOptionsListContext();
+    const {
+        OptionComponent,
+        onPressOption,
+        optionButtonProps,
+        optionTextProps,
+        styles: mainStyles,
+    } = useOptionsListContext();
     const onChooseOption: OnChooseOption = () => {
         onPressOption(option, optionIndex);
     };
@@ -27,21 +33,23 @@ export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optio
 
     return (
         <Pressable
-            ref={ref}
             accessibilityLabel={`Choose ${label} option`}
             accessibilityRole="button"
             accessible={true}
+            disabled={isSelected}
+            {...optionButtonProps}
+            ref={ref}
             style={({ pressed }) => [
                 styles.option,
                 optionStyles,
                 isSelected && [styles.selected, optionStyles?.selected],
                 pressed && (optionStyles?.pressed ?? PRESSED_STYLE),
             ]}
-            disabled={isSelected}
             onPress={onChooseOption}
         >
             <Text
                 numberOfLines={1}
+                {...optionTextProps}
                 style={[styles.text, optionStyles?.text, isSelected && optionStyles?.selectedText]}
             >
                 {label}

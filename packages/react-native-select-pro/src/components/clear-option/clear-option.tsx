@@ -12,8 +12,8 @@ export const ClearOption = ({ onPressRemove }: ClearOptionProps) => {
     const {
         styles: mainStyles,
         disabled,
-        clearOptionButtonProp,
-        clearOptionImageProp,
+        clearOptionButtonProps,
+        clearOptionImageProps,
     } = useSelectContext();
 
     const { clear } = mainStyles?.select ?? {};
@@ -25,13 +25,13 @@ export const ClearOption = ({ onPressRemove }: ClearOptionProps) => {
             accessible={true}
             hitSlop={{ right: 3, left: 3 }}
             disabled={disabled}
-            {...clearOptionButtonProp}
+            {...clearOptionButtonProps}
             style={[styles.xIconWrapper, clear?.button]}
             onPress={onPressRemove}
         >
             <Image
                 source={iconSource}
-                {...clearOptionImageProp}
+                {...clearOptionImageProps}
                 style={[styles.xIcon, clear?.icon]}
             />
         </Pressable>
