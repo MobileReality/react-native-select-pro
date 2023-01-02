@@ -114,10 +114,15 @@ export const useSelect = <T>({
     };
 
     const onPressSelectControl: OnPressSelectControlType = async () => {
+        if (disabled) {
+            return;
+        }
+
         if (isOpened) {
             close();
             return;
         }
+
         if (selectControlRef.current) {
             open();
             await setOptionsListPosition();

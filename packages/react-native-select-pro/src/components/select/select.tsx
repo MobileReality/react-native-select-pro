@@ -60,11 +60,15 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         selectRightIconsProps,
         selectLeftIconImageProps,
         noOptionsTextProps,
+        sectionHeaderTextProps,
+        sectionHeaderImageProps,
+        sectionHeaderButtonProps,
+        selectTextProps,
         noOptionsProps,
         // Search
         searchable = false,
         searchPattern = (payload: string) => `(${payload})`,
-        textInputProps,
+        selectInputProps,
         // Multiselect
         multiSelection = false,
         // Custom components
@@ -142,7 +146,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     searchPattern,
                     searchValue,
                     onPressSelectControl,
-                    textInputProps,
+                    selectInputProps,
                     selectControlOpenDropdownA11yLabel,
                     onRemove,
                     dispatch,
@@ -157,6 +161,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     selectRightIconsProps,
                     selectLeftIconsProps,
                     selectLeftIconImageProps,
+                    selectTextProps,
                 }}
             >
                 <SelectControl ref={selectControlRef} />
@@ -197,6 +202,9 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 optionTextProps,
                                 noOptionsProps,
                                 noOptionsTextProps,
+                                sectionHeaderButtonProps,
+                                sectionHeaderImageProps,
+                                sectionHeaderTextProps,
                             }}
                         >
                             <OptionsList ref={optionsListRef} />

@@ -394,7 +394,7 @@ describe('Select with searchable enabled', () => {
                 <Select
                     options={SEARCHABLE_DATA}
                     searchable={true}
-                    textInputProps={{
+                    selectInputProps={{
                         onFocus,
                         onBlur,
                     }}
@@ -485,7 +485,7 @@ describe('Select with multi selection', () => {
         expect(listWrapper2).toBeFalsy();
     });
 
-    it('should, while multiSelection enabled, click should NOT execute opening dropdown', () => {
+    it('should, while multiSelection enabled, click should execute opening dropdown', () => {
         const { getByLabelText, queryByLabelText } = render(
             <SelectProvider>
                 <Select multiSelection={true} options={DATA} animation={false} />
@@ -507,8 +507,8 @@ describe('Select with multi selection', () => {
         const tryOpenAgain = getByLabelText('Open a dropdown');
         fireEvent.press(tryOpenAgain);
 
-        const listWrapperShouldNotBeVisible = queryByLabelText('Options list');
-        expect(listWrapperShouldNotBeVisible).toBeFalsy();
+        const listWrapperShouldBeVisible = queryByLabelText('Options list');
+        expect(listWrapperShouldBeVisible).toBeTruthy();
     });
 
     it('should, while multiSelection enabled, show, select and remove selected option', () => {

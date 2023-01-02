@@ -43,7 +43,7 @@ exports[`Select should generate Select snapshot 1`] = `
           },
           false,
           undefined,
-          {},
+          false,
         ]
       }
     >
@@ -161,6 +161,14 @@ exports[`Select with custom left icon should generate Select with custom left ic
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
+      selectStyles={
+        {
+          "leftIcon": {
+            "height": 15,
+            "width": 15,
+          },
+        }
+      }
       style={
         [
           {
@@ -177,7 +185,7 @@ exports[`Select with custom left icon should generate Select with custom left ic
               "width": 15,
             },
           },
-          {},
+          false,
         ]
       }
     >
@@ -324,6 +332,16 @@ exports[`Select with custom select control arrow icon should generate Select wit
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
+      selectStyles={
+        {
+          "arrow": {
+            "icon": {
+              "height": 15,
+              "width": 15,
+            },
+          },
+        }
+      }
       style={
         [
           {
@@ -342,7 +360,7 @@ exports[`Select with custom select control arrow icon should generate Select wit
               },
             },
           },
-          {},
+          false,
         ]
       }
     >
@@ -464,7 +482,7 @@ exports[`Select with multi selection and searchable should generate Select with 
           },
           false,
           undefined,
-          {},
+          false,
         ]
       }
     >
@@ -619,7 +637,7 @@ exports[`Select with multi selection should generate Select with multi selection
           },
           false,
           undefined,
-          {},
+          false,
         ]
       }
     >
@@ -774,7 +792,7 @@ exports[`Select with searchable enabled should generate Select with searchable e
           },
           false,
           undefined,
-          {},
+          false,
         ]
       }
     >

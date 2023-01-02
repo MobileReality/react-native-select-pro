@@ -18,7 +18,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
         searchPattern,
         searchValue,
         onPressSelectControl,
-        textInputProps,
+        selectInputProps,
         dispatch,
         setOptionsListPosition,
     } = useSelectContext();
@@ -76,7 +76,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
     return (
         <TextInput
             accessibilityLabel="Place text"
-            {...textInputProps}
+            {...selectInputProps}
             ref={searchInputRef}
             editable={!disabled}
             placeholder={resolvePlaceholder()}
