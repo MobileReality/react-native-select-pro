@@ -203,6 +203,29 @@ describe('Select', () => {
         const option = getByLabelText('Option');
         fireEvent.press(option);
     });
+
+    it('should close options list after press selected option', () => {
+        const { getByLabelText } = render(
+            <SelectProvider>
+                <Select options={DATA} pressableSelectedOption={true} />
+            </SelectProvider>,
+        );
+
+        const open = getByLabelText('Open a dropdown');
+        fireEvent.press(open);
+
+        const optionPress = getByLabelText(`Choose ${DATA[0].label} option`);
+        fireEvent.press(optionPress);
+
+        const openAgain = getByLabelText('Open a dropdown');
+        fireEvent.press(openAgain);
+
+        const optionSelected = getByLabelText(`Choose ${DATA[0].label} option`);
+        fireEvent.press(optionSelected);
+
+        const canOpenDropdown = getByLabelText('Open a dropdown');
+        expect(canOpenDropdown).toBeTruthy();
+    });
 });
 
 describe('Select with searchable enabled', () => {

@@ -182,6 +182,14 @@ export interface SelectProps<T = unknown> {
      */
     noBackdrop?: boolean;
 
+    /**
+     *  If `true` the chosen option is pressable and the options list will be closed after the chosen option is pressed.
+     *
+     *  @category Behaviour
+     *  @default false
+     */
+    pressableSelectedOption?: boolean;
+
     // ---ADDITIONAL-FEATURES--- //
     /**
      *  Set a default option
@@ -247,7 +255,10 @@ export interface SelectProps<T = unknown> {
 
     backdropChildProps?: Omit<ViewProps, 'style'>;
 
-    optionButtonProps?: Omit<PressableProps, 'ref' | 'style' | 'onPress'>;
+    optionButtonProps?: Omit<
+        PressableProps,
+        'ref' | 'style' | 'onPress' | 'accessibilityRole' | 'accessibilityState' | 'disabled'
+    >;
 
     optionTextProps?: Omit<TextProps, 'style'>;
 
