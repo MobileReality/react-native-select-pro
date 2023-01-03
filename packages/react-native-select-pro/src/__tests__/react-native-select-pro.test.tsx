@@ -118,7 +118,7 @@ describe('Select', () => {
         const optionPress = getByLabelText(`Choose ${DATA[0].label} option`);
         fireEvent.press(optionPress);
 
-        const clearButton = getByLabelText('Clear a chosen option');
+        const clearButton = getByLabelText('Clear a selected option');
         expect(clearButton).toBeTruthy();
     });
 
@@ -152,7 +152,7 @@ describe('Select', () => {
         fireEvent.press(optionPress);
         expect(onSelect).toBeCalledWith(DATA[1], 1);
 
-        const clearButton = getByLabelText('Clear a chosen option');
+        const clearButton = getByLabelText('Clear a selected option');
         fireEvent.press(clearButton);
         expect(onRemove).toBeCalledWith(DATA[1], 1);
     });
@@ -550,7 +550,7 @@ describe('Select with multi selection', () => {
         const optionSelected = getByLabelText(`${DATA[0].label} selected`);
         expect(optionSelected).toBeTruthy();
 
-        const openAgain = getByLabelText('Arrow for opening dropdown');
+        const openAgain = getByLabelText('Open a dropdown');
         fireEvent.press(openAgain);
 
         const secondOptionPress = getByLabelText(`Choose ${DATA[1].label} option`);

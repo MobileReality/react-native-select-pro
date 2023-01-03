@@ -177,7 +177,7 @@ export type ArrowIconStyles = {
      *
      *  @category Styles
      */
-    button?: StyleProp<ViewStyle>;
+    container?: StyleProp<ViewStyle>;
     /**
      *  Style of arrow image
      *
