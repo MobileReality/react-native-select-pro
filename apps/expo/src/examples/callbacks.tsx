@@ -4,7 +4,7 @@ import type { OptionType } from '@mobile-reality/react-native-select-pro';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
-import { DATA } from '../constants';
+import { DATA } from '../constants/data';
 
 export const Callbacks = () => {
     const [isOpened, setIsOpened] = useState(false);

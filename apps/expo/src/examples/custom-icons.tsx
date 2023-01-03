@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
-import { DATA } from '../constants';
+import { DATA } from '../constants/data';
 
 const searchImage = require('../assets/search.png');
 const globeImage = require('../assets/globe.png');

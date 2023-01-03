@@ -6,7 +6,8 @@ import type { OptionType } from '@mobile-reality/react-native-select-pro';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
-import { PROGRAMMING_LANGUAGES, SELECT_STYLES } from '../constants';
+import { PROGRAMMING_LANGUAGES } from '../constants/data';
+import { SELECT_STYLES } from '../constants/styles';
 
 export const RealExample = () => {
     const { control, handleSubmit, formState, watch, reset } = useForm<{ languages: OptionType[] }>(
