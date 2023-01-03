@@ -13,7 +13,7 @@ export const Arrow = () => {
         styles: mainStyles,
         animation,
         arrowImageProps,
-        arrowButtonProps,
+        arrowContainerProps,
     } = useSelectContext();
 
     const { arrow } = mainStyles?.select ?? {};
@@ -46,7 +46,7 @@ export const Arrow = () => {
     }, [arrow?.icon, arrowImageProps, isOpened, rotateAnimation]);
 
     return (
-        <View {...arrowButtonProps} style={arrow?.container}>
+        <View {...arrowContainerProps} style={arrow?.container}>
             {renderImage}
         </View>
     );

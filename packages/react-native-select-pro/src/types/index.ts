@@ -238,11 +238,11 @@ export interface SelectProps<T = unknown> {
     clearOptionImageProps?: Omit<ImageProps, 'style'>;
 
     /**
-     *  `PressableProps` for Arrow imported from `react-native`
+     *  `ViewProps` for Arrow imported from `react-native`
      *
      *  @category Additional Features
      */
-    arrowButtonProps?: Omit<ViewProps, 'style'>;
+    arrowContainerProps?: Omit<ViewProps, 'style'>;
 
     /**
      *  `ImageProps` for Arrow imported from `react-native`
