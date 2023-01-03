@@ -70,3 +70,9 @@ export type State<T = unknown> = {
 };
 
 export type DispatchType<T> = Dispatch<ActionType<T>>;
+
+export type CreateInitialStateType<T> = {
+    options: OptionsType<T>;
+    searchable: boolean;
+    animation: boolean | number;
+};
