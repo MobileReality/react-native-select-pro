@@ -73,10 +73,7 @@ export interface SelectProps<T = unknown> {
      * @param optionIndex removed option(s) index(es)
      * @category Callback
      */
-    onRemove?: (
-        option: OptionType<T> | OptionType<T>[] | null,
-        optionIndex: number | number[],
-    ) => void;
+    onRemove?: (option: OptionType<T> | OptionType<T>[], optionIndex: number | number[]) => void;
 
     /**
      * Callback that is called when section is selected with section header

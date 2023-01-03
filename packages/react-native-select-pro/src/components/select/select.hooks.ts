@@ -136,7 +136,7 @@ export const useSelect = <T>({
                     type: Action.SelectOption,
                     payload: { selectedOption: null, selectedOptionIndex: -1 },
                 });
-                if (onRemove) {
+                if (onRemove && selectedOption) {
                     onRemove(selectedOption, selectedOptionIndex);
                 }
             },

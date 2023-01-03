@@ -122,7 +122,7 @@ export const useSelectControl = () => {
             };
         }
 
-        if (onRemove) {
+        if (onRemove && removedOption.option) {
             onRemove(removedOption.option, removedOption.index);
         }
     };

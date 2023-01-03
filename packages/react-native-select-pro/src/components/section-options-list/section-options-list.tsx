@@ -21,13 +21,17 @@ export const SectionOptionsList = ({
         useOptionsListContext();
 
     const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => {
-        const isSelected = isSectionSelected({
-            title: info.section.title,
-            selectedOptions: selectedOption,
-            sectionData: resolvedData,
-        });
+        if (Array.isArray(selectedOption)) {
+            const isSelected = isSectionSelected({
+                title: info.section.title,
+                selectedOptions: selectedOption,
+                sectionData: resolvedData,
+            });
 
-        return <SectionHeader title={info.section.title} isSelected={isSelected} />;
+            return <SectionHeader title={info.section.title} isSelected={isSelected} />;
+        }
+
+        return null;
     };
 
     const scrollToIndex = () => {
