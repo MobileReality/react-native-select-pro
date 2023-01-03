@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
-import { DATA } from '../constants';
+import { DATA } from '../constants/data';
 
 export const RHF = () => {
     const { watch, control } = useForm();
