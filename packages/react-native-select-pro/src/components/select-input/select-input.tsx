@@ -43,7 +43,6 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
                 payload: null,
             });
         };
-        // TODO
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -89,7 +88,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
             textAlign={I18nManager.getConstants().isRTL ? 'right' : 'left'}
             value={searchValue ?? ''}
             onChangeText={onChangeText}
-            onPressIn={disabled ? () => null : onPressSelectControl}
+            onPressIn={disabled ? undefined : onPressSelectControl}
         />
     );
 };

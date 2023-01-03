@@ -1,4 +1,4 @@
-import type { OptionType } from '@mobile-reality/react-native-select-pro';
+import type { OptionType } from '../types';
 
 export const isValidDefaultOption = <T>(
     defaultOption?: OptionType<T>,

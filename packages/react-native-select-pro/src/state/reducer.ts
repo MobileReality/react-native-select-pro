@@ -1,8 +1,8 @@
 import { LayoutAnimation } from 'react-native';
-import type { OptionsType } from '@mobile-reality/react-native-select-pro';
 
 import { ANIMATION_DURATION } from '../constants';
 import { ERRORS, isSectionOptionsType, regexSearchTest } from '../helpers';
+import type { OptionsType } from '../types';
 
 import type { ActionType, State } from './types';
 import { Action } from './types';

@@ -10,25 +10,19 @@ import type { OptionType } from '../../types';
 import type { ItemLayout, UseOptionsListProps } from './options-list.types';
 
 export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
-    const { isOpened, optionsData, searchValue, selectedOption, searchedOptions } =
-        useOptionsListContext();
+    const { optionsData, searchValue, selectedOption, searchedOptions } = useOptionsListContext();
 
     const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
         selectedOptionResolver(selectedOption);
 
-    const measuredRef = useCallback(
-        (node: View | null) => {
-            if (node !== null) {
-                const reactTag = findNodeHandle(node);
-                if (reactTag) {
-                    AccessibilityInfo.setAccessibilityFocus(reactTag);
-                }
+    const measuredRef = useCallback((node: View | null) => {
+        if (node !== null) {
+            const reactTag = findNodeHandle(node);
+            if (reactTag) {
+                AccessibilityInfo.setAccessibilityFocus(reactTag);
             }
-        },
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [isOpened],
-    );
+        }
+    }, []);
 
     const resolveData = () => {
         if (!searchValue || (searchValue.length > 0 && searchValue === selectedOptionLabel)) {
