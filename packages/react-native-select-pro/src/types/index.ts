@@ -10,9 +10,9 @@ import type {
     ViewProps,
 } from 'react-native';
 
-import type { OnChooseOption, OptionProps } from '../components/option/option.types';
 import type { State } from '../state';
 
+import type { OnChooseOption, OptionComponentType } from './shared';
 import type { SelectStyles } from './styles';
 
 export type OptionTypeRequired = {
@@ -37,7 +37,10 @@ export type SectionOptionType<T = unknown> = {
 
 export type OptionsType<T> = SectionOptionType<T>[] | OptionType<T>[];
 
-export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option' | 'optionIndex'> & {
+export type OptionComponentProps = Pick<
+    OptionComponentType,
+    'isSelected' | 'option' | 'optionIndex'
+> & {
     onPressOption: OnChooseOption;
 };
 
@@ -373,17 +376,3 @@ export interface SelectRef<T = unknown> {
      */
     getState: () => State<T>;
 }
-
-/**
- * @ignore
- */
-export type OnPressOptionType<T> = (option: OptionType<T>, optionIndex: number) => void;
-/**
- * @ignore
- */
-export type OnPressSelectControlType = () => void;
-/**
- * @ignore
- */
-export type OnOutsidePress = () => void;
-export type OnSetOptionsListPosition = () => void;

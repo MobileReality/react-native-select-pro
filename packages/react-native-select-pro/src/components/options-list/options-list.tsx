@@ -5,13 +5,13 @@ import { StyleSheet } from 'react-native';
 import { BORDER_WIDTH, COLORS, OPTIONS_LIST_HEIGHT, SHAPE } from '../../constants';
 import { useOptionsListContext } from '../../context';
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
+import type { RenderItemProps } from '../../types/shared';
 import { FlatOptionsList } from '../flat-options-list';
 import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';
 import { SectionOptionsList } from '../section-options-list';
 
 import { useOptionsList } from './options-list.hooks';
-import type { RenderItemProps } from './options-list.types';
 
 export const OptionsList = forwardRef<View>((_, optionsListRef) => {
     const {

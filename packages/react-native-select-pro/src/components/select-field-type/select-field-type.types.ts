@@ -1,7 +1,7 @@
-import type { OptionType } from '../../index';
+import type { OnPressRemove } from '../../types/shared';
 import type { SelectControlStyles } from '../../types/styles';
 
 export type SelectFieldTypeProps = {
-    onPressRemove: (option?: OptionType | null) => void;
+    onPressRemove: OnPressRemove;
     selectStyles: SelectControlStyles | undefined;
 };

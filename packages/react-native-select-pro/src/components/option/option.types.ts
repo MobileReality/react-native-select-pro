@@ -1,9 +1,3 @@
-import type { OptionType } from '../../index';
+import type { OptionComponentType } from '../../types/shared';
 
-export type OptionProps = {
-    isSelected: boolean;
-    option: OptionType;
-    optionIndex: number;
-};
-
-export type OnChooseOption = () => void;
+export type OptionProps = OptionComponentType;
