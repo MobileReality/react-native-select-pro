@@ -14,6 +14,7 @@ export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optio
         optionButtonProps,
         optionTextProps,
         styles: mainStyles,
+        pressableSelectedOption,
     } = useOptionsListContext();
     const onChooseOption: OnChooseOption = () => {
         onPressOption(option, optionIndex);
@@ -31,14 +32,16 @@ export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optio
     const { label } = option;
     const { option: optionStyles } = mainStyles ?? {};
 
+    const isDisabled = pressableSelectedOption ? false : isSelected;
+
     return (
         <Pressable
             accessibilityLabel={`Choose ${label} option`}
-            accessibilityRole="button"
-            accessible={true}
-            disabled={isSelected}
             {...optionButtonProps}
             ref={ref}
+            accessibilityRole="menuitem"
+            accessibilityState={{ disabled: isDisabled }}
+            disabled={isDisabled}
             style={({ pressed }) => [
                 styles.option,
                 optionStyles,

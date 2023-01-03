@@ -44,6 +44,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         scrollToSelectedOption = true,
         hideArrow = false,
         noBackdrop = false,
+        pressableSelectedOption = false,
         // Additional features
         defaultOption,
         flatListProps,
@@ -202,6 +203,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 sectionHeaderButtonProps,
                                 sectionHeaderImageProps,
                                 sectionHeaderTextProps,
+                                pressableSelectedOption,
                             }}
                         >
                             <OptionsList ref={optionsListRef} />
