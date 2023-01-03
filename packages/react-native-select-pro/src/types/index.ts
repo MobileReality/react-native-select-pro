@@ -183,7 +183,7 @@ export interface SelectProps<T = unknown> {
     noBackdrop?: boolean;
 
     /**
-     *  If `true` the chosen option is pressable and the options list will be closed after the chosen option is pressed.
+     *  If `true` the selected option is pressable and the options list will be closed after the selected option is pressed.
      *
      *  @category Behaviour
      *  @default false
@@ -238,11 +238,11 @@ export interface SelectProps<T = unknown> {
     clearOptionImageProps?: Omit<ImageProps, 'style'>;
 
     /**
-     *  `PressableProps` for Arrow imported from `react-native`
+     *  `ViewProps` for Arrow imported from `react-native`
      *
      *  @category Additional Features
      */
-    arrowButtonProps?: Omit<PressableProps, 'style' | 'onPress'>;
+    arrowContainerProps?: Omit<ViewProps, 'style'>;
 
     /**
      *  `ImageProps` for Arrow imported from `react-native`

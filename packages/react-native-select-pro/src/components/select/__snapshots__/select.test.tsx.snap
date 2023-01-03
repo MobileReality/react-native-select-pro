@@ -96,26 +96,28 @@ exports[`Select should generate Select snapshot 1`] = `
           ]
         }
       >
-        <Image
-          collapsable={false}
-          source={
-            {
-              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+        <View>
+          <Image
+            collapsable={false}
+            source={
+              {
+                "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+              }
             }
-          }
-          style={
-            {
-              "height": 24,
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-              "width": 24,
-              "zIndex": -1,
+            style={
+              {
+                "height": 24,
+                "transform": [
+                  {
+                    "rotate": "0deg",
+                  },
+                ],
+                "width": 24,
+                "zIndex": -1,
+              }
             }
-          }
-        />
+          />
+        </View>
       </View>
     </View>
   </View>

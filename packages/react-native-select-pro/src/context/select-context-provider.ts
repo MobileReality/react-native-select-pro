@@ -22,7 +22,7 @@ type SelectContextProviderTypes<T> = OptionalToRequired<
         | 'styles'
         | 'clearOptionButtonProps'
         | 'clearOptionImageProps'
-        | 'arrowButtonProps'
+        | 'arrowContainerProps'
         | 'arrowImageProps'
         | 'selectRightIconsProps'
         | 'selectLeftIconsProps'

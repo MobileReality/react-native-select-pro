@@ -1,33 +1,69 @@
-import React from 'react';
-import { Pressable } from 'react-native';
+import React, { useMemo } from 'react';
+import type { ImageStyle } from 'react-native';
+import { Animated, Image, StyleSheet, View } from 'react-native';
 
 import { useSelectContext } from '../../context';
-import { ArrowImage } from '../arrow-image';
+import { useAnimation } from '../../hooks';
+
+const arrowImage = require('./../../assets/icons/chevron-down.png');
 
 export const Arrow = () => {
     const {
-        disabled,
-        multiSelection,
-        onPressSelectControl,
+        isOpened,
         styles: mainStyles,
-        arrowButtonProps,
+        animation,
+        arrowImageProps,
+        arrowContainerProps,
     } = useSelectContext();
-
-    if (!multiSelection) {
-        return <ArrowImage />;
-    }
 
     const { arrow } = mainStyles?.select ?? {};
 
+    const rotateAnimation = useAnimation({ isOpened, animation });
+
+    const renderImage = useMemo(() => {
+        if (rotateAnimation) {
+            const rotate = rotateAnimation.interpolate({
+                inputRange: [0, 1],
+                outputRange: ['0deg', '180deg'],
+            });
+
+            return (
+                <Animated.Image
+                    source={arrowImage}
+                    {...arrowImageProps}
+                    style={[styles.arrowIcon, { transform: [{ rotate }] }, arrow?.icon]}
+                />
+            );
+        }
+
+        return (
+            <Image
+                source={arrowImage}
+                {...arrowImageProps}
+                style={[styles.arrowIcon, isOpened && styles.arrowIconOpened, arrow?.icon]}
+            />
+        );
+    }, [arrow?.icon, arrowImageProps, isOpened, rotateAnimation]);
+
     return (
-        <Pressable
-            accessibilityLabel="Arrow for opening dropdown"
-            disabled={disabled}
-            {...arrowButtonProps}
-            style={arrow?.button}
-            onPress={onPressSelectControl}
-        >
-            <ArrowImage />
-        </Pressable>
+        <View {...arrowContainerProps} style={arrow?.container}>
+            {renderImage}
+        </View>
     );
 };
+
+type Styles = {
+    arrowIcon: ImageStyle;
+    arrowIconOpened: ImageStyle;
+};
+
+const styles = StyleSheet.create<Styles>({
+    arrowIcon: {
+        width: 24,
+        height: 24,
+        zIndex: -1,
+    },
+    arrowIconOpened: {
+        transform: [{ rotate: '180deg' }],
+    },
+});

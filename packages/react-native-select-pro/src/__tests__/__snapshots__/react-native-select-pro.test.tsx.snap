@@ -96,26 +96,28 @@ exports[`Select should generate Select snapshot 1`] = `
           ]
         }
       >
-        <Image
-          collapsable={false}
-          source={
-            {
-              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+        <View>
+          <Image
+            collapsable={false}
+            source={
+              {
+                "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+              }
             }
-          }
-          style={
-            {
-              "height": 24,
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-              "width": 24,
-              "zIndex": -1,
+            style={
+              {
+                "height": 24,
+                "transform": [
+                  {
+                    "rotate": "0deg",
+                  },
+                ],
+                "width": 24,
+                "zIndex": -1,
+              }
             }
-          }
-        />
+          />
+        </View>
       </View>
     </View>
   </View>
@@ -265,26 +267,28 @@ exports[`Select with custom left icon should generate Select with custom left ic
           ]
         }
       >
-        <Image
-          collapsable={false}
-          source={
-            {
-              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+        <View>
+          <Image
+            collapsable={false}
+            source={
+              {
+                "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+              }
             }
-          }
-          style={
-            {
-              "height": 24,
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-              "width": 24,
-              "zIndex": -1,
+            style={
+              {
+                "height": 24,
+                "transform": [
+                  {
+                    "rotate": "0deg",
+                  },
+                ],
+                "width": 24,
+                "zIndex": -1,
+              }
             }
-          }
-        />
+          />
+        </View>
       </View>
     </View>
   </View>
@@ -413,26 +417,28 @@ exports[`Select with custom select control arrow icon should generate Select wit
           ]
         }
       >
-        <Image
-          collapsable={false}
-          source={
-            {
-              "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
+        <View>
+          <Image
+            collapsable={false}
+            source={
+              {
+                "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
+              }
             }
-          }
-          style={
-            {
-              "height": 15,
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-              "width": 15,
-              "zIndex": -1,
+            style={
+              {
+                "height": 15,
+                "transform": [
+                  {
+                    "rotate": "0deg",
+                  },
+                ],
+                "width": 15,
+                "zIndex": -1,
+              }
             }
-          }
-        />
+          />
+        </View>
       </View>
     </View>
   </View>
@@ -547,26 +553,7 @@ exports[`Select with multi selection and searchable should generate Select with 
           ]
         }
       >
-        <View
-          accessibilityLabel="Arrow for opening dropdown"
-          accessibilityState={
-            {
-              "disabled": false,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-        >
+        <View>
           <Image
             collapsable={false}
             source={
@@ -702,26 +689,7 @@ exports[`Select with multi selection should generate Select with multi selection
           ]
         }
       >
-        <View
-          accessibilityLabel="Arrow for opening dropdown"
-          accessibilityState={
-            {
-              "disabled": false,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-        >
+        <View>
           <Image
             collapsable={false}
             source={
@@ -846,26 +814,28 @@ exports[`Select with searchable enabled should generate Select with searchable e
           ]
         }
       >
-        <Image
-          collapsable={false}
-          source={
-            {
-              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+        <View>
+          <Image
+            collapsable={false}
+            source={
+              {
+                "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+              }
             }
-          }
-          style={
-            {
-              "height": 24,
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-              "width": 24,
-              "zIndex": -1,
+            style={
+              {
+                "height": 24,
+                "transform": [
+                  {
+                    "rotate": "0deg",
+                  },
+                ],
+                "width": 24,
+                "zIndex": -1,
+              }
             }
-          }
-        />
+          />
+        </View>
       </View>
     </View>
   </View>

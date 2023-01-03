@@ -20,7 +20,7 @@ export const ClearOption = ({ onPressRemove }: ClearOptionProps) => {
 
     return (
         <Pressable
-            accessibilityLabel="Clear a chosen option"
+            accessibilityLabel="Clear a selected option"
             accessibilityRole="button"
             accessible={true}
             hitSlop={{ right: 3, left: 3 }}
