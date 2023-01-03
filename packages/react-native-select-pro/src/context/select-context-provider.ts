@@ -1,11 +1,7 @@
-import type {
-    OnPressSelectControlType,
-    SelectProps,
-} from '@mobile-reality/react-native-select-pro';
-
 import type { OptionalToRequired } from '../helpers';
 import { createSafeContext } from '../helpers';
 import type { DispatchType, Position, State } from '../state';
+import type { OnPressSelectControlType, SelectProps } from '../types';
 
 type SelectContextProviderTypes<T> = OptionalToRequired<
     {

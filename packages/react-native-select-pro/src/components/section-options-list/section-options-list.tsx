@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useRef } from 'react';
 import type { SectionListData } from 'react-native';
 import { SectionList } from 'react-native';
 
@@ -15,7 +15,9 @@ export const SectionOptionsList = ({
     getItemLayout,
     renderItem,
 }: SectionOptionsListProps) => {
-    const { isOpened, scrollToSelectedOption, onPressOption, selectedOption, sectionListProps } =
+    const sectionOptionsListRef = useRef<SectionList>(null);
+
+    const { isOpened, scrollToSelectedOption, selectedOption, sectionListProps } =
         useOptionsListContext();
 
     const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => {
@@ -28,46 +30,44 @@ export const SectionOptionsList = ({
         return <SectionHeader title={info.section.title} isSelected={isSelected} />;
     };
 
-    const sectionList = useCallback(
-        (node: SectionList | null) => {
-            if (node !== null) {
-                try {
-                    node.scrollToLocation({
-                        ...getSectionLocation({
-                            data: resolvedData,
-                            selectedOption,
-                            scrollToSelectedOption,
-                        }),
-                        animated: false,
-                    });
-                } catch {
-                    logError(ERRORS.SCROLL_TO_LOCATION);
-                }
+    const scrollToIndex = () => {
+        if (sectionOptionsListRef.current) {
+            try {
+                sectionOptionsListRef.current.scrollToLocation({
+                    ...getSectionLocation({
+                        data: resolvedData,
+                        selectedOption,
+                        scrollToSelectedOption,
+                    }),
+                    animated: false,
+                });
+            } catch {
+                logError(ERRORS.SCROLL_TO_LOCATION);
             }
-        },
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [onPressOption, scrollToSelectedOption, selectedOption, resolvedData],
-    );
+        }
+    };
+
+    const accessibilityState = {
+        expanded: isOpened,
+    };
 
     return (
         <SectionList
             testID="Options list"
             accessibilityLabel="Options list"
-            accessibilityState={{
-                expanded: isOpened,
-            }}
+            accessibilityState={accessibilityState}
             bounces={false}
             keyboardShouldPersistTaps="handled"
             persistentScrollbar={true}
             ListEmptyComponent={<NoOptions />}
             {...sectionListProps}
-            ref={sectionList}
+            ref={sectionOptionsListRef}
             renderSectionHeader={renderSectionHeader}
             sections={resolvedData}
             getItemLayout={getItemLayout}
             renderItem={renderItem}
             keyExtractor={({ value }) => value}
+            onLayout={scrollToIndex}
         />
     );
 };

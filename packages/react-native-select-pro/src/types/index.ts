@@ -206,7 +206,13 @@ export interface SelectProps<T = unknown> {
      */
     sectionListProps?: Omit<
         SectionListProps<OptionType>,
-        'ref' | 'renderSectionHeader' | 'sections' | 'getItemLayout' | 'renderItem' | 'keyExtractor'
+        | 'ref'
+        | 'renderSectionHeader'
+        | 'sections'
+        | 'getItemLayout'
+        | 'renderItem'
+        | 'keyExtractor'
+        | 'onLayout'
     >;
 
     /**
