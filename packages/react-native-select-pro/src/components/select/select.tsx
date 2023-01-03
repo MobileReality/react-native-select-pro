@@ -8,7 +8,7 @@ import { Portal } from '@gorhom/portal';
 import { COLORS, Portals } from '../../constants';
 import { OptionsListContextProvider, SelectContextProvider } from '../../context';
 import { isAndroid } from '../../helpers';
-import type { ActionType, State } from '../../state';
+import type { ActionType, CreateInitialStateType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
 import type { SelectProps, SelectRef } from '../../types';
 import { Backdrop } from '../backdrop';
@@ -81,13 +81,10 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         styles: mainStyles,
     } = props;
 
-    const [state, dispatch] = useReducer<Reducer<State<T>, ActionType<T>>>(
-        reducer,
-        // TODO: fix this
-        // @ts-expect-error initializerArg bad type
-        { options, searchable, animation },
-        createInitialState,
-    );
+    const [state, dispatch] = useReducer<
+        Reducer<State<T>, ActionType<T>>,
+        CreateInitialStateType<T>
+    >(reducer, { options, searchable, animation }, createInitialState);
 
     const {
         isOpened,

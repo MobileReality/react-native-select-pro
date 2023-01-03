@@ -2,27 +2,9 @@ import { LayoutAnimation } from 'react-native';
 
 import { ANIMATION_DURATION } from '../constants';
 import { ERRORS, isSectionOptionsType, regexSearchTest } from '../helpers';
-import type { OptionsType } from '../types';
 
-import type { ActionType, State } from './types';
+import type { ActionType, CreateInitialStateType, State } from './types';
 import { Action } from './types';
-
-const initialData = {
-    isOpened: false,
-    selectedOption: null,
-    selectedOptionIndex: -1,
-    searchValue: null,
-    searchedOptions: [],
-    searchInputRef: null,
-    openedPosition: {
-        width: 0,
-        top: 0,
-        left: 0,
-        aboveSelectControl: false,
-    },
-    optionsData: [],
-    animationDuration: 0,
-};
 
 export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => {
     switch (action.type) {
@@ -109,23 +91,27 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
     }
 };
 
-type CreateInitialStateType<T> = {
-    options: OptionsType<T>;
-    searchable: boolean;
-    animation: boolean | number;
-};
-
 export const createInitialState = <T>({
     options,
     searchable,
     animation,
-}: CreateInitialStateType<T>): State<T> | undefined => {
+}: CreateInitialStateType<T>) => {
     if (!Array.isArray(options)) {
         throw new TypeError(ERRORS.NO_ARRAY_OPTIONS);
     }
 
     return {
-        ...initialData,
+        isOpened: false,
+        selectedOption: null,
+        selectedOptionIndex: -1,
+        searchedOptions: [],
+        searchInputRef: null,
+        openedPosition: {
+            width: 0,
+            top: 0,
+            left: 0,
+            aboveSelectControl: false,
+        },
         optionsData: options,
         searchValue: searchable ? '' : null,
         animationDuration:
