@@ -54,6 +54,8 @@ importers:
       '@mobile-reality/react-native-select-pro': workspace:*
       '@monorepo/eslint-config': workspace:*
       '@monorepo/expo': workspace:*
+      '@react-navigation/native': 6.1.1
+      '@react-navigation/native-stack': 6.9.7
       babel-plugin-module-resolver: 4.1.0
       detox: 19.12.6
       metro-react-native-babel-preset: 0.70.3
@@ -62,6 +64,8 @@ importers:
       react-native-gesture-handler: ~2.8.0
       react-native-monorepo-tools: 1.2.0
       react-native-reanimated: ~2.12.0
+      react-native-safe-area-context: 4.4.1
+      react-native-screens: 3.18.2
     dependencies:
       '@gorhom/portal': 1.0.14_tj3nonr5gneraukzjkxpsiy7yu
       '@mobile-reality/react-native-select-pro': link:../../packages/react-native-select-pro
@@ -70,6 +74,8 @@ importers:
       '@babel/core': 7.19.3
       '@babel/runtime': 7.18.6
       '@monorepo/eslint-config': link:../../packages/eslint-config
+      '@react-navigation/native': 6.1.1_tj3nonr5gneraukzjkxpsiy7yu
+      '@react-navigation/native-stack': 6.9.7_snzv4adhpz5nxsvfocyhhxk7km
       babel-plugin-module-resolver: 4.1.0
       detox: 19.12.6
       metro-react-native-babel-preset: 0.70.3
@@ -78,6 +84,8 @@ importers:
       react-native-gesture-handler: 2.8.0_tj3nonr5gneraukzjkxpsiy7yu
       react-native-monorepo-tools: 1.2.0
       react-native-reanimated: 2.12.0_m66asnri4nanwxvnijdpfxakcm
+      react-native-safe-area-context: 4.4.1_tj3nonr5gneraukzjkxpsiy7yu
+      react-native-screens: 3.18.2_tj3nonr5gneraukzjkxpsiy7yu
 
   apps/expo:
     specifiers:
@@ -3153,7 +3161,6 @@ packages:
       react: 18.1.0
       react-is: 16.13.1
       use-latest-callback: 0.1.5
-    dev: false
 
   /@react-navigation/elements/1.3.12_7smlkjcu7d3f2pvvxzzgt5tale:
     resolution: {integrity: sha512-iVcLIYg/XJk1p6X1rSFhNhCjAJ3ORqNT2/bJqw7I/liujeJAoz1oZ5JDoEcZaA0wMDts1txxLuqAYJmhCgU2aA==}
@@ -3167,7 +3174,6 @@ packages:
       react: 18.1.0
       react-native: 0.70.5_react@18.1.0
       react-native-safe-area-context: 4.4.1_tj3nonr5gneraukzjkxpsiy7yu
-    dev: false
 
   /@react-navigation/native-stack/6.9.7_snzv4adhpz5nxsvfocyhhxk7km:
     resolution: {integrity: sha512-YsBv4LldFErwQbqLCI/aWWDTpMf9SFS4IW3Qcefm+TZli9Ee7XpZMmFdotiZTz4KoYHbqhO1fuExjl2O7ZHrAQ==}
@@ -3185,7 +3191,6 @@ packages:
       react-native-safe-area-context: 4.4.1_tj3nonr5gneraukzjkxpsiy7yu
       react-native-screens: 3.18.2_tj3nonr5gneraukzjkxpsiy7yu
       warn-once: 0.1.1
-    dev: false
 
   /@react-navigation/native/6.1.1_tj3nonr5gneraukzjkxpsiy7yu:
     resolution: {integrity: sha512-iIozx9c66EjSFyzKrZPixnk6vBuivYXp0jmbKCJXNIa7MY+8OLx9CXj/+1py/l/OGlXDhI6jiUWWetOfOtMaBQ==}
@@ -3199,13 +3204,11 @@ packages:
       nanoid: 3.3.4
       react: 18.1.0
       react-native: 0.70.5_react@18.1.0
-    dev: false
 
   /@react-navigation/routers/6.1.6:
     resolution: {integrity: sha512-Z5DeCW3pUvMafbU9Cjy1qJYC2Bvl8iy3+PfsB0DsAwQ6zZ3WAXW5FTMX4Gb9H+Jg6qHWGbMFFwlYpS3UJ3tlVQ==}
     dependencies:
       nanoid: 3.3.4
-    dev: false
 
   /@segment/loosely-validate-event/2.0.0:
     resolution: {integrity: sha512-ZMCSfztDBqwotkl848ODgVcAmN4OItEWDCkshcKz0/W6gGSQayuuCtWV/MlodFivAZD793d6UgANd6wCXUfrIw==}
@@ -6668,7 +6671,6 @@ packages:
   /escape-string-regexp/4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
-    dev: false
 
   /eslint-config-prettier/8.5.0_eslint@8.20.0:
     resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
@@ -7549,7 +7551,6 @@ packages:
   /filter-obj/1.1.0:
     resolution: {integrity: sha512-8rXg1ZnX7xzy2NGDVkBVaAy+lSlPNwad13BtgSlLuxfIslyt5Vg64U7tFcCt4WS1R0hvtnQybT/IyCkGZ3DpXQ==}
     engines: {node: '>=0.10.0'}
-    dev: false
 
   /finalhandler/1.1.1:
     resolution: {integrity: sha512-Y1GUDo39ez4aHAw7MysnUD5JzYX+WaIj8I57kO3aEPT1fFRL4sr7mjei97FgnwhAyyzRYmQZaTHb2+9uZ1dPtg==}
@@ -11014,7 +11015,6 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-    dev: false
 
   /nanomatch/1.2.13:
     resolution: {integrity: sha512-fpoe2T0RbHwBTBUOftAfBPaDEi06ufaUai0mE6Yn1kacc3SnTErfb/h+X94VXzI64rKFHYImXSvdwGGCmwOqCA==}
@@ -12471,7 +12471,6 @@ packages:
       filter-obj: 1.1.0
       split-on-first: 1.1.0
       strict-uri-encode: 2.0.0
-    dev: false
 
   /querystring-es3/0.2.1:
     resolution: {integrity: sha512-773xhDQnZBMFobEiztv8LIl70ch5MSF/jUQVlhwFyBILqq96anmoctVIYz+ZRp0qbCKATTn6ev02M3r7Ga5vqA==}
@@ -12628,7 +12627,6 @@ packages:
       react: '>=17.0.0'
     dependencies:
       react: 18.1.0
-    dev: false
 
   /react-hook-form/7.41.1_react@18.1.0:
     resolution: {integrity: sha512-IHUozfwuqE+P201KIJwotMd+UCKqzIprseR8UUjz1jRupkZeubg0xyeMLIaT192zHv7vBBu9bibpNV5cIB4E9g==}
@@ -12760,7 +12758,6 @@ packages:
     dependencies:
       react: 18.1.0
       react-native: 0.70.5_react@18.1.0
-    dev: false
 
   /react-native-screens/3.18.2_tj3nonr5gneraukzjkxpsiy7yu:
     resolution: {integrity: sha512-ANUEuvMUlsYJ1QKukEhzhfrvOUO9BVH9Nzg+6eWxpn3cfD/O83yPBOF8Mx6x5H/2+sMy+VS5x/chWOOo/U7QJw==}
@@ -12772,7 +12769,6 @@ packages:
       react-freeze: 1.0.3_react@18.1.0
       react-native: 0.70.5_react@18.1.0
       warn-once: 0.1.1
-    dev: false
 
   /react-native/0.70.5_react@18.1.0:
     resolution: {integrity: sha512-5NZM80LC3L+TIgQX/09yiyy48S73wMgpIgN5cCv3XTMR394+KpDI3rBZGH4aIgWWuwijz31YYVF5504+9n2Zfw==}
@@ -13904,7 +13900,6 @@ packages:
   /split-on-first/1.1.0:
     resolution: {integrity: sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==}
     engines: {node: '>=6'}
-    dev: false
 
   /split-string/3.1.0:
     resolution: {integrity: sha512-NzNVhJDYpwceVVii8/Hu6DKfD2G+NrQHlS/V/qgv763EYudVwEcMQNxd2lh+0VrUByXN/oJkl5grOhYWvQUYiw==}
@@ -14028,7 +14023,6 @@ packages:
   /strict-uri-encode/2.0.0:
     resolution: {integrity: sha512-QwiXZgpRcKkhTj2Scnn++4PKtWsH0kpzZ62L2R6c/LUVYv7hVnZqcg2+sMuT6R7Jusu1vviK/MFsu6kNJfWlEQ==}
     engines: {node: '>=4'}
-    dev: false
 
   /string-argv/0.3.1:
     resolution: {integrity: sha512-a1uQGz7IyVy9YwhqjZIZu1c8JO8dNIe20xBmSS6qu9kv++k3JGzCVmprbNN5Kn+BgzD5E7YYwg1CcjuJMRNsvg==}
@@ -15002,7 +14996,6 @@ packages:
 
   /use-latest-callback/0.1.5:
     resolution: {integrity: sha512-HtHatS2U4/h32NlkhupDsPlrbiD27gSH5swBdtXbCAlc6pfOFzaj0FehW/FO12rx8j2Vy4/lJScCiJyM01E+bQ==}
-    dev: false
 
   /use-sync-external-store/1.2.0_react@18.1.0:
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
@@ -15124,7 +15117,6 @@ packages:
 
   /warn-once/0.1.1:
     resolution: {integrity: sha512-VkQZJbO8zVImzYFteBXvBOZEl1qL175WH8VmZcxF2fZAoudNhNDvHi+doCaAEdU2l2vtcIwa2zn0QK5+I1HQ3Q==}
-    dev: false
 
   /watchpack-chokidar2/2.0.1:
     resolution: {integrity: sha512-nCFfBIPKr5Sh61s4LPpy1Wtfi0HE8isJ3d2Yb5/Ppw2P2B/3eVSEBjKfN0fmHJSK14+31KwMKmcrzs2GM4P0Ww==}
