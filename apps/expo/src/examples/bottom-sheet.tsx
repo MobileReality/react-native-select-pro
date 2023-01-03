@@ -4,7 +4,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
-import { DATA } from '../constants';
+import { DATA } from '../constants/data';
 
 export const SelectBottomSheet = () => {
     const bottomSheetRef = useRef<BottomSheet>(null);

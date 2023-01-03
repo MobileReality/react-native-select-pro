@@ -11,7 +11,7 @@
     "detox-ios-build": "detox build -c ios",
     "detox-ios-test": "detox test -c ios",
     "detox-android-build": "detox build -c android.emu.release",
-    "detox-android-test": "detox test -c android.emu.release",
+    "detox-android-test": "detox test -c android.emu.release scroll-to-selected-option.e2e.js",
     "detox-clean": "detox clean-framework-cache && detox build-framework-cache",
     "tsc": "tsc --noEmit",
     "clean": "rm -Rf .turbo && rm -Rf node_modules"
@@ -32,7 +32,11 @@
     "react-native": "0.70.5",
     "react-native-reanimated": "~2.12.0",
     "react-native-gesture-handler": "~2.8.0",
-    "react-native-monorepo-tools": "1.2.0"
+    "react-native-monorepo-tools": "1.2.0",
+    "@react-navigation/native-stack": "6.9.7",
+    "@react-navigation/native": "6.1.1",
+    "react-native-screens": "3.18.2",
+    "react-native-safe-area-context": "4.4.1"
   },
   "peerDependencies": {
     "react": "18.1.0",
