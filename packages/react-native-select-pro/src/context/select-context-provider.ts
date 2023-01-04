@@ -18,7 +18,6 @@ type SelectContextProviderTypes<T> = OptionalToRequired<
         | 'placeholderTextColor'
         | 'searchPattern'
         | 'selectInputProps'
-        | 'selectControlOpenDropdownA11yLabel'
         | 'onRemove'
         | 'styles'
         | 'clearOptionButtonProps'
@@ -29,6 +28,7 @@ type SelectContextProviderTypes<T> = OptionalToRequired<
         | 'selectLeftIconsProps'
         | 'selectLeftIconImageProps'
         | 'selectTextProps'
+        | 'selectContainerProps'
     > &
         Pick<
             State<T>,

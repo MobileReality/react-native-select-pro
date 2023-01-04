@@ -20,11 +20,11 @@ export const useSelectControl = () => {
         multiSelection,
         optionsData,
         searchValue,
-        selectControlOpenDropdownA11yLabel,
         onRemove,
         dispatch,
         selectedOption,
         selectedOptionIndex,
+        selectContainerProps,
     } = useSelectContext();
     const { selectedOptions, selectedOptionLabel } = selectedOptionResolver(selectedOption);
 
@@ -59,8 +59,8 @@ export const useSelectControl = () => {
     }, [selectedOptionLabel, multiSelection]);
 
     const accessibilityLabel = useMemo(
-        () => (isOpened ? '' : selectControlOpenDropdownA11yLabel ?? 'Open a dropdown'),
-        [isOpened, selectControlOpenDropdownA11yLabel],
+        () => (isOpened ? '' : selectContainerProps?.accessibilityLabel ?? 'Open a dropdown'),
+        [isOpened, selectContainerProps?.accessibilityLabel],
     );
 
     const clearOptionStatus = useMemo(() => {
