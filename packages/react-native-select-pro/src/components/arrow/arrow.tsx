@@ -46,7 +46,7 @@ export const Arrow = () => {
     }, [arrow?.icon, arrowImageProps, isOpened, rotateAnimation]);
 
     return (
-        <View {...arrowContainerProps} style={arrow?.container}>
+        <View {...arrowContainerProps} style={arrow}>
             {renderImage}
         </View>
     );

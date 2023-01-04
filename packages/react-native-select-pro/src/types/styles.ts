@@ -2,201 +2,141 @@ import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export type SelectStyles = {
     /**
-     * Style of select control
-     *
-     * @category Styles
+     * Style for the select.
      */
     select?: SelectControlStyles;
+
     /**
-     * Style of single option
-     *
-     * @category Styles
+     * Style for the single option.
      */
     option?: OptionStyles;
+
     /**
-     *  Style of options list
-     *
-     *  @category Styles
+     * Style for the options list container.
      */
-    optionsList?: OptionsListStyles;
+    optionsList?: StyleProp<ViewStyle>;
+
     /**
-     *  Style of options list
-     *
-     *  @category Styles
+     *  Style for the no options container.
      */
-    noOptions?: NoOptionsStyles;
+    noOptions?: StyleProp<ViewStyle> & {
+        /**
+         *  Style for the no options text.
+         */
+        text?: StyleProp<TextStyle>;
+    };
+
     /**
-     * Style of section header when section data type is provided
-     *
-     * @category Styles
+     * Style for the section header.
      */
-    sectionHeader?: SectionHeaderStyles;
+    sectionHeader?: StyleProp<ViewStyle> & SectionHeaderStyles;
+
     /**
-     * Style of backdrop when options list is opened
-     *
-     * @category Styles
+     * Style for backdrop.
      */
     backdrop?: StyleProp<ViewStyle>;
 } & StyleProp<ViewStyle>;
 
 export type SelectControlStyles = {
     /**
-     *  Style of text in select control
-     *
-     *  @category Styles
+     *  Style for the select text.
      */
     text?: StyleProp<TextStyle>;
+
     /**
-     *  Style of disabled select control
-     *
-     *  @category Styles
+     *  Style for the disabled select.
      */
-    disabled?: StyleProp<TextStyle>;
+    disabled?: StyleProp<ViewStyle>;
+
     /**
-     *  Style of buttons container in select control
-     *
-     *  @category Styles
+     *  Style for the buttons container the right side.
      */
     buttons?: StyleProp<ViewStyle>;
+
     /**
-     *  Style of selected option in select control if multiSelection is enabled
-     *
-     *  @category Styles
+     *  Style for the selected option in select control.
      */
-    multiSelectedOption?: {
+    multiSelectedOption?: StyleProp<ViewStyle> & {
         /**
-         *  Style of text in selected option if multiSelection is enabled
-         *
-         *  @category Styles
+         *  Style for the selected option text in select control.
          */
         text?: StyleProp<TextStyle>;
+
         /**
-         * Style of pressed state of option
-         *
-         * @category Styles
+         * Style for the pressed selected option in select control.
          */
         pressed?: StyleProp<ViewStyle>;
-    } & StyleProp<ViewStyle>;
-    /**
-     *  Styles of arrow in select control
-     *
-     *  @category Styles
-     */
-    arrow?: ArrowIconStyles;
-    /**
-     *  Styles of clear option in select control
-     *
-     *  @category Styles
-     */
-    clear?: ClearOptionStyles;
+    };
 
+    /**
+     *  Style for the arrow.
+     */
+    arrow?: StyleProp<ViewStyle> & {
+        /**
+         *  Style for the arrow icon.
+         */
+        icon?: StyleProp<ImageStyle>;
+    };
+
+    /**
+     *  Style for the clear option button.
+     */
+    clear?: StyleProp<ViewStyle> & {
+        /**
+         *  Style for the clear option icon.
+         */
+        icon?: StyleProp<ImageStyle>;
+    };
+
+    /**
+     * Style for the custom left icon.
+     */
     leftIcon?: StyleProp<ImageStyle>;
 } & StyleProp<ViewStyle>;
 
-export type OptionStyles = {
+export type OptionStyles = StyleProp<ViewStyle> & {
     /**
-     * Style of single option text
-     *
-     * @category Styles
+     * Style for the single option text.
      */
-    text?: StyleProp<TextStyle>;
+    text?: StyleProp<TextStyle> & {
+        /**
+         * Style for the selected single option text.
+         */
+        selected?: StyleProp<TextStyle>;
+    };
+
     /**
-     * Style of selected single option
-     *
-     * @category Styles
+     * Style for the selected single option.
      */
     selected?: StyleProp<ViewStyle>;
+
     /**
-     * Style of selected single option text
-     *
-     * @category Styles
-     */
-    selectedText?: StyleProp<TextStyle>;
-    /**
-     * Style of pressed state of option
-     *
-     * @category Styles
+     * Style for the pressed single option.
      */
     pressed?: StyleProp<ViewStyle>;
-} & StyleProp<ViewStyle>;
-
-export type OptionsListStyles = StyleProp<ViewStyle>;
+};
 
 export type SectionHeaderStyles = {
     /**
-     * Style of section header title
-     *
-     * @category Styles
+     * Style for the section header text.
      */
-    text?: StyleProp<TextStyle>;
+    text?: StyleProp<TextStyle> & {
+        selected?: StyleProp<TextStyle>;
+    };
+
+    clear?: {
+        /**
+         * Style for the section header clear icon.
+         */
+        icon?: StyleProp<ImageStyle>;
+    };
+
     /**
-     * Style of section header clear icon when all section options are selected
-     *
-     * @category Styles
-     */
-    clearIcon?: StyleProp<ImageStyle>;
-    /**
-     * Style of section header when all section options are selected
-     *
-     * @category Styles
+     * Style for section header when all section options are selected.
      */
     selected?: StyleProp<ViewStyle>;
     /**
-     * Style of section header title when all section options are selected
-     *
-     * @category Styles
-     */
-    selectedText?: StyleProp<TextStyle>;
-    /**
-     * Style of pressed state of section header
-     *
-     * @category Styles
+     * Style for the pressed section header.
      */
     pressed?: StyleProp<ViewStyle>;
-} & StyleProp<ViewStyle>;
-
-export type ClearOptionStyles = {
-    /**
-     *  Style of clear option button
-     *
-     *  @category Styles
-     */
-    button?: StyleProp<ViewStyle>;
-
-    /**
-     *  Style of clear option image
-     *
-     *  @category Styles
-     */
-    icon?: StyleProp<ImageStyle>;
-};
-
-export type ArrowIconStyles = {
-    /**
-     *  Style of arrow button
-     *
-     *  @category Styles
-     */
-    container?: StyleProp<ViewStyle>;
-    /**
-     *  Style of arrow image
-     *
-     *  @category Styles
-     */
-    icon?: StyleProp<ImageStyle>;
-};
-
-export type NoOptionsStyles = {
-    /**
-     *  Style of arrow button
-     *
-     *  @category Styles
-     */
-    container?: StyleProp<ViewStyle>;
-    /**
-     *  Style of arrow image
-     *
-     *  @category Styles
-     */
-    text?: StyleProp<TextStyle>;
 };

@@ -357,10 +357,6 @@ export interface SelectProps<T = unknown> {
  */
 export interface SelectRef<T = unknown> {
     /**
-     * Clear a selected option
-     */
-    clear: () => void;
-    /**
      * Open a dropdown
      */
     open: () => void;
@@ -368,6 +364,11 @@ export interface SelectRef<T = unknown> {
      * Close a dropdown
      */
     close: () => void;
+
+    /**
+     * Clear a selected option
+     */
+    clear: () => void;
     /**
      * Get current state of select
      */

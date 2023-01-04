@@ -44,7 +44,11 @@ export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optio
             <Text
                 numberOfLines={1}
                 {...optionTextProps}
-                style={[styles.text, optionStyles?.text, isSelected && optionStyles?.selectedText]}
+                style={[
+                    styles.text,
+                    optionStyles?.text,
+                    isSelected && optionStyles?.text?.selected,
+                ]}
             >
                 {label}
             </Text>
