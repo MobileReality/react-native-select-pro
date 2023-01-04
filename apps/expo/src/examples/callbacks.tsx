@@ -36,10 +36,10 @@ export const Callbacks = () => {
             <Select
                 options={DATA}
                 styles={{ width: 250 }}
-                onDropdownClosed={() => {
+                onSelectClosed={() => {
                     setIsOpened(false);
                 }}
-                onDropdownOpened={() => {
+                onSelectOpened={() => {
                     setIsOpened(true);
                 }}
                 onSelect={(option, optionIndex) => {

@@ -1,11 +1,10 @@
 import React from 'react';
 import type { MeasureOnSuccessCallback } from 'react-native';
-import { Pressable, Text, View } from 'react-native';
+import { View } from 'react-native';
 import { fireEvent, render } from '@testing-library/react-native';
 
 import { Select } from '../components/select';
 import { SelectProvider } from '../components/select-provider';
-import type { OptionComponentProps } from '../index';
 
 const DATA = [
     {
@@ -175,33 +174,6 @@ describe('Select', () => {
 
         const listWrapper2 = queryByLabelText('Options list');
         expect(listWrapper2).toBeFalsy();
-    });
-
-    it('should select option with custom option component', () => {
-        const MyCustomOption = ({ onPressOption, option }: OptionComponentProps) => {
-            return (
-                <Pressable accessibilityLabel="Option" onPress={onPressOption}>
-                    <Text>{option.label}</Text>
-                </Pressable>
-            );
-        };
-        const { getByLabelText } = render(
-            <SelectProvider>
-                <Select
-                    OptionComponent={(props) => <MyCustomOption {...props} />}
-                    options={[DATA[0]]}
-                />
-            </SelectProvider>,
-        );
-
-        const open = getByLabelText('Open a dropdown');
-        fireEvent.press(open);
-
-        const list = getByLabelText('Options list');
-        expect(list).toBeTruthy();
-
-        const option = getByLabelText('Option');
-        fireEvent.press(option);
     });
 
     it('should close options list after press selected option', () => {

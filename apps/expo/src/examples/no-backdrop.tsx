@@ -13,7 +13,7 @@ export const NoBackdrop = () => {
             <Text>Select number 2</Text>
             <Select options={DATA} styles={{ width: 300 }} />
             <Text>Select number 3 with no Backdrop</Text>
-            <Select options={DATA} styles={{ width: 300 }} noBackdrop />
+            <Select options={DATA} styles={{ width: 300 }} hasBackdrop={false} />
         </SafeAreaViewWrapper>
     );
 };
