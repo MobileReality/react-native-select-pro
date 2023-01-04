@@ -261,7 +261,7 @@ describe('Select with searchable enabled', () => {
                     disabled={true}
                     options={SEARCHABLE_DATA}
                     searchable={true}
-                    onDropdownOpened={onOpen}
+                    onSelectOpened={onOpen}
                 />
             </SelectProvider>,
         );

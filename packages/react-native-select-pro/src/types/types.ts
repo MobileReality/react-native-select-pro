@@ -48,236 +48,106 @@ export type OptionComponentProps = Pick<
  * `<Select />` component props
  */
 export interface SelectProps<T = unknown> {
-    // ---REQUIRED--- //
     /**
-     *  Options to show on the list
-     *
-     *  @category Required
+     *  An array of objects that represents the available options for a `Select`.
      */
     options: OptionsType<T>;
 
-    // ---CALLBACKS--- //
     /**
-     * Callback that is called when option is selected
+     *  An options list open-close animation can be enabled or disabled using a boolean parameter.
+     *  The duration of the animation can be set using a number parameter.
+     *  If you pass 0 as the duration, the animation is still occur but will be instantaneous.
      *
-     * @param option Selected option
-     * @param optionIndex Selected option index
-     * @category Callback
-     */
-    onSelect?: (option: OptionType<T>, optionIndex: number) => void;
-
-    /**
-     * Callback that is called when option(s) is cleared
-     *
-     * @param option removed option(s)
-     * @param optionIndex removed option(s) index(es)
-     * @category Callback
-     */
-    onRemove?: (option: OptionType<T> | OptionType<T>[], optionIndex: number | number[]) => void;
-
-    /**
-     * Callback that is called when section is selected with section header
-     *
-     * @param options Selected options
-     * @param optionIndexes Selected option indexes
-     * @category Callback
-     */
-    onSectionSelect?: (options: OptionType<T>[], optionIndexes: number[]) => void;
-
-    /**
-     * Callback that is called when section is removed with section header
-     *
-     * @param options Selected options
-     * @param optionIndexes Selected option indexes
-     * @category Callback
-     */
-    onSectionRemove?: (options: OptionType<T>[], optionIndexes: number[]) => void;
-
-    /**
-     * Callback that is called when dropdown is opened
-     *
-     * @category Callback
-     */
-    onDropdownOpened?: () => void;
-
-    /**
-     * Callback that is called when dropdown is closed
-     *
-     * @category Callback
-     */
-    onDropdownClosed?: () => void;
-
-    // ---TEXTS--- //
-    /**
-     * No options text
-     *
-     * @category Text
-     * @default "No options"
-     */
-    noOptionsText?: string;
-
-    /**
-     * Placeholder text
-     *
-     * @category Text
-     * @default "#808080"
-     */
-    placeholderText?: string;
-
-    // ---ANIMATIONS--- //
-    /**
-     *  If provided value is `false` then animation is disabled
-     *
-     *  @category Animations
-     *  @default true
+     *  @default true | 200
      */
     animation?: boolean | number;
 
-    // ---BEHAVIOURS--- //
     /**
-     *  If `true` enables a clear button to remove selected option
+     *  Show a clear button to remove selected option.
      *
-     *  @category Behaviour
      *  @default true
      */
     clearable?: boolean;
 
     /**
-     * If `true` close a dropdown after selected option
+     * Close the options list after selected option.
      *
-     * @category Behaviour
      * @default true
      */
     closeDropdownOnSelect?: boolean;
 
     /**
-     *  If `true` disable a select control
+     *  An object that represents the default option for a `Select`.
+     */
+    defaultOption?: OptionType<T>;
+
+    /**
+     *  Disable a `Select` pressable.
      *
-     *  @category Behaviour
-     *  @default true
+     *  @default false
      */
     disabled?: boolean;
 
     /**
-     * If `true` options list is scrolled to the selected option
+     *  `Select` component should have a `Backdrop` component.
      *
-     * @category Behaviour
-     * @default true
+     *  @default true
      */
-    scrollToSelectedOption?: boolean;
+    hasBackdrop?: boolean;
 
     /**
-     *  If `true` hide select control arrow
+     *  Hide an arrow.
      *
-     *  @category Behaviour
      *  @default false
      */
     hideArrow?: boolean;
 
     /**
-     *  If `true` don't render Backdrop component
+     *  Determines whether a `Select` component should allow the user to select multiple options.
      *
-     *  @category Behaviour
      *  @default false
      */
-    noBackdrop?: boolean;
+    multiSelection?: boolean;
 
     /**
-     *  If `true` the selected option is pressable and the options list will be closed after the selected option is pressed.
+     * Determines the text that should be displayed when there are no available options in a Select component.
      *
-     *  @category Behaviour
-     *  @default false
+     * @default "No options"
+     */
+    noOptionsText?: string;
+
+    /**
+     * Determines the placeholder text that should be displayed in a Select component when no option is selected.
+     *
+     * @default "Select..."
+     */
+    placeholderText?: string;
+
+    /**
+     * Determines the color of the placeholder text in a Select component.
+     *
+     * @default "#808080"
+     */
+    placeholderTextColor?: string;
+
+    /**
+     *  Determines whether the selected option should still be pressable after it has been selected.
+     *
+     *  @default true
      */
     pressableSelectedOption?: boolean;
 
-    // ---ADDITIONAL-FEATURES--- //
     /**
-     *  Set a default option
-     *  @category Additional Features
-     */
-    defaultOption?: OptionType<T>;
-
-    /**
-     *  `FlatListProps` imported from `react-native`
+     * Determines whether a Select component should automatically scroll to the selected option when the options list is opened.
      *
-     *  @category Additional Features
+     * @default true
      */
-    flatListProps?: Omit<
-        FlatListProps<OptionType>,
-        'ref' | 'data' | 'getItemLayout' | 'renderItem' | 'keyExtractor'
-    >;
+    scrollToSelectedOption?: boolean;
 
     /**
-     *  `SectionListProps` imported from `react-native`
-     *
-     *  @category Additional Features
-     */
-    sectionListProps?: Omit<
-        SectionListProps<OptionType>,
-        | 'ref'
-        | 'renderSectionHeader'
-        | 'sections'
-        | 'getItemLayout'
-        | 'renderItem'
-        | 'keyExtractor'
-        | 'onLayout'
-    >;
-
-    /**
-     *  `PressableProps` for ClearOption imported from `react-native`
-     *
-     *  @category Additional Features
-     */
-    clearOptionButtonProps?: Omit<PressableProps, 'style' | 'onPress'>;
-
-    /**
-     *  `ImageProps` for ClearOption imported from `react-native`
-     *
-     *  @category Additional Features
-     */
-    clearOptionImageProps?: Omit<ImageProps, 'style'>;
-
-    /**
-     *  `ViewProps` for Arrow imported from `react-native`
-     *
-     *  @category Additional Features
-     */
-    arrowContainerProps?: Omit<ViewProps, 'style'>;
-
-    /**
-     *  `ImageProps` for Arrow imported from `react-native`
-     *
-     *  @category Additional Features
-     */
-    arrowImageProps?: Omit<ImageProps, 'style'>;
-
-    backdropProps?: Omit<TouchableWithoutFeedbackProps, 'onPress'>;
-
-    backdropChildProps?: Omit<ViewProps, 'style'>;
-
-    optionButtonProps?: Omit<
-        PressableProps,
-        'ref' | 'style' | 'onPress' | 'accessibilityRole' | 'accessibilityState' | 'disabled'
-    >;
-
-    optionTextProps?: Omit<TextProps, 'style'>;
-
-    selectLeftIconsProps?: Omit<ViewProps, 'style'>;
-    selectRightIconsProps?: Omit<ViewProps, 'style'>;
-    selectLeftIconImageProps?: Omit<ImageProps, 'style'>;
-    noOptionsProps?: Omit<ViewProps, 'style'>;
-    noOptionsTextProps?: Omit<TextProps, 'style'>;
-    sectionHeaderButtonProps?: Omit<PressableProps, 'style' | 'onPress'>;
-    sectionHeaderTextProps?: Omit<TextProps, 'style'>;
-    sectionHeaderImageProps?: Omit<ImageProps, 'style'>;
-    selectTextProps?: Omit<TextProps, 'style'>;
-
-    // ---SEARCH--- //
-    /**
-     *  If `true` let user search in a select options by typing in select
+     *  Determines whether a `Select` component should include a search field that allows the user to filter the options by keyword.
      *
      *  @default false
-     *  @category Search
      */
     searchable?: boolean;
 
@@ -290,9 +160,129 @@ export interface SelectProps<T = unknown> {
     searchPattern?: (payload: string) => string;
 
     /**
-     *  `TextInputProps` imported from `react-native`
+     * An object that represents the styles for a `Select` component.
      *
-     *  @category Search
+     * @category Styles
+     */
+    styles?: SelectStyles;
+
+    /**
+     * CALLBACKS
+     */
+
+    /**
+     * Called when section is selected with section header.
+     *
+     * @param options Selected options
+     * @param optionIndexes Selected option indexes
+     */
+    onSectionSelect?: (options: OptionType<T>[], optionIndexes: number[]) => void;
+
+    /**
+     * Called when section is removed with section header.
+     *
+     * @param options Selected options
+     * @param optionIndexes Selected option indexes
+=     */
+    onSectionRemove?: (options: OptionType<T>[], optionIndexes: number[]) => void;
+
+    /**
+     * Callback that is called when option is selected
+     *
+     * @param option Selected option
+     * @param optionIndex Selected option index
+     */
+    onSelect?: (option: OptionType<T>, optionIndex: number) => void;
+
+    /**
+     * Called when selected is opened.
+     **/
+    onSelectOpened?: () => void;
+
+    /**
+     * Called when dropdown is closed.
+     */
+    onSelectClosed?: () => void;
+
+    /**
+     * Callback that is called when option(s) is cleared
+     *
+     * @param option removed option(s)
+     * @param optionIndex removed option(s) index(es)
+     * @category Callback
+     */
+    onRemove?: (
+        option: OptionType<T> | OptionType<T>[] | null,
+        optionIndex: number | number[],
+    ) => void;
+
+    /**
+     * CUSTOMIZABLE PROPS
+     */
+
+    /**
+     *  Override the arrow props.
+     */
+    arrowContainerProps?: Omit<ViewProps, 'style'>;
+
+    /**
+     *  Override the arrow image props.
+     */
+    arrowImageProps?: Omit<ImageProps, 'style'>;
+
+    /**
+     * Override the backdrop child element props.
+     */
+    backdropChildProps?: Omit<ViewProps, 'style'>;
+
+    /**
+     *  Override the backdrop element props.
+     */
+    backdropProps?: Omit<TouchableWithoutFeedbackProps, 'onPress'>;
+
+    /**
+     *  Override the clear option button props.
+     */
+    clearOptionButtonProps?: Omit<PressableProps, 'style' | 'onPress'>;
+
+    /**
+     *  Override the clear option image props.
+     */
+    clearOptionImageProps?: Omit<ImageProps, 'style'>;
+
+    /**
+     * Override the options list props.
+     */
+    flatListProps?: Omit<
+        FlatListProps<OptionType>,
+        'ref' | 'data' | 'getItemLayout' | 'renderItem' | 'keyExtractor'
+    >;
+
+    /**
+     * Override the no options element props.
+     */
+    noOptionsProps?: Omit<ViewProps, 'style'>;
+
+    /**
+     * Override the no options text props.
+     */
+    noOptionsTextProps?: Omit<TextProps, 'style'>;
+
+    /**
+     * Override the option button props.
+     */
+    optionButtonProps?: Omit<
+        PressableProps,
+        'ref' | 'style' | 'onPress' | 'accessibilityRole' | 'accessibilityState' | 'disabled'
+    >;
+
+    /**
+     * Override the option text props.
+     */
+    optionTextProps?: Omit<TextProps, 'style'>;
+
+    /**
+     *  Override the select input props.
      */
     selectInputProps?: Omit<
         TextInputProps,
@@ -307,14 +297,54 @@ export interface SelectProps<T = unknown> {
         | 'onPressIn'
     >;
 
-    // ---MULTISELECT--- //
     /**
-     *  if `true` then multi option can be picked
-     *
-     *  @category Multiselect
-     *  @default false
+     * Override the select left icon image props.
      */
-    multiSelection?: boolean;
+    selectLeftIconImageProps?: Omit<ImageProps, 'style'>;
+
+    /**
+     * Override the select left icons props.
+     */
+    selectLeftIconsProps?: Omit<ViewProps, 'style'>;
+
+    /**
+     * Override the select right icons props.
+     */
+    selectRightIconsProps?: Omit<ViewProps, 'style'>;
+
+    /**
+     * Override the select text props.
+     */
+    selectTextProps?: Omit<TextProps, 'style'>;
+
+    /**
+     * Override the section header button props.
+     */
+    sectionHeaderButtonProps?: Omit<PressableProps, 'style' | 'onPress'>;
+
+    /**
+     * Override the section header image props.
+     */
+    sectionHeaderImageProps?: Omit<ImageProps, 'style'>;
+
+    /**
+     * Override the section header text props
+     */
+    sectionHeaderTextProps?: Omit<TextProps, 'style'>;
+
+    /**
+     * Override the sections options list props.
+     */
+    sectionListProps?: Omit<
+        SectionListProps<OptionType>,
+        | 'ref'
+        | 'renderSectionHeader'
+        | 'sections'
+        | 'getItemLayout'
+        | 'renderItem'
+        | 'keyExtractor'
+        | 'onLayout'
+    >;
 
     // ---CUSTOM-COMPONENT--- //
     /**
@@ -325,15 +355,6 @@ export interface SelectProps<T = unknown> {
      */
     OptionComponent?: (props: OptionComponentProps) => JSX.Element;
 
-    // ---COLORS--- //
-    /**
-     * Placeholder text color
-     *
-     * @category Colors
-     * @default "Select..."
-     */
-    placeholderTextColor?: string;
-
     // ---ACCESSIBILITY--- //
 
     /**
@@ -343,13 +364,6 @@ export interface SelectProps<T = unknown> {
      * @default "Open a dropdown"
      */
     selectControlOpenDropdownA11yLabel?: string;
-
-    /**
-     * Styles
-     *
-     * @category Styles
-     */
-    styles?: SelectStyles;
 }
 
 /**
