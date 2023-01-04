@@ -1,11 +1,4 @@
-import type {
-    ImageSourcePropType,
-    ImageStyle,
-    Insets,
-    StyleProp,
-    TextStyle,
-    ViewStyle,
-} from 'react-native';
+import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export type SelectStyles = {
     /**
@@ -27,11 +20,23 @@ export type SelectStyles = {
      */
     optionsList?: OptionsListStyles;
     /**
+     *  Style of options list
+     *
+     *  @category Styles
+     */
+    noOptions?: NoOptionsStyles;
+    /**
      * Style of section header when section data type is provided
      *
      * @category Styles
      */
     sectionHeader?: SectionHeaderStyles;
+    /**
+     * Style of backdrop when options list is opened
+     *
+     * @category Styles
+     */
+    backdrop?: StyleProp<ViewStyle>;
 } & StyleProp<ViewStyle>;
 
 export type SelectControlStyles = {
@@ -65,6 +70,12 @@ export type SelectControlStyles = {
          *  @category Styles
          */
         text?: StyleProp<TextStyle>;
+        /**
+         * Style of pressed state of option
+         *
+         * @category Styles
+         */
+        pressed?: StyleProp<ViewStyle>;
     } & StyleProp<ViewStyle>;
     /**
      *  Styles of arrow in select control
@@ -78,12 +89,8 @@ export type SelectControlStyles = {
      *  @category Styles
      */
     clear?: ClearOptionStyles;
-    /**
-     * Styles of custom left icon in select control
-     *
-     * @category Styles
-     */
-    leftIcon?: LeftIconStyles;
+
+    leftIcon?: StyleProp<ImageStyle>;
 } & StyleProp<ViewStyle>;
 
 export type OptionStyles = {
@@ -105,6 +112,12 @@ export type OptionStyles = {
      * @category Styles
      */
     selectedText?: StyleProp<TextStyle>;
+    /**
+     * Style of pressed state of option
+     *
+     * @category Styles
+     */
+    pressed?: StyleProp<ViewStyle>;
 } & StyleProp<ViewStyle>;
 
 export type OptionsListStyles = StyleProp<ViewStyle>;
@@ -135,11 +148,11 @@ export type SectionHeaderStyles = {
      */
     selectedText?: StyleProp<TextStyle>;
     /**
-     * Style of section header clear icon when all section options are selected
+     * Style of pressed state of section header
      *
      * @category Styles
      */
-    selectedClearIcon?: StyleProp<ImageStyle>;
+    pressed?: StyleProp<ViewStyle>;
 } & StyleProp<ViewStyle>;
 
 export type ClearOptionStyles = {
@@ -151,13 +164,6 @@ export type ClearOptionStyles = {
     button?: StyleProp<ViewStyle>;
 
     /**
-     *  Hit Slop of clear option button
-     *
-     *  @category Styles
-     */
-    hitSlop?: Insets;
-
-    /**
      *  Style of clear option image
      *
      *  @category Styles
@@ -167,32 +173,30 @@ export type ClearOptionStyles = {
 
 export type ArrowIconStyles = {
     /**
+     *  Style of arrow button
+     *
+     *  @category Styles
+     */
+    container?: StyleProp<ViewStyle>;
+    /**
      *  Style of arrow image
      *
      *  @category Styles
      */
     icon?: StyleProp<ImageStyle>;
-
-    /**
-     *  Custom select control arrow icon source
-     *
-     *  @category Custom Sources
-     */
-    source?: ImageSourcePropType;
 };
 
-export type LeftIconStyles = {
+export type NoOptionsStyles = {
     /**
-     *  Left icon styles
+     *  Style of arrow button
      *
      *  @category Styles
      */
-    icon?: StyleProp<ImageStyle>;
-
+    container?: StyleProp<ViewStyle>;
     /**
-     *  Left icon source
+     *  Style of arrow image
      *
-     *  @category Custom Sources
+     *  @category Styles
      */
-    source?: ImageSourcePropType;
+    text?: StyleProp<TextStyle>;
 };

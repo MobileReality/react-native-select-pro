@@ -5,7 +5,7 @@ import { Select } from '@mobile-reality/react-native-select-pro';
 import type { State } from 'packages/react-native-select-pro/src/state/types';
 
 import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
-import { DATA } from '../constants';
+import { DATA } from '../constants/data';
 
 export const Ref = () => {
     const [currentState, setCurrentState] = useState<State>();

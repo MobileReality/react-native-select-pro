@@ -4,7 +4,7 @@ import type { OptionComponentProps } from '@mobile-reality/react-native-select-p
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
-import { DATA } from '../constants';
+import { DATA } from '../constants/data';
 
 const MyOption = ({ option, onPressOption }: OptionComponentProps) => {
     return (
@@ -30,7 +30,11 @@ export const CustomComponent = () => {
                 options={DATA}
                 styles={{ width: 200 }}
             />
-            <Select NoOptionsComponent={<NoOptions />} options={[]} styles={{ width: 200 }} />
+            <Select
+                flatListProps={{ ListEmptyComponent: <NoOptions /> }}
+                options={[]}
+                styles={{ width: 200 }}
+            />
         </SafeAreaViewWrapper>
     );
 };

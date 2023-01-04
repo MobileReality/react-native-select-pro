@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useRef } from 'react';
 import type { SectionListData } from 'react-native';
 import { SectionList } from 'react-native';
 
@@ -15,16 +15,10 @@ export const SectionOptionsList = ({
     getItemLayout,
     renderItem,
 }: SectionOptionsListProps) => {
-    const {
-        NoOptionsComponent,
-        isOpened,
-        scrollToSelectedOption,
-        onPressOption,
-        onPressSection,
-        selectedOption,
-        sectionListProps,
-        styles,
-    } = useOptionsListContext();
+    const sectionOptionsListRef = useRef<SectionList>(null);
+
+    const { isOpened, scrollToSelectedOption, selectedOption, sectionListProps } =
+        useOptionsListContext();
 
     const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => {
         const isSelected = isSectionSelected({
@@ -33,56 +27,47 @@ export const SectionOptionsList = ({
             sectionData: resolvedData,
         });
 
-        return (
-            <SectionHeader
-                title={info.section.title}
-                sectionHeader={styles?.sectionHeader}
-                isSelected={isSelected}
-                onPressSection={onPressSection}
-            />
-        );
+        return <SectionHeader title={info.section.title} isSelected={isSelected} />;
     };
 
-    const sectionList = useCallback(
-        (node: SectionList | null) => {
-            if (node !== null) {
-                try {
-                    node.scrollToLocation({
-                        ...getSectionLocation({
-                            data: resolvedData,
-                            selectedOption,
-                            scrollToSelectedOption,
-                        }),
-                        animated: false,
-                    });
-                } catch {
-                    logError(ERRORS.SCROLL_TO_LOCATION);
-                }
+    const scrollToIndex = () => {
+        if (sectionOptionsListRef.current) {
+            try {
+                sectionOptionsListRef.current.scrollToLocation({
+                    ...getSectionLocation({
+                        data: resolvedData,
+                        selectedOption,
+                        scrollToSelectedOption,
+                    }),
+                    animated: false,
+                });
+            } catch {
+                logError(ERRORS.SCROLL_TO_LOCATION);
             }
-        },
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [onPressOption, scrollToSelectedOption, selectedOption, resolvedData],
-    );
+        }
+    };
+
+    const accessibilityState = {
+        expanded: isOpened,
+    };
 
     return (
         <SectionList
-            ref={sectionList}
             testID="Options list"
             accessibilityLabel="Options list"
-            accessibilityState={{
-                expanded: isOpened,
-            }}
+            accessibilityState={accessibilityState}
             bounces={false}
-            sections={resolvedData}
-            getItemLayout={getItemLayout}
-            keyExtractor={({ value }) => value}
             keyboardShouldPersistTaps="handled"
             persistentScrollbar={true}
-            renderSectionHeader={renderSectionHeader}
-            renderItem={renderItem}
+            ListEmptyComponent={<NoOptions />}
             {...sectionListProps}
-            ListEmptyComponent={NoOptionsComponent ?? <NoOptions />}
+            ref={sectionOptionsListRef}
+            renderSectionHeader={renderSectionHeader}
+            sections={resolvedData}
+            getItemLayout={getItemLayout}
+            renderItem={renderItem}
+            keyExtractor={({ value }) => value}
+            onLayout={scrollToIndex}
         />
     );
 };

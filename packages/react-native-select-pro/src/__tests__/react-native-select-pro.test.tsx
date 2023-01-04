@@ -118,7 +118,7 @@ describe('Select', () => {
         const optionPress = getByLabelText(`Choose ${DATA[0].label} option`);
         fireEvent.press(optionPress);
 
-        const clearButton = getByLabelText('Clear a chosen option');
+        const clearButton = getByLabelText('Clear a selected option');
         expect(clearButton).toBeTruthy();
     });
 
@@ -152,7 +152,7 @@ describe('Select', () => {
         fireEvent.press(optionPress);
         expect(onSelect).toBeCalledWith(DATA[1], 1);
 
-        const clearButton = getByLabelText('Clear a chosen option');
+        const clearButton = getByLabelText('Clear a selected option');
         fireEvent.press(clearButton);
         expect(onRemove).toBeCalledWith(DATA[1], 1);
     });
@@ -202,6 +202,29 @@ describe('Select', () => {
 
         const option = getByLabelText('Option');
         fireEvent.press(option);
+    });
+
+    it('should close options list after press selected option', () => {
+        const { getByLabelText } = render(
+            <SelectProvider>
+                <Select options={DATA} pressableSelectedOption={true} />
+            </SelectProvider>,
+        );
+
+        const open = getByLabelText('Open a dropdown');
+        fireEvent.press(open);
+
+        const optionPress = getByLabelText(`Choose ${DATA[0].label} option`);
+        fireEvent.press(optionPress);
+
+        const openAgain = getByLabelText('Open a dropdown');
+        fireEvent.press(openAgain);
+
+        const optionSelected = getByLabelText(`Choose ${DATA[0].label} option`);
+        fireEvent.press(optionSelected);
+
+        const canOpenDropdown = getByLabelText('Open a dropdown');
+        expect(canOpenDropdown).toBeTruthy();
     });
 });
 
@@ -394,7 +417,7 @@ describe('Select with searchable enabled', () => {
                 <Select
                     options={SEARCHABLE_DATA}
                     searchable={true}
-                    textInputProps={{
+                    selectInputProps={{
                         onFocus,
                         onBlur,
                     }}
@@ -418,12 +441,13 @@ describe('Select with custom left icon', () => {
                     styles={{
                         select: {
                             leftIcon: {
-                                icon: { height: 15, width: 15 },
-                                source: require('./assets/search.png'),
+                                height: 15,
+                                width: 15,
                             },
                         },
                     }}
                     options={DATA}
+                    selectLeftIconImageProps={{ source: require('./assets/search.png') }}
                 />
             </SelectProvider>,
         );
@@ -440,9 +464,11 @@ describe('Select with custom select control arrow icon', () => {
                         select: {
                             arrow: {
                                 icon: { height: 15, width: 15 },
-                                source: require('./assets/arrow-down.png'),
                             },
                         },
+                    }}
+                    arrowImageProps={{
+                        source: require('./assets/arrow-down.png'),
                     }}
                     options={DATA}
                 />
@@ -482,7 +508,7 @@ describe('Select with multi selection', () => {
         expect(listWrapper2).toBeFalsy();
     });
 
-    it('should, while multiSelection enabled, click should NOT execute opening dropdown', () => {
+    it('should, while multiSelection enabled, click should execute opening dropdown', () => {
         const { getByLabelText, queryByLabelText } = render(
             <SelectProvider>
                 <Select multiSelection={true} options={DATA} animation={false} />
@@ -504,8 +530,8 @@ describe('Select with multi selection', () => {
         const tryOpenAgain = getByLabelText('Open a dropdown');
         fireEvent.press(tryOpenAgain);
 
-        const listWrapperShouldNotBeVisible = queryByLabelText('Options list');
-        expect(listWrapperShouldNotBeVisible).toBeFalsy();
+        const listWrapperShouldBeVisible = queryByLabelText('Options list');
+        expect(listWrapperShouldBeVisible).toBeTruthy();
     });
 
     it('should, while multiSelection enabled, show, select and remove selected option', () => {
@@ -524,7 +550,7 @@ describe('Select with multi selection', () => {
         const optionSelected = getByLabelText(`${DATA[0].label} selected`);
         expect(optionSelected).toBeTruthy();
 
-        const openAgain = getByLabelText('Arrow for opening dropdown');
+        const openAgain = getByLabelText('Open a dropdown');
         fireEvent.press(openAgain);
 
         const secondOptionPress = getByLabelText(`Choose ${DATA[1].label} option`);

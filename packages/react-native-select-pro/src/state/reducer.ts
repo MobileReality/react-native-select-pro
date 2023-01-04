@@ -1,34 +1,30 @@
-import type { OptionsType } from '@mobile-reality/react-native-select-pro';
+import { LayoutAnimation } from 'react-native';
 
-import { ERRORS, isSectionOptionsType } from '../helpers';
+import { ANIMATION_DURATION } from '../constants';
+import { ERRORS, isSectionOptionsType, regexSearchTest } from '../helpers';
 
-import type { ActionType, State } from './types';
+import type { ActionType, CreateInitialStateType, State } from './types';
 import { Action } from './types';
-
-const initialData = {
-    isOpened: false,
-    selectedOption: null,
-    selectedOptionIndex: -1,
-    searchValue: null,
-    searchedOptions: [],
-    searchInputRef: null,
-    openedPosition: {
-        width: 0,
-        top: 0,
-        left: 0,
-        aboveSelectControl: false,
-    },
-    optionsData: [],
-};
 
 export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => {
     switch (action.type) {
         case Action.Open:
+            if (state.searchValue !== null) {
+                state.searchInputRef?.current?.focus();
+            }
             return {
                 ...state,
                 isOpened: true,
             };
         case Action.Close:
+            state.animationDuration > 0 &&
+                LayoutAnimation.configureNext({
+                    duration: state.animationDuration,
+                    delete: {
+                        type: LayoutAnimation.Types.linear,
+                        property: LayoutAnimation.Properties.opacity,
+                    },
+                });
             return {
                 ...state,
                 isOpened: false,
@@ -57,16 +53,13 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 };
             }
             const regex = new RegExp(action.searchPattern(action.payload.toLowerCase()));
-
             if (isSectionOptionsType(state.optionsData)) {
                 const filteredSections = state.optionsData
                     .map((section) => ({
                         ...section,
-                        data: regex.test(section.title.toLocaleLowerCase())
+                        data: regexSearchTest(regex, section.title)
                             ? section.data
-                            : section.data.filter((option) =>
-                                  regex.test(option.label.toLowerCase()),
-                              ),
+                            : section.data.filter((option) => regexSearchTest(regex, option.label)),
                     }))
                     .filter((section) => section.data.length > 0);
 
@@ -79,7 +72,7 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
             return {
                 ...state,
                 searchedOptions: state.optionsData.filter((option) =>
-                    regex.test(option.label.toLowerCase()),
+                    regexSearchTest(regex, option.label),
                 ),
             };
         }
@@ -88,7 +81,7 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 ...state,
                 searchInputRef: action.payload,
             };
-        case Action.SetPosition:
+        case Action.SetOptionsListPosition:
             return {
                 ...state,
                 openedPosition: { ...state.openedPosition, ...action.payload },
@@ -98,22 +91,30 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
     }
 };
 
-type CreateInitialStateType<T> = {
-    options: OptionsType<T>;
-    searchable: boolean;
-};
-
 export const createInitialState = <T>({
     options,
     searchable,
-}: CreateInitialStateType<T>): State<T> | undefined => {
+    animation,
+}: CreateInitialStateType<T>) => {
     if (!Array.isArray(options)) {
         throw new TypeError(ERRORS.NO_ARRAY_OPTIONS);
     }
 
     return {
-        ...initialData,
+        isOpened: false,
+        selectedOption: null,
+        selectedOptionIndex: -1,
+        searchedOptions: [],
+        searchInputRef: null,
+        openedPosition: {
+            width: 0,
+            top: 0,
+            left: 0,
+            aboveSelectControl: false,
+        },
         optionsData: options,
         searchValue: searchable ? '' : null,
+        animationDuration:
+            typeof animation === 'boolean' ? (animation ? ANIMATION_DURATION : 0) : animation,
     };
 };

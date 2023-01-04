@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import { Select } from '@mobile-reality/react-native-select-pro';
 
 import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
-import { DATA } from '../constants';
+import { DATA } from '../constants/data';
 
 export const TextInputProps = () => {
     const [isFocused, setIsFocused] = useState(false);
@@ -14,7 +14,7 @@ export const TextInputProps = () => {
                 options={DATA}
                 searchable={true}
                 styles={{ width: 250 }}
-                textInputProps={{
+                selectInputProps={{
                     onFocus: () => {
                         setIsFocused(true);
                     },

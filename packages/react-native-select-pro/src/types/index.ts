@@ -1,5 +1,14 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
-import type { FlatListProps, SectionListProps, TextInputProps } from 'react-native';
+import type {
+    FlatListProps,
+    ImageProps,
+    PressableProps,
+    SectionListProps,
+    TextInputProps,
+    TextProps,
+    TouchableWithoutFeedbackProps,
+    ViewProps,
+} from 'react-native';
 
 import type { OnChooseOption, OptionProps } from '../components/option/option.types';
 import type { State } from '../state';
@@ -28,7 +37,7 @@ export type SectionOptionType<T = unknown> = {
 
 export type OptionsType<T> = SectionOptionType<T>[] | OptionType<T>[];
 
-export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option'> & {
+export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option' | 'optionIndex'> & {
     onPressOption: OnChooseOption;
 };
 
@@ -52,7 +61,7 @@ export interface SelectProps<T = unknown> {
      * @param optionIndex Selected option index
      * @category Callback
      */
-    onSelect?: (option: OptionType<T> | null, optionIndex: number) => void;
+    onSelect?: (option: OptionType<T>, optionIndex: number) => void;
 
     /**
      * Callback that is called when option(s) is cleared
@@ -65,6 +74,24 @@ export interface SelectProps<T = unknown> {
         option: OptionType<T> | OptionType<T>[] | null,
         optionIndex: number | number[],
     ) => void;
+
+    /**
+     * Callback that is called when section is selected with section header
+     *
+     * @param options Selected options
+     * @param optionIndexes Selected option indexes
+     * @category Callback
+     */
+    onSectionSelect?: (options: OptionType<T>[], optionIndexes: number[]) => void;
+
+    /**
+     * Callback that is called when section is removed with section header
+     *
+     * @param options Selected options
+     * @param optionIndexes Selected option indexes
+     * @category Callback
+     */
+    onSectionRemove?: (options: OptionType<T>[], optionIndexes: number[]) => void;
 
     /**
      * Callback that is called when dropdown is opened
@@ -155,6 +182,14 @@ export interface SelectProps<T = unknown> {
      */
     noBackdrop?: boolean;
 
+    /**
+     *  If `true` the selected option is pressable and the options list will be closed after the selected option is pressed.
+     *
+     *  @category Behaviour
+     *  @default false
+     */
+    pressableSelectedOption?: boolean;
+
     // ---ADDITIONAL-FEATURES--- //
     /**
      *  Set a default option
@@ -167,7 +202,10 @@ export interface SelectProps<T = unknown> {
      *
      *  @category Additional Features
      */
-    flatListProps?: Omit<FlatListProps<OptionType>, 'data' | 'renderItem' | 'ListEmptyComponent'>;
+    flatListProps?: Omit<
+        FlatListProps<OptionType>,
+        'ref' | 'data' | 'getItemLayout' | 'renderItem' | 'keyExtractor'
+    >;
 
     /**
      *  `SectionListProps` imported from `react-native`
@@ -176,8 +214,63 @@ export interface SelectProps<T = unknown> {
      */
     sectionListProps?: Omit<
         SectionListProps<OptionType>,
-        'sections' | 'renderItem' | 'renderSectionHeader' | 'ListEmptyComponent'
+        | 'ref'
+        | 'renderSectionHeader'
+        | 'sections'
+        | 'getItemLayout'
+        | 'renderItem'
+        | 'keyExtractor'
+        | 'onLayout'
     >;
+
+    /**
+     *  `PressableProps` for ClearOption imported from `react-native`
+     *
+     *  @category Additional Features
+     */
+    clearOptionButtonProps?: Omit<PressableProps, 'style' | 'onPress'>;
+
+    /**
+     *  `ImageProps` for ClearOption imported from `react-native`
+     *
+     *  @category Additional Features
+     */
+    clearOptionImageProps?: Omit<ImageProps, 'style'>;
+
+    /**
+     *  `ViewProps` for Arrow imported from `react-native`
+     *
+     *  @category Additional Features
+     */
+    arrowContainerProps?: Omit<ViewProps, 'style'>;
+
+    /**
+     *  `ImageProps` for Arrow imported from `react-native`
+     *
+     *  @category Additional Features
+     */
+    arrowImageProps?: Omit<ImageProps, 'style'>;
+
+    backdropProps?: Omit<TouchableWithoutFeedbackProps, 'onPress'>;
+
+    backdropChildProps?: Omit<ViewProps, 'style'>;
+
+    optionButtonProps?: Omit<
+        PressableProps,
+        'ref' | 'style' | 'onPress' | 'accessibilityRole' | 'accessibilityState' | 'disabled'
+    >;
+
+    optionTextProps?: Omit<TextProps, 'style'>;
+
+    selectLeftIconsProps?: Omit<ViewProps, 'style'>;
+    selectRightIconsProps?: Omit<ViewProps, 'style'>;
+    selectLeftIconImageProps?: Omit<ImageProps, 'style'>;
+    noOptionsProps?: Omit<ViewProps, 'style'>;
+    noOptionsTextProps?: Omit<TextProps, 'style'>;
+    sectionHeaderButtonProps?: Omit<PressableProps, 'style' | 'onPress'>;
+    sectionHeaderTextProps?: Omit<TextProps, 'style'>;
+    sectionHeaderImageProps?: Omit<ImageProps, 'style'>;
+    selectTextProps?: Omit<TextProps, 'style'>;
 
     // ---SEARCH--- //
     /**
@@ -201,10 +294,9 @@ export interface SelectProps<T = unknown> {
      *
      *  @category Search
      */
-    textInputProps?: Omit<
+    selectInputProps?: Omit<
         TextInputProps,
         | 'ref'
-        | 'accessibilityLabel'
         | 'editable'
         | 'placeholder'
         | 'placeholderTextColor'
@@ -226,12 +318,6 @@ export interface SelectProps<T = unknown> {
 
     // ---CUSTOM-COMPONENT--- //
     /**
-     * NoOptionsComponent
-     *
-     * @category Custom Component
-     */
-    NoOptionsComponent?: JSX.Element;
-    /**
      * OptionComponent
      *
      * @param props OptionComponentProps
@@ -249,13 +335,6 @@ export interface SelectProps<T = unknown> {
     placeholderTextColor?: string;
 
     // ---ACCESSIBILITY--- //
-    /**
-     * selectControlClearOptionA11yLabel
-     *
-     * @category Accessibility
-     * @default "Clear a chosen option"
-     */
-    selectControlClearOptionA11yLabel?: string;
 
     /**
      * selectControlOpenDropdownA11yLabel
@@ -307,4 +386,4 @@ export type OnPressSelectControlType = () => void;
  * @ignore
  */
 export type OnOutsidePress = () => void;
-export type OnSetPosition = () => void;
+export type OnSetOptionsListPosition = () => void;

@@ -1,60 +1,52 @@
 import React from 'react';
-import type { TextStyle, ViewStyle } from 'react-native';
-import { StyleSheet, Text, View } from 'react-native';
+import type { ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
+import { PADDING } from '../../constants';
 import { useSelectContext } from '../../context';
 import { selectedOptionResolver } from '../../helpers';
 import { MultiSelect } from '../multi-select';
 import { SelectInput } from '../select-input';
+import { SelectText } from '../select-text';
 
 import type { SelectFieldTypeProps } from './select-field-type.types';
 
 export const SelectFieldType = ({ onPressRemove, selectStyles }: SelectFieldTypeProps) => {
-    const { multiSelection, placeholderText, placeholderTextColor, searchValue, selectedOption } =
-        useSelectContext();
+    const { multiSelection, searchValue, selectedOption } = useSelectContext();
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
 
-    const multiSelect = (
-        <MultiSelect
-            {...{
-                selectStyles,
-                selectedOptions,
-                onPressRemove,
-            }}
-        />
-    );
+    const renderProperSelectFieldType = () => {
+        if (multiSelection) {
+            return (
+                <MultiSelect
+                    {...{
+                        selectStyles,
+                        selectedOptions,
+                        onPressRemove,
+                    }}
+                />
+            );
+        }
 
-    const selectInput = (
-        <SelectInput
-            {...{
-                textStyle: selectStyles?.text,
-                selectedOption,
-            }}
-        />
-    );
+        const isSearchable = typeof searchValue === 'string';
 
-    const textField = (
-        <Text
-            numberOfLines={1}
-            style={[
-                styles.text,
-                selectStyles?.text,
-                {
-                    color: selectedOptionLabel
-                        ? StyleSheet.flatten(selectStyles?.text)?.color ?? COLORS.BLACK
-                        : placeholderTextColor,
-                },
-            ]}
-        >
-            {selectedOptionLabel || placeholderText}
-        </Text>
-    );
+        if (isSearchable) {
+            return (
+                <SelectInput
+                    {...{
+                        textStyle: selectStyles?.text,
+                        selectedOption,
+                    }}
+                />
+            );
+        }
 
-    const isSearchable = typeof searchValue === 'string';
+        return <SelectText {...{ selectStyles, selectedOptionLabel }} />;
+    };
+
     return (
         <View style={[styles.container, multiSelection ? styles.multiSelect : styles.singleSelect]}>
-            {multiSelection ? multiSelect : isSearchable ? selectInput : textField}
+            {renderProperSelectFieldType()}
         </View>
     );
 };
@@ -63,7 +55,6 @@ type Styles = {
     container: ViewStyle;
     multiSelect: ViewStyle;
     singleSelect: ViewStyle;
-    text: TextStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -78,10 +69,6 @@ const styles = StyleSheet.create<Styles>({
     },
     singleSelect: {
         paddingRight: 55,
-    },
-    text: {
-        fontSize: FONT_SIZE,
-        textAlign: 'left',
     },
 });
 

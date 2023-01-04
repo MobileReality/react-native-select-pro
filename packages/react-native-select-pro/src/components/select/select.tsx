@@ -1,13 +1,14 @@
 import type { ForwardedRef, NamedExoticComponent, ReactElement, Reducer } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
 import type { ViewStyle } from 'react-native';
+import { UIManager } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { Portal } from '@gorhom/portal';
 
-import { Portals } from '../../constants/portals';
-import { COLORS } from '../../constants/styles';
+import { COLORS, Portals } from '../../constants';
 import { OptionsListContextProvider, SelectContextProvider } from '../../context';
-import type { ActionType, State } from '../../state';
+import { isAndroid } from '../../helpers';
+import type { ActionType, CreateInitialStateType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
 import type { SelectProps, SelectRef } from '../../types';
 import { Backdrop } from '../backdrop';
@@ -16,6 +17,10 @@ import { SelectControl } from '../select-control';
 
 import { useSelect } from './select.hooks';
 
+if (isAndroid && UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
 export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<T>>) => {
     const {
         // Required
@@ -23,6 +28,8 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         // Callbacks
         onSelect,
         onRemove,
+        onSectionSelect,
+        onSectionRemove,
         onDropdownOpened,
         onDropdownClosed,
         // Texts
@@ -37,35 +44,48 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         scrollToSelectedOption = true,
         hideArrow = false,
         noBackdrop = false,
+        pressableSelectedOption = false,
         // Additional features
         defaultOption,
         flatListProps,
         sectionListProps,
+        clearOptionButtonProps,
+        clearOptionImageProps,
+        arrowContainerProps,
+        arrowImageProps,
+        backdropProps,
+        backdropChildProps,
+        optionTextProps,
+        optionButtonProps,
+        selectLeftIconsProps,
+        selectRightIconsProps,
+        selectLeftIconImageProps,
+        noOptionsTextProps,
+        sectionHeaderTextProps,
+        sectionHeaderImageProps,
+        sectionHeaderButtonProps,
+        selectTextProps,
+        noOptionsProps,
         // Search
         searchable = false,
         searchPattern = (payload: string) => `(${payload})`,
-        textInputProps,
+        selectInputProps,
         // Multiselect
         multiSelection = false,
         // Custom components
-        NoOptionsComponent,
         OptionComponent,
         // Colors
         placeholderTextColor = COLORS.GRAY,
         // Accessibility
-        selectControlClearOptionA11yLabel,
         selectControlOpenDropdownA11yLabel,
         // Styles
         styles: mainStyles,
     } = props;
 
-    const [state, dispatch] = useReducer<Reducer<State<T>, ActionType<T>>>(
-        reducer,
-        // TODO: fix this
-        // @ts-expect-error initializerArg bad type
-        { options, searchable },
-        createInitialState,
-    );
+    const [state, dispatch] = useReducer<
+        Reducer<State<T>, ActionType<T>>,
+        CreateInitialStateType<T>
+    >(reducer, { options, searchable, animation }, createInitialState);
 
     const {
         isOpened,
@@ -79,27 +99,36 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
 
     const { aboveSelectControl } = openedPosition;
 
-    const containerRef = useRef<View>(null);
+    const selectControlRef = useRef<View>(null);
+    const optionsListRef = useRef<View>(null);
 
-    const { setPosition, onPressOption, onOutsidePress, onPressSelectControl, onPressSection } =
-        useSelect<T>({
-            containerRef,
-            dispatch,
-            defaultOption,
-            onRemove,
-            disabled,
-            closeDropdownOnSelect,
-            searchable,
-            multiSelection,
-            styles: mainStyles,
-            onDropdownOpened,
-            onDropdownClosed,
-            ref,
-            state,
-        });
+    const {
+        setOptionsListPosition,
+        onPressOption,
+        onOutsidePress,
+        onPressSelectControl,
+        onPressSection,
+    } = useSelect<T>({
+        selectControlRef,
+        optionsListRef,
+        dispatch,
+        defaultOption,
+        onRemove,
+        disabled,
+        closeDropdownOnSelect,
+        searchable,
+        multiSelection,
+        onDropdownOpened,
+        onDropdownClosed,
+        ref,
+        state,
+        onSectionSelect,
+        onSectionRemove,
+        onSelect,
+    });
 
     return (
-        <View style={[styles.relative, mainStyles]} onLayout={setPosition}>
+        <View style={[styles.relative, mainStyles]}>
             <SelectContextProvider
                 value={{
                     isOpened,
@@ -115,31 +144,42 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     searchPattern,
                     searchValue,
                     onPressSelectControl,
-                    textInputProps,
-                    selectControlClearOptionA11yLabel,
+                    selectInputProps,
                     selectControlOpenDropdownA11yLabel,
                     onRemove,
                     dispatch,
-                    setPosition,
+                    setOptionsListPosition,
                     selectedOption,
                     selectedOptionIndex,
                     styles: mainStyles,
+                    clearOptionButtonProps,
+                    clearOptionImageProps,
+                    arrowContainerProps,
+                    arrowImageProps,
+                    selectRightIconsProps,
+                    selectLeftIconsProps,
+                    selectLeftIconImageProps,
+                    selectTextProps,
                 }}
             >
-                <SelectControl ref={containerRef} />
+                <SelectControl ref={selectControlRef} />
             </SelectContextProvider>
             {isOpened && (
                 <>
                     {!noBackdrop && (
                         <Portal hostName={Portals.Backdrop}>
-                            <Backdrop onOutsidePress={onOutsidePress} />
+                            <Backdrop
+                                backdrop={mainStyles?.backdrop}
+                                backdropProps={backdropProps}
+                                backdropChildProps={backdropChildProps}
+                                onOutsidePress={onOutsidePress}
+                            />
                         </Portal>
                     )}
                     <Portal hostName={Portals.OptionsList}>
                         <OptionsListContextProvider
                             value={{
                                 animation,
-                                NoOptionsComponent,
                                 OptionComponent,
                                 aboveSelectControl,
                                 flatListProps,
@@ -149,7 +189,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 optionsData,
                                 scrollToSelectedOption,
                                 searchValue,
-                                onSelect,
                                 onPressOption,
                                 onPressSection,
                                 selectedOption,
@@ -157,9 +196,17 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 selectedOptionIndex,
                                 sectionListProps,
                                 styles: mainStyles,
+                                optionButtonProps,
+                                optionTextProps,
+                                noOptionsProps,
+                                noOptionsTextProps,
+                                sectionHeaderButtonProps,
+                                sectionHeaderImageProps,
+                                sectionHeaderTextProps,
+                                pressableSelectedOption,
                             }}
                         >
-                            <OptionsList />
+                            <OptionsList ref={optionsListRef} />
                         </OptionsListContextProvider>
                     </Portal>
                 </>

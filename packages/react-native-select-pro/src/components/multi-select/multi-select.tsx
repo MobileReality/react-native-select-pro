@@ -6,6 +6,7 @@ import { useSelectContext } from '../../context';
 import type { OptionType } from '../../index';
 import { MultiSelectedOption } from '../multi-selected-option';
 import { SelectInput } from '../select-input';
+import { SelectText } from '../select-text';
 
 import { useMultiSelect } from './multi-select.hooks';
 import type { MultiSelectProps } from './multi-select.types';
@@ -21,18 +22,11 @@ export const MultiSelect = ({ selectedOptions, onPressRemove, selectStyles }: Mu
             <SelectInput selectedOption={selectedOptions} textStyle={selectStyles?.text} />
         );
 
-        const emptyList = (
-            <MultiSelectedOption
-                isPlaceholder={true}
-                option={null}
-                optionWidth="100%"
-                selectStyles={selectStyles}
-            />
-        );
+        const placeholder = <SelectText selectStyles={selectStyles} />;
 
         const resolveSelectedOptionsList = () => {
             if (!selectedOptions) {
-                return isSearchable ? null : emptyList;
+                return isSearchable ? null : placeholder;
             }
 
             return selectedOptions.map((option: OptionType, index) => (

@@ -1,8 +1,7 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { FlatList } from 'react-native';
 
 import { useOptionsListContext } from '../../context';
-import { ERRORS, logError } from '../../helpers';
 import { NoOptions } from '../no-options';
 
 import type { FlatOptionsListProps } from './flat-options-list.types';
@@ -12,58 +11,33 @@ export const FlatOptionsList = ({
     getItemLayout,
     renderItem,
 }: FlatOptionsListProps) => {
-    const {
-        NoOptionsComponent,
-        flatListProps,
-        isOpened,
-        scrollToSelectedOption,
-        onPressOption,
-        selectedOptionIndex,
-    } = useOptionsListContext();
+    const { flatListProps, isOpened, selectedOptionIndex, scrollToSelectedOption } =
+        useOptionsListContext();
 
-    const flatList = useCallback(
-        (node: FlatList | null) => {
-            if (node !== null) {
-                const index =
-                    scrollToSelectedOption &&
-                    selectedOptionIndex >= 0 &&
-                    typeof selectedOptionIndex === 'number'
-                        ? selectedOptionIndex
-                        : 0;
-                if (index < resolvedData.length) {
-                    try {
-                        node.scrollToIndex({
-                            index,
-                            animated: false,
-                        });
-                    } catch {
-                        logError(ERRORS.SCROLL_TO_INDEX);
-                    }
-                }
-            }
-        },
-        // TODO
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [scrollToSelectedOption, selectedOptionIndex, onPressOption, resolvedData],
-    );
+    const initialScrollIndex =
+        typeof selectedOptionIndex === 'number' && scrollToSelectedOption
+            ? selectedOptionIndex
+            : -1;
+
+    const accessibilityState = {
+        expanded: isOpened,
+    };
 
     return (
         <FlatList
-            ref={flatList}
             testID="Options list"
             accessibilityLabel="Options list"
-            accessibilityState={{
-                expanded: isOpened,
-            }}
+            accessibilityState={accessibilityState}
             bounces={false}
-            data={resolvedData}
-            getItemLayout={getItemLayout}
-            keyExtractor={({ value }) => value}
             keyboardShouldPersistTaps="handled"
             persistentScrollbar={true}
-            renderItem={renderItem}
+            ListEmptyComponent={<NoOptions />}
+            initialScrollIndex={initialScrollIndex}
             {...flatListProps}
-            ListEmptyComponent={NoOptionsComponent ?? <NoOptions />}
+            data={resolvedData}
+            getItemLayout={getItemLayout}
+            renderItem={renderItem}
+            keyExtractor={({ value }) => value}
         />
     );
 };

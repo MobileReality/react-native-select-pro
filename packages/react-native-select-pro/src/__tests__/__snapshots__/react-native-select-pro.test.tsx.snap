@@ -2,7 +2,6 @@
 
 exports[`Select should generate Select snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {
@@ -44,7 +43,7 @@ exports[`Select should generate Select snapshot 1`] = `
           },
           false,
           undefined,
-          {},
+          false,
         ]
       }
     >
@@ -97,26 +96,28 @@ exports[`Select should generate Select snapshot 1`] = `
           ]
         }
       >
-        <Image
-          collapsable={false}
-          source={
-            {
-              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+        <View>
+          <Image
+            collapsable={false}
+            source={
+              {
+                "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+              }
             }
-          }
-          style={
-            {
-              "height": 24,
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-              "width": 24,
-              "zIndex": -1,
+            style={
+              {
+                "height": 24,
+                "transform": [
+                  {
+                    "rotate": "0deg",
+                  },
+                ],
+                "width": 24,
+                "zIndex": -1,
+              }
             }
-          }
-        />
+          />
+        </View>
       </View>
     </View>
   </View>
@@ -125,7 +126,6 @@ exports[`Select should generate Select snapshot 1`] = `
 
 exports[`Select with custom left icon should generate Select with custom left icon snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {
@@ -134,13 +134,8 @@ exports[`Select with custom left icon should generate Select with custom left ic
       {
         "select": {
           "leftIcon": {
-            "icon": {
-              "height": 15,
-              "width": 15,
-            },
-            "source": {
-              "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
-            },
+            "height": 15,
+            "width": 15,
           },
         },
       },
@@ -168,6 +163,14 @@ exports[`Select with custom left icon should generate Select with custom left ic
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
+      selectStyles={
+        {
+          "leftIcon": {
+            "height": 15,
+            "width": 15,
+          },
+        }
+      }
       style={
         [
           {
@@ -180,16 +183,11 @@ exports[`Select with custom left icon should generate Select with custom left ic
           false,
           {
             "leftIcon": {
-              "icon": {
-                "height": 15,
-                "width": 15,
-              },
-              "source": {
-                "testUri": "packages/react-native-select-pro/src/__tests__/assets/search.png",
-              },
+              "height": 15,
+              "width": 15,
             },
           },
-          {},
+          false,
         ]
       }
     >
@@ -269,26 +267,28 @@ exports[`Select with custom left icon should generate Select with custom left ic
           ]
         }
       >
-        <Image
-          collapsable={false}
-          source={
-            {
-              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+        <View>
+          <Image
+            collapsable={false}
+            source={
+              {
+                "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+              }
             }
-          }
-          style={
-            {
-              "height": 24,
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-              "width": 24,
-              "zIndex": -1,
+            style={
+              {
+                "height": 24,
+                "transform": [
+                  {
+                    "rotate": "0deg",
+                  },
+                ],
+                "width": 24,
+                "zIndex": -1,
+              }
             }
-          }
-        />
+          />
+        </View>
       </View>
     </View>
   </View>
@@ -297,7 +297,6 @@ exports[`Select with custom left icon should generate Select with custom left ic
 
 exports[`Select with custom select control arrow icon should generate Select with custom select control arrow icon snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {
@@ -309,9 +308,6 @@ exports[`Select with custom select control arrow icon should generate Select wit
             "icon": {
               "height": 15,
               "width": 15,
-            },
-            "source": {
-              "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
             },
           },
         },
@@ -340,6 +336,16 @@ exports[`Select with custom select control arrow icon should generate Select wit
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
+      selectStyles={
+        {
+          "arrow": {
+            "icon": {
+              "height": 15,
+              "width": 15,
+            },
+          },
+        }
+      }
       style={
         [
           {
@@ -356,12 +362,9 @@ exports[`Select with custom select control arrow icon should generate Select wit
                 "height": 15,
                 "width": 15,
               },
-              "source": {
-                "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
-              },
             },
           },
-          {},
+          false,
         ]
       }
     >
@@ -414,26 +417,28 @@ exports[`Select with custom select control arrow icon should generate Select wit
           ]
         }
       >
-        <Image
-          collapsable={false}
-          source={
-            {
-              "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
+        <View>
+          <Image
+            collapsable={false}
+            source={
+              {
+                "testUri": "packages/react-native-select-pro/src/__tests__/assets/arrow-down.png",
+              }
             }
-          }
-          style={
-            {
-              "height": 15,
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-              "width": 15,
-              "zIndex": -1,
+            style={
+              {
+                "height": 15,
+                "transform": [
+                  {
+                    "rotate": "0deg",
+                  },
+                ],
+                "width": 15,
+                "zIndex": -1,
+              }
             }
-          }
-        />
+          />
+        </View>
       </View>
     </View>
   </View>
@@ -442,7 +447,6 @@ exports[`Select with custom select control arrow icon should generate Select wit
 
 exports[`Select with multi selection and searchable should generate Select with multi selection and searchable enabled snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {
@@ -484,7 +488,7 @@ exports[`Select with multi selection and searchable should generate Select with 
           },
           false,
           undefined,
-          {},
+          false,
         ]
       }
     >
@@ -549,26 +553,7 @@ exports[`Select with multi selection and searchable should generate Select with 
           ]
         }
       >
-        <View
-          accessibilityLabel="Arrow for opening dropdown"
-          accessibilityState={
-            {
-              "disabled": false,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-        >
+        <View>
           <Image
             collapsable={false}
             source={
@@ -598,7 +583,6 @@ exports[`Select with multi selection and searchable should generate Select with 
 
 exports[`Select with multi selection should generate Select with multi selection enabled snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {
@@ -640,7 +624,7 @@ exports[`Select with multi selection should generate Select with multi selection
           },
           false,
           undefined,
-          {},
+          false,
         ]
       }
     >
@@ -668,57 +652,24 @@ exports[`Select with multi selection should generate Select with multi selection
           }
         >
           <View>
-            <View
-              accessibilityLabel="Placeholder in multi-select"
-              accessibilityState={
-                {
-                  "disabled": true,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onFocus={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
+            <Text
+              numberOfLines={1}
               style={
                 [
                   {
-                    "alignItems": "flex-start",
-                    "display": "flex",
-                    "justifyContent": "center",
+                    "alignSelf": "center",
+                    "fontSize": 12,
+                    "textAlign": "left",
                   },
                   undefined,
                   {
-                    "width": "100%",
+                    "color": "#808080",
                   },
                 ]
               }
             >
-              <Text
-                numberOfLines={1}
-                style={
-                  [
-                    {
-                      "fontSize": 12,
-                      "textAlign": "left",
-                    },
-                    undefined,
-                    {
-                      "color": "#808080",
-                    },
-                  ]
-                }
-              >
-                Select...
-              </Text>
-            </View>
+              Select...
+            </Text>
           </View>
         </RCTScrollView>
       </View>
@@ -738,26 +689,7 @@ exports[`Select with multi selection should generate Select with multi selection
           ]
         }
       >
-        <View
-          accessibilityLabel="Arrow for opening dropdown"
-          accessibilityState={
-            {
-              "disabled": false,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-        >
+        <View>
           <Image
             collapsable={false}
             source={
@@ -787,7 +719,6 @@ exports[`Select with multi selection should generate Select with multi selection
 
 exports[`Select with searchable enabled should generate Select with searchable enabled snapshot 1`] = `
 <View
-  onLayout={[Function]}
   style={
     [
       {
@@ -829,7 +760,7 @@ exports[`Select with searchable enabled should generate Select with searchable e
           },
           false,
           undefined,
-          {},
+          false,
         ]
       }
     >
@@ -883,26 +814,28 @@ exports[`Select with searchable enabled should generate Select with searchable e
           ]
         }
       >
-        <Image
-          collapsable={false}
-          source={
-            {
-              "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+        <View>
+          <Image
+            collapsable={false}
+            source={
+              {
+                "testUri": "packages/react-native-select-pro/src/assets/icons/chevron-down.png",
+              }
             }
-          }
-          style={
-            {
-              "height": 24,
-              "transform": [
-                {
-                  "rotate": "0deg",
-                },
-              ],
-              "width": 24,
-              "zIndex": -1,
+            style={
+              {
+                "height": 24,
+                "transform": [
+                  {
+                    "rotate": "0deg",
+                  },
+                ],
+                "width": 24,
+                "zIndex": -1,
+              }
             }
-          }
-        />
+          />
+        </View>
       </View>
     </View>
   </View>

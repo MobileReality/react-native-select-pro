@@ -2,27 +2,25 @@ import React from 'react';
 import type { TextStyle, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { COLORS, FONT_SIZE } from '../../constants/styles';
-import { useSelectContext } from '../../context';
+import { COLORS, FONT_SIZE, PRESSED_STYLE } from '../../constants';
 
 import type { MultiSelectedOptionProps } from './multi-selected-option.types';
 
 export const MultiSelectedOption = ({
-    isPlaceholder = false,
     option,
     selectStyles,
     optionWidth,
     onPressRemove,
 }: MultiSelectedOptionProps) => {
-    const { placeholderText, placeholderTextColor } = useSelectContext();
     const isPressable = onPressRemove && option;
     return (
         <Pressable
             accessibilityLabel={option ? `${option.label} selected` : 'Placeholder in multi-select'}
-            style={[
-                isPlaceholder ? styles.placeholderText : styles.multiSelectedOption,
+            style={({ pressed }) => [
+                styles.multiSelectedOption,
                 selectStyles?.multiSelectedOption,
                 { width: optionWidth },
+                pressed && (selectStyles?.multiSelectedOption?.pressed ?? PRESSED_STYLE),
             ]}
             disabled={!isPressable}
             onPress={isPressable ? () => onPressRemove(option) : undefined}
@@ -33,14 +31,13 @@ export const MultiSelectedOption = ({
                     styles.text,
                     selectStyles?.multiSelectedOption?.text,
                     {
-                        color: option?.label
-                            ? StyleSheet.flatten(selectStyles?.multiSelectedOption?.text)?.color ??
-                              COLORS.BLACK
-                            : placeholderTextColor,
+                        color:
+                            StyleSheet.flatten(selectStyles?.multiSelectedOption?.text)?.color ??
+                            COLORS.BLACK,
                     },
                 ]}
             >
-                {option?.label ?? placeholderText}
+                {option?.label}
             </Text>
         </Pressable>
     );
@@ -49,18 +46,12 @@ export const MultiSelectedOption = ({
 type Styles = {
     text: TextStyle;
     multiSelectedOption: ViewStyle;
-    placeholderText: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
     text: {
         fontSize: FONT_SIZE,
         textAlign: 'left',
-    },
-    placeholderText: {
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        display: 'flex',
     },
     multiSelectedOption: {
         alignItems: 'flex-start',

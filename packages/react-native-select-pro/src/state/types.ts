@@ -1,4 +1,4 @@
-import type { Dispatch, Ref } from 'react';
+import type { Dispatch, RefObject } from 'react';
 import type { TextInput } from 'react-native';
 
 import type { OptionsType, OptionType } from '../types';
@@ -11,7 +11,7 @@ export enum Action {
     SetSearchInputRef = 'setSearchInputRef',
     SetSearchValue = 'setSearchValue',
     SearchOptions = 'searchOptions',
-    SetPosition = 'setPosition',
+    SetOptionsListPosition = 'setOptionsListPo',
 }
 
 export type ActionType<T> =
@@ -33,7 +33,7 @@ export type ActionType<T> =
           payload: OptionsType<T>;
       }
     | {
-          type: Action.SetPosition;
+          type: Action.SetOptionsListPosition;
           payload: Position;
       }
     | {
@@ -47,7 +47,7 @@ export type ActionType<T> =
       }
     | {
           type: Action.SetSearchInputRef;
-          payload: Ref<TextInput>;
+          payload: RefObject<TextInput> | null;
       };
 
 export type Position = {
@@ -65,7 +65,14 @@ export type State<T = unknown> = {
     openedPosition: Position;
     searchValue: string | null;
     searchedOptions: OptionsType<T>;
-    searchInputRef: Ref<TextInput> | null;
+    searchInputRef: RefObject<TextInput> | null;
+    animationDuration: number;
 };
 
 export type DispatchType<T> = Dispatch<ActionType<T>>;
+
+export type CreateInitialStateType<T> = {
+    options: OptionsType<T>;
+    searchable: boolean;
+    animation: boolean | number;
+};

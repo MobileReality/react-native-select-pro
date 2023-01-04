@@ -4,47 +4,55 @@ import { Image, Pressable } from 'react-native';
 import { Text } from 'react-native';
 import { StyleSheet } from 'react-native';
 
-import { COLORS, FONT_SIZE, PADDING } from '../../constants/styles';
+import { COLORS, FONT_SIZE, PADDING, PRESSED_STYLE } from '../../constants';
+import { useOptionsListContext } from '../../context';
 
 import type { SectionHeaderProps } from './section-header.types';
 
 const iconSource = require('./../../assets/icons/x.png');
 
-export const SectionHeader = ({
-    title,
-    sectionHeader,
-    onPressSection,
-    isSelected,
-}: SectionHeaderProps) => (
-    <Pressable
-        style={[
-            styles.sectionHeaderContainerStyle,
-            sectionHeader,
-            isSelected && sectionHeader?.selected,
-        ]}
-        onPress={() => onPressSection(title)}
-    >
-        <Text
-            style={[
-                styles.sectionHeaderTextStyle,
-                sectionHeader?.text,
-                isSelected && sectionHeader?.selectedText,
+export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
+    const {
+        styles: mainStyles,
+        onPressSection,
+        sectionHeaderButtonProps,
+        sectionHeaderTextProps,
+        sectionHeaderImageProps,
+    } = useOptionsListContext();
+
+    const { sectionHeader } = mainStyles ?? {};
+
+    return (
+        <Pressable
+            {...sectionHeaderButtonProps}
+            style={({ pressed }) => [
+                styles.sectionHeaderContainerStyle,
+                sectionHeader,
+                isSelected && sectionHeader?.selected,
+                pressed && (sectionHeader?.pressed ?? PRESSED_STYLE),
             ]}
+            onPress={() => onPressSection(title)}
         >
-            {title}
-        </Text>
-        {isSelected && (
-            <Image
-                source={iconSource}
+            <Text
+                {...sectionHeaderTextProps}
                 style={[
-                    styles.xIcon,
-                    sectionHeader?.clearIcon,
-                    isSelected && sectionHeader?.selectedClearIcon,
+                    styles.sectionHeaderTextStyle,
+                    sectionHeader?.text,
+                    isSelected && sectionHeader?.selectedText,
                 ]}
-            />
-        )}
-    </Pressable>
-);
+            >
+                {title}
+            </Text>
+            {isSelected && (
+                <Image
+                    source={iconSource}
+                    {...sectionHeaderImageProps}
+                    style={[styles.xIcon, sectionHeader?.clearIcon]}
+                />
+            )}
+        </Pressable>
+    );
+};
 
 type Styles = {
     sectionHeaderContainerStyle: ViewStyle;

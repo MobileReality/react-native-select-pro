@@ -1,6 +1,6 @@
 {
   "name": "@mobile-reality/react-native-select-pro",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "description": "React Native dropdown (select) component developed by Mobile Reality",
   "main": "dist/commonjs/index",
   "module": "dist/module/index",
@@ -65,7 +65,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "react-native-builder-bob": "0.20.0",
+    "react-native-builder-bob": "0.20.3",
     "@monorepo/eslint-config": "workspace:*"
   },
   "dependencies": {

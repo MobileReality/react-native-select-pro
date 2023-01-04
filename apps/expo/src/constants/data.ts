@@ -57,3 +57,34 @@ export const SECTIONS_DATA = [
         ],
     },
 ];
+
+export const PROGRAMMING_LANGUAGES = [
+    {
+        value: 'javascript',
+        label: 'JavaScript',
+    },
+    {
+        value: 'typescript',
+        label: 'TypeScript',
+    },
+    {
+        value: 'java',
+        label: 'Java',
+    },
+    {
+        value: 'python',
+        label: 'Python',
+    },
+    {
+        value: 'c#',
+        label: 'C#',
+    },
+    {
+        value: 'c',
+        label: 'C',
+    },
+    {
+        value: 'c++',
+        label: 'C++',
+    },
+];
