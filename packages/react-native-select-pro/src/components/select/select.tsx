@@ -204,6 +204,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 sectionHeaderImageProps,
                                 sectionHeaderTextProps,
                                 pressableSelectedOption,
+                                multiSelection,
                             }}
                         >
                             <OptionsList ref={optionsListRef} />
