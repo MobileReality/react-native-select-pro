@@ -31,8 +31,8 @@ export const useSelect = <T>({
     multiSelection,
     dispatch,
     onRemove,
-    onDropdownOpened,
-    onDropdownClosed,
+    onSelectOpened,
+    onSelectClosed,
     onSectionSelect,
     onSectionRemove,
     optionsListRef,
@@ -300,11 +300,11 @@ export const useSelect = <T>({
 
     useEffect(() => {
         if (isOpened) {
-            onDropdownOpened?.();
+            onSelectOpened?.();
         } else {
-            onDropdownClosed?.();
+            onSelectClosed?.();
         }
-    }, [isOpened, onDropdownOpened, onDropdownClosed]);
+    }, [isOpened, onSelectOpened, onSelectClosed]);
 
     return {
         setOptionsListPosition,

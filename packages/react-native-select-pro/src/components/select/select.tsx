@@ -25,61 +25,59 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
     const {
         // Required
         options,
-        // Callbacks
-        onSelect,
-        onRemove,
-        onSectionSelect,
-        onSectionRemove,
-        onDropdownOpened,
-        onDropdownClosed,
-        // Texts
-        noOptionsText = 'No options',
-        placeholderText = 'Select...',
-        // Animations
         animation = true,
-        // Behaviour
         clearable = true,
         closeDropdownOnSelect = true,
-        disabled = false,
-        scrollToSelectedOption = true,
-        hideArrow = false,
-        noBackdrop = false,
-        pressableSelectedOption = false,
-        // Additional features
         defaultOption,
-        flatListProps,
-        sectionListProps,
-        clearOptionButtonProps,
-        clearOptionImageProps,
-        arrowContainerProps,
-        arrowImageProps,
-        backdropProps,
-        backdropChildProps,
-        optionTextProps,
-        optionButtonProps,
-        selectLeftIconsProps,
-        selectRightIconsProps,
-        selectLeftIconImageProps,
-        noOptionsTextProps,
-        sectionHeaderTextProps,
-        sectionHeaderImageProps,
-        sectionHeaderButtonProps,
-        selectTextProps,
-        noOptionsProps,
-        // Search
+        disabled = false,
+        hasBackdrop = true,
+        hideArrow = false,
+        multiSelection = false,
+        noOptionsText = 'No options',
+        placeholderText = 'Select...',
+        placeholderTextColor = COLORS.GRAY,
+        pressableSelectedOption = true,
+        scrollToSelectedOption = true,
         searchable = false,
         searchPattern = (payload: string) => `(${payload})`,
+        styles: mainStyles,
+
+        // Callbacks
+        onSectionSelect,
+        onSectionRemove,
+        onSelect,
+        onSelectOpened,
+        onSelectClosed,
+        onRemove,
+        // Texts
+
+        // Behaviour
+
+        // Additional features
+        arrowContainerProps,
+        arrowImageProps,
+        backdropChildProps,
+        backdropProps,
+        clearOptionButtonProps,
+        clearOptionImageProps,
+        flatListProps,
+        noOptionsProps,
+        noOptionsTextProps,
+        optionButtonProps,
+        optionTextProps,
         selectInputProps,
-        // Multiselect
-        multiSelection = false,
-        // Custom components
+        selectLeftIconImageProps,
+        selectLeftIconsProps,
+        selectRightIconsProps,
+        selectTextProps,
+        sectionHeaderButtonProps,
+        sectionHeaderImageProps,
+        sectionHeaderTextProps,
+        sectionListProps,
         OptionComponent,
-        // Colors
-        placeholderTextColor = COLORS.GRAY,
-        // Accessibility
+        // TODO: delete this prop
         selectControlOpenDropdownA11yLabel,
         // Styles
-        styles: mainStyles,
     } = props;
 
     const [state, dispatch] = useReducer<
@@ -118,8 +116,8 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         closeDropdownOnSelect,
         searchable,
         multiSelection,
-        onDropdownOpened,
-        onDropdownClosed,
+        onSelectOpened,
+        onSelectClosed,
         ref,
         state,
         onSectionSelect,
@@ -166,7 +164,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
             </SelectContextProvider>
             {isOpened && (
                 <>
-                    {!noBackdrop && (
+                    {hasBackdrop && (
                         <Portal hostName={Portals.Backdrop}>
                             <Backdrop
                                 backdrop={mainStyles?.backdrop}
