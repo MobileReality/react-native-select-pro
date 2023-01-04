@@ -2,7 +2,6 @@ import { Animated } from '../examples/animated';
 import { Basic } from '../examples/basic';
 import { SelectBottomSheet } from '../examples/bottom-sheet';
 import { Callbacks } from '../examples/callbacks';
-import { CustomComponent } from '../examples/custom-component';
 import { CustomIcons } from '../examples/custom-icons';
 import { CustomOptionsData } from '../examples/custom-options-data';
 import { CustomStyles } from '../examples/custom-styles';
@@ -57,10 +56,6 @@ export const ROUTES = [
     {
         name: 'Callbacks',
         screen: Callbacks,
-    },
-    {
-        name: 'Custom Component',
-        screen: CustomComponent,
     },
     {
         name: 'Custom Options Data',

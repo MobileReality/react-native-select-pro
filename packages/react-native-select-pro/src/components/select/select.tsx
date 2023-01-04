@@ -25,6 +25,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
     const {
         // Required
         options,
+        // Basic
         animation = true,
         clearable = true,
         closeDropdownOnSelect = true,
@@ -41,7 +42,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         searchable = false,
         searchPattern = (payload: string) => `(${payload})`,
         styles: mainStyles,
-
         // Callbacks
         onSectionSelect,
         onSectionRemove,
@@ -49,11 +49,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         onSelectOpened,
         onSelectClosed,
         onRemove,
-        // Texts
-
-        // Behaviour
-
-        // Additional features
+        // Customized
         arrowContainerProps,
         arrowImageProps,
         backdropChildProps,
@@ -74,7 +70,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         sectionHeaderImageProps,
         sectionHeaderTextProps,
         sectionListProps,
-        OptionComponent,
         // TODO: delete this prop
         selectControlOpenDropdownA11yLabel,
         // Styles
@@ -178,7 +173,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                         <OptionsListContextProvider
                             value={{
                                 animation,
-                                OptionComponent,
                                 aboveSelectControl,
                                 flatListProps,
                                 isOpened,

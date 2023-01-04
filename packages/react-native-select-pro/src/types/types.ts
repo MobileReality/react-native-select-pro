@@ -346,15 +346,6 @@ export interface SelectProps<T = unknown> {
         | 'onLayout'
     >;
 
-    // ---CUSTOM-COMPONENT--- //
-    /**
-     * OptionComponent
-     *
-     * @param props OptionComponentProps
-     * @category Custom Component
-     */
-    OptionComponent?: (props: OptionComponentProps) => JSX.Element;
-
     // ---ACCESSIBILITY--- //
 
     /**

@@ -10,7 +10,6 @@ import type { OptionProps } from './option.types';
 
 export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optionIndex }, ref) => {
     const {
-        OptionComponent,
         onPressOption,
         optionButtonProps,
         optionTextProps,
@@ -20,15 +19,6 @@ export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optio
     const onChooseOption: OnChooseOption = () => {
         onPressOption(option, optionIndex);
     };
-
-    if (OptionComponent) {
-        return (
-            <OptionComponent
-                {...{ isSelected, option, optionIndex }}
-                onPressOption={onChooseOption}
-            />
-        );
-    }
 
     const { label } = option;
     const { option: optionStyles } = mainStyles ?? {};
