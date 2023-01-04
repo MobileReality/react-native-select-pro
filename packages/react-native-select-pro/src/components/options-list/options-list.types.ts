@@ -1,5 +1,4 @@
-import type { OptionalToRequired } from '../../helpers';
-import type { OptionStyles } from '../../types/styles';
+import type { OptionalToRequired, OptionStyles } from '../../types';
 
 export type UseOptionsListProps = OptionalToRequired<{
     optionStyles: OptionStyles | undefined;

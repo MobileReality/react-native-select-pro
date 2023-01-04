@@ -1,7 +1,4 @@
-import type { OptionalToRequired } from '../../helpers';
-import type { SelectProps } from '../../types';
-import type { OnOutsidePress } from '../../types/shared';
-import type { SelectStyles } from '../../types/styles';
+import type { OnOutsidePress, OptionalToRequired, SelectProps, SelectStyles } from '../../types';
 
 export type BackdropProps = {
     onOutsidePress: OnOutsidePress;
