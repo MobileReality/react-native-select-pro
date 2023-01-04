@@ -6,8 +6,9 @@ import { ITEM_HEIGHT } from '../../constants';
 import { useOptionsListContext } from '../../context';
 import { selectedOptionResolver } from '../../helpers';
 import type { OptionType } from '../../types';
+import type { ItemLayout } from '../../types/shared';
 
-import type { ItemLayout, UseOptionsListProps } from './options-list.types';
+import type { UseOptionsListProps } from './options-list.types';
 
 export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
     const { optionsData, searchValue, selectedOption, searchedOptions } = useOptionsListContext();
@@ -41,7 +42,7 @@ export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
         return false;
     };
 
-    const getItemLayout = <T>(_data: T, index: number): ItemLayout => {
+    const getItemLayout = <T>(_data: T, index: number): ItemLayout<T> => {
         const height = StyleSheet.flatten(optionStyles)?.height;
         const isNumber = typeof height === 'number';
         return {

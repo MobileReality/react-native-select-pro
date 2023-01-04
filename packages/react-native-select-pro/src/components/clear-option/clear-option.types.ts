@@ -1,5 +1,5 @@
-import type { OptionalToRequired } from '../../helpers';
+import type { OnPressRemove, OptionalToRequired } from '../../types';
 
 export type ClearOptionProps = OptionalToRequired<{
-    onPressRemove: () => void;
+    onPressRemove: OnPressRemove;
 }>;

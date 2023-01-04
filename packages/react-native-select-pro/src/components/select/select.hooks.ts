@@ -10,13 +10,12 @@ import {
     selectedOptionResolver,
 } from '../../helpers';
 import { Action } from '../../state';
+import type { OptionType, SelectRef } from '../../types';
 import type {
     OnOutsidePress,
     OnPressOptionType,
     OnPressSelectControlType,
-    OptionType,
-    SelectRef,
-} from '../../types';
+} from '../../types/shared';
 import { SelectModalContext } from '../select-provider';
 
 import type { UseSelect } from './select.types';
@@ -137,7 +136,7 @@ export const useSelect = <T>({
                     type: Action.SelectOption,
                     payload: { selectedOption: null, selectedOptionIndex: -1 },
                 });
-                if (onRemove) {
+                if (onRemove && selectedOption) {
                     onRemove(selectedOption, selectedOptionIndex);
                 }
             },

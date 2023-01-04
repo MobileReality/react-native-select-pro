@@ -13,6 +13,7 @@ export const MultiSelectedOption = ({
     onPressRemove,
 }: MultiSelectedOptionProps) => {
     const isPressable = onPressRemove && option;
+
     return (
         <Pressable
             accessibilityLabel={option ? `${option.label} selected` : 'Placeholder in multi-select'}

@@ -10,6 +10,7 @@ import {
 import { useAccessibilityScreenReader } from '../../hooks';
 import { Action } from '../../state';
 import type { OptionType } from '../../types';
+import type { OnPressRemove } from '../../types/shared';
 
 export const useSelectControl = () => {
     const {
@@ -106,7 +107,7 @@ export const useSelectControl = () => {
         return { index: foundIndex, option };
     };
 
-    const onPressRemove = (option: OptionType | null = null) => {
+    const onPressRemove: OnPressRemove = (option = null) => {
         if (disabled) {
             return;
         }
@@ -121,7 +122,7 @@ export const useSelectControl = () => {
             };
         }
 
-        if (onRemove) {
+        if (onRemove && removedOption.option) {
             onRemove(removedOption.option, removedOption.index);
         }
     };

@@ -29,9 +29,9 @@ export const MultiSelect = ({ selectedOptions, onPressRemove, selectStyles }: Mu
                 return isSearchable ? null : placeholder;
             }
 
-            return selectedOptions.map((option: OptionType, index) => (
+            return selectedOptions.map((option: OptionType) => (
                 <MultiSelectedOption
-                    key={index}
+                    key={`${option.section}-${option.value}`}
                     optionWidth={calculatedOptionWidth}
                     {...{
                         option,
