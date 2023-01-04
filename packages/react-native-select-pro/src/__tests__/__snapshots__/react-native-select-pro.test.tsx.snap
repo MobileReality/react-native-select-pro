@@ -399,7 +399,16 @@ exports[`Select with custom select control arrow icon should generate Select wit
           ]
         }
       >
-        <View>
+        <View
+          style={
+            {
+              "icon": {
+                "height": 15,
+                "width": 15,
+              },
+            }
+          }
+        >
           <Image
             collapsable={false}
             source={
