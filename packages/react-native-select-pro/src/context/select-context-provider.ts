@@ -1,7 +1,8 @@
-import type { OptionalToRequired } from '../helpers';
 import { createSafeContext } from '../helpers';
 import type { DispatchType, Position, State } from '../state';
-import type { OnPressSelectControlType, SelectProps } from '../types';
+import type { OptionalToRequired } from '../types';
+import type { SelectProps } from '../types';
+import type { OnPressSelectControlType } from '../types/shared';
 
 type SelectContextProviderTypes<T> = OptionalToRequired<
     {

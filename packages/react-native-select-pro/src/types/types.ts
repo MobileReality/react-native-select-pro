@@ -1,7 +1,3 @@
-export * from './guards';
-export * from './shared';
-export * from './styles';
-export * from './types';
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
 import type {
     FlatListProps,
@@ -14,9 +10,9 @@ import type {
     ViewProps,
 } from 'react-native';
 
-import type { OnChooseOption, OptionProps } from '../components/option/option.types';
 import type { State } from '../state';
 
+import type { OnChooseOption, OptionComponentType } from './shared';
 import type { SelectStyles } from './styles';
 
 export type OptionTypeRequired = {
@@ -41,7 +37,10 @@ export type SectionOptionType<T = unknown> = {
 
 export type OptionsType<T> = SectionOptionType<T>[] | OptionType<T>[];
 
-export type OptionComponentProps = Pick<OptionProps, 'isSelected' | 'option' | 'optionIndex'> & {
+export type OptionComponentProps = Pick<
+    OptionComponentType,
+    'isSelected' | 'option' | 'optionIndex'
+> & {
     onPressOption: OnChooseOption;
 };
 
@@ -74,10 +73,7 @@ export interface SelectProps<T = unknown> {
      * @param optionIndex removed option(s) index(es)
      * @category Callback
      */
-    onRemove?: (
-        option: OptionType<T> | OptionType<T>[] | null,
-        optionIndex: number | number[],
-    ) => void;
+    onRemove?: (option: OptionType<T> | OptionType<T>[], optionIndex: number | number[]) => void;
 
     /**
      * Callback that is called when section is selected with section header
@@ -124,7 +120,7 @@ export interface SelectProps<T = unknown> {
      * Placeholder text
      *
      * @category Text
-     * @default "Select..."
+     * @default "#808080"
      */
     placeholderText?: string;
 
@@ -158,7 +154,7 @@ export interface SelectProps<T = unknown> {
      *  If `true` disable a select control
      *
      *  @category Behaviour
-     *  @default false
+     *  @default true
      */
     disabled?: boolean;
 
@@ -334,7 +330,7 @@ export interface SelectProps<T = unknown> {
      * Placeholder text color
      *
      * @category Colors
-     * @default "#808080"
+     * @default "Select..."
      */
     placeholderTextColor?: string;
 
@@ -377,17 +373,3 @@ export interface SelectRef<T = unknown> {
      */
     getState: () => State<T>;
 }
-
-/**
- * @ignore
- */
-export type OnPressOptionType<T> = (option: OptionType<T>, optionIndex: number) => void;
-/**
- * @ignore
- */
-export type OnPressSelectControlType = () => void;
-/**
- * @ignore
- */
-export type OnOutsidePress = () => void;
-export type OnSetOptionsListPosition = () => void;

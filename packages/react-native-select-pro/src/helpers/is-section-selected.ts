@@ -1,14 +1,12 @@
 import type { OptionType, SectionOptionType } from '../types';
 
-export const isSectionSelected = ({
-    title,
-    selectedOptions,
-    sectionData,
-}: {
+type IsSectionSelected = {
     title: string;
     selectedOptions: OptionType[];
     sectionData: SectionOptionType[];
-}) =>
+};
+
+export const isSectionSelected = ({ title, selectedOptions, sectionData }: IsSectionSelected) =>
     Array.isArray(selectedOptions) &&
     sectionData
         .find((item) => item.title === title)

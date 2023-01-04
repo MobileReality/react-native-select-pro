@@ -4,8 +4,9 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING, PRESSED_STYLE } from '../../constants';
 import { useOptionsListContext } from '../../context';
+import type { OnChooseOption } from '../../types/shared';
 
-import type { OnChooseOption, OptionProps } from './option.types';
+import type { OptionProps } from './option.types';
 
 export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optionIndex }, ref) => {
     const {

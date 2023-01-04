@@ -1,11 +1,6 @@
-import type { TouchableWithoutFeedbackProps, ViewProps } from 'react-native';
-
-import type { OptionalToRequired } from '../../helpers';
-import type { OnOutsidePress } from '../../types';
-import type { SelectStyles } from '../../types/styles';
+import type { OnOutsidePress, OptionalToRequired, SelectProps, SelectStyles } from '../../types';
 
 export type BackdropProps = {
     onOutsidePress: OnOutsidePress;
-    backdropProps?: Omit<TouchableWithoutFeedbackProps, 'style' | 'onPress'>;
-    backdropChildProps?: Omit<ViewProps, 'style'>;
-} & OptionalToRequired<Pick<SelectStyles, 'backdrop'>>;
+} & OptionalToRequired<Pick<SelectStyles, 'backdrop'>> &
+    Pick<SelectProps, 'backdropProps' | 'backdropChildProps'>;
