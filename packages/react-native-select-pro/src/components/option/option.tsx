@@ -35,8 +35,8 @@ export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optio
             disabled={isDisabled}
             style={({ pressed }) => [
                 styles.option,
-                optionStyles,
-                isSelected && [styles.selected, optionStyles?.selected],
+                optionStyles?.container,
+                isSelected && [styles.selected, optionStyles?.selected?.container],
                 pressed && (optionStyles?.pressed ?? PRESSED_STYLE),
             ]}
             onPress={onChooseOption}
@@ -44,7 +44,11 @@ export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optio
             <Text
                 numberOfLines={1}
                 {...optionTextProps}
-                style={[styles.text, optionStyles?.text, isSelected && optionStyles?.selectedText]}
+                style={[
+                    styles.text,
+                    optionStyles?.text,
+                    isSelected && optionStyles?.selected?.text,
+                ]}
             >
                 {label}
             </Text>

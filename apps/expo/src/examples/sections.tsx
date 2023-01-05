@@ -9,9 +9,10 @@ export const Sections = () => {
         <SafeAreaViewWrapper>
             <Select
                 styles={{
-                    width: 200,
                     sectionHeader: {
-                        backgroundColor: 'lightblue',
+                        container: {
+                            backgroundColor: 'lightblue',
+                        },
                         text: { color: 'darkblue' },
                     },
                 }}

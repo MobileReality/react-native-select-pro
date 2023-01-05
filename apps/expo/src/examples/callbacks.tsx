@@ -35,7 +35,7 @@ export const Callbacks = () => {
             )}
             <Select
                 options={DATA}
-                styles={{ width: 250 }}
+                styles={{ select: { container: { width: 250 } } }}
                 onSelectClosed={() => {
                     setIsOpened(false);
                 }}

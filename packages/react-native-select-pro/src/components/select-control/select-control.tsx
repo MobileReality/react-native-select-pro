@@ -13,6 +13,7 @@ import { useSelectControl } from './select-control.hooks';
 export const SelectControl = forwardRef<View>((_, ref) => {
     const {
         hideArrow,
+        selectContainerProps,
         selectLeftIconsProps,
         selectLeftIconImageProps,
         selectRightIconsProps,
@@ -35,16 +36,14 @@ export const SelectControl = forwardRef<View>((_, ref) => {
     return (
         <View style={styles.rootView}>
             <Pressable
-                {...{
-                    accessibilityHint,
-                    accessibilityLabel,
-                    selectStyles,
-                    ref,
-                }}
+                accessibilityHint={accessibilityHint}
+                {...selectContainerProps}
+                ref={ref}
+                accessibilityLabel={accessibilityLabel}
                 style={[
                     styles.container,
                     isOpened && (aboveSelectControl ? styles.openedAbove : styles.opened),
-                    selectStyles,
+                    selectStyles?.container,
                     disabled && [styles.disabled, selectStyles?.disabled],
                 ]}
                 onPress={onPressSelectControl}
@@ -110,8 +109,10 @@ const styles = StyleSheet.create<Styles>({
     },
     rootView: {
         position: 'relative',
+        width: '100%',
     },
     container: {
+        width: '100%',
         height: 40,
         flexDirection: 'row',
         borderRadius: SHAPE,

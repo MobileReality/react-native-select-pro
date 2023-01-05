@@ -61,6 +61,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         noOptionsTextProps,
         optionButtonProps,
         optionTextProps,
+        selectContainerProps,
         selectInputProps,
         selectLeftIconImageProps,
         selectLeftIconsProps,
@@ -70,8 +71,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         sectionHeaderImageProps,
         sectionHeaderTextProps,
         sectionListProps,
-        // TODO: delete this prop
-        selectControlOpenDropdownA11yLabel,
         // Styles
     } = props;
 
@@ -121,7 +120,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
     });
 
     return (
-        <View style={[styles.relative, mainStyles]}>
+        <View style={styles.relative}>
             <SelectContextProvider
                 value={{
                     isOpened,
@@ -138,7 +137,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     searchValue,
                     onPressSelectControl,
                     selectInputProps,
-                    selectControlOpenDropdownA11yLabel,
                     onRemove,
                     dispatch,
                     setOptionsListPosition,
@@ -153,6 +151,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     selectLeftIconsProps,
                     selectLeftIconImageProps,
                     selectTextProps,
+                    selectContainerProps,
                 }}
             >
                 <SelectControl ref={selectControlRef} />

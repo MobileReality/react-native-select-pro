@@ -15,9 +15,7 @@ export const RHF = () => {
                 control={control}
                 name="select-name"
                 render={({ field }) => {
-                    return (
-                        <Select options={DATA} styles={{ width: 300 }} onSelect={field.onChange} />
-                    );
+                    return <Select options={DATA} onSelect={field.onChange} />;
                 }}
             />
         </SafeAreaViewWrapper>

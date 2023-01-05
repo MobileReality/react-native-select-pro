@@ -2,8 +2,9 @@ import * as React from 'react';
 import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { Button } from '../components/button';
 import { ROUTES } from '../constants/routes';
+
+import { Button } from './button';
 
 export const Home = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

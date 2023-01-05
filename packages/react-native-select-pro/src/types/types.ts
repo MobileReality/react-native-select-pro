@@ -282,6 +282,11 @@ export interface SelectProps<T = unknown> {
     optionTextProps?: Omit<TextProps, 'style'>;
 
     /**
+     * Override the select container props.
+     */
+    selectContainerProps?: Omit<PressableProps, 'ref' | 'style' | 'onPress'>;
+
+    /**
      *  Override the select input props.
      */
     selectInputProps?: Omit<
@@ -345,26 +350,12 @@ export interface SelectProps<T = unknown> {
         | 'keyExtractor'
         | 'onLayout'
     >;
-
-    // ---ACCESSIBILITY--- //
-
-    /**
-     * selectControlOpenDropdownA11yLabel
-     *
-     * @category Accessibility
-     * @default "Open a dropdown"
-     */
-    selectControlOpenDropdownA11yLabel?: string;
 }
 
 /**
  * `<Select />` component ref
  */
 export interface SelectRef<T = unknown> {
-    /**
-     * Clear a selected option
-     */
-    clear: () => void;
     /**
      * Open a dropdown
      */
@@ -373,6 +364,11 @@ export interface SelectRef<T = unknown> {
      * Close a dropdown
      */
     close: () => void;
+
+    /**
+     * Clear a selected option
+     */
+    clear: () => void;
     /**
      * Get current state of select
      */

@@ -26,7 +26,7 @@ export const ClearOption = ({ onPressRemove }: ClearOptionProps) => {
             hitSlop={{ right: 3, left: 3 }}
             disabled={disabled}
             {...clearOptionButtonProps}
-            style={[styles.xIconWrapper, clear?.button]}
+            style={[styles.xIconWrapper, clear?.container]}
             onPress={() => onPressRemove(null)}
         >
             <Image

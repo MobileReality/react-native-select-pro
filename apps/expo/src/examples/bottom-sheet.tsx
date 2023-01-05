@@ -19,7 +19,7 @@ export const SelectBottomSheet = () => {
                 enablePanDownToClose
             >
                 <View style={styles.container}>
-                    <Select options={DATA} styles={{ width: 250 }} />
+                    <Select options={DATA} />
                 </View>
             </BottomSheet>
         </SafeAreaViewWrapper>

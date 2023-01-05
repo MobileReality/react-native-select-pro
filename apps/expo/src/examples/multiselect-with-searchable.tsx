@@ -7,12 +7,7 @@ import { DATA } from '../constants/data';
 export const MultiSelectWithSearchable = () => {
     return (
         <SafeAreaViewWrapper>
-            <Select
-                multiSelection={true}
-                options={DATA}
-                searchable={true}
-                styles={{ width: 300 }}
-            />
+            <Select multiSelection={true} options={DATA} searchable={true} />
         </SafeAreaViewWrapper>
     );
 };
