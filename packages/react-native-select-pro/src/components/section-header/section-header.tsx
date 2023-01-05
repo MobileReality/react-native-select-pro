@@ -29,8 +29,8 @@ export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
             {...sectionHeaderButtonProps}
             style={({ pressed }) => [
                 styles.sectionHeaderContainerStyle,
-                sectionHeader,
-                isSelected && sectionHeader?.selected,
+                sectionHeader?.container,
+                isSelected && sectionHeader?.selected?.container,
                 pressed && (sectionHeader?.pressed ?? PRESSED_STYLE),
             ]}
             onPress={() => onPressSection(title)}
@@ -40,7 +40,7 @@ export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
                 style={[
                     styles.sectionHeaderTextStyle,
                     sectionHeader?.text,
-                    isSelected && sectionHeader?.selectedText,
+                    isSelected && sectionHeader?.selected?.text,
                 ]}
             >
                 {title}
@@ -49,7 +49,7 @@ export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
                 <Image
                     source={iconSource}
                     {...sectionHeaderImageProps}
-                    style={[styles.xIcon, sectionHeader?.clearIcon]}
+                    style={[styles.xIcon, sectionHeader?.clear?.icon]}
                 />
             )}
         </Pressable>

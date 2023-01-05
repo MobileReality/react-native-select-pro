@@ -103,20 +103,12 @@ export const CustomOptionsData = () => {
     return (
         <SafeAreaViewWrapper>
             <Select
-                styles={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    select: {
-                        width: 150,
-                    },
-                }}
                 options={DATA}
                 onSelect={(option) => {
                     setSelected(option);
                 }}
             />
-            <View style={{ flex: 1 }}>
+            <View>
                 {selected && <Text>Selected item: {JSON.stringify(selected, null, 4)}</Text>}
             </View>
         </SafeAreaViewWrapper>

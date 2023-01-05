@@ -8,7 +8,6 @@ type OptionsListContextProviderTypes<T> = OptionalToRequired<
     Pick<
         SelectProps<T>,
         | 'animation'
-        | 'OptionComponent'
         | 'flatListProps'
         | 'noOptionsText'
         | 'scrollToSelectedOption'

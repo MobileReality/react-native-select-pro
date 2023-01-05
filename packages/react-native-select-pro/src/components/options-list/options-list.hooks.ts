@@ -43,7 +43,7 @@ export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
     };
 
     const getItemLayout = <T>(_data: T, index: number): ItemLayout<T> => {
-        const height = StyleSheet.flatten(optionStyles)?.height;
+        const height = StyleSheet.flatten(optionStyles?.container)?.height;
         const isNumber = typeof height === 'number';
         return {
             length: isNumber ? height : ITEM_HEIGHT,

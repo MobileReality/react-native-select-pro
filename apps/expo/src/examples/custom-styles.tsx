@@ -10,9 +10,11 @@ export const CustomStyles = () => {
             <Select
                 styles={{
                     select: {
-                        width: 250,
-                        backgroundColor: 'lightblue',
-                        height: 80,
+                        container: {
+                            width: 250,
+                            backgroundColor: 'lightblue',
+                            height: 80,
+                        },
                         text: {
                             fontSize: 20,
                             color: 'white',
@@ -25,16 +27,20 @@ export const CustomStyles = () => {
                         maxHeight: 150,
                     },
                     option: {
-                        backgroundColor: 'lightcoral',
-                        borderBottomWidth: 1,
-                        height: 40,
+                        container: {
+                            backgroundColor: 'lightcoral',
+                            borderBottomWidth: 1,
+                            height: 40,
+                        },
                         text: {
                             fontSize: 20,
                         },
                         selected: {
-                            backgroundColor: 'mediumseagreen',
+                            container: {
+                                backgroundColor: 'mediumseagreen',
+                            },
+                            text: { color: 'white' },
                         },
-                        selectedText: { color: 'white' },
                         pressed: {
                             backgroundColor: 'lightblue',
                         },

@@ -19,7 +19,7 @@ export const MultiSelectedOption = ({
             accessibilityLabel={option ? `${option.label} selected` : 'Placeholder in multi-select'}
             style={({ pressed }) => [
                 styles.multiSelectedOption,
-                selectStyles?.multiSelectedOption,
+                selectStyles?.multiSelectedOption?.container,
                 { width: optionWidth },
                 pressed && (selectStyles?.multiSelectedOption?.pressed ?? PRESSED_STYLE),
             ]}
