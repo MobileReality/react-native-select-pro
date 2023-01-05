@@ -9,7 +9,7 @@ export const SectionsWithMultiSelect = () => {
         <SafeAreaViewWrapper>
             <Select
                 options={SECTIONS_DATA}
-                multiSelection={true}
+                multiple={true}
                 styles={{
                     sectionHeader: {
                         selected: {

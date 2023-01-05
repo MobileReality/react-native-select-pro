@@ -12,7 +12,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
     const {
         isOpened,
         disabled,
-        multiSelection,
+        multiple,
         placeholderText,
         placeholderTextColor,
         searchPattern,
@@ -66,7 +66,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
     };
 
     const resolvePlaceholder = () => {
-        if (multiSelection && Array.isArray(selectedOption) && selectedOption.length > 0) {
+        if (multiple && Array.isArray(selectedOption) && selectedOption.length > 0) {
             return '  ';
         }
         return placeholderText;
@@ -82,7 +82,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
             placeholderTextColor={placeholderTextColor}
             style={
                 disabled
-                    ? [styles.disabled, styles.text, multiSelection && { marginRight: 5 }]
+                    ? [styles.disabled, styles.text, multiple && { marginRight: 5 }]
                     : [styles.text, textStyle]
             }
             textAlign={I18nManager.getConstants().isRTL ? 'right' : 'left'}

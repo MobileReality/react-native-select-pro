@@ -12,11 +12,11 @@ import { SelectText } from '../select-text';
 import type { SelectFieldTypeProps } from './select-field-type.types';
 
 export const SelectFieldType = ({ onPressRemove, selectStyles }: SelectFieldTypeProps) => {
-    const { multiSelection, searchValue, selectedOption } = useSelectContext();
+    const { multiple, searchValue, selectedOption } = useSelectContext();
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
 
     const renderProperSelectFieldType = () => {
-        if (multiSelection) {
+        if (multiple) {
             return (
                 <MultiSelect
                     {...{
@@ -45,7 +45,7 @@ export const SelectFieldType = ({ onPressRemove, selectStyles }: SelectFieldType
     };
 
     return (
-        <View style={[styles.container, multiSelection ? styles.multiSelect : styles.singleSelect]}>
+        <View style={[styles.container, multiple ? styles.multiSelect : styles.singleSelect]}>
             {renderProperSelectFieldType()}
         </View>
     );

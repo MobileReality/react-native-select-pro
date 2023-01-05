@@ -44,7 +44,7 @@ export const RealExample = () => {
                         styles={SELECT_STYLES}
                         options={PROGRAMMING_LANGUAGES}
                         placeholderTextColor="#f34c54"
-                        multiSelection
+                        multiple
                         onSelect={(option) => {
                             field.onChange([...field.value, option]);
                         }}
