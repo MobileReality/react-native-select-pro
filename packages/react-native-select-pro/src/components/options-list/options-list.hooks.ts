@@ -42,6 +42,10 @@ export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
         return false;
     };
 
+    const findSelectedOptionIndex = (item: OptionType) => {
+        return optionsData.findIndex((option) => option.value === item.value);
+    };
+
     const getItemLayout = <T>(_data: T, index: number): ItemLayout<T> => {
         const height = StyleSheet.flatten(optionStyles?.container)?.height;
         const isNumber = typeof height === 'number';
@@ -52,5 +56,5 @@ export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
         };
     };
 
-    return { getItemLayout, measuredRef, resolveData, findSelectedOption };
+    return { getItemLayout, measuredRef, resolveData, findSelectedOption, findSelectedOptionIndex };
 };

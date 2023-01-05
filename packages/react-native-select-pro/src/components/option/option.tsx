@@ -16,6 +16,7 @@ export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optio
         styles: mainStyles,
         pressableSelectedOption,
     } = useOptionsListContext();
+
     const onChooseOption: OnChooseOption = () => {
         onPressOption(option, optionIndex);
     };

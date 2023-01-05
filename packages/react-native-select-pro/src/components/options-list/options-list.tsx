@@ -20,9 +20,10 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         styles: mainStyles,
     } = useOptionsListContext();
 
-    const { getItemLayout, measuredRef, findSelectedOption, resolveData } = useOptionsList({
-        optionStyles: mainStyles?.option,
-    });
+    const { getItemLayout, measuredRef, findSelectedOption, findSelectedOptionIndex, resolveData } =
+        useOptionsList({
+            optionStyles: mainStyles?.option,
+        });
 
     const resolvedData = resolveData();
     const isSectionedOptions = isSectionOptionsType(resolvedData);
@@ -30,12 +31,12 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
     const renderItem = <T,>({ item, index, section }: RenderItemProps<T>) => {
         const { value } = item;
         const isSelected = findSelectedOption(item);
-        let optionIndex = index;
+        let optionIndex = findSelectedOptionIndex(item) ?? index;
         const sectionTitle = section?.title;
-        let sectionObj;
+        let sectionObject;
         if (isSectionedOptions) {
             optionIndex = getReducedSectionData(resolvedData).indexOf(item);
-            sectionObj = {
+            sectionObject = {
                 title: sectionTitle,
                 index: resolvedData.findIndex((el) => el.title === sectionTitle),
             };
@@ -45,7 +46,7 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
             <Option
                 key={value}
                 ref={index === 0 ? measuredRef : undefined}
-                option={{ ...item, section: sectionObj }}
+                option={{ ...item, section: sectionObject }}
                 {...{
                     isSelected,
                     optionIndex,
