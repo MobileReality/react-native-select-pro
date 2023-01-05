@@ -74,7 +74,7 @@ export interface SelectProps<T = unknown> {
      *
      * @default true
      */
-    closeDropdownOnSelect?: boolean;
+    closeOptionsListOnSelect?: boolean;
 
     /**
      *  An object that represents the default option for a `Select`.

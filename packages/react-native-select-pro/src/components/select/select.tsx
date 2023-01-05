@@ -28,7 +28,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         // Basic
         animation = true,
         clearable = true,
-        closeDropdownOnSelect = true,
+        closeOptionsListOnSelect = true,
         defaultOption,
         disabled = false,
         hasBackdrop = true,
@@ -108,7 +108,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         defaultOption,
         onRemove,
         disabled,
-        closeDropdownOnSelect,
+        closeOptionsListOnSelect,
         searchable,
         multiple,
         onSelectOpened,

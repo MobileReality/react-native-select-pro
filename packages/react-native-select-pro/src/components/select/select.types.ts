@@ -10,7 +10,7 @@ type FromSelectComponent<T> = Pick<
     | 'disabled'
     | 'searchable'
     | 'multiple'
-    | 'closeDropdownOnSelect'
+    | 'closeOptionsListOnSelect'
     | 'onSelectOpened'
     | 'onSelectClosed'
     | 'onRemove'

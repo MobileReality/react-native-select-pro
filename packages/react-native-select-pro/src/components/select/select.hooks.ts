@@ -26,7 +26,7 @@ export const useSelect = <T>({
     state,
     defaultOption,
     disabled,
-    closeDropdownOnSelect,
+    closeOptionsListOnSelect,
     searchable,
     multiple,
     dispatch,
@@ -154,7 +154,7 @@ export const useSelect = <T>({
     const hideKeyboardIfNeeded = () => searchInputRef?.current?.blur();
 
     const onPressOption: OnPressOptionType<T> = (option: OptionType<T>, optionIndex: number) => {
-        if (closeDropdownOnSelect) {
+        if (closeOptionsListOnSelect) {
             close();
         }
 
@@ -220,7 +220,7 @@ export const useSelect = <T>({
     };
 
     const onPressSection = (title: string) => {
-        if (closeDropdownOnSelect && multiple) {
+        if (closeOptionsListOnSelect && multiple) {
             close();
         }
 
