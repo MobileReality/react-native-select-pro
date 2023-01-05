@@ -29,6 +29,7 @@ type SelectContextProviderTypes<T> = OptionalToRequired<
         | 'selectLeftIconImageProps'
         | 'selectTextProps'
         | 'selectContainerProps'
+        | 'onSelectChangeText'
     > &
         Pick<
             State<T>,

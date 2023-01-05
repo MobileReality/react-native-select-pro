@@ -21,6 +21,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
         selectInputProps,
         dispatch,
         setOptionsListPosition,
+        onSelectChangeText,
     } = useSelectContext();
     const searchInputRef = useRef<TextInput>(null);
 
@@ -62,6 +63,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
                     payload,
                 });
             }
+            onSelectChangeText?.(payload);
         }
     };
 

@@ -195,6 +195,13 @@ export interface SelectProps<T = unknown> {
     onSelect?: (option: OptionType<T>, optionIndex: number) => void;
 
     /**
+     * Called when text is changed in select input.
+     *
+     * @param text Text in select input.
+     */
+    onSelectChangeText?: (text: string) => void;
+
+    /**
      * Called when selected is opened.
      **/
     onSelectOpened?: () => void;

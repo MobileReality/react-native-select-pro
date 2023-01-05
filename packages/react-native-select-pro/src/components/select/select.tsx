@@ -43,6 +43,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         searchPattern = (payload: string) => `(${payload})`,
         styles: mainStyles,
         // Callbacks
+        onSelectChangeText,
         onSectionSelect,
         onSectionRemove,
         onSelect,
@@ -152,6 +153,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     selectLeftIconImageProps,
                     selectTextProps,
                     selectContainerProps,
+                    onSelectChangeText,
                 }}
             >
                 <SelectControl ref={selectControlRef} />
