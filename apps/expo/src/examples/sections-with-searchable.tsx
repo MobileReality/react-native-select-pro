@@ -7,7 +7,7 @@ import { SECTIONS_DATA } from '../constants/data';
 export const SectionsWithSearchable = () => {
     return (
         <SafeAreaViewWrapper>
-            <Select options={SECTIONS_DATA} searchable={true} styles={{ width: 200 }} />
+            <Select options={SECTIONS_DATA} searchable={true} />
         </SafeAreaViewWrapper>
     );
 };

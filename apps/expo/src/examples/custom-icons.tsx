@@ -17,8 +17,7 @@ export const CustomIcons = () => {
             <Select
                 styles={{
                     select: {
-                        width: 180,
-                        marginBottom: 20,
+                        container: { marginBottom: 20 },
                         leftIcon: {
                             height: 20,
                             width: 20,
@@ -31,8 +30,9 @@ export const CustomIcons = () => {
             <Select
                 styles={{
                     select: {
-                        width: 250,
-                        marginBottom: 20,
+                        container: {
+                            marginBottom: 20,
+                        },
                         leftIcon: {
                             height: 25,
                             width: 25,
@@ -48,8 +48,7 @@ export const CustomIcons = () => {
             <Select
                 styles={{
                     select: {
-                        width: 250,
-                        marginBottom: 20,
+                        container: { marginBottom: 20 },
                         arrow: {
                             icon: { height: 25, width: 25 },
                         },
@@ -61,8 +60,9 @@ export const CustomIcons = () => {
             <Select
                 styles={{
                     select: {
-                        width: 250,
-                        marginBottom: 20,
+                        container: {
+                            marginBottom: 20,
+                        },
                         arrow: {
                             icon: { height: 25, width: 25 },
                         },

@@ -43,7 +43,7 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                 style={[
                     styles.container,
                     isOpened && (aboveSelectControl ? styles.openedAbove : styles.opened),
-                    selectStyles,
+                    selectStyles?.container,
                     disabled && [styles.disabled, selectStyles?.disabled],
                 ]}
                 onPress={onPressSelectControl}
@@ -109,8 +109,10 @@ const styles = StyleSheet.create<Styles>({
     },
     rootView: {
         position: 'relative',
+        width: '100%',
     },
     container: {
+        width: '100%',
         height: 40,
         flexDirection: 'row',
         borderRadius: SHAPE,

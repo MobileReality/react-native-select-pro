@@ -3,18 +3,16 @@
 exports[`Select should generate Select snapshot 1`] = `
 <View
   style={
-    [
-      {
-        "position": "relative",
-      },
-      undefined,
-    ]
+    {
+      "position": "relative",
+    }
   }
 >
   <View
     style={
       {
         "position": "relative",
+        "width": "100%",
       }
     }
   >
@@ -40,6 +38,7 @@ exports[`Select should generate Select snapshot 1`] = `
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "width": "100%",
           },
           false,
           undefined,

@@ -13,7 +13,6 @@ export const TextInputProps = () => {
             <Select
                 options={DATA}
                 searchable={true}
-                styles={{ width: 250 }}
                 selectInputProps={{
                     onFocus: () => {
                         setIsFocused(true);

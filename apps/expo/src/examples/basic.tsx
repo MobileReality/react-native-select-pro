@@ -7,7 +7,7 @@ import { DATA } from '../constants/data';
 export const Basic = () => {
     return (
         <SafeAreaViewWrapper>
-            <Select options={DATA} styles={{ width: 250 }} />
+            <Select options={DATA} />
         </SafeAreaViewWrapper>
     );
 };

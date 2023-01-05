@@ -3,18 +3,16 @@
 exports[`Select should generate Select snapshot 1`] = `
 <View
   style={
-    [
-      {
-        "position": "relative",
-      },
-      undefined,
-    ]
+    {
+      "position": "relative",
+    }
   }
 >
   <View
     style={
       {
         "position": "relative",
+        "width": "100%",
       }
     }
   >
@@ -40,6 +38,7 @@ exports[`Select should generate Select snapshot 1`] = `
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "width": "100%",
           },
           false,
           undefined,
@@ -127,25 +126,16 @@ exports[`Select should generate Select snapshot 1`] = `
 exports[`Select with custom left icon should generate Select with custom left icon snapshot 1`] = `
 <View
   style={
-    [
-      {
-        "position": "relative",
-      },
-      {
-        "select": {
-          "leftIcon": {
-            "height": 15,
-            "width": 15,
-          },
-        },
-      },
-    ]
+    {
+      "position": "relative",
+    }
   }
 >
   <View
     style={
       {
         "position": "relative",
+        "width": "100%",
       }
     }
   >
@@ -171,14 +161,10 @@ exports[`Select with custom left icon should generate Select with custom left ic
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "width": "100%",
           },
           false,
-          {
-            "leftIcon": {
-              "height": 15,
-              "width": 15,
-            },
-          },
+          undefined,
           false,
         ]
       }
@@ -290,27 +276,16 @@ exports[`Select with custom left icon should generate Select with custom left ic
 exports[`Select with custom select control arrow icon should generate Select with custom select control arrow icon snapshot 1`] = `
 <View
   style={
-    [
-      {
-        "position": "relative",
-      },
-      {
-        "select": {
-          "arrow": {
-            "icon": {
-              "height": 15,
-              "width": 15,
-            },
-          },
-        },
-      },
-    ]
+    {
+      "position": "relative",
+    }
   }
 >
   <View
     style={
       {
         "position": "relative",
+        "width": "100%",
       }
     }
   >
@@ -336,16 +311,10 @@ exports[`Select with custom select control arrow icon should generate Select wit
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "width": "100%",
           },
           false,
-          {
-            "arrow": {
-              "icon": {
-                "height": 15,
-                "width": 15,
-              },
-            },
-          },
+          undefined,
           false,
         ]
       }
@@ -399,16 +368,7 @@ exports[`Select with custom select control arrow icon should generate Select wit
           ]
         }
       >
-        <View
-          style={
-            {
-              "icon": {
-                "height": 15,
-                "width": 15,
-              },
-            }
-          }
-        >
+        <View>
           <Image
             collapsable={false}
             source={
@@ -439,18 +399,16 @@ exports[`Select with custom select control arrow icon should generate Select wit
 exports[`Select with multi selection and searchable should generate Select with multi selection and searchable enabled snapshot 1`] = `
 <View
   style={
-    [
-      {
-        "position": "relative",
-      },
-      undefined,
-    ]
+    {
+      "position": "relative",
+    }
   }
 >
   <View
     style={
       {
         "position": "relative",
+        "width": "100%",
       }
     }
   >
@@ -476,6 +434,7 @@ exports[`Select with multi selection and searchable should generate Select with 
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "width": "100%",
           },
           false,
           undefined,
@@ -575,18 +534,16 @@ exports[`Select with multi selection and searchable should generate Select with 
 exports[`Select with multi selection should generate Select with multi selection enabled snapshot 1`] = `
 <View
   style={
-    [
-      {
-        "position": "relative",
-      },
-      undefined,
-    ]
+    {
+      "position": "relative",
+    }
   }
 >
   <View
     style={
       {
         "position": "relative",
+        "width": "100%",
       }
     }
   >
@@ -612,6 +569,7 @@ exports[`Select with multi selection should generate Select with multi selection
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "width": "100%",
           },
           false,
           undefined,
@@ -711,18 +669,16 @@ exports[`Select with multi selection should generate Select with multi selection
 exports[`Select with searchable enabled should generate Select with searchable enabled snapshot 1`] = `
 <View
   style={
-    [
-      {
-        "position": "relative",
-      },
-      undefined,
-    ]
+    {
+      "position": "relative",
+    }
   }
 >
   <View
     style={
       {
         "position": "relative",
+        "width": "100%",
       }
     }
   >
@@ -748,6 +704,7 @@ exports[`Select with searchable enabled should generate Select with searchable e
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "width": "100%",
           },
           false,
           undefined,

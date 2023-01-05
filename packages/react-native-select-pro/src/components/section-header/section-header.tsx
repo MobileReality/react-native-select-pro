@@ -27,8 +27,8 @@ export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
             {...sectionHeaderButtonProps}
             style={({ pressed }) => [
                 styles.sectionHeaderContainerStyle,
-                sectionHeader,
-                isSelected && sectionHeader?.selected,
+                sectionHeader?.container,
+                isSelected && sectionHeader?.selected?.container,
                 pressed && (sectionHeader?.pressed ?? PRESSED_STYLE),
             ]}
             onPress={() => onPressSection(title)}
@@ -38,7 +38,7 @@ export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
                 style={[
                     styles.sectionHeaderTextStyle,
                     sectionHeader?.text,
-                    isSelected && sectionHeader?.text?.selected,
+                    isSelected && sectionHeader?.selected?.text,
                 ]}
             >
                 {title}

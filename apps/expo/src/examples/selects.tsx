@@ -9,15 +9,15 @@ export const Selects = () => {
     return (
         <SafeAreaViewWrapper>
             <Text>Select number 1</Text>
-            <Select options={DATA} styles={{ width: 300 }} />
+            <Select options={DATA} />
             <Text>Select number 2</Text>
-            <Select options={DATA} styles={{ width: 300 }} />
+            <Select options={DATA} />
             <Text>Select number 3</Text>
-            <Select options={DATA} styles={{ width: 300 }} />
+            <Select options={DATA} />
             <Text>Select number 4</Text>
-            <Select options={DATA} styles={{ width: 300 }} />
+            <Select options={DATA} />
             <Text>Select number 5</Text>
-            <Select options={DATA} styles={{ width: 300 }} />
+            <Select options={DATA} />
         </SafeAreaViewWrapper>
     );
 };

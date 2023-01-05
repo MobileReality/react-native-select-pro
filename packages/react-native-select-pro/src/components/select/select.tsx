@@ -120,7 +120,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
     });
 
     return (
-        <View style={[styles.relative, mainStyles]}>
+        <View style={styles.relative}>
             <SelectContextProvider
                 value={{
                     isOpened,

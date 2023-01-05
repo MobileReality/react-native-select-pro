@@ -16,7 +16,7 @@ export const NoOptions = () => {
     const { noOptions } = mainStyles ?? {};
 
     return (
-        <View {...noOptionsProps} style={[styles.option, noOptions]}>
+        <View {...noOptionsProps} style={[styles.option, noOptions?.container]}>
             <Text {...noOptionsTextProps} style={[styles.text, noOptions?.text]}>
                 {noOptionsText}
             </Text>

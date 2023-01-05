@@ -1,14 +1,7 @@
 import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export type SelectStyles = {
-    /**
-     * Style for the select.
-     */
     select?: SelectControlStyles;
-
-    /**
-     * Style for the single option.
-     */
     option?: OptionStyles;
 
     /**
@@ -16,28 +9,30 @@ export type SelectStyles = {
      */
     optionsList?: StyleProp<ViewStyle>;
 
-    /**
-     *  Style for the no options container.
-     */
-    noOptions?: StyleProp<ViewStyle> & {
+    noOptions?: {
+        /**
+         *  Style for the no options container.
+         */
+        container?: StyleProp<ViewStyle>;
+
         /**
          *  Style for the no options text.
          */
         text?: StyleProp<TextStyle>;
     };
-
-    /**
-     * Style for the section header.
-     */
-    sectionHeader?: StyleProp<ViewStyle> & SectionHeaderStyles;
+    sectionHeader?: SectionHeaderStyles;
 
     /**
      * Style for backdrop.
      */
     backdrop?: StyleProp<ViewStyle>;
-} & StyleProp<ViewStyle>;
+};
 
 export type SelectControlStyles = {
+    /**
+     * Style for the select.
+     */
+    container?: StyleProp<ViewStyle>;
     /**
      *  Style for the select text.
      */
@@ -53,10 +48,12 @@ export type SelectControlStyles = {
      */
     buttons?: StyleProp<ViewStyle>;
 
-    /**
-     *  Style for the selected option in select control.
-     */
-    multiSelectedOption?: StyleProp<ViewStyle> & {
+    multiSelectedOption?: {
+        /**
+         *  Style for the selected option in select control.
+         */
+        container?: StyleProp<ViewStyle>;
+
         /**
          *  Style for the selected option text in select control.
          */
@@ -71,17 +68,23 @@ export type SelectControlStyles = {
     /**
      *  Style for the arrow.
      */
-    arrow?: StyleProp<ViewStyle> & {
+    arrow?: {
+        /**
+         * Style for the arrow container.
+         */
+        container?: StyleProp<ViewStyle>;
+
         /**
          *  Style for the arrow icon.
          */
         icon?: StyleProp<ImageStyle>;
     };
 
-    /**
-     *  Style for the clear option button.
-     */
-    clear?: StyleProp<ViewStyle> & {
+    clear?: {
+        /**
+         * Style for the clear option button.
+         */
+        container?: StyleProp<ViewStyle>;
         /**
          *  Style for the clear option icon.
          */
@@ -92,37 +95,42 @@ export type SelectControlStyles = {
      * Style for the custom left icon.
      */
     leftIcon?: StyleProp<ImageStyle>;
-} & StyleProp<ViewStyle>;
+};
 
-export type OptionStyles = StyleProp<ViewStyle> & {
+export type OptionStyles = {
     /**
-     * Style for the single option text.
+     * Style for the single option.
      */
-    text?: StyleProp<TextStyle> & {
-        /**
-         * Style for the selected single option text.
-         */
-        selected?: StyleProp<TextStyle>;
-    };
-
-    /**
-     * Style for the selected single option.
-     */
-    selected?: StyleProp<ViewStyle>;
+    container: StyleProp<ViewStyle>;
 
     /**
      * Style for the pressed single option.
      */
     pressed?: StyleProp<ViewStyle>;
+
+    selected?: {
+        /**
+         * Style for the selected single option.
+         */
+        container: StyleProp<ViewStyle>;
+
+        /**
+         * Style for the selected single option text.
+         */
+        text?: StyleProp<TextStyle>;
+    };
+
+    /**
+     * Style for the single option text.
+     */
+    text?: StyleProp<TextStyle>;
 };
 
 export type SectionHeaderStyles = {
     /**
-     * Style for the section header text.
+     * Style for the section header.
      */
-    text?: StyleProp<TextStyle> & {
-        selected?: StyleProp<TextStyle>;
-    };
+    container?: StyleProp<ViewStyle>;
 
     clear?: {
         /**
@@ -132,11 +140,24 @@ export type SectionHeaderStyles = {
     };
 
     /**
-     * Style for section header when all section options are selected.
-     */
-    selected?: StyleProp<ViewStyle>;
-    /**
      * Style for the pressed section header.
      */
     pressed?: StyleProp<ViewStyle>;
+
+    selected?: {
+        /**
+         * Style for section header when all section options are selected
+         */
+        container?: StyleProp<ViewStyle>;
+
+        /**
+         * Style for section header text when all section options are selected.
+         */
+        text?: StyleProp<TextStyle>;
+    };
+
+    /**
+     * Style for the section header text.
+     */
+    text?: StyleProp<TextStyle>;
 };

@@ -25,7 +25,7 @@ export const SearchableWithKeyboardAvoidView = () => {
                 <Text>Some content...</Text>
                 <Text>Some content...</Text>
                 <Text>Some content...</Text>
-                <Select options={DATA} searchable={true} styles={{ width: 250 }} />
+                <Select options={DATA} searchable={true} />
                 <Text>Some content...</Text>
             </KeyboardAware>
         </SafeAreaViewWrapper>

@@ -41,7 +41,7 @@ export const Ref = () => {
                 <Button title="Open" onPress={onPress} />
                 <Button title="Reset" onPress={onClear} />
                 <Button title="Get current Select state" onPress={onGetState} />
-                <Select ref={ref} options={DATA} styles={{ width: 300 }} />
+                <Select ref={ref} options={DATA} />
             </View>
 
             <ScrollView style={{ flex: 1 }}>

@@ -7,12 +7,7 @@ import { DATA } from '../constants/data';
 export const MultiSelect = () => {
     return (
         <SafeAreaViewWrapper>
-            <Select
-                multiSelection={true}
-                options={DATA}
-                styles={{ width: 200 }}
-                animation={false}
-            />
+            <Select multiSelection={true} options={DATA} animation={false} />
         </SafeAreaViewWrapper>
     );
 };
