@@ -27,7 +27,7 @@ export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optio
 
     return (
         <Pressable
-            accessibilityLabel={`Choose ${label} option`}
+            accessibilityLabel={`Select ${label} option`}
             {...optionButtonProps}
             ref={ref}
             accessibilityRole="menuitem"

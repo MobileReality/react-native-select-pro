@@ -114,7 +114,7 @@ describe('Select', () => {
         const open = getByLabelText('Open a dropdown');
         fireEvent.press(open);
 
-        const optionPress = getByLabelText(`Choose ${DATA[0].label} option`);
+        const optionPress = getByLabelText(`Select ${DATA[0].label} option`);
         fireEvent.press(optionPress);
 
         const clearButton = getByLabelText('Clear a selected option');
@@ -131,7 +131,7 @@ describe('Select', () => {
         const open = getByLabelText('Open a dropdown');
         fireEvent.press(open);
 
-        const optionPress = getByLabelText(`Choose ${SECTIONS_DATA[0].data[0].label} option`);
+        const optionPress = getByLabelText(`Select ${SECTIONS_DATA[0].data[0].label} option`);
         fireEvent.press(optionPress);
     });
 
@@ -147,7 +147,7 @@ describe('Select', () => {
         const open = getByLabelText('Open a dropdown');
         fireEvent.press(open);
 
-        const optionPress = getByLabelText(`Choose ${DATA[1].label} option`);
+        const optionPress = getByLabelText(`Select ${DATA[1].label} option`);
         fireEvent.press(optionPress);
         expect(onSelect).toBeCalledWith(DATA[1], 1);
 
@@ -186,13 +186,13 @@ describe('Select', () => {
         const open = getByLabelText('Open a dropdown');
         fireEvent.press(open);
 
-        const optionPress = getByLabelText(`Choose ${DATA[0].label} option`);
+        const optionPress = getByLabelText(`Select ${DATA[0].label} option`);
         fireEvent.press(optionPress);
 
         const openAgain = getByLabelText('Open a dropdown');
         fireEvent.press(openAgain);
 
-        const optionSelected = getByLabelText(`Choose ${DATA[0].label} option`);
+        const optionSelected = getByLabelText(`Select ${DATA[0].label} option`);
         fireEvent.press(optionSelected);
 
         const canOpenDropdown = getByLabelText('Open a dropdown');
@@ -363,7 +363,7 @@ describe('Select with searchable enabled', () => {
 
         expect(list.props.data.length).toBe(1);
 
-        const option = getByLabelText(`Choose ${inputData} test options option`);
+        const option = getByLabelText(`Select ${inputData} test options option`);
 
         fireEvent.press(option);
 
@@ -493,7 +493,7 @@ describe('Select with multi selection', () => {
         const listWrapper = queryByLabelText('Options list');
         expect(listWrapper).toBeTruthy();
 
-        const optionPress = getByLabelText(`Choose ${DATA[0].label} option`);
+        const optionPress = getByLabelText(`Select ${DATA[0].label} option`);
         fireEvent.press(optionPress);
 
         const optionSelected = getByLabelText(`${DATA[0].label} selected`);
@@ -516,7 +516,7 @@ describe('Select with multi selection', () => {
         const open = getByLabelText('Open a dropdown');
         fireEvent.press(open);
 
-        const optionPress = getByLabelText(`Choose ${DATA[0].label} option`);
+        const optionPress = getByLabelText(`Select ${DATA[0].label} option`);
         fireEvent.press(optionPress);
 
         const optionSelected = getByLabelText(`${DATA[0].label} selected`);
@@ -525,7 +525,7 @@ describe('Select with multi selection', () => {
         const openAgain = getByLabelText('Open a dropdown');
         fireEvent.press(openAgain);
 
-        const secondOptionPress = getByLabelText(`Choose ${DATA[1].label} option`);
+        const secondOptionPress = getByLabelText(`Select ${DATA[1].label} option`);
         fireEvent.press(secondOptionPress);
 
         const selectedSecondOption = getByLabelText(`${DATA[1].label} selected`);
@@ -579,7 +579,7 @@ describe('Select with multi selection and searchable', () => {
 
         expect(list.props.data.length).toBe(1);
 
-        const firstOption = getByLabelText(`Choose ${inputData} test options option`);
+        const firstOption = getByLabelText(`Select ${inputData} test options option`);
 
         fireEvent.press(firstOption);
 
@@ -594,7 +594,7 @@ describe('Select with multi selection and searchable', () => {
 
         expect(listAgain.props.data.length).toBe(1);
 
-        const secondOption = getByLabelText(`Choose ${nextInputData} test options option`);
+        const secondOption = getByLabelText(`Select ${nextInputData} test options option`);
 
         fireEvent.press(secondOption);
 
