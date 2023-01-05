@@ -8,16 +8,15 @@ import { useSelectContext } from '../../context';
 import type { SelectTextProps } from './select-text.types';
 
 export const SelectText = ({ selectStyles, selectedOptionLabel }: SelectTextProps) => {
-    const { placeholderText, placeholderTextColor, selectTextProps, multiSelection } =
-        useSelectContext();
+    const { placeholderText, placeholderTextColor, selectTextProps, multiple } = useSelectContext();
 
-    if (multiSelection) {
+    if (multiple) {
         return (
             <Text
                 numberOfLines={1}
                 {...selectTextProps}
                 style={[
-                    styles.multiSelection,
+                    styles.multiple,
                     selectStyles?.text,
                     {
                         color: placeholderTextColor,
@@ -50,7 +49,7 @@ export const SelectText = ({ selectStyles, selectedOptionLabel }: SelectTextProp
 
 type Styles = {
     text: TextStyle;
-    multiSelection: TextStyle;
+    multiple: TextStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -58,7 +57,7 @@ const styles = StyleSheet.create<Styles>({
         fontSize: FONT_SIZE,
         textAlign: 'left',
     },
-    multiSelection: {
+    multiple: {
         fontSize: FONT_SIZE,
         textAlign: 'left',
         alignSelf: 'center',

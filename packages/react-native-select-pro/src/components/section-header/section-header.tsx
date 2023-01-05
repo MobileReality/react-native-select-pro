@@ -18,14 +18,14 @@ export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
         sectionHeaderButtonProps,
         sectionHeaderTextProps,
         sectionHeaderImageProps,
-        multiSelection,
+        multiple,
     } = useOptionsListContext();
 
     const { sectionHeader } = mainStyles ?? {};
 
     return (
         <Pressable
-            disabled={!multiSelection}
+            disabled={!multiple}
             {...sectionHeaderButtonProps}
             style={({ pressed }) => [
                 styles.sectionHeaderContainerStyle,

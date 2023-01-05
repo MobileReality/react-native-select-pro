@@ -51,18 +51,18 @@ export const MultiSelect = ({ selectedOptions, onPressRemove, selectStyles }: Mu
     };
 
     return (
-        <ScrollView horizontal={true} style={styles.multiSelectionWrapper}>
+        <ScrollView horizontal={true} style={styles.multipleSelectionWrapper}>
             {resolveContent()}
         </ScrollView>
     );
 };
 
 type Styles = {
-    multiSelectionWrapper: ViewStyle;
+    multipleSelectionWrapper: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
-    multiSelectionWrapper: {
+    multipleSelectionWrapper: {
         flex: 1,
     },
 });

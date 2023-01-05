@@ -21,7 +21,7 @@ type OptionsListContextProviderTypes<T> = OptionalToRequired<
         | 'sectionHeaderTextProps'
         | 'sectionHeaderImageProps'
         | 'pressableSelectedOption'
-        | 'multiSelection'
+        | 'multiple'
     > & {
         aboveSelectControl: Position['aboveSelectControl'];
         openedPosition: Position;

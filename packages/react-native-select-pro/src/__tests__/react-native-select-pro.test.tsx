@@ -454,16 +454,16 @@ describe('Select with multi selection', () => {
     it('should generate Select with multi selection enabled snapshot', () => {
         const wrapper = render(
             <SelectProvider>
-                <Select multiSelection={true} options={DATA} />
+                <Select multiple={true} options={DATA} />
             </SelectProvider>,
         );
         expect(wrapper).toMatchSnapshot();
     });
 
-    it('should, while multiSelection enabled, click and open options', () => {
+    it('should, while multiple enabled, click and open options', () => {
         const { getByLabelText, queryByLabelText } = render(
             <SelectProvider>
-                <Select multiSelection={true} options={DATA} animation={false} />
+                <Select multiple={true} options={DATA} animation={false} />
             </SelectProvider>,
         );
 
@@ -480,10 +480,10 @@ describe('Select with multi selection', () => {
         expect(listWrapper2).toBeFalsy();
     });
 
-    it('should, while multiSelection enabled, click should execute opening dropdown', () => {
+    it('should, while multiple enabled, click should execute opening dropdown', () => {
         const { getByLabelText, queryByLabelText } = render(
             <SelectProvider>
-                <Select multiSelection={true} options={DATA} animation={false} />
+                <Select multiple={true} options={DATA} animation={false} />
             </SelectProvider>,
         );
 
@@ -506,10 +506,10 @@ describe('Select with multi selection', () => {
         expect(listWrapperShouldBeVisible).toBeTruthy();
     });
 
-    it('should, while multiSelection enabled, show, select and remove selected option', () => {
+    it('should, while multiple enabled, show, select and remove selected option', () => {
         const { getByLabelText, queryByLabelText } = render(
             <SelectProvider>
-                <Select multiSelection={true} options={DATA} />
+                <Select multiple={true} options={DATA} />
             </SelectProvider>,
         );
 
@@ -541,7 +541,7 @@ describe('Select with multi selection', () => {
 
         const { getByLabelText } = render(
             <SelectProvider>
-                <Select disabled={true} multiSelection={true} options={DATA} />
+                <Select disabled={true} multiple={true} options={DATA} />
             </SelectProvider>,
         );
 
@@ -555,16 +555,16 @@ describe('Select with multi selection and searchable', () => {
     it('should generate Select with multi selection and searchable enabled snapshot', () => {
         const wrapper = render(
             <SelectProvider>
-                <Select multiSelection={true} options={SEARCHABLE_DATA} searchable={true} />
+                <Select multiple={true} options={SEARCHABLE_DATA} searchable={true} />
             </SelectProvider>,
         );
         expect(wrapper).toMatchSnapshot();
     });
 
-    it('should, while multiSelection and searchable enabled, click and open options', () => {
+    it('should, while multiple and searchable enabled, click and open options', () => {
         const { getByLabelText, getByPlaceholderText } = render(
             <SelectProvider>
-                <Select multiSelection={true} options={SEARCHABLE_DATA} searchable={true} />
+                <Select multiple={true} options={SEARCHABLE_DATA} searchable={true} />
             </SelectProvider>,
         );
 

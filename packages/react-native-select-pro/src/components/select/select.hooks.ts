@@ -28,7 +28,7 @@ export const useSelect = <T>({
     disabled,
     closeDropdownOnSelect,
     searchable,
-    multiSelection,
+    multiple,
     dispatch,
     onRemove,
     onSelectOpened,
@@ -159,7 +159,7 @@ export const useSelect = <T>({
         }
 
         const resolveOption = () => {
-            if (!multiSelection) {
+            if (!multiple) {
                 return {
                     selectedOption: option,
                     selectedOptionIndex: optionIndex,
@@ -199,7 +199,7 @@ export const useSelect = <T>({
         });
 
         if (searchable) {
-            if (multiSelection) {
+            if (multiple) {
                 dispatch({ type: Action.SetSearchValue, payload: '' });
             } else {
                 dispatch({
@@ -220,11 +220,11 @@ export const useSelect = <T>({
     };
 
     const onPressSection = (title: string) => {
-        if (closeDropdownOnSelect && multiSelection) {
+        if (closeDropdownOnSelect && multiple) {
             close();
         }
 
-        if (!multiSelection || !isSectionedOptions) {
+        if (!multiple || !isSectionedOptions) {
             return;
         }
 

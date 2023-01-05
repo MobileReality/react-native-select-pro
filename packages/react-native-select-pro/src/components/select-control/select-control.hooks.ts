@@ -17,7 +17,7 @@ export const useSelectControl = () => {
         isOpened,
         clearable,
         disabled,
-        multiSelection,
+        multiple,
         optionsData,
         searchValue,
         onRemove,
@@ -52,11 +52,11 @@ export const useSelectControl = () => {
         if (!selectedOptionLabel) {
             return;
         }
-        if (!multiSelection) {
+        if (!multiple) {
             return `Current selected item is ${selectedOptionLabel}`;
         }
         return 'You have selected multiple items';
-    }, [selectedOptionLabel, multiSelection]);
+    }, [selectedOptionLabel, multiple]);
 
     const accessibilityLabel = useMemo(
         () => (isOpened ? '' : selectContainerProps?.accessibilityLabel ?? 'Open a dropdown'),
@@ -66,7 +66,7 @@ export const useSelectControl = () => {
     const clearOptionStatus = useMemo(() => {
         const result = { showClearOption: false, showClearOptionA11y: false };
 
-        if (!multiSelection && clearable && selectedOption) {
+        if (!multiple && clearable && selectedOption) {
             if (!isScreenReaderEnabled) {
                 result.showClearOption = true;
             } else if (!isAndroid) {
@@ -74,9 +74,9 @@ export const useSelectControl = () => {
             }
         }
         return result;
-    }, [clearable, isScreenReaderEnabled, multiSelection, selectedOption]);
+    }, [clearable, isScreenReaderEnabled, multiple, selectedOption]);
 
-    const removeOptionInMultiSelection = (option: OptionType, selectedOptions: OptionType[]) => {
+    const removeOptionInMultipleSelect = (option: OptionType, selectedOptions: OptionType[]) => {
         const removedSelectedOptions = selectedOptions.filter(
             (selected) => selected.value !== option.value,
         );
@@ -112,8 +112,8 @@ export const useSelectControl = () => {
             return;
         }
         let removedOption;
-        if (option && multiSelection && selectedOptions) {
-            removedOption = removeOptionInMultiSelection(option, selectedOptions);
+        if (option && multiple && selectedOptions) {
+            removedOption = removeOptionInMultipleSelect(option, selectedOptions);
         } else {
             removeSingleOption();
             removedOption = {

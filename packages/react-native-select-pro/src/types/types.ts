@@ -107,7 +107,7 @@ export interface SelectProps<T = unknown> {
      *
      *  @default false
      */
-    multiSelection?: boolean;
+    multiple?: boolean;
 
     /**
      * Determines the text that should be displayed when there are no available options in a Select component.

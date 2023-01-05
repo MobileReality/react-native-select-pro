@@ -13,7 +13,7 @@ type SelectContextProviderTypes<T> = OptionalToRequired<
         | 'disabled'
         | 'hideArrow'
         | 'clearable'
-        | 'multiSelection'
+        | 'multiple'
         | 'placeholderText'
         | 'placeholderTextColor'
         | 'searchPattern'

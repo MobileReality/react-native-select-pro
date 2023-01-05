@@ -33,7 +33,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         disabled = false,
         hasBackdrop = true,
         hideArrow = false,
-        multiSelection = false,
+        multiple = false,
         noOptionsText = 'No options',
         placeholderText = 'Select...',
         placeholderTextColor = COLORS.GRAY,
@@ -109,7 +109,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         disabled,
         closeDropdownOnSelect,
         searchable,
-        multiSelection,
+        multiple,
         onSelectOpened,
         onSelectClosed,
         ref,
@@ -129,7 +129,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     clearable,
                     disabled,
                     hideArrow,
-                    multiSelection,
+                    multiple,
                     optionsData,
                     placeholderText,
                     placeholderTextColor,
@@ -195,7 +195,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 sectionHeaderImageProps,
                                 sectionHeaderTextProps,
                                 pressableSelectedOption,
-                                multiSelection,
+                                multiple,
                             }}
                         >
                             <OptionsList ref={optionsListRef} />
