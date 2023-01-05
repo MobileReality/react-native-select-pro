@@ -224,7 +224,7 @@ export const useSelect = <T>({
             close();
         }
 
-        if (!multiSelection || !isSectionedOptions || !onSectionRemove || !onSectionSelect) {
+        if (!multiSelection || !isSectionedOptions) {
             return;
         }
 

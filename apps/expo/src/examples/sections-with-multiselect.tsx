@@ -22,8 +22,6 @@ export const SectionsWithMultiSelect = () => {
                         },
                     },
                 }}
-                onSectionSelect={() => {}}
-                onSectionRemove={() => {}}
             />
         </SafeAreaViewWrapper>
     );
