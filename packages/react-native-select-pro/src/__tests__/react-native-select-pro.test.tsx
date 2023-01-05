@@ -57,11 +57,11 @@ const SECTIONS_DATA = [
 const SEARCHABLE_DATA = [
     {
         value: 'test1',
-        label: 'First test options',
+        label: 'First test option',
     },
     {
         value: 'test2',
-        label: 'Second test options',
+        label: 'Second test option',
     },
     {
         value: 'test3',
@@ -298,9 +298,9 @@ describe('Select with searchable enabled', () => {
             </SelectProvider>,
         );
 
-        const firstInputData = 'Second test options';
+        const firstInputData = 'Second test option';
         const secondInputData = 'Third test option';
-        const thirdInputData = 'options';
+        const thirdInputData = 'd test option';
 
         const input = getByLabelText('Place text');
 
@@ -353,7 +353,7 @@ describe('Select with searchable enabled', () => {
         const inputData = 'Second';
         const nextInputData = 'option';
 
-        const selectOptionInputData = 'Second test options';
+        const selectOptionInputData = 'Second test option';
 
         const input = getByLabelText('Place text');
 
@@ -363,7 +363,7 @@ describe('Select with searchable enabled', () => {
 
         expect(list.props.data.length).toBe(1);
 
-        const option = getByLabelText(`Select ${inputData} test options option`);
+        const option = getByLabelText(`Select ${inputData} test option option`);
 
         fireEvent.press(option);
 
@@ -402,6 +402,28 @@ describe('Select with searchable enabled', () => {
         expect(onFocus).toBeCalled();
         fireEvent(input, 'onBlur');
         expect(onBlur).toBeCalled();
+    });
+
+    it('should set properly option data after search and selected option', () => {
+        const onSelect = jest.fn();
+
+        const { getByLabelText } = render(
+            <SelectProvider>
+                <Select options={SEARCHABLE_DATA} searchable={true} onSelect={onSelect} />
+            </SelectProvider>,
+        );
+
+        const inputData = 'Third'; // exists in SEARCHABLE_DATA[2]
+
+        const input = getByLabelText('Place text');
+        fireEvent.changeText(input, inputData);
+
+        const list = getByLabelText('Options list');
+        expect(list.props.data.length).toBe(1);
+
+        const option = getByLabelText(`Select ${inputData} test option option`);
+        fireEvent.press(option);
+        expect(onSelect).toBeCalledWith(SEARCHABLE_DATA[2], 2);
     });
 });
 
@@ -579,7 +601,7 @@ describe('Select with multi selection and searchable', () => {
 
         expect(list.props.data.length).toBe(1);
 
-        const firstOption = getByLabelText(`Select ${inputData} test options option`);
+        const firstOption = getByLabelText(`Select ${inputData} test option option`);
 
         fireEvent.press(firstOption);
 
@@ -594,7 +616,7 @@ describe('Select with multi selection and searchable', () => {
 
         expect(listAgain.props.data.length).toBe(1);
 
-        const secondOption = getByLabelText(`Select ${nextInputData} test options option`);
+        const secondOption = getByLabelText(`Select ${nextInputData} test option option`);
 
         fireEvent.press(secondOption);
 
