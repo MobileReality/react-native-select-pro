@@ -3,7 +3,6 @@ import type { ViewStyle } from 'react-native';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, SHAPE } from '../../constants';
-import { useSelectContext } from '../../context';
 import { Arrow } from '../arrow';
 import { ClearOption } from '../clear-option';
 import { SelectFieldType } from '../select-field-type';
@@ -12,26 +11,27 @@ import { useSelectControl } from './select-control.hooks';
 
 export const SelectControl = forwardRef<View>((_, ref) => {
     const {
-        hideArrow,
-        selectContainerProps,
-        selectLeftIconsProps,
+        accessibilityHint,
+        accessibilityLabel,
+        onPressRemove,
+        onPressSelectControl,
+        aboveSelectControl,
         selectLeftIconImageProps,
         selectRightIconsProps,
-        styles: mainStyles,
+        selectLeftIconsProps,
+        hideArrow,
+        selectContainerProps,
         isOpened,
-        aboveSelectControl,
         disabled,
-        onPressSelectControl,
-    } = useSelectContext();
-
-    const { accessibilityHint, accessibilityLabel, clearOptionStatus, onPressRemove } =
-        useSelectControl();
+        showClearOptionA11y,
+        showClearOption,
+        buttonsStyles,
+        leftIconStyles,
+        containerStyles,
+        disabledStyles,
+    } = useSelectControl();
 
     const clearOption = <ClearOption onPressRemove={onPressRemove} />;
-
-    const { showClearOption, showClearOptionA11y } = clearOptionStatus;
-    const { select: selectStyles } = mainStyles ?? {};
-    const { buttons, leftIcon } = selectStyles ?? {};
 
     return (
         <View style={styles.rootView}>
@@ -43,8 +43,8 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                 style={[
                     styles.container,
                     isOpened && (aboveSelectControl ? styles.openedAbove : styles.opened),
-                    selectStyles?.container,
-                    disabled && [styles.disabled, selectStyles?.disabled],
+                    containerStyles,
+                    disabled && [styles.disabled, disabledStyles],
                 ]}
                 onPress={onPressSelectControl}
             >
@@ -53,16 +53,15 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                         {...selectLeftIconsProps}
                         style={[styles.leftIconWrapper, styles.xIconWrapper]}
                     >
-                        <Image {...selectLeftIconImageProps} style={leftIcon} />
+                        <Image {...selectLeftIconImageProps} style={leftIconStyles} />
                     </View>
                 )}
                 <SelectFieldType
                     {...{
                         onPressRemove,
-                        selectStyles,
                     }}
                 />
-                <View {...selectRightIconsProps} style={[styles.buttonsContainer, buttons]}>
+                <View {...selectRightIconsProps} style={[styles.buttonsContainer, buttonsStyles]}>
                     {showClearOption && clearOption}
                     {!hideArrow && <Arrow />}
                 </View>

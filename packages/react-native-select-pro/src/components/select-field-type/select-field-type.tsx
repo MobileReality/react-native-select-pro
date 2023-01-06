@@ -11,9 +11,10 @@ import { SelectText } from '../select-text';
 
 import type { SelectFieldTypeProps } from './select-field-type.types';
 
-export const SelectFieldType = ({ onPressRemove, selectStyles }: SelectFieldTypeProps) => {
-    const { multiple, searchValue, selectedOption } = useSelectContext();
+export const SelectFieldType = ({ onPressRemove }: SelectFieldTypeProps) => {
+    const { multiple, searchValue, selectedOption, styles: mainStyles } = useSelectContext();
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
+    const { select: selectStyles } = mainStyles ?? {};
 
     const renderProperSelectFieldType = () => {
         if (multiple) {

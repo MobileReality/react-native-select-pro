@@ -25,7 +25,15 @@ export const useSelectControl = () => {
         selectedOption,
         selectedOptionIndex,
         selectContainerProps,
+        hideArrow,
+        selectLeftIconsProps,
+        selectLeftIconImageProps,
+        selectRightIconsProps,
+        styles,
+        aboveSelectControl,
+        onPressSelectControl,
     } = useSelectContext();
+
     const { selectedOptions, selectedOptionLabel } = selectedOptionResolver(selectedOption);
 
     const isScreenReaderEnabled = useAccessibilityScreenReader();
@@ -127,10 +135,34 @@ export const useSelectControl = () => {
         }
     };
 
+    const { showClearOption, showClearOptionA11y } = clearOptionStatus;
+
+    const { select: selectStyles } = styles ?? {};
+    const {
+        buttons: buttonsStyles,
+        leftIcon: leftIconStyles,
+        container: containerStyles,
+        disabled: disabledStyles,
+    } = selectStyles ?? {};
+
     return {
         accessibilityHint,
         accessibilityLabel,
-        clearOptionStatus,
         onPressRemove,
+        hideArrow,
+        selectLeftIconsProps,
+        selectLeftIconImageProps,
+        selectRightIconsProps,
+        aboveSelectControl,
+        onPressSelectControl,
+        selectContainerProps,
+        isOpened,
+        disabled,
+        showClearOption,
+        showClearOptionA11y,
+        buttonsStyles,
+        leftIconStyles,
+        containerStyles,
+        disabledStyles,
     };
 };
