@@ -8,21 +8,26 @@ type SelectedOptionResolverOutput<T> = {
 
 export const selectedOptionResolver = <T>(
     selectedOption: OptionType<T> | OptionType<T>[] | null,
-) => {
-    const result: SelectedOptionResolverOutput<T> = {
-        selectedOptionValue: '',
-        selectedOptionLabel: '',
-        selectedOptions: null,
-    };
-
-    if (selectedOption) {
-        if (Array.isArray(selectedOption)) {
-            result.selectedOptions = selectedOption;
-        } else {
-            result.selectedOptionValue = selectedOption.value;
-            result.selectedOptionLabel = selectedOption.label;
-        }
+): SelectedOptionResolverOutput<T> => {
+    if (!selectedOption) {
+        return {
+            selectedOptionValue: '',
+            selectedOptionLabel: '',
+            selectedOptions: null,
+        };
     }
 
-    return result;
+    if (Array.isArray(selectedOption)) {
+        return {
+            selectedOptionValue: '',
+            selectedOptionLabel: '',
+            selectedOptions: selectedOption,
+        };
+    }
+
+    return {
+        selectedOptionValue: selectedOption.value,
+        selectedOptionLabel: selectedOption.label,
+        selectedOptions: null,
+    };
 };

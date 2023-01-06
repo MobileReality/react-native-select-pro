@@ -124,24 +124,20 @@ export const useMultiSelect = ({ selectedOptions }: UseMultiSelectProps) => {
         if (!selectedOptions) {
             return 0;
         }
-
         const { length } = selectedOptions;
         const initialWidth = containerWidth ?? 100;
-        let calculatedWidth = 100;
         if (typeof initialWidth === 'number') {
-            calculatedWidth = (initialWidth - WIDTH_OFFSET) / length;
-            if (calculatedWidth < WIDTH_THRESHOLD) {
-                return WIDTH_THRESHOLD;
-            }
-            return Math.floor(calculatedWidth);
+            const calculatedWidth = (initialWidth - WIDTH_OFFSET) / length;
+            return calculatedWidth < WIDTH_THRESHOLD
+                ? WIDTH_THRESHOLD
+                : Math.floor(calculatedWidth);
         }
         if (typeof initialWidth === 'string') {
             const ratioToScreen = dimensionPercentageToDP(initialWidth, screenWidth);
-            calculatedWidth = ratioToScreen / length;
-            if (calculatedWidth - WIDTH_OFFSET < WIDTH_THRESHOLD) {
-                return WIDTH_THRESHOLD;
-            }
-            return calculatedWidth - WIDTH_OFFSET;
+            const calculatedWidth = ratioToScreen / length;
+            return calculatedWidth - WIDTH_OFFSET < WIDTH_THRESHOLD
+                ? WIDTH_THRESHOLD
+                : calculatedWidth - WIDTH_OFFSET;
         }
         return 0;
     }, [selectedOptions, containerWidth, screenWidth]);
