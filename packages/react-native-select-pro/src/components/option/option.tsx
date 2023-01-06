@@ -1,31 +1,33 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, memo } from 'react';
 import type { TextStyle, View, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
+import isEqual from 'lodash.isequal';
 
 import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING, PRESSED_STYLE } from '../../constants';
-import { useOptionsListContext } from '../../context';
 import type { OnChooseOption } from '../../types/shared';
 
 import type { OptionProps } from './option.types';
 
-export const Option = forwardRef<View, OptionProps>(
-    ({ isSelected, option, optionIndex, disabled }, ref) => {
-        const {
+const OptionComponent = forwardRef<View, OptionProps>(
+    (
+        {
+            isSelected,
+            option,
+            optionIndex,
+            disabled,
             onPressOption,
             optionButtonProps,
             optionTextProps,
-            styles: mainStyles,
-            pressableSelectedOption,
-        } = useOptionsListContext();
-
+            optionCustomStyles,
+            isDisabled,
+        },
+        ref,
+    ) => {
         const onChooseOption: OnChooseOption = () => {
             onPressOption(option, optionIndex);
         };
 
         const { label } = option;
-        const { option: optionStyles } = mainStyles ?? {};
-
-        const isDisabled = disabled ?? (pressableSelectedOption ? false : isSelected);
 
         return (
             <Pressable
@@ -37,9 +39,9 @@ export const Option = forwardRef<View, OptionProps>(
                 disabled={isDisabled}
                 style={({ pressed }) => [
                     styles.option,
-                    optionStyles?.container,
-                    isSelected && [styles.selected, optionStyles?.selected?.container],
-                    pressed && (optionStyles?.pressed ?? PRESSED_STYLE),
+                    optionCustomStyles?.container,
+                    isSelected && [styles.selected, optionCustomStyles?.selected?.container],
+                    pressed && (optionCustomStyles?.pressed ?? PRESSED_STYLE),
                     disabled && styles.disabled,
                 ]}
                 onPress={onChooseOption}
@@ -49,8 +51,8 @@ export const Option = forwardRef<View, OptionProps>(
                     {...optionTextProps}
                     style={[
                         styles.text,
-                        optionStyles?.text,
-                        isSelected && optionStyles?.selected?.text,
+                        optionCustomStyles?.text,
+                        isSelected && optionCustomStyles?.selected?.text,
                     ]}
                 >
                     {label}
@@ -86,4 +88,7 @@ const styles = StyleSheet.create<Styles>({
     },
 });
 
+OptionComponent.displayName = 'OptionComponent';
+
+export const Option = memo(OptionComponent, (prevProps, newProps) => isEqual(prevProps, newProps));
 Option.displayName = 'Option';

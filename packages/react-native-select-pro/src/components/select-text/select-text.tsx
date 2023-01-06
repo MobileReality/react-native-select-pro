@@ -3,21 +3,13 @@ import type { TextStyle } from 'react-native';
 import { StyleSheet, Text } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../constants';
-import { useSelectContext } from '../../context';
 
+import { useSelectText } from './select-text.hooks';
 import type { SelectTextProps } from './select-text.types';
 
 export const SelectText = ({ selectedOptionLabel }: SelectTextProps) => {
-    const {
-        placeholderText,
-        placeholderTextColor,
-        selectTextProps,
-        multiple,
-        styles: mainStyles,
-    } = useSelectContext();
-
-    const { select } = mainStyles ?? {};
-    const { text: textStyles } = select ?? {};
+    const { placeholderText, placeholderTextColor, selectTextProps, multiple, textCustomStyles } =
+        useSelectText();
 
     if (multiple) {
         return (
@@ -26,7 +18,7 @@ export const SelectText = ({ selectedOptionLabel }: SelectTextProps) => {
                 {...selectTextProps}
                 style={[
                     styles.multiple,
-                    textStyles,
+                    textCustomStyles,
                     {
                         color: placeholderTextColor,
                     },
@@ -43,10 +35,10 @@ export const SelectText = ({ selectedOptionLabel }: SelectTextProps) => {
             {...selectTextProps}
             style={[
                 styles.text,
-                textStyles,
+                textCustomStyles,
                 {
                     color: selectedOptionLabel
-                        ? StyleSheet.flatten(textStyles)?.color ?? COLORS.BLACK
+                        ? StyleSheet.flatten(textCustomStyles)?.color ?? COLORS.BLACK
                         : placeholderTextColor,
                 },
             ]}

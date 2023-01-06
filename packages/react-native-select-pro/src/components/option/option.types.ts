@@ -1,7 +1,11 @@
-import type { OptionalToRequired, OptionType, SelectProps } from '../../types';
+import type { OptionalToRequired, OptionStyles, OptionType, SelectProps } from '../../types';
+import type { OnPressOptionType } from '../../types';
 
 export type OptionProps = {
     isSelected: boolean;
+    isDisabled: boolean;
     option: OptionType;
     optionIndex: number;
-} & OptionalToRequired<Pick<SelectProps, 'disabled'>>;
+    onPressOption: OnPressOptionType<unknown>;
+    optionCustomStyles: OptionStyles | undefined;
+} & OptionalToRequired<Pick<SelectProps, 'disabled' | 'optionButtonProps' | 'optionTextProps'>>;

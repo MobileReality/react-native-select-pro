@@ -35,7 +35,7 @@ export const FlatOptionsList = memo(
             />
         );
     },
-    (oldProps, newProps) => isEqual(oldProps, newProps),
+    (prevProps, newProps) => isEqual(prevProps, newProps),
 );
 
 FlatOptionsList.displayName = 'FlatOptionsList';

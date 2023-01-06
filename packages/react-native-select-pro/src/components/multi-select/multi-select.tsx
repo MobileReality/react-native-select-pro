@@ -2,7 +2,6 @@ import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { ScrollView, StyleSheet } from 'react-native';
 
-import { useSelectContext } from '../../context';
 import type { OptionType } from '../../index';
 import { MultiSelectedOption } from '../multi-selected-option';
 import { SelectInput } from '../select-input';
@@ -12,57 +11,42 @@ import { useMultiSelect } from './multi-select.hooks';
 import type { MultiSelectProps } from './multi-select.types';
 
 export const MultiSelect = ({ selectedOptions }: MultiSelectProps) => {
-    const { calculatedOptionWidth, onPressRemove } = useMultiSelect({
-        selectedOptions,
-    });
-    const { searchValue, styles: mainStyles, disabled } = useSelectContext();
-    const { select: selectStyles } = mainStyles ?? {};
+    const { calculatedOptionWidth, onPressRemove, selectStyles, disabled, isSearchable } =
+        useMultiSelect({
+            selectedOptions,
+        });
 
-    const isSearchable = typeof searchValue === 'string';
+    const resolveSelectedOptionsList = () => {
+        if (!selectedOptions) {
+            return isSearchable ? null : <SelectText />;
+        }
 
-    const resolveContent = () => {
-        const resolveSelectedOptionsList = () => {
-            if (!selectedOptions) {
-                return isSearchable ? null : <SelectText />;
-            }
-
-            return selectedOptions.map((option: OptionType) => (
-                <MultiSelectedOption
-                    key={`${option.section}-${option.value}`}
-                    optionWidth={calculatedOptionWidth}
-                    option={option}
-                    selectStyles={selectStyles}
-                    disabled={disabled}
-                    onPressRemove={onPressRemove}
-                />
-            ));
-        };
-
-        return (
-            <>
-                {isSearchable && <SelectInput />}
-                {resolveSelectedOptionsList()}
-            </>
-        );
+        return selectedOptions.map((option: OptionType) => (
+            <MultiSelectedOption
+                key={`${option.section}-${option.value}`}
+                optionWidth={calculatedOptionWidth}
+                option={option}
+                selectStyles={selectStyles}
+                disabled={disabled}
+                onPressRemove={onPressRemove}
+            />
+        ));
     };
 
     return (
-        <ScrollView
-            scrollEnabled={!disabled}
-            horizontal={true}
-            style={styles.multipleSelectionWrapper}
-        >
-            {resolveContent()}
+        <ScrollView scrollEnabled={!disabled} style={styles.container} horizontal>
+            {isSearchable && <SelectInput />}
+            {resolveSelectedOptionsList()}
         </ScrollView>
     );
 };
 
 type Styles = {
-    multipleSelectionWrapper: ViewStyle;
+    container: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
-    multipleSelectionWrapper: {
+    container: {
         flex: 1,
     },
 });

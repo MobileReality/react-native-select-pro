@@ -72,7 +72,7 @@ export const SectionOptionsList = memo(
             />
         );
     },
-    (oldProps, newProps) => isEqual(oldProps, newProps),
+    (prevProps, newProps) => isEqual(prevProps, newProps),
 );
 
 SectionOptionsList.displayName = 'SectionOptionsList';

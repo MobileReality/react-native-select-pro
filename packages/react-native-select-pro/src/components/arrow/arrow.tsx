@@ -2,23 +2,19 @@ import React, { useMemo } from 'react';
 import type { ImageStyle } from 'react-native';
 import { Animated, Image, StyleSheet, View } from 'react-native';
 
-import { useSelectContext } from '../../context';
-import { useAnimation } from '../../hooks';
+import { useArrow } from './arrow.hooks';
 
 const arrowImage = require('./../../assets/icons/chevron-down.png');
 
 export const Arrow = () => {
     const {
-        isOpened,
-        styles: mainStyles,
-        animation,
         arrowImageProps,
         arrowContainerProps,
-    } = useSelectContext();
-
-    const { arrow } = mainStyles?.select ?? {};
-
-    const rotateAnimation = useAnimation({ isOpened, animation });
+        rotateAnimation,
+        containerCustomStyles,
+        iconCustomStyles,
+        isOpened,
+    } = useArrow();
 
     const renderImage = useMemo(() => {
         if (rotateAnimation) {
@@ -31,7 +27,7 @@ export const Arrow = () => {
                 <Animated.Image
                     source={arrowImage}
                     {...arrowImageProps}
-                    style={[styles.arrowIcon, { transform: [{ rotate }] }, arrow?.icon]}
+                    style={[styles.arrowIcon, { transform: [{ rotate }] }, iconCustomStyles]}
                 />
             );
         }
@@ -40,13 +36,13 @@ export const Arrow = () => {
             <Image
                 source={arrowImage}
                 {...arrowImageProps}
-                style={[styles.arrowIcon, isOpened && styles.arrowIconOpened, arrow?.icon]}
+                style={[styles.arrowIcon, isOpened && styles.arrowIconOpened, iconCustomStyles]}
             />
         );
-    }, [arrow?.icon, arrowImageProps, isOpened, rotateAnimation]);
+    }, [iconCustomStyles, arrowImageProps, isOpened, rotateAnimation]);
 
     return (
-        <View {...arrowContainerProps} style={arrow?.container}>
+        <View {...arrowContainerProps} style={containerCustomStyles}>
             {renderImage}
         </View>
     );

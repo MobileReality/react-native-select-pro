@@ -14,8 +14,6 @@ export const useOptionsList = () => {
         searchValue,
         searchedOptions,
         styles,
-        aboveSelectControl,
-        openedPosition: { width, top, left },
         isOpened,
         selectedOptionIndex,
         scrollToSelectedOption,
@@ -23,6 +21,10 @@ export const useOptionsList = () => {
         selectedOption,
         sectionListProps,
         disabled,
+        onPressOption,
+        optionButtonProps,
+        optionTextProps,
+        pressableSelectedOption,
     } = useOptionsListContext();
 
     const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
@@ -90,24 +92,26 @@ export const useOptionsList = () => {
         expanded: isOpened,
     };
 
+    const { option: optionCustomStyles } = styles ?? {};
+
     return {
         getItemLayout,
         measuredRef,
         resolvedData,
         findSelectedOption,
         findSelectedOptionIndex,
-        aboveSelectControl,
-        width,
-        top,
-        left,
         scrollToSelectedOption,
         flatListProps,
         sectionListProps,
         selectedOption,
-        optionsListStyles: styles?.optionsList,
+        optionCustomStyles,
         isSectionedOptions,
         initialScrollIndex,
         accessibilityState,
         disabled,
+        onPressOption,
+        optionButtonProps,
+        optionTextProps,
+        pressableSelectedOption,
     };
 };

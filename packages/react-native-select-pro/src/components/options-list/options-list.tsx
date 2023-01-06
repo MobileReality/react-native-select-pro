@@ -1,8 +1,6 @@
 import React, { forwardRef, useCallback } from 'react';
-import type { View, ViewStyle } from 'react-native';
-import { StyleSheet } from 'react-native';
+import type { View } from 'react-native';
 
-import { BORDER_WIDTH, COLORS, OPTIONS_LIST_HEIGHT, SHAPE } from '../../constants';
 import { getReducedSectionData } from '../../helpers';
 import type { OptionType } from '../../types';
 import type { RenderItemProps } from '../../types/shared';
@@ -21,18 +19,18 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         findSelectedOptionIndex,
         resolvedData,
         scrollToSelectedOption,
-        aboveSelectControl,
         sectionListProps,
         flatListProps,
-        width,
-        top,
-        left,
         selectedOption,
-        optionsListStyles,
+        optionCustomStyles,
         isSectionedOptions,
         initialScrollIndex,
         accessibilityState,
         disabled,
+        onPressOption,
+        optionButtonProps,
+        optionTextProps,
+        pressableSelectedOption,
     } = useOptionsList();
 
     const renderItem = useCallback(
@@ -50,6 +48,8 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                 };
             }
 
+            const isDisabled = disabled ?? (pressableSelectedOption ? false : isSelected);
+
             return (
                 <Option
                     key={value}
@@ -58,6 +58,11 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                     isSelected={isSelected}
                     optionIndex={optionIndex}
                     disabled={disabled}
+                    optionButtonProps={optionButtonProps}
+                    optionTextProps={optionTextProps}
+                    optionCustomStyles={optionCustomStyles}
+                    isDisabled={isDisabled}
+                    onPressOption={onPressOption}
                 />
             );
         },
@@ -67,20 +72,17 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
             findSelectedOptionIndex,
             isSectionedOptions,
             measuredRef,
+            onPressOption,
+            optionButtonProps,
+            optionCustomStyles,
+            optionTextProps,
+            pressableSelectedOption,
             resolvedData,
         ],
     );
 
     return (
-        <OptionsListWrapper
-            ref={optionsListRef}
-            wrapperStyles={[
-                styles.optionsList,
-                optionsListStyles,
-                { top, left, width },
-                aboveSelectControl ? styles.overflown : styles.notOverflown,
-            ]}
-        >
+        <OptionsListWrapper ref={optionsListRef}>
             {isSectionedOptions ? (
                 <SectionOptionsList
                     resolvedData={resolvedData}
@@ -105,34 +107,6 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
             )}
         </OptionsListWrapper>
     );
-});
-
-type Styles = {
-    optionsList: ViewStyle;
-    notOverflown: ViewStyle;
-    overflown: ViewStyle;
-};
-
-const styles = StyleSheet.create<Styles>({
-    optionsList: {
-        flex: 1,
-        position: 'absolute',
-        zIndex: 1,
-        backgroundColor: COLORS.WHITE,
-        borderWidth: BORDER_WIDTH,
-        maxHeight: OPTIONS_LIST_HEIGHT,
-        elevation: 5,
-    },
-    notOverflown: {
-        borderTopWidth: 0,
-        borderBottomRightRadius: SHAPE,
-        borderBottomLeftRadius: SHAPE,
-    },
-    overflown: {
-        borderBottomWidth: 0,
-        borderTopRightRadius: SHAPE,
-        borderTopLeftRadius: SHAPE,
-    },
 });
 
 OptionsList.displayName = 'OptionsList';

@@ -5,26 +5,21 @@ import { Text } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 import { COLORS, FONT_SIZE, PADDING, PRESSED_STYLE } from '../../constants';
-import { useOptionsListContext } from '../../context';
 
+import { useSectionHeader } from './section-header.hooks';
 import type { SectionHeaderProps } from './section-header.types';
 
 const iconSource = require('./../../assets/icons/x.png');
 
 export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
     const {
-        styles: mainStyles,
+        sectionHeaderCustomStyles,
         onPressSection,
         sectionHeaderButtonProps,
         sectionHeaderTextProps,
         sectionHeaderImageProps,
-        multiple,
-        disabled,
-    } = useOptionsListContext();
-
-    const { sectionHeader } = mainStyles ?? {};
-
-    const isDisabled = disabled ?? !multiple;
+        isDisabled,
+    } = useSectionHeader();
 
     return (
         <Pressable
@@ -33,9 +28,9 @@ export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
             {...sectionHeaderButtonProps}
             style={({ pressed }) => [
                 styles.sectionHeaderContainerStyle,
-                sectionHeader?.container,
-                isSelected && sectionHeader?.selected?.container,
-                pressed && (sectionHeader?.pressed ?? PRESSED_STYLE),
+                sectionHeaderCustomStyles?.container,
+                isSelected && sectionHeaderCustomStyles?.selected?.container,
+                pressed && (sectionHeaderCustomStyles?.pressed ?? PRESSED_STYLE),
             ]}
             onPress={() => onPressSection(title)}
         >
@@ -43,8 +38,8 @@ export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
                 {...sectionHeaderTextProps}
                 style={[
                     styles.sectionHeaderTextStyle,
-                    sectionHeader?.text,
-                    isSelected && sectionHeader?.selected?.text,
+                    sectionHeaderCustomStyles?.text,
+                    isSelected && sectionHeaderCustomStyles?.selected?.text,
                 ]}
             >
                 {title}
@@ -53,7 +48,7 @@ export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
                 <Image
                     source={iconSource}
                     {...sectionHeaderImageProps}
-                    style={[styles.xIcon, sectionHeader?.clear?.icon]}
+                    style={[styles.xIcon, sectionHeaderCustomStyles?.clear?.icon]}
                 />
             )}
         </Pressable>

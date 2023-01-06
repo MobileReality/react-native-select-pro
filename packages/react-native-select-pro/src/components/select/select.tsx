@@ -72,7 +72,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         sectionHeaderImageProps,
         sectionHeaderTextProps,
         sectionListProps,
-        // Styles
     } = props;
 
     const [state, dispatch] = useReducer<

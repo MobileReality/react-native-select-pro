@@ -4,7 +4,7 @@ import type { OptionalToRequired } from '../types';
 import type { SelectProps } from '../types';
 import type { OnPressOptionType } from '../types/shared';
 
-type OptionsListContextProviderTypes<T> = OptionalToRequired<
+export type OptionsListContextProviderTypes<T> = OptionalToRequired<
     Pick<
         SelectProps<T>,
         | 'animation'

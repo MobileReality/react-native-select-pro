@@ -31,6 +31,8 @@ export const useMultiSelect = ({ selectedOptions }: UseMultiSelectProps) => {
         styles,
     } = useSelectContext();
 
+    const { select: selectStyles } = styles ?? {};
+
     const removeSingleOption = useCallback(() => {
         dispatch({
             type: Action.SelectOption,
@@ -116,9 +118,7 @@ export const useMultiSelect = ({ selectedOptions }: UseMultiSelectProps) => {
         ],
     );
 
-    const { select } = styles ?? {};
-
-    const containerWidth = StyleSheet.flatten(select?.container)?.width;
+    const containerWidth = StyleSheet.flatten(selectStyles?.container)?.width;
 
     const calculatedOptionWidth = useMemo(() => {
         if (!selectedOptions) {
@@ -146,8 +146,13 @@ export const useMultiSelect = ({ selectedOptions }: UseMultiSelectProps) => {
         return 0;
     }, [selectedOptions, containerWidth, screenWidth]);
 
+    const isSearchable = typeof searchValue === 'string';
+
     return {
         calculatedOptionWidth,
         onPressRemove,
+        selectStyles,
+        disabled,
+        isSearchable,
     };
 };

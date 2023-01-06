@@ -3,22 +3,19 @@ import type { ViewStyle } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 
 import { PADDING } from '../../constants';
-import { useSelectContext } from '../../context';
-import { selectedOptionResolver } from '../../helpers';
 import { MultiSelect } from '../multi-select';
 import { SelectInput } from '../select-input';
 import { SelectText } from '../select-text';
 
-export const SelectFieldType = () => {
-    const { multiple, searchValue, selectedOption } = useSelectContext();
-    const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
+import { useSelectFieldType } from './select-field-type.hooks';
 
-    const renderProperSelectFieldType = () => {
+export const SelectFieldType = () => {
+    const { multiple, selectedOptions, selectedOptionLabel, isSearchable } = useSelectFieldType();
+
+    const renderSelectFieldType = () => {
         if (multiple) {
             return <MultiSelect selectedOptions={selectedOptions} />;
         }
-
-        const isSearchable = typeof searchValue === 'string';
 
         if (isSearchable) {
             return <SelectInput />;
@@ -29,7 +26,7 @@ export const SelectFieldType = () => {
 
     return (
         <View style={[styles.container, multiple ? styles.multiSelect : styles.singleSelect]}>
-            {renderProperSelectFieldType()}
+            {renderSelectFieldType()}
         </View>
     );
 };
