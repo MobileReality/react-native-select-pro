@@ -12,7 +12,6 @@ import type {
 
 import type { State } from '../state';
 
-import type { OnChooseOption, OptionComponentType } from './shared';
 import type { SelectStyles } from './styles';
 
 export type OptionTypeRequired = {
@@ -36,13 +35,6 @@ export type SectionOptionType<T = unknown> = {
 };
 
 export type OptionsType<T> = SectionOptionType<T>[] | OptionType<T>[];
-
-export type OptionComponentProps = Pick<
-    OptionComponentType,
-    'isSelected' | 'option' | 'optionIndex'
-> & {
-    onPressOption: OnChooseOption;
-};
 
 /**
  * `<Select />` component props

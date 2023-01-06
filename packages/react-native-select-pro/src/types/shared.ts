@@ -1,7 +1,7 @@
 import type { VirtualizedListWithoutRenderItemProps } from 'react-native';
 import type { SectionListData } from 'react-native';
 
-import type { OptionType } from '../types';
+import type { OptionType } from './types';
 
 export type ItemLayout<T> = ReturnType<
     NonNullable<VirtualizedListWithoutRenderItemProps<T>['getItemLayout']>
