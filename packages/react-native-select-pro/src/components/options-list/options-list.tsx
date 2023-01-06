@@ -22,6 +22,8 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         selectedOptionIndex,
         scrollToSelectedOption,
         flatListProps,
+        selectedOption,
+        sectionListProps,
     } = useOptionsListContext();
 
     const { getItemLayout, measuredRef, findSelectedOption, findSelectedOptionIndex, resolveData } =
@@ -52,10 +54,8 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                     key={value}
                     ref={index === 0 ? measuredRef : undefined}
                     option={{ ...item, section: sectionObject }}
-                    {...{
-                        isSelected,
-                        optionIndex,
-                    }}
+                    isSelected={isSelected}
+                    optionIndex={optionIndex}
                 />
             );
         },
@@ -89,11 +89,13 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         >
             {isSectionedOptions ? (
                 <SectionOptionsList
-                    {...{
-                        resolvedData,
-                        getItemLayout,
-                        renderItem,
-                    }}
+                    resolvedData={resolvedData}
+                    getItemLayout={getItemLayout}
+                    renderItem={renderItem}
+                    accessibilityState={accessibilityState}
+                    selectedOption={selectedOption}
+                    scrollToSelectedOption={scrollToSelectedOption}
+                    sectionListProps={sectionListProps}
                 />
             ) : (
                 <FlatOptionsList
