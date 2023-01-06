@@ -1,11 +1,11 @@
 import React, { memo, useRef } from 'react';
 import type { SectionListData } from 'react-native';
 import { SectionList } from 'react-native';
-import type { OptionType } from '@mobile-reality/react-native-select-pro';
 import isEqual from 'lodash.isequal';
 
 import { ERRORS, isSectionSelected, logError } from '../../helpers';
 import { getSectionLocation } from '../../helpers/get-section-location';
+import type { OptionType } from '../../types';
 import { NoOptions } from '../no-options';
 import { SectionHeader } from '../section-header';
 
