@@ -1,6 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import type { ViewStyle } from 'react-native';
-import { useWindowDimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 
 import { useSelectContext } from '../../context';
 import {
@@ -12,12 +11,10 @@ import { Action } from '../../state';
 import type { OptionType } from '../../types';
 import type { OnPressRemove } from '../../types';
 
+import type { UseMultiSelectProps } from './multi-select.types';
+
 const WIDTH_THRESHOLD = 100;
 const WIDTH_OFFSET = 72;
-
-type UseMultiSelectProps = {
-    selectedOptions: OptionType[] | null;
-};
 
 export const useMultiSelect = ({ selectedOptions }: UseMultiSelectProps) => {
     const { width: screenWidth } = useWindowDimensions();
@@ -121,7 +118,7 @@ export const useMultiSelect = ({ selectedOptions }: UseMultiSelectProps) => {
 
     const { select } = styles ?? {};
 
-    const containerWidth = (select as ViewStyle)?.width;
+    const containerWidth = StyleSheet.flatten(select?.container)?.width;
 
     const calculatedOptionWidth = useMemo(() => {
         if (!selectedOptions) {
