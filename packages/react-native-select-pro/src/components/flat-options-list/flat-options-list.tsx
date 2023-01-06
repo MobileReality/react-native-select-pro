@@ -1,43 +1,39 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { FlatList } from 'react-native';
+import isEqual from 'lodash.isequal';
 
-import { useOptionsListContext } from '../../context';
 import { NoOptions } from '../no-options';
 
 import type { FlatOptionsListProps } from './flat-options-list.types';
 
-export const FlatOptionsList = ({
-    resolvedData,
-    getItemLayout,
-    renderItem,
-}: FlatOptionsListProps) => {
-    const { flatListProps, isOpened, selectedOptionIndex, scrollToSelectedOption } =
-        useOptionsListContext();
+export const FlatOptionsList = memo(
+    ({
+        renderItem,
+        getItemLayout,
+        resolvedData,
+        flatListProps,
+        initialScrollIndex,
+        accessibilityState,
+    }: FlatOptionsListProps) => {
+        return (
+            <FlatList
+                testID="Options list"
+                accessibilityLabel="Options list"
+                accessibilityState={accessibilityState}
+                bounces={false}
+                keyboardShouldPersistTaps="handled"
+                persistentScrollbar={true}
+                ListEmptyComponent={<NoOptions />}
+                initialScrollIndex={initialScrollIndex}
+                {...flatListProps}
+                data={resolvedData}
+                getItemLayout={getItemLayout}
+                renderItem={renderItem}
+                keyExtractor={({ value }) => value}
+            />
+        );
+    },
+    (oldProps, newProps) => isEqual(oldProps, newProps),
+);
 
-    const initialScrollIndex =
-        typeof selectedOptionIndex === 'number' && scrollToSelectedOption
-            ? selectedOptionIndex
-            : -1;
-
-    const accessibilityState = {
-        expanded: isOpened,
-    };
-
-    return (
-        <FlatList
-            testID="Options list"
-            accessibilityLabel="Options list"
-            accessibilityState={accessibilityState}
-            bounces={false}
-            keyboardShouldPersistTaps="handled"
-            persistentScrollbar={true}
-            ListEmptyComponent={<NoOptions />}
-            initialScrollIndex={initialScrollIndex}
-            {...flatListProps}
-            data={resolvedData}
-            getItemLayout={getItemLayout}
-            renderItem={renderItem}
-            keyExtractor={({ value }) => value}
-        />
-    );
-};
+FlatOptionsList.displayName = 'FlatOptionsList';

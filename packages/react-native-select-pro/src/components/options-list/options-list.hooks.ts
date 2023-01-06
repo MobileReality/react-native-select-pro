@@ -25,36 +25,45 @@ export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
         }
     }, []);
 
-    const resolveData = () => {
+    const resolveData = useCallback(() => {
         if (!searchValue || (searchValue.length > 0 && searchValue === selectedOptionLabel)) {
             return optionsData;
         }
         return searchedOptions;
-    };
+    }, [optionsData, searchValue, searchedOptions, selectedOptionLabel]);
 
-    const findSelectedOption = (item: OptionType) => {
-        if (selectedOptionValue) {
-            return item.value === selectedOptionValue;
-        }
-        if (selectedOptions) {
-            return selectedOptions.some((option) => item.value === option.value);
-        }
-        return false;
-    };
+    const findSelectedOption = useCallback(
+        (item: OptionType) => {
+            if (selectedOptionValue) {
+                return item.value === selectedOptionValue;
+            }
+            if (selectedOptions) {
+                return selectedOptions.some((option) => item.value === option.value);
+            }
+            return false;
+        },
+        [selectedOptionValue, selectedOptions],
+    );
 
-    const findSelectedOptionIndex = (item: OptionType) => {
-        return optionsData.findIndex((option) => option.value === item.value);
-    };
+    const findSelectedOptionIndex = useCallback(
+        (item: OptionType) => {
+            return optionsData.findIndex((option) => option.value === item.value);
+        },
+        [optionsData],
+    );
 
-    const getItemLayout = <T>(_data: T, index: number): ItemLayout<T> => {
-        const height = StyleSheet.flatten(optionStyles?.container)?.height;
-        const isNumber = typeof height === 'number';
-        return {
-            length: isNumber ? height : ITEM_HEIGHT,
-            offset: isNumber ? height * index : ITEM_HEIGHT * index,
-            index,
-        };
-    };
+    const getItemLayout = useCallback(
+        <T>(_data: T, index: number): ItemLayout<T> => {
+            const height = StyleSheet.flatten(optionStyles?.container)?.height;
+            const isNumber = typeof height === 'number';
+            return {
+                length: isNumber ? height : ITEM_HEIGHT,
+                offset: isNumber ? height * index : ITEM_HEIGHT * index,
+                index,
+            };
+        },
+        [optionStyles?.container],
+    );
 
     return { getItemLayout, measuredRef, resolveData, findSelectedOption, findSelectedOptionIndex };
 };

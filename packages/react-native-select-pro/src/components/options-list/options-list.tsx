@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 import type { View, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
 
@@ -18,6 +18,10 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         aboveSelectControl,
         openedPosition: { width, top, left },
         styles: mainStyles,
+        isOpened,
+        selectedOptionIndex,
+        scrollToSelectedOption,
+        flatListProps,
     } = useOptionsListContext();
 
     const { getItemLayout, measuredRef, findSelectedOption, findSelectedOptionIndex, resolveData } =
@@ -28,31 +32,49 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
     const resolvedData = resolveData();
     const isSectionedOptions = isSectionOptionsType(resolvedData);
 
-    const renderItem = <T,>({ item, index, section }: RenderItemProps<T>) => {
-        const { value } = item;
-        const isSelected = findSelectedOption(item);
-        let optionIndex = findSelectedOptionIndex(item) ?? index;
-        const sectionTitle = section?.title;
-        let sectionObject;
-        if (isSectionedOptions) {
-            optionIndex = getReducedSectionData(resolvedData).indexOf(item);
-            sectionObject = {
-                title: sectionTitle,
-                index: resolvedData.findIndex((el) => el.title === sectionTitle),
-            };
-        }
+    const renderItem = useCallback(
+        <T,>({ item, index, section }: RenderItemProps<T>) => {
+            const { value } = item;
+            const isSelected = findSelectedOption(item);
+            let optionIndex = findSelectedOptionIndex(item) ?? index;
+            const sectionTitle = section?.title;
+            let sectionObject;
+            if (isSectionedOptions) {
+                optionIndex = getReducedSectionData(resolvedData).indexOf(item);
+                sectionObject = {
+                    title: sectionTitle,
+                    index: resolvedData.findIndex((el) => el.title === sectionTitle),
+                };
+            }
 
-        return (
-            <Option
-                key={value}
-                ref={index === 0 ? measuredRef : undefined}
-                option={{ ...item, section: sectionObject }}
-                {...{
-                    isSelected,
-                    optionIndex,
-                }}
-            />
-        );
+            return (
+                <Option
+                    key={value}
+                    ref={index === 0 ? measuredRef : undefined}
+                    option={{ ...item, section: sectionObject }}
+                    {...{
+                        isSelected,
+                        optionIndex,
+                    }}
+                />
+            );
+        },
+        [
+            findSelectedOption,
+            findSelectedOptionIndex,
+            isSectionedOptions,
+            measuredRef,
+            resolvedData,
+        ],
+    );
+
+    const initialScrollIndex =
+        typeof selectedOptionIndex === 'number' && scrollToSelectedOption
+            ? selectedOptionIndex
+            : -1;
+
+    const accessibilityState = {
+        expanded: isOpened,
     };
 
     return (
@@ -75,11 +97,12 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                 />
             ) : (
                 <FlatOptionsList
-                    {...{
-                        resolvedData,
-                        getItemLayout,
-                        renderItem,
-                    }}
+                    initialScrollIndex={initialScrollIndex}
+                    getItemLayout={getItemLayout}
+                    renderItem={renderItem}
+                    accessibilityState={accessibilityState}
+                    resolvedData={resolvedData}
+                    flatListProps={flatListProps}
                 />
             )}
         </OptionsListWrapper>
