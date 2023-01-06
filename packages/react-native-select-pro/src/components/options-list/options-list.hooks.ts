@@ -4,14 +4,25 @@ import { AccessibilityInfo, findNodeHandle, StyleSheet } from 'react-native';
 
 import { ITEM_HEIGHT } from '../../constants';
 import { useOptionsListContext } from '../../context';
-import { selectedOptionResolver } from '../../helpers';
+import { isSectionOptionsType, selectedOptionResolver } from '../../helpers';
 import type { OptionType } from '../../types';
 import type { ItemLayout } from '../../types/shared';
 
-import type { UseOptionsListProps } from './options-list.types';
-
-export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
-    const { optionsData, searchValue, selectedOption, searchedOptions } = useOptionsListContext();
+export const useOptionsList = () => {
+    const {
+        optionsData,
+        searchValue,
+        searchedOptions,
+        styles,
+        aboveSelectControl,
+        openedPosition: { width, top, left },
+        isOpened,
+        selectedOptionIndex,
+        scrollToSelectedOption,
+        flatListProps,
+        selectedOption,
+        sectionListProps,
+    } = useOptionsListContext();
 
     const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
         selectedOptionResolver(selectedOption);
@@ -54,7 +65,7 @@ export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
 
     const getItemLayout = useCallback(
         <T>(_data: T, index: number): ItemLayout<T> => {
-            const height = StyleSheet.flatten(optionStyles?.container)?.height;
+            const height = StyleSheet.flatten(styles?.option?.container)?.height;
             const isNumber = typeof height === 'number';
             return {
                 length: isNumber ? height : ITEM_HEIGHT,
@@ -62,8 +73,39 @@ export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
                 index,
             };
         },
-        [optionStyles?.container],
+        [styles?.option?.container],
     );
 
-    return { getItemLayout, measuredRef, resolveData, findSelectedOption, findSelectedOptionIndex };
+    const resolvedData = resolveData();
+
+    const isSectionedOptions = isSectionOptionsType(resolvedData);
+
+    const initialScrollIndex =
+        typeof selectedOptionIndex === 'number' && scrollToSelectedOption
+            ? selectedOptionIndex
+            : -1;
+
+    const accessibilityState = {
+        expanded: isOpened,
+    };
+
+    return {
+        getItemLayout,
+        measuredRef,
+        resolvedData,
+        findSelectedOption,
+        findSelectedOptionIndex,
+        aboveSelectControl,
+        width,
+        top,
+        left,
+        scrollToSelectedOption,
+        flatListProps,
+        sectionListProps,
+        selectedOption,
+        optionsListStyles: styles?.optionsList,
+        isSectionedOptions,
+        initialScrollIndex,
+        accessibilityState,
+    };
 };

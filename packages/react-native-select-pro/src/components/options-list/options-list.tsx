@@ -1,10 +1,10 @@
 import React, { forwardRef, useCallback } from 'react';
 import type { View, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
+import type { OptionType } from '@mobile-reality/react-native-select-pro';
 
 import { BORDER_WIDTH, COLORS, OPTIONS_LIST_HEIGHT, SHAPE } from '../../constants';
-import { useOptionsListContext } from '../../context';
-import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
+import { getReducedSectionData } from '../../helpers';
 import type { RenderItemProps } from '../../types/shared';
 import { FlatOptionsList } from '../flat-options-list';
 import { Option } from '../option';
@@ -15,24 +15,24 @@ import { useOptionsList } from './options-list.hooks';
 
 export const OptionsList = forwardRef<View>((_, optionsListRef) => {
     const {
-        aboveSelectControl,
-        openedPosition: { width, top, left },
-        styles: mainStyles,
-        isOpened,
-        selectedOptionIndex,
+        getItemLayout,
+        measuredRef,
+        findSelectedOption,
+        findSelectedOptionIndex,
+        resolvedData,
         scrollToSelectedOption,
-        flatListProps,
-        selectedOption,
+        aboveSelectControl,
         sectionListProps,
-    } = useOptionsListContext();
-
-    const { getItemLayout, measuredRef, findSelectedOption, findSelectedOptionIndex, resolveData } =
-        useOptionsList({
-            optionStyles: mainStyles?.option,
-        });
-
-    const resolvedData = resolveData();
-    const isSectionedOptions = isSectionOptionsType(resolvedData);
+        flatListProps,
+        width,
+        top,
+        left,
+        selectedOption,
+        optionsListStyles,
+        isSectionedOptions,
+        initialScrollIndex,
+        accessibilityState,
+    } = useOptionsList();
 
     const renderItem = useCallback(
         <T,>({ item, index, section }: RenderItemProps<T>) => {
@@ -68,21 +68,12 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         ],
     );
 
-    const initialScrollIndex =
-        typeof selectedOptionIndex === 'number' && scrollToSelectedOption
-            ? selectedOptionIndex
-            : -1;
-
-    const accessibilityState = {
-        expanded: isOpened,
-    };
-
     return (
         <OptionsListWrapper
             ref={optionsListRef}
             wrapperStyles={[
                 styles.optionsList,
-                mainStyles?.optionsList,
+                optionsListStyles,
                 { top, left, width },
                 aboveSelectControl ? styles.overflown : styles.notOverflown,
             ]}
@@ -103,7 +94,7 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                     getItemLayout={getItemLayout}
                     renderItem={renderItem}
                     accessibilityState={accessibilityState}
-                    resolvedData={resolvedData}
+                    resolvedData={resolvedData as OptionType[]}
                     flatListProps={flatListProps}
                 />
             )}
