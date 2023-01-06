@@ -7,8 +7,17 @@ import { useSelectContext } from '../../context';
 
 import type { SelectTextProps } from './select-text.types';
 
-export const SelectText = ({ selectStyles, selectedOptionLabel }: SelectTextProps) => {
-    const { placeholderText, placeholderTextColor, selectTextProps, multiple } = useSelectContext();
+export const SelectText = ({ selectedOptionLabel }: SelectTextProps) => {
+    const {
+        placeholderText,
+        placeholderTextColor,
+        selectTextProps,
+        multiple,
+        styles: mainStyles,
+    } = useSelectContext();
+
+    const { select } = mainStyles ?? {};
+    const { text: textStyles } = select ?? {};
 
     if (multiple) {
         return (
@@ -17,7 +26,7 @@ export const SelectText = ({ selectStyles, selectedOptionLabel }: SelectTextProp
                 {...selectTextProps}
                 style={[
                     styles.multiple,
-                    selectStyles?.text,
+                    textStyles,
                     {
                         color: placeholderTextColor,
                     },
@@ -34,10 +43,10 @@ export const SelectText = ({ selectStyles, selectedOptionLabel }: SelectTextProp
             {...selectTextProps}
             style={[
                 styles.text,
-                selectStyles?.text,
+                textStyles,
                 {
                     color: selectedOptionLabel
-                        ? StyleSheet.flatten(selectStyles?.text)?.color ?? COLORS.BLACK
+                        ? StyleSheet.flatten(textStyles)?.color ?? COLORS.BLACK
                         : placeholderTextColor,
                 },
             ]}

@@ -459,6 +459,7 @@ exports[`Select with multi selection and searchable should generate Select with 
       >
         <RCTScrollView
           horizontal={true}
+          scrollEnabled={true}
           style={
             {
               "flex": 1,
@@ -594,6 +595,7 @@ exports[`Select with multi selection should generate Select with multi selection
       >
         <RCTScrollView
           horizontal={true}
+          scrollEnabled={true}
           style={
             {
               "flex": 1,

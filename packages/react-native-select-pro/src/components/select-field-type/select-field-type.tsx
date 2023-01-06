@@ -9,40 +9,22 @@ import { MultiSelect } from '../multi-select';
 import { SelectInput } from '../select-input';
 import { SelectText } from '../select-text';
 
-import type { SelectFieldTypeProps } from './select-field-type.types';
-
-export const SelectFieldType = ({ onPressRemove }: SelectFieldTypeProps) => {
-    const { multiple, searchValue, selectedOption, styles: mainStyles } = useSelectContext();
+export const SelectFieldType = () => {
+    const { multiple, searchValue, selectedOption } = useSelectContext();
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
-    const { select: selectStyles } = mainStyles ?? {};
 
     const renderProperSelectFieldType = () => {
         if (multiple) {
-            return (
-                <MultiSelect
-                    {...{
-                        selectStyles,
-                        selectedOptions,
-                        onPressRemove,
-                    }}
-                />
-            );
+            return <MultiSelect selectedOptions={selectedOptions} />;
         }
 
         const isSearchable = typeof searchValue === 'string';
 
         if (isSearchable) {
-            return (
-                <SelectInput
-                    {...{
-                        textStyle: selectStyles?.text,
-                        selectedOption,
-                    }}
-                />
-            );
+            return <SelectInput />;
         }
 
-        return <SelectText {...{ selectStyles, selectedOptionLabel }} />;
+        return <SelectText selectedOptionLabel={selectedOptionLabel} />;
     };
 
     return (
@@ -72,5 +54,3 @@ const styles = StyleSheet.create<Styles>({
         paddingRight: 55,
     },
 });
-
-SelectFieldType.displayName = 'SelectFieldType';

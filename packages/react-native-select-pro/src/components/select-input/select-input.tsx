@@ -6,9 +6,7 @@ import { COLORS, FONT_SIZE } from '../../constants';
 import { useSelectContext } from '../../context';
 import { Action } from '../../state';
 
-import type { SelectInputProps } from './select-input.types';
-
-export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<T>) => {
+export const SelectInput = () => {
     const {
         isOpened,
         disabled,
@@ -22,8 +20,13 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
         dispatch,
         setOptionsListPosition,
         onSelectChangeText,
+        styles: mainStyles,
+        selectedOption,
     } = useSelectContext();
     const searchInputRef = useRef<TextInput>(null);
+
+    const { select: selectStyles } = mainStyles ?? {};
+    const { text: textStyles } = selectStyles ?? {};
 
     useEffect(() => {
         const showSubscription = Keyboard.addListener('keyboardDidShow', async () => {
@@ -85,7 +88,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
             style={
                 disabled
                     ? [styles.disabled, styles.text, multiple && { marginRight: 5 }]
-                    : [styles.text, textStyle]
+                    : [styles.text, textStyles]
             }
             textAlign={I18nManager.getConstants().isRTL ? 'right' : 'left'}
             value={searchValue ?? ''}

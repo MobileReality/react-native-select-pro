@@ -56,11 +56,7 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                         <Image {...selectLeftIconImageProps} style={leftIconStyles} />
                     </View>
                 )}
-                <SelectFieldType
-                    {...{
-                        onPressRemove,
-                    }}
-                />
+                <SelectFieldType />
                 <View {...selectRightIconsProps} style={[styles.buttonsContainer, buttonsStyles]}>
                     {showClearOption && clearOption}
                     {!hideArrow && <Arrow />}
