@@ -141,7 +141,7 @@ export const useSelect = <T>({
                 }
             },
             open: async () => {
-                if (selectControlRef.current && !disabled) {
+                if (selectControlRef.current) {
                     open();
                     await setOptionsListPosition();
                 }

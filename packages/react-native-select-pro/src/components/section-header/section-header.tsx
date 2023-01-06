@@ -19,13 +19,17 @@ export const SectionHeader = ({ title, isSelected }: SectionHeaderProps) => {
         sectionHeaderTextProps,
         sectionHeaderImageProps,
         multiple,
+        disabled,
     } = useOptionsListContext();
 
     const { sectionHeader } = mainStyles ?? {};
 
+    const isDisabled = disabled ?? !multiple;
+
     return (
         <Pressable
-            disabled={!multiple}
+            disabled={isDisabled}
+            accessibilityState={{ disabled: isDisabled }}
             {...sectionHeaderButtonProps}
             style={({ pressed }) => [
                 styles.sectionHeaderContainerStyle,

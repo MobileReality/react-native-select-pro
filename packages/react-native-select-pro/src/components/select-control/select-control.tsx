@@ -37,6 +37,8 @@ export const SelectControl = forwardRef<View>((_, ref) => {
         <View style={styles.rootView}>
             <Pressable
                 accessibilityHint={accessibilityHint}
+                disabled={disabled}
+                accessibilityState={{ disabled }}
                 {...selectContainerProps}
                 ref={ref}
                 accessibilityLabel={accessibilityLabel}

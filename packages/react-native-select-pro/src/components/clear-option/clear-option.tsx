@@ -23,6 +23,7 @@ export const ClearOption = ({ onPressRemove }: ClearOptionProps) => {
             accessibilityLabel="Clear a selected option"
             accessibilityRole="button"
             accessible={true}
+            accessibilityState={{ disabled }}
             hitSlop={{ right: 3, left: 3 }}
             disabled={disabled}
             {...clearOptionButtonProps}

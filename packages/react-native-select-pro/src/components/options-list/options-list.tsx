@@ -1,10 +1,10 @@
 import React, { forwardRef, useCallback } from 'react';
 import type { View, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
-import type { OptionType } from '@mobile-reality/react-native-select-pro';
 
 import { BORDER_WIDTH, COLORS, OPTIONS_LIST_HEIGHT, SHAPE } from '../../constants';
 import { getReducedSectionData } from '../../helpers';
+import type { OptionType } from '../../types';
 import type { RenderItemProps } from '../../types/shared';
 import { FlatOptionsList } from '../flat-options-list';
 import { Option } from '../option';
@@ -32,6 +32,7 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         isSectionedOptions,
         initialScrollIndex,
         accessibilityState,
+        disabled,
     } = useOptionsList();
 
     const renderItem = useCallback(
@@ -56,10 +57,12 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                     option={{ ...item, section: sectionObject }}
                     isSelected={isSelected}
                     optionIndex={optionIndex}
+                    disabled={disabled}
                 />
             );
         },
         [
+            disabled,
             findSelectedOption,
             findSelectedOptionIndex,
             isSectionedOptions,
@@ -87,6 +90,7 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                     selectedOption={selectedOption}
                     scrollToSelectedOption={scrollToSelectedOption}
                     sectionListProps={sectionListProps}
+                    disabled={disabled}
                 />
             ) : (
                 <FlatOptionsList
@@ -96,6 +100,7 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                     accessibilityState={accessibilityState}
                     resolvedData={resolvedData as OptionType[]}
                     flatListProps={flatListProps}
+                    disabled={disabled}
                 />
             )}
         </OptionsListWrapper>

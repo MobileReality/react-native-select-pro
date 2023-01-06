@@ -22,6 +22,7 @@ export const useOptionsList = () => {
         flatListProps,
         selectedOption,
         sectionListProps,
+        disabled,
     } = useOptionsListContext();
 
     const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
@@ -107,5 +108,6 @@ export const useOptionsList = () => {
         isSectionedOptions,
         initialScrollIndex,
         accessibilityState,
+        disabled,
     };
 };

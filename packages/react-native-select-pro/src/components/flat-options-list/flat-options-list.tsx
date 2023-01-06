@@ -14,6 +14,7 @@ export const FlatOptionsList = memo(
         flatListProps,
         initialScrollIndex,
         accessibilityState,
+        disabled,
     }: FlatOptionsListProps) => {
         return (
             <FlatList
@@ -25,6 +26,7 @@ export const FlatOptionsList = memo(
                 persistentScrollbar={true}
                 ListEmptyComponent={<NoOptions />}
                 initialScrollIndex={initialScrollIndex}
+                scrollEnabled={!disabled}
                 {...flatListProps}
                 data={resolvedData}
                 getItemLayout={getItemLayout}

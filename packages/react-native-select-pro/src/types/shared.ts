@@ -15,12 +15,6 @@ export type RenderItemProps<T> = {
 
 export type OnPressRemove = (option?: OptionType | null) => void;
 
-export type OptionComponentType = {
-    isSelected: boolean;
-    option: OptionType;
-    optionIndex: number;
-};
-
 export type OnPressOptionType<T> = (option: OptionType<T>, optionIndex: number) => void;
 
 export type OnPressSelectControlType = () => void;

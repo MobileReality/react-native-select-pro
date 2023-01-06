@@ -8,4 +8,4 @@ export type FlatOptionsListProps = {
     getItemLayout: FlatListProps<OptionType>['getItemLayout'];
     accessibilityState: FlatListProps<OptionType>['accessibilityState'];
     initialScrollIndex: number;
-} & OptionalToRequired<Pick<SelectProps, 'flatListProps'>>;
+} & OptionalToRequired<Pick<SelectProps, 'flatListProps' | 'disabled'>>;

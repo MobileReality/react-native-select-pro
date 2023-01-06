@@ -20,6 +20,7 @@ export const SectionOptionsList = memo(
         selectedOption,
         scrollToSelectedOption,
         sectionListProps,
+        disabled,
     }: SectionOptionsListProps) => {
         const sectionOptionsListRef = useRef<SectionList>(null);
 
@@ -59,6 +60,7 @@ export const SectionOptionsList = memo(
                 keyboardShouldPersistTaps="handled"
                 persistentScrollbar={true}
                 ListEmptyComponent={<NoOptions />}
+                scrollEnabled={!disabled}
                 {...sectionListProps}
                 ref={sectionOptionsListRef}
                 renderSectionHeader={renderSectionHeader}
