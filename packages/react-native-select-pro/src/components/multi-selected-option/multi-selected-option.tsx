@@ -8,17 +8,23 @@ import { COLORS, FONT_SIZE, PRESSED_STYLE } from '../../constants';
 import type { MultiSelectedOptionProps } from './multi-selected-option.types';
 
 export const MultiSelectedOption = memo(
-    ({ option, selectStyles, optionWidth, onPressRemove, disabled }: MultiSelectedOptionProps) => {
+    ({
+        option,
+        multiSelectedCustomStyles,
+        optionWidth,
+        onPressRemove,
+        disabled,
+    }: MultiSelectedOptionProps) => {
         return (
             <Pressable
                 accessibilityLabel={
-                    option ? `${option.label} selected` : 'Placeholder in multi-select'
+                    option ? `${option.label} selected` : 'Placeholder in multiple select'
                 }
                 style={({ pressed }) => [
                     styles.multiSelectedOption,
-                    selectStyles?.multiSelectedOption?.container,
+                    multiSelectedCustomStyles?.container,
                     { width: optionWidth },
-                    pressed && (selectStyles?.multiSelectedOption?.pressed ?? PRESSED_STYLE),
+                    pressed && (multiSelectedCustomStyles?.pressed ?? PRESSED_STYLE),
                 ]}
                 disabled={disabled}
                 onPress={() => onPressRemove(option)}
@@ -27,11 +33,11 @@ export const MultiSelectedOption = memo(
                     numberOfLines={1}
                     style={[
                         styles.text,
-                        selectStyles?.multiSelectedOption?.text,
+                        multiSelectedCustomStyles?.text,
                         {
                             color:
-                                StyleSheet.flatten(selectStyles?.multiSelectedOption?.text)
-                                    ?.color ?? COLORS.BLACK,
+                                StyleSheet.flatten(multiSelectedCustomStyles?.text)?.color ??
+                                COLORS.BLACK,
                         },
                     ]}
                 >

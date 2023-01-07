@@ -2,5 +2,5 @@ import type { OnOutsidePress, OptionalToRequired, SelectProps, SelectStyles } fr
 
 export type BackdropProps = {
     onOutsidePress: OnOutsidePress;
-} & OptionalToRequired<Pick<SelectStyles, 'backdrop'>> &
-    Pick<SelectProps, 'backdropProps' | 'backdropChildProps'>;
+    backdropCustomStyles: OptionalToRequired<SelectStyles>['backdrop'];
+} & OptionalToRequired<Pick<SelectProps, 'backdropProps' | 'backdropChildProps'>>;

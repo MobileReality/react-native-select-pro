@@ -31,6 +31,7 @@ export const useMultiSelect = ({ selectedOptions }: UseMultiSelectProps) => {
     } = useSelectContext();
 
     const { select: selectStyles } = styles ?? {};
+    const { multiSelectedOption: multiSelectedCustomStyles } = selectStyles ?? {};
 
     const removeSingleOption = useCallback(() => {
         dispatch({
@@ -146,8 +147,8 @@ export const useMultiSelect = ({ selectedOptions }: UseMultiSelectProps) => {
     return {
         calculatedOptionWidth,
         onPressRemove,
-        selectStyles,
         disabled,
         isSearchable,
+        multiSelectedCustomStyles,
     };
 };

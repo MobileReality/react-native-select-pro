@@ -11,10 +11,15 @@ import { useMultiSelect } from './multi-select.hooks';
 import type { MultiSelectProps } from './multi-select.types';
 
 export const MultiSelect = ({ selectedOptions }: MultiSelectProps) => {
-    const { calculatedOptionWidth, onPressRemove, selectStyles, disabled, isSearchable } =
-        useMultiSelect({
-            selectedOptions,
-        });
+    const {
+        calculatedOptionWidth,
+        onPressRemove,
+        multiSelectedCustomStyles,
+        disabled,
+        isSearchable,
+    } = useMultiSelect({
+        selectedOptions,
+    });
 
     const resolveSelectedOptionsList = () => {
         if (!selectedOptions) {
@@ -26,7 +31,7 @@ export const MultiSelect = ({ selectedOptions }: MultiSelectProps) => {
                 key={`${option.section}-${option.value}`}
                 optionWidth={calculatedOptionWidth}
                 option={option}
-                selectStyles={selectStyles}
+                multiSelectedCustomStyles={multiSelectedCustomStyles}
                 disabled={disabled}
                 onPressRemove={onPressRemove}
             />

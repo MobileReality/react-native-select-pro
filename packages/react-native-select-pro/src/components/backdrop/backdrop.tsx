@@ -6,7 +6,7 @@ import type { BackdropProps } from './backdrop.types';
 
 export const Backdrop = ({
     onOutsidePress,
-    backdrop,
+    backdropCustomStyles,
     backdropProps,
     backdropChildProps,
 }: BackdropProps) => {
@@ -17,7 +17,7 @@ export const Backdrop = ({
             {...backdropProps}
             onPress={onOutsidePress}
         >
-            <View {...backdropChildProps} style={[styles.modalOverlay, backdrop]} />
+            <View {...backdropChildProps} style={[styles.modalOverlay, backdropCustomStyles]} />
         </TouchableWithoutFeedback>
     );
 };

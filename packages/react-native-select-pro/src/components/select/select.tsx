@@ -162,7 +162,7 @@ export const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<Sel
                     {hasBackdrop && (
                         <Portal hostName={Portals.Backdrop}>
                             <Backdrop
-                                backdrop={mainStyles?.backdrop}
+                                backdropCustomStyles={mainStyles?.backdrop}
                                 backdropProps={backdropProps}
                                 backdropChildProps={backdropChildProps}
                                 onOutsidePress={onOutsidePress}
