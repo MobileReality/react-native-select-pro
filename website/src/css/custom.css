@@ -29,4 +29,11 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 .table-size {
     font-size: 14px;
+
+
+}
+
+.table-size ul {
+    margin: 0;
+    padding-left: 16px;
 }

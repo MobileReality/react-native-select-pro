@@ -25,33 +25,7 @@ const sidebars = {
             items: [
                 'api/select',
                 'api/select-provider',
-                // {
-                //     type: 'category',
-                //     label: 'Select',
-                //     items: [
-                //         'api/required',
-                //         'api/common',
-                //         'api/callbacks',
-                //         'api/refs',
-                //         'api/styles',
-                //         'api/components',
-                //         'api/accessibility',
-                //     ],
-                // },
                 'api/select-modal',
-            ],
-        },
-        {
-            type: 'category',
-            label: 'Examples',
-            items: [
-                'examples/video',
-                {
-                    type: 'link',
-                    label: 'Expo Snack',
-                    href: 'https://snack.expo.dev/@irekrog/smelly-beef-jerky',
-                },
-                'examples/repo-clone',
             ],
         },
     ],

@@ -43,8 +43,7 @@ const processNode = (node, parent) => {
                 })
             );
             const dependencies = params.dependencies || '';
-            const platform = params.platform || 'web';
-            const supportedPlatforms = params.supportedPlatforms || 'ios,android,web';
+            const supportedPlatforms = params.supportedPlatforms || 'ios,android';
             const theme = params.theme || 'light';
             const preview = params.preview || 'true';
             const loading = params.loading || 'lazy';
@@ -60,7 +59,6 @@ const processNode = (node, parent) => {
             data-snack-description="${description}"
             data-snack-files="${files}"
             data-snack-dependencies="${dependencies}"
-            data-snack-platform="${platform}"
             data-snack-supported-platforms="${supportedPlatforms}"
             data-snack-theme="${theme}"
             data-snack-preview="${preview}"

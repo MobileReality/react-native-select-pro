@@ -5,7 +5,7 @@ type SnackLinkProps = {
     contents: string;
     label?: string;
 };
-export const SnackLink = ({ name, contents, label = 'Link' }: SnackLinkProps) => {
+export const SnackLink = ({ name, contents, label = 'Expo' }: SnackLinkProps) => {
     const code = {
         'App.tsx': {
             type: 'CODE',
