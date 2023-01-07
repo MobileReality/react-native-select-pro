@@ -2,8 +2,7 @@ import React, { forwardRef, useCallback } from 'react';
 import type { View } from 'react-native';
 
 import { getReducedSectionData } from '../../helpers';
-import type { OptionType } from '../../types';
-import type { RenderItemProps } from '../../types/shared';
+import type { OptionType, RenderItemProps } from '../../types';
 import { FlatOptionsList } from '../flat-options-list';
 import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';

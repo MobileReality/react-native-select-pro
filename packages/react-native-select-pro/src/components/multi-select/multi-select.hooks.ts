@@ -8,8 +8,7 @@ import {
     isSectionOptionsType,
 } from '../../helpers';
 import { Action } from '../../state';
-import type { OptionType } from '../../types';
-import type { OnPressRemove } from '../../types';
+import type { OnPressRemove, OptionType } from '../../types';
 
 import type { UseMultiSelectProps } from './multi-select.types';
 

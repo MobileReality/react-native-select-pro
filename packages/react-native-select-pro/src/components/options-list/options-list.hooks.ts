@@ -5,8 +5,7 @@ import { AccessibilityInfo, findNodeHandle, StyleSheet } from 'react-native';
 import { ITEM_HEIGHT } from '../../constants';
 import { useOptionsListContext } from '../../context';
 import { isSectionOptionsType, selectedOptionResolver } from '../../helpers';
-import type { OptionType } from '../../types';
-import type { ItemLayout } from '../../types/shared';
+import type { ItemLayout, OptionType } from '../../types';
 
 export const useOptionsList = () => {
     const {

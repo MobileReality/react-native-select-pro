@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 import isEqual from 'lodash.isequal';
 
 import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING, PRESSED_STYLE } from '../../constants';
-import type { OnChooseOption } from '../../types/shared';
+import type { OnChooseOption } from '../../types';
 
 import type { OptionProps } from './option.types';
 

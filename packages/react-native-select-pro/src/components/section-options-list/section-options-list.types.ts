@@ -2,8 +2,7 @@ import type { SectionListProps } from 'react-native';
 import type { FlatListProps } from 'react-native';
 
 import type { State } from '../../state';
-import type { OptionType, SectionOptionType, SelectProps } from '../../types';
-import type { OptionalToRequired } from '../../types';
+import type { OptionalToRequired, OptionType, SectionOptionType, SelectProps } from '../../types';
 
 export type SectionOptionsListProps = {
     resolvedData: SectionOptionType[];
