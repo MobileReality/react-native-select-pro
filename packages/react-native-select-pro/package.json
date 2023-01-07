@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "build": "bob build",
+    "local-package": "yalc publish",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint --fix ./src --ext .js,.jsx,.ts,.tsx",
     "tsc": "tsc --noEmit",

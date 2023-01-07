@@ -14,7 +14,7 @@ const OptionComponent = forwardRef<View, OptionProps>(
             isSelected,
             option,
             optionIndex,
-            disabled,
+            overrideWithDisabledStyle,
             onPressOption,
             optionButtonProps,
             optionTextProps,
@@ -42,7 +42,7 @@ const OptionComponent = forwardRef<View, OptionProps>(
                     optionCustomStyles?.container,
                     isSelected && [styles.selected, optionCustomStyles?.selected?.container],
                     pressed && (optionCustomStyles?.pressed ?? PRESSED_STYLE),
-                    disabled && styles.disabled,
+                    overrideWithDisabledStyle && styles.disabled,
                 ]}
                 onPress={onChooseOption}
             >

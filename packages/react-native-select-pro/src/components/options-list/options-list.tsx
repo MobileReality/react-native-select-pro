@@ -47,7 +47,15 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                 };
             }
 
-            const isDisabled = disabled ?? (pressableSelectedOption ? false : isSelected);
+            let isDisabledOption = false;
+
+            if (disabled) {
+                isDisabledOption = disabled;
+            } else if (pressableSelectedOption) {
+                isDisabledOption = false;
+            } else if (isSelected) {
+                isDisabledOption = true;
+            }
 
             return (
                 <Option
@@ -56,11 +64,11 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                     option={{ ...item, section: sectionObject }}
                     isSelected={isSelected}
                     optionIndex={optionIndex}
-                    disabled={disabled}
+                    overrideWithDisabledStyle={!!disabled}
                     optionButtonProps={optionButtonProps}
                     optionTextProps={optionTextProps}
                     optionCustomStyles={optionCustomStyles}
-                    isDisabled={isDisabled}
+                    isDisabled={isDisabledOption}
                     onPressOption={onPressOption}
                 />
             );
