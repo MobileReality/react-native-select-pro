@@ -1,4 +1,4 @@
-import type { ForwardedRef, NamedExoticComponent, ReactElement, Reducer } from 'react';
+import type { ForwardedRef, Reducer } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
 import type { ViewStyle } from 'react-native';
 import { UIManager } from 'react-native';
@@ -21,7 +21,7 @@ if (isAndroid && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<T>>) => {
+export const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<T>>) => {
     const {
         // Required
         options,
@@ -209,10 +209,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
     );
 };
 
-export const Select = forwardRef(SelectComp) as <T>(
-    props: SelectProps<T> & { ref?: ForwardedRef<SelectRef<T>> },
-) => ReactElement;
-
 type Styles = {
     relative: ViewStyle;
 };
@@ -223,4 +219,6 @@ const styles = StyleSheet.create<Styles>({
     },
 });
 
-(Select as NamedExoticComponent).displayName = 'Select';
+export const Select = forwardRef(SelectComponent) as <T>(
+    props: SelectProps<T> & { ref?: ForwardedRef<SelectRef<T>> },
+) => ReturnType<typeof SelectComponent>;
