@@ -12,7 +12,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "bob build",
+    "build": "bob build && find dist -type d -name \"__tests__\" -exec rm -r \"{}\" +",
     "local-package": "yalc publish",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint --fix ./src --ext .js,.jsx,.ts,.tsx",
