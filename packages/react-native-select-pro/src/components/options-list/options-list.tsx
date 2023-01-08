@@ -1,8 +1,9 @@
 import React, { forwardRef, useCallback } from 'react';
 import type { ListRenderItem, SectionListRenderItem, View } from 'react-native';
-import type { OptionType, SectionOptionType } from '@mobile-reality/react-native-select-pro';
 
-import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
+import { getReducedSectionData } from '../../helpers';
+import type { OptionType, SectionOptionType } from '../../types';
+import { isSectionOptionsType } from '../../types';
 import { FlatOptionsList } from '../flat-options-list';
 import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';

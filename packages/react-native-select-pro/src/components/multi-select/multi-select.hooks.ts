@@ -2,13 +2,10 @@ import { useCallback, useMemo } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 
 import { useSelectContext } from '../../context';
-import {
-    dimensionPercentageToDP,
-    getReducedSectionData,
-    isSectionOptionsType,
-} from '../../helpers';
+import { dimensionPercentageToDP, getReducedSectionData } from '../../helpers';
 import { Action } from '../../state';
 import type { OnPressRemove, OptionType } from '../../types';
+import { isSectionOptionsType } from '../../types';
 
 import type { UseMultiSelectProps } from './multi-select.types';
 

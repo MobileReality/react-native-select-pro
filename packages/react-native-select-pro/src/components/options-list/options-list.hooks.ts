@@ -4,9 +4,9 @@ import { AccessibilityInfo, findNodeHandle, StyleSheet } from 'react-native';
 
 import { ITEM_HEIGHT } from '../../constants';
 import { useOptionsListContext } from '../../context';
-import { isSectionOptionsType, selectedOptionResolver } from '../../helpers';
+import { selectedOptionResolver } from '../../helpers';
 import type { ItemLayout, OptionType } from '../../types';
-import { isFlatOptionsType } from '../../types';
+import { isFlatOptionsType, isSectionOptionsType } from '../../types';
 
 export const useOptionsList = <T>() => {
     const {

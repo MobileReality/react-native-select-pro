@@ -3,7 +3,7 @@ import type { LayoutRectangle } from 'react-native';
 import { I18nManager, useWindowDimensions } from 'react-native';
 
 import { APPROX_STATUSBAR_HEIGHT } from '../../constants';
-import { isSectionOptionsType, isValidDefaultOption } from '../../helpers';
+import { isValidDefaultOption } from '../../helpers';
 import {
     getReducedSectionData,
     getSectionOptionsIndexes,
@@ -17,6 +17,7 @@ import type {
     OptionType,
     SelectRef,
 } from '../../types';
+import { isSectionOptionsType } from '../../types';
 import { SelectModalContext } from '../select-provider';
 
 import type { UseSelect } from './select.types';
