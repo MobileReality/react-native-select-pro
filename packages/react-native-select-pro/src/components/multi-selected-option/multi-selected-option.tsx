@@ -8,13 +8,13 @@ import { COLORS, FONT_SIZE, PRESSED_STYLE } from '../../constants';
 import type { MultiSelectedOptionProps } from './multi-selected-option.types';
 
 export const MultiSelectedOption = memo(
-    ({
+    <T,>({
         option,
         multiSelectedCustomStyles,
         optionWidth,
         onPressRemove,
         disabled,
-    }: MultiSelectedOptionProps) => {
+    }: MultiSelectedOptionProps<T>) => {
         return (
             <Pressable
                 accessibilityLabel={
@@ -27,7 +27,7 @@ export const MultiSelectedOption = memo(
                     pressed && (multiSelectedCustomStyles?.pressed ?? PRESSED_STYLE),
                 ]}
                 disabled={disabled}
-                onPress={() => onPressRemove(option)}
+                onPress={() => (onPressRemove ? onPressRemove(option) : null)}
             >
                 <Text
                     numberOfLines={1}

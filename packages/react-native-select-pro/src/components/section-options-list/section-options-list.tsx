@@ -5,14 +5,14 @@ import isEqual from 'lodash.isequal';
 
 import { ERRORS, isSectionSelected, logError } from '../../helpers';
 import { getSectionLocation } from '../../helpers/get-section-location';
-import type { OptionType } from '../../types';
+import type { OptionType, SectionOptionType } from '../../types';
 import { NoOptions } from '../no-options';
 import { SectionHeader } from '../section-header';
 
 import type { SectionOptionsListProps } from './section-options-list.types';
 
 export const SectionOptionsList = memo(
-    ({
+    <T,>({
         resolvedData,
         getItemLayout,
         renderItem,
@@ -21,14 +21,14 @@ export const SectionOptionsList = memo(
         scrollToSelectedOption,
         sectionListProps,
         disabled,
-    }: SectionOptionsListProps) => {
+    }: SectionOptionsListProps<T>) => {
         const sectionOptionsListRef = useRef<SectionList>(null);
 
         const renderSectionHeader = <T,>(info: { section: SectionListData<T> }) => {
             const isSelected = isSectionSelected({
                 title: info.section.title,
-                selectedOptions: selectedOption as OptionType[],
-                sectionData: resolvedData,
+                selectedOptions: selectedOption as OptionType<T>[],
+                sectionData: resolvedData as unknown as SectionOptionType<T>[],
             });
 
             return <SectionHeader title={info.section.title} isSelected={isSelected} />;

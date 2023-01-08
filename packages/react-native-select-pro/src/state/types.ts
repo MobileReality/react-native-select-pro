@@ -59,7 +59,7 @@ export type Position = {
 
 export type State<T = unknown> = {
     isOpened: boolean;
-    selectedOption: OptionType<T> | null | OptionType<T>[];
+    selectedOption: OptionType<T> | OptionType<T>[] | null;
     selectedOptionIndex: number | number[];
     optionsData: OptionsType<T>;
     openedPosition: Position;

@@ -7,7 +7,7 @@ import type { ClearOptionProps } from './clear-option.types';
 
 const iconSource = require('./../../assets/icons/x.png');
 
-export const ClearOption = ({ onPressRemove }: ClearOptionProps) => {
+export const ClearOption = <T,>({ onPressRemove }: ClearOptionProps<T>) => {
     const {
         disabled,
         clearOptionButtonProps,

@@ -4,12 +4,12 @@ import type { FlatListProps } from 'react-native';
 import type { State } from '../../state';
 import type { OptionalToRequired, OptionType, SectionOptionType, SelectProps } from '../../types';
 
-export type SectionOptionsListProps = {
-    resolvedData: SectionOptionType[];
-    renderItem: SectionListProps<OptionType>['renderItem'];
-    getItemLayout: SectionListProps<OptionType>['getItemLayout'];
-    accessibilityState: FlatListProps<OptionType>['accessibilityState'];
+export type SectionOptionsListProps<T> = {
+    resolvedData: SectionOptionType<T>[];
+    renderItem: SectionListProps<OptionType<T>>['renderItem'];
+    getItemLayout: SectionListProps<OptionType<T>>['getItemLayout'];
+    accessibilityState: FlatListProps<OptionType<T>>['accessibilityState'];
 } & OptionalToRequired<
-    Pick<State, 'selectedOption'> &
-        Pick<SelectProps, 'scrollToSelectedOption' | 'sectionListProps' | 'disabled'>
+    Pick<State<T>, 'selectedOption'> &
+        Pick<SelectProps<T>, 'scrollToSelectedOption' | 'sectionListProps' | 'disabled'>
 >;

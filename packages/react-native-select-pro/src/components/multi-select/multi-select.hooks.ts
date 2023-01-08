@@ -15,7 +15,7 @@ import type { UseMultiSelectProps } from './multi-select.types';
 const WIDTH_THRESHOLD = 100;
 const WIDTH_OFFSET = 72;
 
-export const useMultiSelect = ({ selectedOptions }: UseMultiSelectProps) => {
+export const useMultiSelect = <T>({ selectedOptions }: UseMultiSelectProps<T>) => {
     const { width: screenWidth } = useWindowDimensions();
 
     const {
@@ -52,7 +52,7 @@ export const useMultiSelect = ({ selectedOptions }: UseMultiSelectProps) => {
     }, [dispatch, searchValue]);
 
     const removeOptionInMultipleSelect = useCallback(
-        (option: OptionType, selectedOptions: OptionType[]) => {
+        (option: OptionType<T>, selectedOptions: OptionType<T>[]) => {
             const removedSelectedOptions = selectedOptions.filter(
                 (selected) => selected.value !== option.value,
             );
@@ -86,7 +86,7 @@ export const useMultiSelect = ({ selectedOptions }: UseMultiSelectProps) => {
         [dispatch, optionsData, selectedOptionIndex],
     );
 
-    const onPressRemove: OnPressRemove = useCallback(
+    const onPressRemove: OnPressRemove<T> = useCallback(
         (option = null) => {
             if (disabled) {
                 return;

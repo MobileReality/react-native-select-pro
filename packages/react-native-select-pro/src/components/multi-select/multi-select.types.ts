@@ -1,9 +1,9 @@
 import type { OptionType } from '../../index';
 
-export type MultiSelectProps = {
-    selectedOptions: OptionType[] | null;
+export type MultiSelectProps<T> = {
+    selectedOptions: OptionType<T>[] | null;
 };
 
-export type UseMultiSelectProps = {
-    selectedOptions: OptionType[] | null;
+export type UseMultiSelectProps<T> = {
+    selectedOptions: OptionType<T>[] | null;
 };

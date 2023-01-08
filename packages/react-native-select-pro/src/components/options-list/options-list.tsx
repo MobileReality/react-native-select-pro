@@ -1,8 +1,8 @@
 import React, { forwardRef, useCallback } from 'react';
-import type { View } from 'react-native';
+import type { ListRenderItem, SectionListRenderItem, View } from 'react-native';
+import type { OptionType } from '@mobile-reality/react-native-select-pro';
 
-import { getReducedSectionData } from '../../helpers';
-import type { OptionType, RenderItemProps } from '../../types';
+import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
 import { FlatOptionsList } from '../flat-options-list';
 import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';
@@ -22,40 +22,29 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         flatListProps,
         selectedOption,
         optionCustomStyles,
-        isSectionedOptions,
         initialScrollIndex,
         accessibilityState,
         disabled,
         onPressOption,
         optionButtonProps,
         optionTextProps,
-        pressableSelectedOption,
+        isDisabledResolveOption,
     } = useOptionsList();
 
-    const renderItem = useCallback(
-        <T,>({ item, index, section }: RenderItemProps<T>) => {
+    const isSectionedOptions = isSectionOptionsType(resolvedData);
+
+    const renderSection: SectionListRenderItem<OptionType> = useCallback(
+        ({ item, index, section }) => {
             const { value } = item;
             const isSelected = findSelectedOption(item);
-            let optionIndex = findSelectedOptionIndex(item) ?? index;
             const sectionTitle = section?.title;
-            let sectionObject;
-            if (isSectionedOptions) {
-                optionIndex = getReducedSectionData(resolvedData).indexOf(item);
-                sectionObject = {
-                    title: sectionTitle,
-                    index: resolvedData.findIndex((el) => el.title === sectionTitle),
-                };
-            }
+            const optionIndex = getReducedSectionData(resolvedData).indexOf(item);
+            const sectionObject = {
+                title: sectionTitle,
+                index: resolvedData.findIndex((el) => el.title === sectionTitle),
+            };
 
-            let isDisabledOption = false;
-
-            if (disabled) {
-                isDisabledOption = disabled;
-            } else if (pressableSelectedOption) {
-                isDisabledOption = false;
-            } else if (isSelected) {
-                isDisabledOption = true;
-            }
+            const isDisabledOption = isDisabledResolveOption(isSelected);
 
             return (
                 <Option
@@ -76,15 +65,49 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         [
             disabled,
             findSelectedOption,
-            findSelectedOptionIndex,
-            isSectionedOptions,
+            isDisabledResolveOption,
             measuredRef,
             onPressOption,
             optionButtonProps,
             optionCustomStyles,
             optionTextProps,
-            pressableSelectedOption,
             resolvedData,
+        ],
+    );
+
+    const renderFlatItem: ListRenderItem<OptionType> = useCallback(
+        ({ item, index }) => {
+            const { value } = item;
+            const isSelected = findSelectedOption(item);
+            const optionIndex = findSelectedOptionIndex(item) ?? index;
+            const isDisabledOption = isDisabledResolveOption(isSelected);
+
+            return (
+                <Option
+                    key={value}
+                    ref={index === 0 ? measuredRef : undefined}
+                    option={{ ...item }}
+                    isSelected={isSelected}
+                    optionIndex={optionIndex}
+                    overrideWithDisabledStyle={!!disabled}
+                    optionButtonProps={optionButtonProps}
+                    optionTextProps={optionTextProps}
+                    optionCustomStyles={optionCustomStyles}
+                    isDisabled={isDisabledOption}
+                    onPressOption={onPressOption}
+                />
+            );
+        },
+        [
+            disabled,
+            findSelectedOption,
+            findSelectedOptionIndex,
+            isDisabledResolveOption,
+            measuredRef,
+            onPressOption,
+            optionButtonProps,
+            optionCustomStyles,
+            optionTextProps,
         ],
     );
 
@@ -94,7 +117,7 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                 <SectionOptionsList
                     resolvedData={resolvedData}
                     getItemLayout={getItemLayout}
-                    renderItem={renderItem}
+                    renderItem={renderSection}
                     accessibilityState={accessibilityState}
                     selectedOption={selectedOption}
                     scrollToSelectedOption={scrollToSelectedOption}
@@ -105,9 +128,9 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                 <FlatOptionsList
                     initialScrollIndex={initialScrollIndex}
                     getItemLayout={getItemLayout}
-                    renderItem={renderItem}
+                    renderItem={renderFlatItem}
                     accessibilityState={accessibilityState}
-                    resolvedData={resolvedData as OptionType[]}
+                    resolvedData={resolvedData}
                     flatListProps={flatListProps}
                     disabled={disabled}
                 />

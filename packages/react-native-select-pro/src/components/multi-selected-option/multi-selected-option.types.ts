@@ -6,9 +6,9 @@ import type {
     SelectStyles,
 } from '../../types';
 
-export type MultiSelectedOptionProps = {
-    option: OptionType | null;
+export type MultiSelectedOptionProps<T> = {
+    option: OptionType<T> | null;
     optionWidth: number | string;
-    onPressRemove: OnPressRemove;
+    onPressRemove: OnPressRemove<T> | null;
     multiSelectedCustomStyles: NonNullable<SelectStyles['select']>['multiSelectedOption'];
-} & OptionalToRequired<Pick<SelectProps, 'disabled'>>;
+} & OptionalToRequired<Pick<SelectProps<T>, 'disabled'>>;

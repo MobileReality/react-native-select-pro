@@ -5,9 +5,9 @@ import { ANIMATION_DURATION } from '../constants';
 import type { State } from '../state';
 import type { SelectProps } from '../types';
 
-type UseAnimationProps = Pick<SelectProps, 'animation'> & Pick<State, 'isOpened'>;
+type UseAnimationProps<T> = Pick<SelectProps<T>, 'animation'> & Pick<State<T>, 'isOpened'>;
 
-export const useAnimation = ({ isOpened, animation }: UseAnimationProps) => {
+export const useAnimation = <T>({ isOpened, animation }: UseAnimationProps<T>) => {
     const ref = useRef(new Animated.Value(0));
     const isAnimated = (typeof animation === 'number' && animation === 0) || animation;
 

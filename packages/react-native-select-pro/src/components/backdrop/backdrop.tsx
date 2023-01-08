@@ -4,12 +4,12 @@ import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 
 import type { BackdropProps } from './backdrop.types';
 
-export const Backdrop = ({
+export const Backdrop = <T,>({
     onOutsidePress,
     backdropCustomStyles,
     backdropProps,
     backdropChildProps,
-}: BackdropProps) => {
+}: BackdropProps<T>) => {
     return (
         <TouchableWithoutFeedback
             accessibilityLabel="Close a dropdown from outside"

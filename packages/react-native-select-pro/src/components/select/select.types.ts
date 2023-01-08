@@ -1,7 +1,7 @@
-import type { ForwardedRef, RefObject } from 'react';
+import type { Dispatch, ForwardedRef, RefObject } from 'react';
 import type { View } from 'react-native';
 
-import type { DispatchType, State } from '../../state';
+import type { ActionType, State } from '../../state';
 import type { OptionalToRequired, SelectProps, SelectRef } from '../../types';
 
 type FromSelectComponent<T> = Pick<
@@ -21,7 +21,7 @@ type FromSelectComponent<T> = Pick<
 
 export type UseSelect<T> = OptionalToRequired<
     FromSelectComponent<T> & {
-        dispatch: DispatchType<T>;
+        dispatch: Dispatch<ActionType<T>>;
         selectControlRef: RefObject<View>;
         optionsListRef: RefObject<View>;
         ref: ForwardedRef<SelectRef<T>>;

@@ -1,3 +1,4 @@
+import type { ForwardedRef } from 'react';
 import React, { forwardRef, memo } from 'react';
 import type { TextStyle, View, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
@@ -8,8 +9,8 @@ import type { OnChooseOption } from '../../types';
 
 import type { OptionProps } from './option.types';
 
-const OptionComponent = forwardRef<View, OptionProps>(
-    (
+const OptionComponent = forwardRef(
+    <T,>(
         {
             isSelected,
             option,
@@ -20,8 +21,8 @@ const OptionComponent = forwardRef<View, OptionProps>(
             optionTextProps,
             optionCustomStyles,
             isDisabled,
-        },
-        ref,
+        }: OptionProps<T>,
+        ref: ForwardedRef<View>,
     ) => {
         const onChooseOption: OnChooseOption = () => {
             onPressOption(option, optionIndex);
@@ -91,4 +92,3 @@ const styles = StyleSheet.create<Styles>({
 OptionComponent.displayName = 'OptionComponent';
 
 export const Option = memo(OptionComponent, (prevProps, newProps) => isEqual(prevProps, newProps));
-Option.displayName = 'Option';

@@ -9,6 +9,7 @@ import { DATA } from '../constants/data';
 export const Callbacks = () => {
     const [isOpened, setIsOpened] = useState(false);
     const [selected, setSelected] = useState<OptionType | null>(null);
+
     const [selectedItemIndex, setSelectedItemIndex] = useState<number>(-1);
 
     const [removed, setRemoved] = useState<OptionType | OptionType[] | null>(null);

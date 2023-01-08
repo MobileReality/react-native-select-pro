@@ -7,7 +7,7 @@ import { NoOptions } from '../no-options';
 import type { FlatOptionsListProps } from './flat-options-list.types';
 
 export const FlatOptionsList = memo(
-    ({
+    <T,>({
         renderItem,
         getItemLayout,
         resolvedData,
@@ -15,7 +15,7 @@ export const FlatOptionsList = memo(
         initialScrollIndex,
         accessibilityState,
         disabled,
-    }: FlatOptionsListProps) => {
+    }: FlatOptionsListProps<T>) => {
         return (
             <FlatList
                 testID="Options list"

@@ -210,10 +210,7 @@ export interface SelectProps<T = unknown> {
      * @param optionIndex removed option(s) index(es)
      * @category Callback
      */
-    onRemove?: (
-        option: OptionType<T> | OptionType<T>[] | null,
-        optionIndex: number | number[],
-    ) => void;
+    onRemove?: <T>(option: OptionType<T> | OptionType<T>[], optionIndex: number | number[]) => void;
 
     /**
      * CUSTOMIZABLE PROPS
@@ -253,7 +250,7 @@ export interface SelectProps<T = unknown> {
      * Override the options list props.
      */
     flatListProps?: Omit<
-        FlatListProps<OptionType>,
+        FlatListProps<OptionType<T>>,
         'ref' | 'data' | 'getItemLayout' | 'renderItem' | 'keyExtractor'
     >;
 
@@ -340,7 +337,7 @@ export interface SelectProps<T = unknown> {
      * Override the sections options list props.
      */
     sectionListProps?: Omit<
-        SectionListProps<OptionType>,
+        SectionListProps<OptionType<T>>,
         | 'ref'
         | 'renderSectionHeader'
         | 'sections'

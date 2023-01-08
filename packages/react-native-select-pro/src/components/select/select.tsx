@@ -1,4 +1,4 @@
-import type { ForwardedRef, Reducer } from 'react';
+import type { Dispatch, ForwardedRef, Reducer } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
 import type { ViewStyle } from 'react-native';
 import { UIManager } from 'react-native';
@@ -10,7 +10,7 @@ import { OptionsListContextProvider, SelectContextProvider } from '../../context
 import { isAndroid } from '../../helpers';
 import type { ActionType, CreateInitialStateType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
-import type { SelectProps, SelectRef } from '../../types';
+import type { OptionsType, SelectProps, SelectRef } from '../../types';
 import { Backdrop } from '../backdrop';
 import { OptionsList } from '../options-list';
 import { SelectControl } from '../select-control';
@@ -130,7 +130,7 @@ export const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<Sel
                     disabled,
                     hideArrow,
                     multiple,
-                    optionsData,
+                    optionsData: optionsData as OptionsType<unknown>,
                     placeholderText,
                     placeholderTextColor,
                     searchPattern,
@@ -138,7 +138,7 @@ export const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<Sel
                     onPressSelectControl,
                     selectInputProps,
                     onRemove,
-                    dispatch,
+                    dispatch: dispatch as Dispatch<ActionType<unknown>>,
                     setOptionsListPosition,
                     selectedOption,
                     selectedOptionIndex,

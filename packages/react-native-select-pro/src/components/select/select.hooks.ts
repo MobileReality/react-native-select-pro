@@ -172,7 +172,7 @@ export const useSelect = <T>({
             }
 
             const foundSelectedOption = selectedOptions?.find(
-                (selectedOption: OptionType) => selectedOption.value === option.value,
+                (selectedOption: OptionType<T>) => selectedOption.value === option.value,
             );
             if (foundSelectedOption) {
                 return {

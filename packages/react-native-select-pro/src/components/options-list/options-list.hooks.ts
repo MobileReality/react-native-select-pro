@@ -7,7 +7,7 @@ import { useOptionsListContext } from '../../context';
 import { isSectionOptionsType, selectedOptionResolver } from '../../helpers';
 import type { ItemLayout, OptionType } from '../../types';
 
-export const useOptionsList = () => {
+export const useOptionsList = <T>() => {
     const {
         optionsData,
         searchValue,
@@ -46,7 +46,7 @@ export const useOptionsList = () => {
     }, [optionsData, searchValue, searchedOptions, selectedOptionLabel]);
 
     const findSelectedOption = useCallback(
-        (item: OptionType) => {
+        (item: OptionType<T>) => {
             if (selectedOptionValue) {
                 return item.value === selectedOptionValue;
             }
@@ -59,7 +59,7 @@ export const useOptionsList = () => {
     );
 
     const findSelectedOptionIndex = useCallback(
-        (item: OptionType) => {
+        (item: OptionType<T>) => {
             return optionsData.findIndex((option) => option.value === item.value);
         },
         [optionsData],
@@ -93,6 +93,20 @@ export const useOptionsList = () => {
 
     const { option: optionCustomStyles } = styles ?? {};
 
+    const isDisabledResolveOption = (isSelected: boolean) => {
+        let isDisabledOption = false;
+
+        if (disabled) {
+            isDisabledOption = disabled;
+        } else if (pressableSelectedOption) {
+            isDisabledOption = false;
+        } else if (isSelected) {
+            isDisabledOption = true;
+        }
+
+        return isDisabledOption;
+    };
+
     return {
         getItemLayout,
         measuredRef,
@@ -111,6 +125,6 @@ export const useOptionsList = () => {
         onPressOption,
         optionButtonProps,
         optionTextProps,
-        pressableSelectedOption,
+        isDisabledResolveOption,
     };
 };
