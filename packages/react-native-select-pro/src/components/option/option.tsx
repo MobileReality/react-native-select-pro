@@ -1,8 +1,8 @@
 import type { ForwardedRef } from 'react';
 import React, { forwardRef, memo } from 'react';
+import isEqual from 'react-fast-compare';
 import type { TextStyle, View, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
-import isEqual from 'lodash.isequal';
 
 import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING, PRESSED_STYLE } from '../../constants';
 import type { OnChooseOption } from '../../types';
@@ -91,4 +91,4 @@ const styles = StyleSheet.create<Styles>({
 
 OptionComponent.displayName = 'OptionComponent';
 
-export const Option = memo(OptionComponent, (prevProps, newProps) => isEqual(prevProps, newProps));
+export const Option = memo(OptionComponent, isEqual);

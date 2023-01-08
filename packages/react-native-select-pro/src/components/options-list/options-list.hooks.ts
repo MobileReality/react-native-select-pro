@@ -98,19 +98,22 @@ export const useOptionsList = <T>() => {
 
     const { option: optionCustomStyles } = styles ?? {};
 
-    const isDisabledResolveOption = (isSelected: boolean) => {
-        let isDisabledOption = false;
+    const isDisabledResolveOption = useCallback(
+        (isSelected: boolean) => {
+            let isDisabledOption = false;
 
-        if (disabled) {
-            isDisabledOption = disabled;
-        } else if (pressableSelectedOption) {
-            isDisabledOption = false;
-        } else if (isSelected) {
-            isDisabledOption = true;
-        }
+            if (disabled) {
+                isDisabledOption = disabled;
+            } else if (pressableSelectedOption) {
+                isDisabledOption = false;
+            } else if (isSelected) {
+                isDisabledOption = true;
+            }
 
-        return isDisabledOption;
-    };
+            return isDisabledOption;
+        },
+        [disabled, pressableSelectedOption],
+    );
 
     return {
         getItemLayout,

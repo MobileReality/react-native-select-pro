@@ -88,7 +88,7 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                 <Option
                     key={value}
                     ref={index === 0 ? measuredRef : undefined}
-                    option={{ ...item }}
+                    option={item}
                     isSelected={isSelected}
                     optionIndex={optionIndex}
                     overrideWithDisabledStyle={!!disabled}

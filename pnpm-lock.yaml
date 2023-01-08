@@ -166,15 +166,13 @@ importers:
     specifiers:
       '@gorhom/portal': 1.0.14
       '@monorepo/eslint-config': workspace:*
-      '@types/lodash.isequal': 4.5.6
-      lodash.isequal: 4.5.0
+      react-fast-compare: 3.2.0
       react-native-builder-bob: 0.20.3
     dependencies:
       '@gorhom/portal': 1.0.14
-      lodash.isequal: 4.5.0
+      react-fast-compare: 3.2.0
     devDependencies:
       '@monorepo/eslint-config': link:../eslint-config
-      '@types/lodash.isequal': 4.5.6
       react-native-builder-bob: 0.20.3
 
 packages:
@@ -4017,16 +4015,6 @@ packages:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
       '@types/node': 18.11.0
-    dev: true
-
-  /@types/lodash.isequal/4.5.6:
-    resolution: {integrity: sha512-Ww4UGSe3DmtvLLJm2F16hDwEQSv7U0Rr8SujLUA2wHI2D2dm8kPu6Et+/y303LfjTIwSBKXB/YTUcAKpem/XEg==}
-    dependencies:
-      '@types/lodash': 4.14.191
-    dev: true
-
-  /@types/lodash/4.14.191:
-    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
     dev: true
 
   /@types/minimatch/5.1.2:
@@ -13374,6 +13362,10 @@ packages:
   /react-error-overlay/6.0.11:
     resolution: {integrity: sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==}
     dev: true
+
+  /react-fast-compare/3.2.0:
+    resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+    dev: false
 
   /react-freeze/1.0.3_react@18.1.0:
     resolution: {integrity: sha512-ZnXwLQnGzrDpHBHiC56TXFXvmolPeMjTn1UOm610M4EXGzbEDR7oOIyS2ZiItgbs6eZc4oU/a0hpk8PrcKvv5g==}

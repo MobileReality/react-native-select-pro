@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
+import isEqual from 'react-fast-compare';
 import type { TextStyle, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
-import isEqual from 'lodash.isequal';
 
 import { COLORS, FONT_SIZE, PRESSED_STYLE } from '../../constants';
 
@@ -46,7 +46,7 @@ export const MultiSelectedOption = memo(
             </Pressable>
         );
     },
-    (prevProps, newProps) => isEqual(prevProps, newProps),
+    isEqual,
 );
 
 type Styles = {

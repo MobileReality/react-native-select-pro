@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
+import isEqual from 'react-fast-compare';
 import { FlatList } from 'react-native';
-import isEqual from 'lodash.isequal';
 
 import { NoOptions } from '../no-options';
 
@@ -35,7 +35,7 @@ export const FlatOptionsList = memo(
             />
         );
     },
-    (prevProps, newProps) => isEqual(prevProps, newProps),
+    isEqual,
 );
 
 FlatOptionsList.displayName = 'FlatOptionsList';

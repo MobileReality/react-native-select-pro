@@ -1,7 +1,7 @@
 import React, { memo, useRef } from 'react';
+import isEqual from 'react-fast-compare';
 import type { SectionListData } from 'react-native';
 import { SectionList } from 'react-native';
-import isEqual from 'lodash.isequal';
 
 import { ERRORS, isSectionSelected, logError } from '../../helpers';
 import { getSectionLocation } from '../../helpers/get-section-location';
@@ -72,7 +72,7 @@ export const SectionOptionsList = memo(
             />
         );
     },
-    (prevProps, newProps) => isEqual(prevProps, newProps),
+    isEqual,
 );
 
 SectionOptionsList.displayName = 'SectionOptionsList';

@@ -27,7 +27,7 @@ if (isAndroid && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-export const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<T>>) => {
+const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<T>>) => {
     const {
         // Required
         options,
