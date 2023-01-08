@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 import { useSelectContext } from '../../context';
 import { isAndroid, selectedOptionResolver } from '../../helpers';
 import { useAccessibilityScreenReader } from '../../hooks';
-import { Action } from '../../state';
 
 export const useSelectControl = () => {
     const {
@@ -11,11 +10,7 @@ export const useSelectControl = () => {
         clearable,
         disabled,
         multiple,
-        searchValue,
-        onRemove,
-        dispatch,
         selectedOption,
-        selectedOptionIndex,
         selectContainerProps,
         hideArrow,
         selectLeftIconsProps,
@@ -29,24 +24,6 @@ export const useSelectControl = () => {
     const { selectedOptionLabel } = selectedOptionResolver(selectedOption);
 
     const isScreenReaderEnabled = useAccessibilityScreenReader();
-
-    const removeSingleOption = () => {
-        dispatch({
-            type: Action.SelectOption,
-            payload: {
-                selectedOption: null,
-                selectedOptionIndex: -1,
-            },
-        });
-
-        const isSearchable = typeof searchValue === 'string';
-        if (isSearchable) {
-            dispatch({
-                type: Action.SetSearchValue,
-                payload: '',
-            });
-        }
-    };
 
     const accessibilityHint = useMemo(() => {
         if (!selectedOptionLabel) {
@@ -76,17 +53,6 @@ export const useSelectControl = () => {
         return result;
     }, [clearable, isScreenReaderEnabled, multiple, selectedOption]);
 
-    const onPressRemove = () => {
-        if (disabled) {
-            return;
-        }
-        removeSingleOption();
-        if (onRemove && selectedOption) {
-            // callback
-            onRemove(selectedOption, selectedOptionIndex);
-        }
-    };
-
     const { showClearOption, showClearOptionA11y } = clearOptionStatus;
 
     const { select: selectStyles } = styles ?? {};
@@ -100,7 +66,6 @@ export const useSelectControl = () => {
     return {
         accessibilityHint,
         accessibilityLabel,
-        onPressRemove,
         hideArrow,
         selectLeftIconsProps,
         selectLeftIconImageProps,

@@ -3,17 +3,17 @@ import type { ImageStyle, ViewStyle } from 'react-native';
 import { Image, Pressable, StyleSheet } from 'react-native';
 
 import { useClearOption } from './clear-option.hooks';
-import type { ClearOptionProps } from './clear-option.types';
 
 const iconSource = require('./../../assets/icons/x.png');
 
-export const ClearOption = <T,>({ onPressRemove }: ClearOptionProps<T>) => {
+export const ClearOption = () => {
     const {
         disabled,
         clearOptionButtonProps,
         clearOptionImageProps,
         iconCustomStyles,
         containerCustomStyles,
+        onPressClearOption,
     } = useClearOption();
 
     return (
@@ -26,7 +26,7 @@ export const ClearOption = <T,>({ onPressRemove }: ClearOptionProps<T>) => {
             disabled={disabled}
             {...clearOptionButtonProps}
             style={[styles.xIconWrapper, containerCustomStyles]}
-            onPress={() => onPressRemove(null)}
+            onPress={onPressClearOption}
         >
             <Image
                 source={iconSource}

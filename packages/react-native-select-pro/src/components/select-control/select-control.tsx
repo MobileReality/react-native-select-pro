@@ -13,7 +13,6 @@ export const SelectControl = forwardRef<View>((_, ref) => {
     const {
         accessibilityHint,
         accessibilityLabel,
-        onPressRemove,
         onPressSelectControl,
         aboveSelectControl,
         selectLeftIconImageProps,
@@ -31,7 +30,7 @@ export const SelectControl = forwardRef<View>((_, ref) => {
         disabledStyles,
     } = useSelectControl();
 
-    const clearOption = <ClearOption onPressRemove={onPressRemove} />;
+    const clearOption = <ClearOption />;
 
     return (
         <View style={styles.rootView}>
