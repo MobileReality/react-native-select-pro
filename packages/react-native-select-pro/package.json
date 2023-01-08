@@ -2,24 +2,24 @@
   "name": "@mobile-reality/react-native-select-pro",
   "version": "1.13.1",
   "description": "React Native dropdown (select) component developed by Mobile Reality",
-  "main": "dist/commonjs/index",
-  "module": "dist/module/index",
-  "types": "dist/typescript/index.d.ts",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
     "src",
-    "dist"
+    "lib"
   ],
   "scripts": {
-    "build": "bob build && find dist -type d -name \"__tests__\" -exec rm -r \"{}\" +",
+    "build": "bob build",
     "local-package": "yalc publish",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint --fix ./src --ext .js,.jsx,.ts,.tsx",
     "tsc": "tsc --noEmit",
     "test": "jest --runInBand --detectOpenHandles --forceExit --config ../../jest.config.js",
     "test:fix": "jest -u --runInBand --detectOpenHandles --forceExit --config ../../jest.config.js",
-    "clean": "rm -Rf .turbo && rm -Rf node_modules && rm -Rf dist"
+    "clean": "rm -Rf .turbo && rm -Rf node_modules && rm -Rf lib"
   },
   "keywords": [
     "react-native",

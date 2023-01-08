@@ -2,7 +2,7 @@ import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { ScrollView, StyleSheet } from 'react-native';
 
-import type { OnPressRemove, OptionType } from '../../index';
+import type { OnPressRemove, OptionType } from '../../types';
 import { MultiSelectedOption } from '../multi-selected-option';
 import { SelectInput } from '../select-input';
 import { SelectText } from '../select-text';

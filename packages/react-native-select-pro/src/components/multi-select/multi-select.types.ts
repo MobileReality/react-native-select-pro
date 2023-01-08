@@ -1,4 +1,4 @@
-import type { OptionType } from '../../index';
+import type { OptionType } from '../../types';
 
 export type MultiSelectProps<T> = {
     selectedOptions: OptionType<T>[] | null;
