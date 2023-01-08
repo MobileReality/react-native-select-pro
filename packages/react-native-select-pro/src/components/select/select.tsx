@@ -1,6 +1,6 @@
 import type { Dispatch, ForwardedRef, Reducer } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
-import type { ViewStyle } from 'react-native';
+import type { SectionListData, ViewStyle } from 'react-native';
 import { UIManager } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { Portal } from '@gorhom/portal';
@@ -10,7 +10,13 @@ import { OptionsListContextProvider, SelectContextProvider } from '../../context
 import { isAndroid } from '../../helpers';
 import type { ActionType, CreateInitialStateType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
-import type { OptionsType, SelectProps, SelectRef } from '../../types';
+import type {
+    OnPressOptionType,
+    OptionsType,
+    OptionType,
+    SelectProps,
+    SelectRef,
+} from '../../types';
 import { Backdrop } from '../backdrop';
 import { OptionsList } from '../options-list';
 import { SelectControl } from '../select-control';
@@ -178,15 +184,17 @@ export const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<Sel
                                 isOpened,
                                 noOptionsText,
                                 openedPosition,
-                                optionsData,
+                                optionsData: optionsData as OptionsType<unknown>,
                                 scrollToSelectedOption,
                                 searchValue,
-                                onPressOption,
+                                onPressOption: onPressOption as OnPressOptionType<unknown>,
                                 onPressSection,
                                 selectedOption,
-                                searchedOptions,
+                                searchedOptions: searchedOptions as OptionsType<unknown>,
                                 selectedOptionIndex,
-                                sectionListProps,
+                                sectionListProps: sectionListProps as SectionListData<
+                                    OptionsType<OptionType>
+                                >,
                                 styles: mainStyles,
                                 optionButtonProps,
                                 optionTextProps,

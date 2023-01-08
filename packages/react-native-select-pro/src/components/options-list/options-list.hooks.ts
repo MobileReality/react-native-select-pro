@@ -6,6 +6,7 @@ import { ITEM_HEIGHT } from '../../constants';
 import { useOptionsListContext } from '../../context';
 import { isSectionOptionsType, selectedOptionResolver } from '../../helpers';
 import type { ItemLayout, OptionType } from '../../types';
+import { isFlatOptionsType } from '../../types';
 
 export const useOptionsList = <T>() => {
     const {
@@ -60,7 +61,11 @@ export const useOptionsList = <T>() => {
 
     const findSelectedOptionIndex = useCallback(
         (item: OptionType<T>) => {
-            return optionsData.findIndex((option) => option.value === item.value);
+            if (isFlatOptionsType(optionsData)) {
+                return optionsData.findIndex((option) => option.value === item.value);
+            }
+
+            return -1;
         },
         [optionsData],
     );

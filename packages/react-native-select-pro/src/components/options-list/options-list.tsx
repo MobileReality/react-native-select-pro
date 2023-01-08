@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback } from 'react';
 import type { ListRenderItem, SectionListRenderItem, View } from 'react-native';
-import type { OptionType } from '@mobile-reality/react-native-select-pro';
+import type { OptionType, SectionOptionType } from '@mobile-reality/react-native-select-pro';
 
 import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
 import { FlatOptionsList } from '../flat-options-list';
@@ -35,13 +35,14 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
 
     const renderSection: SectionListRenderItem<OptionType> = useCallback(
         ({ item, index, section }) => {
+            const data = resolvedData as SectionOptionType[];
             const { value } = item;
             const isSelected = findSelectedOption(item);
             const sectionTitle = section?.title;
-            const optionIndex = getReducedSectionData(resolvedData).indexOf(item);
+            const optionIndex = getReducedSectionData(data).indexOf(item);
             const sectionObject = {
                 title: sectionTitle,
-                index: resolvedData.findIndex((el) => el.title === sectionTitle),
+                index: data.findIndex((el) => el.title === sectionTitle),
             };
 
             const isDisabledOption = isDisabledResolveOption(isSelected);
