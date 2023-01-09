@@ -10,19 +10,20 @@ const featureList: FeatureItem[] = [
     {
         title: 'Customizable',
         image: '/img/customizable.svg',
-        description: '',
+        description: 'You can customize a component using styles, props, and by overriding default props.',
     },
     {
-        title: 'Cross Platform',
+        title: 'Cross-platform',
         image: '/img/cross-platform.svg',
-        description: '',
+        description: 'Works on Android and iOS (with bare React Native or Expo).',
     },
     {
-        title: 'Accessible',
-        image: '/img/accessibility.svg',
-        description: '',
-    },
+        title: 'Different types',
+        description: "You can use the basic, searchable, section, and multiselect.",
+        image: '/img/different.svg',
+    }
 ];
+
 
 export const HomepageFeatures = () => {
     return (
