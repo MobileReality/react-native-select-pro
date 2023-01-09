@@ -14,10 +14,10 @@
   "dependencies": {
     "@gorhom/bottom-sheet": "^4.4.5",
     "@gorhom/portal": "1.0.14",
-    "expo": "~47.0.9",
+    "expo": "~47.0.12",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "react-hook-form": "7.41.1",
+    "react-hook-form": "7.41.5",
     "react-native": "0.70.5",
     "react-native-modal": "13.0.1",
     "react-native-gesture-handler": "~2.8.0",
@@ -35,7 +35,7 @@
     "@types/react-dom": "~18.0.10",
     "@types/react-native": "~0.70.8",
     "babel-preset-expo": "^9.2.2",
-    "expo-cli": "^6.0.8"
+    "expo-cli": "^6.1.0"
   },
   "peerDependencies": {
     "jest": "29.2.0",
