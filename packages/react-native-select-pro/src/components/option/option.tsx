@@ -32,7 +32,7 @@ const OptionComponent = forwardRef(
 
         return (
             <Pressable
-                accessibilityLabel={`Select ${label} option`}
+                accessibilityLabel={`Select ${label}`}
                 {...optionButtonProps}
                 ref={ref}
                 accessibilityRole="menuitem"
