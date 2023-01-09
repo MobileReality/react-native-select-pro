@@ -45,14 +45,14 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                 title: sectionTitle,
                 index: data.findIndex((el) => el.title === sectionTitle),
             };
-
             const isDisabledOption = isDisabledResolveOption(isSelected);
+            const sectionItem = { ...item, section: sectionObject };
 
             return (
                 <Option
                     key={value}
                     ref={index === 0 ? measuredRef : undefined}
-                    option={{ ...item, section: sectionObject }}
+                    option={sectionItem}
                     isSelected={isSelected}
                     optionIndex={optionIndex}
                     overrideWithDisabledStyle={!!disabled}
