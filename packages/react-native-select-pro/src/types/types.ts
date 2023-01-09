@@ -12,7 +12,6 @@ import type {
 
 import type { State } from '../state';
 
-import type { OnChooseOption, OptionComponentType } from './shared';
 import type { SelectStyles } from './styles';
 
 export type OptionTypeRequired = {
@@ -36,13 +35,6 @@ export type SectionOptionType<T = unknown> = {
 };
 
 export type OptionsType<T> = SectionOptionType<T>[] | OptionType<T>[];
-
-export type OptionComponentProps = Pick<
-    OptionComponentType,
-    'isSelected' | 'option' | 'optionIndex'
-> & {
-    onPressOption: OnChooseOption;
-};
 
 /**
  * `<Select />` component props
@@ -74,7 +66,7 @@ export interface SelectProps<T = unknown> {
      *
      * @default true
      */
-    closeDropdownOnSelect?: boolean;
+    closeOptionsListOnSelect?: boolean;
 
     /**
      *  An object that represents the default option for a `Select`.
@@ -195,6 +187,13 @@ export interface SelectProps<T = unknown> {
     onSelect?: (option: OptionType<T>, optionIndex: number) => void;
 
     /**
+     * Called when text is changed in select input.
+     *
+     * @param text Text in select input.
+     */
+    onSelectChangeText?: (text: string) => void;
+
+    /**
      * Called when selected is opened.
      **/
     onSelectOpened?: () => void;
@@ -211,10 +210,7 @@ export interface SelectProps<T = unknown> {
      * @param optionIndex removed option(s) index(es)
      * @category Callback
      */
-    onRemove?: (
-        option: OptionType<T> | OptionType<T>[] | null,
-        optionIndex: number | number[],
-    ) => void;
+    onRemove?: <T>(option: OptionType<T> | OptionType<T>[], optionIndex: number | number[]) => void;
 
     /**
      * CUSTOMIZABLE PROPS
@@ -254,7 +250,7 @@ export interface SelectProps<T = unknown> {
      * Override the options list props.
      */
     flatListProps?: Omit<
-        FlatListProps<OptionType>,
+        FlatListProps<OptionType<T>>,
         'ref' | 'data' | 'getItemLayout' | 'renderItem' | 'keyExtractor'
     >;
 
@@ -341,7 +337,7 @@ export interface SelectProps<T = unknown> {
      * Override the sections options list props.
      */
     sectionListProps?: Omit<
-        SectionListProps<OptionType>,
+        SectionListProps<OptionType<T>>,
         | 'ref'
         | 'renderSectionHeader'
         | 'sections'

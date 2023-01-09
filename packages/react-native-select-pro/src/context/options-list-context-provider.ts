@@ -1,10 +1,11 @@
-import { createSafeContext } from '../helpers';
+import { createContext, useContext } from 'react';
+
 import type { Position, State } from '../state';
 import type { OptionalToRequired } from '../types';
 import type { SelectProps } from '../types';
 import type { OnPressOptionType } from '../types/shared';
 
-type OptionsListContextProviderTypes<T> = OptionalToRequired<
+export type OptionsListContextProviderTypes<T> = OptionalToRequired<
     Pick<
         SelectProps<T>,
         | 'animation'
@@ -22,6 +23,7 @@ type OptionsListContextProviderTypes<T> = OptionalToRequired<
         | 'sectionHeaderImageProps'
         | 'pressableSelectedOption'
         | 'multiple'
+        | 'disabled'
     > & {
         aboveSelectControl: Position['aboveSelectControl'];
         openedPosition: Position;
@@ -38,6 +40,18 @@ type OptionsListContextProviderTypes<T> = OptionalToRequired<
         >
 >;
 
-export const [useOptionsListContext, OptionsListContextProvider] =
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-    createSafeContext<OptionsListContextProviderTypes<any>>();
+const createSafeContext = <T>() => {
+    const context = createContext<OptionsListContextProviderTypes<T> | undefined>(undefined);
+
+    const useHookContext = () => {
+        const value = useContext(context);
+        if (value === undefined) {
+            throw new Error('useContext must be inside a Provider with a value');
+        }
+        return value;
+    };
+
+    return [useHookContext, context.Provider] as const;
+};
+
+export const [useOptionsListContext, OptionsListContextProvider] = createSafeContext();

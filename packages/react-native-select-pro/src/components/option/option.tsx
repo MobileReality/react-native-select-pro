@@ -1,65 +1,73 @@
-import React, { forwardRef } from 'react';
+import type { ForwardedRef } from 'react';
+import React, { forwardRef, memo } from 'react';
+import isEqual from 'react-fast-compare';
 import type { TextStyle, View, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { COLORS, FONT_SIZE, ITEM_HEIGHT, PADDING, PRESSED_STYLE } from '../../constants';
-import { useOptionsListContext } from '../../context';
-import type { OnChooseOption } from '../../types/shared';
+import type { OnChooseOption } from '../../types';
 
 import type { OptionProps } from './option.types';
 
-export const Option = forwardRef<View, OptionProps>(({ isSelected, option, optionIndex }, ref) => {
-    const {
-        onPressOption,
-        optionButtonProps,
-        optionTextProps,
-        styles: mainStyles,
-        pressableSelectedOption,
-    } = useOptionsListContext();
-    const onChooseOption: OnChooseOption = () => {
-        onPressOption(option, optionIndex);
-    };
+const OptionComponent = forwardRef(
+    <T,>(
+        {
+            isSelected,
+            option,
+            optionIndex,
+            overrideWithDisabledStyle,
+            onPressOption,
+            optionButtonProps,
+            optionTextProps,
+            optionCustomStyles,
+            isDisabled,
+        }: OptionProps<T>,
+        ref: ForwardedRef<View>,
+    ) => {
+        const onChooseOption: OnChooseOption = () => {
+            onPressOption(option, optionIndex);
+        };
 
-    const { label } = option;
-    const { option: optionStyles } = mainStyles ?? {};
+        const { label } = option;
 
-    const isDisabled = pressableSelectedOption ? false : isSelected;
-
-    return (
-        <Pressable
-            accessibilityLabel={`Choose ${label} option`}
-            {...optionButtonProps}
-            ref={ref}
-            accessibilityRole="menuitem"
-            accessibilityState={{ disabled: isDisabled }}
-            disabled={isDisabled}
-            style={({ pressed }) => [
-                styles.option,
-                optionStyles?.container,
-                isSelected && [styles.selected, optionStyles?.selected?.container],
-                pressed && (optionStyles?.pressed ?? PRESSED_STYLE),
-            ]}
-            onPress={onChooseOption}
-        >
-            <Text
-                numberOfLines={1}
-                {...optionTextProps}
-                style={[
-                    styles.text,
-                    optionStyles?.text,
-                    isSelected && optionStyles?.selected?.text,
+        return (
+            <Pressable
+                accessibilityLabel={`Select ${label}`}
+                {...optionButtonProps}
+                ref={ref}
+                accessibilityRole="menuitem"
+                accessibilityState={{ disabled: isDisabled }}
+                disabled={isDisabled}
+                style={({ pressed }) => [
+                    styles.option,
+                    optionCustomStyles?.container,
+                    isSelected && [styles.selected, optionCustomStyles?.selected?.container],
+                    pressed && (optionCustomStyles?.pressed ?? PRESSED_STYLE),
+                    overrideWithDisabledStyle && styles.disabled,
                 ]}
+                onPress={onChooseOption}
             >
-                {label}
-            </Text>
-        </Pressable>
-    );
-});
+                <Text
+                    numberOfLines={1}
+                    {...optionTextProps}
+                    style={[
+                        styles.text,
+                        optionCustomStyles?.text,
+                        isSelected && optionCustomStyles?.selected?.text,
+                    ]}
+                >
+                    {label}
+                </Text>
+            </Pressable>
+        );
+    },
+);
 
 type Styles = {
     option: ViewStyle;
     selected: ViewStyle;
     text: TextStyle;
+    disabled: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -76,6 +84,11 @@ const styles = StyleSheet.create<Styles>({
     selected: {
         backgroundColor: COLORS.SELECTED,
     },
+    disabled: {
+        backgroundColor: COLORS.DISABLED,
+    },
 });
 
-Option.displayName = 'Option';
+OptionComponent.displayName = 'OptionComponent';
+
+export const Option = memo(OptionComponent, isEqual);

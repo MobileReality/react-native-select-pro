@@ -1,6 +1,6 @@
-import type { ForwardedRef, NamedExoticComponent, ReactElement, Reducer } from 'react';
+import type { Dispatch, ForwardedRef, Reducer } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
-import type { ViewStyle } from 'react-native';
+import type { SectionListData, ViewStyle } from 'react-native';
 import { UIManager } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { Portal } from '@gorhom/portal';
@@ -10,7 +10,13 @@ import { OptionsListContextProvider, SelectContextProvider } from '../../context
 import { isAndroid } from '../../helpers';
 import type { ActionType, CreateInitialStateType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
-import type { SelectProps, SelectRef } from '../../types';
+import type {
+    OnPressOptionType,
+    OptionsType,
+    OptionType,
+    SelectProps,
+    SelectRef,
+} from '../../types';
 import { Backdrop } from '../backdrop';
 import { OptionsList } from '../options-list';
 import { SelectControl } from '../select-control';
@@ -21,14 +27,14 @@ if (isAndroid && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<T>>) => {
+const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<T>>) => {
     const {
         // Required
         options,
         // Basic
         animation = true,
         clearable = true,
-        closeDropdownOnSelect = true,
+        closeOptionsListOnSelect = true,
         defaultOption,
         disabled = false,
         hasBackdrop = true,
@@ -43,6 +49,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         searchPattern = (payload: string) => `(${payload})`,
         styles: mainStyles,
         // Callbacks
+        onSelectChangeText,
         onSectionSelect,
         onSectionRemove,
         onSelect,
@@ -71,7 +78,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         sectionHeaderImageProps,
         sectionHeaderTextProps,
         sectionListProps,
-        // Styles
     } = props;
 
     const [state, dispatch] = useReducer<
@@ -107,7 +113,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
         defaultOption,
         onRemove,
         disabled,
-        closeDropdownOnSelect,
+        closeOptionsListOnSelect,
         searchable,
         multiple,
         onSelectOpened,
@@ -130,7 +136,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     disabled,
                     hideArrow,
                     multiple,
-                    optionsData,
+                    optionsData: optionsData as OptionsType<unknown>,
                     placeholderText,
                     placeholderTextColor,
                     searchPattern,
@@ -138,7 +144,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     onPressSelectControl,
                     selectInputProps,
                     onRemove,
-                    dispatch,
+                    dispatch: dispatch as Dispatch<ActionType<unknown>>,
                     setOptionsListPosition,
                     selectedOption,
                     selectedOptionIndex,
@@ -152,6 +158,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     selectLeftIconImageProps,
                     selectTextProps,
                     selectContainerProps,
+                    onSelectChangeText,
                 }}
             >
                 <SelectControl ref={selectControlRef} />
@@ -161,7 +168,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                     {hasBackdrop && (
                         <Portal hostName={Portals.Backdrop}>
                             <Backdrop
-                                backdrop={mainStyles?.backdrop}
+                                backdropCustomStyles={mainStyles?.backdrop}
                                 backdropProps={backdropProps}
                                 backdropChildProps={backdropChildProps}
                                 onOutsidePress={onOutsidePress}
@@ -177,15 +184,17 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 isOpened,
                                 noOptionsText,
                                 openedPosition,
-                                optionsData,
+                                optionsData: optionsData as OptionsType<unknown>,
                                 scrollToSelectedOption,
                                 searchValue,
-                                onPressOption,
+                                onPressOption: onPressOption as OnPressOptionType<unknown>,
                                 onPressSection,
                                 selectedOption,
-                                searchedOptions,
+                                searchedOptions: searchedOptions as OptionsType<unknown>,
                                 selectedOptionIndex,
-                                sectionListProps,
+                                sectionListProps: sectionListProps as SectionListData<
+                                    OptionsType<OptionType>
+                                >,
                                 styles: mainStyles,
                                 optionButtonProps,
                                 optionTextProps,
@@ -196,6 +205,7 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
                                 sectionHeaderTextProps,
                                 pressableSelectedOption,
                                 multiple,
+                                disabled,
                             }}
                         >
                             <OptionsList ref={optionsListRef} />
@@ -207,10 +217,6 @@ export const SelectComp = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRe
     );
 };
 
-export const Select = forwardRef(SelectComp) as <T>(
-    props: SelectProps<T> & { ref?: ForwardedRef<SelectRef<T>> },
-) => ReactElement;
-
 type Styles = {
     relative: ViewStyle;
 };
@@ -221,4 +227,6 @@ const styles = StyleSheet.create<Styles>({
     },
 });
 
-(Select as NamedExoticComponent).displayName = 'Select';
+export const Select = forwardRef(SelectComponent) as <T>(
+    props: SelectProps<T> & { ref?: ForwardedRef<SelectRef<T>> },
+) => ReturnType<typeof SelectComponent>;

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { memo } from 'react';
+import isEqual from 'react-fast-compare';
 import type { TextStyle, ViewStyle } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
@@ -6,43 +7,47 @@ import { COLORS, FONT_SIZE, PRESSED_STYLE } from '../../constants';
 
 import type { MultiSelectedOptionProps } from './multi-selected-option.types';
 
-export const MultiSelectedOption = ({
-    option,
-    selectStyles,
-    optionWidth,
-    onPressRemove,
-}: MultiSelectedOptionProps) => {
-    const isPressable = onPressRemove && option;
-
-    return (
-        <Pressable
-            accessibilityLabel={option ? `${option.label} selected` : 'Placeholder in multi-select'}
-            style={({ pressed }) => [
-                styles.multiSelectedOption,
-                selectStyles?.multiSelectedOption?.container,
-                { width: optionWidth },
-                pressed && (selectStyles?.multiSelectedOption?.pressed ?? PRESSED_STYLE),
-            ]}
-            disabled={!isPressable}
-            onPress={isPressable ? () => onPressRemove(option) : undefined}
-        >
-            <Text
-                numberOfLines={1}
-                style={[
-                    styles.text,
-                    selectStyles?.multiSelectedOption?.text,
-                    {
-                        color:
-                            StyleSheet.flatten(selectStyles?.multiSelectedOption?.text)?.color ??
-                            COLORS.BLACK,
-                    },
+export const MultiSelectedOption = memo(
+    <T,>({
+        option,
+        multiSelectedCustomStyles,
+        optionWidth,
+        onPressRemove,
+        disabled,
+    }: MultiSelectedOptionProps<T>) => {
+        return (
+            <Pressable
+                accessibilityLabel={
+                    option ? `${option.label} selected` : 'Placeholder in multiple select'
+                }
+                style={({ pressed }) => [
+                    styles.multiSelectedOption,
+                    multiSelectedCustomStyles?.container,
+                    { width: optionWidth },
+                    pressed && (multiSelectedCustomStyles?.pressed ?? PRESSED_STYLE),
                 ]}
+                disabled={disabled}
+                onPress={() => (onPressRemove ? onPressRemove(option) : null)}
             >
-                {option?.label}
-            </Text>
-        </Pressable>
-    );
-};
+                <Text
+                    numberOfLines={1}
+                    style={[
+                        styles.text,
+                        multiSelectedCustomStyles?.text,
+                        {
+                            color:
+                                StyleSheet.flatten(multiSelectedCustomStyles?.text)?.color ??
+                                COLORS.BLACK,
+                        },
+                    ]}
+                >
+                    {option?.label}
+                </Text>
+            </Pressable>
+        );
+    },
+    isEqual,
+);
 
 type Styles = {
     text: TextStyle;
@@ -66,3 +71,5 @@ const styles = StyleSheet.create<Styles>({
         paddingLeft: 5,
     },
 });
+
+MultiSelectedOption.displayName = 'MultiSelectedOption';

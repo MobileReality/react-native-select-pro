@@ -1,16 +1,8 @@
 import { useMemo } from 'react';
 
 import { useSelectContext } from '../../context';
-import {
-    getReducedSectionData,
-    isAndroid,
-    isSectionOptionsType,
-    selectedOptionResolver,
-} from '../../helpers';
+import { isAndroid, selectedOptionResolver } from '../../helpers';
 import { useAccessibilityScreenReader } from '../../hooks';
-import { Action } from '../../state';
-import type { OptionType } from '../../types';
-import type { OnPressRemove } from '../../types/shared';
 
 export const useSelectControl = () => {
     const {
@@ -18,35 +10,20 @@ export const useSelectControl = () => {
         clearable,
         disabled,
         multiple,
-        optionsData,
-        searchValue,
-        onRemove,
-        dispatch,
         selectedOption,
-        selectedOptionIndex,
         selectContainerProps,
+        hideArrow,
+        selectLeftIconsProps,
+        selectLeftIconImageProps,
+        selectRightIconsProps,
+        styles,
+        aboveSelectControl,
+        onPressSelectControl,
     } = useSelectContext();
-    const { selectedOptions, selectedOptionLabel } = selectedOptionResolver(selectedOption);
+
+    const { selectedOptionLabel } = selectedOptionResolver(selectedOption);
 
     const isScreenReaderEnabled = useAccessibilityScreenReader();
-
-    const removeSingleOption = () => {
-        dispatch({
-            type: Action.SelectOption,
-            payload: {
-                selectedOption: null,
-                selectedOptionIndex: -1,
-            },
-        });
-
-        const isSearchable = typeof searchValue === 'string';
-        if (isSearchable) {
-            dispatch({
-                type: Action.SetSearchValue,
-                payload: '',
-            });
-        }
-    };
 
     const accessibilityHint = useMemo(() => {
         if (!selectedOptionLabel) {
@@ -76,61 +53,33 @@ export const useSelectControl = () => {
         return result;
     }, [clearable, isScreenReaderEnabled, multiple, selectedOption]);
 
-    const removeOptionInMultipleSelect = (option: OptionType, selectedOptions: OptionType[]) => {
-        const removedSelectedOptions = selectedOptions.filter(
-            (selected) => selected.value !== option.value,
-        );
+    const { showClearOption, showClearOptionA11y } = clearOptionStatus;
 
-        const isSectionedOptions = isSectionOptionsType(optionsData);
-        const resolvedOptionsData = isSectionedOptions
-            ? getReducedSectionData(optionsData)
-            : optionsData;
-        const foundIndex = resolvedOptionsData.findIndex(
-            (item) => 'value' in item && item.value === option?.value,
-        );
-
-        let resolveSelectedOptionsIndexes: number | number[] = -1;
-        if (Array.isArray(selectedOptionIndex)) {
-            const filteredIndexes = selectedOptionIndex.filter((item) => item !== foundIndex);
-            resolveSelectedOptionsIndexes =
-                filteredIndexes.length > 0 ? filteredIndexes : resolveSelectedOptionsIndexes;
-        }
-
-        dispatch({
-            type: Action.SelectOption,
-            payload: {
-                selectedOption: removedSelectedOptions.length > 0 ? removedSelectedOptions : null,
-                selectedOptionIndex: resolveSelectedOptionsIndexes,
-            },
-        });
-
-        return { index: foundIndex, option };
-    };
-
-    const onPressRemove: OnPressRemove = (option = null) => {
-        if (disabled) {
-            return;
-        }
-        let removedOption;
-        if (option && multiple && selectedOptions) {
-            removedOption = removeOptionInMultipleSelect(option, selectedOptions);
-        } else {
-            removeSingleOption();
-            removedOption = {
-                option: selectedOption,
-                index: selectedOptionIndex,
-            };
-        }
-
-        if (onRemove && removedOption.option) {
-            onRemove(removedOption.option, removedOption.index);
-        }
-    };
+    const { select: selectStyles } = styles ?? {};
+    const {
+        buttons: buttonsStyles,
+        leftIcon: leftIconStyles,
+        container: containerStyles,
+        disabled: disabledStyles,
+    } = selectStyles ?? {};
 
     return {
         accessibilityHint,
         accessibilityLabel,
-        clearOptionStatus,
-        onPressRemove,
+        hideArrow,
+        selectLeftIconsProps,
+        selectLeftIconImageProps,
+        selectRightIconsProps,
+        aboveSelectControl,
+        onPressSelectControl,
+        selectContainerProps,
+        isOpened,
+        disabled,
+        showClearOption,
+        showClearOptionA11y,
+        buttonsStyles,
+        leftIconStyles,
+        containerStyles,
+        disabledStyles,
     };
 };

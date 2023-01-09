@@ -1,11 +1,14 @@
-import type { SelectControlStyles } from 'packages/react-native-select-pro/src/types/styles';
+import type {
+    OnPressRemove,
+    OptionalToRequired,
+    OptionType,
+    SelectProps,
+    SelectStyles,
+} from '../../types';
 
-import type { OptionType } from '../../index';
-
-export type MultiSelectedOptionProps = {
-    option: OptionType | null;
+export type MultiSelectedOptionProps<T> = {
+    option: OptionType<T> | null;
     optionWidth: number | string;
-    isPlaceholder?: boolean;
-    onPressRemove?: (option: OptionType) => void;
-    selectStyles: SelectControlStyles | undefined;
-};
+    onPressRemove: OnPressRemove<T> | null;
+    multiSelectedCustomStyles: NonNullable<SelectStyles['select']>['multiSelectedOption'];
+} & OptionalToRequired<Pick<SelectProps<T>, 'disabled'>>;

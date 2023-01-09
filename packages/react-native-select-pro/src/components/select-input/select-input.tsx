@@ -1,76 +1,24 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import type { TextStyle } from 'react-native';
-import { I18nManager, Keyboard, StyleSheet, TextInput } from 'react-native';
+import { I18nManager, StyleSheet, TextInput } from 'react-native';
 
 import { COLORS, FONT_SIZE } from '../../constants';
-import { useSelectContext } from '../../context';
-import { Action } from '../../state';
 
-import type { SelectInputProps } from './select-input.types';
+import { useSelectInput } from './select-input.hooks';
 
-export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<T>) => {
+export const SelectInput = () => {
     const {
-        isOpened,
         disabled,
         multiple,
-        placeholderText,
         placeholderTextColor,
-        searchPattern,
         searchValue,
         onPressSelectControl,
         selectInputProps,
-        dispatch,
-        setOptionsListPosition,
-    } = useSelectContext();
-    const searchInputRef = useRef<TextInput>(null);
-
-    useEffect(() => {
-        const showSubscription = Keyboard.addListener('keyboardDidShow', async () => {
-            await setOptionsListPosition();
-        });
-        const hideSubscription = Keyboard.addListener('keyboardDidHide', async () => {
-            await setOptionsListPosition();
-        });
-        dispatch({
-            type: Action.SetSearchInputRef,
-            payload: searchInputRef,
-        });
-        return () => {
-            showSubscription.remove();
-            hideSubscription.remove();
-            dispatch({
-                type: Action.SetSearchInputRef,
-                payload: null,
-            });
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const onChangeText = (payload: string) => {
-        if (!disabled) {
-            if (!isOpened) {
-                dispatch({ type: Action.Open });
-            }
-            dispatch({
-                type: Action.SetSearchValue,
-                payload,
-            });
-            if (searchPattern) {
-                dispatch({
-                    type: Action.SearchOptions,
-                    searchPattern,
-                    payload,
-                });
-            }
-        }
-    };
-
-    const resolvePlaceholder = () => {
-        if (multiple && Array.isArray(selectedOption) && selectedOption.length > 0) {
-            return '  ';
-        }
-        return placeholderText;
-    };
+        textCustomStyles,
+        searchInputRef,
+        resolvedPlaceholder,
+        onChangeText,
+    } = useSelectInput();
 
     return (
         <TextInput
@@ -78,14 +26,14 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
             {...selectInputProps}
             ref={searchInputRef}
             editable={!disabled}
-            placeholder={resolvePlaceholder()}
+            placeholder={resolvedPlaceholder}
             placeholderTextColor={placeholderTextColor}
             style={
                 disabled
-                    ? [styles.disabled, styles.text, multiple && { marginRight: 5 }]
-                    : [styles.text, textStyle]
+                    ? [styles.disabled, styles.text, multiple && styles.marginMultiple]
+                    : [styles.text, textCustomStyles]
             }
-            textAlign={I18nManager.getConstants().isRTL ? 'right' : 'left'}
+            textAlign={I18nManager.getConstants().isRTL ? 'left' : 'left'}
             value={searchValue ?? ''}
             onChangeText={onChangeText}
             onPressIn={disabled ? undefined : onPressSelectControl}
@@ -96,6 +44,7 @@ export const SelectInput = <T,>({ selectedOption, textStyle }: SelectInputProps<
 type Styles = {
     text: TextStyle;
     disabled: TextStyle;
+    marginMultiple: TextStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -104,5 +53,8 @@ const styles = StyleSheet.create<Styles>({
     },
     disabled: {
         backgroundColor: COLORS.DISABLED,
+    },
+    marginMultiple: {
+        marginRight: 6,
     },
 });

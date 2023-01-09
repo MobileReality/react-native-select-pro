@@ -1,6 +1,6 @@
 import type { OnOutsidePress, OptionalToRequired, SelectProps, SelectStyles } from '../../types';
 
-export type BackdropProps = {
+export type BackdropProps<T> = {
     onOutsidePress: OnOutsidePress;
-} & OptionalToRequired<Pick<SelectStyles, 'backdrop'>> &
-    Pick<SelectProps, 'backdropProps' | 'backdropChildProps'>;
+    backdropCustomStyles: OptionalToRequired<SelectStyles>['backdrop'];
+} & OptionalToRequired<Pick<SelectProps<T>, 'backdropProps' | 'backdropChildProps'>>;

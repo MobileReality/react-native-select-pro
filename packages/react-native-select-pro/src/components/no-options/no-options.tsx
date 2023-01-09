@@ -3,21 +3,21 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { COLORS, FONT_SIZE, PADDING } from '../../constants';
-import { useOptionsListContext } from '../../context';
+
+import { useNoOptions } from './no-options.hooks';
 
 export const NoOptions = () => {
     const {
         noOptionsText,
         noOptionsProps,
         noOptionsTextProps,
-        styles: mainStyles,
-    } = useOptionsListContext();
-
-    const { noOptions } = mainStyles ?? {};
+        textCustomStyles,
+        containerCustomStyles,
+    } = useNoOptions();
 
     return (
-        <View {...noOptionsProps} style={[styles.option, noOptions?.container]}>
-            <Text {...noOptionsTextProps} style={[styles.text, noOptions?.text]}>
+        <View {...noOptionsProps} style={[styles.option, containerCustomStyles]}>
+            <Text {...noOptionsTextProps} style={[styles.text, textCustomStyles]}>
                 {noOptionsText}
             </Text>
         </View>

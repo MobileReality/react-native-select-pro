@@ -5,13 +5,27 @@ import { AccessibilityInfo, findNodeHandle, StyleSheet } from 'react-native';
 import { ITEM_HEIGHT } from '../../constants';
 import { useOptionsListContext } from '../../context';
 import { selectedOptionResolver } from '../../helpers';
-import type { OptionType } from '../../types';
-import type { ItemLayout } from '../../types/shared';
+import type { ItemLayout, OptionType } from '../../types';
+import { isFlatOptionsType, isSectionOptionsType } from '../../types';
 
-import type { UseOptionsListProps } from './options-list.types';
-
-export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
-    const { optionsData, searchValue, selectedOption, searchedOptions } = useOptionsListContext();
+export const useOptionsList = <T>() => {
+    const {
+        optionsData,
+        searchValue,
+        searchedOptions,
+        styles,
+        isOpened,
+        selectedOptionIndex,
+        scrollToSelectedOption,
+        flatListProps,
+        selectedOption,
+        sectionListProps,
+        disabled,
+        onPressOption,
+        optionButtonProps,
+        optionTextProps,
+        pressableSelectedOption,
+    } = useOptionsListContext();
 
     const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
         selectedOptionResolver(selectedOption);
@@ -25,32 +39,100 @@ export const useOptionsList = ({ optionStyles }: UseOptionsListProps) => {
         }
     }, []);
 
-    const resolveData = () => {
+    const resolveData = useCallback(() => {
         if (!searchValue || (searchValue.length > 0 && searchValue === selectedOptionLabel)) {
             return optionsData;
         }
         return searchedOptions;
+    }, [optionsData, searchValue, searchedOptions, selectedOptionLabel]);
+
+    const findSelectedOption = useCallback(
+        (item: OptionType<T>) => {
+            if (selectedOptionValue) {
+                return item.value === selectedOptionValue;
+            }
+            if (selectedOptions) {
+                return selectedOptions.some((option) => item.value === option.value);
+            }
+            return false;
+        },
+        [selectedOptionValue, selectedOptions],
+    );
+
+    const findSelectedOptionIndex = useCallback(
+        (item: OptionType<T>) => {
+            if (isFlatOptionsType(optionsData)) {
+                return optionsData.findIndex((option) => option.value === item.value);
+            }
+
+            return -1;
+        },
+        [optionsData],
+    );
+
+    const getItemLayout = useCallback(
+        <T>(_data: T, index: number): ItemLayout<T> => {
+            const height = StyleSheet.flatten(styles?.option?.container)?.height;
+            const isNumber = typeof height === 'number';
+            return {
+                length: isNumber ? height : ITEM_HEIGHT,
+                offset: isNumber ? height * index : ITEM_HEIGHT * index,
+                index,
+            };
+        },
+        [styles?.option?.container],
+    );
+
+    const resolvedData = resolveData();
+
+    const isSectionedOptions = isSectionOptionsType(resolvedData);
+
+    const initialScrollIndex =
+        typeof selectedOptionIndex === 'number' && scrollToSelectedOption
+            ? selectedOptionIndex
+            : -1;
+
+    const accessibilityState = {
+        expanded: isOpened,
     };
 
-    const findSelectedOption = (item: OptionType) => {
-        if (selectedOptionValue) {
-            return item.value === selectedOptionValue;
-        }
-        if (selectedOptions) {
-            return selectedOptions.some((option) => item.value === option.value);
-        }
-        return false;
-    };
+    const { option: optionCustomStyles } = styles ?? {};
 
-    const getItemLayout = <T>(_data: T, index: number): ItemLayout<T> => {
-        const height = StyleSheet.flatten(optionStyles?.container)?.height;
-        const isNumber = typeof height === 'number';
-        return {
-            length: isNumber ? height : ITEM_HEIGHT,
-            offset: isNumber ? height * index : ITEM_HEIGHT * index,
-            index,
-        };
-    };
+    const isDisabledResolveOption = useCallback(
+        (isSelected: boolean) => {
+            let isDisabledOption = false;
 
-    return { getItemLayout, measuredRef, resolveData, findSelectedOption };
+            if (disabled) {
+                isDisabledOption = disabled;
+            } else if (pressableSelectedOption) {
+                isDisabledOption = false;
+            } else if (isSelected) {
+                isDisabledOption = true;
+            }
+
+            return isDisabledOption;
+        },
+        [disabled, pressableSelectedOption],
+    );
+
+    return {
+        getItemLayout,
+        measuredRef,
+        resolvedData,
+        findSelectedOption,
+        findSelectedOptionIndex,
+        scrollToSelectedOption,
+        flatListProps,
+        sectionListProps,
+        selectedOption,
+        optionCustomStyles,
+        isSectionedOptions,
+        initialScrollIndex,
+        accessibilityState,
+        disabled,
+        onPressOption,
+        optionButtonProps,
+        optionTextProps,
+        isDisabledResolveOption,
+    };
 };

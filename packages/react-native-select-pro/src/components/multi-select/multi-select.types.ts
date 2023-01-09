@@ -1,8 +1,9 @@
-import type { OptionType } from '../../index';
-import type { SelectControlStyles } from '../../types/styles';
+import type { OptionType } from '../../types';
 
-export type MultiSelectProps = {
-    selectStyles: SelectControlStyles | undefined;
-    onPressRemove: (option: OptionType | null) => void;
-    selectedOptions: OptionType[] | null;
+export type MultiSelectProps<T> = {
+    selectedOptions: OptionType<T>[] | null;
+};
+
+export type UseMultiSelectProps<T> = {
+    selectedOptions: OptionType<T>[] | null;
 };

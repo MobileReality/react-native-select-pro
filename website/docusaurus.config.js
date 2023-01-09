@@ -94,7 +94,7 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `Mobile Reality' React Native Select Pro`,
+                copyright: `React Native Select Pro developed by Mobile Reality`,
             },
             prism: {
                 theme: lightCodeTheme,

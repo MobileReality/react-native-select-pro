@@ -1,21 +1,23 @@
-import { useContext, useEffect, useImperativeHandle } from 'react';
+import { useCallback, useContext, useEffect, useImperativeHandle } from 'react';
 import type { LayoutRectangle } from 'react-native';
 import { I18nManager, useWindowDimensions } from 'react-native';
 
 import { APPROX_STATUSBAR_HEIGHT } from '../../constants';
-import { isSectionOptionsType, isValidDefaultOption } from '../../helpers';
+import { isValidDefaultOption } from '../../helpers';
 import {
     getReducedSectionData,
     getSectionOptionsIndexes,
     selectedOptionResolver,
 } from '../../helpers';
 import { Action } from '../../state';
-import type { OptionType, SelectRef } from '../../types';
 import type {
     OnOutsidePress,
     OnPressOptionType,
     OnPressSelectControlType,
-} from '../../types/shared';
+    OptionType,
+    SelectRef,
+} from '../../types';
+import { isSectionOptionsType } from '../../types';
 import { SelectModalContext } from '../select-provider';
 
 import type { UseSelect } from './select.types';
@@ -26,7 +28,7 @@ export const useSelect = <T>({
     state,
     defaultOption,
     disabled,
-    closeDropdownOnSelect,
+    closeOptionsListOnSelect,
     searchable,
     multiple,
     dispatch,
@@ -44,8 +46,13 @@ export const useSelect = <T>({
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
     const isSectionedOptions = isSectionOptionsType(optionsData);
 
-    const open = () => dispatch({ type: Action.Open });
-    const close = () => dispatch({ type: Action.Close });
+    const open = useCallback(() => {
+        dispatch({ type: Action.Open });
+    }, [dispatch]);
+
+    const close = useCallback(() => {
+        dispatch({ type: Action.Close });
+    }, [dispatch]);
 
     useEffect(() => {
         const setDefaultOption = () => {
@@ -141,7 +148,7 @@ export const useSelect = <T>({
                 }
             },
             open: async () => {
-                if (selectControlRef.current && !disabled) {
+                if (selectControlRef.current) {
                     open();
                     await setOptionsListPosition();
                 }
@@ -151,14 +158,13 @@ export const useSelect = <T>({
         }),
     );
 
-    const hideKeyboardIfNeeded = () => searchInputRef?.current?.blur();
+    const hideKeyboardIfNeeded = useCallback(
+        () => searchInputRef?.current?.blur(),
+        [searchInputRef],
+    );
 
-    const onPressOption: OnPressOptionType<T> = (option: OptionType<T>, optionIndex: number) => {
-        if (closeDropdownOnSelect) {
-            close();
-        }
-
-        const resolveOption = () => {
+    const resolveOption = useCallback(
+        (option: OptionType<T>, optionIndex: number) => {
             if (!multiple) {
                 return {
                     selectedOption: option,
@@ -167,7 +173,7 @@ export const useSelect = <T>({
             }
 
             const foundSelectedOption = selectedOptions?.find(
-                (selectedOption: OptionType) => selectedOption.value === option.value,
+                (selectedOption: OptionType<T>) => selectedOption.value === option.value,
             );
             if (foundSelectedOption) {
                 return {
@@ -191,36 +197,55 @@ export const useSelect = <T>({
                 selectedOption: mergedOptions,
                 selectedOptionIndex: optionsIndexes.length > 0 ? [...optionsIndexes] : -1,
             };
-        };
+        },
+        [isSectionedOptions, multiple, optionsData, selectedOptionIndex, selectedOptions],
+    );
 
-        dispatch({
-            type: Action.SelectOption,
-            payload: resolveOption(),
-        });
-
-        if (searchable) {
-            if (multiple) {
-                dispatch({ type: Action.SetSearchValue, payload: '' });
-            } else {
-                dispatch({
-                    type: Action.SetSearchValue,
-                    payload: option.label,
-                });
+    const onPressOption: OnPressOptionType<T> = useCallback(
+        (option: OptionType<T>, optionIndex: number) => {
+            if (closeOptionsListOnSelect) {
+                close();
             }
-        }
 
-        if (option) {
-            hideKeyboardIfNeeded();
-        }
+            dispatch({
+                type: Action.SelectOption,
+                payload: resolveOption(option, optionIndex),
+            });
 
-        // callback
-        if (onSelect) {
-            onSelect(option, optionIndex);
-        }
-    };
+            if (searchable) {
+                if (multiple) {
+                    dispatch({ type: Action.SetSearchValue, payload: '' });
+                } else {
+                    dispatch({
+                        type: Action.SetSearchValue,
+                        payload: option.label,
+                    });
+                }
+            }
+
+            if (option) {
+                hideKeyboardIfNeeded();
+            }
+
+            // callback
+            if (onSelect) {
+                onSelect(option, optionIndex);
+            }
+        },
+        [
+            close,
+            closeOptionsListOnSelect,
+            dispatch,
+            hideKeyboardIfNeeded,
+            multiple,
+            onSelect,
+            resolveOption,
+            searchable,
+        ],
+    );
 
     const onPressSection = (title: string) => {
-        if (closeDropdownOnSelect && multiple) {
+        if (closeOptionsListOnSelect && multiple) {
             close();
         }
 

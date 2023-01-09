@@ -1,11 +1,9 @@
-import React, { forwardRef } from 'react';
-import type { View, ViewStyle } from 'react-native';
-import { StyleSheet } from 'react-native';
+import React, { forwardRef, useCallback } from 'react';
+import type { ListRenderItem, SectionListRenderItem, View } from 'react-native';
 
-import { BORDER_WIDTH, COLORS, OPTIONS_LIST_HEIGHT, SHAPE } from '../../constants';
-import { useOptionsListContext } from '../../context';
-import { getReducedSectionData, isSectionOptionsType } from '../../helpers';
-import type { RenderItemProps } from '../../types/shared';
+import { getReducedSectionData } from '../../helpers';
+import type { OptionType, SectionOptionType } from '../../types';
+import { isSectionOptionsType } from '../../types';
 import { FlatOptionsList } from '../flat-options-list';
 import { Option } from '../option';
 import { OptionsListWrapper } from '../options-list-wrapper';
@@ -15,102 +13,132 @@ import { useOptionsList } from './options-list.hooks';
 
 export const OptionsList = forwardRef<View>((_, optionsListRef) => {
     const {
-        aboveSelectControl,
-        openedPosition: { width, top, left },
-        styles: mainStyles,
-    } = useOptionsListContext();
+        getItemLayout,
+        measuredRef,
+        findSelectedOption,
+        findSelectedOptionIndex,
+        resolvedData,
+        scrollToSelectedOption,
+        sectionListProps,
+        flatListProps,
+        selectedOption,
+        optionCustomStyles,
+        initialScrollIndex,
+        accessibilityState,
+        disabled,
+        onPressOption,
+        optionButtonProps,
+        optionTextProps,
+        isDisabledResolveOption,
+    } = useOptionsList();
 
-    const { getItemLayout, measuredRef, findSelectedOption, resolveData } = useOptionsList({
-        optionStyles: mainStyles?.option,
-    });
-
-    const resolvedData = resolveData();
     const isSectionedOptions = isSectionOptionsType(resolvedData);
 
-    const renderItem = <T,>({ item, index, section }: RenderItemProps<T>) => {
-        const { value } = item;
-        const isSelected = findSelectedOption(item);
-        let optionIndex = index;
-        const sectionTitle = section?.title;
-        let sectionObj;
-        if (isSectionedOptions) {
-            optionIndex = getReducedSectionData(resolvedData).indexOf(item);
-            sectionObj = {
+    const renderSection: SectionListRenderItem<OptionType> = useCallback(
+        ({ item, index, section }) => {
+            const data = resolvedData as SectionOptionType[];
+            const { value } = item;
+            const isSelected = findSelectedOption(item);
+            const sectionTitle = section?.title;
+            const optionIndex = getReducedSectionData(data).indexOf(item);
+            const sectionObject = {
                 title: sectionTitle,
-                index: resolvedData.findIndex((el) => el.title === sectionTitle),
+                index: data.findIndex((el) => el.title === sectionTitle),
             };
-        }
+            const isDisabledOption = isDisabledResolveOption(isSelected);
+            const sectionItem = { ...item, section: sectionObject };
 
-        return (
-            <Option
-                key={value}
-                ref={index === 0 ? measuredRef : undefined}
-                option={{ ...item, section: sectionObj }}
-                {...{
-                    isSelected,
-                    optionIndex,
-                }}
-            />
-        );
-    };
+            return (
+                <Option
+                    key={value}
+                    ref={index === 0 ? measuredRef : undefined}
+                    option={sectionItem}
+                    isSelected={isSelected}
+                    optionIndex={optionIndex}
+                    overrideWithDisabledStyle={!!disabled}
+                    optionButtonProps={optionButtonProps}
+                    optionTextProps={optionTextProps}
+                    optionCustomStyles={optionCustomStyles}
+                    isDisabled={isDisabledOption}
+                    onPressOption={onPressOption}
+                />
+            );
+        },
+        [
+            disabled,
+            findSelectedOption,
+            isDisabledResolveOption,
+            measuredRef,
+            onPressOption,
+            optionButtonProps,
+            optionCustomStyles,
+            optionTextProps,
+            resolvedData,
+        ],
+    );
+
+    const renderFlatItem: ListRenderItem<OptionType> = useCallback(
+        ({ item, index }) => {
+            const { value } = item;
+            const isSelected = findSelectedOption(item);
+            const optionIndex = findSelectedOptionIndex(item) ?? index;
+            const isDisabledOption = isDisabledResolveOption(isSelected);
+
+            return (
+                <Option
+                    key={value}
+                    ref={index === 0 ? measuredRef : undefined}
+                    option={item}
+                    isSelected={isSelected}
+                    optionIndex={optionIndex}
+                    overrideWithDisabledStyle={!!disabled}
+                    optionButtonProps={optionButtonProps}
+                    optionTextProps={optionTextProps}
+                    optionCustomStyles={optionCustomStyles}
+                    isDisabled={isDisabledOption}
+                    onPressOption={onPressOption}
+                />
+            );
+        },
+        [
+            disabled,
+            findSelectedOption,
+            findSelectedOptionIndex,
+            isDisabledResolveOption,
+            measuredRef,
+            onPressOption,
+            optionButtonProps,
+            optionCustomStyles,
+            optionTextProps,
+        ],
+    );
 
     return (
-        <OptionsListWrapper
-            ref={optionsListRef}
-            wrapperStyles={[
-                styles.optionsList,
-                mainStyles?.optionsList,
-                { top, left, width },
-                aboveSelectControl ? styles.overflown : styles.notOverflown,
-            ]}
-        >
+        <OptionsListWrapper ref={optionsListRef}>
             {isSectionedOptions ? (
                 <SectionOptionsList
-                    {...{
-                        resolvedData,
-                        getItemLayout,
-                        renderItem,
-                    }}
+                    resolvedData={resolvedData}
+                    getItemLayout={getItemLayout}
+                    renderItem={renderSection}
+                    accessibilityState={accessibilityState}
+                    selectedOption={selectedOption}
+                    scrollToSelectedOption={scrollToSelectedOption}
+                    sectionListProps={sectionListProps}
+                    disabled={disabled}
                 />
             ) : (
                 <FlatOptionsList
-                    {...{
-                        resolvedData,
-                        getItemLayout,
-                        renderItem,
-                    }}
+                    initialScrollIndex={initialScrollIndex}
+                    getItemLayout={getItemLayout}
+                    renderItem={renderFlatItem}
+                    accessibilityState={accessibilityState}
+                    resolvedData={resolvedData}
+                    flatListProps={flatListProps}
+                    disabled={disabled}
                 />
             )}
         </OptionsListWrapper>
     );
-});
-
-type Styles = {
-    optionsList: ViewStyle;
-    notOverflown: ViewStyle;
-    overflown: ViewStyle;
-};
-
-const styles = StyleSheet.create<Styles>({
-    optionsList: {
-        flex: 1,
-        position: 'absolute',
-        zIndex: 1,
-        backgroundColor: COLORS.WHITE,
-        borderWidth: BORDER_WIDTH,
-        maxHeight: OPTIONS_LIST_HEIGHT,
-        elevation: 5,
-    },
-    notOverflown: {
-        borderTopWidth: 0,
-        borderBottomRightRadius: SHAPE,
-        borderBottomLeftRadius: SHAPE,
-    },
-    overflown: {
-        borderBottomWidth: 0,
-        borderTopRightRadius: SHAPE,
-        borderTopLeftRadius: SHAPE,
-    },
 });
 
 OptionsList.displayName = 'OptionsList';

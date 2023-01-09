@@ -1,7 +1,8 @@
 import { LayoutAnimation } from 'react-native';
 
 import { ANIMATION_DURATION } from '../constants';
-import { ERRORS, isSectionOptionsType, regexSearchTest } from '../helpers';
+import { ERRORS, searchNormalize } from '../helpers';
+import { isSectionOptionsType } from '../types';
 
 import type { ActionType, CreateInitialStateType, State } from './types';
 import { Action } from './types';
@@ -57,9 +58,9 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 const filteredSections = state.optionsData
                     .map((section) => ({
                         ...section,
-                        data: regexSearchTest(regex, section.title)
+                        data: searchNormalize(regex, section.title)
                             ? section.data
-                            : section.data.filter((option) => regexSearchTest(regex, option.label)),
+                            : section.data.filter((option) => searchNormalize(regex, option.label)),
                     }))
                     .filter((section) => section.data.length > 0);
 
@@ -72,7 +73,7 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
             return {
                 ...state,
                 searchedOptions: state.optionsData.filter((option) =>
-                    regexSearchTest(regex, option.label),
+                    searchNormalize(regex, option.label),
                 ),
             };
         }
