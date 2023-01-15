@@ -53,7 +53,7 @@ const processNode = (node, parent) => {
             const snackPlayerDiv = u('html', {
                 value: dedent`
           <div
-            style="height: 500px"
+            style="height: 700px"
             class="snack-player"
             data-snack-name="${name}"
             data-snack-description="${description}"
