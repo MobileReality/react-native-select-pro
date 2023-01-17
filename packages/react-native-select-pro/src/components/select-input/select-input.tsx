@@ -33,7 +33,7 @@ export const SelectInput = () => {
                     ? [styles.disabled, styles.text, multiple && styles.marginMultiple]
                     : [styles.text, textCustomStyles]
             }
-            textAlign={I18nManager.getConstants().isRTL ? 'left' : 'left'}
+            textAlign={I18nManager.getConstants().isRTL ? 'right' : 'left'}
             value={searchValue ?? ''}
             onChangeText={onChangeText}
             onPressIn={disabled ? undefined : onPressSelectControl}

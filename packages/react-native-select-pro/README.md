@@ -14,6 +14,7 @@
 [![npm total downloads](https://img.shields.io/npm/dt/@mobile-reality/react-native-select-pro?style=for-the-badge)](https://www.npmjs.com/package/@mobile-reality/react-native-select-pro)
 [![npm month downloads](https://img.shields.io/npm/dm/@mobile-reality/react-native-select-pro?style=for-the-badge)](https://www.npmjs.com/package/@mobile-reality/react-native-select-pro)
 [![npm week downloads](https://img.shields.io/npm/dw/@mobile-reality/react-native-select-pro?style=for-the-badge)](https://www.npmjs.com/package/@mobile-reality/react-native-select-pro)
+[![size](https://img.shields.io/bundlephobia/minzip/@mobile-reality/react-native-select-pro@2.0.0-alpha.3?style=for-the-badge)](https://bundlephobia.com/package/@mobile-reality/react-native-select-pro)
 [![License](https://img.shields.io/github/license/MobileReality/react-native-select-pro?style=for-the-badge)](https://github.com/MobileReality/react-native-select-pro/blob/master/LICENSE.md)
 
 ## Features
@@ -22,6 +23,7 @@
 * Multiple
 * Sections
 * Searchable
+* Accessible
 * TypeScript support
 
 ## Getting started

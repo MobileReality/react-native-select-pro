@@ -1,4 +1,5 @@
-import React, { type ReactNode, createContext, useCallback, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
+import React, { createContext, useCallback, useRef, useState } from 'react';
 import { InteractionManager, View } from 'react-native';
 import { PortalHost, PortalProvider } from '@gorhom/portal';
 

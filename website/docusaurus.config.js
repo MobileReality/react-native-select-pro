@@ -89,7 +89,7 @@ const config = {
                         items: [
                             {
                                 label: 'Contact us',
-                                href: 'https://www.mobilereality.pl/en/#footer_contact',
+                                href: 'https://mobilereality.pl/en/contact-us/',
                             },
                         ],
                     },

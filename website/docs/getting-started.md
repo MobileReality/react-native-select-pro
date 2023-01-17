@@ -10,6 +10,18 @@ sidebar_label: Getting started
 
 ## Installation
 
-```bash npm2yarn
+Yarn:
+```shell
+yarn add @mobile-reality/react-native-select-pro
+```
+
+npm:
+```shell
 npm install @mobile-reality/react-native-select-pro
 ```
+
+pnpm:
+```shell
+pnpm add @mobile-reality/react-native-select-pro
+```
+

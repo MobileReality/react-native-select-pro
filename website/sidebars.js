@@ -17,7 +17,7 @@ const sidebars = {
         {
             type: 'category',
             label: 'Start',
-            items: ['getting-started', 'basic-usage'],
+            items: ['getting-started', 'usage'],
         },
         {
             type: 'category',
@@ -28,6 +28,13 @@ const sidebars = {
                 'api/select-modal',
             ],
         },
+        {
+            type: 'doc',
+            label: 'react-native-select-pro v2',
+            id: 'react-native-select-pro-v2'
+        }
+
+
     ],
 };
 
