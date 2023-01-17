@@ -37,4 +37,4 @@ const App = () => {
 export default App;
 `;
 
-export const Animation = () => <SnackLink contents={contents} name="Animation prop" />;
+export const Animation = () => <SnackLink contents={contents} name="animation prop" />;

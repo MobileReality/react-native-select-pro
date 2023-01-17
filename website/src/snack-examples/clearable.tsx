@@ -37,4 +37,4 @@ const App = () => {
 export default App;
 `;
 
-export const Clearable = () => <SnackLink contents={contents} name="Clearable prop" />;
+export const Clearable = () => <SnackLink contents={contents} name="clearable prop" />;
