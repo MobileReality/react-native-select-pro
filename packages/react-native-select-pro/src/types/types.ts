@@ -81,14 +81,14 @@ export interface SelectProps<T = unknown> {
     disabled?: boolean;
 
     /**
-     *  `Select` component should have a `Backdrop` component.
+     *  Determines whether a `Select` component should have a `Backdrop` component.
      *
      *  @default true
      */
     hasBackdrop?: boolean;
 
     /**
-     *  Hide an arrow.
+     *  Determines the arrow icon should be displayed.
      *
      *  @default false
      */
@@ -102,21 +102,21 @@ export interface SelectProps<T = unknown> {
     multiple?: boolean;
 
     /**
-     * Determines the text that should be displayed when there are no available options in a Select component.
+     * Determines the text that should be displayed when there are no available options in a `Select` component.
      *
      * @default "No options"
      */
     noOptionsText?: string;
 
     /**
-     * Determines the placeholder text that should be displayed in a Select component when no option is selected.
+     * Determines the placeholder text that should be displayed in a `Select` component when no option is selected.
      *
      * @default "Select..."
      */
     placeholderText?: string;
 
     /**
-     * Determines the color of the placeholder text in a Select component.
+     * Determines the color of the placeholder text in a `Select` component.
      *
      * @default "#808080"
      */
