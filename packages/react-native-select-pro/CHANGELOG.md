@@ -4,30 +4,30 @@
 
 ### Major Changes
 
--   [#180](https://github.com/MobileReality/react-native-select-pro/pull/180) [`780db33`](https://github.com/MobileReality/react-native-select-pro/commit/780db33a4f7912f6a52205c7efac0819a5101e89) Thanks [@irekrog](https://github.com/irekrog)! - # react-native-select-pro@2.0.0
+-   [#180](https://github.com/MobileReality/react-native-select-pro/pull/180) [`780db33`](https://github.com/MobileReality/react-native-select-pro/commit/780db33a4f7912f6a52205c7efac0819a5101e89)
 
-    We are excited to announce the release of the new version React Native Select Pro after months of hard work and development.
+We are excited to announce the release of the new version React Native Select Pro after months of hard work and development.
 
-    This release includes:
+This release includes:
 
-    -   new props and bug fixes,
-    -   improved TypeScript support,
-    -   enhanced performance,
-    -   refactored source code.
+-   new props and bug fixes,
+-   improved TypeScript support,
+-   enhanced performance,
+-   refactored source code.
 
-    We have also rewritten the documentation to be more detailed and easier to understand.
+We have also rewritten the documentation to be more detailed and easier to understand.
 
-    More info you can find out here:
+More info you can find out here:
 
-    Thanks for contributing to this release:
+Thanks for contributing to this release:
 
-    [@irekrog](https://github.com/irekrog)
+[@irekrog](https://github.com/irekrog)
 
-    [@kkaplinski](https://github.com/kkaplinski)
+[@kkaplinski](https://github.com/kkaplinski)
 
-    [@MykhailoButkevych-MR](https://github.com/MykhailoButkevych-MR)
+[@MykhailoButkevych-MR](https://github.com/MykhailoButkevych-MR)
 
-    [@pwujek](https://github.com/pwujek7)
+[@pwujek](https://github.com/pwujek7)
 
 ## 1.13.1
 
