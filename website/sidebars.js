@@ -32,9 +32,12 @@ const sidebars = {
             type: 'doc',
             label: 'react-native-select-pro v2',
             id: 'react-native-select-pro-v2'
+        },
+        {
+            type: 'doc',
+            label: 'Troubleshooting',
+            id: 'troubleshooting'
         }
-
-
     ],
 };
 
