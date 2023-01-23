@@ -7,8 +7,21 @@ describe('Sections', () => {
         await element(by.text('Sections')).tap();
         await element(by.text('Select...')).tap();
         await element(by.text('Canada')).tap();
-        await expect(element(by.text('Canada'))).toExist();
+        await expect(element(by.text('Canada')).atIndex(0)).toBeVisible();
         await element(by.label('Clear a chosen option')).atIndex(0).tap();
-        await expect(element(by.text('Select...'))).toExist();
+        await expect(element(by.text('Select...'))).toBeVisible();
+    });
+
+    it('should scroll to selected option', async () => {
+        await element(by.text('Select...')).tap();
+        await element(by.text('North America')).swipe('up');
+        await element(by.text('Spain')).tap();
+        await expect(element(by.text('Spain')).atIndex(0)).toBeVisible();
+        await element(by.text('Spain')).atIndex(0).tap();
+        if (device.getPlatform() === 'ios') {
+            await expect(element(by.label('Europe'))).toBeVisible();
+        }
+        await expect(element(by.label('Choose Spain option')).atIndex(0)).toBeVisible();
+        await expect(element(by.label('Choose France option')).atIndex(0)).toBeVisible();
     });
 });

@@ -7,33 +7,35 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'React Native Select Pro',
-    url:
-        process && process.env && process.env.URL
-            ? process.env.URL
-            : 'https://mobilereality.github.io/react-native-select-pro/',
-    baseUrl:
-        process && process.env && process.env.BASE_URL
-            ? process.env.BASE_URL
-            : '/react-native-select-pro/',
+    url: 'https://mobilereality.github.io',
+    baseUrl: '/react-native-select-pro/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
     organizationName: 'MobileReality',
     projectName: 'react-native-select-pro',
+    clientModules: [require.resolve('./snackPlayerInitializer.js')],
+    scripts: [
+        {
+            src: 'https://snack.expo.dev/embed.js',
+            defer: true,
+        },
+    ],
     presets: [
         [
             'classic',
             /** @type {import('@docusaurus/preset-classic').Options} */
             ({
+                debug: true,
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    editUrl:
-                        'https://github.com/MobileReality/react-native-select-pro/website/',
+                    showLastUpdateTime: true,
+                    showLastUpdateAuthor: true,
+
+                    editUrl: 'https://github.com/MobileReality/react-native-select-pro/website/',
                     remarkPlugins: [
-                        [
-                            require('@docusaurus/remark-plugin-npm2yarn'),
-                            { sync: true },
-                        ],
+                        [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+                        require('@react-native-website/remark-snackplayer'),
                     ],
                 },
                 theme: {
@@ -43,9 +45,23 @@ const config = {
         ],
     ],
 
+    themes: [
+        [
+            require.resolve('@easyops-cn/docusaurus-search-local'),
+            {
+                hashed: true,
+            },
+        ],
+    ],
+
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            docs: {
+              sidebar: {
+                  hideable: true,
+              },
+            },
             navbar: {
                 title: 'React Native Select Pro',
                 logo: {
@@ -73,12 +89,12 @@ const config = {
                         items: [
                             {
                                 label: 'Contact us',
-                                href: 'https://www.mobilereality.pl/en/#footer_contact',
+                                href: 'https://mobilereality.pl/en/contact-us/',
                             },
                         ],
                     },
                 ],
-                copyright: `Mobile Reality' React Native Select Pro`,
+                copyright: `React Native Select Pro developed by Mobile Reality`,
             },
             prism: {
                 theme: lightCodeTheme,

@@ -2,17 +2,18 @@
   "pipeline": {
     "build": {
       "outputs": [
-        "dist/**"
+        "dist/**",
+        "lib/**"
       ],
       "dependsOn": [
         "^build"
       ]
     },
     "test": {
-      "inputs": [
-        "src/**/*.tsx",
-        "src/**/*.ts"
-      ]
+      "inputs": ["**/*.{ts,tsx,js,jsx}"]
+    },
+    "test:fix": {
+      "inputs": ["**/*.{ts,tsx,js,jsx}"]
     },
     "detox-metro-start": {},
     "detox-ios-build": {},
@@ -30,6 +31,9 @@
     "tsc": {
     },
     "lint": {
+      "outputs": []
+    },
+    "lint:fix": {
       "outputs": []
     },
     "clean": {

@@ -26,3 +26,12 @@
 html[data-theme='dark'] .docusaurus-highlight-code-line {
     background-color: rgba(0, 0, 0, 0.3);
 }
+
+.table-size {
+    font-size: 14px;
+}
+
+.table-size ul {
+    margin: 0;
+    padding-left: 16px;
+}

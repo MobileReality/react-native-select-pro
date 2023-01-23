@@ -17,42 +17,27 @@ const sidebars = {
         {
             type: 'category',
             label: 'Start',
-            items: ['getting-started', 'basic-usage'],
+            items: ['getting-started', 'usage'],
         },
         {
             type: 'category',
             label: 'API',
             items: [
+                'api/select',
                 'api/select-provider',
-                {
-                    type: 'category',
-                    label: 'Select',
-                    items: [
-                        'api/required',
-                        'api/common',
-                        'api/callbacks',
-                        'api/refs',
-                        'api/styles',
-                        'api/components',
-                        'api/accessibility',
-                    ],
-                },
                 'api/select-modal',
             ],
         },
         {
-            type: 'category',
-            label: 'Examples',
-            items: [
-                'examples/video',
-                {
-                    type: 'link',
-                    label: 'Expo Snack',
-                    href: 'https://snack.expo.dev/@irekrog/smelly-beef-jerky',
-                },
-                'examples/repo-clone',
-            ],
+            type: 'doc',
+            label: 'react-native-select-pro v2',
+            id: 'react-native-select-pro-v2'
         },
+        {
+            type: 'doc',
+            label: 'Troubleshooting',
+            id: 'troubleshooting'
+        }
     ],
 };
 

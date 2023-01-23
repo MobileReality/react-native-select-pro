@@ -1,0 +1,150 @@
+---
+id: select
+title: Select
+sidebar_label: Select
+hide_table_of_contents: true
+---
+
+import {
+    OptionsPropSnackLink,
+    Animation,
+    Clearable,
+    CloseOptionsListOnSelect,
+    DefaultOption,
+    Disabled,
+    HasBackdrop,
+    HideArrow,
+    Multiple,
+    NoOptionsText,
+    PlaceholderText,
+    PlaceholderTextColor,
+    ScrollToSelectedOption,
+    PressableSelectedOption,
+    Searchable,
+} from '@site/src/snack-examples';
+import { TableExample } from '@site/src/components/table-example';
+
+The `Select` component has only one required prop, which is the `options` prop.
+
+## Props
+
+### Basic
+
+<div className='table-size'>
+
+| Name                       | Type                          | Default                             | Description                                                                                                                                                                                                                                                | Example                                              |
+| -------------------------- | ----------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `options` **(required)**   | `OptionsType<T>`              |                                     | An array of objects that represents the available options for a `Select`.                                                                                                                                                                                  | <TableExample expo={<OptionsPropSnackLink />} />     |
+| `animation`                | `boolean` \| `number`         | `true` \| `200`                     | An options list open-close animation can be enabled or disabled using a `boolean` parameter. The duration of the animation can be set using a `number` parameter. If you pass `0` as the duration, the animation is still occur but will be instantaneous. | <TableExample expo={<Animation />} />                |
+| `clearable`                | `boolean`                     | `true`                              | Show a clear button to remove selected option.                                                                                                                                                                                                             | <TableExample expo={<Clearable />} />                |
+| `closeOptionsListOnSelect` | `boolean`                     | `true`                              | Close the options list after selected option.                                                                                                                                                                                                              | <TableExample expo={<CloseOptionsListOnSelect />} /> |
+| `defaultOption`            | `OptionType<T>`               |                                     | An object that represents the default option for a `Select`.                                                                                                                                                                                               | <TableExample expo={<DefaultOption />} />            |
+| `disabled`                 | `boolean`                     | `false`                             | Disable a `Select` pressable.                                                                                                                                                                                                                              | <TableExample expo={<Disabled />} />                 |
+| `hasBackdrop`              | `boolean`                     | `true`                              | Determines whether a `Select` component should have a `Backdrop` component.                                                                                                                                                                                | <TableExample expo={<HasBackdrop />} />              |
+| `hideArrow`                | `boolean`                     | `false`                             | Determines the arrow icon should be displayed.                                                                                                                                                                                                             | <TableExample expo={<HideArrow />} />                |
+| `multiple`                 | `boolean`                     | `false`                             | Determines whether a `Select` component should allow the user to select multiple options.                                                                                                                                                                  | <TableExample expo={<Multiple />} />                 |
+| `noOptionsText`            | `string`                      | `No options`                        | Determines the text that should be displayed when there are no available options in a `Select` component.                                                                                                                                                  | <TableExample expo={<NoOptionsText />} />            |
+| `placeholderText`          | `string`                      | `Select...`                         | Determines the placeholder text that should be displayed in a `Select` component when no option is selected.                                                                                                                                               | <TableExample expo={<PlaceholderText />} />          |
+| `placeholderTextColor`     | `string`                      | `#808080`                           | Determines the color of the placeholder text in a `Select` component.                                                                                                                                                                                      | <TableExample expo={<PlaceholderTextColor />} />     |
+| `scrollToSelectedOption`   | `boolean`                     | `true`                              | Determines whether a `Select` component should automatically scroll to the selected option when the options list is opened.                                                                                                                                | <TableExample expo={<ScrollToSelectedOption />} />   |
+| `pressableSelectedOption`  | `boolean`                     | `true`                              | Determines whether the selected option should still be pressable after it has been selected.                                                                                                                                                               | <TableExample expo={<PressableSelectedOption />} />  |
+| `searchable`               | `boolean`                     | `false`                             | Determines whether a `Select` component should include a search field that allows the user to filter the options by keyword.                                                                                                                               | <TableExample expo={<Searchable />} />               |
+| `searchPattern`            | `(payload: string) => string` | `(payload: string) => (${payload})` | Regex definition for searching options.                                                                                                                                                                                                                    | To Do                                                |
+| `styles`                   | `SelectStyles`                |                                     | An object that represents the styles for a `Select` component.                                                                                                                                                                                             | To Do                                                |
+
+</div>
+
+### Styles
+
+<div className='table-size'>
+
+| Name                                          | Type                    | Description                                                          | Note                                                                          | Example |
+| --------------------------------------------- | ----------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------- |
+| `styles.select.container`                     | `StyleProp<ViewStyle>`  | Style for the select.                                                |                                                                               | To Do   |
+| `styles.select.text`                          | `StyleProp<TextStyle>`  | Style for the select text.                                           | If you want to change a color of placeholder use `placeholderTextColor` props | To Do   |
+| `styles.select.disabled`                      | `StyleProp<ViewStyle>`  | Style for the disabled select.                                       |                                                                               | To Do   |
+| `styles.select.buttons`                       | `StyleProp<ViewStyle>`  | Style for the buttons container the right side.                      |                                                                               | To Do   |
+| `styles.select.multiSelectedOption.container` | `StyleProp<ViewStyle>`  | Style for the selected option in select control.                     |                                                                               | To Do   |
+| `styles.select.multiSelectedOption.text`      | `StyleProp<ViewStyle>`  | Style for the selected option text in select control.                |                                                                               | To Do   |
+| `styles.select.multiSelectedOption.pressed`   | `StyleProp<ViewStyle>`  | Style for the pressed selected option in select control.             |                                                                               | To Do   |
+| `styles.select.arrow.container`               | `StyleProp<ViewStyle>`  | Style for the arrow container.                                       |                                                                               | To Do   |
+| `styles.select.arrow.icon`                    | `StyleProp<ImageStyle>` | Style for the arrow icon.                                            |                                                                               | To Do   |
+| `styles.select.clear.container`               | `StyleProp<ViewStyle>`  | Style for the clear option button.                                   |                                                                               | To Do   |
+| `styles.select.clear.icon`                    | `StyleProp<ImageStyle>` | Style for the clear option icon.                                     |                                                                               | To Do   |
+| `styles.select.leftIcon`                      | `StyleProp<ImageStyle>` | Style for the custom left icon.                                      |                                                                               | To Do   |
+| `styles.option.container`                     | `StyleProp<ViewStyle>`  | Style for the single option.                                         |                                                                               | To Do   |
+| `styles.option.pressed`                       | `StyleProp<ViewStyle>`  | Style for the pressed single option.                                 |                                                                               | To Do   |
+| `styles.option.selected.container`            | `StyleProp<ViewStyle>`  | Style for the selected single option.                                |                                                                               | To Do   |
+| `styles.option.selected.text`                 | `StyleProp<ViewStyle>`  | Style for the selected single option text.                           |                                                                               | To Do   |
+| `styles.option.text`                          | `StyleProp<TextStyle>`  | Style for the single option text.                                    |                                                                               | To Do   |
+| `styles.optionsList`                          | `StyleProp<ViewStyle>`  | Style for the options list container.                                |                                                                               | To Do   |
+| `styles.noOptions.container`                  | `StyleProp<ViewStyle>`  | Style for the no options container.                                  |                                                                               | To Do   |
+| `styles.noOptions.text`                       | `StyleProp<TextStyle>`  | Style for the no options text.                                       |                                                                               | To Do   |
+| `styles.sectionHeader.container`              | `StyleProp<ViewStyle>`  | Style for the section header.                                        |                                                                               | To Do   |
+| `styles.sectionHeader.clear.icon`             | `StyleProp<ImageStyle>` | Style for the section header clear icon.                             |                                                                               | To Do   |
+| `styles.sectionHeader.pressed`                | `StyleProp<ViewStyle>`  | Style for the pressed section header.                                |                                                                               | To Do   |
+| `styles.sectionHeader.selected.container`     | `StyleProp<ViewStyle>`  | Style for section header when all section options are selected.      |                                                                               | To Do   |
+| `styles.sectionHeader.selected.text`          | `StyleProp<TextStyle>`  | Style for section header text when all section options are selected. |                                                                               | To Do   |
+| `styles.sectionHeader.text`                   | `StyleProp<TextStyle>`  | Style for the section header text.                                   |                                                                               | To Do   |
+| `styles.backdrop`                             | `StyleProp<ViewStyle>`  | Style for backdrop.                                                  |                                                                               | To Do   |
+
+</div>
+
+### Callbacks
+
+<div className='table-size'>
+
+| Name                 | Type                                                                                                  | Description                                          | Example |
+| -------------------- | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------- |
+| `onSectionSelect`    | `(options: OptionType<T>[], optionIndexes: number[]) => void`                                         | Called when section is selected with section header. | To Do   |
+| `onSectionRemove`    | `(options: OptionType<T>[], optionIndexes: number[]) => void;`                                        | Called when section is removed with section header.  | To Do   |
+| `onSelect`           | `(option: OptionType<T>, optionIndex: number) => void`                                                | Called when option is selected.                      | To Do   |
+| `onSelectChangeText` | `(text: string) => void`                                                                              | Called when text is changed in select input..        | To Do   |
+| `onSelectOpened`     | `() => void`                                                                                          | Called when `Select` is opened.                      | To Do   |
+| `onSelectClosed`     | `() => void`                                                                                          | Called when `Select` is closed.                      | To Do   |
+| `onRemove`           | `(option: OptionType<T>` \| `OptionType<T>[]` \| `null, optionIndex: number` \| `number []) => void;` | Called when option(s) is cleared.                    | To Do   |
+
+</div>
+
+### Methods
+
+<div className='table-size'>
+
+| Name       | Type             | Description                                          | Example |
+| ---------- | ---------------- | ---------------------------------------------------- | ------- |
+| `open`     | `() => void`     | Called when section is removed with section header.  | To Do   |
+| `clear`    | `() => void`     | Called when section is selected with section header. | To Do   |
+| `close`    | `() => void`     | Called when option is selected.                      | To Do   |
+| `getState` | `() => State<T>` | Called when `Select` is opened.                      | To Do   |
+
+</div>
+
+### Customizable
+
+<div className='table-size'>
+
+| Name                       | Type                                                                                                                                                                        | Description                                | Example |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ------- |
+| `arrowContainerProps`      | `Omit<ViewProps, 'style'>`                                                                                                                                                  | Override the arrow props.                  | To Do   |
+| `arrowImageProps`          | `Omit<ImageProps, 'style'>`                                                                                                                                                 | Override the arrow image props.            | To Do   |
+| `backdropChildProps`       | `Omit<ViewProps, 'style'>`                                                                                                                                                  | Override the backdrop child element props. | To Do   |
+| `backdropProps`            | `Omit<TouchableWithoutFeedbackProps, 'onPress'>`                                                                                                                            | Override the backdrop element props.       | To Do   |
+| `clearOptionButtonProps`   | `Omit<ViewProps, 'style'` \| `'onPress'>`                                                                                                                                   | Override the clear option button props.    | To Do   |
+| `clearOptionImageProps`    | `Omit<ImageProps, 'style'>`                                                                                                                                                 | Override the clear option image props.     | To Do   |
+| `flatListProps`            | `Omit<FlatListProps<OptionType>, 'ref'` \| `'data'` \| `'getItemLayout'` \| `'renderItem'` \| `'keyExtractor'>`                                                             | Override the options list props.           | To Do   |
+| `noOptionsProps`           | `Omit<ViewProps, 'style'>`                                                                                                                                                  | Override the no options element props.     | To Do   |
+| `noOptionsTextProps`       | `Omit<TextProps, 'style'>`                                                                                                                                                  | Override the no options text props.        | To Do   |
+| `optionButtonProps`        | `Omit<PressableProps, 'ref'` \| `'style'` \| `'onPress'` \| `'accessibilityRole'` \| `'accessibilityState'` \| `'disabled'>`                                                | Override the option button props.          | To Do   |
+| `optionTextProps`          | `Omit<TextProps, 'style'>`                                                                                                                                                  | Override the option text props.            | To Do   |
+| `selectContainerProps`     | `Omit<PressableProps, 'ref'` \| `'style'` \| `onPress'>`                                                                                                                    | Override the select container props.       | To Do   |
+| `selectInputProps`         | `Omit<TextInputProps, 'ref'` \| `'editable'` \| `'placeholder'` \| `'placeholderTextColor'` \| `'style'` \| `'textAlign'` \| `'value'` \| `'onChangeText'` \| `onPressIn'>` | Override the select input props.           | To Do   |
+| `selectLeftIconImageProps` | `Omit<ImageProps, 'style'>`                                                                                                                                                 | Override the select left icon image props. | To Do   |
+| `selectLeftIconsProps`     | `Omit<ViewProps, 'style'>`                                                                                                                                                  | Override the select left icons props.      | To Do   |
+| `selectRightIconsProps`    | `Omit<ViewProps, 'style'>`                                                                                                                                                  | Override the select right icons props.     | To Do   |
+| `selectTextProps`          | `Omit<TextProps, 'style'>`                                                                                                                                                  | Override the select text props.            | To Do   |
+| `sectionHeaderButtonProps` | `Omit<ViewProps, 'style'` \| `'onPress'>`                                                                                                                                   | Override the section header button props.  | To Do   |
+| `sectionHeaderImageProps`  | `Omit<ImageProps, 'style'>`                                                                                                                                                 | Override the section header image props.   | To Do   |
+| `sectionHeaderTextProps`   | `Omit<TextProps, 'style'>`                                                                                                                                                  | Override the section header text props.    | To Do   |
+| `sectionListProps`         | `Omit<SectionListProps<OptionType>, 'ref'` \| `'renderSectionHeader'` \| `'sections'` \| `'getItemLayout'` \| `'renderItem'` \| `keyExtractor` \| `onLayout>`               | Override the sections options list props.  | To Do   |
+
+</div>

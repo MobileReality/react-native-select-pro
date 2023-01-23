@@ -1,0 +1,53 @@
+---
+id: react-native-select-pro-v2
+title: React Native Select Pro v2
+sidebar_label: React Native Select Pro v2
+---
+
+### Changes
+
+-   Removed `animationDuration` and `animated` props to manage animated select. Instead added `animation` prop which accepts boolean or animation time duration in milliseconds.
+
+-   Select animation was disabled by default, now the select animation is enabled by default.
+
+-   There was multiple styles props (`selectContainerStyle`, etc.), now there is only one style prop `styles` which accepts object of styles.
+
+-   Added a new prop `hasBackdrop` to manage backdrop visibility.
+
+-   For sections select added support for: `multiple`, `searchable`, `scrollToSelectedOption`
+
+-   When select is `searchable` then focus on opened select.
+
+-   Removed `selectControlClearOptionA11yLabel` prop, now with `clearOptionButtonProps` you can override accessibility label.
+
+-   Removed `selectControlOpenDropdownA11yLabel` prop, now with `selectContainerProps` you can override accessibility label.
+
+-   Added `clearOptionButtonProps`, `clearOptionImageProps`, `arrowButtonProps`, `arrowImageProps`, `selectRightIconsProps`, `selectLeftIconsProps`, `selectLeftIconImageProps`, `sectionHeaderButtonProps`, `sectionHeaderTextProps`, `sectionHeaderImageProps`, `selectTextProps` props to override default props.
+
+-   Added `onSectionSelect` callback to get selected section.
+
+-   Added `onSectionRemove` callback to get removed section.
+
+-   Added `onChangeText` callback to get text select input value.
+
+-   Renamed `onDropdownOpened` to `onSelectOpened`
+
+-   Renamed `onDropdownClosed` to `onSelectClosed`
+
+-   Renamed `multiSelection` to `multiple`
+
+-   Renamed `closeDropdownOnSelect` to `closeOptionsListOnSelect`
+
+-   Removed `OptionComponent` and now you can use `optionButtonProps`, `optionTextProps`, `optionStyles` to custom option component.
+
+-   Fixes in accessibility.
+
+-   Better TypeScript support for example in `onSelect` callback.
+
+-   Fixed multiple bugs.
+
+-   Refactored example app and added more examples.
+
+-   Updated dependencies.
+
+-   Rewritten docs.

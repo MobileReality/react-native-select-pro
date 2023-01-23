@@ -1,2 +1,4 @@
 node_modules/
 lib/
+.eslintrc.js
+apps/e2e/

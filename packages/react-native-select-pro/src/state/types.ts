@@ -1,4 +1,4 @@
-import type { Dispatch, Ref } from 'react';
+import type { Dispatch, RefObject } from 'react';
 import type { TextInput } from 'react-native';
 
 import type { OptionsType, OptionType } from '../types';
@@ -11,10 +11,10 @@ export enum Action {
     SetSearchInputRef = 'setSearchInputRef',
     SetSearchValue = 'setSearchValue',
     SearchOptions = 'searchOptions',
-    SetPosition = 'setPosition',
+    SetOptionsListPosition = 'setOptionsListPo',
 }
 
-export type ActionType =
+export type ActionType<T> =
     | {
           type: Action.Open;
       }
@@ -24,16 +24,16 @@ export type ActionType =
     | {
           type: Action.SelectOption;
           payload: {
-              selectedOption: OptionType | OptionType[] | null;
+              selectedOption: OptionType<T> | OptionType<T>[] | null;
               selectedOptionIndex: number | number[];
           };
       }
     | {
           type: Action.SetOptionsData;
-          payload: OptionsType;
+          payload: OptionsType<T>;
       }
     | {
-          type: Action.SetPosition;
+          type: Action.SetOptionsListPosition;
           payload: Position;
       }
     | {
@@ -47,7 +47,7 @@ export type ActionType =
       }
     | {
           type: Action.SetSearchInputRef;
-          payload: Ref<TextInput>;
+          payload: RefObject<TextInput> | null;
       };
 
 export type Position = {
@@ -57,15 +57,22 @@ export type Position = {
     aboveSelectControl: boolean;
 };
 
-export type State = {
+export type State<T = unknown> = {
     isOpened: boolean;
-    selectedOption: OptionType | null | OptionType[];
+    selectedOption: OptionType<T> | OptionType<T>[] | null;
     selectedOptionIndex: number | number[];
-    optionsData: OptionsType;
+    optionsData: OptionsType<T>;
     openedPosition: Position;
-    searchValue: string;
-    searchedOptions: OptionType[];
-    searchInputRef: Ref<TextInput> | null;
+    searchValue: string | null;
+    searchedOptions: OptionsType<T>;
+    searchInputRef: RefObject<TextInput> | null;
+    animationDuration: number;
 };
 
-export type DispatchType = Dispatch<ActionType>;
+export type DispatchType<T> = Dispatch<ActionType<T>>;
+
+export type CreateInitialStateType<T> = {
+    options: OptionsType<T>;
+    searchable: boolean;
+    animation: boolean | number;
+};
