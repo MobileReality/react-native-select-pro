@@ -12,16 +12,16 @@ Firstly, wrap your app code in a `SelectProvider` component:
 import React from 'react';
 import { SelectProvider } from '@mobile-reality/react-native-select-pro';
 
-const App = () => {
+const AppRoot = () => {
     return <SelectProvider>{/* rest of your app code */}</SelectProvider>;
 };
 ```
 
-### Basic
-
 Then you can use `Select` component:
 
-```SnackPlayer name=Basic&dependencies=@mobile-reality/react-native-select-pro@2.0.0-alpha.4
+### Basic
+
+```SnackPlayer name=Basic&dependencies=@mobile-reality/react-native-select-pro@2.0.0
 import { View, StyleSheet } from 'react-native';
 import { Select, SelectProvider } from '@mobile-reality/react-native-select-pro';
 
@@ -75,7 +75,7 @@ export default App;
 
 Additionally you can pass second available data structure:
 
-```SnackPlayer name=Basic&dependencies=@mobile-reality/react-native-select-pro@2.0.0-alpha.4
+```SnackPlayer name=Sections&dependencies=@mobile-reality/react-native-select-pro@2.0.0
 import { View, StyleSheet } from 'react-native';
 import { Select, SelectProvider } from '@mobile-reality/react-native-select-pro';
 
@@ -143,7 +143,7 @@ export default App;
 
 Use `multiple` prop to allow multiple `Select`:
 
-```SnackPlayer name=Basic&dependencies=@mobile-reality/react-native-select-pro@2.0.0-alpha.4
+```SnackPlayer name=Multiple&dependencies=@mobile-reality/react-native-select-pro@2.0.0
 import { View, StyleSheet } from 'react-native';
 import { Select, SelectProvider } from '@mobile-reality/react-native-select-pro';
 
@@ -197,7 +197,7 @@ export default App;
 
 Use `searchble` prop to allow search in `Select`:
 
-```SnackPlayer name=Basic&dependencies=@mobile-reality/react-native-select-pro@2.0.0-alpha.4
+```SnackPlayer name=Searchable&dependencies=@mobile-reality/react-native-select-pro@2.0.0
 import { View, StyleSheet } from 'react-native';
 import { Select, SelectProvider } from '@mobile-reality/react-native-select-pro';
 
@@ -256,7 +256,7 @@ If you want to use `Select` component inside:
 
 you need to wrap code inside `Modal` / `BottomSheet` in `SelectModalProvider`:
 
-```SnackPlayer name=Basic&dependencies=@mobile-reality/react-native-select-pro@2.0.0-alpha.4
+```SnackPlayer name=SelectModal&dependencies=@mobile-reality/react-native-select-pro@2.0.0
 import { useState } from 'react';
 import { View, StyleSheet, Modal, Button } from 'react-native';
 import {

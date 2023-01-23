@@ -11,6 +11,7 @@ const KeyboardAware = ({ children }: { children: ReactNode }) => (
         style={{
             flex: 1,
             justifyContent: 'space-between',
+            width: '100%',
         }}
         behavior={Platform.select({ ios: 'padding', android: 'height' })}
     >

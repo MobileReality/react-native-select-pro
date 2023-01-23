@@ -1,0 +1,29 @@
+---
+id: troubleshooting
+title: Troubleshooting
+sidebar_label: Troubleshooting
+---
+
+## How can I get selected item data?
+
+You should use the [`onSelect`](api/select) callback to get the selected item's data
+
+## `Select` doesn't work inside `Modal` from `react-native`
+
+You need to wrap the code inside the `Modal` in a [`SelectModalProvider`](api/select-modal) to ensure proper functionality.
+
+```typescript jsx
+...
+<Modal>
+    <SelectModalProvider>
+        <Select ... />
+    </SelectModalProvider>
+</Modal>
+...
+```
+
+## Options list position is not correct
+
+-   If you are using `react-native-modal` and `Modal` is wrapped in `SelectModalProvider` please check if `Modal` [has applied `margin: 0`](https://github.com/react-native-modal/react-native-modal#the-modal-is-not-covering-the-entire-screen)
+-   Check if you are using `react-native-safe-area-contex`t and, if so, check if you have used `SafeAreaProvider` in your app's root.
+-   If the above points do not resolve the issue, please report it on [GitHub](https://github.com/MobileReality/react-native-select-pro/issues/new/choose).
