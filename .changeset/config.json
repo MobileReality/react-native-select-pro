@@ -7,5 +7,5 @@
     "commit": false,
     "access": "public",
     "baseBranch": "master",
-    "ignore": ["@monorepo/expo", "@monorepo/e2e"]
+    "ignore": ["@monorepo/expo", "@monorepo/e2e", "@monorepo/eslint-config"]
 }
