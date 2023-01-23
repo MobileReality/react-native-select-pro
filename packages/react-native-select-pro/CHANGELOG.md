@@ -17,17 +17,17 @@ This release includes:
 
 We have also rewritten the documentation to be more detailed and easier to understand.
 
-More info you can find out here:
+More info you can find out here: https://mobilereality.github.io/react-native-select-pro/docs/react-native-select-pro-v2
 
 Thanks for contributing to this release:
 
-[@irekrog](https://github.com/irekrog)
+* [@irekrog](https://github.com/irekrog)
 
-[@kkaplinski](https://github.com/kkaplinski)
+* [@kkaplinski](https://github.com/kkaplinski)
 
-[@MykhailoButkevych-MR](https://github.com/MykhailoButkevych-MR)
+* [@MykhailoButkevych-MR](https://github.com/MykhailoButkevych-MR)
 
-[@pwujek](https://github.com/pwujek7)
+* [@pwujek](https://github.com/pwujek7)
 
 ## 1.13.1
 
