@@ -11,7 +11,7 @@ export const HomepageHeader = () => {
                     className={clsx(
                         `button button--secondary button--lg ${styles.link}`,
                     )}
-                    to="/docs/getting-started"
+                    to="/docs/home"
                 >
                     DOCS
                 </Link>

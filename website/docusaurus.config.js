@@ -58,9 +58,9 @@ const config = {
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             docs: {
-              sidebar: {
-                  hideable: true,
-              },
+                sidebar: {
+                    hideable: true,
+                },
             },
             navbar: {
                 title: 'React Native Select Pro',
@@ -94,7 +94,7 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `React Native Select Pro developed by Mobile Reality`,
+                copyright: `<p>React Native Select Pro developed by <a href='https://mobilereality.pl/en/' target='_blank'>Mobile Reality</a></p>Docs built with <a href='https://docusaurus.io/' target='_blank'>Docusaurus</a>`,
             },
             prism: {
                 theme: lightCodeTheme,
