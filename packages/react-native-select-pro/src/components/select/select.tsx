@@ -10,6 +10,7 @@ import { OptionsListContextProvider, SelectContextProvider } from '../../context
 import { isAndroid } from '../../helpers';
 import type { ActionType, CreateInitialStateType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
+import { Themes, themes } from '../../themes';
 import type {
     OnPressOptionType,
     OptionsType,
@@ -47,7 +48,8 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         scrollToSelectedOption = true,
         searchable = false,
         searchPattern = (payload: string) => `(${payload})`,
-        styles: mainStyles,
+        styles: customStyles,
+        theme = Themes.None,
         // Callbacks
         onSelectChangeText,
         onSectionSelect,
@@ -96,6 +98,7 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
     } = state;
 
     const { aboveSelectControl } = openedPosition;
+    const mainStyles = { ...themes[theme], ...customStyles };
 
     const selectControlRef = useRef<View>(null);
     const optionsListRef = useRef<View>(null);

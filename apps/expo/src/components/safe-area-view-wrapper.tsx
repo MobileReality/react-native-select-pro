@@ -10,7 +10,12 @@ type Props = {
 
 export const SafeAreaViewWrapper = ({ children, style }: Props) => {
     return (
-        <View style={[{ flex: 1, justifyContent: 'center', alignItems: 'center' }, style]}>
+        <View
+            style={[
+                { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 25 },
+                style,
+            ]}
+        >
             {children}
         </View>
     );

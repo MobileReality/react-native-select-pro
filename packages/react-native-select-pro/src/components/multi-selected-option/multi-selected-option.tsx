@@ -68,7 +68,7 @@ const styles = StyleSheet.create<Styles>({
         borderWidth: 1,
         borderColor: COLORS.BLACK,
         margin: 2,
-        paddingLeft: 5,
+        paddingHorizontal: 5,
     },
 });
 

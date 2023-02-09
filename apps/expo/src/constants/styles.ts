@@ -4,9 +4,8 @@ export const SELECT_STYLES: SelectStyles = {
     select: {
         multiSelectedOption: {
             container: {
-                borderRadius: 10,
-                margin: 5,
-                maxWidth: 120,
+                marginRight: 5,
+                marginVertical: 5,
                 paddingHorizontal: 5,
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -18,9 +17,8 @@ export const SELECT_STYLES: SelectStyles = {
             },
         },
         container: {
-            width: '100%',
             borderRadius: 5,
-            backgroundColor: 'transparent',
+            backgroundColor: '#000a19',
             borderColor: '#f34c54',
             borderWidth: 1,
         },
@@ -37,7 +35,7 @@ export const SELECT_STYLES: SelectStyles = {
     optionsList: {
         borderWidth: 1,
         borderColor: '#464e58',
-        backgroundColor: 'transparent',
+        backgroundColor: '#000a19',
     },
     option: {
         container: {
@@ -55,7 +53,7 @@ export const SELECT_STYLES: SelectStyles = {
                 backgroundColor: 'transparent',
             },
             text: {
-                color: '#611e21',
+                color: '#015b39',
             },
         },
     },

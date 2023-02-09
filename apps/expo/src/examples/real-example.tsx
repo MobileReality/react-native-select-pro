@@ -86,7 +86,6 @@ type Styles = {
 const styles = StyleSheet.create<Styles>({
     container: {
         backgroundColor: '#000a19',
-        padding: 25,
         paddingTop: 200,
         justifyContent: 'space-between',
     },

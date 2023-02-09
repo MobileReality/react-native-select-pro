@@ -24,10 +24,10 @@ export const OptionsListWrapper = forwardRef<View, OptionsListWrapperProps>(({ c
             pointerEvents={isOpened ? 'auto' : 'none'}
             style={[
                 styles.optionsList,
-                optionsListCustomStyles,
                 { top, left, width },
                 aboveSelectControl ? styles.overflown : styles.notOverflown,
                 { opacity: fadeAnimation },
+                optionsListCustomStyles,
             ]}
         >
             {children}
@@ -37,9 +37,9 @@ export const OptionsListWrapper = forwardRef<View, OptionsListWrapperProps>(({ c
             ref={ref}
             style={[
                 styles.optionsList,
-                optionsListCustomStyles,
                 { top, left, width },
                 aboveSelectControl ? styles.overflown : styles.notOverflown,
+                optionsListCustomStyles,
             ]}
         >
             {children}
