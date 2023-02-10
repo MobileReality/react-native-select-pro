@@ -100,7 +100,9 @@ exports[`Select should generate Select snapshot 1`] = `
           ]
         }
       >
-        <View>
+        <View
+          testID="Dropdown arrow"
+        >
           <Image
             collapsable={false}
             source={
@@ -255,7 +257,9 @@ exports[`Select with custom left icon should generate Select with custom left ic
           ]
         }
       >
-        <View>
+        <View
+          testID="Dropdown arrow"
+        >
           <Image
             collapsable={false}
             source={
@@ -383,7 +387,9 @@ exports[`Select with custom select control arrow icon should generate Select wit
           ]
         }
       >
-        <View>
+        <View
+          testID="Dropdown arrow"
+        >
           <Image
             collapsable={false}
             source={
@@ -524,7 +530,9 @@ exports[`Select with multi selection and searchable should generate Select with 
           ]
         }
       >
-        <View>
+        <View
+          testID="Dropdown arrow"
+        >
           <Image
             collapsable={false}
             source={
@@ -665,7 +673,9 @@ exports[`Select with multi selection should generate Select with multi selection
           ]
         }
       >
-        <View>
+        <View
+          testID="Dropdown arrow"
+        >
           <Image
             collapsable={false}
             source={
@@ -794,7 +804,9 @@ exports[`Select with searchable enabled should generate Select with searchable e
           ]
         }
       >
-        <View>
+        <View
+          testID="Dropdown arrow"
+        >
           <Image
             collapsable={false}
             source={
