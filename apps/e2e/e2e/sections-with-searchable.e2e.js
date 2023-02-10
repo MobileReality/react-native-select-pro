@@ -14,7 +14,7 @@ describe('SectionsWithSearchable', () => {
         }
         await element(by.text('Poland')).tap();
         await expect(element(by.text('Poland')).atIndex(0)).toBeVisible();
-        await element(by.label('Clear a chosen option')).atIndex(0).tap();
+        await element(by.label('Clear a selected option')).atIndex(0).tap();
     });
 
     it('should search without results and show "No options" placeholder', async () => {

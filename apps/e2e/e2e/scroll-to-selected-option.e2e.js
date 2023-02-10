@@ -6,9 +6,7 @@ describe('ScrollToSelectedOption', () => {
             .scroll(200, 'down');
         await element(by.text('Scroll To Selected Option')).tap();
         await element(by.text('🐈🐈🐈 Fifth label')).tap();
-        await expect(
-            element(by.label('Choose 🐈🐈🐈 Fifth label option')).atIndex(0),
-        ).toBeVisible();
+        await expect(element(by.label('Select 🐈🐈🐈 Fifth label')).atIndex(0)).toBeVisible();
         await element(by.text('🐈🐈🐈 Fifth label')).atIndex(0).tap();
     });
 
@@ -21,7 +19,7 @@ describe('ScrollToSelectedOption', () => {
         await element(by.text('Last')).tap();
         await expect(element(by.text('Last'))).toBeVisible();
         await element(by.text('Last')).tap();
-        await expect(element(by.label('Choose First label option')).atIndex(0)).toBeVisible();
+        await expect(element(by.label('Select First label')).atIndex(0)).toBeVisible();
         await element(by.text('First label')).tap();
     });
 });
