@@ -7,7 +7,7 @@ import { Portal } from '@gorhom/portal';
 
 import { COLORS, Portals } from '../../constants';
 import { OptionsListContextProvider, SelectContextProvider } from '../../context';
-import { isAndroid } from '../../helpers';
+import { isAndroid, mergeObjects } from '../../helpers';
 import type { ActionType, CreateInitialStateType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
 import { Themes, themes } from '../../themes';
@@ -17,6 +17,7 @@ import type {
     OptionType,
     SelectProps,
     SelectRef,
+    SelectStyles,
 } from '../../types';
 import { Backdrop } from '../backdrop';
 import { OptionsList } from '../options-list';
@@ -98,7 +99,7 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
     } = state;
 
     const { aboveSelectControl } = openedPosition;
-    const mainStyles = { ...themes[theme], ...customStyles };
+    const mainStyles: SelectStyles = mergeObjects(themes[theme], customStyles);
 
     const selectControlRef = useRef<View>(null);
     const optionsListRef = useRef<View>(null);
