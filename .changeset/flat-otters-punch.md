@@ -2,4 +2,4 @@
 '@mobile-reality/react-native-select-pro': patch
 ---
 
-reduce bundle size by change enum with union type
+reduce the bundle size by changing from an enum to a union type
