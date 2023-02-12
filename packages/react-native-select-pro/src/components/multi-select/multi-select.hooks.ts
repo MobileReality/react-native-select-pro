@@ -3,7 +3,6 @@ import { StyleSheet, useWindowDimensions } from 'react-native';
 
 import { useSelectContext } from '../../context';
 import { dimensionPercentageToDP, getReducedSectionData } from '../../helpers';
-import { Action } from '../../state';
 import type { OnPressRemove, OptionType } from '../../types';
 import { isSectionOptionsType } from '../../types';
 
@@ -32,7 +31,7 @@ export const useMultiSelect = <T>({ selectedOptions }: UseMultiSelectProps<T>) =
 
     const removeSingleOption = useCallback(() => {
         dispatch({
-            type: Action.SelectOption,
+            type: 'selectOption',
             payload: {
                 selectedOption: null,
                 selectedOptionIndex: -1,
@@ -42,7 +41,7 @@ export const useMultiSelect = <T>({ selectedOptions }: UseMultiSelectProps<T>) =
         const isSearchable = typeof searchValue === 'string';
         if (isSearchable) {
             dispatch({
-                type: Action.SetSearchValue,
+                type: 'setSearchValue',
                 payload: '',
             });
         }
@@ -70,7 +69,7 @@ export const useMultiSelect = <T>({ selectedOptions }: UseMultiSelectProps<T>) =
             }
 
             dispatch({
-                type: Action.SelectOption,
+                type: 'selectOption',
                 payload: {
                     selectedOption:
                         removedSelectedOptions.length > 0 ? removedSelectedOptions : null,

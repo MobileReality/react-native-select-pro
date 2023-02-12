@@ -1,5 +1,4 @@
 import { useSelectContext } from '../../context';
-import { Action } from '../../state';
 
 export const useClearOption = () => {
     const {
@@ -19,7 +18,7 @@ export const useClearOption = () => {
 
     const removeSingleOption = () => {
         dispatch({
-            type: Action.SelectOption,
+            type: 'selectOption',
             payload: {
                 selectedOption: null,
                 selectedOptionIndex: -1,
@@ -29,7 +28,7 @@ export const useClearOption = () => {
         const isSearchable = typeof searchValue === 'string';
         if (isSearchable) {
             dispatch({
-                type: Action.SetSearchValue,
+                type: 'setSearchValue',
                 payload: '',
             });
         }

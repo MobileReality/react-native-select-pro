@@ -2,9 +2,7 @@ import type { Dispatch } from 'react';
 import { createContext, useContext } from 'react';
 
 import type { ActionType, Position, State } from '../state';
-import type { OptionalToRequired } from '../types';
-import type { SelectProps } from '../types';
-import type { OnPressSelectControlType } from '../types/shared';
+import type { OnPressSelectControlType, OptionalToRequired, SelectProps } from '../types';
 
 type SelectContextProviderTypes<T> = OptionalToRequired<
     {
