@@ -1,8 +1,7 @@
 import type { Dispatch, ForwardedRef, Reducer } from 'react';
 import React, { forwardRef, useReducer, useRef } from 'react';
 import type { SectionListData, ViewStyle } from 'react-native';
-import { UIManager } from 'react-native';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, UIManager, View } from 'react-native';
 import { Portal } from '@gorhom/portal';
 
 import { COLORS, Portals } from '../../constants';

@@ -1,5 +1,4 @@
-import type { SectionListProps } from 'react-native';
-import type { FlatListProps } from 'react-native';
+import type { FlatListProps, SectionListProps } from 'react-native';
 
 import type { State } from '../../state';
 import type { OptionalToRequired, OptionType, SectionOptionType, SelectProps } from '../../types';

@@ -3,13 +3,12 @@ import type { LayoutRectangle } from 'react-native';
 import { I18nManager, useWindowDimensions } from 'react-native';
 
 import { APPROX_STATUSBAR_HEIGHT } from '../../constants';
-import { isValidDefaultOption } from '../../helpers';
 import {
     getReducedSectionData,
     getSectionOptionsIndexes,
+    isValidDefaultOption,
     selectedOptionResolver,
 } from '../../helpers';
-import { Action } from '../../state';
 import type {
     OnOutsidePress,
     OnPressOptionType,
@@ -47,11 +46,11 @@ export const useSelect = <T>({
     const isSectionedOptions = isSectionOptionsType(optionsData);
 
     const open = useCallback(() => {
-        dispatch({ type: Action.Open });
+        dispatch({ type: 'open' });
     }, [dispatch]);
 
     const close = useCallback(() => {
-        dispatch({ type: Action.Close });
+        dispatch({ type: 'close' });
     }, [dispatch]);
 
     useEffect(() => {
@@ -67,7 +66,7 @@ export const useSelect = <T>({
                 : optionsData.indexOf(defaultOption);
 
             dispatch({
-                type: Action.SelectOption,
+                type: 'selectOption',
                 payload: {
                     selectedOption: defaultOption,
                     selectedOptionIndex: foundIndex,
@@ -109,7 +108,7 @@ export const useSelect = <T>({
         const left = I18nManager.getConstants().isRTL ? screenWidth - width - x : x;
 
         dispatch({
-            type: Action.SetOptionsListPosition,
+            type: 'setOptionsListPosition',
             payload: {
                 width,
                 top,
@@ -140,7 +139,7 @@ export const useSelect = <T>({
         (): SelectRef<T> => ({
             clear: () => {
                 dispatch({
-                    type: Action.SelectOption,
+                    type: 'selectOption',
                     payload: { selectedOption: null, selectedOptionIndex: -1 },
                 });
                 if (onRemove && selectedOption) {
@@ -208,16 +207,16 @@ export const useSelect = <T>({
             }
 
             dispatch({
-                type: Action.SelectOption,
+                type: 'selectOption',
                 payload: resolveOption(option, optionIndex),
             });
 
             if (searchable) {
                 if (multiple) {
-                    dispatch({ type: Action.SetSearchValue, payload: '' });
+                    dispatch({ type: 'setSearchValue', payload: '' });
                 } else {
                     dispatch({
-                        type: Action.SetSearchValue,
+                        type: 'setSearchValue',
                         payload: option.label,
                     });
                 }
@@ -302,19 +301,19 @@ export const useSelect = <T>({
         };
 
         dispatch({
-            type: Action.SelectOption,
+            type: 'selectOption',
             payload: resolveOption(),
         });
 
         if (searchable) {
-            dispatch({ type: Action.SetSearchValue, payload: '' });
+            dispatch({ type: 'setSearchValue', payload: '' });
         }
     };
 
     const onOutsidePress: OnOutsidePress = () => {
         if (selectedOptionLabel && searchable) {
             dispatch({
-                type: Action.SetSearchValue,
+                type: 'setSearchValue',
                 payload: selectedOptionLabel,
             });
         }
