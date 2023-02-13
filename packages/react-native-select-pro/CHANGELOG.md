@@ -1,5 +1,15 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.1.0
+
+### Minor Changes
+
+-   [#183](https://github.com/MobileReality/react-native-select-pro/pull/183) [`ec20b60`](https://github.com/MobileReality/react-native-select-pro/commit/ec20b60c3a5c0358a9ad3c06a92925882c5572da) Thanks [@kkaplinski](https://github.com/kkaplinski)! - Add theme property with light, dark and none themes.
+
+### Patch Changes
+
+-   [#185](https://github.com/MobileReality/react-native-select-pro/pull/185) [`5bee57c`](https://github.com/MobileReality/react-native-select-pro/commit/5bee57cf8acf7378ffc2ddc0a62d0d0c58faee70) Thanks [@irekrog](https://github.com/irekrog)! - reduce the bundle size by changing from an enum to a union type
+
 ## 2.0.0
 
 ### Major Changes
@@ -21,13 +31,13 @@ More info you can find out here: https://mobilereality.github.io/react-native-se
 
 Thanks for contributing to this release:
 
-* [@irekrog](https://github.com/irekrog)
+-   [@irekrog](https://github.com/irekrog)
 
-* [@kkaplinski](https://github.com/kkaplinski)
+-   [@kkaplinski](https://github.com/kkaplinski)
 
-* [@MykhailoButkevych-MR](https://github.com/MykhailoButkevych-MR)
+-   [@MykhailoButkevych-MR](https://github.com/MykhailoButkevych-MR)
 
-* [@pwujek](https://github.com/pwujek7)
+-   [@pwujek](https://github.com/pwujek7)
 
 ## 1.13.1
 
