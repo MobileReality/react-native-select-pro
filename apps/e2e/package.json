@@ -11,7 +11,7 @@
     "detox-ios-build": "detox build -c ios",
     "detox-ios-test": "detox test -c ios",
     "detox-android-build": "detox build -c android.emu.release",
-    "detox-android-test": "detox test -c android.emu.release scroll-to-selected-option.e2e.js",
+    "detox-android-test": "detox test -c android.emu.release",
     "detox-clean": "detox clean-framework-cache && detox build-framework-cache",
     "tsc": "tsc --noEmit",
     "clean": "rm -Rf .turbo && rm -Rf node_modules"
@@ -26,7 +26,7 @@
     "@babel/runtime": "7.18.6",
     "@monorepo/eslint-config": "workspace:*",
     "babel-plugin-module-resolver": "4.1.0",
-    "detox": "19.12.6",
+    "detox": "20.1.3",
     "metro-react-native-babel-preset": "0.72.3",
     "react": "18.1.0",
     "react-native": "0.70.5",

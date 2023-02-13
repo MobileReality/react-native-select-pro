@@ -8,7 +8,7 @@ describe('Basic', () => {
             .scroll(200, 'down');
         await element(by.text('Last')).tap();
         await expect(element(by.text('Last')).atIndex(0)).toBeVisible();
-        await element(by.label('Clear a chosen option')).atIndex(0).tap();
+        await element(by.label('Clear a selected option')).atIndex(1).tap();
         await expect(element(by.text('Select...'))).toBeVisible();
     });
 });

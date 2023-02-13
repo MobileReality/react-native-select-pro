@@ -14,7 +14,7 @@ describe('Searchable', () => {
         }
         await element(by.text('----Fourth label----')).tap();
         await expect(element(by.text('----Fourth label----')).atIndex(0)).toBeVisible();
-        await element(by.label('Clear a chosen option')).atIndex(0).tap();
+        await element(by.label('Clear a selected option')).atIndex(0).tap();
     });
 
     it('should search without results and show "No options" placeholder', async () => {

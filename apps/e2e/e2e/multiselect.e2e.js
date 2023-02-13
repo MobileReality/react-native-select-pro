@@ -8,13 +8,13 @@ describe('MultiSelect', () => {
         await element(by.text('MultiSelect')).tap();
 
         //Select four elements one by one from the dropdown list
-        await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
+        await element(by.id('Dropdown arrow')).tap();
         await element(by.text('First label')).tap();
-        await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
+        await element(by.id('Dropdown arrow')).tap();
         await element(by.text('Second label in options list.')).tap();
-        await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
+        await element(by.id('Dropdown arrow')).tap();
         await element(by.text('THIRD LABEL')).tap();
-        await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
+        await element(by.id('Dropdown arrow')).tap();
         await waitFor(element(by.text('----Fourth label----')))
             .toBeVisible()
             .whileElement(by.id('Options list'))

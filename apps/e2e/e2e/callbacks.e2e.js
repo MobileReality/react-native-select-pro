@@ -26,7 +26,7 @@ describe('Callbacks', () => {
         ).toBeVisible();
         await expect(element(by.text('Selected index: 5'))).toBeVisible();
         //Clear option to fire onRemove event
-        await element(by.label('Clear a chosen option')).atIndex(0).tap();
+        await element(by.label('Clear a selected option')).atIndex(1).tap();
         await expect(
             element(
                 by.text(
