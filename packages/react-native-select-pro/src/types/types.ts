@@ -11,6 +11,7 @@ import type {
 } from 'react-native';
 
 import type { State } from '../state';
+import type { Themes } from '../themes';
 
 import type { SelectStyles } from './styles';
 
@@ -346,6 +347,11 @@ export interface SelectProps<T = unknown> {
         | 'keyExtractor'
         | 'onLayout'
     >;
+
+    /**
+     * Pre-prepared styles for light and dark theme. They can be overwritten.
+     */
+    theme?: Themes;
 }
 
 /**

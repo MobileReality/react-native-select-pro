@@ -5,5 +5,6 @@ export { isAndroid } from './is-android';
 export { isSectionSelected } from './is-section-selected';
 export { isValidDefaultOption } from './is-valid-default-option';
 export { ERRORS, logError } from './log-error';
+export { mergeObjects } from './merge-objects';
 export { searchNormalize } from './search-normalize';
 export { selectedOptionResolver } from './selected-option-resolver';

@@ -7,22 +7,7 @@ import { SECTIONS_DATA } from '../constants/data';
 export const SectionsWithMultiSelect = () => {
     return (
         <SafeAreaViewWrapper>
-            <Select
-                options={SECTIONS_DATA}
-                multiple={true}
-                styles={{
-                    sectionHeader: {
-                        selected: {
-                            container: { backgroundColor: 'cadetblue' },
-                            text: { color: 'azure' },
-                        },
-                        clear: { icon: { tintColor: 'azure' } },
-                        container: {
-                            backgroundColor: 'gainsboro',
-                        },
-                    },
-                }}
-            />
+            <Select options={SECTIONS_DATA} multiple={true} theme="dark" />
         </SafeAreaViewWrapper>
     );
 };

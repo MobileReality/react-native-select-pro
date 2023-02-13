@@ -101,7 +101,7 @@ export type OptionStyles = {
     /**
      * Style for the single option.
      */
-    container: StyleProp<ViewStyle>;
+    container?: StyleProp<ViewStyle>;
 
     /**
      * Style for the pressed single option.
@@ -112,7 +112,7 @@ export type OptionStyles = {
         /**
          * Style for the selected single option.
          */
-        container: StyleProp<ViewStyle>;
+        container?: StyleProp<ViewStyle>;
 
         /**
          * Style for the selected single option text.
