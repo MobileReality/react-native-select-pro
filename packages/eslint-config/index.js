@@ -34,5 +34,6 @@ module.exports = {
         '@typescript-eslint/no-var-requires': 'off',
         'prefer-object-has-own': 'off',
         '@typescript-eslint/no-duplicate-imports': 'error',
-    }
+        curly: 'error',
+    },
 };

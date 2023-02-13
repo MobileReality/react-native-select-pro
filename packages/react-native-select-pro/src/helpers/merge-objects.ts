@@ -1,6 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const mergeObjects = (a: Record<string, any>, b?: Record<string, any>) => {
-    if (!b) return a;
+    if (!b) {
+        return a;
+    }
     const result: Record<string, unknown> = {};
     for (const key in a) {
         if (key in b) {

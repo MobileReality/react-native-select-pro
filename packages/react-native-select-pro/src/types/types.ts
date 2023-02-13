@@ -349,7 +349,7 @@ export interface SelectProps<T = unknown> {
     >;
 
     /**
-     * Pre-prepared styles.
+     * Pre-prepared styles for light and dark theme. They can be overwritten.
      */
     theme?: Themes;
 }

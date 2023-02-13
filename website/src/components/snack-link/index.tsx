@@ -15,7 +15,7 @@ export const SnackLink = ({ name, contents, label = 'Expo' }: SnackLinkProps) =>
 
     const url = `https://snack.expo.dev?files=${encodeURIComponent(
         JSON.stringify(code),
-    )}&dependencies=@mobile-reality/react-native-select-pro@2.0.0&supportedPlatforms=ios,android`;
+    )}&dependencies=@mobile-reality/react-native-select-pro@latest&supportedPlatforms=ios,android`;
 
     return (
         <a href={url} target="_blank" aria-label={`Open ${name} example in Expo Snack`}>

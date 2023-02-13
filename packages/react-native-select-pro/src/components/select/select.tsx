@@ -9,7 +9,7 @@ import { OptionsListContextProvider, SelectContextProvider } from '../../context
 import { isAndroid, mergeObjects } from '../../helpers';
 import type { ActionType, CreateInitialStateType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
-import { Themes, themes } from '../../themes';
+import { themes } from '../../themes';
 import type {
     OnPressOptionType,
     OptionsType,
@@ -49,7 +49,7 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         searchable = false,
         searchPattern = (payload: string) => `(${payload})`,
         styles: customStyles,
-        theme = Themes.None,
+        theme = 'none',
         // Callbacks
         onSelectChangeText,
         onSectionSelect,

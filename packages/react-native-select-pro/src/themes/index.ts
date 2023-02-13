@@ -1,14 +1,12 @@
+import type { SelectStyles } from '../types';
+
 import { darkTheme } from './dark-theme';
 import { lightTheme } from './light-theme';
 
-export enum Themes {
-    Light = 'Light',
-    Dark = 'Dark',
-    None = 'None',
-}
+export type Themes = 'light' | 'dark' | 'none';
 
-export const themes = {
-    [Themes.Light]: lightTheme,
-    [Themes.Dark]: darkTheme,
-    [Themes.None]: {},
+export const themes: Record<Themes, SelectStyles> = {
+    light: lightTheme,
+    dark: darkTheme,
+    none: {},
 };
