@@ -1,5 +1,10 @@
-import type { OptionalToRequired, OptionStyles, OptionType, SelectProps } from '../../types';
-import type { OnPressOptionType } from '../../types';
+import type {
+    OnPressOptionType,
+    OptionalToRequired,
+    OptionStyles,
+    OptionType,
+    SelectProps,
+} from '../../types';
 
 export type OptionProps<T> = {
     isSelected: boolean;

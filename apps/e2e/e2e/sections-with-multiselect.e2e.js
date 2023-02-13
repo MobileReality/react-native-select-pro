@@ -8,9 +8,9 @@ describe('SectionsWithMultiSelect', () => {
         await element(by.text('Sections with MultiSelect')).tap();
 
         //Select two elements one by one from the dropdown list
-        await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
+        await element(by.id('Dropdown arrow')).tap();
         await element(by.text('United States of America')).tap();
-        await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
+        await element(by.id('Dropdown arrow')).tap();
         await element(by.text('Canada')).tap();
         await expect(element(by.label('United States of America selected'))).toExist();
         await expect(element(by.label('Canada selected'))).toExist();
@@ -22,11 +22,11 @@ describe('SectionsWithMultiSelect', () => {
     });
 
     it('should select whole section by pressing section header and then clear options by pressing section header second time', async () => {
-        await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
+        await element(by.id('Dropdown arrow')).tap();
         await element(by.text('North America')).tap();
         await expect(element(by.label('United States of America selected'))).toExist();
         await expect(element(by.label('Canada selected'))).toExist();
-        await element(by.label('Arrow for opening dropdown')).atIndex(0).tap();
+        await element(by.id('Dropdown arrow')).tap();
         await element(by.text('North America')).tap();
         await expect(element(by.text('Select...'))).toBeVisible();
     });

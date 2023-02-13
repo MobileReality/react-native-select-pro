@@ -8,7 +8,7 @@ describe('Sections', () => {
         await element(by.text('Select...')).tap();
         await element(by.text('Canada')).tap();
         await expect(element(by.text('Canada')).atIndex(0)).toBeVisible();
-        await element(by.label('Clear a chosen option')).atIndex(0).tap();
+        await element(by.label('Clear a selected option')).atIndex(1).tap();
         await expect(element(by.text('Select...'))).toBeVisible();
     });
 
@@ -21,7 +21,7 @@ describe('Sections', () => {
         if (device.getPlatform() === 'ios') {
             await expect(element(by.label('Europe'))).toBeVisible();
         }
-        await expect(element(by.label('Choose Spain option')).atIndex(0)).toBeVisible();
-        await expect(element(by.label('Choose France option')).atIndex(0)).toBeVisible();
+        await expect(element(by.label('Select Spain')).atIndex(0)).toBeVisible();
+        await expect(element(by.label('Select France')).atIndex(0)).toBeVisible();
     });
 });

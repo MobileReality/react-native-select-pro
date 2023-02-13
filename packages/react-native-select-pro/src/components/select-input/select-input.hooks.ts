@@ -3,7 +3,6 @@ import type { TextInput } from 'react-native';
 import { Keyboard } from 'react-native';
 
 import { useSelectContext } from '../../context';
-import { Action } from '../../state';
 
 export const useSelectInput = () => {
     const searchInputRef = useRef<TextInput>(null);
@@ -36,14 +35,14 @@ export const useSelectInput = () => {
             await setOptionsListPosition();
         });
         dispatch({
-            type: Action.SetSearchInputRef,
+            type: 'setSearchInputRef',
             payload: searchInputRef,
         });
         return () => {
             showSubscription.remove();
             hideSubscription.remove();
             dispatch({
-                type: Action.SetSearchInputRef,
+                type: 'setSearchInputRef',
                 payload: null,
             });
         };
@@ -55,15 +54,15 @@ export const useSelectInput = () => {
             return;
         }
         if (!isOpened) {
-            dispatch({ type: Action.Open });
+            dispatch({ type: 'open' });
         }
         dispatch({
-            type: Action.SetSearchValue,
+            type: 'setSearchValue',
             payload,
         });
         if (searchPattern) {
             dispatch({
-                type: Action.SearchOptions,
+                type: 'searchOptions',
                 searchPattern,
                 payload,
             });

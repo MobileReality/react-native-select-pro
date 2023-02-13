@@ -1,9 +1,7 @@
 import { createContext, useContext } from 'react';
 
 import type { Position, State } from '../state';
-import type { OptionalToRequired } from '../types';
-import type { SelectProps } from '../types';
-import type { OnPressOptionType } from '../types/shared';
+import type { OnPressOptionType, OptionalToRequired, SelectProps } from '../types';
 
 export type OptionsListContextProviderTypes<T> = OptionalToRequired<
     Pick<

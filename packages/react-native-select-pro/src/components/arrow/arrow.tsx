@@ -42,7 +42,7 @@ export const Arrow = () => {
     }, [iconCustomStyles, arrowImageProps, isOpened, rotateAnimation]);
 
     return (
-        <View {...arrowContainerProps} style={containerCustomStyles}>
+        <View testID="Dropdown arrow" {...arrowContainerProps} style={containerCustomStyles}>
             {renderImage}
         </View>
     );

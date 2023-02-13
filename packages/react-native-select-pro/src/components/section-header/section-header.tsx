@@ -1,8 +1,6 @@
 import React from 'react';
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
-import { Image, Pressable } from 'react-native';
-import { Text } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { Image, Pressable, StyleSheet, Text } from 'react-native';
 
 import { COLORS, FONT_SIZE, PADDING, PRESSED_STYLE } from '../../constants';
 

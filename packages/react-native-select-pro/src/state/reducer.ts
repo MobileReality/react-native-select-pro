@@ -5,11 +5,10 @@ import { ERRORS, searchNormalize } from '../helpers';
 import { isSectionOptionsType } from '../types';
 
 import type { ActionType, CreateInitialStateType, State } from './types';
-import { Action } from './types';
 
 export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => {
     switch (action.type) {
-        case Action.Open:
+        case 'open':
             if (state.searchValue !== null) {
                 state.searchInputRef?.current?.focus();
             }
@@ -17,7 +16,7 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 ...state,
                 isOpened: true,
             };
-        case Action.Close:
+        case 'close':
             state.animationDuration > 0 &&
                 LayoutAnimation.configureNext({
                     duration: state.animationDuration,
@@ -30,23 +29,23 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 ...state,
                 isOpened: false,
             };
-        case Action.SelectOption:
+        case 'selectOption':
             return {
                 ...state,
                 selectedOption: action.payload.selectedOption,
                 selectedOptionIndex: action.payload.selectedOptionIndex,
             };
-        case Action.SetOptionsData:
+        case 'setOptionsData':
             return {
                 ...state,
                 optionsData: action.payload,
             };
-        case Action.SetSearchValue:
+        case 'setSearchValue':
             return {
                 ...state,
                 searchValue: action.payload,
             };
-        case Action.SearchOptions: {
+        case 'searchOptions': {
             if (action.payload === '') {
                 return {
                     ...state,
@@ -77,12 +76,12 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 ),
             };
         }
-        case Action.SetSearchInputRef:
+        case 'setSearchInputRef':
             return {
                 ...state,
                 searchInputRef: action.payload,
             };
-        case Action.SetOptionsListPosition:
+        case 'setOptionsListPosition':
             return {
                 ...state,
                 openedPosition: { ...state.openedPosition, ...action.payload },

@@ -14,7 +14,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.1.1")
+        classpath("com.android.tools.build:gradle:7.2.1")
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("de.undercouch:gradle-download-task:5.0.1")
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
@@ -32,6 +32,9 @@ allprojects {
         maven {
             // Android JSC is installed from npm
             url("$rootDir/../../../node_modules/jsc-android/dist")
+        }
+        maven {
+            url("$rootDir/../../../node_modules/detox/Detox-android")
         }
         mavenCentral {
             // We don't want to fetch react-native from Maven Central as there are

@@ -1,52 +1,51 @@
-import type { Dispatch, RefObject } from 'react';
+import type { RefObject } from 'react';
 import type { TextInput } from 'react-native';
 
 import type { OptionsType, OptionType } from '../types';
 
-export enum Action {
-    Open = 'open',
-    Close = 'close',
-    SelectOption = 'selectOption',
-    SetOptionsData = 'setOptionsData',
-    SetSearchInputRef = 'setSearchInputRef',
-    SetSearchValue = 'setSearchValue',
-    SearchOptions = 'searchOptions',
-    SetOptionsListPosition = 'setOptionsListPo',
-}
+export type Action =
+    | 'open'
+    | 'close'
+    | 'selectOption'
+    | 'setOptionsData'
+    | 'setSearchInputRef'
+    | 'setSearchValue'
+    | 'searchOptions'
+    | 'setOptionsListPosition';
 
 export type ActionType<T> =
     | {
-          type: Action.Open;
+          type: Extract<Action, 'open'>;
       }
     | {
-          type: Action.Close;
+          type: Extract<Action, 'close'>;
       }
     | {
-          type: Action.SelectOption;
+          type: Extract<Action, 'selectOption'>;
           payload: {
               selectedOption: OptionType<T> | OptionType<T>[] | null;
               selectedOptionIndex: number | number[];
           };
       }
     | {
-          type: Action.SetOptionsData;
+          type: Extract<Action, 'setOptionsData'>;
           payload: OptionsType<T>;
       }
     | {
-          type: Action.SetOptionsListPosition;
+          type: Extract<Action, 'setOptionsListPosition'>;
           payload: Position;
       }
     | {
-          type: Action.SearchOptions;
+          type: Extract<Action, 'searchOptions'>;
           payload: string;
           searchPattern: (payload: string) => string;
       }
     | {
-          type: Action.SetSearchValue;
+          type: Extract<Action, 'setSearchValue'>;
           payload: string;
       }
     | {
-          type: Action.SetSearchInputRef;
+          type: Extract<Action, 'setSearchInputRef'>;
           payload: RefObject<TextInput> | null;
       };
 
@@ -68,8 +67,6 @@ export type State<T = unknown> = {
     searchInputRef: RefObject<TextInput> | null;
     animationDuration: number;
 };
-
-export type DispatchType<T> = Dispatch<ActionType<T>>;
 
 export type CreateInitialStateType<T> = {
     options: OptionsType<T>;
