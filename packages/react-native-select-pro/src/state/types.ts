@@ -72,4 +72,6 @@ export type CreateInitialStateType<T> = {
     options: OptionsType<T>;
     searchable: boolean;
     animation: boolean | number;
+
+    defaultOption: OptionType<T> | undefined;
 };

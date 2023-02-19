@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useImperativeHandle } from 'react';
+import { useCallback, useContext, useImperativeHandle } from 'react';
 import type { LayoutRectangle } from 'react-native';
 import { I18nManager, useWindowDimensions } from 'react-native';
 
@@ -6,7 +6,6 @@ import { APPROX_STATUSBAR_HEIGHT } from '../../constants';
 import {
     getReducedSectionData,
     getSectionOptionsIndexes,
-    isValidDefaultOption,
     selectedOptionResolver,
 } from '../../helpers';
 import type {
@@ -25,7 +24,6 @@ export const useSelect = <T>({
     ref,
     selectControlRef,
     state,
-    defaultOption,
     disabled,
     closeOptionsListOnSelect,
     searchable,
@@ -54,30 +52,6 @@ export const useSelect = <T>({
         dispatch({ type: 'close' });
         onSelectClosed?.();
     }, [dispatch, onSelectClosed]);
-
-    useEffect(() => {
-        const setDefaultOption = () => {
-            const isValidPassDefaultOption = isValidDefaultOption(defaultOption);
-
-            if (optionsData.length === 0 || !isValidPassDefaultOption) {
-                return;
-            }
-
-            const foundIndex = isSectionedOptions
-                ? getReducedSectionData(optionsData).indexOf(defaultOption)
-                : optionsData.indexOf(defaultOption);
-
-            dispatch({
-                type: 'selectOption',
-                payload: {
-                    selectedOption: defaultOption,
-                    selectedOptionIndex: foundIndex,
-                },
-            });
-        };
-
-        setDefaultOption();
-    }, [optionsData, defaultOption, isSectionedOptions, dispatch]);
 
     const measureSelectInWindow = () => {
         return new Promise<LayoutRectangle>((resolve) => {
