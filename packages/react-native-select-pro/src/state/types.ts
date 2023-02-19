@@ -7,7 +7,6 @@ export type Action =
     | 'open'
     | 'close'
     | 'selectOption'
-    | 'setOptionsData'
     | 'setSearchInputRef'
     | 'setSearchValue'
     | 'searchOptions'
@@ -26,10 +25,6 @@ export type ActionType<T> =
               selectedOption: OptionType<T> | OptionType<T>[] | null;
               selectedOptionIndex: number | number[];
           };
-      }
-    | {
-          type: Extract<Action, 'setOptionsData'>;
-          payload: OptionsType<T>;
       }
     | {
           type: Extract<Action, 'setOptionsListPosition'>;
