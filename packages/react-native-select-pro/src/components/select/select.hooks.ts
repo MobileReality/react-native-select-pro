@@ -16,7 +16,7 @@ import type {
     OptionType,
     SelectRef,
 } from '../../types';
-import { isSectionOptionsType } from '../../types';
+import { isOptionIndexType, isOptionType, isSectionOptionsType } from '../../types';
 import { SelectModalContext } from '../select-provider';
 
 import type { UseSelect } from './select.types';
@@ -31,7 +31,6 @@ export const useSelect = <T>({
     searchable,
     multiple,
     dispatch,
-    onRemove,
     onSelectOpened,
     onSelectClosed,
     onSectionSelect,
@@ -142,9 +141,31 @@ export const useSelect = <T>({
                     type: 'selectOption',
                     payload: { selectedOption: null, selectedOptionIndex: -1 },
                 });
-                if (onRemove && selectedOption) {
-                    onRemove(selectedOption, selectedOptionIndex);
+                if (
+                    !multiple &&
+                    selectedOption &&
+                    isOptionType(selectedOption) &&
+                    isOptionIndexType(selectedOptionIndex)
+                ) {
+                    return {
+                        removedSelectedOption: selectedOption,
+                        removedSelectedOptionIndex: selectedOptionIndex,
+                    };
                 }
+
+                if (
+                    multiple &&
+                    selectedOption &&
+                    !isOptionType(selectedOption) &&
+                    !isOptionIndexType(selectedOptionIndex)
+                ) {
+                    return {
+                        removedSelectedOptions: selectedOption,
+                        removedSelectedOptionsIndexes: selectedOptionIndex,
+                    };
+                }
+
+                return {};
             },
             open: async () => {
                 if (selectControlRef.current) {
