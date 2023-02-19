@@ -47,11 +47,13 @@ export const useSelect = <T>({
 
     const open = useCallback(() => {
         dispatch({ type: 'open' });
-    }, [dispatch]);
+        onSelectOpened?.();
+    }, [dispatch, onSelectOpened]);
 
     const close = useCallback(() => {
         dispatch({ type: 'close' });
-    }, [dispatch]);
+        onSelectClosed?.();
+    }, [dispatch, onSelectClosed]);
 
     useEffect(() => {
         const setDefaultOption = () => {
@@ -321,14 +323,6 @@ export const useSelect = <T>({
         close();
         hideKeyboardIfNeeded();
     };
-
-    useEffect(() => {
-        if (isOpened) {
-            onSelectOpened?.();
-        } else {
-            onSelectClosed?.();
-        }
-    }, [isOpened, onSelectOpened, onSelectClosed]);
 
     return {
         setOptionsListPosition,
