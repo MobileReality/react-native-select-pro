@@ -4,7 +4,7 @@ import { StyleSheet, useWindowDimensions } from 'react-native';
 import { useSelectContext } from '../../context';
 import { dimensionPercentageToDP, getReducedSectionData } from '../../helpers';
 import type { OnPressRemove, OptionType } from '../../types';
-import { isSectionOptionsType } from '../../types';
+import { isOptionIndexType, isOptionType, isSectionOptionsType } from '../../types';
 
 import type { UseMultiSelectProps } from './multi-select.types';
 
@@ -98,7 +98,13 @@ export const useMultiSelect = <T>({ selectedOptions }: UseMultiSelectProps<T>) =
                 };
             }
 
-            if (onRemove && removedOption.option) {
+            if (
+                onRemove &&
+                removedOption.option &&
+                isOptionType(removedOption.option) &&
+                isOptionIndexType(removedOption.index)
+            ) {
+                // callback
                 onRemove(removedOption.option, removedOption.index);
             }
         },

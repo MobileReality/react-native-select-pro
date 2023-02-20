@@ -180,7 +180,7 @@ export interface SelectProps<T = unknown> {
     onSectionRemove?: (options: OptionType<T>[], optionIndexes: number[]) => void;
 
     /**
-     * Callback that is called when option is selected
+     * Callback that is called when an option is selected
      *
      * @param option Selected option
      * @param optionIndex Selected option index
@@ -205,13 +205,13 @@ export interface SelectProps<T = unknown> {
     onSelectClosed?: () => void;
 
     /**
-     * Callback that is called when option(s) is cleared
+     * Callback that is called when a single option is cleared
      *
-     * @param option removed option(s)
-     * @param optionIndex removed option(s) index(es)
+     * @param option removed option
+     * @param optionIndex removed option index
      * @category Callback
      */
-    onRemove?: <T>(option: OptionType<T> | OptionType<T>[], optionIndex: number | number[]) => void;
+    onRemove?: (option: OptionType<T>, optionIndex: number) => void;
 
     /**
      * CUSTOMIZABLE PROPS
@@ -362,15 +362,22 @@ export interface SelectRef<T = unknown> {
      * Open a dropdown
      */
     open: () => void;
+
     /**
      * Close a dropdown
      */
     close: () => void;
 
     /**
-     * Clear a selected option
+     * Clear a selected option(s)
      */
-    clear: () => void;
+    clear: () => {
+        removedSelectedOption?: OptionType<T> | null;
+        removedSelectedOptionIndex?: number;
+        removedSelectedOptions?: OptionType<T>[] | null;
+        removedSelectedOptionsIndexes?: number[];
+    };
+
     /**
      * Get current state of select
      */

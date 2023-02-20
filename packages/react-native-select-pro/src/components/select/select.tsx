@@ -145,7 +145,9 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
                     searchValue,
                     onPressSelectControl,
                     selectInputProps,
-                    onRemove,
+                    onRemove: onRemove as
+                        | ((option: OptionType, optionIndex: number) => void)
+                        | undefined,
                     dispatch: dispatch as Dispatch<ActionType<unknown>>,
                     setOptionsListPosition,
                     selectedOption,

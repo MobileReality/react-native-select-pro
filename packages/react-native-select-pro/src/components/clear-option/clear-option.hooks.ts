@@ -1,4 +1,5 @@
 import { useSelectContext } from '../../context';
+import { isOptionIndexType, isOptionType } from '../../types';
 
 export const useClearOption = () => {
     const {
@@ -38,7 +39,12 @@ export const useClearOption = () => {
             return;
         }
         removeSingleOption();
-        if (onRemove && selectedOption) {
+        if (
+            onRemove &&
+            selectedOption &&
+            isOptionType(selectedOption) &&
+            isOptionIndexType(selectedOptionIndex)
+        ) {
             // callback
             onRemove(selectedOption, selectedOptionIndex);
         }

@@ -9,3 +9,8 @@ export const isFlatOptionsType = <T>(val: OptionsType<T>): val is OptionType<T>[
 
 export const isSectionOptionsType = <T>(val: OptionsType<T>): val is SectionOptionType<T>[] =>
     val.length > 0 && 'title' in val[0] && 'data' in val[0];
+
+export const isOptionType = <T>(val: OptionType<T> | OptionType<T>[]): val is OptionType<T> =>
+    'label' in val && 'value' in val;
+
+export const isOptionIndexType = (val: number | number[]): val is number => typeof val === 'number';
