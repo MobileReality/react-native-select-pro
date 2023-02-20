@@ -4,7 +4,9 @@
 
 ### Patch Changes
 
--   [#192](https://github.com/MobileReality/react-native-select-pro/pull/192) [`cb83a61`](https://github.com/MobileReality/react-native-select-pro/commit/cb83a615918a0df7ce1faa3c6bf9a8f567a515c3) Thanks [@irekrog](https://github.com/irekrog)! - \* delete unnecessary `useEffect` moving a callback to the event handler
+-   [#192](https://github.com/MobileReality/react-native-select-pro/pull/192) [`cb83a61`](https://github.com/MobileReality/react-native-select-pro/commit/cb83a615918a0df7ce1faa3c6bf9a8f567a515c3) Thanks [@irekrog](https://github.com/irekrog)! 
+
+    -   delete unnecessary `useEffect` moving a callback to the event handler
 
     -   set a default option outside `useEffect`
 
