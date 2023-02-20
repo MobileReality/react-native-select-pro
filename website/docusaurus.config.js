@@ -31,8 +31,9 @@ const config = {
                     sidebarPath: require.resolve('./sidebars.js'),
                     showLastUpdateTime: true,
                     showLastUpdateAuthor: true,
-
-                    editUrl: 'https://github.com/MobileReality/react-native-select-pro/website/',
+                    editUrl: ({ versionDocsDirPath, docPath}) => {
+                        return `https://github.com/MobileReality/react-native-select-pro/edit/master/website/${versionDocsDirPath}/${docPath}`;
+                    },
                     remarkPlugins: [
                         [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
                         require('@react-native-website/remark-snackplayer'),
