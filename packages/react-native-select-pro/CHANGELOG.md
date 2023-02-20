@@ -1,5 +1,19 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.1.1
+
+### Patch Changes
+
+-   [#192](https://github.com/MobileReality/react-native-select-pro/pull/192) [`cb83a61`](https://github.com/MobileReality/react-native-select-pro/commit/cb83a615918a0df7ce1faa3c6bf9a8f567a515c3) Thanks [@irekrog](https://github.com/irekrog)! 
+
+    -   delete unnecessary `useEffect` moving a callback to the event handler
+
+    -   set a default option outside `useEffect`
+
+-   [#190](https://github.com/MobileReality/react-native-select-pro/pull/190) [`d69f692`](https://github.com/MobileReality/react-native-select-pro/commit/d69f69224382e89c855796687264b7e9402a904c) Thanks [@irekrog](https://github.com/irekrog)! - delete unnecessary `setOptionsData` reducer action
+
+-   [#188](https://github.com/MobileReality/react-native-select-pro/pull/188) [`06de788`](https://github.com/MobileReality/react-native-select-pro/commit/06de7880726c7bb90cafed42e09573bffc505391) Thanks [@irekrog](https://github.com/irekrog)! - `onRemove` callback type
+
 ## 2.1.0
 
 ### Minor Changes
