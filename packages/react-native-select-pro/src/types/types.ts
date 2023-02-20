@@ -180,7 +180,7 @@ export interface SelectProps<T = unknown> {
     onSectionRemove?: (options: OptionType<T>[], optionIndexes: number[]) => void;
 
     /**
-     * Callback that is called when option is selected
+     * Callback that is called when an option is selected
      *
      * @param option Selected option
      * @param optionIndex Selected option index
@@ -205,7 +205,7 @@ export interface SelectProps<T = unknown> {
     onSelectClosed?: () => void;
 
     /**
-     * Callback that is called when single option is cleared
+     * Callback that is called when a single option is cleared
      *
      * @param option removed option
      * @param optionIndex removed option index
