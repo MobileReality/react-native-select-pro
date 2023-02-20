@@ -1,7 +1,8 @@
 import { LayoutAnimation } from 'react-native';
 
 import { ANIMATION_DURATION } from '../constants';
-import { ERRORS, searchNormalize } from '../helpers';
+import { ERRORS, getReducedSectionData, isValidDefaultOption, searchNormalize } from '../helpers';
+import type { OptionsType, OptionType } from '../types';
 import { isSectionOptionsType } from '../types';
 
 import type { ActionType, CreateInitialStateType, State } from './types';
@@ -91,19 +92,43 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
     }
 };
 
+const setDefaultOption = <T>(options: OptionsType<T>, defaultOption: OptionType<T> | undefined) => {
+    if (isValidDefaultOption(defaultOption) && options.length > 0) {
+        const isSectionedOptions = isSectionOptionsType(options);
+        const foundIndex = isSectionedOptions
+            ? getReducedSectionData(options).indexOf(defaultOption)
+            : options.indexOf(defaultOption);
+
+        if (foundIndex !== -1) {
+            return {
+                selectedOption: defaultOption,
+                selectedOptionIndex: foundIndex,
+            };
+        }
+    }
+
+    return {
+        selectedOption: null,
+        selectedOptionIndex: -1,
+    };
+};
+
 export const createInitialState = <T>({
     options,
     searchable,
     animation,
+    defaultOption,
 }: CreateInitialStateType<T>) => {
     if (!Array.isArray(options)) {
         throw new TypeError(ERRORS.NO_ARRAY_OPTIONS);
     }
 
+    const { selectedOption, selectedOptionIndex } = setDefaultOption(options, defaultOption);
+
     return {
         isOpened: false,
-        selectedOption: null,
-        selectedOptionIndex: -1,
+        selectedOption,
+        selectedOptionIndex,
         searchedOptions: [],
         searchInputRef: null,
         openedPosition: {

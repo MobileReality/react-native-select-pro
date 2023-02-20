@@ -6,7 +6,6 @@ import type { OptionalToRequired, SelectProps, SelectRef } from '../../types';
 
 type FromSelectComponent<T> = Pick<
     SelectProps<T>,
-    | 'defaultOption'
     | 'disabled'
     | 'searchable'
     | 'multiple'
