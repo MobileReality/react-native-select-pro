@@ -36,11 +36,6 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 selectedOption: action.payload.selectedOption,
                 selectedOptionIndex: action.payload.selectedOptionIndex,
             };
-        case 'setOptionsData':
-            return {
-                ...state,
-                optionsData: action.payload,
-            };
         case 'setSearchValue':
             return {
                 ...state,
