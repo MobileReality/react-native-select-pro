@@ -43,7 +43,11 @@ exports[`Select should generate Select snapshot 1`] = `
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "paddingHorizontal": 12,
             "width": "100%",
+          },
+          {
+            "paddingRight": 55,
           },
           false,
           undefined,
@@ -53,17 +57,11 @@ exports[`Select should generate Select snapshot 1`] = `
     >
       <View
         style={
-          [
-            {
-              "flex": 1,
-              "height": "100%",
-              "justifyContent": "center",
-              "paddingHorizontal": 12,
-            },
-            {
-              "paddingRight": 55,
-            },
-          ]
+          {
+            "flex": 1,
+            "height": "100%",
+            "justifyContent": "center",
+          }
         }
       >
         <Text
@@ -173,7 +171,11 @@ exports[`Select with custom left icon should generate Select with custom left ic
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "paddingHorizontal": 12,
             "width": "100%",
+          },
+          {
+            "paddingRight": 55,
           },
           false,
           undefined,
@@ -210,17 +212,11 @@ exports[`Select with custom left icon should generate Select with custom left ic
       </View>
       <View
         style={
-          [
-            {
-              "flex": 1,
-              "height": "100%",
-              "justifyContent": "center",
-              "paddingHorizontal": 12,
-            },
-            {
-              "paddingRight": 55,
-            },
-          ]
+          {
+            "flex": 1,
+            "height": "100%",
+            "justifyContent": "center",
+          }
         }
       >
         <Text
@@ -330,7 +326,11 @@ exports[`Select with custom select control arrow icon should generate Select wit
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "paddingHorizontal": 12,
             "width": "100%",
+          },
+          {
+            "paddingRight": 55,
           },
           false,
           undefined,
@@ -340,17 +340,11 @@ exports[`Select with custom select control arrow icon should generate Select wit
     >
       <View
         style={
-          [
-            {
-              "flex": 1,
-              "height": "100%",
-              "justifyContent": "center",
-              "paddingHorizontal": 12,
-            },
-            {
-              "paddingRight": 55,
-            },
-          ]
+          {
+            "flex": 1,
+            "height": "100%",
+            "justifyContent": "center",
+          }
         }
       >
         <Text
@@ -460,7 +454,11 @@ exports[`Select with multi selection and searchable should generate Select with 
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "paddingHorizontal": 12,
             "width": "100%",
+          },
+          {
+            "paddingRight": 40,
           },
           false,
           undefined,
@@ -470,17 +468,11 @@ exports[`Select with multi selection and searchable should generate Select with 
     >
       <View
         style={
-          [
-            {
-              "flex": 1,
-              "height": "100%",
-              "justifyContent": "center",
-              "paddingHorizontal": 12,
-            },
-            {
-              "paddingRight": 40,
-            },
-          ]
+          {
+            "flex": 1,
+            "height": "100%",
+            "justifyContent": "center",
+          }
         }
       >
         <RCTScrollView
@@ -603,7 +595,11 @@ exports[`Select with multi selection should generate Select with multi selection
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "paddingHorizontal": 12,
             "width": "100%",
+          },
+          {
+            "paddingRight": 40,
           },
           false,
           undefined,
@@ -613,17 +609,11 @@ exports[`Select with multi selection should generate Select with multi selection
     >
       <View
         style={
-          [
-            {
-              "flex": 1,
-              "height": "100%",
-              "justifyContent": "center",
-              "paddingHorizontal": 12,
-            },
-            {
-              "paddingRight": 40,
-            },
-          ]
+          {
+            "flex": 1,
+            "height": "100%",
+            "justifyContent": "center",
+          }
         }
       >
         <RCTScrollView
@@ -746,7 +736,11 @@ exports[`Select with searchable enabled should generate Select with searchable e
             "borderWidth": 1,
             "flexDirection": "row",
             "height": 40,
+            "paddingHorizontal": 12,
             "width": "100%",
+          },
+          {
+            "paddingRight": 55,
           },
           false,
           undefined,
@@ -756,17 +750,11 @@ exports[`Select with searchable enabled should generate Select with searchable e
     >
       <View
         style={
-          [
-            {
-              "flex": 1,
-              "height": "100%",
-              "justifyContent": "center",
-              "paddingHorizontal": 12,
-            },
-            {
-              "paddingRight": 55,
-            },
-          ]
+          {
+            "flex": 1,
+            "height": "100%",
+            "justifyContent": "center",
+          }
         }
       >
         <TextInput

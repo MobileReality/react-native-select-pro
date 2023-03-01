@@ -81,5 +81,6 @@ export const useSelectControl = () => {
         leftIconStyles,
         containerStyles,
         disabledStyles,
+        multiple,
     };
 };
