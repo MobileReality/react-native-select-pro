@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import type { ViewStyle } from 'react-native';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
-import { BORDER_WIDTH, COLORS, SHAPE } from '../../constants';
+import { BORDER_WIDTH, COLORS, PADDING, SHAPE } from '../../constants';
 import { Arrow } from '../arrow';
 import { ClearOption } from '../clear-option';
 import { SelectFieldType } from '../select-field-type';
@@ -28,6 +28,7 @@ export const SelectControl = forwardRef<View>((_, ref) => {
         leftIconStyles,
         containerStyles,
         disabledStyles,
+        multiple,
     } = useSelectControl();
 
     const clearOption = <ClearOption />;
@@ -43,6 +44,7 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                 accessibilityLabel={accessibilityLabel}
                 style={[
                     styles.container,
+                    multiple ? styles.multiSelect : styles.singleSelect,
                     isOpened && (aboveSelectControl ? styles.openedAbove : styles.opened),
                     containerStyles,
                     disabled && [styles.disabled, disabledStyles],
@@ -78,6 +80,8 @@ type Styles = {
     disabled: ViewStyle;
     openedAbove: ViewStyle;
     opened: ViewStyle;
+    multiSelect: ViewStyle;
+    singleSelect: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -114,6 +118,7 @@ const styles = StyleSheet.create<Styles>({
         borderRadius: SHAPE,
         borderWidth: BORDER_WIDTH,
         backgroundColor: COLORS.WHITE,
+        paddingHorizontal: PADDING,
     },
     disabled: {
         backgroundColor: COLORS.DISABLED,
@@ -125,6 +130,12 @@ const styles = StyleSheet.create<Styles>({
     opened: {
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
+    },
+    multiSelect: {
+        paddingRight: 40,
+    },
+    singleSelect: {
+        paddingRight: 55,
     },
 });
 
