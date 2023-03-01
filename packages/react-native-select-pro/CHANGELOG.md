@@ -1,10 +1,16 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.1.2
+
+### Patch Changes
+
+-   [#196](https://github.com/MobileReality/react-native-select-pro/pull/196) [`50840ad`](https://github.com/MobileReality/react-native-select-pro/commit/50840ad7cacdc3cf0c2884e68d90f12f625f9857) Thanks [@irekrog](https://github.com/irekrog)! - ability to override padding in select
+
 ## 2.1.1
 
 ### Patch Changes
 
--   [#192](https://github.com/MobileReality/react-native-select-pro/pull/192) [`cb83a61`](https://github.com/MobileReality/react-native-select-pro/commit/cb83a615918a0df7ce1faa3c6bf9a8f567a515c3) Thanks [@irekrog](https://github.com/irekrog)! 
+-   [#192](https://github.com/MobileReality/react-native-select-pro/pull/192) [`cb83a61`](https://github.com/MobileReality/react-native-select-pro/commit/cb83a615918a0df7ce1faa3c6bf9a8f567a515c3) Thanks [@irekrog](https://github.com/irekrog)!
 
     -   delete unnecessary `useEffect` moving a callback to the event handler
 
