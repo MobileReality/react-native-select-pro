@@ -90,9 +90,10 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
 const setDefaultOption = <T>(options: OptionsType<T>, defaultOption: OptionType<T> | undefined) => {
     if (isValidDefaultOption(defaultOption) && options.length > 0) {
         const isSectionedOptions = isSectionOptionsType(options);
+
         const foundIndex = isSectionedOptions
-            ? getReducedSectionData(options).indexOf(defaultOption)
-            : options.indexOf(defaultOption);
+            ? getReducedSectionData(options).findIndex((item) => item.value === defaultOption.value)
+            : options.findIndex((item) => item.value === defaultOption.value);
 
         if (foundIndex !== -1) {
             return {
