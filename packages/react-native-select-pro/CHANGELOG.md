@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.1.3
+
+### Patch Changes
+
+-   [#201](https://github.com/MobileReality/react-native-select-pro/pull/201) [`1e80ec2`](https://github.com/MobileReality/react-native-select-pro/commit/1e80ec2001b54c8fcee247f18d3dd7b7c5e0caea) Thanks [@irekrog](https://github.com/irekrog)! - `defaultOption` prop fix
+
 ## 2.1.2
 
 ### Patch Changes
