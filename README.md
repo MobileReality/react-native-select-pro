@@ -4,7 +4,7 @@
 
 ---
 <p align="center">
-  React Native dropdown (select) component developed by <a href='https://mobilereality.pl/en' target='_blank'>Mobile Reality</a>
+  React Native dropdown (select) component developed by <a href='https://themobilereality.com' target='_blank'>Mobile Reality</a>
 </p>
 
 ---
