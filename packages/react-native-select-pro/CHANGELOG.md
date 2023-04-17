@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.1.4
+
+### Patch Changes
+
+-   [#207](https://github.com/MobileReality/react-native-select-pro/pull/207) [`4f4c8a4`](https://github.com/MobileReality/react-native-select-pro/commit/4f4c8a4ec09748bf8264c60829188d46cd94ebb9) Thanks [@kkaplinski](https://github.com/kkaplinski)! - fix styling of modal expo example
+
 ## 2.1.3
 
 ### Patch Changes
