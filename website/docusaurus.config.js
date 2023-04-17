@@ -90,12 +90,12 @@ const config = {
                         items: [
                             {
                                 label: 'Contact us',
-                                href: 'https://mobilereality.pl/en/contact-us/',
+                                href: 'https://themobilereality.com/en/contact-us/',
                             },
                         ],
                     },
                 ],
-                copyright: `<p>React Native Select Pro developed by <a href='https://mobilereality.pl/en/' target='_blank'>Mobile Reality</a></p>Docs built with <a href='https://docusaurus.io/' target='_blank'>Docusaurus</a>`,
+                copyright: `<p>React Native Select Pro developed by <a href='https://themobilereality.com/en/' target='_blank'>Mobile Reality</a></p>Docs built with <a href='https://docusaurus.io/' target='_blank'>Docusaurus</a>`,
             },
             prism: {
                 theme: lightCodeTheme,
