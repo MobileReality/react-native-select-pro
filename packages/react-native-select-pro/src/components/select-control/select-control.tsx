@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import type { ViewStyle } from 'react-native';
+import type { ImageStyle, ViewStyle } from 'react-native';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, PADDING, SHAPE } from '../../constants';
@@ -52,11 +52,11 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                 onPress={onPressSelectControl}
             >
                 {!!selectLeftIconImageProps?.source && (
-                    <View
-                        {...selectLeftIconsProps}
-                        style={[styles.leftIconWrapper, styles.xIconWrapper]}
-                    >
-                        <Image {...selectLeftIconImageProps} style={leftIconStyles} />
+                    <View {...selectLeftIconsProps} style={styles.leftIconWrapper}>
+                        <Image
+                            {...selectLeftIconImageProps}
+                            style={[styles.leftIcon, leftIconStyles]}
+                        />
                     </View>
                 )}
                 <SelectFieldType />
@@ -72,8 +72,8 @@ export const SelectControl = forwardRef<View>((_, ref) => {
 
 type Styles = {
     buttonsContainer: ViewStyle;
-    xIconWrapper: ViewStyle;
     leftIconWrapper: ViewStyle;
+    leftIcon: ImageStyle;
     a11IconWrapper: ViewStyle;
     rootView: ViewStyle;
     container: ViewStyle;
@@ -95,11 +95,11 @@ const styles = StyleSheet.create<Styles>({
         height: '100%',
     },
     leftIconWrapper: {
-        paddingLeft: 8,
-    },
-    xIconWrapper: {
         height: '100%',
         justifyContent: 'center',
+    },
+    leftIcon: {
+        marginRight: 8,
     },
     a11IconWrapper: {
         position: 'absolute',

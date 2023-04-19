@@ -3,3 +3,4 @@
 ---
 
 update dependencies
+delete unnecessary left padding for left icon
