@@ -4,16 +4,16 @@
   "version": "0.0.0",
   "main": "index.js",
   "dependencies": {
-    "@mobile-reality/eslint-config": "0.8.0",
-    "eslint": "8.20.0",
-    "eslint-plugin-jsx-a11y": "6.6.1",
+    "@mobile-reality/eslint-config": "0.10.1",
+    "eslint": "8.38.0",
+    "eslint-plugin-jsx-a11y": "6.7.1",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.31.10",
+    "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-react-native": "4.0.0",
-    "eslint-plugin-simple-import-sort": "7.0.0",
+    "eslint-plugin-simple-import-sort": "10.0.0",
     "@typescript-eslint/eslint-plugin": "5.31.0",
     "@typescript-eslint/parser": "5.31.0",
-    "prettier": "2.8.3"
+    "prettier": "2.8.7"
   }
 }

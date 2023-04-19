@@ -8,7 +8,8 @@ describe('Sections', () => {
         await element(by.text('Select...')).tap();
         await element(by.text('Canada')).tap();
         await expect(element(by.text('Canada')).atIndex(0)).toBeVisible();
-        await element(by.label('Clear a selected option')).atIndex(1).tap();
+        const clearButtonIndex = device.getPlatform() === 'ios' ? 1 : 0;
+        await element(by.label('Clear a selected option')).atIndex(clearButtonIndex).tap();
         await expect(element(by.text('Select...'))).toBeVisible();
     });
 

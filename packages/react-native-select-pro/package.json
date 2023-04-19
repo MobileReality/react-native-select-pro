@@ -66,12 +66,12 @@
     "access": "public"
   },
   "devDependencies": {
-    "react-native-builder-bob": "0.20.3",
+    "react-native-builder-bob": "0.20.4",
     "@monorepo/eslint-config": "workspace:*"
   },
   "dependencies": {
     "@gorhom/portal": "1.0.14",
-    "react-fast-compare": "3.2.0"
+    "react-fast-compare": "3.2.1"
   },
   "peerDependencies": {
     "react": "^16.13 || ^17 || ^18",
