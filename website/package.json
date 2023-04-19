@@ -15,11 +15,11 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.1.0",
-    "@docusaurus/plugin-debug": "^2.2.0",
-    "@docusaurus/preset-classic": "^2.1.0",
-    "@docusaurus/remark-plugin-npm2yarn": "^2.1.0",
-    "@easyops-cn/docusaurus-search-local": "^0.34.0",
+    "@docusaurus/core": "^2.4.0",
+    "@docusaurus/plugin-debug": "^2.4.0",
+    "@docusaurus/preset-classic": "^2.4.0",
+    "@docusaurus/remark-plugin-npm2yarn": "^2.4.0",
+    "@easyops-cn/docusaurus-search-local": "^0.35.0",
     "@mdx-js/react": "^1.6.22",
     "@react-native-website/remark-snackplayer": "./plugins/remark-snackplayer",
     "clsx": "^1.2.1",
@@ -28,8 +28,8 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.1.0",
-    "@tsconfig/docusaurus": "^1.0.6"
+    "@docusaurus/module-type-aliases": "^2.4.0",
+    "@tsconfig/docusaurus": "^1.0.7"
   },
   "browserslist": {
     "production": [
