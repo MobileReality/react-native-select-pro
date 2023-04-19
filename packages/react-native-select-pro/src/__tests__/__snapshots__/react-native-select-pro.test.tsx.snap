@@ -209,15 +209,10 @@ exports[`Select with custom left icon should generate Select with custom left ic
     >
       <View
         style={
-          [
-            {
-              "paddingLeft": 8,
-            },
-            {
-              "height": "100%",
-              "justifyContent": "center",
-            },
-          ]
+          {
+            "height": "100%",
+            "justifyContent": "center",
+          }
         }
       >
         <Image
@@ -227,10 +222,15 @@ exports[`Select with custom left icon should generate Select with custom left ic
             }
           }
           style={
-            {
-              "height": 15,
-              "width": 15,
-            }
+            [
+              {
+                "marginRight": 8,
+              },
+              {
+                "height": 15,
+                "width": 15,
+              },
+            ]
           }
         />
       </View>
