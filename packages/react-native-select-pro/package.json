@@ -1,6 +1,6 @@
 {
   "name": "@mobile-reality/react-native-select-pro",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "React Native dropdown (select) component developed by Mobile Reality",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
