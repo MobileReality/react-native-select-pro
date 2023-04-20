@@ -5,7 +5,10 @@ module.exports = {
         es2021: true,
         node: true,
     },
-    extends: ['@mobile-reality/eslint-config/react-native', 'plugin:prettier/recommended'],
+    extends: [
+        '@mobile-reality/eslint-config/react-native',
+        'plugin:prettier/recommended',
+    ],
     globals: {
         JSX: true,
         module: true,
@@ -33,7 +36,7 @@ module.exports = {
         'unicorn/prefer-module': 'off',
         '@typescript-eslint/no-var-requires': 'off',
         'prefer-object-has-own': 'off',
-        '@typescript-eslint/no-duplicate-imports': 'error',
+        'max-params': 'off',
         curly: 'error',
     },
 };

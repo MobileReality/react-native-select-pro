@@ -20,7 +20,19 @@ exports[`Select should generate Select snapshot 1`] = `
       accessibilityLabel="Open a dropdown"
       accessibilityState={
         {
+          "busy": undefined,
+          "checked": undefined,
           "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
         }
       }
       accessible={true}
@@ -148,7 +160,19 @@ exports[`Select with custom left icon should generate Select with custom left ic
       accessibilityLabel="Open a dropdown"
       accessibilityState={
         {
+          "busy": undefined,
+          "checked": undefined,
           "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
         }
       }
       accessible={true}
@@ -185,15 +209,10 @@ exports[`Select with custom left icon should generate Select with custom left ic
     >
       <View
         style={
-          [
-            {
-              "paddingLeft": 8,
-            },
-            {
-              "height": "100%",
-              "justifyContent": "center",
-            },
-          ]
+          {
+            "height": "100%",
+            "justifyContent": "center",
+          }
         }
       >
         <Image
@@ -203,10 +222,15 @@ exports[`Select with custom left icon should generate Select with custom left ic
             }
           }
           style={
-            {
-              "height": 15,
-              "width": 15,
-            }
+            [
+              {
+                "marginRight": 8,
+              },
+              {
+                "height": 15,
+                "width": 15,
+              },
+            ]
           }
         />
       </View>
@@ -303,7 +327,19 @@ exports[`Select with custom select control arrow icon should generate Select wit
       accessibilityLabel="Open a dropdown"
       accessibilityState={
         {
+          "busy": undefined,
+          "checked": undefined,
           "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
         }
       }
       accessible={true}
@@ -431,7 +467,19 @@ exports[`Select with multi selection and searchable should generate Select with 
       accessibilityLabel="Open a dropdown"
       accessibilityState={
         {
+          "busy": undefined,
+          "checked": undefined,
           "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
         }
       }
       accessible={true}
@@ -572,7 +620,19 @@ exports[`Select with multi selection should generate Select with multi selection
       accessibilityLabel="Open a dropdown"
       accessibilityState={
         {
+          "busy": undefined,
+          "checked": undefined,
           "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
         }
       }
       accessible={true}
@@ -713,7 +773,19 @@ exports[`Select with searchable enabled should generate Select with searchable e
       accessibilityLabel="Open a dropdown"
       accessibilityState={
         {
+          "busy": undefined,
+          "checked": undefined,
           "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
         }
       }
       accessible={true}
