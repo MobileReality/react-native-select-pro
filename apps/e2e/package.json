@@ -29,7 +29,7 @@
     "detox": "20.7.0",
     "metro-react-native-babel-preset": "0.76.2",
     "react": "18.2.0",
-    "react-native": "0.71.6",
+    "react-native": "0.71.7",
     "react-native-reanimated": "~2.14.4",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-monorepo-tools": "1.2.1",
@@ -40,6 +40,6 @@
   },
   "peerDependencies": {
     "react": "18.2.0",
-    "react-native": "0.71.6"
+    "react-native": "0.71.7"
   }
 }
