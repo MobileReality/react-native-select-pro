@@ -75,10 +75,9 @@ export const useSelect = <T>({
     const setOptionsListPosition = async () => {
         const { x, y, width, height } = await measureSelectInWindow();
         const { height: optionsListHeight } = await measureOptionsListInWindow();
-
         const isOverflow = y + height + optionsListHeight > screenHeight;
         const top = isOverflow
-            ? y - optionsListHeight
+            ? y - optionsListHeight + APPROX_STATUSBAR_HEIGHT
             : y + height - valueY + APPROX_STATUSBAR_HEIGHT;
         const left = I18nManager.getConstants().isRTL ? screenWidth - width - x : x;
 
