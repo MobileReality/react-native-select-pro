@@ -1,11 +1,17 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.1.6
+
+### Patch Changes
+
+-   [#218](https://github.com/MobileReality/react-native-select-pro/pull/218) [`73e3580`](https://github.com/MobileReality/react-native-select-pro/commit/73e3580e77ea907856bba421017e63a73601d234) Thanks [@ookil](https://github.com/ookil)! - fix options list gap on android devices
+
 ## 2.1.5
 
 ### Patch Changes
 
--   [#209](https://github.com/MobileReality/react-native-select-pro/pull/209) [`7b3229c`](https://github.com/MobileReality/react-native-select-pro/commit/7b3229cdf019c66f2cc5dc763a30d746750b469a) Thanks [@kkaplinski](https://github.com/kkaplinski)! 
-    
+-   [#209](https://github.com/MobileReality/react-native-select-pro/pull/209) [`7b3229c`](https://github.com/MobileReality/react-native-select-pro/commit/7b3229cdf019c66f2cc5dc763a30d746750b469a) Thanks [@kkaplinski](https://github.com/kkaplinski)!
+
     -   update dependencies
 
     -   delete unnecessary left padding for left icon
