@@ -60,7 +60,7 @@
   "bugs": {
     "url": "https://github.com/MobileReality/react-native-select-pro/issues"
   },
-  "homepage": "https://github.com/MobileReality/react-native-select-pro/#readme",
+  "homepage": "https://themobilereality.com/react-native-select-pro-docs",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
