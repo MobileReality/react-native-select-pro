@@ -34,7 +34,8 @@
   ],
   "repository": {
     "type": "git",
-    "directory": "https://github.com/MobileReality/react-native-select-pro.git"
+    "directory": "https://github.com/MobileReality/react-native-select-pro.git",
+    "url": "https://github.com/MobileReality/react-native-select-pro.git"
   },
   "author": "Mobile Reality <hello@themobilereality.com> (https://themobilereality.com)",
   "contributors": [
