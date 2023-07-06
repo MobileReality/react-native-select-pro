@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.2.0
+
+### Minor Changes
+
+-   [#221](https://github.com/MobileReality/react-native-select-pro/pull/221) [`7c944ba`](https://github.com/MobileReality/react-native-select-pro/commit/7c944ba9047de576d32111c7dd144946e78e093d) Thanks [@MykhailoButkevych-MR](https://github.com/MykhailoButkevych-MR)! - homepage url for npmjs.com has been updated
+
 ## 2.1.6
 
 ### Patch Changes
