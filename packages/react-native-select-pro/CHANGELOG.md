@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.2.2
+
+### Patch Changes
+
+-   [#228](https://github.com/MobileReality/react-native-select-pro/pull/228) [`1994904`](https://github.com/MobileReality/react-native-select-pro/commit/1994904fa2c3d3d9217ed6821b76ba19b316c8e9) Thanks [@sajaprzemyslaw](https://github.com/sajaprzemyslaw)! - fix options close animation conflict with react native modal
+
 ## 2.2.1
 
 ### Patch Changes
