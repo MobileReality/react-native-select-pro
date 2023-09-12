@@ -21,10 +21,6 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
             state.animationDuration > 0 &&
                 LayoutAnimation.configureNext({
                     duration: state.animationDuration,
-                    delete: {
-                        type: LayoutAnimation.Types.linear,
-                        property: LayoutAnimation.Properties.opacity,
-                    },
                 });
             return {
                 ...state,
