@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.2.3
+
+### Patch Changes
+
+-   [#234](https://github.com/MobileReality/react-native-select-pro/pull/234) [`2c636f7`](https://github.com/MobileReality/react-native-select-pro/commit/2c636f78729bd9981f89e630b259da05ca26310c) Thanks [@MykhailoButkevych-MR](https://github.com/MykhailoButkevych-MR)! - Fix: Resolved rendering issue for items above the initialScrollIndex on fixed height lists.
+
 ## 2.2.2
 
 ### Patch Changes
