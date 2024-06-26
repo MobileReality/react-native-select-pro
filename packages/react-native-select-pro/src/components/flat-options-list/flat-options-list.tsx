@@ -34,6 +34,7 @@ export const FlatOptionsList = memo(
 
         return (
             <FlatList
+                ref={flatListRef}
                 testID="Options list"
                 accessibilityLabel="Options list"
                 accessibilityState={accessibilityState}
