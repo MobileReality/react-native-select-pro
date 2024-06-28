@@ -11,7 +11,7 @@ export type Action =
     | 'setSearchValue'
     | 'searchOptions'
     | 'setOptionsListPosition'
-    | 'updateOptions';
+    | 'reinitializeOptions';
 
 export type ActionType<T> =
     | {
@@ -45,7 +45,7 @@ export type ActionType<T> =
           payload: RefObject<TextInput> | null;
       }
     | {
-          type: Extract<Action, 'updateOptions'>;
+          type: Extract<Action, 'reinitializeOptions'>;
           payload: OptionsType<T>;
       };
 

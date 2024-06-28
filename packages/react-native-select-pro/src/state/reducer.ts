@@ -78,7 +78,7 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 ...state,
                 openedPosition: { ...state.openedPosition, ...action.payload },
             };
-        case 'updateOptions':
+        case 'reinitializeOptions':
             return {
                 ...state,
                 optionsData: action.payload,

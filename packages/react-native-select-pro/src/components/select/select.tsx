@@ -100,7 +100,7 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
 
     useEffect(() => {
         if (reinitializeOptions) {
-            dispatch({ type: 'updateOptions', payload: options });
+            dispatch({ type: 'reinitializeOptions', payload: options });
         }
     }, [options, reinitializeOptions]);
 
