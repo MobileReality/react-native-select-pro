@@ -78,6 +78,11 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 ...state,
                 openedPosition: { ...state.openedPosition, ...action.payload },
             };
+        case 'reinitializeOptions':
+            return {
+                ...state,
+                optionsData: action.payload,
+            };
         default:
             return state;
     }

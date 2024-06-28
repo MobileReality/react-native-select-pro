@@ -1,5 +1,5 @@
 import type { Dispatch, ForwardedRef, Reducer } from 'react';
-import React, { forwardRef, useReducer, useRef } from 'react';
+import React, { forwardRef, useEffect, useReducer, useRef } from 'react';
 import type { SectionListData, ViewStyle } from 'react-native';
 import { StyleSheet, UIManager, View } from 'react-native';
 import { Portal } from '@gorhom/portal';
@@ -47,6 +47,7 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         pressableSelectedOption = true,
         scrollToSelectedOption = true,
         searchable = false,
+        reinitializeOptions = false,
         searchPattern = (payload: string) => `(${payload})`,
         styles: customStyles,
         theme = 'none',
@@ -96,6 +97,12 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         searchedOptions,
         selectedOptionIndex,
     } = state;
+
+    useEffect(() => {
+        if (reinitializeOptions) {
+            dispatch({ type: 'reinitializeOptions', payload: options });
+        }
+    }, [options, reinitializeOptions]);
 
     const { aboveSelectControl } = openedPosition;
     const mainStyles: SelectStyles = mergeObjects(themes[theme], customStyles);

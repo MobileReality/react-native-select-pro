@@ -145,6 +145,13 @@ export interface SelectProps<T = unknown> {
     searchable?: boolean;
 
     /**
+     *  Determines whether the items in the dropdown list should update when options change
+     *
+     *  @default false
+     */
+    reinitializeOptions?: boolean;
+
+    /**
      *  Regex definition for searching options
      *
      *  @default (payload: string) => `(${payload})`
