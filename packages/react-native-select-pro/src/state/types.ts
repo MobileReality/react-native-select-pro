@@ -10,7 +10,8 @@ export type Action =
     | 'setSearchInputRef'
     | 'setSearchValue'
     | 'searchOptions'
-    | 'setOptionsListPosition';
+    | 'setOptionsListPosition'
+    | 'updateOptions';
 
 export type ActionType<T> =
     | {
@@ -42,6 +43,10 @@ export type ActionType<T> =
     | {
           type: Extract<Action, 'setSearchInputRef'>;
           payload: RefObject<TextInput> | null;
+      }
+    | {
+          type: Extract<Action, 'updateOptions'>;
+          payload: OptionsType<T>;
       };
 
 export type Position = {

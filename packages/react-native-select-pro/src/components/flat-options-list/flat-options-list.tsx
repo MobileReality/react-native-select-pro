@@ -20,11 +20,15 @@ export const FlatOptionsList = memo(
         const flatListRef = useRef<FlatList>(null);
 
         const scrollToIndex = () => {
-            if (flatListRef.current) {
+            if (
+                flatListRef.current &&
+                initialScrollIndex >= 0 &&
+                initialScrollIndex < resolvedData.length
+            ) {
                 try {
                     flatListRef.current.scrollToIndex({
                         animated: false,
-                        index: initialScrollIndex === -1 ? 0 : initialScrollIndex,
+                        index: initialScrollIndex,
                     });
                 } catch {
                     logError(ERRORS.SCROLL_TO_LOCATION);
