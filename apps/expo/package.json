@@ -1,6 +1,5 @@
 {
   "name": "@monorepo/expo",
-  "description": "Example app for @mobile-reality/react-native-select-pro",
   "version": "0.0.0",
   "private": true,
   "main": "index.js",
@@ -16,29 +15,29 @@
     "@gorhom/portal": "1.0.14",
     "@react-navigation/native": "6.1.6",
     "@react-navigation/native-stack": "6.9.12",
-    "expo": "~48.0.11",
+    "expo": "51.0.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.43.9",
-    "react-native": "0.71.7",
-    "react-native-gesture-handler": "~2.9.0",
+    "react-native": "0.74.3",
+    "react-native-gesture-handler": "~2.16.1",
     "react-native-modal": "13.0.1",
-    "react-native-reanimated": "~2.14.4",
-    "react-native-safe-area-context": "4.5.1",
-    "react-native-screens": "3.20.0"
+    "react-native-reanimated": "~3.10.1",
+    "react-native-safe-area-context": "4.10.5",
+    "react-native-screens": "3.31.1"
   },
   "devDependencies": {
-    "@babel/core": "7.21.4",
+    "@babel/core": "^7.24.0",
     "@mobile-reality/react-native-select-pro": "workspace:*",
     "@monorepo/eslint-config": "workspace:*",
-    "@types/react": "~18.0.38",
-    "@types/react-dom": "~18.0.11",
-    "babel-preset-expo": "^9.3.2"
+    "@types/react": "~18.2.79",
+    "@types/react-dom": "~18.2.25",
+    "babel-preset-expo": "^11.0.0"
   },
   "peerDependencies": {
     "jest": "29.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.71.7"
+    "react-native": "0.74.3"
   }
 }
