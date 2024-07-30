@@ -39,5 +39,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.3"
+  },
+  "overrides": {
+    "metro": "0.75.1",
+    "metro-resolver": "0.75.1"
   }
 }
