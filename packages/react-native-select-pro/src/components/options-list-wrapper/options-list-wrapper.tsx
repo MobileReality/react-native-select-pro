@@ -18,6 +18,8 @@ export const OptionsListWrapper = forwardRef<View, OptionsListWrapperProps>(({ c
         width,
     } = useOptionListWrapper();
 
+    const isPositionSet = isOpened && top !== 0 && left !== 0 && width !== 0;
+
     return fadeAnimation ? (
         <Animated.View
             ref={ref}
@@ -28,6 +30,7 @@ export const OptionsListWrapper = forwardRef<View, OptionsListWrapperProps>(({ c
                 optionsListCustomStyles,
                 { top, left, width },
                 { opacity: fadeAnimation },
+                isPositionSet ? styles.visible : styles.hidden,
             ]}
         >
             {children}
@@ -40,6 +43,7 @@ export const OptionsListWrapper = forwardRef<View, OptionsListWrapperProps>(({ c
                 aboveSelectControl ? styles.overflown : styles.notOverflown,
                 optionsListCustomStyles,
                 { top, left, width },
+                isPositionSet ? styles.visible : styles.hidden,
             ]}
         >
             {children}
@@ -51,6 +55,8 @@ type Styles = {
     optionsList: ViewStyle;
     notOverflown: ViewStyle;
     overflown: ViewStyle;
+    visible: ViewStyle;
+    hidden: ViewStyle;
 };
 
 const styles = StyleSheet.create<Styles>({
@@ -72,6 +78,12 @@ const styles = StyleSheet.create<Styles>({
         borderBottomWidth: 0,
         borderTopRightRadius: SHAPE,
         borderTopLeftRadius: SHAPE,
+    },
+    visible: {
+        display: 'flex',
+    },
+    hidden: {
+        display: 'none',
     },
 });
 

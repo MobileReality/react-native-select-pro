@@ -121,6 +121,7 @@ export const createInitialState = <T>({
     }
 
     const { selectedOption, selectedOptionIndex } = setDefaultOption(options, defaultOption);
+    const defaultSearchValue = defaultOption?.label ?? '';
 
     return {
         isOpened: false,
@@ -135,7 +136,7 @@ export const createInitialState = <T>({
             aboveSelectControl: false,
         },
         optionsData: options,
-        searchValue: searchable ? '' : null,
+        searchValue: searchable ? defaultSearchValue : null,
         animationDuration:
             typeof animation === 'boolean' ? (animation ? ANIMATION_DURATION : 0) : animation,
     };
