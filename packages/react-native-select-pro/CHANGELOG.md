@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.2.4
+
+### Patch Changes
+
+-   [#246](https://github.com/MobileReality/react-native-select-pro/pull/246) [`0d55020`](https://github.com/MobileReality/react-native-select-pro/commit/0d550203c59b14d2f4d5ed4371a7ba56ffcec665) Thanks [@dawidgierdal](https://github.com/dawidgierdal)! - searchable select with default option
+
 ## 2.2.3
 
 ### Patch Changes
