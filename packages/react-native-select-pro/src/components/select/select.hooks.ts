@@ -1,7 +1,6 @@
 import { useCallback, useContext, useImperativeHandle } from 'react';
 import type { LayoutRectangle } from 'react-native';
 import { I18nManager, useWindowDimensions } from 'react-native';
-import { setTimeout } from '@testing-library/react-native/build/helpers/timers';
 
 import { APPROX_STATUSBAR_HEIGHT } from '../../constants';
 import {
