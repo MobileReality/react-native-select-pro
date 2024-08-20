@@ -34,10 +34,12 @@ export const useSelectInput = () => {
         const hideSubscription = Keyboard.addListener('keyboardDidHide', async () => {
             await setOptionsListPosition();
         });
+
         dispatch({
             type: 'setSearchInputRef',
             payload: searchInputRef,
         });
+
         return () => {
             showSubscription.remove();
             hideSubscription.remove();
