@@ -72,13 +72,15 @@ export const useSelect = <T>({
         });
     };
 
-    const setOptionsListPosition = async () => {
+    const calculateOptionsListPosition = async (): Promise<void> => {
         const { x, y, width, height } = await measureSelectInWindow();
         const { height: optionsListHeight } = await measureOptionsListInWindow();
+
         const isOverflow = y + height + optionsListHeight > screenHeight;
         const top = isOverflow
             ? y - optionsListHeight + APPROX_STATUSBAR_HEIGHT
             : y + height - valueY + APPROX_STATUSBAR_HEIGHT;
+
         const left = I18nManager.getConstants().isRTL ? screenWidth - width - x : x;
 
         dispatch({
@@ -90,6 +92,16 @@ export const useSelect = <T>({
                 aboveSelectControl: isOverflow,
             },
         });
+    };
+
+    const setOptionsListPosition = async () => {
+        await calculateOptionsListPosition();
+        // Callback events are sometimes called too early,
+        // before the height value changes, so we need to
+        // make sure that this function will be called at the end of the event loop
+        setTimeout(async () => {
+            await calculateOptionsListPosition();
+        }, 10);
     };
 
     const onPressSelectControl: OnPressSelectControlType = async () => {
