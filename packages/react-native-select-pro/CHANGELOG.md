@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.2.6
+
+### Patch Changes
+
+-   [#250](https://github.com/MobileReality/react-native-select-pro/pull/250) [`3bc9dd6`](https://github.com/MobileReality/react-native-select-pro/commit/3bc9dd6ac7970c5d0125efdcf24b7914db19df45) Thanks [@dawidgierdal](https://github.com/dawidgierdal)! - creating an example of using Select together with ScrollView
+
 ## 2.2.5
 
 ### Patch Changes
