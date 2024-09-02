@@ -14,6 +14,7 @@ import { RealExample } from '../examples/real-example';
 import { Ref } from '../examples/ref';
 import { RHF } from '../examples/rhf';
 import { ScrollToSelectedOption } from '../examples/scroll-to-selected-option';
+import { ScrollViewExample } from '../examples/scroll-view';
 import { Searchable } from '../examples/searchable';
 import { SearchableInModal } from '../examples/searchable-in-modal';
 import { SearchableWithKeyboardAvoidView } from '../examples/searchable-with-keyboard-avoid-view';
@@ -120,5 +121,9 @@ export const ROUTES = [
     {
         name: 'Searchable with keyboard avoid view',
         screen: SearchableWithKeyboardAvoidView,
+    },
+    {
+        name: 'Scroll view',
+        screen: ScrollViewExample,
     },
 ];
