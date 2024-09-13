@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.2.7
+
+### Patch Changes
+
+-   [#252](https://github.com/MobileReality/react-native-select-pro/pull/252) [`af102af`](https://github.com/MobileReality/react-native-select-pro/commit/af102afa448f31b5faf3418cbd30d2c3370f6251) Thanks [@dawidgierdal](https://github.com/dawidgierdal)! - more examples of using react-native-select-pro
+
 ## 2.2.6
 
 ### Patch Changes
