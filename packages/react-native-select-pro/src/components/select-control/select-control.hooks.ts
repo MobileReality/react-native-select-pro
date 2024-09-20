@@ -19,6 +19,7 @@ export const useSelectControl = () => {
         styles,
         aboveSelectControl,
         onPressSelectControl,
+        separatedMultiple,
     } = useSelectContext();
 
     const { selectedOptionLabel } = selectedOptionResolver(selectedOption);
@@ -82,5 +83,6 @@ export const useSelectControl = () => {
         containerStyles,
         disabledStyles,
         multiple,
+        separatedMultiple,
     };
 };

@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import type { ImageStyle, ViewStyle } from 'react-native';
+import { type ImageStyle, Text, type ViewStyle } from 'react-native';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, PADDING, SHAPE } from '../../constants';
@@ -29,6 +29,7 @@ export const SelectControl = forwardRef<View>((_, ref) => {
         containerStyles,
         disabledStyles,
         multiple,
+        separatedMultiple,
     } = useSelectControl();
 
     const clearOption = <ClearOption />;
@@ -66,6 +67,7 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                 </View>
             </Pressable>
             {showClearOptionA11y && <View style={styles.a11IconWrapper}>{clearOption}</View>}
+            {separatedMultiple && multiple && <Text>Selected options</Text>}
         </View>
     );
 });
