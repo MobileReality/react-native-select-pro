@@ -2,7 +2,7 @@ import { useSelectContext } from '../../context';
 import { selectedOptionResolver } from '../../helpers';
 
 export const useSelectFieldType = () => {
-    const { multiple, searchValue, selectedOption } = useSelectContext();
+    const { multiple, searchValue, selectedOption, separatedMultiple } = useSelectContext();
 
     const { selectedOptionLabel, selectedOptions } = selectedOptionResolver(selectedOption);
 
@@ -14,5 +14,6 @@ export const useSelectFieldType = () => {
         selectedOptionLabel,
         selectedOptions,
         isSearchable,
+        separatedMultiple,
     };
 };

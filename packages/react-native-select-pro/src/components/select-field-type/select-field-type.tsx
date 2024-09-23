@@ -8,12 +8,23 @@ import { SelectText } from '../select-text';
 
 import { useSelectFieldType } from './select-field-type.hooks';
 
-export const SelectFieldType = () => {
+type Props = {
+    separatedMultiple?: boolean;
+    widthThreshold?: number;
+};
+
+export const SelectFieldType = ({ separatedMultiple, widthThreshold }: Props) => {
     const { multiple, selectedOptions, selectedOptionLabel, isSearchable } = useSelectFieldType();
 
     const renderSelectFieldType = () => {
         if (multiple) {
-            return <MultiSelect selectedOptions={selectedOptions} />;
+            return (
+                <MultiSelect
+                    selectedOptions={selectedOptions}
+                    separatedMultiple={separatedMultiple}
+                    widthThreshold={widthThreshold}
+                />
+            );
         }
 
         if (isSearchable) {

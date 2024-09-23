@@ -8,6 +8,7 @@ import { CustomStyles } from '../examples/custom-styles';
 import { ModalExample } from '../examples/modal-example';
 import { MultiSelect } from '../examples/multiselect';
 import { MultiSelectWithSearchable } from '../examples/multiselect-with-searchable';
+import { MultiselectWithSeparatedOptions } from '../examples/multiselect-with-separated-options';
 import { NoBackdrop } from '../examples/no-backdrop';
 import { Overflow } from '../examples/overflow';
 import { RealExample } from '../examples/real-example';
@@ -89,6 +90,10 @@ export const ROUTES = [
     {
         name: 'MultiSelect with Searchable',
         screen: MultiSelectWithSearchable,
+    },
+    {
+        name: 'MultiSelect with Separated Options',
+        screen: MultiselectWithSeparatedOptions,
     },
     {
         name: 'TextInputProps',

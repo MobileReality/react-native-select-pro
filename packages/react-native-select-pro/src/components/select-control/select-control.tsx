@@ -1,11 +1,13 @@
 import React, { forwardRef } from 'react';
-import { type ImageStyle, Text, type ViewStyle } from 'react-native';
+import type { ImageStyle, ViewStyle } from 'react-native';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import { BORDER_WIDTH, COLORS, PADDING, SHAPE } from '../../constants';
 import { Arrow } from '../arrow';
 import { ClearOption } from '../clear-option';
+import { MultiSelectedOptions } from '../multi-selected-options/multi-selected-options';
 import { SelectFieldType } from '../select-field-type';
+import { useSelectFieldType } from '../select-field-type/select-field-type.hooks';
 
 import { useSelectControl } from './select-control.hooks';
 
@@ -30,7 +32,11 @@ export const SelectControl = forwardRef<View>((_, ref) => {
         disabledStyles,
         multiple,
         separatedMultiple,
+        widthThreshold,
     } = useSelectControl();
+
+    // TODO separate
+    const { selectedOptions } = useSelectFieldType();
 
     const clearOption = <ClearOption />;
 
@@ -60,14 +66,24 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                         />
                     </View>
                 )}
-                <SelectFieldType />
+                <SelectFieldType
+                    separatedMultiple={separatedMultiple}
+                    widthThreshold={widthThreshold}
+                />
                 <View {...selectRightIconsProps} style={[styles.buttonsContainer, buttonsStyles]}>
                     {showClearOption && clearOption}
                     {!hideArrow && <Arrow />}
                 </View>
             </Pressable>
             {showClearOptionA11y && <View style={styles.a11IconWrapper}>{clearOption}</View>}
-            {separatedMultiple && multiple && <Text>Selected options</Text>}
+            {separatedMultiple && multiple && (
+                <View style={[styles.multiSelectedOptions, containerStyles]}>
+                    <MultiSelectedOptions
+                        selectedOptions={selectedOptions}
+                        widthThreshold={widthThreshold}
+                    />
+                </View>
+            )}
         </View>
     );
 });
@@ -79,6 +95,7 @@ type Styles = {
     a11IconWrapper: ViewStyle;
     rootView: ViewStyle;
     container: ViewStyle;
+    multiSelectedOptions: ViewStyle;
     disabled: ViewStyle;
     openedAbove: ViewStyle;
     opened: ViewStyle;
@@ -112,6 +129,11 @@ const styles = StyleSheet.create<Styles>({
     rootView: {
         position: 'relative',
         width: '100%',
+    },
+    multiSelectedOptions: {
+        flexWrap: 'wrap',
+        width: '100%',
+        flexDirection: 'row',
     },
     container: {
         width: '100%',

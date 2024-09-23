@@ -110,6 +110,12 @@ export interface SelectProps<T = unknown> {
     separatedMultiple?: boolean;
 
     /**
+     *  Specifies the width for a single selected option
+     *
+     *  @default 100
+     */
+    widthThreshold?: number;
+    /**
      * Determines the text that should be displayed when there are no available options in a `Select` component.
      *
      * @default "No options"

@@ -15,6 +15,7 @@ type SelectContextProviderTypes<T> = OptionalToRequired<
         | 'clearable'
         | 'multiple'
         | 'separatedMultiple'
+        | 'widthThreshold'
         | 'placeholderText'
         | 'placeholderTextColor'
         | 'searchPattern'
