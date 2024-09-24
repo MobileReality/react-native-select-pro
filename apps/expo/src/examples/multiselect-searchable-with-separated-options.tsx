@@ -4,10 +4,10 @@ import { Select } from '@mobile-reality/react-native-select-pro';
 import { SafeAreaViewWrapper } from '../components/safe-area-view-wrapper';
 import { DATA } from '../constants/data';
 
-export const MultiSelectWithSeparatedOptions = () => {
+export const MultiSelectSearchableWithSeparatedOptions = () => {
     return (
         <SafeAreaViewWrapper>
-            <Select options={DATA} multiple={true} separatedMultiple={true} />
+            <Select options={DATA} multiple={true} separatedMultiple={true} searchable={true} />
         </SafeAreaViewWrapper>
     );
 };

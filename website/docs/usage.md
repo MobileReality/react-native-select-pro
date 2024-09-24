@@ -829,31 +829,139 @@ const App = () => {
     return (
         <SelectProvider>
             <View style={styles.container}>
+               <Select options={data} multiple={true} separatedMultiple={true} />
+            </View>
+        </SelectProvider>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
+
+export default App;
+```
+
+### Multiple searchable with separated options
+
+```SnackPlayer name=Multiple searchable with separated options&dependencies=@mobile-reality/react-native-select-pro@2.0.0
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Select, SelectProvider } from '@mobile-reality/react-native-select-pro';
+
+const data = [
+     {
+        value: '96d27ec5-e196-4577-b18d-31c74ca9145c',
+        label: 'First label',
+    },
+    {
+        value: '2805f95f-f712-4dc2-ae25-0910f95152b6',
+        label: 'Second label in options list.',
+    },
+    {
+        value: '84bc47cd-c8ab-4673-b428-3d96876f0a3f',
+        label: 'THIRD LABEL',
+    },
+    {
+        value: 'aee6e7cd-6f36-4e69-acae-0dbfdaa428e4',
+        label: '----Fourth label----',
+    },
+    {
+        value: '170dcd29-0fd5-4f8b-ac76-7d52cdeca89c',
+        label: '🐈🐈🐈 Fifth label',
+    },
+    {
+        value: '0b8e1c91-e6d5-487e-bac5-8e1193d2e6f7',
+        label: 'Last',
+    },
+];
+
+const App = () => {
+    return (
+        <SelectProvider>
+            <View style={styles.container}>
+               <Select options={data} multiple={true} separatedMultiple={true} searchable={true} />
+            </View>
+        </SelectProvider>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
+
+export default App;
+```
+
+### Multiple with separated options styled
+
+```SnackPlayer name=Multiple with separated options styled&dependencies=@mobile-reality/react-native-select-pro@2.0.0
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Select, SelectProvider } from '@mobile-reality/react-native-select-pro';
+
+const data = [
+     {
+        value: '96d27ec5-e196-4577-b18d-31c74ca9145c',
+        label: 'First label',
+    },
+    {
+        value: '2805f95f-f712-4dc2-ae25-0910f95152b6',
+        label: 'Second label in options list.',
+    },
+    {
+        value: '84bc47cd-c8ab-4673-b428-3d96876f0a3f',
+        label: 'THIRD LABEL',
+    },
+    {
+        value: 'aee6e7cd-6f36-4e69-acae-0dbfdaa428e4',
+        label: '----Fourth label----',
+    },
+    {
+        value: '170dcd29-0fd5-4f8b-ac76-7d52cdeca89c',
+        label: '🐈🐈🐈 Fifth label',
+    },
+    {
+        value: '0b8e1c91-e6d5-487e-bac5-8e1193d2e6f7',
+        label: 'Last',
+    },
+];
+
+const App = () => {
+    return (
+        <SelectProvider>
+            <View style={styles.container}>
                <Select
-                  options={data}
-                  placeholderText="Placeholder"
-                  styles={{
-                      select: {
-                          multiSelectedOption: {
-                              container: {
-                                  paddingHorizontal: 5,
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  backgroundColor: '#19222f',
-                                  minHeight: 40,
-                              },
-                              text: {
-                                  fontSize: 14,
-                                  color: '#04e590',
-                              },
-                          },
-                      },
-                  }}
-                  multiple={true}
-                  separatedMultiple={true}
-                  searchable={true}
-                  widthThreshold={110}
-              />
+                options={data}
+                styles={{
+                    select: {
+                        multiSelectedOption: {
+                            container: {
+                                paddingHorizontal: 5,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: '#19222f',
+                                minHeight: 40,
+                            },
+                            text: {
+                                fontSize: 14,
+                                color: '#04e590',
+                            },
+                        },
+                    },
+                }}
+                multiple={true}
+                separatedMultiple={true}
+                widthThreshold={110}
+            />
             </View>
         </SelectProvider>
     );
