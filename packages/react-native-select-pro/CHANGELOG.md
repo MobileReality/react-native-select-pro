@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.2.8
+
+### Patch Changes
+
+-   [#254](https://github.com/MobileReality/react-native-select-pro/pull/254) [`7eb5cbc`](https://github.com/MobileReality/react-native-select-pro/commit/7eb5cbc7949e1ad9afecc2cd95c10aaebc6aa7ef) Thanks [@dawidgierdal](https://github.com/dawidgierdal)! - option to show selected options below select input
+
 ## 2.2.7
 
 ### Patch Changes
