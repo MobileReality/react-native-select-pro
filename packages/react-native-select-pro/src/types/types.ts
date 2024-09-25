@@ -103,6 +103,19 @@ export interface SelectProps<T = unknown> {
     multiple?: boolean;
 
     /**
+     *  Determines whether a `Select` component should show multiple options as a separate element.
+     *
+     *  @default false
+     */
+    separatedMultiple?: boolean;
+
+    /**
+     *  Specifies the width for a single selected option
+     *
+     *  @default 100
+     */
+    widthThreshold?: number;
+    /**
      * Determines the text that should be displayed when there are no available options in a `Select` component.
      *
      * @default "No options"

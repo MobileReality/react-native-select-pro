@@ -5,6 +5,7 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { BORDER_WIDTH, COLORS, PADDING, SHAPE } from '../../constants';
 import { Arrow } from '../arrow';
 import { ClearOption } from '../clear-option';
+import { MultiSelectedSeparatedOptions } from '../multi-selected-separated-options/multi-selected-separated-options';
 import { SelectFieldType } from '../select-field-type';
 
 import { useSelectControl } from './select-control.hooks';
@@ -29,6 +30,8 @@ export const SelectControl = forwardRef<View>((_, ref) => {
         containerStyles,
         disabledStyles,
         multiple,
+        separatedMultiple,
+        widthThreshold,
     } = useSelectControl();
 
     const clearOption = <ClearOption />;
@@ -59,13 +62,19 @@ export const SelectControl = forwardRef<View>((_, ref) => {
                         />
                     </View>
                 )}
-                <SelectFieldType />
+                <SelectFieldType
+                    separatedMultiple={separatedMultiple}
+                    widthThreshold={widthThreshold}
+                />
                 <View {...selectRightIconsProps} style={[styles.buttonsContainer, buttonsStyles]}>
                     {showClearOption && clearOption}
                     {!hideArrow && <Arrow />}
                 </View>
             </Pressable>
             {showClearOptionA11y && <View style={styles.a11IconWrapper}>{clearOption}</View>}
+            {separatedMultiple && multiple && (
+                <MultiSelectedSeparatedOptions containerStyles={containerStyles} />
+            )}
         </View>
     );
 });

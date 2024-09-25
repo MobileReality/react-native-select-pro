@@ -8,10 +8,11 @@ import { isOptionIndexType, isOptionType, isSectionOptionsType } from '../../typ
 
 import type { UseMultiSelectProps } from './multi-select.types';
 
-const WIDTH_THRESHOLD = 100;
-const WIDTH_OFFSET = 72;
-
-export const useMultiSelect = <T>({ selectedOptions }: UseMultiSelectProps<T>) => {
+export const useMultiSelect = <T>({
+    selectedOptions,
+    widthThreshold = 100,
+    widthOffset = 72,
+}: UseMultiSelectProps<T>) => {
     const { width: screenWidth } = useWindowDimensions();
 
     const {
@@ -129,20 +130,18 @@ export const useMultiSelect = <T>({ selectedOptions }: UseMultiSelectProps<T>) =
         const { length } = selectedOptions;
         const initialWidth = containerWidth ?? 100;
         if (typeof initialWidth === 'number') {
-            const calculatedWidth = (initialWidth - WIDTH_OFFSET) / length;
-            return calculatedWidth < WIDTH_THRESHOLD
-                ? WIDTH_THRESHOLD
-                : Math.floor(calculatedWidth);
+            const calculatedWidth = (initialWidth - widthOffset) / length;
+            return calculatedWidth < widthThreshold ? widthThreshold : Math.floor(calculatedWidth);
         }
         if (typeof initialWidth === 'string') {
             const ratioToScreen = dimensionPercentageToDP(initialWidth, screenWidth);
             const calculatedWidth = ratioToScreen / length;
-            return calculatedWidth - WIDTH_OFFSET < WIDTH_THRESHOLD
-                ? WIDTH_THRESHOLD
-                : calculatedWidth - WIDTH_OFFSET;
+            return calculatedWidth - widthOffset < widthThreshold
+                ? widthThreshold
+                : calculatedWidth - widthOffset;
         }
         return 0;
-    }, [selectedOptions, containerWidth, screenWidth]);
+    }, [selectedOptions, containerWidth, screenWidth, widthThreshold, widthOffset]);
 
     const isSearchable = typeof searchValue === 'string';
 

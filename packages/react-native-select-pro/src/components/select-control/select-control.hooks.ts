@@ -19,6 +19,8 @@ export const useSelectControl = () => {
         styles,
         aboveSelectControl,
         onPressSelectControl,
+        separatedMultiple,
+        widthThreshold,
     } = useSelectContext();
 
     const { selectedOptionLabel } = selectedOptionResolver(selectedOption);
@@ -82,5 +84,7 @@ export const useSelectControl = () => {
         containerStyles,
         disabledStyles,
         multiple,
+        separatedMultiple,
+        widthThreshold,
     };
 };

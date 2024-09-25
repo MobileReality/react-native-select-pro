@@ -2,46 +2,39 @@ import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { ScrollView, StyleSheet } from 'react-native';
 
-import type { OnPressRemove, OptionType } from '../../types';
-import { MultiSelectedOption } from '../multi-selected-option';
+import { MultiSelectedOptions } from '../multi-selected-options';
 import { SelectInput } from '../select-input';
 import { SelectText } from '../select-text';
 
 import { useMultiSelect } from './multi-select.hooks';
 import type { MultiSelectProps } from './multi-select.types';
 
-export const MultiSelect = <T,>({ selectedOptions }: MultiSelectProps<T>) => {
-    const {
-        calculatedOptionWidth,
-        onPressRemove,
-        multiSelectedCustomStyles,
-        disabled,
-        isSearchable,
-    } = useMultiSelect<T>({
+export const MultiSelect = <T,>({
+    selectedOptions,
+    separatedMultiple,
+    widthThreshold,
+}: MultiSelectProps<T>) => {
+    const { disabled, isSearchable } = useMultiSelect<T>({
         selectedOptions,
     });
 
-    const resolveSelectedOptionsList = () => {
+    const renderOptions = () => {
         if (!selectedOptions) {
             return isSearchable ? null : <SelectText />;
         }
 
-        return selectedOptions.map((option: OptionType<T>) => (
-            <MultiSelectedOption
-                key={`${option.section}-${option.value}`}
-                optionWidth={calculatedOptionWidth}
-                option={option}
-                multiSelectedCustomStyles={multiSelectedCustomStyles}
-                disabled={disabled}
-                onPressRemove={onPressRemove as OnPressRemove<unknown>}
+        return separatedMultiple ? null : (
+            <MultiSelectedOptions
+                selectedOptions={selectedOptions}
+                widthThreshold={widthThreshold}
             />
-        ));
+        );
     };
 
     return (
         <ScrollView scrollEnabled={!disabled} style={styles.container} horizontal>
             {isSearchable && <SelectInput />}
-            {resolveSelectedOptionsList()}
+            {renderOptions()}
         </ScrollView>
     );
 };

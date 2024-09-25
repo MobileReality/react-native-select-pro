@@ -629,3 +629,152 @@ describe('Select with multi selection and searchable', () => {
         expect(currentPlaceholderText).toBeTruthy();
     });
 });
+
+describe('Select with separated multi selection', () => {
+    it('should generate Select with separated multi selection enabled snapshot', () => {
+        const wrapper = render(
+            <SelectProvider>
+                <Select multiple={true} options={DATA} separatedMultiple={true} />
+            </SelectProvider>,
+        );
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should open options menu when select control is pressed', () => {
+        const { getByText } = render(
+            <SelectProvider>
+                <Select multiple={true} options={DATA} separatedMultiple={true} />
+            </SelectProvider>,
+        );
+
+        const placeholder = getByText('Select...');
+        fireEvent.press(placeholder);
+
+        const firstOption = getByText('First Option');
+        expect(firstOption).toBeTruthy();
+    });
+
+    it('should, while multiple and separatedMultiple enabled, click should execute opening dropdown', () => {
+        const { getByLabelText, queryByLabelText } = render(
+            <SelectProvider>
+                <Select multiple={true} options={DATA} animation={false} separatedMultiple={true} />
+            </SelectProvider>,
+        );
+
+        const open = getByLabelText('Open a dropdown');
+        fireEvent.press(open);
+
+        const listWrapper = queryByLabelText('Options list');
+        expect(listWrapper).toBeTruthy();
+
+        const optionPress = getByLabelText(`Select ${DATA[0].label}`);
+        fireEvent.press(optionPress);
+
+        const optionSelected = getByLabelText(`${DATA[0].label} selected`);
+        expect(optionSelected).toBeTruthy();
+
+        const tryOpenAgain = getByLabelText('Open a dropdown');
+        fireEvent.press(tryOpenAgain);
+
+        const listWrapperShouldBeVisible = queryByLabelText('Options list');
+        expect(listWrapperShouldBeVisible).toBeTruthy();
+    });
+
+    it('should, while multiple and separatedMultiple enabled, show, select and remove selected option', () => {
+        const { getByLabelText, queryByLabelText } = render(
+            <SelectProvider>
+                <Select multiple={true} options={DATA} separatedMultiple={true} />
+            </SelectProvider>,
+        );
+
+        const open = getByLabelText('Open a dropdown');
+        fireEvent.press(open);
+
+        const optionPress = getByLabelText(`Select ${DATA[0].label}`);
+        fireEvent.press(optionPress);
+
+        const optionSelected = getByLabelText(`${DATA[0].label} selected`);
+        expect(optionSelected).toBeTruthy();
+
+        const openAgain = getByLabelText('Open a dropdown');
+        fireEvent.press(openAgain);
+
+        const secondOptionPress = getByLabelText(`Select ${DATA[1].label}`);
+        fireEvent.press(secondOptionPress);
+
+        const selectedSecondOption = getByLabelText(`${DATA[1].label} selected`);
+        expect(selectedSecondOption).toBeTruthy();
+
+        fireEvent.press(optionSelected);
+
+        const optionShouldNotExist = queryByLabelText(`${DATA[0].label} selected`);
+        expect(optionShouldNotExist).toBeFalsy();
+    });
+});
+
+describe('Select with separated multi selection and searchable', () => {
+    it('should generate Select with separated multi selection and searchable enabled snapshot', () => {
+        const wrapper = render(
+            <SelectProvider>
+                <Select
+                    multiple={true}
+                    options={SEARCHABLE_DATA}
+                    searchable={true}
+                    separatedMultiple={true}
+                />
+            </SelectProvider>,
+        );
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should, while multiple, separatedMultiple and searchable enabled, click and open options', () => {
+        const { getByLabelText, getByPlaceholderText } = render(
+            <SelectProvider>
+                <Select
+                    multiple={true}
+                    options={SEARCHABLE_DATA}
+                    searchable={true}
+                    separatedMultiple={true}
+                />
+            </SelectProvider>,
+        );
+
+        const inputData = 'Second';
+        const nextInputData = 'First';
+
+        const input = getByLabelText('Place text');
+
+        fireEvent.changeText(input, inputData);
+
+        const list = getByLabelText('Options list');
+
+        expect(list.props.data.length).toBe(1);
+
+        const firstOption = getByLabelText(`Select ${inputData} test option`);
+
+        fireEvent.press(firstOption);
+
+        const inputAgain = getByLabelText('Place text');
+
+        expect(inputAgain.props.value).toBe('');
+
+        fireEvent.changeText(inputAgain, nextInputData);
+        expect(inputAgain.props.value).toBe(nextInputData);
+
+        const listAgain = getByLabelText('Options list');
+
+        expect(listAgain.props.data.length).toBe(1);
+
+        const secondOption = getByLabelText(`Select ${nextInputData} test option`);
+
+        fireEvent.press(secondOption);
+
+        const selectedFirstOption = getByLabelText(`${SEARCHABLE_DATA[1].label} selected`);
+        expect(selectedFirstOption).toBeTruthy();
+        const selectedSecondOption = getByLabelText(`${SEARCHABLE_DATA[0].label} selected`);
+        expect(selectedSecondOption).toBeTruthy();
+
+        const currentPlaceholderText = getByPlaceholderText('');
+        expect(currentPlaceholderText).toBeTruthy();
+    });
+});
