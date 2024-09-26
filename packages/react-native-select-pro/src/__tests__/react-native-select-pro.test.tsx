@@ -778,3 +778,32 @@ describe('Select with separated multi selection and searchable', () => {
         expect(currentPlaceholderText).toBeTruthy();
     });
 });
+
+describe('Select multiple with hidden options', () => {
+    it('should hide selected options after they are selected', () => {
+        const { getByLabelText, queryByLabelText } = render(
+            <SelectProvider>
+                <Select multiple={true} options={DATA} hideSelectedOptions={true} />
+            </SelectProvider>,
+        );
+
+        const openDropdown = getByLabelText('Open a dropdown');
+        fireEvent.press(openDropdown);
+
+        const firstOption = getByLabelText(`Select ${DATA[0].label}`);
+        expect(firstOption).toBeTruthy();
+
+        fireEvent.press(firstOption);
+
+        const selectedFirstOption = getByLabelText(`${DATA[0].label} selected`);
+        expect(selectedFirstOption).toBeTruthy();
+
+        fireEvent.press(openDropdown);
+
+        const hiddenFirstOption = queryByLabelText(`Select ${DATA[0].label}`);
+        expect(hiddenFirstOption).toBeFalsy();
+
+        const secondOption = getByLabelText(`Select ${DATA[1].label}`);
+        expect(secondOption).toBeTruthy();
+    });
+});

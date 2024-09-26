@@ -83,6 +83,7 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         sectionHeaderImageProps,
         sectionHeaderTextProps,
         sectionListProps,
+        hideSelectedOptions = false,
     } = props;
 
     const [state, dispatch] = useReducer<
@@ -221,6 +222,7 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
                                 pressableSelectedOption,
                                 multiple,
                                 disabled,
+                                hideSelectedOptions,
                             }}
                         >
                             <OptionsList ref={optionsListRef} />
