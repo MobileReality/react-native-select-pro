@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.2.9
+
+### Patch Changes
+
+-   [#257](https://github.com/MobileReality/react-native-select-pro/pull/257) [`c3036cb`](https://github.com/MobileReality/react-native-select-pro/commit/c3036cb92c8e39881f71cc08e02c80634eca9aa1) Thanks [@dawidgierdal](https://github.com/dawidgierdal)! - added an option to hide already selected options from the list hideSelectedOptions
+
 ## 2.2.8
 
 ### Patch Changes
