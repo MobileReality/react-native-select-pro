@@ -30,10 +30,10 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         optionButtonProps,
         optionTextProps,
         isDisabledResolveOption,
+        hideSelectedOptions,
     } = useOptionsList();
 
     const isSectionedOptions = isSectionOptionsType(resolvedData);
-
     const renderSection: SectionListRenderItem<OptionType> = useCallback(
         ({ item, index, section }) => {
             const data = resolvedData as SectionOptionType[];
@@ -113,6 +113,11 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         ],
     );
 
+    const filteredResolvedData: OptionType[] =
+        !isSectionedOptions && hideSelectedOptions
+            ? (resolvedData as OptionType[]).filter((item) => !findSelectedOption(item))
+            : (resolvedData as OptionType[]);
+
     return (
         <OptionsListWrapper ref={optionsListRef}>
             {isSectionedOptions ? (
@@ -132,7 +137,7 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                     getItemLayout={getItemLayout}
                     renderItem={renderFlatItem}
                     accessibilityState={accessibilityState}
-                    resolvedData={resolvedData}
+                    resolvedData={filteredResolvedData}
                     flatListProps={flatListProps}
                     disabled={disabled}
                 />

@@ -22,6 +22,7 @@ export type OptionsListContextProviderTypes<T> = OptionalToRequired<
         | 'pressableSelectedOption'
         | 'multiple'
         | 'disabled'
+        | 'hideSelectedOptions'
     > & {
         aboveSelectControl: Position['aboveSelectControl'];
         openedPosition: Position;

@@ -96,6 +96,13 @@ export interface SelectProps<T = unknown> {
     hideArrow?: boolean;
 
     /**
+     *  Hides the options that have already been selected from the list.
+     *
+     *  @default false
+     */
+    hideSelectedOptions?: boolean;
+
+    /**
      *  Determines whether a `Select` component should allow the user to select multiple options.
      *
      *  @default false
