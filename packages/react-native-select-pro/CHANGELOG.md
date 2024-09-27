@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.2.11
+
+### Patch Changes
+
+-   [#261](https://github.com/MobileReality/react-native-select-pro/pull/261) [`ec9904c`](https://github.com/MobileReality/react-native-select-pro/commit/ec9904c0ceac89d22c3db203c895a6b36925a426) Thanks [@dawidgierdal](https://github.com/dawidgierdal)! - Added example using overridden flatListProps
+
 ## 2.2.10
 
 ### Patch Changes
