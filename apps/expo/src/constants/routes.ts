@@ -14,6 +14,7 @@ import { MultiSelectWithSeparatedOptions } from '../examples/multiselect-with-se
 import { MultiSelectWithSeparatedOptionsStyled } from '../examples/multiselect-with-separated-options-styled';
 import { NoBackdrop } from '../examples/no-backdrop';
 import { Overflow } from '../examples/overflow';
+import { OverriddenFlatListProps } from '../examples/overridden-flat-list-props';
 import { RealExample } from '../examples/real-example';
 import { Ref } from '../examples/ref';
 import { RHF } from '../examples/rhf';
@@ -32,6 +33,10 @@ export const ROUTES = [
     {
         name: 'Basic',
         screen: Basic,
+    },
+    {
+        name: 'Overridden FlatList Props',
+        screen: OverriddenFlatListProps,
     },
     {
         name: 'Overflow',
