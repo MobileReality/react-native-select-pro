@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.2.10
+
+### Patch Changes
+
+-   [#259](https://github.com/MobileReality/react-native-select-pro/pull/259) [`622f3bb`](https://github.com/MobileReality/react-native-select-pro/commit/622f3bb45962f255adcf554b0fdaa61fbbb1965c) Thanks [@dawidgierdal](https://github.com/dawidgierdal)! - bug fix with scrolling to location for select with sections option
+
 ## 2.2.9
 
 ### Patch Changes
