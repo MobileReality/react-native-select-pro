@@ -7,6 +7,7 @@ hide_table_of_contents: true
 
 import {
     OptionsPropSnackLink,
+    OverriddenFlatListPropsSnackLink,
     Animation,
     Clearable,
     CloseOptionsListOnSelect,
@@ -133,7 +134,7 @@ The `Select` component has only one required prop, which is the `options` prop.
 | `backdropProps`            | `Omit<TouchableWithoutFeedbackProps, 'onPress'>`                                                                                                                            | Override the backdrop element props.       | To Do   |
 | `clearOptionButtonProps`   | `Omit<ViewProps, 'style'` \| `'onPress'>`                                                                                                                                   | Override the clear option button props.    | To Do   |
 | `clearOptionImageProps`    | `Omit<ImageProps, 'style'>`                                                                                                                                                 | Override the clear option image props.     | To Do   |
-| `flatListProps`            | `Omit<FlatListProps<OptionType>, 'ref'` \| `'data'` \| `'getItemLayout'` \| `'renderItem'` \| `'keyExtractor'>`                                                             | Override the options list props.           | To Do   |
+| `flatListProps`            | `Omit<FlatListProps<OptionType>, 'ref'` \| `'data'` \| `'getItemLayout'` \| `'renderItem'` \| `'keyExtractor'>`                                                              | Override the options list props.           |  <TableExample expo={<OverriddenFlatListPropsSnackLink />} />   |
 | `noOptionsProps`           | `Omit<ViewProps, 'style'>`                                                                                                                                                  | Override the no options element props.     | To Do   |
 | `noOptionsTextProps`       | `Omit<TextProps, 'style'>`                                                                                                                                                  | Override the no options text props.        | To Do   |
 | `optionButtonProps`        | `Omit<PressableProps, 'ref'` \| `'style'` \| `'onPress'` \| `'accessibilityRole'` \| `'accessibilityState'` \| `'disabled'>`                                                | Override the option button props.          | To Do   |

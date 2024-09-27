@@ -1,4 +1,5 @@
 export * from './options'
+export * from './overridden-flat-list-props'
 export * from './animation'
 export * from './clearable'
 export * from './close-options-list-on-select'
