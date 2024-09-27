@@ -37,14 +37,18 @@ export const SectionOptionsList = memo(
         const scrollToIndex = () => {
             if (sectionOptionsListRef.current) {
                 try {
-                    sectionOptionsListRef.current.scrollToLocation({
-                        ...getSectionLocation({
-                            data: resolvedData,
-                            selectedOption,
-                            scrollToSelectedOption,
-                        }),
-                        animated: false,
+                    const location = getSectionLocation({
+                        data: resolvedData,
+                        selectedOption,
+                        scrollToSelectedOption,
                     });
+
+                    if (location.sectionIndex >= 0 && location.itemIndex >= 0) {
+                        sectionOptionsListRef.current.scrollToLocation({
+                            ...location,
+                            animated: false,
+                        });
+                    }
                 } catch {
                     logError(ERRORS.SCROLL_TO_LOCATION);
                 }
