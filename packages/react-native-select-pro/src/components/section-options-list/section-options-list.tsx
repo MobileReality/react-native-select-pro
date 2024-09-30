@@ -3,6 +3,7 @@ import isEqual from 'react-fast-compare';
 import type { SectionListData } from 'react-native';
 import { SectionList } from 'react-native';
 
+import { Loading } from '../../components/loading';
 import { ERRORS, isSectionSelected, logError } from '../../helpers';
 import { getSectionLocation } from '../../helpers/get-section-location';
 import type { OptionType, SectionOptionType } from '../../types';
@@ -21,6 +22,7 @@ export const SectionOptionsList = memo(
         scrollToSelectedOption,
         sectionListProps,
         disabled,
+        loading,
     }: SectionOptionsListProps<T>) => {
         const sectionOptionsListRef = useRef<SectionList>(null);
 
@@ -63,7 +65,7 @@ export const SectionOptionsList = memo(
                 bounces={false}
                 keyboardShouldPersistTaps="handled"
                 persistentScrollbar={true}
-                ListEmptyComponent={<NoOptions />}
+                ListEmptyComponent={loading ? <Loading /> : <NoOptions />}
                 scrollEnabled={!disabled}
                 {...sectionListProps}
                 ref={sectionOptionsListRef}

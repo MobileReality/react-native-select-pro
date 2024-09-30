@@ -1,4 +1,5 @@
 import { Animated } from '../examples/animated';
+import { AsyncSelect } from '../examples/async';
 import { Basic } from '../examples/basic';
 import { SelectBottomSheet } from '../examples/bottom-sheet';
 import { Callbacks } from '../examples/callbacks';
@@ -86,6 +87,10 @@ export const ROUTES = [
     {
         name: 'Animated',
         screen: Animated,
+    },
+    {
+        name: 'Async',
+        screen: AsyncSelect,
     },
     {
         name: 'Custom Icons',

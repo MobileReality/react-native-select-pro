@@ -23,6 +23,10 @@ export type OptionsListContextProviderTypes<T> = OptionalToRequired<
         | 'multiple'
         | 'disabled'
         | 'hideSelectedOptions'
+        | 'loading'
+        | 'loadingText'
+        | 'loadingProps'
+        | 'loadingTextProps'
     > & {
         aboveSelectControl: Position['aboveSelectControl'];
         openedPosition: Position;

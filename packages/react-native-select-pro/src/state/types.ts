@@ -11,7 +11,9 @@ export type Action =
     | 'setSearchValue'
     | 'searchOptions'
     | 'setOptionsListPosition'
-    | 'reinitializeOptions';
+    | 'reinitializeOptions'
+    | 'setLoading'
+    | 'setOptions';
 
 export type ActionType<T> =
     | {
@@ -47,6 +49,14 @@ export type ActionType<T> =
     | {
           type: Extract<Action, 'reinitializeOptions'>;
           payload: OptionsType<T>;
+      }
+    | {
+          type: Extract<Action, 'setLoading'>;
+          payload: boolean;
+      }
+    | {
+          type: Extract<Action, 'setOptions'>;
+          payload: OptionsType<T>;
       };
 
 export type Position = {
@@ -66,6 +76,7 @@ export type State<T = unknown> = {
     searchedOptions: OptionsType<T>;
     searchInputRef: RefObject<TextInput> | null;
     animationDuration: number;
+    loading?: boolean;
 };
 
 export type CreateInitialStateType<T> = {

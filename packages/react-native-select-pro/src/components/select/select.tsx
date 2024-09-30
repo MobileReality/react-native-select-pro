@@ -43,7 +43,6 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         multiple = false,
         separatedMultiple = false,
         widthThreshold,
-        noOptionsText = 'No options',
         placeholderText = 'Select...',
         placeholderTextColor = COLORS.GRAY,
         pressableSelectedOption = true,
@@ -69,8 +68,12 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         clearOptionButtonProps,
         clearOptionImageProps,
         flatListProps,
+        noOptionsText = 'No options',
         noOptionsProps,
         noOptionsTextProps,
+        loadingText = 'Loading..',
+        loadingProps,
+        loadingTextProps,
         optionButtonProps,
         optionTextProps,
         selectContainerProps,
@@ -84,6 +87,7 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         sectionHeaderTextProps,
         sectionListProps,
         hideSelectedOptions = false,
+        loadOptions,
     } = props;
 
     const [state, dispatch] = useReducer<
@@ -99,6 +103,7 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         searchValue,
         searchedOptions,
         selectedOptionIndex,
+        loading,
     } = state;
 
     useEffect(() => {
@@ -106,6 +111,20 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
             dispatch({ type: 'reinitializeOptions', payload: options });
         }
     }, [options, reinitializeOptions]);
+
+    useEffect(() => {
+        if (searchable && searchValue && loadOptions) {
+            dispatch({ type: 'setLoading', payload: true });
+            loadOptions(searchValue)
+                .then((newOptions) => {
+                    dispatch({ type: 'setOptions', payload: newOptions });
+                    dispatch({ type: 'setLoading', payload: false });
+                })
+                .catch(() => {
+                    dispatch({ type: 'setLoading', payload: false });
+                });
+        }
+    }, [searchValue, loadOptions, searchable]);
 
     const { aboveSelectControl } = openedPosition;
     const mainStyles: SelectStyles = mergeObjects(themes[theme], customStyles);
@@ -223,6 +242,10 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
                                 multiple,
                                 disabled,
                                 hideSelectedOptions,
+                                loading,
+                                loadingText,
+                                loadingProps,
+                                loadingTextProps,
                             }}
                         >
                             <OptionsList ref={optionsListRef} />

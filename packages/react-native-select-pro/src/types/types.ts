@@ -63,6 +63,19 @@ export interface SelectProps<T = unknown> {
     clearable?: boolean;
 
     /**
+     *  Asynchronous function used to load options dynamically as the user types.
+     *  This function takes the current search input as an argument (`searchValue`) and returns a Promise
+     *  that resolves to an array of options (`OptionType[]`).
+     *  When provided, this function allows the `Select` component to load options from a remote source
+     *  or any other dynamic data provider based on the user's input.
+     *  If not provided, the component will use the static `options` prop to display the available choices.
+     *
+     *  @param searchValue - The current search query entered by the user.
+     *  @returns A Promise that resolves to an array of options that match the search query.
+     */
+    loadOptions?: (searchValue: string) => Promise<OptionType<T>[]>;
+
+    /**
      * Close the options list after selected option.
      *
      * @default true
@@ -291,6 +304,33 @@ export interface SelectProps<T = unknown> {
      * Override the no options text props.
      */
     noOptionsTextProps?: Omit<TextProps, 'style'>;
+
+    /**
+     *  Indicates whether the `Select` component is currently loading options asynchronously.
+     *  If set to `true`, a loading indicator (e.g., spinner or text) will be displayed in the options list
+     *  until the options are loaded and ready to be rendered.
+     *
+     *  @default false
+     */
+    loading?: boolean;
+
+    /**
+     * Determines the text that should be displayed while options are being loaded asynchronously
+     * in a `Select` component.
+     *
+     * @default "Loading..."
+     */
+    loadingText?: string;
+
+    /**
+     * Override the loading element props.
+     */
+    loadingProps?: Omit<ViewProps, 'style'>;
+
+    /**
+     * Override the loading text props.
+     */
+    loadingTextProps?: Omit<TextProps, 'style'>;
 
     /**
      * Override the option button props.

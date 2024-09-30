@@ -26,6 +26,7 @@ export const useOptionsList = <T>() => {
         optionTextProps,
         pressableSelectedOption,
         hideSelectedOptions,
+        loading,
     } = useOptionsListContext();
 
     const { selectedOptionValue, selectedOptionLabel, selectedOptions } =
@@ -136,5 +137,6 @@ export const useOptionsList = <T>() => {
         optionTextProps,
         isDisabledResolveOption,
         hideSelectedOptions,
+        loading,
     };
 };

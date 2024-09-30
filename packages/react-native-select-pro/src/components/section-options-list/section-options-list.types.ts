@@ -8,6 +8,7 @@ export type SectionOptionsListProps<T> = {
     renderItem: SectionListProps<OptionType<T>>['renderItem'];
     getItemLayout: SectionListProps<OptionType<T>>['getItemLayout'];
     accessibilityState: FlatListProps<OptionType<T>>['accessibilityState'];
+    loading?: boolean;
 } & OptionalToRequired<
     Pick<State<T>, 'selectedOption'> &
         Pick<SelectProps<T>, 'scrollToSelectedOption' | 'sectionListProps' | 'disabled'>

@@ -83,6 +83,16 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
                 ...state,
                 optionsData: action.payload,
             };
+        case 'setOptions':
+            return {
+                ...state,
+                optionsData: action.payload,
+            };
+        case 'setLoading':
+            return {
+                ...state,
+                loading: action.payload,
+            };
         default:
             return state;
     }
@@ -139,5 +149,6 @@ export const createInitialState = <T>({
         searchValue: searchable ? defaultSearchValue : null,
         animationDuration:
             typeof animation === 'boolean' ? (animation ? ANIMATION_DURATION : 0) : animation,
+        loading: false,
     };
 };

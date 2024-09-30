@@ -2,6 +2,7 @@ import React, { memo, useRef } from 'react';
 import isEqual from 'react-fast-compare';
 import { FlatList } from 'react-native';
 
+import { Loading } from '../../components/loading';
 import { ERRORS, logError } from '../../helpers';
 import { NoOptions } from '../no-options';
 
@@ -16,6 +17,7 @@ export const FlatOptionsList = memo(
         initialScrollIndex,
         accessibilityState,
         disabled,
+        loading,
     }: FlatOptionsListProps<T>) => {
         const flatListRef = useRef<FlatList>(null);
 
@@ -45,7 +47,7 @@ export const FlatOptionsList = memo(
                 bounces={false}
                 keyboardShouldPersistTaps="handled"
                 persistentScrollbar={true}
-                ListEmptyComponent={<NoOptions />}
+                ListEmptyComponent={loading ? <Loading /> : <NoOptions />}
                 scrollEnabled={!disabled}
                 {...flatListProps}
                 data={resolvedData}

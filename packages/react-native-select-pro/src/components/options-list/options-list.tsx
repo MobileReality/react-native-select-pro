@@ -31,6 +31,7 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
         optionTextProps,
         isDisabledResolveOption,
         hideSelectedOptions,
+        loading,
     } = useOptionsList();
 
     const isSectionedOptions = isSectionOptionsType(resolvedData);
@@ -140,6 +141,7 @@ export const OptionsList = forwardRef<View>((_, optionsListRef) => {
                     resolvedData={filteredResolvedData}
                     flatListProps={flatListProps}
                     disabled={disabled}
+                    loading={loading}
                 />
             )}
         </OptionsListWrapper>
