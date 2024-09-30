@@ -6,6 +6,8 @@ import { Portal } from '@gorhom/portal';
 
 import { COLORS, Portals } from '../../constants';
 import { OptionsListContextProvider, SelectContextProvider } from '../../context';
+// TODO
+// import { debounce } from '../../helpers';
 import { isAndroid, mergeObjects } from '../../helpers';
 import type { ActionType, CreateInitialStateType, State } from '../../state';
 import { createInitialState, reducer } from '../../state';
@@ -71,7 +73,7 @@ const SelectComponent = <T,>(props: SelectProps<T>, ref: ForwardedRef<SelectRef<
         noOptionsText = 'No options',
         noOptionsProps,
         noOptionsTextProps,
-        loadingText = 'Loading..',
+        loadingText = 'Loading...',
         loadingProps,
         loadingTextProps,
         optionButtonProps,
