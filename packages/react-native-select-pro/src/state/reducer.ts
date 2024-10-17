@@ -2,6 +2,7 @@ import { LayoutAnimation } from 'react-native';
 
 import { ANIMATION_DURATION } from '../constants';
 import { ERRORS, getReducedSectionData, isValidDefaultOption, searchNormalize } from '../helpers';
+import { getDefaultSelectionIndex } from '../helpers/get-default-selection-index';
 import type { OptionsType, OptionType } from '../types';
 import { isSectionOptionsType } from '../types';
 
@@ -88,25 +89,29 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
     }
 };
 
-const setDefaultOption = <T>(options: OptionsType<T>, defaultOption: OptionType<T> | undefined) => {
-    if (isValidDefaultOption(defaultOption) && options.length > 0) {
+const setDefaultOption = <T>(
+    options: OptionsType<T>,
+    defaultOption: OptionType<T> | OptionType<T>[] | undefined,
+) => {
+    if (
+        (Array.isArray(defaultOption)
+            ? defaultOption.every(isValidDefaultOption)
+            : isValidDefaultOption(defaultOption)) &&
+        options.length > 0 &&
+        defaultOption !== undefined
+    ) {
         const isSectionedOptions = isSectionOptionsType(options);
+        const flatOptions = isSectionedOptions ? getReducedSectionData(options) : options;
 
-        const foundIndex = isSectionedOptions
-            ? getReducedSectionData(options).findIndex((item) => item.value === defaultOption.value)
-            : options.findIndex((item) => item.value === defaultOption.value);
-
-        if (foundIndex !== -1) {
-            return {
-                selectedOption: defaultOption,
-                selectedOptionIndex: foundIndex,
-            };
-        }
+        return {
+            selectedOption: defaultOption,
+            selectedOptionIndex: getDefaultSelectionIndex(flatOptions, defaultOption),
+        };
     }
 
     return {
         selectedOption: null,
-        selectedOptionIndex: -1,
+        selectedOptionIndex: Array.isArray(defaultOption) ? [] : -1,
     };
 };
 
@@ -121,7 +126,8 @@ export const createInitialState = <T>({
     }
 
     const { selectedOption, selectedOptionIndex } = setDefaultOption(options, defaultOption);
-    const defaultSearchValue = defaultOption?.label ?? '';
+    const defaultSearchOption = Array.isArray(defaultOption) ? defaultOption[0] : defaultOption;
+    const defaultSearchValue = defaultSearchOption?.label ?? '';
 
     return {
         isOpened: false,

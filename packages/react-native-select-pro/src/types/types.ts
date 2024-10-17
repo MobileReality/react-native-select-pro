@@ -70,9 +70,9 @@ export interface SelectProps<T = unknown> {
     closeOptionsListOnSelect?: boolean;
 
     /**
-     *  An object that represents the default option for a `Select`.
+     *  An object or array of objects that represents the default option(s) for a `Select`.
      */
-    defaultOption?: OptionType<T>;
+    defaultOption?: OptionType<T> | OptionType<T>[];
 
     /**
      *  Disable a `Select` pressable.

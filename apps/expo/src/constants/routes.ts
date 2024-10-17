@@ -8,6 +8,7 @@ import { CustomStyles } from '../examples/custom-styles';
 import { ModalExample } from '../examples/modal-example';
 import { MultiSelect } from '../examples/multiselect';
 import { MultiSelectSearchableWithSeparatedOptions } from '../examples/multiselect-searchable-with-separated-options';
+import { MultiSelectWithDefaultOptions } from '../examples/multiselect-with-default-options';
 import { MultiSelectWithHiddenOptions } from '../examples/multiselect-with-hidden-options';
 import { MultiSelectWithSearchable } from '../examples/multiselect-with-searchable';
 import { MultiSelectWithSeparatedOptions } from '../examples/multiselect-with-separated-options';
@@ -114,6 +115,10 @@ export const ROUTES = [
     {
         name: 'MultiSelect with Hidden Options',
         screen: MultiSelectWithHiddenOptions,
+    },
+    {
+        name: 'MultiSelect with Default Options',
+        screen: MultiSelectWithDefaultOptions,
     },
     {
         name: 'TextInputProps',
