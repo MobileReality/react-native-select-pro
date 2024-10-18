@@ -1,4 +1,5 @@
 export { dimensionPercentageToDP } from './dimension-percentage-to-dp';
+export { getDefaultSelectionIndex } from './get-default-selection-index';
 export { getReducedSectionData } from './get-reduced-section-data';
 export { getSectionOptionsIndexes } from './get-section-options-indexes';
 export { isAndroid } from './is-android';

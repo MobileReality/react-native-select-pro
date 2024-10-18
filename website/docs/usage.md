@@ -616,6 +616,56 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
+### Default Options
+
+You can use the `defaultOption` prop to pass pre-selected options to either a single or multi select component.
+
+```SnackPlayer name=Multiple with separated options&dependencies=@mobile-reality/react-native-select-pro@2.0.0
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Select, SelectProvider } from '@mobile-reality/react-native-select-pro';
+
+const data = [
+     {
+        value: 'value1',
+        label: 'First label',
+    },
+    {
+        value: 'value2',
+        label: 'Second label ',
+    },
+    {
+        value: 'value3',
+        label: 'Third label',
+    },
+    {
+        value: 'value4',
+        label: 'Fourth label',
+    },
+];
+
+const App = () => {
+    return (
+        <SelectProvider>
+            <View style={styles.container}>
+               <Select options={data} defaultOption={{ label: 'First label', value: 'value1' }} />
+               <Select options={data} multiple={true} defaultOption={[data[0], data[1]]} />
+            </View>
+        </SelectProvider>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
+
+export default App;
+```
+
 ### Select inside Modal
 
 If you want to use `Select` component inside:
