@@ -1,5 +1,11 @@
 # @mobile-reality/react-native-select-pro
 
+## 2.3.0
+
+### Minor Changes
+
+-   [#263](https://github.com/MobileReality/react-native-select-pro/pull/263) [`5eb49f4`](https://github.com/MobileReality/react-native-select-pro/commit/5eb49f411293fb9a07c0ff94e42efbe1faeb63a3) Thanks [@markusunger](https://github.com/markusunger)! - Added support for multiple defaultOption objects
+
 ## 2.2.11
 
 ### Patch Changes
